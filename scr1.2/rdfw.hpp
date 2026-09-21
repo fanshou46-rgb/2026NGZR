@@ -12,8 +12,6 @@
 #include "vector"
 #include "functional"
 #include "debuglog.hpp"
-#include "indexed_vector.hpp"
-#include "time_budget.hpp"
 using namespace std;
 
 #define UNKNOWN -1
@@ -104,7 +102,7 @@ namespace _home
 
         // Initialize through info
         SmallObject(int id, int location = UNKNOWN, const string &sort = "", const string &color = "") 
-            : Object(id, sort, location), color(color) {}
+            : Object(location, sort, id), color(color) {}
 
         // Initialize through Object class
         SmallObject(shared_ptr<Object> obj) 
@@ -131,7 +129,7 @@ namespace _home
     public:
         // Initialize through info
         BigObject(int id, int location = UNKNOWN, string sort = "") 
-            : Object(id, sort, location) {}
+            : Object(location, sort, id) {}
 
         // Initialize through Object class
         BigObject(shared_ptr<Object> obj) 
@@ -325,16 +323,6 @@ namespace _home
          * The processing of a plan should be implemented in this function.
          */
         void Plan();
-        void PlanWithinBudget();
-        TimeBudget budget;
-        long budget_ms = 4500;
-        long reserve_ms = 500;
-        bool budget_stopped = false;
-        std::map<std::string, unsigned> action_counts;
-        void CheckBudget();
-        bool CanStartTask();
-        void BeforeAction(const char* action);
-        void EmitMetrics() const;
         
 
 
@@ -348,7 +336,7 @@ namespace _home
          * @typedef shared_ptr<Object/...>
          */
         shared_ptr <BigObject>                  human;          // human
-        ObjectVector<shared_ptr<Object> >       objects;        // 场景中所有Object, id为索引
+        vector     <shared_ptr <Object>>        objects;        // 场景中所有Object, id为索引
         vector     <shared_ptr <SmallObject>>   smallObjects;   // 场景中所有SmallObject
 
         /**
@@ -389,24 +377,24 @@ namespace _home
          * @brief   Constraints look-up table (动态数组版本)
          * @typedef int / bool
          */
-        LocationVector<int> goto_cons;           //not_task   goto
-        ObjectObjectTable putin_cons;      //not_info   inside   + not_task   putin
-        ObjectObjectTable takeout_cons;    // ontnot_infor  inside   + not_task   takeout
-        ObjectLocationTable putdown_cons;    //not_info   on   + not_task   puton
-        ObjectVector<int> putdown1_cons;        //not_task   putdown  + hold  + plate
-        ObjectLocationTable move_cons;       //not_info   near   + 
-        ObjectVector<int> open_cons;           //not_info   opened   + notnot_info   closed  + not_task   open
-        ObjectVector<int> close_cons;          //not_info   closed   + notnot_info   opened  + not_task   close
-        ObjectVector<int> pickup_cons;         //not_info   plate   + not_task   pickup
+        vector<int> goto_cons;           //not_task   goto
+        vector<vector<int>> putin_cons;      //not_info   inside   + not_task   putin
+        vector<vector<int>> takeout_cons;    // ontnot_infor  inside   + not_task   takeout
+        vector<vector<int>> putdown_cons;    //not_info   on   + not_task   puton
+        vector<int> putdown1_cons;        //not_task   putdown  + hold  + plate
+        vector<vector<int>> move_cons;       //not_info   near   + 
+        vector<int> open_cons;           //not_info   opened   + notnot_info   closed  + not_task   open
+        vector<int> close_cons;          //not_info   closed   + notnot_info   opened  + not_task   close
+        vector<int> pickup_cons;         //not_info   plate   + not_task   pickup
         //vector<vector<int>> pickup1_cons;    
-        ObjectVector<int> givehuman_cons;      //not_task   give 
-        ObjectVector<int> fromplate_cons;      //hold
-        ObjectVector<int> toplate_cons;        //plate
+        vector<int> givehuman_cons;      //not_task   give 
+        vector<int> fromplate_cons;      //hold
+        vector<int> toplate_cons;        //plate
 
 
-        ObjectObjectTable mustnear_cons;       //notnot_info   mustnear
+        vector<vector<int>> mustnear_cons;       //notnot_info   mustnear
 
-        LocationVector<bool> rightlocation;
+        vector<bool> rightlocation;
 
         // ==================== Must Near 纠错与补全 ====================
         
@@ -424,17 +412,6 @@ namespace _home
         bool enable_must_lock = true;          // must 组锁位
 
 
-        /**
-         * @brief   Tasks look-up table (动态数组版本)
-         * @typedef Instruction
-         */
-        ObjectVector<ObjectVector<bool> > takeout;
-        ObjectVector<ObjectVector<bool> > putin;
-        ObjectVector<bool> close;
-        ObjectVector<bool> open;
-        ObjectVector<bool> pickup;
-        ObjectVector<bool> putdown;
-
 
 
         /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -442,13 +419,13 @@ namespace _home
 
         parser *nlp_parser;
         vector<string> errorlist;
-        LocationVector<bool> posCorrectFlag;  // 位置物品正确性标识
-        LocationVector<bool> posSensedFlag;   // 位置感知记录标识，避免重复感知
+        vector<bool> posCorrectFlag;  // 位置物品正确性标识
+        vector<bool> posSensedFlag;   // 位置感知记录标识，避免重复感知
         // Stage 2 中，初始描述和 AskLoc 都可能错误。以下标志只由成功的
         // 原子动作或 Sense 更新，用于区分“缓存猜测”和“已验证事实”。
-        ObjectVector<bool> objectLocationVerified;
-        ObjectVector<bool> objectInsideVerified;
-        ObjectVector<bool> containerStateVerified;
+        vector<bool> objectLocationVerified;
+        vector<bool> objectInsideVerified;
+        vector<bool> containerStateVerified;
         bool isMultiGotoMode;         // 是否在多goto任务模式下，用于控制是否跳过Sense操作
         
         // 位置感知物体记录
@@ -457,7 +434,7 @@ namespace _home
             unsigned int container_id;           // 感知到的容器ID（一个位置只能有一个大物体）
             bool has_container;                  // 该位置是否有容器
         };
-        LocationVector<LocationSensedInfo> locationSensedObjects;  // 每个位置的感知物体记录
+        vector<LocationSensedInfo> locationSensedObjects;  // 每个位置的感知物体记录
         
         // 位置感知物体记录访问函数
         const LocationSensedInfo& GetLocationSensedInfo(int location) const;
@@ -507,6 +484,10 @@ namespace _home
 
         // 任务优化函数
         vector<Instruction> TaskOptimization();
+
+        // 查询题目是否提出过任务；已完成/停用的任务仍算，NONE 表示不匹配 Y。
+        bool HasRequestedTask(const string &behave, unsigned int object_id,
+                              unsigned int target_id = NONE) const;
         
         // 任务执行相关函数
         bool SolveTask(const Instruction &task);
@@ -544,7 +525,7 @@ namespace _home
         void ExecuteMultiGotoAggregation();
         
         // 感知和询问函数
-        std::string AskLoc(ObjectId a);
+        std::string AskLoc(unsigned int a);
         void Sense();
         void SenseAndUpdateEnvironment();  // 新增：每次移动后的环境感知和更新
         void SenseCurrentLocationOnly(bool force = false);   // 只感知当前位置的物体
@@ -597,18 +578,17 @@ namespace _home
         bool IsContainerStateVerified(unsigned int id) const;
         //确保数组不越界
         inline void EnsureLocationCapacity(int loc);
-        void EnsureObjectCapacity(ObjectId id);
         inline void EnsureObjectExists(unsigned id, bool prefer_small=false);
         /*=====================原子动作==========================*/
-         bool Move(LocationId x);
-         bool PickUp(ObjectId a);
-         bool PutDown(ObjectId a);
-         bool ToPlate(ObjectId a);
-         bool FromPlate(ObjectId a);
-         bool Open(ObjectId a);
-         bool Close(ObjectId a);
-         bool PutIn(ObjectId a, ObjectId b);
-         bool TakeOut(ObjectId a, ObjectId b); 
+         bool Move(unsigned int x);
+         bool PickUp(unsigned int a);
+         bool PutDown(unsigned int a);
+         bool ToPlate(unsigned int a);
+         bool FromPlate(unsigned int a);
+         bool Open(unsigned int a);
+         bool Close(unsigned int a);
+         bool PutIn(unsigned int a, unsigned int b);
+         bool TakeOut(unsigned int a, unsigned int b); 
  
         
 

@@ -1,0 +1,56 @@
+<configuration info>
+TeamName: RDFW
+Mode: IT
+Timeout: 5000
+TestDir: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/realcompetition-scr12-vs-scr13-20260921/runs-scr1.3-r2/11-s2-it/runtime/tests/
+TestSize: 1
+Single test: case.xml
+Grader path: /home/yifan/env-release-2026/lib/libasp
+
+<case.xml>
+# Environment Description:
+(:domain (hold 0) (plate 0) (at 0 2) (sort 1 human) (size 1 big) (at 1 1) (sort 2 can) (size 2 small) (color 2 black) (at 2 15) (sort 3 can) (size 3 small) (color 3 red) (at 3 5) (sort 4 can) (size 4 small) (color 4 white) (at 4 13) (sort 5 can) (size 5 small) (color 5 yellow) (at 5 12) (sort 6 can) (size 6 small) (color 6 green) (sort 7 can) (size 7 small) (color 7 blue) (at 7 10) (sort 8 cup) (size 8 small) (color 8 blue) (at 8 9) (sort 9 cup) (size 9 small) (color 9 black) (at 9 8) (sort 10 cup) (size 10 small) (color 10 red) (at 10 7) (sort 11 cup) (size 11 small) (color 11 white) (at 11 7) (sort 12 cup) (size 12 small) (color 12 yellow) (at 12 8) (sort 13 cup) (size 13 small) (color 13 green) (at 13 9) (sort 14 bottle) (size 14 small) (color 14 black) (at 14 10) (sort 15 bottle) (size 15 small) (color 15 red) (at 15 11) (sort 16 bottle) (size 16 small) (color 16 white) (at 16 12) (sort 17 bottle) (size 17 small) (color 17 yellow) (at 17 13) (sort 18 bottle) (size 18 small) (color 18 green) (at 18 14) (sort 19 bottle) (size 19 small) (color 19 blue) (at 19 14) (sort 20 desk) (size 20 big) (sort 21 sofa) (size 21 big) (at 21 10) (sort 22 chair) (size 22 big)  (at 20 10) (at 22 15))
+# Task Description:
+(:ins (:task (goto X) (:cond (sort X can) (color X black))) (:task (goto X) (:cond (sort X can) (color X red))) (:task (goto X) (:cond (sort X can) (color X white))) (:task (goto X) (:cond (sort X can) (color X green))) (:task (goto X) (:cond (sort X can) (color X blue))) (:cons_not (:task (goto X) (:cond (sort X can) (color X blue)))) (:cons_not (:task (goto X) (:cond (sort X bottle) (color X white)))) (:cons_not (:task (goto X) (:cond (sort X bottle) (color X green)))) (:cons_not (:task (goto X) (:cond (sort X sofa)))) (:cons_not (:task (goto X) (:cond (sort X chair)))) (:cons_not (:task (goto X) (:cond (sort X human)))) (:task (goto X) (:cond (sort X bottle) (color X black))) (:task (goto X) (:cond (sort X bottle) (color X red))) (:task (goto X) (:cond (sort X bottle) (color X yellow))) (:task (goto X) (:cond (sort X bottle) (color X green))) (:task (goto X) (:cond (sort X cup) (color X black))) (:task (goto X) (:cond (sort X cup) (color X red))) (:task (goto X) (:cond (sort X cup) (color X white))) (:task (goto X) (:cond (sort X cup) (color X yellow))) (:task (goto X) (:cond (sort X desk))) (:task (goto X) (:cond (sort X sofa))) (:task (goto X) (:cond (sort X chair))) (:cons_notnot (:info (near X Y) (:cond (sort X can) (color X blue) (sort Y sofa)))) (:cons_notnot (:info (near X Y) (:cond (sort X can) (color X green) (sort Y desk)))) (:cons_notnot (:info (near X Y) (:cond (sort X bottle) (color X blue) (sort Y bottle) (color Y green)))) )
+# Results:
+	[Move 10|true]
+	[PickUp 6|false]
+	[AskLoc 6|at(6,2)]
+	[PickUp 7|true]
+	[Move 7|true]
+	[Sense | 11 10 7]
+	[PutDown 7|true]
+	[Move 10|true]
+	[PickUp 14|true]
+	[Move 7|true]
+	[PutDown 14|true]
+	[Move 15|true]
+	[PickUp 2|true]
+	[Move 7|true]
+	[PutDown 2|true]
+	[Move 5|true]
+	[PickUp 3|true]
+	[Move 7|true]
+	[PutDown 3|true]
+	[Move 13|true]
+	[PickUp 4|true]
+	[Move 7|true]
+	[PutDown 4|true]
+	[Move 8|true]
+	[PickUp 9|true]
+	[Move 7|true]
+	[PutDown 9|true]
+	[Move 8|true]
+	[PickUp 12|true]
+	[Move 7|true]
+	[PutDown 12|true]
+	[Move 11|true]
+	[PickUp 15|true]
+	[Move 7|true]
+	[PutDown 15|true]
+	[Move 13|true]
+	[PickUp 17|true]
+
+# Time: 5
+# Score: 53
+

@@ -1,0 +1,48 @@
+=========================================
+= Simulation @Home Competition Platform =
+=========================================
+= Ready to accept a new team
+# Registration from 'RDFW'
+> Configurations:
+	Mode: IT
+	Timeout: 5000
+	TestDir: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/realcompetition-scr12-vs-scr13-20260921/runs-scr1.2/08-s2-it/runtime/tests/
+	TestSize: 1
+	Single test: 1
+# Testing <case.xml>
+# Result:
+	[Move 4|true]
+	[PickUp 6|true]
+	[Sense | 6 7 13]
+	[AskLoc 5|at(5,6)]
+	[Move 6|true]
+	[Sense | 5 12 11 6]
+	[PutDown 6|true]
+	[Move 4|true]
+	[PickUp 7|true]
+	[Move 6|true]
+	[PutDown 7|true]
+	[AskLoc 8|at(8,3)]
+	[Move 3|true]
+	[PickUp 8|true]
+	[Move 6|true]
+	[PutDown 8|true]
+	[AskLoc 10|not_known]
+	[AskLoc 10|at(10,7)]
+	[Move 7|true]
+	[PickUp 10|true]
+	[Move 6|true]
+	[PutDown 10|true]
+	[AskLoc 9|inside(9,14)]
+	[Move 7|true]
+	[Open 14|true]
+	[TakeOut 9 14|false]
+	[Sense | 14 9]
+	[TakeOut 9 14|false]
+	[Sense | 14 9]
+	[AskLoc 9|at(9,5)]
+	[Move 5|true]
+	[PickUp 9|false]
+	[Move 6|true]
+# Time: 4.179s
+# Score: 732

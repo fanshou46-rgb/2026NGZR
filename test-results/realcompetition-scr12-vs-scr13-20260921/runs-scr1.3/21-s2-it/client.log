@@ -1,0 +1,442 @@
+[LOG]:-stage
+[LOG]:-nlp
+[LOG]:-err
+[LOG]:-ask_2
+[LOG]:-path
+[LOG]:nlp 0, err 1
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+#(Plug): Timeout=5000
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32mcase.xml
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m
+Pos  2:(T):[32m(robot hold:0 plate:0)[0m[33m(20 chair)[0m
+Pos  3:(F):
+Pos  4:(F):
+Pos  5:(T):
+Pos  6:(T):
+Pos  7:(T):(10 book)(11 book)
+Pos  8:(T):(9 book)(12 book)
+Pos  9:(T):(8 cup)(13 book)
+Pos 10:(T):(7 remotecontrol)(14 book)
+Pos 11:(T):(6 remotecontrol)(15 cup)
+Pos 12:(T):(5 remotecontrol)(16 cup)
+Pos 13:(T):(4 remotecontrol)(17 cup)
+Pos 14:(T):(3 remotecontrol)(18 cup)
+Pos 15:(T):(2 remotecontrol)(19 cup)
+UnknownPos:
+
+[LOG]:[32m[MustIn] correction done.
+[0m
+[LOG]:[32m[MustNear] correction done.
+[0m
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m
+Pos  2:(T):[32m(robot hold:0 plate:0)[0m[33m(20 chair)[0m
+Pos  3:(F):
+Pos  4:(F):
+Pos  5:(T):
+Pos  6:(T):
+Pos  7:(T):(10 book)(11 book)
+Pos  8:(T):(9 book)(12 book)
+Pos  9:(T):(8 cup)(13 book)
+Pos 10:(T):(7 remotecontrol)(14 book)
+Pos 11:(T):(6 remotecontrol)(15 cup)
+Pos 12:(T):(5 remotecontrol)(16 cup)
+Pos 13:(T):(4 remotecontrol)(17 cup)
+Pos 14:(T):(3 remotecontrol)(18 cup)
+Pos 15:(T):(2 remotecontrol)(19 cup)
+UnknownPos:
+
+Task:
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:remotecontrol,Color:black)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:remotecontrol,Color:red)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:remotecontrol,Color:white)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:remotecontrol,Color:green)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:remotecontrol,Color:blue)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:remotecontrol,Color:yellow)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:book,Color:yellow)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:book,Color:green)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:book,Color:blue)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:red)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:white)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:yellow)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:green)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:blue)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:remotecontrol,Color:black)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:remotecontrol,Color:red)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:remotecontrol,Color:white)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:remotecontrol,Color:green)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:remotecontrol,Color:blue)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:remotecontrol,Color:yellow)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:book,Color:black)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:book,Color:red)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:book,Color:white)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:book,Color:yellow)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:book,Color:green)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:book,Color:blue)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:red)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:white)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:yellow)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:green)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:blue)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:book,Color:yellow)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:book,Color:green)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:book,Color:blue)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+
+Info:
+
+Not_Info:
+
+Not_Task:
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:chair,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:chair,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+
+NotNot_Info:
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+[FilterConstraintsByTaskConflicts] Discarded goto_cons at location 0 due to 0 conflicts.
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+36
+[LOG]:[33m[Defer] multi-goto detected: 36 tasks; skip in main loop, handle at final aggregation
+[0m
+[LOG]:[33m[Defer] skip MustChooseOne because multi-goto remain=36
+[0m
+-----check check check-----
+[LOG]:[33m[Defer] multi-goto detected: 36 tasks; skip in main loop, handle at final aggregation
+[0m
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m
+Pos  2:(T):[32m(robot hold:0 plate:0)[0m[33m(20 chair)[0m
+Pos  3:(F):
+Pos  4:(F):
+Pos  5:(T):
+Pos  6:(T):
+Pos  7:(T):(10 book)(11 book)
+Pos  8:(T):(9 book)(12 book)
+Pos  9:(T):(8 cup)(13 book)
+Pos 10:(T):(7 remotecontrol)(14 book)
+Pos 11:(T):(6 remotecontrol)(15 cup)
+Pos 12:(T):(5 remotecontrol)(16 cup)
+Pos 13:(T):(4 remotecontrol)(17 cup)
+Pos 14:(T):(3 remotecontrol)(18 cup)
+Pos 15:(T):(2 remotecontrol)(19 cup)
+UnknownPos:
+
+[LOG]:[32m[MultiGoto] Executing multi-goto aggregation - skipping Sense operations
+[0m
+[LOG]:[32m[MultiGoto] Object[8]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[7]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[5]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[9]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[10]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[11]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[12]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[13]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[14]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[6]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[15]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[16]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[17]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[18]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[19]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[12]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[13]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[14]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[8]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[3]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[4]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[6]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[7]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[5]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[12]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[13]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[14]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[2]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[15]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[16]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[17]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[18]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[19]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[2]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[3]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[4]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] small_cand_id_disable: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] small_cand_ids: 
+[LOG]:[32m8 
+[LOG]:[32m7 
+[LOG]:[32m5 
+[LOG]:[32m9 
+[LOG]:[32m10 
+[LOG]:[32m11 
+[LOG]:[32m12 
+[LOG]:[32m13 
+[LOG]:[32m14 
+[LOG]:[32m6 
+[LOG]:[32m15 
+[LOG]:[32m16 
+[LOG]:[32m17 
+[LOG]:[32m18 
+[LOG]:[32m19 
+[LOG]:[32m12 
+[LOG]:[32m13 
+[LOG]:[32m14 
+[LOG]:[32m8 
+[LOG]:[32m3 
+[LOG]:[32m4 
+[LOG]:[32m6 
+[LOG]:[32m7 
+[LOG]:[32m5 
+[LOG]:[32m12 
+[LOG]:[32m13 
+[LOG]:[32m14 
+[LOG]:[32m2 
+[LOG]:[32m15 
+[LOG]:[32m16 
+[LOG]:[32m17 
+[LOG]:[32m18 
+[LOG]:[32m19 
+[LOG]:[32m2 
+[LOG]:[32m3 
+[LOG]:[32m4 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] big_cand_ids: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] small_cand_ids.size()=36, big_cand_ids.size()=0
+[0m
+[LOG]:[32m[MultiGoto] small_lowrisk_ids.size()=36
+[0m
+[LOG]:[32m[MultiGoto] Entering main aggregation logic
+[0m
+[LOG]:[32m[MultiGoto] Performance optimization: Only checking 9 occupied locations instead of 100 total locations
+[0m
+[MultiGoto] location 7 has 2 small objects
+[MultiGoto] location 8 has 4 small objects
+[MultiGoto] most_smallobj_loc 8
+[MultiGoto] location 9 has 5 small objects
+[MultiGoto] most_smallobj_loc 9
+[MultiGoto] location 10 has 5 small objects
+[MultiGoto] location 11 has 4 small objects
+[MultiGoto] location 12 has 4 small objects
+[MultiGoto] location 13 has 4 small objects
+[MultiGoto] location 14 has 4 small objects
+[MultiGoto] location 15 has 4 small objects
+[LOG]:[33m[MultiGoto] smallobj_loc is found: 9
+[0m
+[LOG]:[32mFinal-GOTO: choose hub=9
+[0m
+[LOG]:Move(9)
+[LOG]:PickUp(8,cup)
+[LOG]:Move(8)
+[LOG]:[32m[SenseCurrentLocationOnly] Location 8 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Object 12 detected at location 8
+[LOG]:[SenseCurrentLocationOnly] Object 9 detected at location 8
+[LOG]:[SenseCurrentLocationOnly] Object 8 detected at location 8
+[LOG]:PutDown(8,cup)
+[LOG]:[32mFinal-GOTO: moved obj[8] to hub=9 (1/500) (via SolveTask_PutOn)
+[0m
+[LOG]:[32mFinal-GOTO: moved obj[8] to hub=9 (2/500) (via SolveTask_PutOn)
+[0m
+[LOG]:Move(9)
+[LOG]:PickUp(13,book)
+[LOG]:Move(8)
+[LOG]:PutDown(13,book)
+[LOG]:[32mFinal-GOTO: moved obj[13] to hub=9 (3/500) (via SolveTask_PutOn)
+[0m
+[LOG]:[32mFinal-GOTO: moved obj[13] to hub=9 (4/500) (via SolveTask_PutOn)
+[0m
+[LOG]:[32mFinal-GOTO: moved obj[13] to hub=9 (5/500) (via SolveTask_PutOn)
+[0m
+[LOG]:Move(15)
+[LOG]:PickUp(2,remotecontrol)
+[LOG]:Move(8)
+[LOG]:PutDown(2,remotecontrol)
+[LOG]:[32mFinal-GOTO: moved obj[2] to hub=9 (6/500) (via SolveTask_PutOn)
+[0m
+[LOG]:[32mFinal-GOTO: moved obj[2] to hub=9 (7/500) (via SolveTask_PutOn)
+[0m
+[LOG]:Move(14)
+[LOG]:PickUp(3,remotecontrol)
+[LOG]:Move(8)
+[LOG]:PutDown(3,remotecontrol)
+[LOG]:[32mFinal-GOTO: moved obj[3] to hub=9 (8/500) (via SolveTask_PutOn)
+[0m
+[LOG]:[32mFinal-GOTO: moved obj[3] to hub=9 (9/500) (via SolveTask_PutOn)
+[0m
+[LOG]:Move(13)
+[LOG]:PickUp(4,remotecontrol)
+[LOG]:Move(8)
+[LOG]:PutDown(4,remotecontrol)
+[LOG]:[32mFinal-GOTO: moved obj[4] to hub=9 (10/500) (via SolveTask_PutOn)
+[0m
+[LOG]:[32mFinal-GOTO: moved obj[4] to hub=9 (11/500) (via SolveTask_PutOn)
+[0m
+[LOG]:Move(12)
+[LOG]:PickUp(5,remotecontrol)
+[LOG]:Move(8)
+[LOG]:PutDown(5,remotecontrol)
+[LOG]:[32mFinal-GOTO: moved obj[5] to hub=9 (12/500) (via SolveTask_PutOn)
+[0m
+[LOG]:[32mFinal-GOTO: moved obj[5] to hub=9 (13/500) (via SolveTask_PutOn)
+[0m
+[LOG]:Move(11)
+[LOG]:PickUp(6,remotecontrol)
+[LOG]:Move(8)
+[LOG]:PutDown(6,remotecontrol)
+[LOG]:[32mFinal-GOTO: moved obj[6] to hub=9 (14/500) (via SolveTask_PutOn)
+[0m
+[LOG]:[32mFinal-GOTO: moved obj[6] to hub=9 (15/500) (via SolveTask_PutOn)
+[0m
+[LOG]:Move(10)
+[LOG]:PickUp(7,remotecontrol)
+[LOG]:Move(8)
+[LOG]:PutDown(7,remotecontrol)
+[LOG]:[32mFinal-GOTO: moved obj[7] to hub=9 (16/500) (via SolveTask_PutOn)
+[0m
+[LOG]:[32mFinal-GOTO: moved obj[7] to hub=9 (17/500) (via SolveTask_PutOn)
+[0m
+[LOG]:[32mFinal-GOTO: moved obj[9] to hub=9 (18/500) (via SolveTask_PutOn)
+[0m
+[LOG]:Move(7)
+[LOG]:PickUp(10,book)
+[LOG]:Move(8)
+[LOG]:PutDown(10,book)
+[LOG]:[32mFinal-GOTO: moved obj[10] to hub=9 (19/500) (via SolveTask_PutOn)
+[0m
+[LOG]:Move(7)
+#(Plug): Elapsed time=5s
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

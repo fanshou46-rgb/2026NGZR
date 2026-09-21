@@ -1,0 +1,1 @@
+occurs(fromplate(10), 1).

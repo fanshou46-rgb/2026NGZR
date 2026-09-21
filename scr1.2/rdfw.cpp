@@ -107,35 +107,6 @@ void RDFW::InitializeDynamicArrays(int max_size) {
         mustnear_cons.emplace_back(max_size, 0);
     }
     
-    // 初始化任务查找表 - 优化内存分配
-    takeout.clear();
-    takeout.reserve(max_size);
-    for (int i = 0; i < max_size; i++) {
-        takeout.emplace_back(max_size, false);
-    }
-    
-    putin.clear();
-    putin.reserve(max_size);
-    for (int i = 0; i < max_size; i++) {
-        putin.emplace_back(max_size, false);
-    }
-    
-    close.clear();
-    close.reserve(max_size);
-    close.resize(max_size, false);
-    
-    open.clear();
-    open.reserve(max_size);
-    open.resize(max_size, false);
-    
-    pickup.clear();
-    pickup.reserve(max_size);
-    pickup.resize(max_size, false);
-    
-    putdown.clear();
-    putdown.reserve(max_size);
-    putdown.resize(max_size, false);
-    
     cout << "#(RDFW): Dynamic arrays initialization completed" << endl;
 }
 
@@ -162,17 +133,6 @@ void RDFW::Init(int argc, char **argv) // 改
 
             const std::string arg(argv[i]);
             const std::string nextArg(i + 1 < argc ? argv[i + 1] : "");
-            if (arg == "-budget_ms" || arg == "-reserve_ms") {
-                if (nextArg.empty()) throw std::invalid_argument("missing budget option value");
-                size_t used = 0;
-                long value = std::stol(nextArg, &used);
-                if (used != nextArg.size() || value < 0)
-                    throw std::invalid_argument("invalid budget option value");
-                if (arg == "-budget_ms") budget_ms = value;
-                else reserve_ms = value;
-                ++i;
-                continue;
-            }
 
             // Change Option
             enum Options
@@ -238,8 +198,6 @@ void RDFW::Init(int argc, char **argv) // 改
             // 可以输出错误信息或执行其他操作
         }
     }
-    if (budget_ms > 0 && reserve_ms >= budget_ms) reserve_ms = budget_ms / 5;
-    budget.configure(budget_ms, reserve_ms);
     LOG("nlp %d, err %d", isNaturalParse, isErrorCorrection);
 
     objects.push_back(shared_from_this());  // 向物品中添加当前对象
@@ -263,47 +221,7 @@ void RDFW::Init(int argc, char **argv) // 改
 }
 
 
-void RDFW::CheckBudget() { budget.check(); }
-
-bool RDFW::CanStartTask() {
-    CheckBudget();
-    return budget.phase() == TimeBudget::Phase::Normal;
-}
-
-void RDFW::BeforeAction(const char* action) {
-    CheckBudget();
-    ++action_counts[action];
-}
-
-void RDFW::EmitMetrics() const {
-    std::cout << "RDFW_METRICS {\"elapsed_ms\":" << budget.elapsed_ms()
-              << ",\"budget_ms\":" << budget.limit_ms()
-              << ",\"exit_reason\":\"" << (budget_stopped ? "budget" : "completed")
-              << "\",\"completed_during_execution\":" << solved_task_num
-              << ",\"actions\":{";
-    bool first = true;
-    for (const auto& item : action_counts) {
-        if (!first) std::cout << ",";
-        std::cout << "\"" << item.first << "\":" << item.second;
-        first = false;
-    }
-    std::cout << "}}" << std::endl;
-}
-
-void RDFW::Plan() {
-    budget.reset();
-    budget_stopped = false;
-    action_counts.clear();
-    try {
-        PlanWithinBudget();
-    } catch (const BudgetExceeded&) {
-        budget_stopped = true;
-        // Return normally so the official SDK sends Fini and grades current state.
-    }
-    EmitMetrics();
-}
-
-void RDFW::PlanWithinBudget() // 改
+void RDFW::Plan() // 改
 {   
     // ==================== 测试开始前的状态验证 ====================
     cout << "#(RDFW): Starting new test - verifying clean state" << endl;
@@ -324,7 +242,7 @@ void RDFW::PlanWithinBudget() // 改
     
     // 验证感知状态
     for (size_t i = 0; i < posSensedFlag.size(); i++) {
-        posSensedFlag[LocationId(i)] = false;
+        posSensedFlag[i] = false;
     }
     fill(objectLocationVerified.begin(), objectLocationVerified.end(), false);
     fill(objectInsideVerified.begin(), objectInsideVerified.end(), false);
@@ -362,14 +280,6 @@ void RDFW::PlanWithinBudget() // 改
     for (auto& row : putdown_cons) fill(row.begin(), row.end(), 0);
     for (auto& row : move_cons) fill(row.begin(), row.end(), 0);
     for (auto& row : mustnear_cons) fill(row.begin(), row.end(), 0);
-    
-    // 验证任务查找表状态
-    for (auto& row : takeout) fill(row.begin(), row.end(), false);
-    for (auto& row : putin) fill(row.begin(), row.end(), false);
-    fill(close.begin(), close.end(), false);
-    fill(open.begin(), open.end(), false);
-    fill(pickup.begin(), pickup.end(), false);
-    fill(putdown.begin(), putdown.end(), false);
     
     // 验证解析器状态
     if (nlp_parser) {
@@ -453,14 +363,12 @@ void RDFW::PlanWithinBudget() // 改
     /*=======================约束条件规划===================*/
 
     cout << "Ready to Cons  plan" << endl;
-    CheckBudget();
     Cons_plan();
     FilterConstraintsByTaskConflicts();
     cout<<"cons_plan finished"<<endl;
     cout <<  "--------------------------------------------" << endl;
 
     /*=======================任务优化===================*/
-    CheckBudget();
     tasks = TaskOptimization();
     cout<<"taskoptimization finished"<<endl;
     cout <<  "--------------------------------------------" << endl;
@@ -543,7 +451,7 @@ void RDFW::ExecuteMainTaskLoop(bool defer_multi_goto)
             unsigned int bigObjectId = pair.first;
             int taskCount = pair.second;
             LOG(GREEN "[MultiPuton] Big object %d (sort: %s) appears in %d puton tasks" RESET, 
-                bigObjectId, objects[ObjectId(bigObjectId)]->sort.c_str(), taskCount);
+                bigObjectId, objects[bigObjectId]->sort.c_str(), taskCount);
             
             // 标记这些任务为多puton任务
             for (unsigned int taskIdx : bigObjectTaskIndices[bigObjectId]) {
@@ -558,7 +466,6 @@ void RDFW::ExecuteMainTaskLoop(bool defer_multi_goto)
     const size_t tasksSize = tasks.size();
     for (task_index = 0; task_index < tasksSize; ++task_index)
     {
-        if (!CanStartTask()) break;
         // 跳过包含不存在物体的任务
         if (tasks[task_index].hasMissingObjects) {
             continue;
@@ -609,7 +516,6 @@ void RDFW::ExecuteMainTaskLoop(bool defer_multi_goto)
 void RDFW::ExecuteCheckPhase(bool defer_multi_goto)
 {
     for(task_index = 0; task_index < tasks.size(); ++task_index){
-        if (!CanStartTask()) break;
         // 跳过包含不存在物体的任务
         if (tasks[task_index].hasMissingObjects) {
             continue;
@@ -653,30 +559,30 @@ void RDFW::Cons_plan(){
             continue;
         }
         
-        if(cons.behave=="on" && cons.Y[0]->location >= 0) {
-            if(cons.X[0]->location!=cons.Y[0]->location) putdown_cons[ObjectId(cons.X[0]->id)][LocationId(cons.Y[0]->location)]++;
-            else if(cons.X[0]->id==plate_id||cons.X[0]->id==hold_id) putdown_cons[ObjectId(cons.X[0]->id)][LocationId(cons.Y[0]->location)]++;
+        if(cons.behave=="on") {
+            if(cons.X[0]->location!=cons.Y[0]->location) putdown_cons[cons.X[0]->id][cons.Y[0]->location]++;
+            else if(cons.X[0]->id==plate_id||cons.X[0]->id==hold_id) putdown_cons[cons.X[0]->id][cons.Y[0]->location]++;
         }
         else if(cons.behave=="inside"||cons.behave=="in") {
              auto small=dynamic_pointer_cast<SmallObject>(cons.X[0]);
-            if(small->inside!=cons.Y[0]->id) putin_cons[ObjectId(cons.X[0]->id)][ObjectId(cons.Y[0]->id)]++;
+            if(small->inside!=cons.Y[0]->id) putin_cons[cons.X[0]->id][cons.Y[0]->id]++;
         }
         else if(cons.behave == "near"||cons.behave == "nextto") {
             if(cons.Y[0]->location!=cons.X[0]->location) //如果约束没有触犯
             {
-            if(cons.Y[0]->location!=UNKNOWN) move_cons[ObjectId(cons.X[0]->id)][LocationId(cons.Y[0]->location)]++;
-            if(cons.X[0]->location!=UNKNOWN) move_cons[ObjectId(cons.Y[0]->id)][LocationId(cons.X[0]->location)]++;
+            if(cons.Y[0]->location!=UNKNOWN) move_cons[cons.X[0]->id][cons.Y[0]->location]++;
+            if(cons.X[0]->location!=UNKNOWN) move_cons[cons.Y[0]->id][cons.X[0]->location]++;
             }
         } 
-        else if(cons.behave == "plate") toplate_cons[ObjectId(cons.X[0]->id)]++; 
+        else if(cons.behave == "plate") toplate_cons[cons.X[0]->id]++; 
         else if(cons.behave == "opened") {
             auto cont=dynamic_pointer_cast<Container>(cons.X[0]);
-            if(cont->isOpen!=1) open_cons[ObjectId(cons.X[0]->id)]++;  
+            if(cont->isOpen!=1) open_cons[cons.X[0]->id]++;  
         }
         else if(cons.behave == "closed")
         {   
             auto cont=dynamic_pointer_cast<Container>(cons.X[0]);
-            if(cont->isOpen==1) close_cons[ObjectId(cons.X[0]->id)]++; 
+            if(cont->isOpen==1) close_cons[cons.X[0]->id]++; 
         }   
     }
     for(auto cons:notnot_infoConstrains){  
@@ -688,26 +594,26 @@ void RDFW::Cons_plan(){
             if(cons.behave=="on"&&cons.X[0]->location==cons.Y[0]->location) {
                 auto small=dynamic_pointer_cast<SmallObject>(cons.X[0]);
                if(small->inside!=cons.Y[0]->id) cons.X[0]->is_keep++;
-               mustnear_cons[ObjectId(cons.X[0]->id)][ObjectId(cons.Y[0]->id)]++;
+               mustnear_cons[cons.X[0]->id][cons.Y[0]->id]++;
             }
             else if(cons.behave=="near"&&cons.Y.size()>0&&cons.X[0]->location==cons.Y[0]->location){
                  cons.X[0]->is_keep++;
                   cons.Y[0]->is_keep++;
-                  mustnear_cons[ObjectId(cons.X[0]->id)][ObjectId(cons.Y[0]->id)]++;
+                  mustnear_cons[cons.X[0]->id][cons.Y[0]->id]++;
             }
-            else if(cons.behave=="plate"&& plate_id==cons.X[0]->id)fromplate_cons[ObjectId(cons.X[0]->id)]++;
+            else if(cons.behave=="plate"&& plate_id==cons.X[0]->id)fromplate_cons[cons.X[0]->id]++;
             else if(cons.behave=="inside"||cons.behave=="in")
             {
             auto small=dynamic_pointer_cast<SmallObject>(cons.X[0]);
-            if(small->inside==cons.Y[0]->id)  takeout_cons[ObjectId(cons.X[0]->id)][ObjectId(cons.Y[0]->id)]++;
+            if(small->inside==cons.Y[0]->id)  takeout_cons[cons.X[0]->id][cons.Y[0]->id]++;
             } 
            else if(cons.behave=="closed") {
              auto cont=dynamic_pointer_cast<Container>(cons.X[0]);
-            if(cont->isOpen!=1) open_cons[ObjectId(cons.X[0]->id)]++;
+            if(cont->isOpen!=1) open_cons[cons.X[0]->id]++;
            }
            else if(cons.behave=="opened") {
             auto cont=dynamic_pointer_cast<Container>(cons.X[0]);
-            if(cont->isOpen!=1) close_cons[ObjectId(cons.X[0]->id)]++;
+            if(cont->isOpen!=1) close_cons[cons.X[0]->id]++;
            }
     }
     for(auto cons:not_taskConstrains){
@@ -717,31 +623,31 @@ void RDFW::Cons_plan(){
         }
         
         //这里不用判断一开始是否触犯约束
-         if(cons.behave=="takeout") takeout_cons[ObjectId(cons.X[0]->id)][ObjectId(cons.Y[0]->id)]++;
-         else if(cons.behave=="putin") putin_cons[ObjectId(cons.X[0]->id)][ObjectId(cons.Y[0]->id)]++;
-         else if(cons.behave=="puton" && cons.Y[0]->location >= 0) putdown_cons[ObjectId(cons.X[0]->id)][LocationId(cons.Y[0]->location)]++;
-         else if(cons.behave=="goto" && cons.X[0]->location >= 0) goto_cons[LocationId(cons.X[0]->location)]++;
-         else if(cons.behave=="open") open_cons[ObjectId(cons.X[0]->id)]++;
-         else if(cons.behave=="close") close_cons[ObjectId(cons.X[0]->id)]++;
-         else if(cons.behave=="pickup") pickup_cons[ObjectId(cons.X[0]->id)]++;
-         else if(cons.behave=="give") givehuman_cons[ObjectId(cons.X[0]->id)]++;
-         else if(cons.behave == "putdown") putdown1_cons[ObjectId(cons.X[0]->id)]++ ;
+         if(cons.behave=="takeout") takeout_cons[cons.X[0]->id][cons.Y[0]->id]++;
+         else if(cons.behave=="putin") putin_cons[cons.X[0]->id][cons.Y[0]->id]++;
+         else if(cons.behave=="puton") putdown_cons[cons.X[0]->id][cons.Y[0]->location]++;
+         else if(cons.behave=="goto") goto_cons[cons.X[0]->location]++;
+         else if(cons.behave=="open") open_cons[cons.X[0]->id]++;
+         else if(cons.behave=="close") close_cons[cons.X[0]->id]++;
+         else if(cons.behave=="pickup") pickup_cons[cons.X[0]->id]++;
+         else if(cons.behave=="give") givehuman_cons[cons.X[0]->id]++;
+         else if(cons.behave == "putdown") putdown1_cons[cons.X[0]->id]++ ;
     }
     if(hold_id>0) {
         x=hold_id;
-     if(objects[ObjectId(x)]->is_keep>putdown1_cons[ObjectId(x)]+putdown_cons[ObjectId(x)][LocationId(location)]+fromplate_cons[ObjectId(x)]){
+     if(objects[x]->is_keep>putdown1_cons[x]+putdown_cons[x][location]+fromplate_cons[x]){
         cout<<"the hold object must putdown here!"<<endl;
-         PutDown(ObjectId(x));
+         PutDown(x);
      }
      }
     if(plate_id>0) 
     {
         x=plate_id;
-     if(objects[ObjectId(x)]->is_keep>putdown1_cons[ObjectId(x)]+putdown_cons[ObjectId(x)][LocationId(location)]+fromplate_cons[ObjectId(x)]){
+     if(objects[x]->is_keep>putdown1_cons[x]+putdown_cons[x][location]+fromplate_cons[x]){
         cout<<"the plate object must putdown here!"<<endl;
-        if(hold_id>0) PutDown(ObjectId(hold_id));
-        FromPlate(ObjectId(x));
-         PutDown(ObjectId(x));
+        if(hold_id>0) PutDown(hold_id);
+        FromPlate(x);
+         PutDown(x);
      }
     }
     
@@ -759,7 +665,7 @@ void RDFW::FilterConstraintsByTaskConflicts() {
     int i=0;//计数
     // 1. 处理goto_cons
     for (int loc = 0; loc < (int)goto_cons.size(); ++loc) {
-        if (goto_cons[LocationId(loc)] > 0) {
+        if (goto_cons[loc] > 0) {
             int conflict_count = 0;
             for (const auto& task : tasks) {
                 // 判断任务是否会与goto约束冲突
@@ -780,12 +686,12 @@ void RDFW::FilterConstraintsByTaskConflicts() {
                     }
                 }
             }
-            if (conflict_count - goto_cons[LocationId(loc)] > 2) {
+            if (conflict_count - goto_cons[loc] > 2) {
                 discard_gotoconsloc[i] = loc;
                 discard_gotoconsloc_count[i] = conflict_count;
                 sum_conflict_count+=conflict_count;
-                if (conflict_count - goto_cons[LocationId(loc)] > max_effect) {
-                    max_effect = conflict_count - goto_cons[LocationId(loc)];
+                if (conflict_count - goto_cons[loc] > max_effect) {
+                    max_effect = conflict_count - goto_cons[loc];
                     max_effect_loc = loc;
                 }
                 cout << "[FilterConstraintsByTaskConflicts] Conflict found between goto_cons at location " << loc << " with conflict count " << conflict_count << endl;
@@ -796,12 +702,12 @@ void RDFW::FilterConstraintsByTaskConflicts() {
 
     
     if(sum_conflict_count>30) {
-        goto_cons[LocationId(max_effect_loc)] = 0;
+        goto_cons[max_effect_loc] = 0;
         cout << "[FilterConstraintsByTaskConflicts] Discarded goto_cons at location " << max_effect_loc << " due to " << max_effect << " conflicts." << endl;
     }
     else{
         while(i>=0){
-            goto_cons[LocationId(discard_gotoconsloc[i])] = 0;
+            goto_cons[discard_gotoconsloc[i]] = 0;
             cout << "[FilterConstraintsByTaskConflicts] Discarded goto_cons at location " << discard_gotoconsloc[i] << " due to " << discard_gotoconsloc_count[i] << " conflicts." << endl;
             i--;
         }
@@ -815,7 +721,7 @@ void RDFW::FilterConstraintsByTaskConflicts() {
     int max_effect_id=0;
     int j=0;
     for (int id = 0; id < (int)open_cons.size(); ++id) {
-        if (open_cons[ObjectId(id)] > 0) {
+        if (open_cons[id] > 0) {
             int conflict_count = 0;
             for (const auto& task : tasks) {
                 // 判断任务是否会与open约束冲突
@@ -833,7 +739,7 @@ void RDFW::FilterConstraintsByTaskConflicts() {
                     }
                 }
             }
-            if (conflict_count - open_cons[ObjectId(id)] > 2) {
+            if (conflict_count - open_cons[id] > 2) {
                 discard_openconsid[j] = id;
                 discard_openconsid_count[j] = conflict_count;
                 sum_conflict_count_open += conflict_count;
@@ -848,12 +754,12 @@ void RDFW::FilterConstraintsByTaskConflicts() {
     }
     
     if(sum_conflict_count_open>30) {
-        open_cons[ObjectId(max_effect_id)] = 0;
+        open_cons[max_effect_id] = 0;
         cout << "[FilterConstraintsByTaskConflicts] Discarded open_cons for id " << max_effect_id << " due to " << max_effect_open << " conflicts." << endl;
     }
     else{
         for(int k = 0; k < j; k++){
-            open_cons[ObjectId(discard_openconsid[k])] = 0;
+            open_cons[discard_openconsid[k]] = 0;
             cout << "[FilterConstraintsByTaskConflicts] Discarded open_cons for id " << discard_openconsid[k] << " due to " << discard_openconsid_count[k] << " conflicts." << endl;
         }
     }
@@ -928,28 +834,29 @@ vector<Instruction> RDFW::TaskOptimization()
             continue;
         }
         
-        if(tasks[i].behave=="putin"){
-             putin[ObjectId(tasks[i].X[0]->id)][ObjectId(tasks[i].Y[0]->id)]=true;
-        }
-        else if(tasks[i].behave=="takeout"){
-             takeout[ObjectId(tasks[i].X[0]->id)][ObjectId(tasks[i].Y[0]->id)]=true;
-        }
-        else if(tasks[i].behave=="open"){
-             open[ObjectId(tasks[i].X[0]->id)]=true;
-        }
-        else if(tasks[i].behave=="close"){
-             close[ObjectId(tasks[i].X[0]->id)]=true;
-        }
-        else if(tasks[i].behave=="pickup"){
-             pickup[ObjectId(tasks[i].X[0]->id)]=true;
-        }
-        else if(tasks[i].behave=="putdown"){
-             putdown[ObjectId(tasks[i].X[0]->id)]=true;
-        }
         optimizedTasks.push_back(tasks[i]);
       }
 
 return optimizedTasks;
+}
+
+bool RDFW::HasRequestedTask(const string &behave, unsigned int object_id,
+                            unsigned int target_id) const
+{
+    for (const auto &task : tasks) {
+        // 与原索引一致：不按 isEnable/isfalse 过滤，只匹配 X[0]/Y[0]。
+        // 扩展到全部候选对象会改变冲突策略，不属于本次结构简化。
+        if (task.hasMissingObjects || task.behave != behave ||
+            task.X.empty() || !task.X[0] || task.X[0]->id != object_id) {
+            continue;
+        }
+        if (target_id != NONE &&
+            (task.Y.empty() || !task.Y[0] || task.Y[0]->id != target_id)) {
+            continue;
+        }
+        return true;
+    }
+    return false;
 }
 
 
@@ -962,27 +869,13 @@ return optimizedTasks;
 //计算任务风险
 int RDFW::CalculateTaskRisk(Instruction &t){
     t.risk=0;
-    if (t.X.empty() || !t.X[0] || t.hasMissingObjects) return t.risk = 1000;
-    if ((t.behave == "putin" || t.behave == "puton" || t.behave == "takeout") &&
-        (t.Y.empty() || !t.Y[0])) return t.risk = 1000;
-    if (t.behave == "give" && !human) return t.risk = 1000;
-    auto at_risk = [&](int loc) {
-        if (loc < 0) return 0;
-        EnsureLocationCapacity(loc);
-        return goto_cons[LocationId(loc)];
-    };
-    auto pair_risk = [&](const ObjectLocationTable& table, int id, int loc) {
-        if (loc < 0) return 0;
-        EnsureLocationCapacity(loc);
-        return table[ObjectId(id)][LocationId(loc)];
-    };
    if(t.behave=="takeout")
    {
      auto small=dynamic_pointer_cast<SmallObject>(t.X[0]);
     if(small->inside!=t.Y[0]->id) return 0;//如果任务满足
        EnsureLocationCapacity(t.Y[0]->location);
-     t.risk+=takeout_cons[ObjectId(t.X[0]->id)][ObjectId(t.Y[0]->id)]+at_risk(t.Y[0]->location);
-     t.risk+=open_cons[ObjectId(t.Y[0]->id)];
+     t.risk+=takeout_cons[t.X[0]->id][t.Y[0]->id]+goto_cons[t.Y[0]->location];
+     t.risk+=open_cons[t.Y[0]->id];
     }
 
      else if(t.behave=="putin") {
@@ -990,39 +883,39 @@ int RDFW::CalculateTaskRisk(Instruction &t){
           if(small->inside==t.Y[0]->id) return 0;
          EnsureLocationCapacity(t.Y[0]->location);
 
-            t.risk+=putin_cons[ObjectId(t.X[0]->id)][ObjectId(t.Y[0]->id)]+open_cons[ObjectId(t.Y[0]->id)]+pair_risk(move_cons, t.X[0]->id, t.Y[0]->location);
-            if(t.X[0]->location!=t.Y[0]->location) t.risk+=at_risk(t.Y[0]->location);
+            t.risk+=putin_cons[t.X[0]->id][t.Y[0]->id]+open_cons[t.Y[0]->id]+move_cons[t.X[0]->id][t.Y[0]->location];
+            if(t.X[0]->location!=t.Y[0]->location) t.risk+=goto_cons[t.Y[0]->location];
             CalculateStepRisk(t);
 
       }
       else if(t.behave=="puton") {
           EnsureLocationCapacity(t.Y[0]->location);
 
-          t.risk+= pair_risk(putdown_cons, t.X[0]->id, t.Y[0]->location)+pair_risk(move_cons, t.X[0]->id, t.Y[0]->location)+putdown1_cons[ObjectId(t.X[0]->id)];
-        if(t.X[0]->location!=t.Y[0]->location) t.risk+=at_risk(t.Y[0]->location);
+          t.risk+= putdown_cons[t.X[0]->id][t.Y[0]->location]+move_cons[t.X[0]->id][t.Y[0]->location]+putdown1_cons[t.X[0]->id];
+        if(t.X[0]->location!=t.Y[0]->location) t.risk+=goto_cons[t.Y[0]->location];
         CalculateStepRisk(t);
       }
       else if (t.behave == "goto") {
           int loc = t.X[0]->location;
-          t.risk += at_risk(loc);
+          t.risk += goto_cons[loc];
            // 调试日志，明确 t.risk 的组成
           std::cout << "[DBG] goto risk@loc=" << loc
-                    << " bool=" << at_risk(loc)
+                    << " bool=" << goto_cons[loc]
                    << std::endl;
       }
 
-      else if(t.behave=="open") t.risk+=open_cons[ObjectId(t.X[0]->id)]+at_risk(t.X[0]->location);
-      else if(t.behave=="close") t.risk+=close_cons[ObjectId(t.X[0]->id)]+at_risk(t.X[0]->location);
+      else if(t.behave=="open") t.risk+=open_cons[t.X[0]->id]+goto_cons[t.X[0]->location];
+      else if(t.behave=="close") t.risk+=close_cons[t.X[0]->id]+goto_cons[t.X[0]->location];
       else if(t.behave=="pickup") {
          CalculateStepRisk(t);
       }
       else if(t.behave=="give") {
          CalculateStepRisk(t);
-         t.risk+=givehuman_cons[ObjectId(t.X[0]->id)]+pair_risk(move_cons, t.X[0]->id, human->location)+putdown1_cons[ObjectId(t.X[0]->id)];
-         if(t.X[0]->location!=human->location) t.risk+=at_risk(human->location);
+         t.risk+=givehuman_cons[t.X[0]->id]+move_cons[t.X[0]->id][human->location]+putdown1_cons[t.X[0]->id];
+         if(t.X[0]->location!=human->location) t.risk+=goto_cons[human->location];
          auto small=dynamic_pointer_cast<SmallObject>(t.X[0]);
       }
-      else if(t.behave == "putdown")t.risk+=putdown1_cons[ObjectId(t.X[0]->id)];
+      else if(t.behave == "putdown")t.risk+=putdown1_cons[t.X[0]->id];
     //  t.risk+=t.X[0]->is_keep;
     int keep_penalty = t.X[0]->is_keep;
     // 特例：仅对 pickup，且与 near/next-to 的“对端对象”仍在同一位置时，
@@ -1062,50 +955,42 @@ int RDFW:: CalculateStepRisk(Instruction &t){
     if (t.X.empty() || !t.X[0]) return 0;
     if(t.X[0]->location!=location && t.X[0]->location >= 0) {
         EnsureLocationCapacity(t.X[0]->location);
-        t.risk+=goto_cons[LocationId(t.X[0]->location)];
+        t.risk+=goto_cons[t.X[0]->location];
     }
     auto small=dynamic_pointer_cast<SmallObject>(t.X[0]);
     if (!small) return 0;
-    if(small->inside!=UNKNOWN&&small->inside!=NONE)t.risk+=open_cons[ObjectId(small->inside)]+takeout_cons[ObjectId(small->id)][ObjectId(small->inside)];
-    else if(small->inside==NONE) t.risk+=pickup_cons[ObjectId(small->id)];
+    if(small->inside!=UNKNOWN&&small->inside!=NONE)t.risk+=open_cons[small->inside]+takeout_cons[small->id][small->inside];
+    else if(small->inside==NONE) t.risk+=pickup_cons[small->id];
     return 1;
 }
 
 // ==== helpers for capacity & existence ====
 inline void RDFW::EnsureLocationCapacity(int loc) {
     if (loc < 0) return;
-    const size_t count = static_cast<size_t>(loc) + 1;
-    if (posCorrectFlag.size() < count) posCorrectFlag.resize(count, false);
-    if (posSensedFlag.size() < count) posSensedFlag.resize(count, false);
-    if (locationSensedObjects.size() < count) locationSensedObjects.resize(count);
-    if (goto_cons.size() < count) goto_cons.resize(count, 0);
-    if (rightlocation.size() < count) rightlocation.resize(count, false);
-    // Location is the COLUMN of these tables. Never expand object rows here.
-    for (auto& row : putdown_cons) if (row.size() < count) row.resize(count, 0);
-    for (auto& row : move_cons) if (row.size() < count) row.resize(count, 0);
-}
-
-void RDFW::EnsureObjectCapacity(ObjectId id) {
-    if (id.value() < 0) throw std::out_of_range("negative object id");
-    const size_t count = static_cast<size_t>(id.value()) + 1;
-    for (auto* table : {&putdown1_cons, &open_cons, &close_cons, &pickup_cons,
-                       &givehuman_cons, &fromplate_cons, &toplate_cons})
-        if (table->size() < count) table->resize(count, 0);
-    for (auto* table : {&putin_cons, &takeout_cons, &mustnear_cons}) {
-        if (table->size() < count) table->resize(count);
-        for (auto& row : *table) if (row.size() < table->size()) row.resize(table->size(), 0);
-    }
-    for (auto* table : {&putdown_cons, &move_cons}) {
-        if (table->size() < count) table->resize(count);
-        for (auto& row : *table) if (row.size() < rightlocation.size()) row.resize(rightlocation.size(), 0);
-    }
-    for (auto* table : {&putin, &takeout}) {
-        if (table->size() < count) table->resize(count);
-        for (auto& row : *table) if (row.size() < table->size()) row.resize(table->size(), false);
-    }
-    for (auto* table : {&open, &close, &pickup, &putdown})
-        if (table->size() < count) table->resize(count, false);
-    EnsureEvidenceCapacity(id.value());
+    
+    // 扩展位置相关的动态数组
+    if (loc >= (int)posCorrectFlag.size()) posCorrectFlag.resize(loc + 1, true); // 位置维度
+    if (loc >= (int)posSensedFlag.size()) posSensedFlag.resize(loc + 1, false);
+    if (loc >= (int)locationSensedObjects.size()) locationSensedObjects.resize(loc + 1);
+    
+    // 扩展约束数组
+    if (loc >= (int)goto_cons.size()) goto_cons.resize(loc + 1, 0);
+    if (loc >= (int)putdown1_cons.size()) putdown1_cons.resize(loc + 1, 0);
+    if (loc >= (int)open_cons.size()) open_cons.resize(loc + 1, 0);
+    if (loc >= (int)close_cons.size()) close_cons.resize(loc + 1, 0);
+    if (loc >= (int)pickup_cons.size()) pickup_cons.resize(loc + 1, 0);
+    if (loc >= (int)givehuman_cons.size()) givehuman_cons.resize(loc + 1, 0);
+    if (loc >= (int)fromplate_cons.size()) fromplate_cons.resize(loc + 1, 0);
+    if (loc >= (int)toplate_cons.size()) toplate_cons.resize(loc + 1, 0);
+    if (loc >= (int)rightlocation.size()) rightlocation.resize(loc + 1, false);
+    
+    // 扩展二维约束数组
+    if (loc >= (int)putin_cons.size()) putin_cons.resize(loc + 1, vector<int>(putin_cons.empty() ? 0 : putin_cons[0].size(), 0));
+    if (loc >= (int)takeout_cons.size()) takeout_cons.resize(loc + 1, vector<int>(takeout_cons.empty() ? 0 : takeout_cons[0].size(), 0));
+    if (loc >= (int)putdown_cons.size()) putdown_cons.resize(loc + 1, vector<int>(putdown_cons.empty() ? 0 : putdown_cons[0].size(), 0));
+    if (loc >= (int)move_cons.size()) move_cons.resize(loc + 1, vector<int>(move_cons.empty() ? 0 : move_cons[0].size(), 0));
+    if (loc >= (int)mustnear_cons.size()) mustnear_cons.resize(loc + 1, vector<int>(mustnear_cons.empty() ? 0 : mustnear_cons[0].size(), 0));
+    
 }
 
 inline void RDFW::EnsureObjectExists(unsigned id, bool prefer_small) {
@@ -1113,16 +998,16 @@ inline void RDFW::EnsureObjectExists(unsigned id, bool prefer_small) {
         size_t last = objects.size();
         objects.resize(id + 1);
         for (size_t i = last; i < objects.size(); ++i) {
-            objects[ObjectId(i)] = std::make_shared<Object>((unsigned)i);
+            objects[i] = std::make_shared<Object>((unsigned)i);
         }
     }
     if (prefer_small) {
-        if (!std::dynamic_pointer_cast<SmallObject>(objects[ObjectId(id)])) {
-            objects[ObjectId(id)] = std::make_shared<SmallObject>(objects[ObjectId(id)]); // 基于已有 Object 包装
-            smallObjects.push_back(std::dynamic_pointer_cast<SmallObject>(objects[ObjectId(id)]));
+        if (!std::dynamic_pointer_cast<SmallObject>(objects[id])) {
+            objects[id] = std::make_shared<SmallObject>(objects[id]); // 基于已有 Object 包装
+            smallObjects.push_back(std::dynamic_pointer_cast<SmallObject>(objects[id]));
         }
     }
-    EnsureObjectCapacity(ObjectId(id));
+    EnsureEvidenceCapacity(id);
 }
 
 void RDFW::EnsureEvidenceCapacity(unsigned int id) {
@@ -1138,22 +1023,22 @@ void RDFW::EnsureEvidenceCapacity(unsigned int id) {
 void RDFW::InvalidateSenseAtLocation(int loc) {
     if (loc < 0) return;
     EnsureLocationCapacity(loc);
-    posSensedFlag[LocationId(loc)] = false;
-    locationSensedObjects[LocationId(loc)].object_ids.clear();
-    locationSensedObjects[LocationId(loc)].container_id = NONE;
-    locationSensedObjects[LocationId(loc)].has_container = false;
+    posSensedFlag[loc] = false;
+    locationSensedObjects[loc].object_ids.clear();
+    locationSensedObjects[loc].container_id = NONE;
+    locationSensedObjects[loc].has_container = false;
 }
 
 bool RDFW::IsLocationVerified(unsigned int id) const {
-    return id < objectLocationVerified.size() && objectLocationVerified[ObjectId(id)];
+    return id < objectLocationVerified.size() && objectLocationVerified[id];
 }
 
 bool RDFW::IsInsideVerified(unsigned int id) const {
-    return id < objectInsideVerified.size() && objectInsideVerified[ObjectId(id)];
+    return id < objectInsideVerified.size() && objectInsideVerified[id];
 }
 
 bool RDFW::IsContainerStateVerified(unsigned int id) const {
-    return id < containerStateVerified.size() && containerStateVerified[ObjectId(id)];
+    return id < containerStateVerified.size() && containerStateVerified[id];
 }
 
 
@@ -1165,7 +1050,6 @@ bool RDFW::IsContainerStateVerified(unsigned int id) const {
 //执行任务----主要是看有没有任务对象，服务stage2
 bool RDFW::SolveTask(const Instruction &task) // 改
 {
-    if (!CanStartTask()) return false;
     bool success = false;//是否成功执行
 
     if (task.behave == "puton" || task.behave == "putin" || task.behave == "takeout")
@@ -1256,24 +1140,24 @@ bool RDFW::DoBehavious(const string &behavious, unsigned int a, unsigned int b) 
 bool RDFW::HoldSmallObject(unsigned int a)
 {
     int t = 0;
-    auto target_small = ObjectPtrCast<SmallObject>(objects[ObjectId(a)]);
+    auto target_small = ObjectPtrCast<SmallObject>(objects[a]);
     ///这是stage1的逻辑
      if(stage==1)
     {
       if (plate_id == a)
         {
-        if (hold_id != NONE && !PutDown(ObjectId(hold_id))) return false;
-        return FromPlate(ObjectId(a));
+        if (hold_id != NONE && !PutDown(hold_id)) return false;
+        return FromPlate(a);
         }
        else if(hold_id==a) return true;
-    if (hold_id != NONE && !PutDown(ObjectId(hold_id))) return false;
-    if(location!=target_small->location && !Move(LocationId(target_small->location))) return false;
-    if(target_small->inside==NONE) return PickUp(ObjectId(a));
+    if (hold_id != NONE && !PutDown(hold_id)) return false;
+    if(location!=target_small->location && !Move(target_small->location)) return false;
+    if(target_small->inside==NONE) return PickUp(a);
     else if(target_small->inside!=UNKNOWN)//说明小物体在容器里面
     {
-       auto target_cont = ObjectPtrCast<Container>(objects[ObjectId(target_small->inside)]);
-       if(!target_cont->isOpen && !Open(ObjectId(target_cont->id))) return false;
-       return  TakeOut(ObjectId(a),ObjectId(target_cont->id));
+       auto target_cont = ObjectPtrCast<Container>(objects[target_small->inside]);
+       if(!target_cont->isOpen && !Open(target_cont->id)) return false;
+       return  TakeOut(a,target_cont->id);
     }
     return false;
     }
@@ -1281,29 +1165,28 @@ bool RDFW::HoldSmallObject(unsigned int a)
     if (hold_id == static_cast<int>(a)) {
         if (IsInsideVerified(a)) return true;
         // 初始 hold 事实可能是错的。用一次可观察动作建立本地事实；失败则清除猜测。
-        if (PutDown(ObjectId(a))) return HoldSmallObject(a);
+        if (PutDown(a)) return HoldSmallObject(a);
         SetHold(nullptr);
     }
     if (plate_id == static_cast<int>(a) && !IsInsideVerified(a)) {
-        if (FromPlate(ObjectId(a))) return true;
+        if (FromPlate(a)) return true;
         SetPlate(nullptr);
     }
     if (hold_id != a)
     {
-        if (hold_id != NONE && !PutDown(ObjectId(hold_id))) return false; //如果拿着物体，先放下
+        if (hold_id != NONE && !PutDown(hold_id)) return false; //如果拿着物体，先放下
         if (plate_id == a)
         {
-        return FromPlate(ObjectId(a));
+        return FromPlate(a);
         }
 
         while (1)
         {
-            CheckBudget();
             t++;
             if (target_small->location != UNKNOWN)
             {
                 if (location != target_small->location)
-                    if(Move(LocationId(target_small->location))!=1)
+                    if(Move(target_small->location)!=1)
                     {
                         if (t >= 2)  return 0;
                         GetSmallObjectStatus(a);
@@ -1322,29 +1205,29 @@ bool RDFW::HoldSmallObject(unsigned int a)
                  if (target_small->inside == NONE||target_small->inside == UNKNOWN) //这里我想了想，可能不会有UNKOWN的情况
                 {
                     
-                     if (target_small->location == location && PickUp(ObjectId(a))) return 1;
+                     if (target_small->location == location && PickUp(a)) return 1;
 
                      // 先保证容量（这是“语句”，必须放在 if 条件外执行）
                      EnsureLocationCapacity(location);
 
                      // 然后再按条件判断
-                     if ( posSensedFlag[LocationId(location)]
+                     if ( posSensedFlag[location]
                           && target_small->location == location
                           && HasContainerAtLocation(location)
                           && [&]{
                                  unsigned int cont_id = GetContainerAtLocation(location);
                                  if (cont_id > 0) {
-                                     auto cont = ObjectPtrCast<Container>(objects[ObjectId(cont_id)]);
+                                     auto cont = ObjectPtrCast<Container>(objects[cont_id]);
                                      return (cont && cont->isOpen);
                                  }
                                  return false;
                              }() )
                      {
-                         if (TakeOut(ObjectId(a),ObjectId( GetContainerAtLocation(location)))) return 1;
+                         if (TakeOut(a, GetContainerAtLocation(location))) return 1;
                          if (t >= 2) return 0;
                      }
                      else {
-                         if (plate_id == UNKNOWN && FromPlate(ObjectId(a))) return 1;
+                         if (plate_id == UNKNOWN && FromPlate(a)) return 1;
                          target_small->location = UNKNOWN;
                          if (t >= 2) return 0;
                          GetSmallObjectStatus(a);
@@ -1372,7 +1255,7 @@ bool RDFW::HoldSmallObject(unsigned int a)
                             GetSmallObjectStatus(a);
                             if(Isinside(a,initial_cont_id))//a就在一开始容器里面
                             {
-                                    if(Open(ObjectId(initial_cont_id))) return TakeOut(ObjectId(a),ObjectId(initial_cont_id)); //认为骗我是关的
+                                    if(Open(initial_cont_id)) return TakeOut(a,initial_cont_id); //认为骗我是关的
                                     else  GetBigObjectStatus(initial_cont_id);//open失败，本身不可能是open的，直接问容器
                             }
                             else
@@ -1400,7 +1283,7 @@ bool RDFW::HoldSmallObject(unsigned int a)
 
 // 从容器拿出物体的逻辑。显式结果类型避免数字返回码在调用处被误解。
 RDFW::TakeOutResult RDFW::TakeOutLogic(unsigned int small,unsigned int cont){
-    auto target_cont = ObjectPtrCast<Container>(objects[ObjectId(cont)]);
+    auto target_cont = ObjectPtrCast<Container>(objects[cont]);
     if (!target_cont) return TakeOutResult::NeedContainerLocation;
     auto verified_absent_from_open_container = [&]() -> bool {
         if (!target_cont->isOpen || !IsContainerStateVerified(cont)) return false;
@@ -1408,12 +1291,12 @@ RDFW::TakeOutResult RDFW::TakeOutLogic(unsigned int small,unsigned int cont){
         const bool absent = HasObjectAtLocation(location, cont) &&
                             !HasObjectAtLocation(location, small);
         if (absent && small < objects.size()) {
-            auto small_object = dynamic_pointer_cast<SmallObject>(objects[ObjectId(small)]);
+            auto small_object = dynamic_pointer_cast<SmallObject>(objects[small]);
             if (small_object && small_object->inside == static_cast<int>(cont)) {
                 target_cont->DeleteObjectInside(small_object);
                 small_object->inside = UNKNOWN;
                 EnsureEvidenceCapacity(small);
-                objectInsideVerified[ObjectId(small)] = false;
+                objectInsideVerified[small] = false;
             }
         }
         return absent;
@@ -1423,8 +1306,8 @@ RDFW::TakeOutResult RDFW::TakeOutLogic(unsigned int small,unsigned int cont){
 
     if(!target_cont->isOpen)
     {
-     if(Open(ObjectId(cont)))
-        if(!TakeOut(ObjectId(small),ObjectId(cont))) {
+     if(Open(cont))
+        if(!TakeOut(small,cont)) {
             if (verified_absent_from_open_container()) return TakeOutResult::Success;
             return TakeOutResult::NeedObjectLocation;
         }
@@ -1435,8 +1318,8 @@ RDFW::TakeOutResult RDFW::TakeOutLogic(unsigned int small,unsigned int cont){
       {
         target_cont->isOpen = true;
         EnsureEvidenceCapacity(cont);
-        containerStateVerified[ObjectId(cont)] = true;
-        if(!TakeOut(ObjectId(small),ObjectId(cont))) {
+        containerStateVerified[cont] = true;
+        if(!TakeOut(small,cont)) {
             if (verified_absent_from_open_container()) return TakeOutResult::Success;
             return TakeOutResult::NeedObjectLocation;
         }
@@ -1447,7 +1330,7 @@ RDFW::TakeOutResult RDFW::TakeOutLogic(unsigned int small,unsigned int cont){
     }
     else //不需要打开容器
     {
-         if(!TakeOut(ObjectId(small),ObjectId(cont)))
+         if(!TakeOut(small,cont))
          {
             if (verified_absent_from_open_container()) return TakeOutResult::Success;
             return TakeOutResult::VerifyObjectRelation;
@@ -1464,7 +1347,7 @@ RDFW::TakeOutResult RDFW::TakeOutLogic(unsigned int small,unsigned int cont){
 //pickup任务
 bool RDFW::SolveTask_PickUp(unsigned int a)
 {
-    if(putdown[ObjectId(a)] != false){
+    if(HasRequestedTask("putdown", a)){
         if(hold_id==a||plate_id==a) return true;
         else {
             cout<<"there is putdown task,no need to do this!"<<endl;
@@ -1477,7 +1360,7 @@ bool RDFW::SolveTask_PickUp(unsigned int a)
 
 bool RDFW::SolveTask_PutDown(unsigned int a)
 {
-    if(pickup[ObjectId(a)] != false){
+    if(HasRequestedTask("pickup", a)){
         if(hold_id!=a&&plate_id!=a) return true;
         else {
             cout<<"there is pickup task,no need to do this!"<<endl;
@@ -1485,29 +1368,29 @@ bool RDFW::SolveTask_PutDown(unsigned int a)
         }
     }
     if(hold_id==a){
-        if(putdown_cons[ObjectId(a)][LocationId(location)]) {
+        if(putdown_cons[a][location]) {
             int safe_location = findrightlocation(a);
-            if (safe_location == UNKNOWN || !Move(LocationId(safe_location))) return false;
+            if (safe_location == UNKNOWN || !Move(safe_location)) return false;
         }
-        return PutDown(ObjectId(a));
+        return PutDown(a);
     }
     else if(plate_id==a){
         if(hold_id>0) {
-            if (!PutDown(ObjectId(hold_id))) return false;
-            if(putdown_cons[ObjectId(a)][LocationId(location)]) {
+            if (!PutDown(hold_id)) return false;
+            if(putdown_cons[a][location]) {
                 int safe_location = findrightlocation(a);
-                if (safe_location == UNKNOWN || !Move(LocationId(safe_location))) return false;
+                if (safe_location == UNKNOWN || !Move(safe_location)) return false;
             }
         }
-        if (!FromPlate(ObjectId(a))) return false;
-        if(putdown_cons[ObjectId(a)][LocationId(location)]) {
+        if (!FromPlate(a)) return false;
+        if(putdown_cons[a][location]) {
             int safe_location = findrightlocation(a);
-            if (safe_location == UNKNOWN || !Move(LocationId(safe_location))) return false;
+            if (safe_location == UNKNOWN || !Move(safe_location)) return false;
         }
-       return PutDown(ObjectId(a));
+       return PutDown(a);
     }
     else {
-        auto small = dynamic_pointer_cast<SmallObject>(objects[ObjectId(a)]);
+        auto small = dynamic_pointer_cast<SmallObject>(objects[a]);
         if (!small) return false;
         if (stage == 1 && small->inside == NONE) return true;
         if (stage == 2 && IsInsideVerified(a) && IsLocationVerified(a) && small->inside == NONE)
@@ -1515,11 +1398,11 @@ bool RDFW::SolveTask_PutDown(unsigned int a)
         if (!HoldSmallObject(a)) return false;
         if (location < 0) return false;
         EnsureLocationCapacity(location);
-        if (putdown_cons[ObjectId(a)][LocationId(location)]) {
+        if (putdown_cons[a][location]) {
             int safe_location = findrightlocation(a);
-            if (safe_location == UNKNOWN || !Move(LocationId(safe_location))) return false;
+            if (safe_location == UNKNOWN || !Move(safe_location)) return false;
         }
-        return PutDown(ObjectId(a));
+        return PutDown(a);
     }
 }
 
@@ -1528,18 +1411,18 @@ bool RDFW::SolveTask_Goto(unsigned int a)
 {
     if(stage==1)
     {
-        if(location==objects[ObjectId(a)]->location){
+        if(location==objects[a]->location){
         return true;
     }
-    else return Move(LocationId(objects[ObjectId(a)]->location));
+    else return Move(objects[a]->location);
     }
 
     //stage2的情况
-    if(location==objects[ObjectId(a)]->location && IsLocationVerified(a)) return true;
-    const bool is_small = dynamic_pointer_cast<SmallObject>(objects[ObjectId(a)]) != nullptr;
-    if(objects[ObjectId(a)]->location==UNKNOWN)
+    if(location==objects[a]->location && IsLocationVerified(a)) return true;
+    const bool is_small = dynamic_pointer_cast<SmallObject>(objects[a]) != nullptr;
+    if(objects[a]->location==UNKNOWN)
     {
-        if(dynamic_pointer_cast<SmallObject>(objects[ObjectId(a)]) != nullptr)
+        if(dynamic_pointer_cast<SmallObject>(objects[a]) != nullptr)
         {
                GetSmallObjectStatus(a);
                if(!IsKeepingGoing(task_index)) return 0;
@@ -1553,19 +1436,18 @@ bool RDFW::SolveTask_Goto(unsigned int a)
     int t=0;
     while(1)
     {
-            CheckBudget();
         t++;
-    if(location==objects[ObjectId(a)]->location) {
+    if(location==objects[a]->location) {
         SenseCurrentLocationOnly(true);
         if (HasObjectAtLocation(location, a)) return true;
-        auto small = dynamic_pointer_cast<SmallObject>(objects[ObjectId(a)]);
+        auto small = dynamic_pointer_cast<SmallObject>(objects[a]);
         if (small && small->inside > 0 && HasObjectAtLocation(location, small->inside)) {
             EnsureEvidenceCapacity(a);
-            objectLocationVerified[ObjectId(a)] = true;
+            objectLocationVerified[a] = true;
             return true;
         }
     }
-    else if(!Move(LocationId(objects[ObjectId(a)]->location)))
+    else if(!Move(objects[a]->location))
     {
           if(t>=2) return false;
           if(is_small) {GetSmallObjectStatus(a);if(!IsKeepingGoing(task_index)) return 0;}
@@ -1574,10 +1456,10 @@ bool RDFW::SolveTask_Goto(unsigned int a)
     else {
         SenseCurrentLocationOnly(true);
         if (HasObjectAtLocation(location, a)) return true;
-        auto small = dynamic_pointer_cast<SmallObject>(objects[ObjectId(a)]);
+        auto small = dynamic_pointer_cast<SmallObject>(objects[a]);
         if (small && small->inside > 0 && HasObjectAtLocation(location, small->inside)) {
             EnsureEvidenceCapacity(a);
-            objectLocationVerified[ObjectId(a)] = true;
+            objectLocationVerified[a] = true;
             return true;
         }
         if(t>=2) return false;
@@ -1590,8 +1472,8 @@ bool RDFW::SolveTask_Goto(unsigned int a)
 //open任务
 bool RDFW::SolveTask_Open(unsigned int a)
 {
-    auto cnt=dynamic_pointer_cast<Container>(objects[ObjectId(a)]);
-    if(close[ObjectId(a)] != false){
+    auto cnt=dynamic_pointer_cast<Container>(objects[a]);
+    if(HasRequestedTask("close", a)){
         if(cnt->isOpen && (stage == 1 || IsContainerStateVerified(a))) return true;
         else {
             cout<<"there is close task,no need to do this!"<<endl;
@@ -1599,15 +1481,15 @@ bool RDFW::SolveTask_Open(unsigned int a)
         }
     }
     if(cnt->isOpen && (stage == 1 || IsContainerStateVerified(a))) return true;
-    if(hold_id!=NONE && !PutDown(ObjectId(hold_id))) return false;
+    if(hold_id!=NONE && !PutDown(hold_id)) return false;
     if(stage==1)
     {
-        if (location != objects[ObjectId(a)]->location && !Move(LocationId(objects[ObjectId(a)]->location))) return false;
-        return Open(ObjectId(a));
+        if (location != objects[a]->location && !Move(objects[a]->location)) return false;
+        return Open(a);
     }
 
     //这是stage2
-    if(objects[ObjectId(a)]->location==UNKNOWN)
+    if(objects[a]->location==UNKNOWN)
     {
         GetBigObjectStatus(a);
         if(!IsKeepingGoing(task_index)) return 0;
@@ -1615,22 +1497,21 @@ bool RDFW::SolveTask_Open(unsigned int a)
      int t=0;
     while(1)
     {
-            CheckBudget();
         t++;
-    if (location != objects[ObjectId(a)]->location)
-        if(!Move(LocationId(objects[ObjectId(a)]->location)))
+    if (location != objects[a]->location)
+        if(!Move(objects[a]->location))
         {
             if(t>=2) return false;
             GetBigObjectStatus(a);
              if(!IsKeepingGoing(task_index)) return 0;
         }
-    if(!Open(ObjectId(a)))
+    if(!Open(a))
     {
        if (sense(a)) {
             cnt->isOpen = true;
             EnsureEvidenceCapacity(a);
-            containerStateVerified[ObjectId(a)] = true;
-            objectLocationVerified[ObjectId(a)] = true;
+            containerStateVerified[a] = true;
+            objectLocationVerified[a] = true;
             return true;
        }
        if(t>=2) return false;
@@ -1645,8 +1526,8 @@ bool RDFW::SolveTask_Open(unsigned int a)
 //close任务
 bool RDFW::SolveTask_Close(unsigned int a)
 {
-    auto cnt=dynamic_pointer_cast<Container>(objects[ObjectId(a)]);
-    if(open[ObjectId(a)] != false)
+    auto cnt=dynamic_pointer_cast<Container>(objects[a]);
+    if(HasRequestedTask("open", a))
     {
         if(!cnt->isOpen && (stage == 1 || IsContainerStateVerified(a))) return true;
         else {
@@ -1655,16 +1536,16 @@ bool RDFW::SolveTask_Close(unsigned int a)
         }
     }
     if(!cnt->isOpen && (stage == 1 || IsContainerStateVerified(a))) return true;
-    if(hold_id!=NONE && !PutDown(ObjectId(hold_id))) return false;
+    if(hold_id!=NONE && !PutDown(hold_id)) return false;
     if(stage==1)
     {
-    if (location != objects[ObjectId(a)]->location && !Move(LocationId(objects[ObjectId(a)]->location))) return false;
-    return Close(ObjectId(a));
+    if (location != objects[a]->location && !Move(objects[a]->location)) return false;
+    return Close(a);
     }
 
    //这是stage2
 
-   if(objects[ObjectId(a)]->location==UNKNOWN)
+   if(objects[a]->location==UNKNOWN)
     {
         GetBigObjectStatus(a);
         if(!IsKeepingGoing(task_index)) return 0;
@@ -1672,22 +1553,21 @@ bool RDFW::SolveTask_Close(unsigned int a)
      int t=0;
     while(1)
     {
-            CheckBudget();
         t++;
-    if (location != objects[ObjectId(a)]->location)
-        if(!Move(LocationId(objects[ObjectId(a)]->location)))
+    if (location != objects[a]->location)
+        if(!Move(objects[a]->location))
         {
             if(t>=2) return false;
             GetBigObjectStatus(a);
              if(!IsKeepingGoing(task_index)) return 0;
         }
-    if(!Close(ObjectId(a)))
+    if(!Close(a))
     {
        if (sense(a)) {
             cnt->isOpen = false;
             EnsureEvidenceCapacity(a);
-            containerStateVerified[ObjectId(a)] = true;
-            objectLocationVerified[ObjectId(a)] = true;
+            containerStateVerified[a] = true;
+            objectLocationVerified[a] = true;
             return true;
        }
        if(t>=2) return false;
@@ -1708,7 +1588,7 @@ bool RDFW::SolveTask_Give(unsigned int a)
         GetBigObjectStatus(human->id);
         if(!IsKeepingGoing(task_index)) return 0;
         }
-            if(objects[ObjectId(a)]->location==human->location && plate_id!=a && hold_id!=a) return true;
+            if(objects[a]->location==human->location && plate_id!=a && hold_id!=a) return true;
             else return SolveTask_PutOn(a, human->id);
             }
         else
@@ -1721,7 +1601,7 @@ bool RDFW::SolveTask_Give(unsigned int a)
 //putin任务
 bool RDFW::SolveTask_Putin(unsigned int a, unsigned int b)
 {
-    if(takeout[ObjectId(a)][ObjectId(b)] != false)
+    if(HasRequestedTask("takeout", a, b))
     {
         if(Isinside(a,b) && (stage == 1 || IsInsideVerified(a))) return true;
                else
@@ -1731,35 +1611,35 @@ bool RDFW::SolveTask_Putin(unsigned int a, unsigned int b)
                }
     }
     if(Isinside(a,b) && (stage == 1 || IsInsideVerified(a))) return true;
-    auto target_cont = ObjectPtrCast<Container>(objects[ObjectId(b)]);
+    auto target_cont = ObjectPtrCast<Container>(objects[b]);
     if(stage==1)
     {
         //优化了一下规划，如果目标物体和容器在一起，先打开再picku
-        if(objects[ObjectId(a)]->location==objects[ObjectId(b)]->location)
+        if(objects[a]->location==objects[b]->location)
         {
-        if (location != target_cont->location && !Move(LocationId(target_cont->location))) return false;
-        if (target_cont->isOpen != 1 && !Open(ObjectId(b))) return false;
+        if (location != target_cont->location && !Move(target_cont->location)) return false;
+        if (target_cont->isOpen != 1 && !Open(b)) return false;
         if (!HoldSmallObject(a)) return false;
-        return PutIn(ObjectId(a),ObjectId(b));
+        return PutIn(a,b);
         }
         else
         {
         if(!HoldSmallObject(a)) return false;
-        if (location != target_cont->location && !Move(LocationId(target_cont->location))) return false;
+        if (location != target_cont->location && !Move(target_cont->location)) return false;
         if (target_cont->isOpen != 1)
         {
-        if (!PutDown(ObjectId(a))) return false;
-        if (!Open(ObjectId(b))) return false;
-        if (!PickUp(ObjectId(a))) return false;
+        if (!PutDown(a)) return false;
+        if (!Open(b)) return false;
+        if (!PickUp(a)) return false;
         }
-        return PutIn(ObjectId(a),ObjectId(b));
+        return PutIn(a,b);
         }
        return false;
     }
     //stage2的情况
   //open如果false可能的情况有两种：1.容器本身就是开着的，他骗我没开 2.b容器就不在这个位置
   //putin a b 如果false的情况有两种： 1.容器是关着的，骗我是开着的，我没有打开 2.b容器就不在这个位置上
-    if(objects[ObjectId(b)]->location==UNKNOWN)
+    if(objects[b]->location==UNKNOWN)
     {
         GetBigObjectStatus(b);
         if(!IsKeepingGoing(task_index)) return 0;
@@ -1769,10 +1649,9 @@ bool RDFW::SolveTask_Putin(unsigned int a, unsigned int b)
     int try_times=0;
     while(1)
     {
-            CheckBudget();
       try_times++;
     if (location != target_cont->location)
-        if(!Move(LocationId(target_cont->location)))
+        if(!Move(target_cont->location))
         {
             if(try_times>=2) return false;
             GetBigObjectStatus(b);
@@ -1782,25 +1661,25 @@ bool RDFW::SolveTask_Putin(unsigned int a, unsigned int b)
 
     if (!target_cont->isOpen)
     {
-        if (!PutDown(ObjectId(a))) return false;
-        if(Open(ObjectId(b)))
+        if (!PutDown(a)) return false;
+        if(Open(b))
         {
-             if (!PickUp(ObjectId(a))) return false;
-             return PutIn(ObjectId(a),ObjectId(b));
+             if (!PickUp(a)) return false;
+             return PutIn(a,b);
         }
         else
         {
             if(sense(b)) {
                 target_cont->isOpen = true;
                 EnsureEvidenceCapacity(b);
-                containerStateVerified[ObjectId(b)] = true;
-                if (!PickUp(ObjectId(a))) return false;
-                return PutIn(ObjectId(a),ObjectId(b));
+                containerStateVerified[b] = true;
+                if (!PickUp(a)) return false;
+                return PutIn(a,b);
             }
             else
             {
             if(try_times>=2) return false;
-            if (!PickUp(ObjectId(a))) return false;
+            if (!PickUp(a)) return false;
             GetBigObjectStatus(b);
             if(!IsKeepingGoing(task_index)) return false;
             continue;
@@ -1810,17 +1689,17 @@ bool RDFW::SolveTask_Putin(unsigned int a, unsigned int b)
     }
     else
     {
-    if(!PutIn(ObjectId(a),ObjectId( b)))
+    if(!PutIn(a, b))
     {
-        if (!PutDown(ObjectId(a))) return false;
-       if(Open(ObjectId(b))){
-           if (!PickUp(ObjectId(a))) return false;
-           return PutIn(ObjectId(a),ObjectId(b));
+        if (!PutDown(a)) return false;
+       if(Open(b)){
+           if (!PickUp(a)) return false;
+           return PutIn(a,b);
        }
        else
        {
         if(try_times>=2) return false;
-        if (!PickUp(ObjectId(a))) return false;
+        if (!PickUp(a)) return false;
         GetBigObjectStatus(b);
         if(!IsKeepingGoing(task_index)) return false;
         continue;
@@ -1849,17 +1728,17 @@ bool RDFW::SolveTask_Putin(unsigned int a, unsigned int b)
 //takeout任务
 bool RDFW::SolveTask_TakeOut(unsigned int a, unsigned int b)
 {
-    if(putin[ObjectId(a)][ObjectId(b)] != false){
+    if(HasRequestedTask("putin", a, b)){
          if(Isinside(a,b)==0) return true;
         else {
             cout<<"there is putin task,no need to do this!"<<endl;
             return false;
         }
     }
-    auto small = ObjectPtrCast<SmallObject>(objects[ObjectId(a)]);
+    auto small = ObjectPtrCast<SmallObject>(objects[a]);
 
 
-    auto target_cont = ObjectPtrCast<Container>(objects[ObjectId(b)]);
+    auto target_cont = ObjectPtrCast<Container>(objects[b]);
     // Stage 2 location facts and AskLoc replies may be misleading. A known
     // "at" reply therefore does not prove that the object is outside this
     // container; verify by trying the target container instead. Stage 1 has
@@ -1872,21 +1751,20 @@ bool RDFW::SolveTask_TakeOut(unsigned int a, unsigned int b)
    
     if(stage==1)
     {
-        if (hold!= nullptr && !PutDown(ObjectId(hold->id))) return false;
-        if (location != target_cont->location && !Move(LocationId(target_cont->location))) return false;
-        if (target_cont->isOpen != 1 && !Open(ObjectId(target_cont->id))) return false;
-        return TakeOut(ObjectId(a),ObjectId( target_cont->id));
+        if (hold!= nullptr && !PutDown(hold->id)) return false;
+        if (location != target_cont->location && !Move(target_cont->location)) return false;
+        if (target_cont->isOpen != 1 && !Open(target_cont->id)) return false;
+        return TakeOut(a, target_cont->id);
     }
    ///这是stage2的逻辑 //对于takeout任务，inside未知，location未知，先去容器尝试takeout；或者先询问小物体，再判断任务是否已经完成
     if(target_cont->location==UNKNOWN){GetBigObjectStatus(b);if(!IsKeepingGoing(task_index)) return false;}
-    if (hold!= nullptr && !PutDown(ObjectId(hold->id))) return false;
+    if (hold!= nullptr && !PutDown(hold->id)) return false;
     int t = 0;
     while(1)
     {
-            CheckBudget();
         t++;
     if (location != target_cont->location)
-        if(!Move(LocationId(target_cont->location)))
+        if(!Move(target_cont->location))
         {
         if (t >= 2)  return 0;
         GetBigObjectStatus(b);
@@ -1907,7 +1785,7 @@ bool RDFW::SolveTask_TakeOut(unsigned int a, unsigned int b)
     GetSmallObjectStatus(a);
     if(Isinside(a,b))//a就在一开始容器里面
     {
-     if(Open(ObjectId(b))) return TakeOut(ObjectId(a),ObjectId(b)); //认为骗我是关的
+     if(Open(b)) return TakeOut(a,b); //认为骗我是关的
      else  GetBigObjectStatus(b);//open失败，本身不可能是open的，直接问容器
     }
     else
@@ -1924,13 +1802,13 @@ bool RDFW::SolveTask_TakeOut(unsigned int a, unsigned int b)
 bool RDFW::SolveTask_PutOn(unsigned int a, unsigned int b)
 {
     //10.27
-    auto small=dynamic_pointer_cast<SmallObject>(objects[ObjectId(a)]);
-    if(small && small->inside==NONE && small->location==objects[ObjectId(b)]->location &&
+    auto small=dynamic_pointer_cast<SmallObject>(objects[a]);
+    if(small && small->inside==NONE && small->location==objects[b]->location &&
        plate_id!=a && hold_id!=a &&
        (stage == 1 || (IsInsideVerified(a) && IsLocationVerified(a) && IsLocationVerified(b))))
         return true;
     //
-    if(objects[ObjectId(b)]->location==UNKNOWN)
+    if(objects[b]->location==UNKNOWN)
     {
         GetBigObjectStatus(b);
          if(!IsKeepingGoing(task_index)) return false;
@@ -1939,11 +1817,10 @@ bool RDFW::SolveTask_PutOn(unsigned int a, unsigned int b)
     int t=0;
     while(1)
     {
-            CheckBudget();
         t++;
-        if (location != objects[ObjectId(b)]->location)
+        if (location != objects[b]->location)
         {
-            if(!Move(LocationId(objects[ObjectId(b)]->location)))
+            if(!Move(objects[b]->location))
             {
             if (t >= 3)  return 0;
             GetBigObjectStatus(b);
@@ -1951,7 +1828,7 @@ bool RDFW::SolveTask_PutOn(unsigned int a, unsigned int b)
             continue;
             }
         }
-        if (stage == 2 && (!IsLocationVerified(b) || objects[ObjectId(b)]->location != location)) {
+        if (stage == 2 && (!IsLocationVerified(b) || objects[b]->location != location)) {
             SenseCurrentLocationOnly(true);
             if(!HasObjectAtLocation(location, b)) {
                 if (t >= 3) return false;
@@ -1960,7 +1837,7 @@ bool RDFW::SolveTask_PutOn(unsigned int a, unsigned int b)
                 continue;
             }
         }
-        return PutDown(ObjectId(a));
+        return PutDown(a);
     }
     return true;
 }
@@ -2002,7 +1879,6 @@ void RDFW::MustChooseOne(void){
         }
           int t=0;
         while(solved_task_num==0){
-        if (!CanStartTask()) return;
         int flag=0;
     
         t++;
@@ -2082,7 +1958,6 @@ bool RDFW::CheckAndDeferMultiGoto()
 //执行多goto任务
 void RDFW::ExecuteMultiGotoAggregation()
 {
-    if (!CanStartTask()) return;
     // =========================
     // [FINAL] Multi-GOTO 聚合（低风险 hub + 候选筛选 + 上限 10 + 最终停留）
     // =========================
@@ -2123,8 +1998,8 @@ void RDFW::ExecuteMultiGotoAggregation()
             small_cand_ids_disable.begin(),
             small_cand_ids_disable.end(),
             [&](unsigned id) {
-                int loc = (objects[ObjectId(id)] ? objects[ObjectId(id)]->location : UNKNOWN);
-                int risk = (loc != UNKNOWN && loc >= 0) ? goto_cons[LocationId(loc)] : 99;
+                int loc = (objects[id] ? objects[id]->location : UNKNOWN);
+                int risk = (loc != UNKNOWN && loc >= 0) ? goto_cons[loc] : 99;
                 return risk > 2;
             }
         ),
@@ -2159,13 +2034,13 @@ void RDFW::ExecuteMultiGotoAggregation()
         SmallGotoPickupInfo info;
         info.id = id;
         // 2. 去到小物体当前位置
-        int loc = (objects[ObjectId(id)] ? objects[ObjectId(id)]->location : UNKNOWN);
-        info.goto_risk = (loc != UNKNOWN && loc >= 0) ? goto_cons[LocationId(loc)] : 99;
+        int loc = (objects[id] ? objects[id]->location : UNKNOWN);
+        info.goto_risk = (loc != UNKNOWN && loc >= 0) ? goto_cons[loc] : 99;
         // 3. 拿起小物体的约束
-        info.pickup_risk = pickup_cons[ObjectId(id)];
-        // 4. mustnear 约束（统计所有位置的 mustnear_cons[ObjectId(id)][ObjectId(*)] 之和）
+        info.pickup_risk = pickup_cons[id];
+        // 4. mustnear 约束（统计所有位置的 mustnear_cons[id][*] 之和）
         int mustnear_sum = 0;
-        for (int i = 0; i < (int)mustnear_cons[ObjectId(id)].size(); ++i) mustnear_sum += mustnear_cons[ObjectId(id)][ObjectId(i)];
+        for (int i = 0; i < (int)mustnear_cons[id].size(); ++i) mustnear_sum += mustnear_cons[id][i];
         info.mustnear_risk = mustnear_sum;
         // 5. 总约束
         info.total_risk = info.goto_risk + info.pickup_risk + info.mustnear_risk;
@@ -2186,8 +2061,8 @@ void RDFW::ExecuteMultiGotoAggregation()
     for (auto id : big_cand_ids) {
         BigGotoInfo info;
         info.id = id;
-        int loc = (objects[ObjectId(id)] ? objects[ObjectId(id)]->location : UNKNOWN);
-        info.goto_risk = (loc != UNKNOWN && loc >= 0) ? goto_cons[LocationId(loc)] : 99;
+        int loc = (objects[id] ? objects[id]->location : UNKNOWN);
+        info.goto_risk = (loc != UNKNOWN && loc >= 0) ? goto_cons[loc] : 99;
         LOG(GREEN "[MultiGoto] BigObject[%u]: goto_risk=%d\n" RESET, id, info.goto_risk);
         big_goto_infos.push_back(info);
     }
@@ -2220,24 +2095,24 @@ void RDFW::ExecuteMultiGotoAggregation()
     
     // 收集所有小物体和大物体的位置
     for (auto id : small_lowrisk_ids) {
-        if (id < objects.size() && objects[ObjectId(id)]) {
-            int loc = objects[ObjectId(id)]->location;
+        if (id < objects.size() && objects[id]) {
+            int loc = objects[id]->location;
             if (loc >= 0 && loc < (int)rightlocation.size()) {
                 occupied_locations.insert(loc);
             }
         }
     }
     for (auto id : big_cand_ids) {
-        if (id < objects.size() && objects[ObjectId(id)]) {
-            int loc = objects[ObjectId(id)]->location;
+        if (id < objects.size() && objects[id]) {
+            int loc = objects[id]->location;
             if (loc >= 0 && loc < (int)rightlocation.size()) {
                 occupied_locations.insert(loc);
             }
         }
     }
     for (auto id : small_cand_ids_disable) {
-        if (id < objects.size() && objects[ObjectId(id)]) {
-            int loc = objects[ObjectId(id)]->location;
+        if (id < objects.size() && objects[id]) {
+            int loc = objects[id]->location;
             if (loc >= 0 && loc < (int)rightlocation.size()) {
                 occupied_locations.insert(loc);
             }
@@ -2263,13 +2138,13 @@ void RDFW::ExecuteMultiGotoAggregation()
     for (int loc : valid_locations) {
         LocationRiskInfo info;
         info.loc = loc;
-        info.goto_risk = goto_cons[LocationId(loc)];
+        info.goto_risk = goto_cons[loc];
         info.move_cons_risks.reserve(small_lowrisk_ids.size());
         info.putdown_cons_risks.reserve(small_lowrisk_ids.size());
         int sum_risk = info.goto_risk;
         for (auto id : small_lowrisk_ids) {
-            int move_risk = move_cons[ObjectId(id)][LocationId(loc)];
-            int putdown_risk = putdown_cons[ObjectId(id)][LocationId(loc)];
+            int move_risk = move_cons[id][loc];
+            int putdown_risk = putdown_cons[id][loc];
             info.move_cons_risks.push_back(move_risk);
             info.putdown_cons_risks.push_back(putdown_risk);
             sum_risk += move_risk + putdown_risk;
@@ -2283,7 +2158,7 @@ void RDFW::ExecuteMultiGotoAggregation()
     int min_risk = 1000000;
     for (const auto& info : location_risks) {
         // 检查位置是否可达（在rightlocation中且不是UNKNOWN）
-        if (info.loc >= 0 && info.loc < (int)rightlocation.size() && rightlocation[LocationId(info.loc)]) {
+        if (info.loc >= 0 && info.loc < (int)rightlocation.size() && rightlocation[info.loc]) {
             if (info.total_risk < 3) {
                 low_risk_locs.push_back(info.loc);
             }
@@ -2300,8 +2175,8 @@ void RDFW::ExecuteMultiGotoAggregation()
     combined_ids.insert(combined_ids.end(), small_cand_ids_disable.begin(), small_cand_ids_disable.end());
     
     for (auto id : combined_ids) {
-        if (id < objects.size() && objects[ObjectId(id)]) {
-            int loc = objects[ObjectId(id)]->location;
+        if (id < objects.size() && objects[id]) {
+            int loc = objects[id]->location;
             if (loc >= 0 && loc < (int)rightlocation.size()) {
                 location_smallobjloc_counts[loc]++;
             }
@@ -2347,7 +2222,7 @@ void RDFW::ExecuteMultiGotoAggregation()
 
     if (most_smallobj_loc != -1) {
         chosen_loc = most_smallobj_loc;
-        rightlocation[LocationId(chosen_loc)] = true;
+        rightlocation[chosen_loc] = true;
         LOG(YELLOW "[MultiGoto] smallobj_loc is found: %d\n" RESET, most_smallobj_loc);
     }
     else{
@@ -2359,10 +2234,10 @@ void RDFW::ExecuteMultiGotoAggregation()
 
     if(chosen_loc == -1){
     for (auto big_id : big_cand_ids) {
-        if (objects[ObjectId(big_id)]) {
-            int loc = objects[ObjectId(big_id)]->location;
+        if (objects[big_id]) {
+            int loc = objects[big_id]->location;
             // 确保位置可达
-            if (loc >= 0 && loc < (int)rightlocation.size() && rightlocation[LocationId(loc)]) {
+            if (loc >= 0 && loc < (int)rightlocation.size() && rightlocation[loc]) {
                 for (const auto& info : location_risks) {
                     if (info.loc == loc && info.total_risk < 2) {
                         if (info.total_risk < best_big_risk) {
@@ -2385,7 +2260,7 @@ void RDFW::ExecuteMultiGotoAggregation()
         int best_risk = 1000000;
         for (const auto& info : location_risks) {
             // 确保位置可达
-            if (info.loc >= 0 && info.loc < (int)rightlocation.size() && rightlocation[LocationId(info.loc)]) {
+            if (info.loc >= 0 && info.loc < (int)rightlocation.size() && rightlocation[info.loc]) {
                 if (info.total_risk < best_risk) {
                     best_risk = info.total_risk;
                     chosen_loc = info.loc;
@@ -2398,7 +2273,7 @@ void RDFW::ExecuteMultiGotoAggregation()
     // 如果仍然没有选择到位置，选择第一个可达的位置
     if (chosen_loc == -1) {
         for (int loc = 0; loc < (int)rightlocation.size(); ++loc) {
-            if (rightlocation[LocationId(loc)]) {
+            if (rightlocation[loc]) {
                 chosen_loc = loc;
                 LOG(YELLOW "[MultiGoto] No optimal location found, using first available: %d\n" RESET, loc);
                 break;
@@ -2408,9 +2283,9 @@ void RDFW::ExecuteMultiGotoAggregation()
     
 
     // 验证选择的位置是否可达
-    if (chosen_loc == -1 || !rightlocation[LocationId(chosen_loc)]) {
-        LOG(RED "[MultiGoto] ERROR: No valid location found! chosen_loc=%d, rightlocation[LocationId(%d)]=%d\n" RESET, 
-            chosen_loc, chosen_loc, chosen_loc >= 0 && chosen_loc < (int)rightlocation.size() ? rightlocation[LocationId(chosen_loc)] : -1);
+    if (chosen_loc == -1 || !rightlocation[chosen_loc]) {
+        LOG(RED "[MultiGoto] ERROR: No valid location found! chosen_loc=%d, rightlocation[%d]=%d\n" RESET, 
+            chosen_loc, chosen_loc, chosen_loc >= 0 && chosen_loc < (int)rightlocation.size() ? rightlocation[chosen_loc] : -1);
         // 选择机器人当前位置作为备选
         chosen_loc = location;
         LOG(YELLOW "[MultiGoto] Using current location as fallback: %d\n" RESET, chosen_loc);
@@ -2426,14 +2301,14 @@ void RDFW::ExecuteMultiGotoAggregation()
         for (auto id : small_lowrisk_ids) {
             // 重新定义lambda函数，因为作用域问题
             auto ViolationsIfGoto = [&](unsigned id) -> int {
-                if (id >= objects.size() || !objects[ObjectId(id)]) return 99;
-                int loc = objects[ObjectId(id)]->location;
+                if (id >= objects.size() || !objects[id]) return 99;
+                int loc = objects[id]->location;
                 if (loc == UNKNOWN || loc < 0) return 99;
-                return goto_cons[LocationId(loc)];
+                return goto_cons[loc];
             };
             auto SafeForIdAt = [&](unsigned id, int h) -> bool {
                 if (h < 0) return false;
-                return putdown_cons[ObjectId(id)][LocationId(h)] == 0 && move_cons[ObjectId(id)][LocationId(h)] == 0;
+                return putdown_cons[id][h] == 0 && move_cons[id][h] == 0;
             };
             if (ViolationsIfGoto(id) < 2 && SafeForIdAt(id, chosen_loc)) {
                 move_set.push_back(id);
@@ -2442,20 +2317,20 @@ void RDFW::ExecuteMultiGotoAggregation()
 
         // 没有可搬的，就至少停在 chosen_loc
         if (move_set.empty()) {
-            if (location != chosen_loc) Move(LocationId(chosen_loc));
+            if (location != chosen_loc) Move(chosen_loc);
         } else {
             auto in_set = [&](unsigned x){
                 return std::find(move_set.begin(), move_set.end(), x) != move_set.end();
             };
 
             // 护栏：hold/plate 不在集合且跨区会触发 move 约束时，先就地处理
-            if (hold_id > 0 && !in_set(hold_id) && move_cons[ObjectId(hold_id)][LocationId(chosen_loc)]) {
-                PutDown(ObjectId(hold_id));
+            if (hold_id > 0 && !in_set(hold_id) && move_cons[hold_id][chosen_loc]) {
+                PutDown(hold_id);
             }
-            if (plate_id > 0 && !in_set(plate_id) && move_cons[ObjectId(plate_id)][LocationId(chosen_loc)]) {
-                if (hold_id > 0) PutDown(ObjectId(hold_id));
-                FromPlate(ObjectId(plate_id));
-                PutDown(ObjectId(plate_id));
+            if (plate_id > 0 && !in_set(plate_id) && move_cons[plate_id][chosen_loc]) {
+                if (hold_id > 0) PutDown(hold_id);
+                FromPlate(plate_id);
+                PutDown(plate_id);
             }
 
             // 若 hold/plate 在集合里，优先处理
@@ -2468,8 +2343,8 @@ void RDFW::ExecuteMultiGotoAggregation()
 
             // 已在 chosen_loc 的优先，其余按 id 升序
             std::stable_sort(move_set.begin(), move_set.end(), [&](unsigned a, unsigned b){
-                auto sa = std::dynamic_pointer_cast<SmallObject>(objects[ObjectId(a)]);
-                auto sb = std::dynamic_pointer_cast<SmallObject>(objects[ObjectId(b)]);
+                auto sa = std::dynamic_pointer_cast<SmallObject>(objects[a]);
+                auto sb = std::dynamic_pointer_cast<SmallObject>(objects[b]);
                 int da = (sa && sa->location == chosen_loc) ? 0 : 1;
                 int db = (sb && sb->location == chosen_loc) ? 0 : 1;
                 return (da != db) ? (da < db) : (a < b);
@@ -2490,7 +2365,7 @@ void RDFW::ExecuteMultiGotoAggregation()
             }
 
             // 收尾：最终停在 chosen_loc
-            if (location != chosen_loc) Move(LocationId(chosen_loc));
+            if (location != chosen_loc) Move(chosen_loc);
             LOG(GREEN "Final-GOTO: aggregation done, stay at hub=%d\n" RESET, chosen_loc);
 
             // 关闭剩余 goto，避免后续检查阶段拉走
@@ -2613,8 +2488,8 @@ bool ParseAskLocationReply(const string& reply, unsigned int expected_id,
 // 格式正确的回答即可继续；最多额外重试一次 not_known/非法回答。
 bool RDFW::GetSmallObjectStatus(unsigned int a)
 {
-    if (isPass || a == 0 || a >= objects.size() || !objects[ObjectId(a)]) return false;
-    auto small = dynamic_pointer_cast<SmallObject>(objects[ObjectId(a)]);
+    if (isPass || a == 0 || a >= objects.size() || !objects[a]) return false;
+    auto small = dynamic_pointer_cast<SmallObject>(objects[a]);
     if (!small) return false;
 
     const int max_attempts = 2;
@@ -2623,14 +2498,14 @@ bool RDFW::GetSmallObjectStatus(unsigned int a)
     bool chosen = false;
 
     for (int attempt = 0; attempt < max_attempts; ++attempt) {
-        const string reply = AskLoc(ObjectId(a));
+        const string reply = AskLoc(a);
         string relation;
         unsigned int target = 0;
         if (!ParseAskLocationReply(reply, a, relation, target)) continue;
         if (relation == "inside") {
-            if (target == 0 || target >= objects.size() || !objects[ObjectId(target)] ||
-                !dynamic_pointer_cast<Container>(objects[ObjectId(target)])) continue;
-        } else if (target < posSensedFlag.size() && posSensedFlag[LocationId(target)] &&
+            if (target == 0 || target >= objects.size() || !objects[target] ||
+                !dynamic_pointer_cast<Container>(objects[target])) continue;
+        } else if (target < posSensedFlag.size() && posSensedFlag[target] &&
                    !HasObjectAtLocation(static_cast<int>(target), a)) {
             continue;
         }
@@ -2645,12 +2520,12 @@ bool RDFW::GetSmallObjectStatus(unsigned int a)
     }
 
     if (small->inside > 0 && static_cast<size_t>(small->inside) < objects.size()) {
-        auto old_cont = dynamic_pointer_cast<Container>(objects[ObjectId(small->inside)]);
+        auto old_cont = dynamic_pointer_cast<Container>(objects[small->inside]);
         if (old_cont) old_cont->DeleteObjectInside(small);
     }
 
     if (chosen_relation == "inside") {
-        auto cont = dynamic_pointer_cast<Container>(objects[ObjectId(chosen_target)]);
+        auto cont = dynamic_pointer_cast<Container>(objects[chosen_target]);
         if (!cont) return false;
         if (cont->location == UNKNOWN) GetBigObjectStatus(cont->id);
         small->location = cont->location;
@@ -2667,11 +2542,11 @@ bool RDFW::GetSmallObjectStatus(unsigned int a)
     }
 
     EnsureEvidenceCapacity(a);
-    objectLocationVerified[ObjectId(a)] = false;
-    objectInsideVerified[ObjectId(a)] = false;
+    objectLocationVerified[a] = false;
+    objectInsideVerified[a] = false;
     if (small->location >= 0) {
         EnsureLocationCapacity(small->location);
-        posCorrectFlag[LocationId(small->location)] = false;
+        posCorrectFlag[small->location] = false;
     }
     return true;
 }
@@ -2679,17 +2554,17 @@ bool RDFW::GetSmallObjectStatus(unsigned int a)
 // 获取大物体状态。只接受格式正确且对象 ID 匹配的 at 回答。
 bool RDFW::GetBigObjectStatus(unsigned int a)
 {
-    if (isPass || a == 0 || a >= objects.size() || !objects[ObjectId(a)]) return false;
+    if (isPass || a == 0 || a >= objects.size() || !objects[a]) return false;
     const int max_attempts = 2;
     unsigned int chosen_location = 0;
     bool chosen = false;
 
     for (int attempt = 0; attempt < max_attempts; ++attempt) {
-        const string reply = AskLoc(ObjectId(a));
+        const string reply = AskLoc(a);
         string relation;
         unsigned int target = 0;
         if (!ParseAskLocationReply(reply, a, relation, target) || relation != "at") continue;
-        if (target < posSensedFlag.size() && posSensedFlag[LocationId(target)] &&
+        if (target < posSensedFlag.size() && posSensedFlag[target] &&
             !HasObjectAtLocation(static_cast<int>(target), a)) continue;
         chosen_location = target;
         chosen = true;
@@ -2701,30 +2576,28 @@ bool RDFW::GetBigObjectStatus(unsigned int a)
     }
 
     EnsureLocationCapacity(static_cast<int>(chosen_location));
-    objects[ObjectId(a)]->location = static_cast<int>(chosen_location);
-    if (auto cont = dynamic_pointer_cast<Container>(objects[ObjectId(a)])) {
+    objects[a]->location = static_cast<int>(chosen_location);
+    if (auto cont = dynamic_pointer_cast<Container>(objects[a])) {
         for (const auto& item : cont->smallObjectsInside) {
             if (item) item->location = cont->location;
         }
     }
     EnsureEvidenceCapacity(a);
-    objectLocationVerified[ObjectId(a)] = false;
-    posCorrectFlag[LocationId(chosen_location)] = false;
+    objectLocationVerified[a] = false;
+    posCorrectFlag[chosen_location] = false;
     return true;
 }
 
 // 单次询问。重试与一致性判断由调用方控制，保证每条调用链都有明确上限。
-std::string RDFW::AskLoc(ObjectId target)
+std::string RDFW::AskLoc(unsigned int a)
 {
-    const int a = target.value();
-    if (!CanStartTask() || isPass || a == 0 || a >= objects.size() || !objects[ObjectId(a)]) return "";
-    BeforeAction("AskLoc");
+    if (isPass || a == 0 || a >= objects.size() || !objects[a]) return "";
     const string str = Plug::AskLoc(a);
     if (task_index >= 0 && static_cast<size_t>(task_index) < tasks.size())
         tasks[task_index].ask_times++;
     LOG("AskLoc(%d)", a);
     if (str.empty())
-        LOG_ERROR("AskLoc returned empty string for object (%d,%s)", a, objects[ObjectId(a)]->sort.c_str());
+        LOG_ERROR("AskLoc returned empty string for object (%d,%s)", a, objects[a]->sort.c_str());
     return str;
 }
 
@@ -2751,14 +2624,13 @@ void RDFW::SenseCurrentLocationOnly(bool force)
         locationSensedObjects.resize(curr_loc + 1);  // 同时扩展物体记录数组
     }
     
-    if (!force && posSensedFlag[LocationId(curr_loc)]) {
+    if (!force && posSensedFlag[curr_loc]) {
         LOG(YELLOW "[SenseCurrentLocationOnly] Location %d already sensed, skipping to avoid redundancy\n" RESET, curr_loc);
         return;
     }
 
     // 感知当前位置的物体
     vector<unsigned int> sensed_ids;
-    BeforeAction("Sense");
     Plug::Sense(sensed_ids);
 
     // 标记当前位置已感知
@@ -2766,30 +2638,30 @@ void RDFW::SenseCurrentLocationOnly(bool force)
         posSensedFlag.resize(curr_loc + 1, false);
         locationSensedObjects.resize(curr_loc + 1);  // 同时扩展物体记录数组
     }
-    posSensedFlag[LocationId(curr_loc)] = true;
+    posSensedFlag[curr_loc] = true;
     
     // 清空当前位置的感知记录，准备记录新的感知结果
-    locationSensedObjects[LocationId(curr_loc)].object_ids.clear();
-    locationSensedObjects[LocationId(curr_loc)].container_id = 0;
-    locationSensedObjects[LocationId(curr_loc)].has_container = false;
+    locationSensedObjects[curr_loc].object_ids.clear();
+    locationSensedObjects[curr_loc].container_id = 0;
+    locationSensedObjects[curr_loc].has_container = false;
     
     LOG(GREEN "[SenseCurrentLocationOnly] Location %d marked as sensed\n" RESET, curr_loc);
 
     // 遍历感知到的物体，更新其位置
     for (auto id : sensed_ids) {
-        if (id > 0 && id < objects.size() && objects[ObjectId(id)] != nullptr) {
-            objects[ObjectId(id)]->location = curr_loc;
+        if (id > 0 && id < objects.size() && objects[id] != nullptr) {
+            objects[id]->location = curr_loc;
             EnsureEvidenceCapacity(id);
-            objectLocationVerified[ObjectId(id)] = true;
+            objectLocationVerified[id] = true;
             
             // 记录感知到的物体ID
-            locationSensedObjects[LocationId(curr_loc)].object_ids.push_back(id);
+            locationSensedObjects[curr_loc].object_ids.push_back(id);
             
-            auto cont = std::dynamic_pointer_cast<Container>(objects[ObjectId(id)]);
+            auto cont = std::dynamic_pointer_cast<Container>(objects[id]);
             if (cont) {
                 // 记录容器ID和标记有容器（一个位置只能有一个大物体）
-                locationSensedObjects[LocationId(curr_loc)].container_id = id;
-                locationSensedObjects[LocationId(curr_loc)].has_container = true;
+                locationSensedObjects[curr_loc].container_id = id;
+                locationSensedObjects[curr_loc].has_container = true;
                 sensed_container_id = id;
                 LOG("[SenseCurrentLocationOnly] Container %d detected at location %d", id, curr_loc);
             } else {
@@ -2802,45 +2674,45 @@ void RDFW::SenseCurrentLocationOnly(bool force)
     // 单次 Sense 无法区分“在容器内”和“在容器旁”，因此只清理能够
     // 确定矛盾的旧关系，不把歧义状态升级为已验证。
     for (auto id : sensed_ids) {
-        if (id == 0 || id >= objects.size() || !objects[ObjectId(id)]) continue;
-        auto small = dynamic_pointer_cast<SmallObject>(objects[ObjectId(id)]);
+        if (id == 0 || id >= objects.size() || !objects[id]) continue;
+        auto small = dynamic_pointer_cast<SmallObject>(objects[id]);
         if (!small || static_cast<int>(id) == hold_id || static_cast<int>(id) == plate_id) continue;
         EnsureEvidenceCapacity(id);
 
         bool visible_container_is_open = false;
         if (sensed_container_id > 0 && sensed_container_id < objects.size()) {
-            auto visible_container = dynamic_pointer_cast<Container>(objects[ObjectId(sensed_container_id)]);
+            auto visible_container = dynamic_pointer_cast<Container>(objects[sensed_container_id]);
             visible_container_is_open = visible_container && visible_container->isOpen;
         }
 
         const bool relation_is_ambiguous =
             small->inside == static_cast<int>(sensed_container_id) && visible_container_is_open;
         if (relation_is_ambiguous) {
-            objectInsideVerified[ObjectId(id)] = false;
+            objectInsideVerified[id] = false;
             continue;
         }
 
         if (small->inside > 0 && static_cast<size_t>(small->inside) < objects.size()) {
-            auto old_container = dynamic_pointer_cast<Container>(objects[ObjectId(small->inside)]);
+            auto old_container = dynamic_pointer_cast<Container>(objects[small->inside]);
             if (old_container) old_container->DeleteObjectInside(small);
         }
         small->inside = NONE;
-        objectInsideVerified[ObjectId(id)] = true;
+        objectInsideVerified[id] = true;
     }
     
     // 检查原本应该在这个位置但没被感知到的物体
     // 1. 标记已感知到的物体（包括容器内的物体）
     std::vector<bool> sensed(objects.size(), false);
-    for (auto id2 : locationSensedObjects[LocationId(curr_loc)].object_ids) {
-        if (id2 > 0 && id2 < objects.size() && objects[ObjectId(id2)] != nullptr) {
+    for (auto id2 : locationSensedObjects[curr_loc].object_ids) {
+        if (id2 > 0 && id2 < objects.size() && objects[id2] != nullptr) {
             sensed[id2] = true;
         }
     }
     
     // 2.检查这个容器是否开着
     bool container_is_open = false;
-    if (sensed_container_id > 0 && sensed_container_id < objects.size() && objects[ObjectId(sensed_container_id)] != nullptr) {
-        auto cont = std::dynamic_pointer_cast<Container>(objects[ObjectId(sensed_container_id)]);
+    if (sensed_container_id > 0 && sensed_container_id < objects.size() && objects[sensed_container_id] != nullptr) {
+        auto cont = std::dynamic_pointer_cast<Container>(objects[sensed_container_id]);
         if (cont) {
             container_is_open = cont->isOpen;
         }
@@ -2849,9 +2721,9 @@ void RDFW::SenseCurrentLocationOnly(bool force)
     // 直接按照位置找，找到标记为在这个位置的所谓物体id
     std::vector<unsigned int> ids_at_curr_loc;
     for (unsigned int i = 1; i < objects.size(); ++i) {
-        if (!objects[ObjectId(i)]) continue;
+        if (!objects[i]) continue;
         if (static_cast<int>(i) == hold_id || static_cast<int>(i) == plate_id) continue;
-        if (objects[ObjectId(i)]->location == curr_loc) {
+        if (objects[i]->location == curr_loc) {
             ids_at_curr_loc.push_back(i);
         }
     }
@@ -2859,9 +2731,9 @@ void RDFW::SenseCurrentLocationOnly(bool force)
     if(sensed_container_id == NONE || container_is_open == true){
         for (auto id : ids_at_curr_loc) {
             if (!sensed[id]) {
-                objects[ObjectId(id)]->location = UNKNOWN;
+                objects[id]->location = UNKNOWN;
                 EnsureEvidenceCapacity(id);
-                objectLocationVerified[ObjectId(id)] = false;
+                objectLocationVerified[id] = false;
                 LOG(YELLOW "[SenseCurrentLocationOnly] Object id=%u expected at %d but not sensed, set location UNKNOWN\n" RESET, id, curr_loc);
             }
         }
@@ -2870,15 +2742,15 @@ void RDFW::SenseCurrentLocationOnly(bool force)
         for (auto id : ids_at_curr_loc) {
             bool in_container = false;
             // 检查是否是小物体且在容器内
-            auto small = std::dynamic_pointer_cast<SmallObject>(objects[ObjectId(id)]);
+            auto small = std::dynamic_pointer_cast<SmallObject>(objects[id]);
             if (small && small->inside == sensed_container_id) {
                 in_container = true;
             }
             
             if (!sensed[id] && !in_container) {
-                objects[ObjectId(id)]->location = UNKNOWN;
+                objects[id]->location = UNKNOWN;
                 EnsureEvidenceCapacity(id);
-                objectLocationVerified[ObjectId(id)] = false;
+                objectLocationVerified[id] = false;
                 LOG(YELLOW "[SenseCurrentLocationOnly] Object id=%u expected at %d but not sensed, set location UNKNOWN\n" RESET, id, curr_loc);
             }
         }
@@ -2888,14 +2760,14 @@ void RDFW::SenseCurrentLocationOnly(bool force)
 const RDFW::LocationSensedInfo& RDFW::GetLocationSensedInfo(int location) const {
     static RDFW::LocationSensedInfo empty_info;  // 返回空结构体作为默认值
     if (location >= 0 && location < locationSensedObjects.size()) {
-        return locationSensedObjects[LocationId(location)];
+        return locationSensedObjects[location];
     }
     return empty_info;
 }
 
 bool RDFW::HasObjectAtLocation(int location, unsigned int object_id) const {
     if (location >= 0 && location < locationSensedObjects.size()) {
-        const auto& info = locationSensedObjects[LocationId(location)];
+        const auto& info = locationSensedObjects[location];
         for (auto id : info.object_ids) {
             if (id == object_id) return true;
         }
@@ -2905,21 +2777,21 @@ bool RDFW::HasObjectAtLocation(int location, unsigned int object_id) const {
 
 bool RDFW::HasContainerAtLocation(int location) const {
     if (location >= 0 && location < locationSensedObjects.size()) {
-        return locationSensedObjects[LocationId(location)].has_container;
+        return locationSensedObjects[location].has_container;
     }
     return false;
 }
 
 vector<unsigned int> RDFW::GetObjectsAtLocation(int location) const {
     if (location >= 0 && location < locationSensedObjects.size()) {
-        return locationSensedObjects[LocationId(location)].object_ids;
+        return locationSensedObjects[location].object_ids;
     }
     return vector<unsigned int>();
 }
 
 unsigned int RDFW::GetContainerAtLocation(int location) const {
     if (location >= 0 && location < locationSensedObjects.size()) {
-        return locationSensedObjects[LocationId(location)].container_id;
+        return locationSensedObjects[location].container_id;
     }
     return 0;
 }
@@ -2931,17 +2803,16 @@ bool RDFW::sense(unsigned int t) //返回值表示t对应的大物体是否在�
 
     vector<unsigned int> A_;
 
-    BeforeAction("Sense");
     Plug::Sense(A_);
     LOG("Sense");
     int flagg = 0;
     // 用“感知到的对象 id”安全地更新
     for (auto id : A_) {
         if (t == id) flagg = 1;
-        if (id < objects.size() && objects[ObjectId(id)]) {
-            if (objects[ObjectId(id)]->location != location) {
-                objects[ObjectId(id)]->location = location;
-                if (auto cont = std::dynamic_pointer_cast<Container>(objects[ObjectId(id)])) {
+        if (id < objects.size() && objects[id]) {
+            if (objects[id]->location != location) {
+                objects[id]->location = location;
+                if (auto cont = std::dynamic_pointer_cast<Container>(objects[id])) {
                     for (auto &sp : cont->smallObjectsInside) {
                         if (sp) sp->location = location;
                     }
@@ -2949,7 +2820,7 @@ bool RDFW::sense(unsigned int t) //返回值表示t对应的大物体是否在�
                 // 小物体分支无需强制改 inside，这里保持原有逻辑不动
             }
             EnsureEvidenceCapacity(id);
-            objectLocationVerified[ObjectId(id)] = true;
+            objectLocationVerified[id] = true;
         }
     }
     return flagg;
@@ -2962,10 +2833,10 @@ int RDFW::findrightlocation(unsigned int a)
 {
     if (a >= move_cons.size() || a >= putdown_cons.size()) return UNKNOWN;
     for(int i=0;i<(int)rightlocation.size();i++){
-        if (!rightlocation[LocationId(i)]) continue;
-        if (i >= (int)move_cons[ObjectId(a)].size() || i >= (int)putdown_cons[ObjectId(a)].size()) continue;
+        if (!rightlocation[i]) continue;
+        if (i >= (int)move_cons[a].size() || i >= (int)putdown_cons[a].size()) continue;
         if (i >= (int)goto_cons.size()) continue;
-        if (goto_cons[LocationId(i)] == 0 && move_cons[ObjectId(a)][LocationId(i)] == 0 && putdown_cons[ObjectId(a)][LocationId(i)] == 0)
+        if (goto_cons[i] == 0 && move_cons[a][i] == 0 && putdown_cons[a][i] == 0)
             return i;
     }
 	return UNKNOWN;
@@ -2973,15 +2844,14 @@ int RDFW::findrightlocation(unsigned int a)
 
 //判断小物体是否在容器里面
 bool RDFW::Isinside(unsigned int a, unsigned int b){
-    auto small = ObjectPtrCast<SmallObject>(objects[ObjectId(a)]);
-    if(small->inside==objects[ObjectId(b)]->id) return true;
+    auto small = ObjectPtrCast<SmallObject>(objects[a]);
+    if(small->inside==objects[b]->id) return true;
     else return false;
 }
 
 
 //判断任务是否继续---跟违反的约束有关
 bool RDFW::IsKeepingGoing(unsigned int index){
-    CheckBudget();
     if (index >= tasks.size() || tasks[index].X.empty() || !tasks[index].X[0]) return false;
     auto &t=tasks[index];
     t.risk=0;
@@ -2991,9 +2861,9 @@ bool RDFW::IsKeepingGoing(unsigned int index){
         if(small->inside==t.Y[0]->id){ //如果任务没有满足
             const int target_location = t.Y[0]->location;
             if (target_location >= 0) EnsureLocationCapacity(target_location);
-        t.risk+=takeout_cons[ObjectId(t.X[0]->id)][ObjectId(t.Y[0]->id)];
-        if (target_location >= 0) t.risk+=goto_cons[LocationId(target_location)];
-        t.risk+=open_cons[ObjectId(t.Y[0]->id)];
+        t.risk+=takeout_cons[t.X[0]->id][t.Y[0]->id];
+        if (target_location >= 0) t.risk+=goto_cons[target_location];
+        t.risk+=open_cons[t.Y[0]->id];
             }
             }
 
@@ -3003,10 +2873,10 @@ bool RDFW::IsKeepingGoing(unsigned int index){
              {
                 const int target_location = t.Y[0]->location;
                 if (target_location >= 0) EnsureLocationCapacity(target_location);
-               t.risk+=putin_cons[ObjectId(t.X[0]->id)][ObjectId(t.Y[0]->id)]+open_cons[ObjectId(t.Y[0]->id)];
+               t.risk+=putin_cons[t.X[0]->id][t.Y[0]->id]+open_cons[t.Y[0]->id];
                if (target_location >= 0) {
-                   t.risk+=move_cons[ObjectId(t.X[0]->id)][LocationId(target_location)];
-                   if(t.X[0]->location!=target_location) t.risk+=goto_cons[LocationId(target_location)];
+                   t.risk+=move_cons[t.X[0]->id][target_location];
+                   if(t.X[0]->location!=target_location) t.risk+=goto_cons[target_location];
                }
                CalculateStepRisk(t);
               }
@@ -3014,35 +2884,35 @@ bool RDFW::IsKeepingGoing(unsigned int index){
          else if(t.behave=="puton") {
              const int target_location = t.Y[0]->location;
              if (target_location >= 0) EnsureLocationCapacity(target_location);
-             t.risk+=putdown1_cons[ObjectId(t.X[0]->id)];
+             t.risk+=putdown1_cons[t.X[0]->id];
              if (target_location >= 0) {
-                 t.risk+= putdown_cons[ObjectId(t.X[0]->id)][LocationId(target_location)]+move_cons[ObjectId(t.X[0]->id)][LocationId(target_location)];
-                 if(t.X[0]->location!=target_location) t.risk+=goto_cons[LocationId(target_location)];
+                 t.risk+= putdown_cons[t.X[0]->id][target_location]+move_cons[t.X[0]->id][target_location];
+                 if(t.X[0]->location!=target_location) t.risk+=goto_cons[target_location];
              }
            CalculateStepRisk(t);
          }
-         else if(t.behave=="goto" && t.X[0]->location >= 0) t.risk+=goto_cons[LocationId(t.X[0]->location)];
+         else if(t.behave=="goto" && t.X[0]->location >= 0) t.risk+=goto_cons[t.X[0]->location];
          else if(t.behave=="open") {
-             t.risk+=open_cons[ObjectId(t.X[0]->id)];
-             if (t.X[0]->location >= 0) t.risk+=goto_cons[LocationId(t.X[0]->location)];
+             t.risk+=open_cons[t.X[0]->id];
+             if (t.X[0]->location >= 0) t.risk+=goto_cons[t.X[0]->location];
          }
          else if(t.behave=="close") {
-             t.risk+=close_cons[ObjectId(t.X[0]->id)];
-             if (t.X[0]->location >= 0) t.risk+=goto_cons[LocationId(t.X[0]->location)];
+             t.risk+=close_cons[t.X[0]->id];
+             if (t.X[0]->location >= 0) t.risk+=goto_cons[t.X[0]->location];
          }
          else if(t.behave=="pickup") {
             CalculateStepRisk(t);
          }
          else if(t.behave=="give") {
             CalculateStepRisk(t);
-            t.risk+=givehuman_cons[ObjectId(t.X[0]->id)]+putdown1_cons[ObjectId(t.X[0]->id)];
+            t.risk+=givehuman_cons[t.X[0]->id]+putdown1_cons[t.X[0]->id];
             if (human && human->location >= 0) {
-                t.risk+=move_cons[ObjectId(t.X[0]->id)][LocationId(human->location)];
-                if(t.X[0]->location!=human->location) t.risk+=goto_cons[LocationId(human->location)];
+                t.risk+=move_cons[t.X[0]->id][human->location];
+                if(t.X[0]->location!=human->location) t.risk+=goto_cons[human->location];
             }
             auto small=dynamic_pointer_cast<SmallObject>(t.X[0]);
          }
-         else if(t.behave == "putdown")t.risk+=putdown1_cons[ObjectId(t.X[0]->id)];
+         else if(t.behave == "putdown")t.risk+=putdown1_cons[t.X[0]->id];
          t.risk+=t.X[0]->is_keep;
          if(t.risk>=2)
          {
@@ -3110,14 +2980,11 @@ bool Condition::IsObjectSatisfy(const shared_ptr<Object> &target) const
  
 
 /**====================== 原子动作 =========================== */
-bool RDFW::TakeOut(ObjectId small_id, ObjectId container_id)
+bool RDFW::TakeOut(unsigned int a, unsigned int b)
 {
-    const int a = small_id.value();
-    const int b = container_id.value();
-    auto small = ObjectPtrCast<SmallObject>(objects[ObjectId(a)]);
-    auto cont = ObjectPtrCast<Container>(objects[ObjectId(b)]);
+    auto small = ObjectPtrCast<SmallObject>(objects[a]);
+    auto cont = ObjectPtrCast<Container>(objects[b]);
     LOG("TakeOut(%d,%s)(%d,%s)", a, small->sort.c_str(), b, cont->sort.c_str());
-    BeforeAction("TakeOut");
     if (Plug::TakeOut(a, b))
     {
         small->inside = NONE;
@@ -3127,27 +2994,24 @@ bool RDFW::TakeOut(ObjectId small_id, ObjectId container_id)
         SetHold(small);
         EnsureEvidenceCapacity(a);
         EnsureEvidenceCapacity(b);
-        objectLocationVerified[ObjectId(a)] = true;
-        objectInsideVerified[ObjectId(a)] = true;
-        objectLocationVerified[ObjectId(b)] = true;
-        containerStateVerified[ObjectId(b)] = true;
+        objectLocationVerified[a] = true;
+        objectInsideVerified[a] = true;
+        objectLocationVerified[b] = true;
+        containerStateVerified[b] = true;
         InvalidateSenseAtLocation(location);
-        UpdateTaskList("takeout", objects[ObjectId(a)], objects[ObjectId(b)]);
-        takeout_cons[ObjectId(a)][ObjectId(b)]=0;
+        UpdateTaskList("takeout", objects[a], objects[b]);
+        takeout_cons[a][b]=0;
         return 1;
     }
     return 0;
 }
 
-bool RDFW::PutIn(ObjectId small_id, ObjectId container_id)
+bool RDFW::PutIn(unsigned int a, unsigned int b)
 {
-    const int a = small_id.value();
-    const int b = container_id.value();
-    auto cont = ObjectPtrCast<Container>(objects[ObjectId(b)]);
-    auto small = ObjectPtrCast<SmallObject>(objects[ObjectId(a)]);
+    auto cont = ObjectPtrCast<Container>(objects[b]);
+    auto small = ObjectPtrCast<SmallObject>(objects[a]);
     if (!cont || !small) return 0; // 直接早退，避免 LOG 解引用空指针
     LOG("PutIn(%d,%s)(%d,%s)", a,small->sort.c_str() , b, cont->sort.c_str());
-    BeforeAction("PutIn");
     if (Plug::PutIn(a, b))
     {
 
@@ -3162,149 +3026,136 @@ bool RDFW::PutIn(ObjectId small_id, ObjectId container_id)
         cont->isOpen=1;
         EnsureEvidenceCapacity(a);
         EnsureEvidenceCapacity(b);
-        objectLocationVerified[ObjectId(a)] = true;
-        objectInsideVerified[ObjectId(a)] = true;
-        objectLocationVerified[ObjectId(b)] = true;
-        containerStateVerified[ObjectId(b)] = true;
+        objectLocationVerified[a] = true;
+        objectInsideVerified[a] = true;
+        objectLocationVerified[b] = true;
+        containerStateVerified[b] = true;
         InvalidateSenseAtLocation(location);
-        UpdateTaskList("putin", objects[ObjectId(a)], objects[ObjectId(b)]);
-        putin_cons[ObjectId(a)][ObjectId(b)]=0;
-        open_cons[ObjectId(b)]=0;
+        UpdateTaskList("putin", objects[a], objects[b]);
+        putin_cons[a][b]=0;
+        open_cons[b]=0;
         return 1;
     }
     return 0;
 }
-bool RDFW::Close(ObjectId target)
+bool RDFW::Close(unsigned int a)
 {
-    const int a = target.value();
-    shared_ptr<Container> container = ObjectPtrCast<Container>(objects[ObjectId(a)]);
+    shared_ptr<Container> container = ObjectPtrCast<Container>(objects[a]);
     if (!container) return 0;
     LOG("(%d,%s) has closed", a, container->sort.c_str());
-    BeforeAction("Close");
     if (Plug::Close(a))
     {
         container->isOpen = false;
         EnsureEvidenceCapacity(a);
-        objectLocationVerified[ObjectId(a)] = true;
-        containerStateVerified[ObjectId(a)] = true;
+        objectLocationVerified[a] = true;
+        containerStateVerified[a] = true;
         InvalidateSenseAtLocation(location);
-        UpdateTaskList("close", objects[ObjectId(a)]);
-        objects[ObjectId(a)]->is_keep=0;
-        close_cons[ObjectId(a)]=0;
+        UpdateTaskList("close", objects[a]);
+        objects[a]->is_keep=0;
+        close_cons[a]=0;
         return 1;
     }
     return 0;
 }
-bool RDFW::Open(ObjectId target)
+bool RDFW::Open(unsigned int a)
 {
-    const int a = target.value();
-    shared_ptr<Container> container = ObjectPtrCast<Container>(objects[ObjectId(a)]);
+    shared_ptr<Container> container = ObjectPtrCast<Container>(objects[a]);
     if (!container) return 0;
     LOG("Open(%d,%s)", a, container->sort.c_str());
-    BeforeAction("Open");
     if (Plug::Open(a))
     {
         container->isOpen = true;
         EnsureEvidenceCapacity(a);
-        objectLocationVerified[ObjectId(a)] = true;
-        containerStateVerified[ObjectId(a)] = true;
+        objectLocationVerified[a] = true;
+        containerStateVerified[a] = true;
         InvalidateSenseAtLocation(location);
-        UpdateTaskList("open", objects[ObjectId(a)]);
-        open_cons[ObjectId(a)]=0;
-        objects[ObjectId(a)]->is_keep=0;
+        UpdateTaskList("open", objects[a]);
+        open_cons[a]=0;
+        objects[a]->is_keep=0;
         return 1;
     }
     return 0;
 }
-bool RDFW::FromPlate(ObjectId target)
-{
-    const int a = target.value();   
-    LOG("FromPlate(%d,%s)", a, objects[ObjectId(a)]->sort.c_str());
-    BeforeAction("FromPlate");
+bool RDFW::FromPlate(unsigned int a)
+{   
+    LOG("FromPlate(%d,%s)", a, objects[a]->sort.c_str());
     if (Plug::FromPlate(a))
     {
         SetHold(plate);
         SetPlate(nullptr);
         EnsureEvidenceCapacity(a);
-        objectLocationVerified[ObjectId(a)] = true;
-        objectInsideVerified[ObjectId(a)] = true;
+        objectLocationVerified[a] = true;
+        objectInsideVerified[a] = true;
         InvalidateSenseAtLocation(location);
         return 1;
     }
-    fromplate_cons[ObjectId(a)]=0;
+    fromplate_cons[a]=0;
     return 0;
 }
-bool RDFW::ToPlate(ObjectId target)
+bool RDFW::ToPlate(unsigned int a)
 {
-    const int a = target.value();
-    LOG("ToPlate(%d,%s)", a, objects[ObjectId(a)]->sort.c_str());
-    BeforeAction("ToPlate");
+    LOG("ToPlate(%d,%s)", a, objects[a]->sort.c_str());
     if (Plug::ToPlate(a))
     {
         SetPlate(hold);
         SetHold(nullptr);
         EnsureEvidenceCapacity(a);
-        objectLocationVerified[ObjectId(a)] = true;
-        objectInsideVerified[ObjectId(a)] = true;
+        objectLocationVerified[a] = true;
+        objectInsideVerified[a] = true;
         InvalidateSenseAtLocation(location);
-        toplate_cons[ObjectId(a)]=0;
+        toplate_cons[a]=0;
         return 1;
     }
     return 0;
 }
 
-bool RDFW::PutDown(ObjectId target)
+bool RDFW::PutDown(unsigned int a)
 {
-    const int a = target.value();
-    LOG("PutDown(%d,%s)", a, objects[ObjectId(a)]->sort.c_str());
-    BeforeAction("PutDown");
+    LOG("PutDown(%d,%s)", a, objects[a]->sort.c_str());
     if (Plug::PutDown(a))
     {
         SetHold(nullptr);
-        auto small = dynamic_pointer_cast<SmallObject>(objects[ObjectId(a)]);
+        auto small = dynamic_pointer_cast<SmallObject>(objects[a]);
         if (small) {
             small->location = location;
             small->inside = NONE;
         }
         EnsureEvidenceCapacity(a);
-        objectLocationVerified[ObjectId(a)] = true;
-        objectInsideVerified[ObjectId(a)] = true;
+        objectLocationVerified[a] = true;
+        objectInsideVerified[a] = true;
         InvalidateSenseAtLocation(location);
-        UpdateTaskList("putdown", objects[ObjectId(a)]);
-        putdown1_cons[ObjectId(a)]=0;
+        UpdateTaskList("putdown", objects[a]);
+        putdown1_cons[a]=0;
         EnsureLocationCapacity(location);
-        putdown_cons[ObjectId(a)][LocationId(location)]=0;
+        putdown_cons[a][location]=0;
         return 1;
     }
     return 0;
 }
-bool RDFW::PickUp(ObjectId target)
+bool RDFW::PickUp(unsigned int a)
 {
-    const int a = target.value();
-    auto small = ObjectPtrCast<SmallObject>(objects[ObjectId(a)]);
+    auto small = ObjectPtrCast<SmallObject>(objects[a]);
     if (!small) return 0;
     LOG("PickUp(%d,%s)", small->id, small->sort.c_str());
-    BeforeAction("PickUp");
     if (Plug::PickUp(a))
     {
         SetHold(small);
         small->location = location;
         small->inside = NONE;
         EnsureEvidenceCapacity(a);
-        objectLocationVerified[ObjectId(a)] = true;
-        objectInsideVerified[ObjectId(a)] = true;
+        objectLocationVerified[a] = true;
+        objectInsideVerified[a] = true;
         InvalidateSenseAtLocation(location);
-        UpdateTaskList("pickup", objects[ObjectId(a)]);
-        pickup_cons[ObjectId(a)]=0;
+        UpdateTaskList("pickup", objects[a]);
+        pickup_cons[a]=0;
         return 1;
     }
     return 0;
 }
 
 
-bool RDFW::Move(LocationId target)
+bool RDFW::Move(unsigned int a)
 {
-    const int a = target.value();
     LOG("Move(%d)", a);
 
     // 1) 位置边界检查（使用动态数组大小）
@@ -3323,31 +3174,30 @@ bool RDFW::Move(LocationId target)
          tasks[task_index].X[0] != nullptr);
 
     auto safe_idx = [&](unsigned id)->bool {
-        return (id > 0 && id < objects.size() && objects[ObjectId(id)] != nullptr);
+        return (id > 0 && id < objects.size() && objects[id] != nullptr);
     };
     auto hit_move_cons = [&](unsigned id, unsigned loc)->bool {
         if (!safe_idx(id)) return false;
         if ((int)loc < 0 || (int)loc >= (int)rightlocation.size()) return false;
         // 检查二维数组边界
-        if (id >= move_cons.size() || loc >= move_cons[ObjectId(id)].size()) return false;
-        return move_cons[ObjectId(id)][LocationId(loc)] != 0;
+        if (id >= move_cons.size() || loc >= move_cons[id].size()) return false;
+        return move_cons[id][loc] != 0;
     };
 
     // 4) 跨区前的"自清理"：手持/托盘若会触发 move 约束，先放下/取下
     if (hold_id > 0 && hit_move_cons(hold_id, a)) {
         if (!has_taskX0 || tasks[task_index].X[0]->id != hold_id) {
-            PutDown(ObjectId(hold_id));
+            PutDown(hold_id);
         }
     }
     if (plate_id > 0 && hit_move_cons(plate_id, a)) {
-        if (hold_id > 0) PutDown(ObjectId(hold_id));
-        FromPlate(ObjectId(plate_id));
-        if (hold_id > 0) PutDown(ObjectId(hold_id));
+        if (hold_id > 0) PutDown(hold_id);
+        FromPlate(plate_id);
+        if (hold_id > 0) PutDown(hold_id);
     }
 
     // 5) 真正移动
     const int previous_location = location;
-    BeforeAction("Move");
     if (!Plug::Move(a)) {
         LOG(RED "Move: Plug::Move(%d) failed\n" RESET, (int)a);
         return 0;
@@ -3361,11 +3211,11 @@ bool RDFW::Move(LocationId target)
     InvalidateSenseAtLocation(static_cast<int>(a));
     if (hold_id > 0) {
         EnsureEvidenceCapacity(hold_id);
-        objectLocationVerified[ObjectId(hold_id)] = true;
+        objectLocationVerified[hold_id] = true;
     }
     if (plate_id > 0) {
         EnsureEvidenceCapacity(plate_id);
-        objectLocationVerified[ObjectId(plate_id)] = true;
+        objectLocationVerified[plate_id] = true;
     }
     
     /*
@@ -3379,10 +3229,10 @@ bool RDFW::Move(LocationId target)
     }
     */
     EnsureLocationCapacity(a);
-    goto_cons[LocationId(a)] = 0;                          // a 边界在上面已保证
+    goto_cons[a] = 0;                          // a 边界在上面已保证
     if (hold_id > 0 && safe_idx(hold_id)) {
-        move_cons[ObjectId(hold_id)][LocationId(a)] = 0;
-        objects[ObjectId(hold_id)]->is_keep = 0;
+        move_cons[hold_id][a] = 0;
+        objects[hold_id]->is_keep = 0;
     }
 
     // 正确地把“当前任务的目标对象”传给 UpdateTaskList
@@ -3427,7 +3277,7 @@ void RDFW::PrintEnv()
      for (int i = 0; i < objPos.size(); i++)
      {
          // print: position and is_correct
-         bool is_corr = (i >= 0 && i < (int)posCorrectFlag.size()) ? (posCorrectFlag[LocationId(i)] == true) : true;
+         bool is_corr = (i >= 0 && i < (int)posCorrectFlag.size()) ? (posCorrectFlag[i] == true) : true;
          cout << "Pos " << (i < 10 ? " " : "") << i << ":" << (is_corr ? "(T)" : "(F)") << ":";
          
          // print objects info in this position
@@ -3683,10 +3533,10 @@ bool RDFW::ParseEnvSentence(const string &sentence) // 改
         while (index >= lastSize)
         {
             objects.emplace_back(make_shared<Object>(lastSize++));
-            EnsureObjectCapacity(ObjectId(lastSize - 1));
+            posCorrectFlag.push_back(!isErrorCorrection);
         }
 
-        auto &obj = objects[ObjectId(index)];
+        auto &obj = objects[index];
 
         if (firstToken == "opened" || firstToken == "closed")
         {
@@ -3703,7 +3553,7 @@ bool RDFW::ParseEnvSentence(const string &sentence) // 改
             int L = stoi(tokenList[2]);
             EnsureLocationCapacity(L);
             obj->location = L;
-            if (L >= 0) rightlocation[LocationId(L)] = 1;
+            rightlocation[L] = 1;
         }
         else if (firstToken == "sort")
         {
@@ -3787,17 +3637,17 @@ bool RDFW::ParseEnv(const string &env) // 没改
     // set robot status
     if (hold_id > 0)
     {
-        SetHold(ObjectPtrCast<SmallObject>(objects[ObjectId(hold_id)]));
+        SetHold(ObjectPtrCast<SmallObject>(objects[hold_id]));
         EnsureEvidenceCapacity(hold_id);
-        objectLocationVerified[ObjectId(hold_id)] = true;
-        objectInsideVerified[ObjectId(hold_id)] = true;
+        objectLocationVerified[hold_id] = true;
+        objectInsideVerified[hold_id] = true;
     }
     if (plate_id > 0)
     {
-        SetPlate(ObjectPtrCast<SmallObject>(objects[ObjectId(plate_id)]));
+        SetPlate(ObjectPtrCast<SmallObject>(objects[plate_id]));
         EnsureEvidenceCapacity(plate_id);
-        objectLocationVerified[ObjectId(plate_id)] = true;
-        objectInsideVerified[ObjectId(plate_id)] = true;
+        objectLocationVerified[plate_id] = true;
+        objectInsideVerified[plate_id] = true;
     }
 
     for (const auto &s : smallObjects)
@@ -3806,7 +3656,7 @@ bool RDFW::ParseEnv(const string &env) // 没改
             continue;
         if (s->inside != UNKNOWN && s->inside != NONE)
         {
-            auto p = dynamic_pointer_cast<Container>(objects[ObjectId(s->inside)]);
+            auto p = dynamic_pointer_cast<Container>(objects[s->inside]);
             if (p != nullptr)
             {
                 p->smallObjectsInside.push_back(s);
@@ -3959,12 +3809,12 @@ void RDFW::LogInstructionError(const Instruction &task) // 新增
 
 //执行完任务后更新约束
 void RDFW::AfterSolveTask(const Instruction &task){
-    if(task.behave=="pickup") for(int i=0;i<(int)pickup_cons.size();i++) pickup_cons[ObjectId(i)]+=2;
-    else if(task.behave=="putdown") pickup_cons[ObjectId(task.X[0]->id)]+=2;
-    else if(task.behave=="takeout") putin_cons[ObjectId(task.X[0]->id)][ObjectId(task.Y[0]->id)]+=2;
-    else if(task.behave=="putin") takeout_cons[ObjectId(task.X[0]->id)][ObjectId(task.Y[0]->id)]+=2;
+    if(task.behave=="pickup") for(int i=0;i<(int)pickup_cons.size();i++) pickup_cons[i]+=2;
+    else if(task.behave=="putdown") pickup_cons[task.X[0]->id]+=2;
+    else if(task.behave=="takeout") putin_cons[task.X[0]->id][task.Y[0]->id]+=2;
+    else if(task.behave=="putin") takeout_cons[task.X[0]->id][task.Y[0]->id]+=2;
 //这里要删除
-//    else if(task.behave=="goto") for(int i=0;i<50;i++) goto_cons[LocationId(i)]+=2;
+//    else if(task.behave=="goto") for(int i=0;i<50;i++) goto_cons[i]+=2;
     else task.X[0]->is_keep+=2;
 }//我还是想把这个改一下
 
@@ -4110,14 +3960,6 @@ void RDFW::Fini()
     for (auto& row : move_cons) fill(row.begin(), row.end(), 0);
     for (auto& row : mustnear_cons) fill(row.begin(), row.end(), 0);
     
-    // 清理任务查找表
-    for (auto& row : takeout) fill(row.begin(), row.end(), false);
-    for (auto& row : putin) fill(row.begin(), row.end(), false);
-    fill(close.begin(), close.end(), false);
-    fill(open.begin(), open.end(), false);
-    fill(pickup.begin(), pickup.end(), false);
-    fill(putdown.begin(), putdown.end(), false);
-    
     // ==================== 感知状态完全重置 ====================
     posSensedFlag.resize(100, false);
     objectLocationVerified.resize(100, false);
@@ -4187,14 +4029,6 @@ void RDFW::OptimizeMemoryUsage() {
     for (auto& row : putdown_cons) row.shrink_to_fit();
     for (auto& row : move_cons) row.shrink_to_fit();
     for (auto& row : mustnear_cons) row.shrink_to_fit();
-    
-    // 优化任务查找表内存
-    for (auto& row : takeout) row.shrink_to_fit();
-    for (auto& row : putin) row.shrink_to_fit();
-    close.shrink_to_fit();
-    open.shrink_to_fit();
-    pickup.shrink_to_fit();
-    putdown.shrink_to_fit();
     
     // 优化位置感知数据内存
     for (auto& loc_info : locationSensedObjects) {
@@ -4349,8 +4183,7 @@ void RDFW::OptimizeMemoryUsage() {
  
      // 1) 收集 must near 约束并合并等价类
      for (const auto &cons : notnot_infoConstrains) {
-         CheckBudget();
-        if ((cons.behave == "near"||cons.behave == "on"||cons.behave == "nextto") && !cons.X.empty() && !cons.Y.empty()) {
+         if ((cons.behave == "near"||cons.behave == "on"||cons.behave == "nextto") && !cons.X.empty() && !cons.Y.empty()) {
             if(cons.X[0]->id==hold_id) hold_mustnear = true;
             if(cons.X[0]->id==plate_id) plate_mustnear = true;
             if(cons.Y[0]->id==hold_id) hold_mustnear = true;
@@ -4456,8 +4289,8 @@ void RDFW::OptimizeMemoryUsage() {
      std::unordered_map<int, std::unordered_map<int,int>> vote;
      vote.reserve(numObjs);
      for (int i = 0; i < numObjs; ++i) {
-         if (!objects[ObjectId(i)]) continue;
-         const int loc = objects[ObjectId(i)]->location;
+         if (!objects[i]) continue;
+         const int loc = objects[i]->location;
          if (loc == UNKNOWN) continue;
          vote[find(i)][loc]++;   // root 组对 loc 投票 +1
      }
@@ -4483,8 +4316,8 @@ void RDFW::OptimizeMemoryUsage() {
              const int root = find(i);
              const int loc  = groupChosen[root];
              if (loc == UNKNOWN) continue;  // 该组没有确定位置，跳过
-             if (!objects[ObjectId(i)]) continue;
-             objects[ObjectId(i)]->location   = loc;
+             if (!objects[i]) continue;
+             objects[i]->location   = loc;
              lock_by_mustnear[i]    = true;
              LOG(GREEN "[MustNear] lock obj[%d] @ %d\n" RESET, i, loc);
          }
@@ -4512,13 +4345,13 @@ void RDFW::ApplyMustInConstraintCorrection() {
             cout<<"obj_to_cont[x]: "<<obj_to_cont[x]<<endl;
 
             // 直接同步smallObject和container信息
-            if (objects[ObjectId(x)]) {
-                if (auto sm = std::dynamic_pointer_cast<SmallObject>(objects[ObjectId(x)])) {
+            if (objects[x]) {
+                if (auto sm = std::dynamic_pointer_cast<SmallObject>(objects[x])) {
                     cout<<"sm->inside: "<<sm->inside<<endl;
                     // 移除在原容器中的记录
                     if (sm->inside != UNKNOWN && sm->inside != y) {
                         if (sm->inside >= 0 && sm->inside < numObjs) {
-                            if (auto old_cont = std::dynamic_pointer_cast<Container>(objects[ObjectId(sm->inside)])) {
+                            if (auto old_cont = std::dynamic_pointer_cast<Container>(objects[sm->inside])) {
                                 auto& vec = old_cont->smallObjectsInside;
                                 vec.erase(std::remove_if(vec.begin(), vec.end(),
                                     [&](const std::shared_ptr<SmallObject>& ptr) {
@@ -4529,8 +4362,8 @@ void RDFW::ApplyMustInConstraintCorrection() {
                     }
                     sm->inside = y;
                     // 添加到目标容器（避免重复）
-                    if (objects[ObjectId(y)]) {
-                        if (auto cont = std::dynamic_pointer_cast<Container>(objects[ObjectId(y)])) {
+                    if (objects[y]) {
+                        if (auto cont = std::dynamic_pointer_cast<Container>(objects[y])) {
                             bool exists = false;
                             for (auto&& v : cont->smallObjectsInside) {
                                 if (v && v->id == sm->id) { exists = true; break; }
@@ -4542,10 +4375,10 @@ void RDFW::ApplyMustInConstraintCorrection() {
                 }
             }
             // 同步位置（取容器已知位置为准，否则不强制）
-            if (objects[ObjectId(x)] && objects[ObjectId(y)]) {
-                int y_loc = objects[ObjectId(y)]->location;
+            if (objects[x] && objects[y]) {
+                int y_loc = objects[y]->location;
                 if (y_loc != UNKNOWN) {
-                    objects[ObjectId(x)]->location = y_loc;
+                    objects[x]->location = y_loc;
                     LOG(GREEN "[MustIn] (direct) set obj %d @ %d (in %d)\n" RESET, x, y_loc, y);
                 }
             }
@@ -4562,7 +4395,7 @@ void RDFW::ApplyMustInConstraintCorrection() {
         int y = static_cast<int>(cons.Y[0]->id);   // container id
         if (x < 0 || x >= numObjs || y < 0 || y >= numObjs) continue;
         // 防御性检查
-        auto smObj = std::dynamic_pointer_cast<SmallObject>(objects[ObjectId(x)]);
+        auto smObj = std::dynamic_pointer_cast<SmallObject>(objects[x]);
         if (!smObj) continue;
         // 如果x当前就在y里，需要移除
         if (smObj->inside == y) {
@@ -4571,7 +4404,7 @@ void RDFW::ApplyMustInConstraintCorrection() {
             int old_loc = smObj->location;
             smObj->location = UNKNOWN;
             // 同时尝试从container的smallObjectsInside中移除
-            auto cont = std::dynamic_pointer_cast<Container>(objects[ObjectId(y)]);
+            auto cont = std::dynamic_pointer_cast<Container>(objects[y]);
             if (cont) {
                 auto& vec = cont->smallObjectsInside;
                 vec.erase(std::remove_if(vec.begin(), vec.end(),

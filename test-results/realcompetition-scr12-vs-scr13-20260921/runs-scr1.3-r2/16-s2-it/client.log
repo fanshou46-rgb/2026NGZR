@@ -1,0 +1,276 @@
+[LOG]:-stage
+[LOG]:-nlp
+[LOG]:-err
+[LOG]:-ask_2
+[LOG]:-path
+[LOG]:nlp 0, err 1
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+#(Plug): Timeout=5000
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32mcase.xml
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m
+Pos  2:(T):
+Pos  3:(T):
+Pos  4:(T):
+Pos  5:(T):
+Pos  6:(T):
+Pos  7:(T):
+Pos  8:(T):
+Pos  9:(T):
+Pos 10:(T):
+Pos 11:(T):(3 bottle)(4 bottle)(5 bottle)(6 bottle)(7 cup)(8 cup)[33m(9 closet inside:[] Closed)[0m(12 book)(13 book)(14 can)
+Pos 12:(T):(10 book)(11 book)(15 can)
+Pos 13:(T):
+Pos 14:(T):
+Pos 15:(T):
+Pos 16:(T):
+Pos 17:(T):
+Pos 18:(T):
+Pos 19:(T):
+Pos 20:(T):
+Pos 21:(T):
+Pos 22:(T):[32m(robot hold:20 plate:2)[0m(2 bottle)(16 can)(17 can)(18 can)[33m(19 table)[0m(20 remotecontrol)(26 cup)(27 cup)
+UnknownPos:
+[34m(21 remotecontrol)[0m [34m(22 remotecontrol)[0m [34m(23 remotecontrol)[0m [34m(24 remotecontrol)[0m [34m(25 remotecontrol)[0m 
+[LOG]:[32m[MustIn] correction done.
+[0m
+[LOG]:[32m[MustNear] relation obj 20 <-> obj 4
+[0m
+[LOG]:[32m[MustNear] relation obj 20 <-> obj 5
+[0m
+[LOG]:[32m[MustNear] relation obj 20 <-> obj 6
+[0m
+[LOG]:[32m[MustNear] relation obj 20 <-> obj 8
+[0m
+[LOG]:[32m[MustNear] relation obj 20 <-> obj 7
+[0m
+[LOG]:[32m[MustNear] inferred obj 4 at location 22
+[0m
+[LOG]:[32m[MustNear] inferred obj 5 at location 22
+[0m
+[LOG]:[32m[MustNear] inferred obj 6 at location 22
+[0m
+[LOG]:[32m[MustNear] inferred obj 7 at location 22
+[0m
+[LOG]:[32m[MustNear] inferred obj 8 at location 22
+[0m
+[LOG]:[32m[MustNear] correction done.
+[0m
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m
+Pos  2:(T):
+Pos  3:(T):
+Pos  4:(T):
+Pos  5:(T):
+Pos  6:(T):
+Pos  7:(T):
+Pos  8:(T):
+Pos  9:(T):
+Pos 10:(T):
+Pos 11:(T):(3 bottle)[33m(9 closet inside:[] Closed)[0m(12 book)(13 book)(14 can)
+Pos 12:(T):(10 book)(11 book)(15 can)
+Pos 13:(T):
+Pos 14:(T):
+Pos 15:(T):
+Pos 16:(T):
+Pos 17:(T):
+Pos 18:(T):
+Pos 19:(T):
+Pos 20:(T):
+Pos 21:(T):
+Pos 22:(T):[32m(robot hold:20 plate:2)[0m(2 bottle)(4 bottle)(5 bottle)(6 bottle)(7 cup)(8 cup)(16 can)(17 can)(18 can)[33m(19 table)[0m(20 remotecontrol)(26 cup)(27 cup)
+UnknownPos:
+[34m(21 remotecontrol)[0m [34m(22 remotecontrol)[0m [34m(23 remotecontrol)[0m [34m(24 remotecontrol)[0m [34m(25 remotecontrol)[0m 
+Task:
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:yellow)[0m
+ConditionY:[35m(Sort:closet,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:book,Color:black)[0m
+ConditionY:[35m(Sort:table,Color:)[0m
+Behave:[35mputdown[0m
+ConditionX:[35m(Sort:can,Color:white)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+
+Info:
+
+Not_Info:
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:red)[0m
+ConditionY:[35m(Sort:can,Color:black)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:red)[0m
+ConditionY:[35m(Sort:can,Color:white)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:red)[0m
+ConditionY:[35m(Sort:can,Color:yellow)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:red)[0m
+ConditionY:[35m(Sort:table,Color:)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:red)[0m
+ConditionY:[35m(Sort:remotecontrol,Color:black)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:red)[0m
+ConditionY:[35m(Sort:remotecontrol,Color:blue)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:red)[0m
+ConditionY:[35m(Sort:remotecontrol,Color:yellow)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:red)[0m
+ConditionY:[35m(Sort:remotecontrol,Color:green)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:red)[0m
+ConditionY:[35m(Sort:remotecontrol,Color:white)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:red)[0m
+ConditionY:[35m(Sort:remotecontrol,Color:blue)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:red)[0m
+ConditionY:[35m(Sort:remotecontrol,Color:black)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:red)[0m
+ConditionY:[35m(Sort:remotecontrol,Color:blue)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:red)[0m
+ConditionY:[35m(Sort:remotecontrol,Color:yellow)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:red)[0m
+ConditionY:[35m(Sort:remotecontrol,Color:green)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:red)[0m
+ConditionY:[35m(Sort:remotecontrol,Color:white)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:red)[0m
+ConditionY:[35m(Sort:remotecontrol,Color:blue)[0m
+
+Not_Task:
+
+NotNot_Info:
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:remotecontrol,Color:red)[0m
+ConditionY:[35m(Sort:bottle,Color:yellow)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:remotecontrol,Color:red)[0m
+ConditionY:[35m(Sort:bottle,Color:white)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:remotecontrol,Color:red)[0m
+ConditionY:[35m(Sort:bottle,Color:black)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:remotecontrol,Color:red)[0m
+ConditionY:[35m(Sort:cup,Color:blue)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:remotecontrol,Color:red)[0m
+ConditionY:[35m(Sort:cup,Color:red)[0m
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+the hold object must putdown here!
+[LOG]:PutDown(20,remotecontrol)
+[FilterConstraintsByTaskConflicts] Discarded goto_cons at location 0 due to 0 conflicts.
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+3
+puton can的风险系数是：0
+[LOG]:PickUp(16,can)
+[LOG]:Move(11)
+[LOG]:[31mMove: Plug::Move(11) failed
+[0m
+[LOG]:AskLoc(9)
+[LOG]:Move(11)
+[LOG]:[31mMove: Plug::Move(11) failed
+[0m
+[LOG]:AskLoc(9)
+[LOG]:Move(11)
+[LOG]:[31mMove: Plug::Move(11) failed
+[0m
+[LOG]:[32mTask not done
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:yellow)[0m
+ConditionY:[35m(Sort:closet,Color:)[0m
+[0m
+puton book的风险系数是：0
+[LOG]:PutDown(16,can)
+[LOG]:Move(11)
+[LOG]:[31mMove: Plug::Move(11) failed
+[0m
+[LOG]:AskLoc(13)
+[LOG]:Move(11)
+[LOG]:[31mMove: Plug::Move(11) failed
+[0m
+[LOG]:[32mTask not done
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:book,Color:black)[0m
+ConditionY:[35m(Sort:table,Color:)[0m
+[0m
+putdown can的风险系数是：0
+[LOG]:PickUp(18,can)
+[LOG]:PutDown(18,can)
+[LOG]:[32mTask done
+ Behave:[35mputdown[0m
+ConditionX:[35m(Sort:can,Color:white)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+-----check check check-----
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m
+Pos  2:(T):
+Pos  3:(T):
+Pos  4:(T):
+Pos  5:(T):
+Pos  6:(T):
+Pos  7:(T):
+Pos  8:(T):
+Pos  9:(T):
+Pos 10:(T):
+Pos 11:(F):(3 bottle)[33m(9 closet inside:[] Closed)[0m(12 book)(13 book)(14 can)
+Pos 12:(T):(10 book)(11 book)(15 can)
+Pos 13:(T):
+Pos 14:(T):
+Pos 15:(T):
+Pos 16:(T):
+Pos 17:(T):
+Pos 18:(T):
+Pos 19:(T):
+Pos 20:(T):
+Pos 21:(T):
+Pos 22:(T):[32m(robot hold:0 plate:2)[0m(2 bottle)(4 bottle)(5 bottle)(6 bottle)(7 cup)(8 cup)(16 can)(17 can)(18 can)[33m(19 table)[0m(20 remotecontrol)(26 cup)(27 cup)
+UnknownPos:
+[34m(21 remotecontrol)[0m [34m(22 remotecontrol)[0m [34m(23 remotecontrol)[0m [34m(24 remotecontrol)[0m [34m(25 remotecontrol)[0m 
+[LOG]:[32m[MultiGoto] Executing multi-goto aggregation - skipping Sense operations
+[0m
+[LOG]:[32m[MultiGoto] small_cand_id_disable: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] small_cand_ids: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] big_cand_ids: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] small_cand_ids.size()=0, big_cand_ids.size()=0
+[0m
+[LOG]:[32m[MultiGoto] small_lowrisk_ids.size()=0
+[0m
+[LOG]:[33m[MultiGoto] Skipping aggregation: small_lowrisk_ids.size()=0, big_cand_ids.size()=0
+[0m
+[LOG]:[32m[MultiGoto] ExecuteMultiGotoAggregation finished
+[0m
+
+Sovled Task Num:1    Expect Num:3
+#(Plug): Elapsed time=1.724s
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

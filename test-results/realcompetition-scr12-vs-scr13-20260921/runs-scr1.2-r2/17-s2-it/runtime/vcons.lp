@@ -1,0 +1,21 @@
+task(1, ncons(near(X, Y))) :- remotecontrol(X), red(X), bottle(Y), yellow(Y).
+task(2, ncons(near(X, Y))) :- remotecontrol(X), red(X), bottle(Y), white(Y).
+task(3, ncons(near(X, Y))) :- remotecontrol(X), red(X), bottle(Y), black(Y).
+task(4, ncons(near(X, Y))) :- remotecontrol(X), red(X), cup(Y), blue(Y).
+task(5, ncons(near(X, Y))) :- remotecontrol(X), red(X), cup(Y), red(Y).
+task(6, ncons(near(X, Y))) :- remotecontrol(X), red(X), cup(Y), blue(Y).
+task(7, ncons(near(X, Y))) :- remotecontrol(X), red(X), cup(Y), red(Y).
+task(9, cons(near(X, Y))) :- bottle(X), red(X), can(Y), black(Y).
+task(10, cons(near(X, Y))) :- bottle(X), red(X), can(Y), white(Y).
+task(11, cons(near(X, Y))) :- bottle(X), red(X), can(Y), yellow(Y).
+task(13, cons(near(X, Y))) :- bottle(X), red(X), can(Y), yellow(Y).
+task(14, cons(near(X, Y))) :- bottle(X), red(X), table(Y).
+task(16, cons(near(X, Y))) :- bottle(X), red(X), remotecontrol(Y), black(Y).
+task(17, cons(near(X, Y))) :- bottle(X), red(X), remotecontrol(Y), blue(Y).
+task(18, cons(near(X, Y))) :- bottle(X), red(X), remotecontrol(Y), yellow(Y).
+task(19, cons(near(X, Y))) :- bottle(X), red(X), remotecontrol(Y), green(Y).
+task(20, cons(near(X, Y))) :- bottle(X), red(X), remotecontrol(Y), white(Y).
+task(21, cons(near(X, Y))) :- bottle(X), red(X), remotecontrol(Y), black(Y).
+task(22, cons(near(X, Y))) :- bottle(X), red(X), remotecontrol(Y), blue(Y).
+task(23, cons(near(X, Y))) :- bottle(X), red(X), remotecontrol(Y), white(Y).
+task(24, cons(near(X, Y))) :- bottle(X), red(X), remotecontrol(Y), black(Y).

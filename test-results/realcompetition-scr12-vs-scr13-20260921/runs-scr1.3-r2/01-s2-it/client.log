@@ -1,0 +1,322 @@
+[LOG]:-stage
+[LOG]:-nlp
+[LOG]:-err
+[LOG]:-ask_2
+[LOG]:-path
+[LOG]:nlp 0, err 1
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+#(Plug): Timeout=5000
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32mcase.xml
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+Pos  0:(F):
+Pos  1:(T):[32m(robot hold:24 plate:0)[0m[33m(1 human)[0m(6 can)(24 book)
+Pos  2:(F):[33m(3 television)[0m(7 can)
+Pos  3:(F):[33m(2 desk)[0m(8 can)
+Pos  4:(F):[33m(5 sofa)[0m(9 can)
+Pos  5:(F):[33m(4 chair)[0m(10 can)
+Pos  6:(F):(11 can)[33m(14 refrigerator inside:[] Closed)[0m
+Pos  7:(F):(12 cup)
+Pos  8:(F):(13 cup)
+Pos  9:(F):(15 bottle)
+Pos 10:(F):(16 cup)
+Pos 11:(F):(17 bottle)
+Pos 12:(F):(18 bottle)
+Pos 13:(F):(19 bottle)
+Pos 14:(F):(20 bottle)
+Pos 15:(F):(21 cup)
+Pos 16:(F):(22 cup)
+Pos 17:(F):(23 cup)
+UnknownPos:
+[34m(25 book)[0m 
+[LOG]:[32m[MustIn] correction done.
+[0m
+[LOG]:[32m[MustNear] correction done.
+[0m
+Pos  0:(F):
+Pos  1:(T):[32m(robot hold:24 plate:0)[0m[33m(1 human)[0m(6 can)(24 book)
+Pos  2:(F):[33m(3 television)[0m(7 can)
+Pos  3:(F):[33m(2 desk)[0m(8 can)
+Pos  4:(F):[33m(5 sofa)[0m(9 can)
+Pos  5:(F):[33m(4 chair)[0m(10 can)
+Pos  6:(F):(11 can)[33m(14 refrigerator inside:[] Closed)[0m
+Pos  7:(F):(12 cup)
+Pos  8:(F):(13 cup)
+Pos  9:(F):(15 bottle)
+Pos 10:(F):(16 cup)
+Pos 11:(F):(17 bottle)
+Pos 12:(F):(18 bottle)
+Pos 13:(F):(19 bottle)
+Pos 14:(F):(20 bottle)
+Pos 15:(F):(21 cup)
+Pos 16:(F):(22 cup)
+Pos 17:(F):(23 cup)
+UnknownPos:
+[34m(25 book)[0m 
+Task:
+Behave:[35mgive[0m
+ConditionX:[35m(Sort:book,Color:white)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:can,Color:white)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:can,Color:red)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:can,Color:green)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:can,Color:yellow)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:white)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:red)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:bottle,Color:white)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:blue)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:red)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:bottle,Color:green)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:bottle,Color:black)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:bottle,Color:yellow)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:green)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:yellow)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:book,Color:red)[0m
+ConditionY:[35m(Sort:chair,Color:)[0m
+
+Info:
+
+Not_Info:
+
+Not_Task:
+
+NotNot_Info:
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+[FilterConstraintsByTaskConflicts] Discarded goto_cons at location 0 due to 0 conflicts.
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+19
+[LOG]:[33m[Defer] multi-goto detected: 17 tasks; skip in main loop, handle at final aggregation
+[0m
+puton book的风险系数是：0
+[LOG]:PutDown(24,book)
+[LOG]:AskLoc(25)
+[31m[ERROR]:/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/scr1.3/rdfw.cpp:2626 AskLoc returned empty string for object (25,book)[0m
+[LOG]:AskLoc(25)
+[31m[ERROR]:/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/scr1.3/rdfw.cpp:2626 AskLoc returned empty string for object (25,book)[0m
+[LOG]:[33mAskLoc(25) produced no usable bounded reply
+[0m
+[LOG]:[32mTask not done
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:book,Color:red)[0m
+ConditionY:[35m(Sort:chair,Color:)[0m
+[0m
+give book的风险系数是：0
+[LOG]:[32mTask done
+ Behave:[35mgive[0m
+ConditionX:[35m(Sort:book,Color:white)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+-----check check check-----
+[LOG]:[33m[Defer] multi-goto detected: 17 tasks; skip in main loop, handle at final aggregation
+[0m
+Pos  0:(F):
+Pos  1:(T):[32m(robot hold:0 plate:0)[0m[33m(1 human)[0m(6 can)(24 book)
+Pos  2:(F):[33m(3 television)[0m(7 can)
+Pos  3:(F):[33m(2 desk)[0m(8 can)
+Pos  4:(F):[33m(5 sofa)[0m(9 can)
+Pos  5:(F):[33m(4 chair)[0m(10 can)
+Pos  6:(F):(11 can)[33m(14 refrigerator inside:[] Closed)[0m
+Pos  7:(F):(12 cup)
+Pos  8:(F):(13 cup)
+Pos  9:(F):(15 bottle)
+Pos 10:(F):(16 cup)
+Pos 11:(F):(17 bottle)
+Pos 12:(F):(18 bottle)
+Pos 13:(F):(19 bottle)
+Pos 14:(F):(20 bottle)
+Pos 15:(F):(21 cup)
+Pos 16:(F):(22 cup)
+Pos 17:(F):(23 cup)
+UnknownPos:
+[34m(25 book)[0m 
+[LOG]:[32m[MultiGoto] Executing multi-goto aggregation - skipping Sense operations
+[0m
+[LOG]:[32m[MultiGoto] Object[15]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[23]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[22]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[21]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[20]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[19]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[18]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[13]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[16]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[13]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[12]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[11]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[10]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[9]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[8]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[7]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[6]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] small_cand_id_disable: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] small_cand_ids: 
+[LOG]:[32m15 
+[LOG]:[32m23 
+[LOG]:[32m22 
+[LOG]:[32m21 
+[LOG]:[32m20 
+[LOG]:[32m19 
+[LOG]:[32m18 
+[LOG]:[32m13 
+[LOG]:[32m16 
+[LOG]:[32m13 
+[LOG]:[32m12 
+[LOG]:[32m11 
+[LOG]:[32m10 
+[LOG]:[32m9 
+[LOG]:[32m8 
+[LOG]:[32m7 
+[LOG]:[32m6 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] big_cand_ids: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] small_cand_ids.size()=17, big_cand_ids.size()=0
+[0m
+[LOG]:[32m[MultiGoto] small_lowrisk_ids.size()=17
+[0m
+[LOG]:[32m[MultiGoto] Entering main aggregation logic
+[0m
+[LOG]:[32m[MultiGoto] Performance optimization: Only checking 16 occupied locations instead of 100 total locations
+[0m
+[MultiGoto] location 8 has 2 small objects
+[LOG]:[33m[MultiGoto] smallobj_loc is not found: -1
+[0m
+[LOG]:[33m[MultiGoto] bigobj_loc is not found: -1
+[0m
+[LOG]:[33m[MultiGoto] No optimal location found, using first available: 1
+[0m
+[LOG]:[32mFinal-GOTO: choose hub=1
+[0m
+[LOG]:PickUp(6,can)
+[LOG]:[32m[SenseCurrentLocationOnly] Location 1 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Object 6 detected at location 1
+[LOG]:[SenseCurrentLocationOnly] Object 1 detected at location 1
+[LOG]:[SenseCurrentLocationOnly] Object 24 detected at location 1
+[LOG]:PutDown(6,can)
+[LOG]:[32mFinal-GOTO: moved obj[6] to hub=1 (1/500) (via SolveTask_PutOn)
+[0m
+[LOG]:Move(2)
+[LOG]:PickUp(7,can)
+[LOG]:Move(1)
+[LOG]:PutDown(7,can)
+[LOG]:[32mFinal-GOTO: moved obj[7] to hub=1 (2/500) (via SolveTask_PutOn)
+[0m
+[LOG]:Move(3)
+[LOG]:PickUp(8,can)
+[LOG]:Move(1)
+[LOG]:PutDown(8,can)
+[LOG]:[32mFinal-GOTO: moved obj[8] to hub=1 (3/500) (via SolveTask_PutOn)
+[0m
+[LOG]:Move(4)
+[LOG]:PickUp(9,can)
+[LOG]:Move(1)
+[LOG]:PutDown(9,can)
+[LOG]:[32mFinal-GOTO: moved obj[9] to hub=1 (4/500) (via SolveTask_PutOn)
+[0m
+[LOG]:Move(5)
+[LOG]:PickUp(10,can)
+[LOG]:Move(1)
+[LOG]:PutDown(10,can)
+[LOG]:[32mFinal-GOTO: moved obj[10] to hub=1 (5/500) (via SolveTask_PutOn)
+[0m
+[LOG]:Move(6)
+[LOG]:PickUp(11,can)
+[LOG]:Move(1)
+[LOG]:PutDown(11,can)
+[LOG]:[32mFinal-GOTO: moved obj[11] to hub=1 (6/500) (via SolveTask_PutOn)
+[0m
+[LOG]:Move(7)
+[LOG]:PickUp(12,cup)
+[LOG]:Move(1)
+[LOG]:PutDown(12,cup)
+[LOG]:[32mFinal-GOTO: moved obj[12] to hub=1 (7/500) (via SolveTask_PutOn)
+[0m
+[LOG]:Move(8)
+[LOG]:PickUp(13,cup)
+[LOG]:Move(1)
+[LOG]:PutDown(13,cup)
+[LOG]:[32mFinal-GOTO: moved obj[13] to hub=1 (8/500) (via SolveTask_PutOn)
+[0m
+[LOG]:[32mFinal-GOTO: moved obj[13] to hub=1 (9/500) (via SolveTask_PutOn)
+[0m
+[LOG]:Move(9)
+[LOG]:PickUp(15,bottle)
+[LOG]:Move(1)
+[LOG]:PutDown(15,bottle)
+#(Plug): Elapsed time=5s
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

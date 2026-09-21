@@ -1,0 +1,185 @@
+[LOG]:-stage
+[LOG]:-nlp
+[LOG]:-err
+[LOG]:-ask_2
+[LOG]:-path
+[LOG]:nlp 0, err 1
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+#(Plug): Timeout=5000
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32mcase.xml
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m(17 remotecontrol)
+Pos  2:(T):[32m(robot hold:0 plate:0)[0m[33m(2 desk)[0m(13 bottle)(15 cup)
+Pos  3:(F):[33m(3 television)[0m
+Pos  4:(F):[33m(4 chair)[0m
+Pos  5:(F):[33m(5 bed)[0m(11 book)(18 can)
+Pos  6:(F):[33m(6 refrigerator inside:[] Closed)[0m
+Pos  7:(F):[33m(7 closet inside:[] Closed)[0m
+Pos  8:(F):[33m(8 cupboard inside:[12] Open)[0m(12 book)
+Pos  9:(F):[33m(9 microwave inside:[16] Open)[0m(16 cup)
+UnknownPos:
+[34m(10 book)[0m [34m(14 bottle)[0m 
+[LOG]:[32m[MustIn] correction done.
+[0m
+[LOG]:[32m[MustNear] correction done.
+[0m
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m(17 remotecontrol)
+Pos  2:(T):[32m(robot hold:0 plate:0)[0m[33m(2 desk)[0m(13 bottle)(15 cup)
+Pos  3:(F):[33m(3 television)[0m
+Pos  4:(F):[33m(4 chair)[0m
+Pos  5:(F):[33m(5 bed)[0m(11 book)(18 can)
+Pos  6:(F):[33m(6 refrigerator inside:[] Closed)[0m
+Pos  7:(F):[33m(7 closet inside:[] Closed)[0m
+Pos  8:(F):[33m(8 cupboard inside:[12] Open)[0m(12 book)
+Pos  9:(F):[33m(9 microwave inside:[16] Open)[0m(16 cup)
+UnknownPos:
+[34m(10 book)[0m [34m(14 bottle)[0m 
+Task:
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:book,Color:white)[0m
+ConditionY:[35m(Sort:bed,Color:)[0m
+Behave:[35mputin[0m
+ConditionX:[35m(Sort:bottle,Color:green)[0m
+ConditionY:[35m(Sort:cupboard,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:book,Color:green)[0m
+ConditionY:[35m(Sort:chair,Color:)[0m
+Behave:[35mpickup[0m
+ConditionX:[35m(Sort:can,Color:red)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mputin[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:microwave,Color:)[0m
+
+Info:
+Behave:[35mclosed[0m
+ConditionX:[35m(Sort:refrigerator,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mopened[0m
+ConditionX:[35m(Sort:microwave,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+
+Not_Info:
+
+Not_Task:
+Behave:[35mopen[0m
+ConditionX:[35m(Sort:refrigerator,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+
+NotNot_Info:
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+[FilterConstraintsByTaskConflicts] Discarded goto_cons at location 0 due to 0 conflicts.
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+5
+puton book的风险系数是：0
+[LOG]:Move(8)
+[LOG]:TakeOut(12,book)(8,cupboard)
+[LOG]:Move(5)
+[LOG]:[32m[SenseCurrentLocationOnly] Location 5 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Object 18 detected at location 5
+[LOG]:[SenseCurrentLocationOnly] Object 11 detected at location 5
+[LOG]:[SenseCurrentLocationOnly] Object 5 detected at location 5
+[LOG]:[SenseCurrentLocationOnly] Object 12 detected at location 5
+[LOG]:PutDown(12,book)
+[LOG]:[32mTask done
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:book,Color:white)[0m
+ConditionY:[35m(Sort:bed,Color:)[0m
+[0m
+putin bottle的风险系数是：0
+[LOG]:Move(2)
+[LOG]:PickUp(13,bottle)
+[LOG]:Move(8)
+[LOG]:PutIn(13,bottle)(8,cupboard)
+[LOG]:[32mTask done
+ Behave:[35mputin[0m
+ConditionX:[35m(Sort:bottle,Color:green)[0m
+ConditionY:[35m(Sort:cupboard,Color:)[0m
+[0m
+puton book的风险系数是：0
+[LOG]:Move(5)
+[LOG]:PickUp(11,book)
+[LOG]:Move(4)
+[LOG]:[32m[SenseCurrentLocationOnly] Location 4 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Object 4 detected at location 4
+[LOG]:[SenseCurrentLocationOnly] Object 11 detected at location 4
+[LOG]:PutDown(11,book)
+[LOG]:[32mTask done
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:book,Color:green)[0m
+ConditionY:[35m(Sort:chair,Color:)[0m
+[0m
+putin cup的风险系数是：0
+[LOG]:Move(2)
+[LOG]:PickUp(15,cup)
+[LOG]:Move(9)
+[LOG]:PutIn(15,cup)(9,microwave)
+[LOG]:[32mTask done
+ Behave:[35mputin[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:microwave,Color:)[0m
+[0m
+pickup can的风险系数是：0
+[LOG]:Move(5)
+[LOG]:PickUp(18,can)
+[LOG]:[32mTask done
+ Behave:[35mpickup[0m
+ConditionX:[35m(Sort:can,Color:red)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+-----check check check-----
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m(17 remotecontrol)
+Pos  2:(T):[33m(2 desk)[0m
+Pos  3:(F):[33m(3 television)[0m
+Pos  4:(F):[33m(4 chair)[0m(11 book)
+Pos  5:(F):[32m(robot hold:18 plate:0)[0m[33m(5 bed)[0m(12 book)(18 can)
+Pos  6:(F):[33m(6 refrigerator inside:[] Closed)[0m
+Pos  7:(F):[33m(7 closet inside:[] Closed)[0m
+Pos  8:(F):[33m(8 cupboard inside:[13] Open)[0m(13 bottle)
+Pos  9:(F):[33m(9 microwave inside:[16,15] Open)[0m(15 cup)(16 cup)
+UnknownPos:
+[34m(10 book)[0m [34m(14 bottle)[0m 
+[LOG]:[32m[MultiGoto] Executing multi-goto aggregation - skipping Sense operations
+[0m
+[LOG]:[32m[MultiGoto] small_cand_id_disable: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] small_cand_ids: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] big_cand_ids: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] small_cand_ids.size()=0, big_cand_ids.size()=0
+[0m
+[LOG]:[32m[MultiGoto] small_lowrisk_ids.size()=0
+[0m
+[LOG]:[33m[MultiGoto] Skipping aggregation: small_lowrisk_ids.size()=0, big_cand_ids.size()=0
+[0m
+[LOG]:[32m[MultiGoto] ExecuteMultiGotoAggregation finished
+[0m
+
+Sovled Task Num:5    Expect Num:5
+#(Plug): Elapsed time=2.648s
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

@@ -1,0 +1,1 @@
+occurs(pickup(12), 1).
