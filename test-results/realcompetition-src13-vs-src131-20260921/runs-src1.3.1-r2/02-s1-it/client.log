@@ -1,0 +1,56 @@
+[LOG]:-stage
+[LOG]:-nlp
+[LOG]:-err
+[LOG]:-ask_2
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+#(Plug): Timeout=5000
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32mcase.xml
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+UnknownPos:
+[34m(0 robot)[0m 
+Task:
+
+Info:
+
+Not_Info:
+
+Not_Task:
+
+NotNot_Info:
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+[FilterConstraintsByTaskConflicts] Discarded goto_cons at location 0 due to 0 conflicts.
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+0
+[LOG]:[36m[3A][must-choose-one] goals=0/0 (unknown=0), constraints=0/0 (unknown=0), base_score=0, action_cost=0, elapsed=13ms, remaining=4687ms
+[0m
+[LOG]:[36m[3A][must-choose-one] completed_goals=[], satisfied_constraints=[]
+[0m
+[LOG]:[33m[3A][StopGate] no executable candidate before must-choose-one
+[0m
+-----check check check-----
+
+Sovled Task Num:0    Expect Num:0
+[LOG]:[36m[3A][final] goals=0/0 (unknown=0), constraints=0/0 (unknown=0), base_score=0, action_cost=0, elapsed=15ms, remaining=4685ms
+[0m
+[LOG]:[36m[3A][final] completed_goals=[], satisfied_constraints=[]
+[0m
+#(Plug): Elapsed time=0.015s
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

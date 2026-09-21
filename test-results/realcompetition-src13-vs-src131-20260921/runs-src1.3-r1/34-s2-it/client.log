@@ -1,0 +1,566 @@
+[LOG]:-stage
+[LOG]:-nlp
+[LOG]:-err
+[LOG]:-ask_2
+[LOG]:-path
+[LOG]:nlp 0, err 1
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+#(Plug): Timeout=5000
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32mcase.xml
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m
+Pos  2:(T):[33m(2 couch)[0m
+Pos  3:(T):[33m(4 bed)[0m
+Pos  4:(T):[32m(robot hold:0 plate:0)[0m[33m(3 table)[0m
+Pos  5:(F):[33m(5 closet inside:[] Closed)[0m
+Pos  6:(F):[33m(6 refrigerator inside:[8,11,14,15] Closed)[0m(8 book)(11 cup)(12 cup)(14 cup)(15 cup)(17 can)
+Pos  7:(F):[33m(7 chair)[0m(9 book)(13 cup)
+Pos  8:(F):(10 cup)(18 can)
+UnknownPos:
+[34m(16 can)[0m 
+[LOG]:[32m[MustIn] correction done.
+[0m
+[LOG]:[32m[MustNear] correction done.
+[0m
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m
+Pos  2:(T):[33m(2 couch)[0m
+Pos  3:(T):[33m(4 bed)[0m
+Pos  4:(T):[32m(robot hold:0 plate:0)[0m[33m(3 table)[0m
+Pos  5:(F):[33m(5 closet inside:[] Closed)[0m
+Pos  6:(F):[33m(6 refrigerator inside:[8,11,14,15] Closed)[0m(8 book)(11 cup)(12 cup)(14 cup)(15 cup)(17 can)
+Pos  7:(F):[33m(7 chair)[0m(9 book)(13 cup)
+Pos  8:(F):(10 cup)(18 can)
+UnknownPos:
+[34m(16 can)[0m 
+Task:
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:table,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:table,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:table,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:table,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:table,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:table,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:table,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:table,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mpickup[0m
+ConditionX:[35m(Sort:cup,Color:blue)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:white)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:white)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:white)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:white)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:white)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:white)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputin[0m
+ConditionX:[35m(Sort:cup,Color:red)[0m
+ConditionY:[35m(Sort:refrigerator,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:green)[0m
+ConditionY:[35m(Sort:table,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+
+Info:
+
+Not_Info:
+
+Not_Task:
+
+NotNot_Info:
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+[FilterConstraintsByTaskConflicts] Discarded goto_cons at location 0 due to 0 conflicts.
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+45
+[LOG]:[33m[Defer] multi-goto detected: 8 tasks; skip in main loop, handle at final aggregation
+[0m
+[LOG]:[32m[MultiPuton] Big object 2 (sort: couch) appears in 34 puton tasks[0m
+[LOG]:[33m[MultiPuton] Marked task 0 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 1 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 2 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 3 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 4 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 7 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 8 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 9 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 10 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 11 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 12 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 13 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 14 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 15 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 16 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 17 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 18 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 19 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 20 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 21 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 22 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 23 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 24 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 25 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 26 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 27 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 28 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 29 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 30 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 31 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 32 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 33 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 34 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 35 as multi-puton for object 2[0m
+puton can的风险系数是：0
+[LOG]:Move(6)
+[LOG]:PickUp(17,can)
+[LOG]:AskLoc(17)
+[LOG]:Open(6,refrigerator)
+[LOG]:TakeOut(17,can)(6,refrigerator)
+[LOG]:Move(2)
+[LOG]:[32m[SenseCurrentLocationOnly] Location 2 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Object 2 detected at location 2
+[LOG]:[SenseCurrentLocationOnly] Object 17 detected at location 2
+[LOG]:PutDown(17,can)
+[LOG]:[32mTask done
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+puton cup的风险系数是：0
+[LOG]:Move(6)
+[LOG]:TakeOut(15,cup)(6,refrigerator)
+[LOG]:Move(2)
+[LOG]:PutDown(15,cup)
+[LOG]:[32mTask done
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+putin cup的风险系数是：0
+[LOG]:Move(8)
+[LOG]:PickUp(10,cup)
+[LOG]:Move(6)
+[LOG]:PutIn(10,cup)(6,refrigerator)
+[LOG]:[32mTask done
+ Behave:[35mputin[0m
+ConditionX:[35m(Sort:cup,Color:red)[0m
+ConditionY:[35m(Sort:refrigerator,Color:)[0m
+[0m
+puton cup的风险系数是：0
+[LOG]:PickUp(12,cup)
+[LOG]:Move(4)
+[LOG]:[32m[SenseCurrentLocationOnly] Location 4 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Object 3 detected at location 4
+[LOG]:[SenseCurrentLocationOnly] Object 12 detected at location 4
+[LOG]:PutDown(12,cup)
+[LOG]:[32mTask done
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:green)[0m
+ConditionY:[35m(Sort:table,Color:)[0m
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+puton can的风险系数是：0
+[LOG]:Move(8)
+[LOG]:PickUp(18,can)
+[LOG]:Move(2)
+[LOG]:PutDown(18,can)
+[LOG]:[32mTask done
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+puton cup的风险系数是：0
+[LOG]:Move(7)
+[LOG]:PickUp(13,cup)
+[LOG]:Move(2)
+[LOG]:PutDown(13,cup)
+[LOG]:[32mTask done
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:white)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:white)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:white)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:white)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:white)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:white)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+puton cup的风险系数是：0
+[LOG]:Move(6)
+[LOG]:TakeOut(14,cup)(6,refrigerator)
+[LOG]:Move(2)
+[LOG]:PutDown(14,cup)
+[LOG]:[32mTask done
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+pickup cup的风险系数是：0
+[LOG]:Move(6)
+[LOG]:TakeOut(11,cup)(6,refrigerator)
+[LOG]:[32mTask done
+ Behave:[35mpickup[0m
+ConditionX:[35m(Sort:cup,Color:blue)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+-----check check check-----
+[LOG]:[33m[Defer] multi-goto detected: 8 tasks; skip in main loop, handle at final aggregation
+[0m
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m
+Pos  2:(T):[33m(2 couch)[0m(13 cup)(14 cup)(15 cup)(17 can)(18 can)
+Pos  3:(T):[33m(4 bed)[0m
+Pos  4:(T):[33m(3 table)[0m(12 cup)
+Pos  5:(F):[33m(5 closet inside:[] Closed)[0m
+Pos  6:(F):[32m(robot hold:11 plate:0)[0m[33m(6 refrigerator inside:[8,10] Open)[0m(8 book)(10 cup)(11 cup)
+Pos  7:(F):[33m(7 chair)[0m(9 book)
+UnknownPos:
+[34m(16 can)[0m 
+[LOG]:[32m[MultiGoto] Executing multi-goto aggregation - skipping Sense operations
+[0m
+[LOG]:[32m[MultiGoto] BigObject[3]: goto_risk=0
+[0m
+[LOG]:[32m[MultiGoto] BigObject[3]: goto_risk=0
+[0m
+[LOG]:[32m[MultiGoto] BigObject[3]: goto_risk=0
+[0m
+[LOG]:[32m[MultiGoto] BigObject[3]: goto_risk=0
+[0m
+[LOG]:[32m[MultiGoto] BigObject[3]: goto_risk=0
+[0m
+[LOG]:[32m[MultiGoto] BigObject[3]: goto_risk=0
+[0m
+[LOG]:[32m[MultiGoto] BigObject[3]: goto_risk=0
+[0m
+[LOG]:[32m[MultiGoto] BigObject[3]: goto_risk=0
+[0m
+[LOG]:[32m[MultiGoto] small_cand_id_disable: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] small_cand_ids: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] big_cand_ids: 
+[LOG]:[32m3 
+[LOG]:[32m3 
+[LOG]:[32m3 
+[LOG]:[32m3 
+[LOG]:[32m3 
+[LOG]:[32m3 
+[LOG]:[32m3 
+[LOG]:[32m3 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] small_cand_ids.size()=0, big_cand_ids.size()=8
+[0m
+[LOG]:[32m[MultiGoto] small_lowrisk_ids.size()=0
+[0m
+[LOG]:[32m[MultiGoto] Entering main aggregation logic
+[0m
+[LOG]:[32m[MultiGoto] Performance optimization: Only checking 1 occupied locations instead of 100 total locations
+[0m
+[LOG]:[33m[MultiGoto] smallobj_loc is not found: -1
+[0m
+[LOG]:[32mFinal-GOTO: choose hub=4
+[0m
+[LOG]:Move(4)
+[LOG]:[32m[MultiGoto] ExecuteMultiGotoAggregation finished
+[0m
+
+Sovled Task Num:8    Expect Num:45
+#(Plug): Elapsed time=4.752s
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

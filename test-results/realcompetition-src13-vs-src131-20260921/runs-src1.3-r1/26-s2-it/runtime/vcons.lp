@@ -1,0 +1,10 @@
+task(37, cons(near(X, Y))) :- cup(X), black(X), table(Y).
+task(38, cons(near(X, Y))) :- cup(X), black(X), table(Y).
+task(39, cons(near(X, Y))) :- cup(X), black(X), table(Y).
+task(40, cons(near(X, Y))) :- cup(X), black(X), table(Y).
+task(41, cons(near(X, Y))) :- cup(X), black(X), table(Y).
+task(42, cons(near(X, Y))) :- cup(X), black(X), table(Y).
+task(43, cons(near(X, Y))) :- cup(X), black(X), table(Y).
+task(44, cons(near(X, Y))) :- cup(X), black(X), table(Y).
+task(45, cons(near(X, Y))) :- cup(X), black(X), table(Y).
+task(46, cons(near(X, Y))) :- cup(X), black(X), table(Y).

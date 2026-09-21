@@ -1,0 +1,56 @@
+<configuration info>
+TeamName: RDFW
+Mode: IT
+Timeout: 5000
+TestDir: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/realcompetition-src13-vs-src131-20260921/runs-src1.3-r1/06-s2-it/runtime/tests/
+TestSize: 1
+Single test: case.xml
+Grader path: /home/yifan/env-release-2026/lib/libasp
+
+<case.xml>
+# Environment Description:
+(:domain (hold 0) (plate 0) (at 0 1) (sort 1 human) (size 1 big) (at 1 1) (sort 2 desk) (size 2 big) (at 2 3) (sort 3 television) (size 3 big) (at 3 2) (sort 4 chair) (size 4 big) (sort 5 sofa) (size 5 big) (sort 6 can) (size 6 small) (color 6 white) (at 6 4) (sort 7 can) (size 7 small) (color 7 red) (at 7 4) (sort 8 can) (size 8 small) (color 8 green) (at 8 4) (sort 9 can) (size 9 small) (color 9 black) (at 9 4) (sort 10 can) (size 10 small) (color 10 blue) (at 10 4) (sort 11 can) (size 11 small) (color 11 yellow) (at 11 4) (sort 12 cup) (size 12 small) (color 12 white) (at 12 7) (sort 13 cup) (size 13 small) (color 13 red) (at 13 7) (sort 14 cup) (size 14 small) (color 14 green) (at 14 7) (sort 15 cup) (size 15 small) (color 15 black) (at 15 7) (sort 16 cup) (size 16 small) (color 16 blue) (at 16 7) (sort 17 cup) (size 17 small) (color 17 yellow) (at 17 7) (sort 18 book) (size 18 small) (color 18 white) (sort 19 book) (size 19 small) (color 19 red) (sort 20 book) (size 20 small) (color 20 green) (sort 21 book) (size 21 small) (color 21 black) (sort 22 book) (size 22 small) (color 22 blue) (sort 23 book) (size 23 small) (color 23 yellow) (sort 24 bottle) (size 24 small) (color 24 white) (at 24 3)  (at 5 4) (at 4 8) (at 18 3) (at 19 3) (at 20 3) (at 21 3) (at 22 3) (at 23 3))
+# Task Description:
+(:ins (:task (puton X Y) (:cond (sort X cup) (color X white) (sort Y chair))) (:task (puton X Y) (:cond (sort X cup) (color X red) (sort Y chair))) (:task (puton X Y) (:cond (sort X cup) (color X green) (sort Y chair))) (:task (puton X Y) (:cond (sort X cup) (color X black) (sort Y chair))) (:task (puton X Y) (:cond (sort X cup) (color X blue) (sort Y chair))) (:task (puton X Y) (:cond (sort X cup) (color X yellow) (sort Y chair))) (:task (puton X Y) (:cond (sort X can) (color X white) (sort Y sofa))) (:task (puton X Y) (:cond (sort X can) (color X red) (sort Y sofa))) (:task (puton X Y) (:cond (sort X can) (color X green) (sort Y sofa))) (:task (puton X Y) (:cond (sort X can) (color X black) (sort Y sofa))) (:task (puton X Y) (:cond (sort X can) (color X blue) (sort Y sofa))) (:task (puton X Y) (:cond (sort X can) (color X yellow) (sort Y sofa))) (:task (puton X Y) (:cond (sort X book) (color X white) (sort Y desk))) (:task (puton X Y) (:cond (sort X book) (color X red) (sort Y desk))) (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y desk))) (:task (puton X Y) (:cond (sort X book) (color X black) (sort Y desk))) (:task (puton X Y) (:cond (sort X book) (color X blue) (sort Y desk))) (:task (puton X Y) (:cond (sort X book) (color X yellow) (sort Y desk))) (:cons_not (:task (goto X) (:cond (sort X desk)))) (:cons_not (:task (goto X) (:cond (sort X bottle) (color X white)))) (:cons_not (:task (goto X) (:cond (sort X sofa)))) (:cons_not (:task (goto X) (:cond (sort X can) (color X white)))) (:cons_not (:task (goto X) (:cond (sort X can) (color X red)))) )
+# Results:
+	[Move 4|true]
+	[PickUp 9|true]
+	[Sense | 9 6 7 8 10 11]
+	[AskLoc 5|at(5,6)]
+	[Move 6|true]
+	[Sense | 5 9]
+	[PutDown 9|true]
+	[Move 3|true]
+	[PickUp 23|false]
+	[AskLoc 23|at(23,4)]
+	[Move 4|true]
+	[PickUp 23|false]
+	[Move 3|true]
+	[PickUp 22|false]
+	[AskLoc 22|at(22,8)]
+	[Move 8|true]
+	[PickUp 22|true]
+	[Move 3|true]
+	[Sense | 2 24 22]
+	[PutDown 22|true]
+	[AskLoc 21|at(21,8)]
+	[Move 8|true]
+	[PickUp 21|true]
+	[Move 3|true]
+	[PutDown 21|true]
+	[AskLoc 20|at(20,8)]
+	[Move 8|true]
+	[PickUp 20|true]
+	[Move 3|true]
+	[PutDown 20|true]
+	[AskLoc 19|at(19,8)]
+	[Move 8|true]
+	[PickUp 19|true]
+	[Move 3|true]
+	[PutDown 19|true]
+	[AskLoc 18|at(18,8)]
+	[Move 8|true]
+
+# Time: 5
+# Score: 101
+

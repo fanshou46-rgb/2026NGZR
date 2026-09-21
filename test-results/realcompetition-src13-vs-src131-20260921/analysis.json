@@ -1,0 +1,3232 @@
+{
+  "summary": {
+    "cases": 36,
+    "comparable_cases": 35,
+    "excluded_cases": [
+      "02"
+    ],
+    "repetitions": 2,
+    "runs": 144,
+    "src1.3": {
+      "valid_runs": 70,
+      "ok_runs": 48,
+      "platform_timeout_runs": 22,
+      "average_platform_seconds": 3.2319142857142853,
+      "round_totals": {
+        "1": {
+          "official_score": 20453,
+          "raw_score": 25385,
+          "final_goals": 559,
+          "credited_constraints": 210,
+          "action_count": 853
+        },
+        "2": {
+          "official_score": 19840,
+          "raw_score": 24142,
+          "final_goals": 528,
+          "credited_constraints": 210,
+          "action_count": 856
+        }
+      },
+      "mean_official_total": 20146.5,
+      "mean_raw_total": 24763.5,
+      "mean_final_goals": 543.5,
+      "mean_constraints": 210.0,
+      "mean_action_count": 854.5
+    },
+    "src1.3.1": {
+      "valid_runs": 70,
+      "ok_runs": 70,
+      "platform_timeout_runs": 0,
+      "average_platform_seconds": 2.555671428571428,
+      "round_totals": {
+        "1": {
+          "official_score": 15264,
+          "raw_score": 17149,
+          "final_goals": 330,
+          "credited_constraints": 208,
+          "action_count": 664
+        },
+        "2": {
+          "official_score": 15791,
+          "raw_score": 17922,
+          "final_goals": 350,
+          "credited_constraints": 208,
+          "action_count": 670
+        }
+      },
+      "mean_official_total": 15527.5,
+      "mean_raw_total": 17535.5,
+      "mean_final_goals": 340.0,
+      "mean_constraints": 208.0,
+      "mean_action_count": 667.0
+    },
+    "mean_official_total_delta": -4619.0,
+    "mean_raw_total_delta": -7228.0,
+    "mean_final_goals_delta": -203.5,
+    "mean_constraints_delta": -2.0,
+    "mean_action_count_delta": -187.5,
+    "improved_cases": 10,
+    "regressed_cases": 18,
+    "unchanged_cases": 7,
+    "paired_identical_action_sequences": 13,
+    "paired_identical_command_sequences": 13,
+    "paired_new_command_is_strict_prefix": 17,
+    "paired_new_has_fewer_actions": 51,
+    "paired_new_has_more_actions": 3,
+    "paired_same_action_count": 16,
+    "src1.3.1_stop_categories": {
+      "deadline-gate": 33,
+      "no-candidate": 25,
+      "normal-flow": 11,
+      "all-goals": 1
+    },
+    "snapshot_checks": {
+      "runs_with_final_snapshot": 70,
+      "base_matches_platform": 34,
+      "action_cost_matches_platform": 70,
+      "goals_match_official": 45,
+      "constraints_match_official": 53,
+      "base_conservative_under": 35,
+      "base_optimistic_over": 1,
+      "goals_conservative_under": 24,
+      "goals_optimistic_over": 1
+    }
+  },
+  "cases": [
+    {
+      "case": "01",
+      "comparable": true,
+      "score_1_3": [
+        335,
+        333
+      ],
+      "score_1_3_1": [
+        239,
+        239
+      ],
+      "average_1_3": 334.0,
+      "average_1_3_1": 239.0,
+      "delta": -95.0,
+      "goals_1_3": [
+        11,
+        11
+      ],
+      "goals_1_3_1": [
+        7,
+        7
+      ],
+      "constraints_1_3": [
+        0,
+        0
+      ],
+      "constraints_1_3_1": [
+        0,
+        0
+      ],
+      "actions_1_3": [
+        37,
+        38
+      ],
+      "actions_1_3_1": [
+        26,
+        26
+      ],
+      "seconds_1_3": [
+        5.0,
+        5.0
+      ],
+      "seconds_1_3_1": [
+        3.474,
+        3.473
+      ],
+      "ok_1_3": [
+        false,
+        false
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        false,
+        false
+      ],
+      "same_commands": [
+        false,
+        false
+      ],
+      "common_prefix": [
+        26,
+        26
+      ],
+      "command_common_prefix": [
+        26,
+        26
+      ],
+      "stop_category_1_3_1": [
+        "deadline-gate",
+        "deadline-gate"
+      ]
+    },
+    {
+      "case": "02",
+      "comparable": false,
+      "score_1_3": [
+        null,
+        null
+      ],
+      "score_1_3_1": [
+        null,
+        null
+      ],
+      "average_1_3": null,
+      "average_1_3_1": null,
+      "delta": null,
+      "goals_1_3": [
+        null,
+        null
+      ],
+      "goals_1_3_1": [
+        null,
+        null
+      ],
+      "constraints_1_3": [
+        null,
+        null
+      ],
+      "constraints_1_3_1": [
+        null,
+        null
+      ],
+      "actions_1_3": [
+        0,
+        0
+      ],
+      "actions_1_3_1": [
+        0,
+        0
+      ],
+      "seconds_1_3": [
+        null,
+        null
+      ],
+      "seconds_1_3_1": [
+        0.016,
+        0.015
+      ],
+      "ok_1_3": [
+        false,
+        false
+      ],
+      "ok_1_3_1": [
+        false,
+        false
+      ],
+      "same_sequence": [
+        true,
+        true
+      ],
+      "same_commands": [
+        true,
+        true
+      ],
+      "common_prefix": [
+        0,
+        0
+      ],
+      "command_common_prefix": [
+        0,
+        0
+      ],
+      "stop_category_1_3_1": [
+        "no-candidate",
+        "no-candidate"
+      ]
+    },
+    {
+      "case": "03",
+      "comparable": true,
+      "score_1_3": [
+        426,
+        426
+      ],
+      "score_1_3_1": [
+        426,
+        426
+      ],
+      "average_1_3": 426.0,
+      "average_1_3_1": 426.0,
+      "delta": 0.0,
+      "goals_1_3": [
+        1,
+        1
+      ],
+      "goals_1_3_1": [
+        1,
+        1
+      ],
+      "constraints_1_3": [
+        15,
+        15
+      ],
+      "constraints_1_3_1": [
+        15,
+        15
+      ],
+      "actions_1_3": [
+        2,
+        2
+      ],
+      "actions_1_3_1": [
+        2,
+        2
+      ],
+      "seconds_1_3": [
+        0.327,
+        0.334
+      ],
+      "seconds_1_3_1": [
+        0.335,
+        0.334
+      ],
+      "ok_1_3": [
+        true,
+        true
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        true,
+        true
+      ],
+      "same_commands": [
+        true,
+        true
+      ],
+      "common_prefix": [
+        2,
+        2
+      ],
+      "command_common_prefix": [
+        2,
+        2
+      ],
+      "stop_category_1_3_1": [
+        "deadline-gate",
+        "deadline-gate"
+      ]
+    },
+    {
+      "case": "04",
+      "comparable": true,
+      "score_1_3": [
+        0,
+        0
+      ],
+      "score_1_3_1": [
+        0,
+        0
+      ],
+      "average_1_3": 0.0,
+      "average_1_3_1": 0.0,
+      "delta": 0.0,
+      "goals_1_3": [
+        0,
+        0
+      ],
+      "goals_1_3_1": [
+        0,
+        0
+      ],
+      "constraints_1_3": [
+        0,
+        0
+      ],
+      "constraints_1_3_1": [
+        0,
+        0
+      ],
+      "actions_1_3": [
+        11,
+        11
+      ],
+      "actions_1_3_1": [
+        4,
+        4
+      ],
+      "seconds_1_3": [
+        0.902,
+        0.896
+      ],
+      "seconds_1_3_1": [
+        0.391,
+        0.38
+      ],
+      "ok_1_3": [
+        true,
+        true
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        false,
+        false
+      ],
+      "same_commands": [
+        false,
+        false
+      ],
+      "common_prefix": [
+        1,
+        1
+      ],
+      "command_common_prefix": [
+        1,
+        1
+      ],
+      "stop_category_1_3_1": [
+        "no-candidate",
+        "no-candidate"
+      ]
+    },
+    {
+      "case": "05",
+      "comparable": true,
+      "score_1_3": [
+        0,
+        0
+      ],
+      "score_1_3_1": [
+        0,
+        0
+      ],
+      "average_1_3": 0.0,
+      "average_1_3_1": 0.0,
+      "delta": 0.0,
+      "goals_1_3": [
+        0,
+        0
+      ],
+      "goals_1_3_1": [
+        0,
+        0
+      ],
+      "constraints_1_3": [
+        0,
+        0
+      ],
+      "constraints_1_3_1": [
+        0,
+        0
+      ],
+      "actions_1_3": [
+        26,
+        26
+      ],
+      "actions_1_3_1": [
+        19,
+        19
+      ],
+      "seconds_1_3": [
+        1.973,
+        2.005
+      ],
+      "seconds_1_3_1": [
+        1.469,
+        1.52
+      ],
+      "ok_1_3": [
+        true,
+        true
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        false,
+        false
+      ],
+      "same_commands": [
+        false,
+        false
+      ],
+      "common_prefix": [
+        1,
+        1
+      ],
+      "command_common_prefix": [
+        1,
+        1
+      ],
+      "stop_category_1_3_1": [
+        "no-candidate",
+        "no-candidate"
+      ]
+    },
+    {
+      "case": "06",
+      "comparable": true,
+      "score_1_3": [
+        101,
+        66
+      ],
+      "score_1_3_1": [
+        113,
+        113
+      ],
+      "average_1_3": 83.5,
+      "average_1_3_1": 113.0,
+      "delta": 29.5,
+      "goals_1_3": [
+        5,
+        4
+      ],
+      "goals_1_3_1": [
+        3,
+        3
+      ],
+      "constraints_1_3": [
+        0,
+        0
+      ],
+      "constraints_1_3_1": [
+        0,
+        0
+      ],
+      "actions_1_3": [
+        37,
+        37
+      ],
+      "actions_1_3_1": [
+        20,
+        20
+      ],
+      "seconds_1_3": [
+        5.0,
+        5.0
+      ],
+      "seconds_1_3_1": [
+        2.73,
+        2.774
+      ],
+      "ok_1_3": [
+        false,
+        false
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        false,
+        false
+      ],
+      "same_commands": [
+        false,
+        false
+      ],
+      "common_prefix": [
+        9,
+        3
+      ],
+      "command_common_prefix": [
+        10,
+        4
+      ],
+      "stop_category_1_3_1": [
+        "no-candidate",
+        "no-candidate"
+      ]
+    },
+    {
+      "case": "07",
+      "comparable": true,
+      "score_1_3": [
+        713,
+        793
+      ],
+      "score_1_3_1": [
+        752,
+        744
+      ],
+      "average_1_3": 753.0,
+      "average_1_3_1": 748.0,
+      "delta": -5.0,
+      "goals_1_3": [
+        20,
+        22
+      ],
+      "goals_1_3_1": [
+        20,
+        20
+      ],
+      "constraints_1_3": [
+        0,
+        0
+      ],
+      "constraints_1_3_1": [
+        0,
+        0
+      ],
+      "actions_1_3": [
+        35,
+        34
+      ],
+      "actions_1_3_1": [
+        27,
+        29
+      ],
+      "seconds_1_3": [
+        4.561,
+        4.513
+      ],
+      "seconds_1_3_1": [
+        3.552,
+        3.784
+      ],
+      "ok_1_3": [
+        true,
+        true
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        false,
+        false
+      ],
+      "same_commands": [
+        false,
+        false
+      ],
+      "common_prefix": [
+        3,
+        3
+      ],
+      "command_common_prefix": [
+        4,
+        4
+      ],
+      "stop_category_1_3_1": [
+        "deadline-gate",
+        "deadline-gate"
+      ]
+    },
+    {
+      "case": "08",
+      "comparable": true,
+      "score_1_3": [
+        742,
+        748
+      ],
+      "score_1_3_1": [
+        433,
+        756
+      ],
+      "average_1_3": 745.0,
+      "average_1_3_1": 594.5,
+      "delta": -150.5,
+      "goals_1_3": [
+        20,
+        20
+      ],
+      "goals_1_3_1": [
+        12,
+        20
+      ],
+      "constraints_1_3": [
+        0,
+        0
+      ],
+      "constraints_1_3_1": [
+        0,
+        0
+      ],
+      "actions_1_3": [
+        30,
+        29
+      ],
+      "actions_1_3_1": [
+        30,
+        29
+      ],
+      "seconds_1_3": [
+        3.806,
+        3.697
+      ],
+      "seconds_1_3_1": [
+        3.717,
+        3.698
+      ],
+      "ok_1_3": [
+        true,
+        true
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        false,
+        false
+      ],
+      "same_commands": [
+        false,
+        false
+      ],
+      "common_prefix": [
+        3,
+        3
+      ],
+      "command_common_prefix": [
+        4,
+        4
+      ],
+      "stop_category_1_3_1": [
+        "no-candidate",
+        "deadline-gate"
+      ]
+    },
+    {
+      "case": "09",
+      "comparable": true,
+      "score_1_3": [
+        593,
+        593
+      ],
+      "score_1_3_1": [
+        596,
+        596
+      ],
+      "average_1_3": 593.0,
+      "average_1_3_1": 596.0,
+      "delta": 3.0,
+      "goals_1_3": [
+        3,
+        3
+      ],
+      "goals_1_3_1": [
+        3,
+        3
+      ],
+      "constraints_1_3": [
+        23,
+        23
+      ],
+      "constraints_1_3_1": [
+        23,
+        23
+      ],
+      "actions_1_3": [
+        17,
+        17
+      ],
+      "actions_1_3_1": [
+        16,
+        16
+      ],
+      "seconds_1_3": [
+        2.256,
+        2.253
+      ],
+      "seconds_1_3_1": [
+        2.136,
+        2.175
+      ],
+      "ok_1_3": [
+        true,
+        true
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        false,
+        false
+      ],
+      "same_commands": [
+        false,
+        false
+      ],
+      "common_prefix": [
+        16,
+        16
+      ],
+      "command_common_prefix": [
+        16,
+        16
+      ],
+      "stop_category_1_3_1": [
+        "no-candidate",
+        "no-candidate"
+      ]
+    },
+    {
+      "case": "10",
+      "comparable": true,
+      "score_1_3": [
+        210,
+        210
+      ],
+      "score_1_3_1": [
+        210,
+        208
+      ],
+      "average_1_3": 210.0,
+      "average_1_3_1": 209.0,
+      "delta": -1.0,
+      "goals_1_3": [
+        5,
+        5
+      ],
+      "goals_1_3_1": [
+        5,
+        5
+      ],
+      "constraints_1_3": [
+        1,
+        1
+      ],
+      "constraints_1_3_1": [
+        1,
+        1
+      ],
+      "actions_1_3": [
+        20,
+        20
+      ],
+      "actions_1_3_1": [
+        20,
+        20
+      ],
+      "seconds_1_3": [
+        2.652,
+        2.628
+      ],
+      "seconds_1_3_1": [
+        2.669,
+        2.705
+      ],
+      "ok_1_3": [
+        true,
+        true
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        true,
+        true
+      ],
+      "same_commands": [
+        true,
+        true
+      ],
+      "common_prefix": [
+        20,
+        20
+      ],
+      "command_common_prefix": [
+        20,
+        20
+      ],
+      "stop_category_1_3_1": [
+        "deadline-gate",
+        "deadline-gate"
+      ]
+    },
+    {
+      "case": "11",
+      "comparable": true,
+      "score_1_3": [
+        53,
+        53
+      ],
+      "score_1_3_1": [
+        101,
+        97
+      ],
+      "average_1_3": 53.0,
+      "average_1_3_1": 99.0,
+      "delta": 46.0,
+      "goals_1_3": [
+        1,
+        1
+      ],
+      "goals_1_3_1": [
+        1,
+        1
+      ],
+      "constraints_1_3": [
+        6,
+        6
+      ],
+      "constraints_1_3_1": [
+        6,
+        6
+      ],
+      "actions_1_3": [
+        37,
+        37
+      ],
+      "actions_1_3_1": [
+        28,
+        28
+      ],
+      "seconds_1_3": [
+        5.0,
+        5.0
+      ],
+      "seconds_1_3_1": [
+        3.829,
+        4.008
+      ],
+      "ok_1_3": [
+        false,
+        false
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        false,
+        false
+      ],
+      "same_commands": [
+        false,
+        false
+      ],
+      "common_prefix": [
+        2,
+        27
+      ],
+      "command_common_prefix": [
+        27,
+        27
+      ],
+      "stop_category_1_3_1": [
+        "deadline-gate",
+        "deadline-gate"
+      ]
+    },
+    {
+      "case": "12",
+      "comparable": true,
+      "score_1_3": [
+        185,
+        187
+      ],
+      "score_1_3_1": [
+        163,
+        161
+      ],
+      "average_1_3": 186.0,
+      "average_1_3_1": 162.0,
+      "delta": -24.0,
+      "goals_1_3": [
+        5,
+        5
+      ],
+      "goals_1_3_1": [
+        4,
+        4
+      ],
+      "constraints_1_3": [
+        0,
+        0
+      ],
+      "constraints_1_3_1": [
+        0,
+        0
+      ],
+      "actions_1_3": [
+        22,
+        22
+      ],
+      "actions_1_3_1": [
+        19,
+        19
+      ],
+      "seconds_1_3": [
+        3.019,
+        2.977
+      ],
+      "seconds_1_3_1": [
+        2.559,
+        2.68
+      ],
+      "ok_1_3": [
+        true,
+        true
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        false,
+        false
+      ],
+      "same_commands": [
+        false,
+        false
+      ],
+      "common_prefix": [
+        19,
+        19
+      ],
+      "command_common_prefix": [
+        19,
+        19
+      ],
+      "stop_category_1_3_1": [
+        "no-candidate",
+        "no-candidate"
+      ]
+    },
+    {
+      "case": "13",
+      "comparable": true,
+      "score_1_3": [
+        570,
+        570
+      ],
+      "score_1_3_1": [
+        490,
+        467
+      ],
+      "average_1_3": 570.0,
+      "average_1_3_1": 478.5,
+      "delta": -91.5,
+      "goals_1_3": [
+        1,
+        1
+      ],
+      "goals_1_3_1": [
+        1,
+        1
+      ],
+      "constraints_1_3": [
+        23,
+        23
+      ],
+      "constraints_1_3_1": [
+        23,
+        23
+      ],
+      "actions_1_3": [
+        6,
+        6
+      ],
+      "actions_1_3_1": [
+        23,
+        28
+      ],
+      "seconds_1_3": [
+        0.854,
+        0.838
+      ],
+      "seconds_1_3_1": [
+        2.852,
+        3.529
+      ],
+      "ok_1_3": [
+        true,
+        true
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        false,
+        false
+      ],
+      "same_commands": [
+        false,
+        false
+      ],
+      "common_prefix": [
+        1,
+        1
+      ],
+      "command_common_prefix": [
+        1,
+        1
+      ],
+      "stop_category_1_3_1": [
+        "no-candidate",
+        "no-candidate"
+      ]
+    },
+    {
+      "case": "14",
+      "comparable": true,
+      "score_1_3": [
+        138,
+        187
+      ],
+      "score_1_3_1": [
+        167,
+        192
+      ],
+      "average_1_3": 162.5,
+      "average_1_3_1": 179.5,
+      "delta": 17.0,
+      "goals_1_3": [
+        4,
+        5
+      ],
+      "goals_1_3_1": [
+        4,
+        5
+      ],
+      "constraints_1_3": [
+        0,
+        0
+      ],
+      "constraints_1_3_1": [
+        0,
+        0
+      ],
+      "actions_1_3": [
+        23,
+        21
+      ],
+      "actions_1_3_1": [
+        17,
+        20
+      ],
+      "seconds_1_3": [
+        3.14,
+        2.884
+      ],
+      "seconds_1_3_1": [
+        2.329,
+        2.689
+      ],
+      "ok_1_3": [
+        true,
+        true
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        false,
+        false
+      ],
+      "same_commands": [
+        false,
+        false
+      ],
+      "common_prefix": [
+        2,
+        20
+      ],
+      "command_common_prefix": [
+        3,
+        20
+      ],
+      "stop_category_1_3_1": [
+        "no-candidate",
+        "no-candidate"
+      ]
+    },
+    {
+      "case": "15",
+      "comparable": true,
+      "score_1_3": [
+        121,
+        132
+      ],
+      "score_1_3_1": [
+        139,
+        128
+      ],
+      "average_1_3": 126.5,
+      "average_1_3_1": 133.5,
+      "delta": 7.0,
+      "goals_1_3": [
+        3,
+        4
+      ],
+      "goals_1_3_1": [
+        4,
+        3
+      ],
+      "constraints_1_3": [
+        0,
+        0
+      ],
+      "constraints_1_3_1": [
+        0,
+        0
+      ],
+      "actions_1_3": [
+        19,
+        25
+      ],
+      "actions_1_3_1": [
+        23,
+        18
+      ],
+      "seconds_1_3": [
+        2.5,
+        3.295
+      ],
+      "seconds_1_3_1": [
+        3.026,
+        2.33
+      ],
+      "ok_1_3": [
+        true,
+        true
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        false,
+        false
+      ],
+      "same_commands": [
+        false,
+        false
+      ],
+      "common_prefix": [
+        1,
+        1
+      ],
+      "command_common_prefix": [
+        2,
+        2
+      ],
+      "stop_category_1_3_1": [
+        "normal-flow",
+        "normal-flow"
+      ]
+    },
+    {
+      "case": "16",
+      "comparable": true,
+      "score_1_3": [
+        68,
+        68
+      ],
+      "score_1_3_1": [
+        111,
+        66
+      ],
+      "average_1_3": 68.0,
+      "average_1_3_1": 88.5,
+      "delta": 20.5,
+      "goals_1_3": [
+        1,
+        1
+      ],
+      "goals_1_3_1": [
+        2,
+        1
+      ],
+      "constraints_1_3": [
+        0,
+        0
+      ],
+      "constraints_1_3_1": [
+        0,
+        0
+      ],
+      "actions_1_3": [
+        13,
+        13
+      ],
+      "actions_1_3_1": [
+        13,
+        13
+      ],
+      "seconds_1_3": [
+        1.758,
+        1.745
+      ],
+      "seconds_1_3_1": [
+        1.754,
+        1.82
+      ],
+      "ok_1_3": [
+        true,
+        true
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        false,
+        true
+      ],
+      "same_commands": [
+        false,
+        true
+      ],
+      "common_prefix": [
+        9,
+        13
+      ],
+      "command_common_prefix": [
+        10,
+        13
+      ],
+      "stop_category_1_3_1": [
+        "all-goals",
+        "normal-flow"
+      ]
+    },
+    {
+      "case": "17",
+      "comparable": true,
+      "score_1_3": [
+        519,
+        519
+      ],
+      "score_1_3_1": [
+        519,
+        519
+      ],
+      "average_1_3": 519.0,
+      "average_1_3_1": 519.0,
+      "delta": 0.0,
+      "goals_1_3": [
+        1,
+        1
+      ],
+      "goals_1_3_1": [
+        1,
+        1
+      ],
+      "constraints_1_3": [
+        21,
+        21
+      ],
+      "constraints_1_3_1": [
+        21,
+        21
+      ],
+      "actions_1_3": [
+        8,
+        8
+      ],
+      "actions_1_3_1": [
+        8,
+        8
+      ],
+      "seconds_1_3": [
+        1.128,
+        1.174
+      ],
+      "seconds_1_3_1": [
+        1.177,
+        1.13
+      ],
+      "ok_1_3": [
+        true,
+        true
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        true,
+        true
+      ],
+      "same_commands": [
+        true,
+        true
+      ],
+      "common_prefix": [
+        8,
+        8
+      ],
+      "command_common_prefix": [
+        8,
+        8
+      ],
+      "stop_category_1_3_1": [
+        "normal-flow",
+        "normal-flow"
+      ]
+    },
+    {
+      "case": "18",
+      "comparable": true,
+      "score_1_3": [
+        495,
+        497
+      ],
+      "score_1_3_1": [
+        500,
+        502
+      ],
+      "average_1_3": 496.0,
+      "average_1_3_1": 501.0,
+      "delta": 5.0,
+      "goals_1_3": [
+        2,
+        2
+      ],
+      "goals_1_3_1": [
+        2,
+        2
+      ],
+      "constraints_1_3": [
+        20,
+        20
+      ],
+      "constraints_1_3_1": [
+        20,
+        20
+      ],
+      "actions_1_3": [
+        16,
+        16
+      ],
+      "actions_1_3_1": [
+        15,
+        15
+      ],
+      "seconds_1_3": [
+        2.314,
+        2.233
+      ],
+      "seconds_1_3_1": [
+        2.121,
+        2.094
+      ],
+      "ok_1_3": [
+        true,
+        true
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        false,
+        false
+      ],
+      "same_commands": [
+        false,
+        false
+      ],
+      "common_prefix": [
+        15,
+        15
+      ],
+      "command_common_prefix": [
+        15,
+        15
+      ],
+      "stop_category_1_3_1": [
+        "no-candidate",
+        "no-candidate"
+      ]
+    },
+    {
+      "case": "19",
+      "comparable": true,
+      "score_1_3": [
+        691,
+        691
+      ],
+      "score_1_3_1": [
+        -73,
+        -49
+      ],
+      "average_1_3": 691.0,
+      "average_1_3_1": -61.0,
+      "delta": -752.0,
+      "goals_1_3": [
+        20,
+        20
+      ],
+      "goals_1_3_1": [
+        0,
+        0
+      ],
+      "constraints_1_3": [
+        0,
+        0
+      ],
+      "constraints_1_3_1": [
+        0,
+        0
+      ],
+      "actions_1_3": [
+        37,
+        37
+      ],
+      "actions_1_3_1": [
+        30,
+        26
+      ],
+      "seconds_1_3": [
+        5.0,
+        5.0
+      ],
+      "seconds_1_3_1": [
+        4.106,
+        3.563
+      ],
+      "ok_1_3": [
+        false,
+        false
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        false,
+        false
+      ],
+      "same_commands": [
+        false,
+        false
+      ],
+      "common_prefix": [
+        29,
+        25
+      ],
+      "command_common_prefix": [
+        29,
+        25
+      ],
+      "stop_category_1_3_1": [
+        "deadline-gate",
+        "deadline-gate"
+      ]
+    },
+    {
+      "case": "20",
+      "comparable": true,
+      "score_1_3": [
+        692,
+        692
+      ],
+      "score_1_3_1": [
+        516,
+        516
+      ],
+      "average_1_3": 692.0,
+      "average_1_3_1": 516.0,
+      "delta": -176.0,
+      "goals_1_3": [
+        20,
+        20
+      ],
+      "goals_1_3_1": [
+        14,
+        14
+      ],
+      "constraints_1_3": [
+        0,
+        0
+      ],
+      "constraints_1_3_1": [
+        0,
+        0
+      ],
+      "actions_1_3": [
+        37,
+        37
+      ],
+      "actions_1_3_1": [
+        25,
+        25
+      ],
+      "seconds_1_3": [
+        5.0,
+        5.0
+      ],
+      "seconds_1_3_1": [
+        3.584,
+        3.588
+      ],
+      "ok_1_3": [
+        false,
+        false
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        false,
+        false
+      ],
+      "same_commands": [
+        false,
+        false
+      ],
+      "common_prefix": [
+        25,
+        25
+      ],
+      "command_common_prefix": [
+        25,
+        25
+      ],
+      "stop_category_1_3_1": [
+        "deadline-gate",
+        "deadline-gate"
+      ]
+    },
+    {
+      "case": "21",
+      "comparable": true,
+      "score_1_3": [
+        813,
+        811
+      ],
+      "score_1_3_1": [
+        -51,
+        -51
+      ],
+      "average_1_3": 812.0,
+      "average_1_3_1": -51.0,
+      "delta": -863.0,
+      "goals_1_3": [
+        22,
+        22
+      ],
+      "goals_1_3_1": [
+        0,
+        0
+      ],
+      "constraints_1_3": [
+        2,
+        2
+      ],
+      "constraints_1_3_1": [
+        0,
+        0
+      ],
+      "actions_1_3": [
+        36,
+        37
+      ],
+      "actions_1_3_1": [
+        26,
+        26
+      ],
+      "seconds_1_3": [
+        5.0,
+        5.0
+      ],
+      "seconds_1_3_1": [
+        3.604,
+        3.61
+      ],
+      "ok_1_3": [
+        false,
+        false
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        false,
+        false
+      ],
+      "same_commands": [
+        false,
+        false
+      ],
+      "common_prefix": [
+        25,
+        25
+      ],
+      "command_common_prefix": [
+        25,
+        25
+      ],
+      "stop_category_1_3_1": [
+        "deadline-gate",
+        "deadline-gate"
+      ]
+    },
+    {
+      "case": "22",
+      "comparable": true,
+      "score_1_3": [
+        1000,
+        1000
+      ],
+      "score_1_3_1": [
+        968,
+        968
+      ],
+      "average_1_3": 1000.0,
+      "average_1_3_1": 968.0,
+      "delta": -32.0,
+      "goals_1_3": [
+        35,
+        35
+      ],
+      "goals_1_3_1": [
+        25,
+        25
+      ],
+      "constraints_1_3": [
+        0,
+        0
+      ],
+      "constraints_1_3_1": [
+        0,
+        0
+      ],
+      "actions_1_3": [
+        34,
+        33
+      ],
+      "actions_1_3_1": [
+        24,
+        24
+      ],
+      "seconds_1_3": [
+        4.439,
+        4.29
+      ],
+      "seconds_1_3_1": [
+        3.159,
+        3.15
+      ],
+      "ok_1_3": [
+        true,
+        true
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        false,
+        false
+      ],
+      "same_commands": [
+        false,
+        false
+      ],
+      "common_prefix": [
+        3,
+        23
+      ],
+      "command_common_prefix": [
+        4,
+        23
+      ],
+      "stop_category_1_3_1": [
+        "deadline-gate",
+        "deadline-gate"
+      ]
+    },
+    {
+      "case": "23",
+      "comparable": true,
+      "score_1_3": [
+        1000,
+        1000
+      ],
+      "score_1_3_1": [
+        968,
+        968
+      ],
+      "average_1_3": 1000.0,
+      "average_1_3_1": 968.0,
+      "delta": -32.0,
+      "goals_1_3": [
+        35,
+        35
+      ],
+      "goals_1_3_1": [
+        25,
+        25
+      ],
+      "constraints_1_3": [
+        0,
+        0
+      ],
+      "constraints_1_3_1": [
+        0,
+        0
+      ],
+      "actions_1_3": [
+        35,
+        33
+      ],
+      "actions_1_3_1": [
+        24,
+        24
+      ],
+      "seconds_1_3": [
+        4.522,
+        4.418
+      ],
+      "seconds_1_3_1": [
+        3.149,
+        3.158
+      ],
+      "ok_1_3": [
+        true,
+        true
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        false,
+        false
+      ],
+      "same_commands": [
+        false,
+        false
+      ],
+      "common_prefix": [
+        3,
+        23
+      ],
+      "command_common_prefix": [
+        4,
+        23
+      ],
+      "stop_category_1_3_1": [
+        "deadline-gate",
+        "deadline-gate"
+      ]
+    },
+    {
+      "case": "24",
+      "comparable": true,
+      "score_1_3": [
+        1000,
+        1000
+      ],
+      "score_1_3_1": [
+        968,
+        968
+      ],
+      "average_1_3": 1000.0,
+      "average_1_3_1": 968.0,
+      "delta": -32.0,
+      "goals_1_3": [
+        35,
+        35
+      ],
+      "goals_1_3_1": [
+        25,
+        25
+      ],
+      "constraints_1_3": [
+        0,
+        0
+      ],
+      "constraints_1_3_1": [
+        0,
+        0
+      ],
+      "actions_1_3": [
+        33,
+        33
+      ],
+      "actions_1_3_1": [
+        24,
+        24
+      ],
+      "seconds_1_3": [
+        4.273,
+        4.388
+      ],
+      "seconds_1_3_1": [
+        3.156,
+        3.114
+      ],
+      "ok_1_3": [
+        true,
+        true
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        false,
+        false
+      ],
+      "same_commands": [
+        false,
+        false
+      ],
+      "common_prefix": [
+        23,
+        23
+      ],
+      "command_common_prefix": [
+        23,
+        23
+      ],
+      "stop_category_1_3_1": [
+        "deadline-gate",
+        "deadline-gate"
+      ]
+    },
+    {
+      "case": "25",
+      "comparable": true,
+      "score_1_3": [
+        1000,
+        1000
+      ],
+      "score_1_3_1": [
+        1000,
+        1000
+      ],
+      "average_1_3": 1000.0,
+      "average_1_3_1": 1000.0,
+      "delta": 0.0,
+      "goals_1_3": [
+        35,
+        35
+      ],
+      "goals_1_3_1": [
+        35,
+        35
+      ],
+      "constraints_1_3": [
+        10,
+        10
+      ],
+      "constraints_1_3_1": [
+        10,
+        10
+      ],
+      "actions_1_3": [
+        13,
+        13
+      ],
+      "actions_1_3_1": [
+        13,
+        13
+      ],
+      "seconds_1_3": [
+        1.761,
+        1.798
+      ],
+      "seconds_1_3_1": [
+        1.785,
+        1.799
+      ],
+      "ok_1_3": [
+        true,
+        true
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        true,
+        true
+      ],
+      "same_commands": [
+        true,
+        true
+      ],
+      "common_prefix": [
+        13,
+        13
+      ],
+      "command_common_prefix": [
+        13,
+        13
+      ],
+      "stop_category_1_3_1": [
+        "normal-flow",
+        "normal-flow"
+      ]
+    },
+    {
+      "case": "26",
+      "comparable": true,
+      "score_1_3": [
+        1000,
+        1000
+      ],
+      "score_1_3_1": [
+        1000,
+        1000
+      ],
+      "average_1_3": 1000.0,
+      "average_1_3_1": 1000.0,
+      "delta": 0.0,
+      "goals_1_3": [
+        35,
+        35
+      ],
+      "goals_1_3_1": [
+        35,
+        35
+      ],
+      "constraints_1_3": [
+        10,
+        10
+      ],
+      "constraints_1_3_1": [
+        10,
+        10
+      ],
+      "actions_1_3": [
+        13,
+        13
+      ],
+      "actions_1_3_1": [
+        13,
+        13
+      ],
+      "seconds_1_3": [
+        1.774,
+        1.734
+      ],
+      "seconds_1_3_1": [
+        1.783,
+        1.746
+      ],
+      "ok_1_3": [
+        true,
+        true
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        true,
+        true
+      ],
+      "same_commands": [
+        true,
+        true
+      ],
+      "common_prefix": [
+        13,
+        13
+      ],
+      "command_common_prefix": [
+        13,
+        13
+      ],
+      "stop_category_1_3_1": [
+        "normal-flow",
+        "normal-flow"
+      ]
+    },
+    {
+      "case": "27",
+      "comparable": true,
+      "score_1_3": [
+        1000,
+        1000
+      ],
+      "score_1_3_1": [
+        1000,
+        1000
+      ],
+      "average_1_3": 1000.0,
+      "average_1_3_1": 1000.0,
+      "delta": 0.0,
+      "goals_1_3": [
+        35,
+        35
+      ],
+      "goals_1_3_1": [
+        35,
+        35
+      ],
+      "constraints_1_3": [
+        10,
+        10
+      ],
+      "constraints_1_3_1": [
+        10,
+        10
+      ],
+      "actions_1_3": [
+        13,
+        13
+      ],
+      "actions_1_3_1": [
+        13,
+        13
+      ],
+      "seconds_1_3": [
+        1.787,
+        1.773
+      ],
+      "seconds_1_3_1": [
+        1.845,
+        1.777
+      ],
+      "ok_1_3": [
+        true,
+        true
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        true,
+        true
+      ],
+      "same_commands": [
+        true,
+        true
+      ],
+      "common_prefix": [
+        13,
+        13
+      ],
+      "command_common_prefix": [
+        13,
+        13
+      ],
+      "stop_category_1_3_1": [
+        "normal-flow",
+        "normal-flow"
+      ]
+    },
+    {
+      "case": "28",
+      "comparable": true,
+      "score_1_3": [
+        691,
+        -33
+      ],
+      "score_1_3_1": [
+        -49,
+        -71
+      ],
+      "average_1_3": 329.0,
+      "average_1_3_1": -60.0,
+      "delta": -389.0,
+      "goals_1_3": [
+        20,
+        2
+      ],
+      "goals_1_3_1": [
+        0,
+        0
+      ],
+      "constraints_1_3": [
+        0,
+        0
+      ],
+      "constraints_1_3_1": [
+        0,
+        0
+      ],
+      "actions_1_3": [
+        37,
+        38
+      ],
+      "actions_1_3_1": [
+        26,
+        30
+      ],
+      "seconds_1_3": [
+        5.0,
+        5.0
+      ],
+      "seconds_1_3_1": [
+        3.567,
+        4.075
+      ],
+      "ok_1_3": [
+        false,
+        false
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        false,
+        false
+      ],
+      "same_commands": [
+        false,
+        false
+      ],
+      "common_prefix": [
+        25,
+        29
+      ],
+      "command_common_prefix": [
+        25,
+        29
+      ],
+      "stop_category_1_3_1": [
+        "deadline-gate",
+        "deadline-gate"
+      ]
+    },
+    {
+      "case": "29",
+      "comparable": true,
+      "score_1_3": [
+        733,
+        733
+      ],
+      "score_1_3_1": [
+        -51,
+        -49
+      ],
+      "average_1_3": 733.0,
+      "average_1_3_1": -50.0,
+      "delta": -783.0,
+      "goals_1_3": [
+        21,
+        21
+      ],
+      "goals_1_3_1": [
+        0,
+        0
+      ],
+      "constraints_1_3": [
+        0,
+        0
+      ],
+      "constraints_1_3_1": [
+        0,
+        0
+      ],
+      "actions_1_3": [
+        36,
+        36
+      ],
+      "actions_1_3_1": [
+        26,
+        26
+      ],
+      "seconds_1_3": [
+        5.0,
+        5.0
+      ],
+      "seconds_1_3_1": [
+        3.65,
+        3.596
+      ],
+      "ok_1_3": [
+        false,
+        false
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        false,
+        false
+      ],
+      "same_commands": [
+        false,
+        false
+      ],
+      "common_prefix": [
+        25,
+        25
+      ],
+      "command_common_prefix": [
+        25,
+        25
+      ],
+      "stop_category_1_3_1": [
+        "deadline-gate",
+        "deadline-gate"
+      ]
+    },
+    {
+      "case": "30",
+      "comparable": true,
+      "score_1_3": [
+        893,
+        893
+      ],
+      "score_1_3_1": [
+        -51,
+        -51
+      ],
+      "average_1_3": 893.0,
+      "average_1_3_1": -51.0,
+      "delta": -944.0,
+      "goals_1_3": [
+        25,
+        25
+      ],
+      "goals_1_3_1": [
+        0,
+        0
+      ],
+      "constraints_1_3": [
+        0,
+        0
+      ],
+      "constraints_1_3_1": [
+        0,
+        0
+      ],
+      "actions_1_3": [
+        36,
+        36
+      ],
+      "actions_1_3_1": [
+        26,
+        26
+      ],
+      "seconds_1_3": [
+        5.0,
+        5.0
+      ],
+      "seconds_1_3_1": [
+        3.686,
+        3.662
+      ],
+      "ok_1_3": [
+        false,
+        false
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        false,
+        false
+      ],
+      "same_commands": [
+        false,
+        false
+      ],
+      "common_prefix": [
+        25,
+        25
+      ],
+      "command_common_prefix": [
+        25,
+        25
+      ],
+      "stop_category_1_3_1": [
+        "deadline-gate",
+        "deadline-gate"
+      ]
+    },
+    {
+      "case": "31",
+      "comparable": true,
+      "score_1_3": [
+        557,
+        557
+      ],
+      "score_1_3_1": [
+        572,
+        572
+      ],
+      "average_1_3": 557.0,
+      "average_1_3_1": 572.0,
+      "delta": 15.0,
+      "goals_1_3": [
+        1,
+        1
+      ],
+      "goals_1_3_1": [
+        1,
+        1
+      ],
+      "constraints_1_3": [
+        23,
+        23
+      ],
+      "constraints_1_3_1": [
+        23,
+        23
+      ],
+      "actions_1_3": [
+        8,
+        8
+      ],
+      "actions_1_3_1": [
+        5,
+        5
+      ],
+      "seconds_1_3": [
+        1.183,
+        1.179
+      ],
+      "seconds_1_3_1": [
+        0.766,
+        0.789
+      ],
+      "ok_1_3": [
+        true,
+        true
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        false,
+        false
+      ],
+      "same_commands": [
+        false,
+        false
+      ],
+      "common_prefix": [
+        5,
+        5
+      ],
+      "command_common_prefix": [
+        5,
+        5
+      ],
+      "stop_category_1_3_1": [
+        "no-candidate",
+        "no-candidate"
+      ]
+    },
+    {
+      "case": "32",
+      "comparable": true,
+      "score_1_3": [
+        557,
+        557
+      ],
+      "score_1_3_1": [
+        572,
+        572
+      ],
+      "average_1_3": 557.0,
+      "average_1_3_1": 572.0,
+      "delta": 15.0,
+      "goals_1_3": [
+        1,
+        1
+      ],
+      "goals_1_3_1": [
+        1,
+        1
+      ],
+      "constraints_1_3": [
+        23,
+        23
+      ],
+      "constraints_1_3_1": [
+        23,
+        23
+      ],
+      "actions_1_3": [
+        8,
+        8
+      ],
+      "actions_1_3_1": [
+        5,
+        5
+      ],
+      "seconds_1_3": [
+        1.177,
+        1.186
+      ],
+      "seconds_1_3_1": [
+        0.79,
+        0.752
+      ],
+      "ok_1_3": [
+        true,
+        true
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        false,
+        false
+      ],
+      "same_commands": [
+        false,
+        false
+      ],
+      "common_prefix": [
+        5,
+        5
+      ],
+      "command_common_prefix": [
+        5,
+        5
+      ],
+      "stop_category_1_3_1": [
+        "no-candidate",
+        "no-candidate"
+      ]
+    },
+    {
+      "case": "33",
+      "comparable": true,
+      "score_1_3": [
+        557,
+        557
+      ],
+      "score_1_3_1": [
+        572,
+        572
+      ],
+      "average_1_3": 557.0,
+      "average_1_3_1": 572.0,
+      "delta": 15.0,
+      "goals_1_3": [
+        1,
+        1
+      ],
+      "goals_1_3_1": [
+        1,
+        1
+      ],
+      "constraints_1_3": [
+        23,
+        23
+      ],
+      "constraints_1_3_1": [
+        23,
+        23
+      ],
+      "actions_1_3": [
+        8,
+        8
+      ],
+      "actions_1_3_1": [
+        5,
+        5
+      ],
+      "seconds_1_3": [
+        1.188,
+        1.16
+      ],
+      "seconds_1_3_1": [
+        0.789,
+        0.769
+      ],
+      "ok_1_3": [
+        true,
+        true
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        false,
+        false
+      ],
+      "same_commands": [
+        false,
+        false
+      ],
+      "common_prefix": [
+        5,
+        5
+      ],
+      "command_common_prefix": [
+        5,
+        5
+      ],
+      "stop_category_1_3_1": [
+        "no-candidate",
+        "no-candidate"
+      ]
+    },
+    {
+      "case": "34",
+      "comparable": true,
+      "score_1_3": [
+        1000,
+        1000
+      ],
+      "score_1_3_1": [
+        894,
+        856
+      ],
+      "average_1_3": 1000.0,
+      "average_1_3_1": 875.0,
+      "delta": -125.0,
+      "goals_1_3": [
+        45,
+        45
+      ],
+      "goals_1_3_1": [
+        23,
+        22
+      ],
+      "constraints_1_3": [
+        0,
+        0
+      ],
+      "constraints_1_3_1": [
+        0,
+        0
+      ],
+      "actions_1_3": [
+        35,
+        35
+      ],
+      "actions_1_3_1": [
+        23,
+        23
+      ],
+      "seconds_1_3": [
+        4.752,
+        4.79
+      ],
+      "seconds_1_3_1": [
+        3.153,
+        3.149
+      ],
+      "ok_1_3": [
+        true,
+        true
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        false,
+        false
+      ],
+      "same_commands": [
+        false,
+        false
+      ],
+      "common_prefix": [
+        20,
+        2
+      ],
+      "command_common_prefix": [
+        20,
+        3
+      ],
+      "stop_category_1_3_1": [
+        "deadline-gate",
+        "deadline-gate"
+      ]
+    },
+    {
+      "case": "35",
+      "comparable": true,
+      "score_1_3": [
+        1000,
+        1000
+      ],
+      "score_1_3_1": [
+        656,
+        856
+      ],
+      "average_1_3": 1000.0,
+      "average_1_3_1": 756.0,
+      "delta": -244.0,
+      "goals_1_3": [
+        45,
+        45
+      ],
+      "goals_1_3_1": [
+        17,
+        22
+      ],
+      "constraints_1_3": [
+        0,
+        0
+      ],
+      "constraints_1_3_1": [
+        0,
+        0
+      ],
+      "actions_1_3": [
+        38,
+        38
+      ],
+      "actions_1_3_1": [
+        23,
+        23
+      ],
+      "seconds_1_3": [
+        5.0,
+        5.0
+      ],
+      "seconds_1_3_1": [
+        3.157,
+        3.091
+      ],
+      "ok_1_3": [
+        false,
+        false
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        false,
+        false
+      ],
+      "same_commands": [
+        false,
+        false
+      ],
+      "common_prefix": [
+        2,
+        2
+      ],
+      "command_common_prefix": [
+        3,
+        3
+      ],
+      "stop_category_1_3_1": [
+        "deadline-gate",
+        "deadline-gate"
+      ]
+    },
+    {
+      "case": "36",
+      "comparable": true,
+      "score_1_3": [
+        1000,
+        1000
+      ],
+      "score_1_3_1": [
+        894,
+        1000
+      ],
+      "average_1_3": 1000.0,
+      "average_1_3_1": 947.0,
+      "delta": -53.0,
+      "goals_1_3": [
+        45,
+        29
+      ],
+      "goals_1_3_1": [
+        23,
+        32
+      ],
+      "constraints_1_3": [
+        0,
+        0
+      ],
+      "constraints_1_3_1": [
+        0,
+        0
+      ],
+      "actions_1_3": [
+        37,
+        38
+      ],
+      "actions_1_3_1": [
+        23,
+        25
+      ],
+      "seconds_1_3": [
+        5.0,
+        5.0
+      ],
+      "seconds_1_3_1": [
+        3.176,
+        3.361
+      ],
+      "ok_1_3": [
+        false,
+        false
+      ],
+      "ok_1_3_1": [
+        true,
+        true
+      ],
+      "same_sequence": [
+        false,
+        false
+      ],
+      "same_commands": [
+        false,
+        false
+      ],
+      "common_prefix": [
+        20,
+        24
+      ],
+      "command_common_prefix": [
+        21,
+        24
+      ],
+      "stop_category_1_3_1": [
+        "no-candidate",
+        "no-candidate"
+      ]
+    }
+  ],
+  "snapshot_mismatches": [
+    {
+      "case": "03",
+      "repeat": 1,
+      "snapshot_goals": 1,
+      "official_goals": 1,
+      "snapshot_constraints": 6,
+      "official_constraints": 15,
+      "snapshot_base": 154,
+      "platform_base": 334,
+      "action_cost": 6,
+      "stop_category": "deadline-gate"
+    },
+    {
+      "case": "03",
+      "repeat": 2,
+      "snapshot_goals": 1,
+      "official_goals": 1,
+      "snapshot_constraints": 6,
+      "official_constraints": 15,
+      "snapshot_base": 154,
+      "platform_base": 334,
+      "action_cost": 6,
+      "stop_category": "deadline-gate"
+    },
+    {
+      "case": "08",
+      "repeat": 1,
+      "snapshot_goals": 10,
+      "official_goals": 12,
+      "snapshot_constraints": 0,
+      "official_constraints": 0,
+      "snapshot_base": 329,
+      "platform_base": 409,
+      "action_cost": 71,
+      "stop_category": "no-candidate"
+    },
+    {
+      "case": "09",
+      "repeat": 1,
+      "snapshot_goals": 1,
+      "official_goals": 3,
+      "snapshot_constraints": 9,
+      "official_constraints": 23,
+      "snapshot_base": 180,
+      "platform_base": 540,
+      "action_cost": 40,
+      "stop_category": "no-candidate"
+    },
+    {
+      "case": "09",
+      "repeat": 2,
+      "snapshot_goals": 1,
+      "official_goals": 3,
+      "snapshot_constraints": 9,
+      "official_constraints": 23,
+      "snapshot_base": 180,
+      "platform_base": 540,
+      "action_cost": 40,
+      "stop_category": "no-candidate"
+    },
+    {
+      "case": "10",
+      "repeat": 1,
+      "snapshot_goals": 5,
+      "official_goals": 5,
+      "snapshot_constraints": 0,
+      "official_constraints": 1,
+      "snapshot_base": 144,
+      "platform_base": 164,
+      "action_cost": 56,
+      "stop_category": "deadline-gate"
+    },
+    {
+      "case": "10",
+      "repeat": 2,
+      "snapshot_goals": 5,
+      "official_goals": 5,
+      "snapshot_constraints": 0,
+      "official_constraints": 1,
+      "snapshot_base": 144,
+      "platform_base": 164,
+      "action_cost": 56,
+      "stop_category": "deadline-gate"
+    },
+    {
+      "case": "11",
+      "repeat": 1,
+      "snapshot_goals": 0,
+      "official_goals": 1,
+      "snapshot_constraints": 3,
+      "official_constraints": 6,
+      "snapshot_base": -81,
+      "platform_base": 79,
+      "action_cost": 81,
+      "stop_category": "deadline-gate"
+    },
+    {
+      "case": "11",
+      "repeat": 2,
+      "snapshot_goals": 0,
+      "official_goals": 1,
+      "snapshot_constraints": 3,
+      "official_constraints": 6,
+      "snapshot_base": -81,
+      "platform_base": 79,
+      "action_cost": 81,
+      "stop_category": "deadline-gate"
+    },
+    {
+      "case": "13",
+      "repeat": 1,
+      "snapshot_goals": 0,
+      "official_goals": 1,
+      "snapshot_constraints": 0,
+      "official_constraints": 23,
+      "snapshot_base": -52,
+      "platform_base": 448,
+      "action_cost": 52,
+      "stop_category": "no-candidate"
+    },
+    {
+      "case": "13",
+      "repeat": 2,
+      "snapshot_goals": 1,
+      "official_goals": 1,
+      "snapshot_constraints": 1,
+      "official_constraints": 23,
+      "snapshot_base": -1,
+      "platform_base": 439,
+      "action_cost": 61,
+      "stop_category": "no-candidate"
+    },
+    {
+      "case": "14",
+      "repeat": 1,
+      "snapshot_goals": 3,
+      "official_goals": 4,
+      "snapshot_constraints": 0,
+      "official_constraints": 0,
+      "snapshot_base": 75,
+      "platform_base": 115,
+      "action_cost": 45,
+      "stop_category": "no-candidate"
+    },
+    {
+      "case": "14",
+      "repeat": 2,
+      "snapshot_goals": 4,
+      "official_goals": 5,
+      "snapshot_constraints": 0,
+      "official_constraints": 0,
+      "snapshot_base": 106,
+      "platform_base": 146,
+      "action_cost": 54,
+      "stop_category": "no-candidate"
+    },
+    {
+      "case": "15",
+      "repeat": 1,
+      "snapshot_goals": 3,
+      "official_goals": 4,
+      "snapshot_constraints": 0,
+      "official_constraints": 0,
+      "snapshot_base": 61,
+      "platform_base": 101,
+      "action_cost": 59,
+      "stop_category": "normal-flow"
+    },
+    {
+      "case": "15",
+      "repeat": 2,
+      "snapshot_goals": 2,
+      "official_goals": 3,
+      "snapshot_constraints": 0,
+      "official_constraints": 0,
+      "snapshot_base": 36,
+      "platform_base": 76,
+      "action_cost": 44,
+      "stop_category": "normal-flow"
+    },
+    {
+      "case": "16",
+      "repeat": 1,
+      "snapshot_goals": 3,
+      "official_goals": 2,
+      "snapshot_constraints": 5,
+      "official_constraints": 0,
+      "snapshot_base": 187,
+      "platform_base": 47,
+      "action_cost": 33,
+      "stop_category": "all-goals"
+    },
+    {
+      "case": "18",
+      "repeat": 1,
+      "snapshot_goals": 1,
+      "official_goals": 2,
+      "snapshot_constraints": 20,
+      "official_constraints": 20,
+      "snapshot_base": 404,
+      "platform_base": 444,
+      "action_cost": 36,
+      "stop_category": "no-candidate"
+    },
+    {
+      "case": "18",
+      "repeat": 2,
+      "snapshot_goals": 1,
+      "official_goals": 2,
+      "snapshot_constraints": 20,
+      "official_constraints": 20,
+      "snapshot_base": 404,
+      "platform_base": 444,
+      "action_cost": 36,
+      "stop_category": "no-candidate"
+    },
+    {
+      "case": "22",
+      "repeat": 1,
+      "snapshot_goals": 24,
+      "official_goals": 25,
+      "snapshot_constraints": 0,
+      "official_constraints": 0,
+      "snapshot_base": 892,
+      "platform_base": 932,
+      "action_cost": 68,
+      "stop_category": "deadline-gate"
+    },
+    {
+      "case": "22",
+      "repeat": 2,
+      "snapshot_goals": 24,
+      "official_goals": 25,
+      "snapshot_constraints": 0,
+      "official_constraints": 0,
+      "snapshot_base": 892,
+      "platform_base": 932,
+      "action_cost": 68,
+      "stop_category": "deadline-gate"
+    },
+    {
+      "case": "23",
+      "repeat": 1,
+      "snapshot_goals": 24,
+      "official_goals": 25,
+      "snapshot_constraints": 0,
+      "official_constraints": 0,
+      "snapshot_base": 892,
+      "platform_base": 932,
+      "action_cost": 68,
+      "stop_category": "deadline-gate"
+    },
+    {
+      "case": "23",
+      "repeat": 2,
+      "snapshot_goals": 24,
+      "official_goals": 25,
+      "snapshot_constraints": 0,
+      "official_constraints": 0,
+      "snapshot_base": 892,
+      "platform_base": 932,
+      "action_cost": 68,
+      "stop_category": "deadline-gate"
+    },
+    {
+      "case": "24",
+      "repeat": 1,
+      "snapshot_goals": 24,
+      "official_goals": 25,
+      "snapshot_constraints": 0,
+      "official_constraints": 0,
+      "snapshot_base": 892,
+      "platform_base": 932,
+      "action_cost": 68,
+      "stop_category": "deadline-gate"
+    },
+    {
+      "case": "24",
+      "repeat": 2,
+      "snapshot_goals": 24,
+      "official_goals": 25,
+      "snapshot_constraints": 0,
+      "official_constraints": 0,
+      "snapshot_base": 892,
+      "platform_base": 932,
+      "action_cost": 68,
+      "stop_category": "deadline-gate"
+    },
+    {
+      "case": "25",
+      "repeat": 1,
+      "snapshot_goals": 15,
+      "official_goals": 35,
+      "snapshot_constraints": 10,
+      "official_constraints": 10,
+      "snapshot_base": 765,
+      "platform_base": 1565,
+      "action_cost": 35,
+      "stop_category": "normal-flow"
+    },
+    {
+      "case": "25",
+      "repeat": 2,
+      "snapshot_goals": 15,
+      "official_goals": 35,
+      "snapshot_constraints": 10,
+      "official_constraints": 10,
+      "snapshot_base": 765,
+      "platform_base": 1565,
+      "action_cost": 35,
+      "stop_category": "normal-flow"
+    },
+    {
+      "case": "26",
+      "repeat": 1,
+      "snapshot_goals": 15,
+      "official_goals": 35,
+      "snapshot_constraints": 10,
+      "official_constraints": 10,
+      "snapshot_base": 765,
+      "platform_base": 1565,
+      "action_cost": 35,
+      "stop_category": "normal-flow"
+    },
+    {
+      "case": "26",
+      "repeat": 2,
+      "snapshot_goals": 15,
+      "official_goals": 35,
+      "snapshot_constraints": 10,
+      "official_constraints": 10,
+      "snapshot_base": 765,
+      "platform_base": 1565,
+      "action_cost": 35,
+      "stop_category": "normal-flow"
+    },
+    {
+      "case": "27",
+      "repeat": 1,
+      "snapshot_goals": 15,
+      "official_goals": 35,
+      "snapshot_constraints": 10,
+      "official_constraints": 10,
+      "snapshot_base": 765,
+      "platform_base": 1565,
+      "action_cost": 35,
+      "stop_category": "normal-flow"
+    },
+    {
+      "case": "27",
+      "repeat": 2,
+      "snapshot_goals": 15,
+      "official_goals": 35,
+      "snapshot_constraints": 10,
+      "official_constraints": 10,
+      "snapshot_base": 765,
+      "platform_base": 1565,
+      "action_cost": 35,
+      "stop_category": "normal-flow"
+    },
+    {
+      "case": "31",
+      "repeat": 1,
+      "snapshot_goals": 1,
+      "official_goals": 1,
+      "snapshot_constraints": 2,
+      "official_constraints": 23,
+      "snapshot_base": 68,
+      "platform_base": 488,
+      "action_cost": 12,
+      "stop_category": "no-candidate"
+    },
+    {
+      "case": "31",
+      "repeat": 2,
+      "snapshot_goals": 1,
+      "official_goals": 1,
+      "snapshot_constraints": 2,
+      "official_constraints": 23,
+      "snapshot_base": 68,
+      "platform_base": 488,
+      "action_cost": 12,
+      "stop_category": "no-candidate"
+    },
+    {
+      "case": "32",
+      "repeat": 1,
+      "snapshot_goals": 1,
+      "official_goals": 1,
+      "snapshot_constraints": 2,
+      "official_constraints": 23,
+      "snapshot_base": 68,
+      "platform_base": 488,
+      "action_cost": 12,
+      "stop_category": "no-candidate"
+    },
+    {
+      "case": "32",
+      "repeat": 2,
+      "snapshot_goals": 1,
+      "official_goals": 1,
+      "snapshot_constraints": 2,
+      "official_constraints": 23,
+      "snapshot_base": 68,
+      "platform_base": 488,
+      "action_cost": 12,
+      "stop_category": "no-candidate"
+    },
+    {
+      "case": "33",
+      "repeat": 1,
+      "snapshot_goals": 1,
+      "official_goals": 1,
+      "snapshot_constraints": 2,
+      "official_constraints": 23,
+      "snapshot_base": 68,
+      "platform_base": 488,
+      "action_cost": 12,
+      "stop_category": "no-candidate"
+    },
+    {
+      "case": "33",
+      "repeat": 2,
+      "snapshot_goals": 1,
+      "official_goals": 1,
+      "snapshot_constraints": 2,
+      "official_constraints": 23,
+      "snapshot_base": 68,
+      "platform_base": 488,
+      "action_cost": 12,
+      "stop_category": "no-candidate"
+    }
+  ]
+}

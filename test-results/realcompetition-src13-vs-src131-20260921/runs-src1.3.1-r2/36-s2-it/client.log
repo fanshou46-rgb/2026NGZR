@@ -1,0 +1,586 @@
+[LOG]:-stage
+[LOG]:-nlp
+[LOG]:-err
+[LOG]:-ask_2
+[LOG]:-path
+[LOG]:nlp 0, err 1
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+#(Plug): Timeout=5000
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32mcase.xml
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m
+Pos  2:(T):[33m(2 couch)[0m
+Pos  3:(T):[33m(4 bed)[0m
+Pos  4:(T):[32m(robot hold:0 plate:0)[0m[33m(3 table)[0m
+Pos  5:(F):[33m(5 washmachine)[0m
+Pos  6:(F):[33m(6 refrigerator inside:[8,11,15] Closed)[0m(8 book)(11 cup)(12 cup)(14 cup)(15 cup)(18 can)
+Pos  7:(F):[33m(7 chair)[0m(9 book)(13 cup)
+Pos  8:(F):(10 cup)(17 can)
+UnknownPos:
+[34m(16 can)[0m 
+[LOG]:[32m[MustIn] correction done.
+[0m
+[LOG]:[32m[MustNear] correction done.
+[0m
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m
+Pos  2:(T):[33m(2 couch)[0m
+Pos  3:(T):[33m(4 bed)[0m
+Pos  4:(T):[32m(robot hold:0 plate:0)[0m[33m(3 table)[0m
+Pos  5:(F):[33m(5 washmachine)[0m
+Pos  6:(F):[33m(6 refrigerator inside:[8,11,15] Closed)[0m(8 book)(11 cup)(12 cup)(14 cup)(15 cup)(18 can)
+Pos  7:(F):[33m(7 chair)[0m(9 book)(13 cup)
+Pos  8:(F):(10 cup)(17 can)
+UnknownPos:
+[34m(16 can)[0m 
+Task:
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:table,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:table,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:table,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:table,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:table,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:table,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:table,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:table,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:table,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mpickup[0m
+ConditionX:[35m(Sort:cup,Color:blue)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:white)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:white)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:white)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:white)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:white)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:white)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputin[0m
+ConditionX:[35m(Sort:cup,Color:red)[0m
+ConditionY:[35m(Sort:refrigerator,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:green)[0m
+ConditionY:[35m(Sort:table,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+
+Info:
+
+Not_Info:
+
+Not_Task:
+
+NotNot_Info:
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+[FilterConstraintsByTaskConflicts] Discarded goto_cons at location 0 due to 0 conflicts.
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+45
+[LOG]:[33m[Defer] multi-goto detected: 9 tasks; skip in main loop, handle at final aggregation
+[0m
+[LOG]:[32m[MultiPuton] Big object 2 (sort: couch) appears in 33 puton tasks[0m
+[LOG]:[33m[MultiPuton] Marked task 0 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 1 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 2 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 3 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 4 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 5 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 8 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 9 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 10 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 11 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 12 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 13 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 14 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 15 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 16 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 17 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 18 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 19 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 20 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 21 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 22 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 23 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 24 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 25 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 26 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 27 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 28 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 29 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 30 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 31 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 32 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 33 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 34 as multi-puton for object 2[0m
+[LOG]:[36m[3A][main-loop] goals=0/45 (unknown=45), constraints=0/0 (unknown=0), base_score=0, action_cost=0, elapsed=26ms, remaining=4674ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[], satisfied_constraints=[]
+[0m
+puton can的风险系数是：0
+[LOG]:Move(8)
+[LOG]:PickUp(17,can)
+[LOG]:Move(2)
+[LOG]:[32m[SenseCurrentLocationOnly] Location 2 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Object 2 detected at location 2
+[LOG]:[SenseCurrentLocationOnly] Object 17 detected at location 2
+[LOG]:PutDown(17,can)
+[LOG]:[32mTask done
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=6/45 (unknown=39), constraints=0/0 (unknown=0), base_score=227, action_cost=13, elapsed=719ms, remaining=3981ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,8:puton,9:puton,10:puton,11:puton,13:puton], satisfied_constraints=[]
+[0m
+puton cup的风险系数是：0
+[LOG]:Move(6)
+[LOG]:Open(6,refrigerator)
+[LOG]:TakeOut(15,cup)(6,refrigerator)
+[LOG]:Move(2)
+[LOG]:PutDown(15,cup)
+[LOG]:[32mTask done
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=12/45 (unknown=33), constraints=0/0 (unknown=0), base_score=453, action_cost=27, elapsed=1375ms, remaining=3325ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:puton,2:puton,3:puton,4:puton,5:puton,8:puton,9:puton,10:puton,11:puton,12:puton,13:puton], satisfied_constraints=[]
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=12/45 (unknown=33), constraints=0/0 (unknown=0), base_score=453, action_cost=27, elapsed=1376ms, remaining=3324ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:puton,2:puton,3:puton,4:puton,5:puton,8:puton,9:puton,10:puton,11:puton,12:puton,13:puton], satisfied_constraints=[]
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=12/45 (unknown=33), constraints=0/0 (unknown=0), base_score=453, action_cost=27, elapsed=1376ms, remaining=3324ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:puton,2:puton,3:puton,4:puton,5:puton,8:puton,9:puton,10:puton,11:puton,12:puton,13:puton], satisfied_constraints=[]
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=12/45 (unknown=33), constraints=0/0 (unknown=0), base_score=453, action_cost=27, elapsed=1377ms, remaining=3323ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:puton,2:puton,3:puton,4:puton,5:puton,8:puton,9:puton,10:puton,11:puton,12:puton,13:puton], satisfied_constraints=[]
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=12/45 (unknown=33), constraints=0/0 (unknown=0), base_score=453, action_cost=27, elapsed=1377ms, remaining=3323ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:puton,2:puton,3:puton,4:puton,5:puton,8:puton,9:puton,10:puton,11:puton,12:puton,13:puton], satisfied_constraints=[]
+[0m
+putin cup的风险系数是：0
+[LOG]:Move(8)
+[LOG]:PickUp(10,cup)
+[LOG]:Move(6)
+[LOG]:PutIn(10,cup)(6,refrigerator)
+[LOG]:[32mTask done
+ Behave:[35mputin[0m
+ConditionX:[35m(Sort:cup,Color:red)[0m
+ConditionY:[35m(Sort:refrigerator,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=13/45 (unknown=32), constraints=0/0 (unknown=0), base_score=481, action_cost=39, elapsed=1919ms, remaining=2781ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:puton,2:puton,3:puton,4:puton,5:puton,6:putin,8:puton,9:puton,10:puton,11:puton,12:puton,13:puton], satisfied_constraints=[]
+[0m
+puton cup的风险系数是：0
+[LOG]:PickUp(12,cup)
+[LOG]:Move(4)
+[LOG]:[32m[SenseCurrentLocationOnly] Location 4 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Object 3 detected at location 4
+[LOG]:[SenseCurrentLocationOnly] Object 12 detected at location 4
+[LOG]:PutDown(12,cup)
+[LOG]:[32mTask done
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:green)[0m
+ConditionY:[35m(Sort:table,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=23/45 (unknown=22), constraints=0/0 (unknown=0), base_score=872, action_cost=48, elapsed=2431ms, remaining=2269ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:puton,2:puton,3:puton,4:puton,5:puton,6:putin,7:puton,8:puton,9:puton,10:puton,11:puton,12:puton,13:puton,36:goto,37:goto,38:goto,39:goto,40:goto,41:goto,42:goto,43:goto,44:goto], satisfied_constraints=[]
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=23/45 (unknown=22), constraints=0/0 (unknown=0), base_score=872, action_cost=48, elapsed=2432ms, remaining=2268ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:puton,2:puton,3:puton,4:puton,5:puton,6:putin,7:puton,8:puton,9:puton,10:puton,11:puton,12:puton,13:puton,36:goto,37:goto,38:goto,39:goto,40:goto,41:goto,42:goto,43:goto,44:goto], satisfied_constraints=[]
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=23/45 (unknown=22), constraints=0/0 (unknown=0), base_score=872, action_cost=48, elapsed=2433ms, remaining=2267ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:puton,2:puton,3:puton,4:puton,5:puton,6:putin,7:puton,8:puton,9:puton,10:puton,11:puton,12:puton,13:puton,36:goto,37:goto,38:goto,39:goto,40:goto,41:goto,42:goto,43:goto,44:goto], satisfied_constraints=[]
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=23/45 (unknown=22), constraints=0/0 (unknown=0), base_score=872, action_cost=48, elapsed=2433ms, remaining=2267ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:puton,2:puton,3:puton,4:puton,5:puton,6:putin,7:puton,8:puton,9:puton,10:puton,11:puton,12:puton,13:puton,36:goto,37:goto,38:goto,39:goto,40:goto,41:goto,42:goto,43:goto,44:goto], satisfied_constraints=[]
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=23/45 (unknown=22), constraints=0/0 (unknown=0), base_score=872, action_cost=48, elapsed=2434ms, remaining=2266ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:puton,2:puton,3:puton,4:puton,5:puton,6:putin,7:puton,8:puton,9:puton,10:puton,11:puton,12:puton,13:puton,36:goto,37:goto,38:goto,39:goto,40:goto,41:goto,42:goto,43:goto,44:goto], satisfied_constraints=[]
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:yellow)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=23/45 (unknown=22), constraints=0/0 (unknown=0), base_score=872, action_cost=48, elapsed=2435ms, remaining=2265ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:puton,2:puton,3:puton,4:puton,5:puton,6:putin,7:puton,8:puton,9:puton,10:puton,11:puton,12:puton,13:puton,36:goto,37:goto,38:goto,39:goto,40:goto,41:goto,42:goto,43:goto,44:goto], satisfied_constraints=[]
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=23/45 (unknown=22), constraints=0/0 (unknown=0), base_score=872, action_cost=48, elapsed=2435ms, remaining=2265ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:puton,2:puton,3:puton,4:puton,5:puton,6:putin,7:puton,8:puton,9:puton,10:puton,11:puton,12:puton,13:puton,36:goto,37:goto,38:goto,39:goto,40:goto,41:goto,42:goto,43:goto,44:goto], satisfied_constraints=[]
+[0m
+puton can的风险系数是：0
+[LOG]:Move(6)
+[LOG]:PickUp(18,can)
+[LOG]:AskLoc(18)
+[LOG]:TakeOut(18,can)(6,refrigerator)
+[LOG]:Move(2)
+[LOG]:PutDown(18,can)
+[LOG]:[32mTask done
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=23/45 (unknown=13), constraints=0/0 (unknown=0), base_score=856, action_cost=64, elapsed=3203ms, remaining=1497ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:puton,2:puton,3:puton,4:puton,5:puton,6:putin,7:puton,8:puton,9:puton,10:puton,11:puton,12:puton,13:puton,14:puton,15:puton,16:puton,17:puton,18:puton,19:puton,20:puton,21:puton,22:puton], satisfied_constraints=[]
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=23/45 (unknown=13), constraints=0/0 (unknown=0), base_score=856, action_cost=64, elapsed=3204ms, remaining=1496ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:puton,2:puton,3:puton,4:puton,5:puton,6:putin,7:puton,8:puton,9:puton,10:puton,11:puton,12:puton,13:puton,14:puton,15:puton,16:puton,17:puton,18:puton,19:puton,20:puton,21:puton,22:puton], satisfied_constraints=[]
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=23/45 (unknown=13), constraints=0/0 (unknown=0), base_score=856, action_cost=64, elapsed=3204ms, remaining=1496ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:puton,2:puton,3:puton,4:puton,5:puton,6:putin,7:puton,8:puton,9:puton,10:puton,11:puton,12:puton,13:puton,14:puton,15:puton,16:puton,17:puton,18:puton,19:puton,20:puton,21:puton,22:puton], satisfied_constraints=[]
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=23/45 (unknown=13), constraints=0/0 (unknown=0), base_score=856, action_cost=64, elapsed=3205ms, remaining=1495ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:puton,2:puton,3:puton,4:puton,5:puton,6:putin,7:puton,8:puton,9:puton,10:puton,11:puton,12:puton,13:puton,14:puton,15:puton,16:puton,17:puton,18:puton,19:puton,20:puton,21:puton,22:puton], satisfied_constraints=[]
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=23/45 (unknown=13), constraints=0/0 (unknown=0), base_score=856, action_cost=64, elapsed=3206ms, remaining=1494ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:puton,2:puton,3:puton,4:puton,5:puton,6:putin,7:puton,8:puton,9:puton,10:puton,11:puton,12:puton,13:puton,14:puton,15:puton,16:puton,17:puton,18:puton,19:puton,20:puton,21:puton,22:puton], satisfied_constraints=[]
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=23/45 (unknown=13), constraints=0/0 (unknown=0), base_score=856, action_cost=64, elapsed=3206ms, remaining=1494ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:puton,2:puton,3:puton,4:puton,5:puton,6:putin,7:puton,8:puton,9:puton,10:puton,11:puton,12:puton,13:puton,14:puton,15:puton,16:puton,17:puton,18:puton,19:puton,20:puton,21:puton,22:puton], satisfied_constraints=[]
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=23/45 (unknown=13), constraints=0/0 (unknown=0), base_score=856, action_cost=64, elapsed=3207ms, remaining=1493ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:puton,2:puton,3:puton,4:puton,5:puton,6:putin,7:puton,8:puton,9:puton,10:puton,11:puton,12:puton,13:puton,14:puton,15:puton,16:puton,17:puton,18:puton,19:puton,20:puton,21:puton,22:puton], satisfied_constraints=[]
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=23/45 (unknown=13), constraints=0/0 (unknown=0), base_score=856, action_cost=64, elapsed=3208ms, remaining=1492ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:puton,2:puton,3:puton,4:puton,5:puton,6:putin,7:puton,8:puton,9:puton,10:puton,11:puton,12:puton,13:puton,14:puton,15:puton,16:puton,17:puton,18:puton,19:puton,20:puton,21:puton,22:puton], satisfied_constraints=[]
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=23/45 (unknown=13), constraints=0/0 (unknown=0), base_score=856, action_cost=64, elapsed=3208ms, remaining=1492ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:puton,2:puton,3:puton,4:puton,5:puton,6:putin,7:puton,8:puton,9:puton,10:puton,11:puton,12:puton,13:puton,14:puton,15:puton,16:puton,17:puton,18:puton,19:puton,20:puton,21:puton,22:puton], satisfied_constraints=[]
+[0m
+[LOG]:[33m[3A][StopGate] no executable candidate in this phase before main-loop
+[0m
+-----check check check-----
+[LOG]:[33m[Defer] multi-goto detected: 9 tasks; skip in main loop, handle at final aggregation
+[0m
+[LOG]:[36m[3A][check-phase] goals=23/45 (unknown=13), constraints=0/0 (unknown=0), base_score=856, action_cost=64, elapsed=3209ms, remaining=1491ms
+[0m
+[LOG]:[36m[3A][check-phase] completed_goals=[0:puton,1:puton,2:puton,3:puton,4:puton,5:puton,6:putin,7:puton,8:puton,9:puton,10:puton,11:puton,12:puton,13:puton,14:puton,15:puton,16:puton,17:puton,18:puton,19:puton,20:puton,21:puton,22:puton], satisfied_constraints=[]
+[0m
+[LOG]:[33m[3A][StopGate] no executable candidate in this phase before check-phase
+[0m
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m
+Pos  2:(T):[32m(robot hold:0 plate:0)[0m[33m(2 couch)[0m(15 cup)(17 can)(18 can)
+Pos  3:(T):[33m(4 bed)[0m
+Pos  4:(T):[33m(3 table)[0m(12 cup)
+Pos  5:(F):[33m(5 washmachine)[0m
+Pos  6:(F):[33m(6 refrigerator inside:[8,11,10] Open)[0m(8 book)(10 cup)(11 cup)(14 cup)
+Pos  7:(F):[33m(7 chair)[0m(9 book)(13 cup)
+UnknownPos:
+[34m(16 can)[0m 
+[LOG]:[36m[3A][multi-goto] goals=23/45 (unknown=13), constraints=0/0 (unknown=0), base_score=856, action_cost=64, elapsed=3216ms, remaining=1484ms
+[0m
+[LOG]:[36m[3A][multi-goto] completed_goals=[0:puton,1:puton,2:puton,3:puton,4:puton,5:puton,6:putin,7:puton,8:puton,9:puton,10:puton,11:puton,12:puton,13:puton,14:puton,15:puton,16:puton,17:puton,18:puton,19:puton,20:puton,21:puton,22:puton], satisfied_constraints=[]
+[0m
+[LOG]:[32m[MultiGoto] Executing multi-goto aggregation - skipping Sense operations
+[0m
+[LOG]:[32m[MultiGoto] BigObject[3]: goto_risk=0
+[0m
+[LOG]:[32m[MultiGoto] BigObject[3]: goto_risk=0
+[0m
+[LOG]:[32m[MultiGoto] BigObject[3]: goto_risk=0
+[0m
+[LOG]:[32m[MultiGoto] BigObject[3]: goto_risk=0
+[0m
+[LOG]:[32m[MultiGoto] BigObject[3]: goto_risk=0
+[0m
+[LOG]:[32m[MultiGoto] BigObject[3]: goto_risk=0
+[0m
+[LOG]:[32m[MultiGoto] BigObject[3]: goto_risk=0
+[0m
+[LOG]:[32m[MultiGoto] BigObject[3]: goto_risk=0
+[0m
+[LOG]:[32m[MultiGoto] BigObject[3]: goto_risk=0
+[0m
+[LOG]:[32m[MultiGoto] small_cand_id_disable: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] small_cand_ids: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] big_cand_ids: 
+[LOG]:[32m3 
+[LOG]:[32m3 
+[LOG]:[32m3 
+[LOG]:[32m3 
+[LOG]:[32m3 
+[LOG]:[32m3 
+[LOG]:[32m3 
+[LOG]:[32m3 
+[LOG]:[32m3 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] small_cand_ids.size()=0, big_cand_ids.size()=9
+[0m
+[LOG]:[32m[MultiGoto] small_lowrisk_ids.size()=0
+[0m
+[LOG]:[32m[MultiGoto] Entering main aggregation logic
+[0m
+[LOG]:[32m[MultiGoto] Performance optimization: Only checking 1 occupied locations instead of 100 total locations
+[0m
+[LOG]:[33m[MultiGoto] smallobj_loc is not found: -1
+[0m
+[LOG]:[32mFinal-GOTO: choose hub=4
+[0m
+[LOG]:Move(4)
+[LOG]:[32m[MultiGoto] ExecuteMultiGotoAggregation finished
+[0m
+
+Sovled Task Num:5    Expect Num:45
+[LOG]:[36m[3A][final] goals=32/45 (unknown=13), constraints=0/0 (unknown=0), base_score=1212, action_cost=68, elapsed=3360ms, remaining=1340ms
+[0m
+[LOG]:[36m[3A][final] completed_goals=[0:puton,1:puton,2:puton,3:puton,4:puton,5:puton,6:putin,7:puton,8:puton,9:puton,10:puton,11:puton,12:puton,13:puton,14:puton,15:puton,16:puton,17:puton,18:puton,19:puton,20:puton,21:puton,22:puton,36:goto,37:goto,38:goto,39:goto,40:goto,41:goto,42:goto,43:goto,44:goto], satisfied_constraints=[]
+[0m
+#(Plug): Elapsed time=3.361s
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

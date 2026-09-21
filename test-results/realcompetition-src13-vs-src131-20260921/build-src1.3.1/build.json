@@ -1,0 +1,52 @@
+{
+  "command": [
+    "g++",
+    "-std=c++11",
+    "-O2",
+    "-g",
+    "-Wall",
+    "-Wextra",
+    "-I/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.3.1",
+    "-I/home/yifan/env-release-2026/include",
+    "-I/home/yifan/env-release-2026/src",
+    "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.3.1/main.cpp",
+    "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.3.1/rdfw.cpp",
+    "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.3.1/parser.cpp",
+    "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.3.1/deadline_manager.cpp",
+    "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.3.1/terminal_checker.cpp",
+    "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.3.1/score_evaluator.cpp",
+    "-L/home/yifan/env-release-2026/lib",
+    "-lframe",
+    "-lutility",
+    "-lboost_thread",
+    "-lboost_system",
+    "-lboost_chrono",
+    "-lboost_date_time",
+    "-lboost_regex",
+    "-lpthread",
+    "-ldl",
+    "-o",
+    "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/realcompetition-src13-vs-src131-20260921/build-src1.3.1/example"
+  ],
+  "source_sha256": {
+    "CMakeLists.txt": "23677465052df11b8308b5003b221a7096f443e37e385f061fd8b4922815a280",
+    "deadline_manager.cpp": "594d35499cad11d0a61bca95c5239c3a9864b9341823ae4e49259fbea0aeb173",
+    "deadline_manager.hpp": "761302bbcb37cd2deab03118861026c845716feed5acba56339054acff544ef1",
+    "debuglog.hpp": "746b17d5c62ae2d3d8f1e300a849f1d019458eb11641cd48ecbc9bad113e1fc9",
+    "main.cpp": "ca56fdf43b0a442c32593ba850cb0153f73386204733e22e0aec309593cec4b7",
+    "parser.cpp": "0e0daa2c1f5ff847bdabb7764774ee305a2b8f16457d7bb8d1da083b5dd1a733",
+    "parser.hpp": "2770e947732f6f36bb0c3d29a99cc3731cc0e7a587292d9d00e053188c5010ba",
+    "rdfw.cpp": "c2f71d8d015752517b2cd6dd4888dbaca1977aaec4632af47a0a3b5327394dac",
+    "rdfw.hpp": "5ee8a55cc327788c2e1760ef6193ea8798cda04838ef5968f1e14d6b5a1bcf56",
+    "score_evaluator.cpp": "2e0e1b45433c5cbd16b64dbc48c080709e336e877bdebcbcc6ef325415fbc6f5",
+    "score_evaluator.hpp": "9ce051ee25f0b1864fad34edea4e0892af9e59ce9d19d66c779ce483a3ae886e",
+    "terminal_checker.cpp": "5bda44b8e6c493f92d1fac075df74fb2c24afa15f9ff0e815470af3263da7225",
+    "terminal_checker.hpp": "1da9df763ac0e43d5fccc4691ac4c5db0bd4455106eaf43385327ea68e2413a6",
+    "words.txt": "66f951c478092c11bf1e29894401401a55c0f26cfc4cf038acfeb1d6a8515a41"
+  },
+  "sdk_sha256": {
+    "bin/cserver": "49a6bb86f180e877701bd478e387babafc801dea4c3cf9751884afb7af68212e",
+    "lib/libasp.so": "bc34c0c324680f121f68ac975728aadc1c31e9234a309ff882562d694589023f",
+    "lib/libframe.a": "dba1f53227c7d08c2f1065eda617d9053cd3c2187a6f4e7ef24ea04c2bc0054a"
+  }
+}

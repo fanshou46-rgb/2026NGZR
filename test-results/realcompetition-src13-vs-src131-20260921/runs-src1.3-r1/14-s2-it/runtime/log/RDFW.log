@@ -1,0 +1,42 @@
+<configuration info>
+TeamName: RDFW
+Mode: IT
+Timeout: 5000
+TestDir: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/realcompetition-src13-vs-src131-20260921/runs-src1.3-r1/14-s2-it/runtime/tests/
+TestSize: 1
+Single test: case.xml
+Grader path: /home/yifan/env-release-2026/lib/libasp
+
+<case.xml>
+# Environment Description:
+(:domain (hold 0) (plate 17) (at 0 1) (sort 1 human) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 desk) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 refrigerator) (size 5 big) (at 5 5) (type 5 container) (sort 6 closet) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 7 television) (size 7 big) (at 7 7) (sort 8 microwave) (size 8 big) (at 8 8) (type 8 container) (sort 9 teapoy) (size 9 big) (at 9 9) (sort 10 couch) (size 10 big) (at 10 10) (sort 11 sofa) (size 11 big) (at 11 11) (sort 12 cupboard) (size 12 big) (at 12 12) (type 12 container) (opened 12) (sort 13 airconditioner) (size 13 big) (at 13 13) (sort 14 washmachine) (size 14 big) (at 14 14) (type 14 container) (opened 14) (sort 15 book) (size 15 small) (color 15 yellow) (at 15 10) (sort 16 book) (size 16 small) (color 16 green) (sort 17 book) (size 17 small) (color 17 white) (sort 18 bottle) (size 18 small) (color 18 green) (inside 18 5) (sort 19 bottle) (size 19 small) (color 19 blue) (sort 20 bottle) (size 20 small) (color 20 yellow) (at 20 3) (sort 21 cup) (size 21 small) (color 21 white)  (inside 19 14))
+# Task Description:
+(:ins (:info (closed X) (:cond (sort X microwave) (type X container))) (:info (opened X) (:cond (sort X refrigerator) (type X container))) (:task (takeout X Y) (:cond (sort X bottle) (color X green) (sort Y refrigerator) (type Y container))) (:task (puton X Y) (:cond (sort X bottle) (color X blue) (sort Y desk))) (:task (give human X) (:cond (sort X cup) (color X white))) (:task (pickup X) (:cond (sort X book) (color X green))) (:task (goto X) (:cond (sort X couch))) )
+# Results:
+	[Move 14|true]
+	[TakeOut 19 14|false]
+	[AskLoc 19|inside(19,6)]
+	[Move 6|true]
+	[Open 6|true]
+	[TakeOut 19 6|false]
+	[Sense | 17 6]
+	[Move 3|true]
+	[Sense | 3 20 16 17]
+	[PutDown 19|false]
+	[AskLoc 21|at(21,2)]
+	[Move 2|true]
+	[PickUp 21|true]
+	[Move 1|true]
+	[Sense | 1 21 17]
+	[PutDown 21|true]
+	[Move 5|true]
+	[TakeOut 18 5|true]
+	[PutDown 18|true]
+	[Move 3|true]
+	[PickUp 16|true]
+	[Move 10|true]
+	[Sense | 10 15 16 17]
+
+# Time: 3.14
+# Score: 138
+

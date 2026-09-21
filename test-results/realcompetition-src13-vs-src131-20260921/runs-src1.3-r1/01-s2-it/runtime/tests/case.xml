@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+  <info>
+    (hold 24) (plate 0) (at 0 1)
+    (sort 1 human) (size 1 big) (at 1 1)
+    (sort 2 desk) (size 2 big)  (at 2 3)
+    (sort 3 television) (size 3 big) (at 3 2)
+    (sort 4 chair) (size 4 big) (at 4 5)
+
+    (sort 5 sofa) (size 5 big)
+
+    (sort 6  can) (size 6  small) (color 6  white)  (at 6  1)
+    (sort 7  can) (size 7  small) (color 7  red)    (at 7  2)
+    (sort 8  can) (size 8  small) (color 8  green)  (at 8  3)
+    (sort 9  can) (size 9  small) (color 9  black)  (at 9  4)
+    (sort 10 can) (size 10 small) (color 10 blue)   (at 10 5)
+    (sort 11 can) (size 11 small) (color 11 yellow) (at 11 6)
+    (sort 12 cup) (size 12 small) (color 12 white)(at 12 7)
+    (sort 13 cup) (size 13 small) (color 13 red) (at 13 8)
+
+    (sort 14 refrigerator) (size 14 big) (closed 14) 
+    (sort 15 bottle) (size 15 small) (color 15 white) (at 15 9)
+    (sort 16 cup)    (size 16 small) (color 16 blue)  (at 16 10)
+    (sort 17 bottle) (size 17 small) (color 17 red)   (at 17 11)
+
+    (sort 18 bottle) (size 18 small) (color 18 green) (at 18 12)
+    (sort 19 bottle) (size 19 small) (color 19 black) (at 19 13)
+    (sort 20 bottle) (size 20 small) (color 20 yellow) (at 20 14)
+    (sort 21 cup)    (size 21 small) (color 21 green) (at 21 15)
+    (sort 22 cup)    (size 22 small) (color 22 black) (at 22 16)
+    (sort 23 cup)    (size 23 small) (color 23 yellow) (at 23 17)
+
+    (sort 24 book) (size 24 small) (color 24 white) 
+    (sort 25 book) (size 25 small) (color 25 red) 
+  </info>
+
+  <mis>
+  </mis>
+
+  <err>
+    <r> (at 5 6)  (at 14 4)   </r>
+    <w> (at 5 4)  (at 14 6)   </w>
+  </err>
+
+  <extra>
+  </extra>
+</env>
+
+<instr>
+(:ins
+  (:task (give human X) (:cond (sort X book) (color X white)))
+  (:task (goto X) (:cond (sort X can) (color X white)))
+  (:task (goto X) (:cond (sort X can) (color X red)))
+  (:task (goto X) (:cond (sort X can) (color X green)))
+  (:task (goto X) (:cond (sort X can) (color X black)))
+  (:task (goto X) (:cond (sort X can) (color X blue)))
+  (:task (goto X) (:cond (sort X can) (color X yellow)))
+  (:task (goto X) (:cond (sort X cup) (color X white)))
+  (:task (goto X) (:cond (sort X cup) (color X red)))
+  (:task (goto X) (:cond (sort X bottle) (color X white)))
+  (:task (goto X) (:cond (sort X cup) (color X blue)))
+  (:task (goto X) (:cond (sort X cup) (color X red)))
+  (:task (goto X) (:cond (sort X bottle) (color X green)))
+  (:task (goto X) (:cond (sort X bottle) (color X black)))
+  (:task (goto X) (:cond (sort X bottle) (color X yellow)))
+  (:task (goto X) (:cond (sort X cup) (color X green)))
+  (:task (goto X) (:cond (sort X cup) (color X black)))
+  (:task (goto X) (:cond (sort X cup) (color X yellow)))
+
+  (:task (puton X Y) (:cond (sort X book) (color X red) (sort Y chair)))
+
+)
+</instr>
+
+<nl>
+give the white book to the human.
+  go to the white can.
+  go to the red can.
+  go to the green can.
+  go to the black can.
+  go to the blue can.
+  go to the yellow can.
+  go to the white cup.
+  go to the red cup.
+  go to the white bottle.
+  go to the blue cup.
+  go to the red bottle.
+  go to the green bottle.
+  go to the black bottle.
+  go to the yellow bottle.
+  go to the green cup.
+  go to the black cup.
+  go to the yellow cup.
+  
+  put the red book on the chair.
+
+</nl>
+</test>

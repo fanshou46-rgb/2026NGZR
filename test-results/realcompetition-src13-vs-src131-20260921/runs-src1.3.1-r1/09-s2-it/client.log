@@ -1,0 +1,316 @@
+[LOG]:-stage
+[LOG]:-nlp
+[LOG]:-err
+[LOG]:-ask_2
+[LOG]:-path
+[LOG]:nlp 0, err 1
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+#(Plug): Timeout=5000
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32mcase.xml
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m(13 bottle)(14 cup)(15 book)(16 can)(17 can)(18 remotecontrol)(19 bottle)
+Pos  2:(T):[33m(4 closet inside:[] Closed)[0m(5 book)(6 can)(7 remotecontrol)(8 bottle)
+Pos  3:(T):
+Pos  4:(T):[32m(robot hold:9 plate:10)[0m[33m(2 plant)[0m(9 cup)(10 book)
+Pos  5:(F):(11 can)
+Pos  6:(F):[33m(3 couch)[0m(12 remotecontrol)
+Pos  7:(F):
+Pos  8:(F):
+Pos  9:(F):
+Pos 10:(F):
+Pos 11:(F):
+Pos 12:(F):
+Pos 13:(F):
+Pos 14:(F):
+Pos 15:(F):
+Pos 16:(F):
+Pos 17:(F):
+Pos 18:(F):
+Pos 19:(F):
+Pos 20:(F):
+Pos 21:(F):
+Pos 22:(F):(21 remotecontrol)
+UnknownPos:
+[34m(20 bottle)[0m 
+[LOG]:[32m[MustIn] correction done.
+[0m
+[LOG]:[32m[MustNear] correction done.
+[0m
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m(13 bottle)(14 cup)(15 book)(16 can)(17 can)(18 remotecontrol)(19 bottle)
+Pos  2:(T):[33m(4 closet inside:[] Closed)[0m(5 book)(6 can)(7 remotecontrol)(8 bottle)
+Pos  3:(T):
+Pos  4:(T):[32m(robot hold:9 plate:10)[0m[33m(2 plant)[0m(9 cup)(10 book)
+Pos  5:(F):(11 can)
+Pos  6:(F):[33m(3 couch)[0m(12 remotecontrol)
+Pos  7:(F):
+Pos  8:(F):
+Pos  9:(F):
+Pos 10:(F):
+Pos 11:(F):
+Pos 12:(F):
+Pos 13:(F):
+Pos 14:(F):
+Pos 15:(F):
+Pos 16:(F):
+Pos 17:(F):
+Pos 18:(F):
+Pos 19:(F):
+Pos 20:(F):
+Pos 21:(F):
+Pos 22:(F):(21 remotecontrol)
+UnknownPos:
+[34m(20 bottle)[0m 
+Task:
+Behave:[35mpickup[0m
+ConditionX:[35m(Sort:remotecontrol,Color:black)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:human,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mtakeout[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:closet,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:bottle,Color:black)[0m
+ConditionY:[35m(Sort:plant,Color:)[0m
+
+Info:
+
+Not_Info:
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:remotecontrol,Color:black)[0m
+ConditionY:[35m(Sort:bottle,Color:black)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:remotecontrol,Color:black)[0m
+ConditionY:[35m(Sort:cup,Color:black)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:remotecontrol,Color:black)[0m
+ConditionY:[35m(Sort:book,Color:yellow)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:remotecontrol,Color:black)[0m
+ConditionY:[35m(Sort:can,Color:green)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:remotecontrol,Color:black)[0m
+ConditionY:[35m(Sort:can,Color:yellow)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:remotecontrol,Color:black)[0m
+ConditionY:[35m(Sort:remotecontrol,Color:yellow)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:remotecontrol,Color:black)[0m
+ConditionY:[35m(Sort:bottle,Color:yellow)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:book,Color:white)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:bottle,Color:blue)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:can,Color:white)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:remotecontrol,Color:white)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:bottle,Color:white)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:cup,Color:white)[0m
+ConditionY:[35m(Sort:can,Color:white)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:cup,Color:white)[0m
+ConditionY:[35m(Sort:remotecontrol,Color:white)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:cup,Color:white)[0m
+ConditionY:[35m(Sort:bottle,Color:white)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:black)[0m
+ConditionY:[35m(Sort:book,Color:white)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:black)[0m
+ConditionY:[35m(Sort:remotecontrol,Color:white)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:black)[0m
+ConditionY:[35m(Sort:bottle,Color:white)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:black)[0m
+ConditionY:[35m(Sort:can,Color:white)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:book,Color:black)[0m
+ConditionY:[35m(Sort:bottle,Color:black)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:book,Color:black)[0m
+ConditionY:[35m(Sort:cup,Color:black)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:book,Color:black)[0m
+ConditionY:[35m(Sort:book,Color:yellow)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:book,Color:black)[0m
+ConditionY:[35m(Sort:can,Color:green)[0m
+Behave:[35mon[0m
+ConditionX:[35m(Sort:bottle,Color:black)[0m
+ConditionY:[35m(Sort:closet,Color:)[0m
+
+Not_Task:
+
+NotNot_Info:
+Behave:[35mclosed[0m
+ConditionX:[35m(Sort:closet,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+[FilterConstraintsByTaskConflicts] Discarded goto_cons at location 0 due to 0 conflicts.
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+4
+[LOG]:[36m[3A][main-loop] goals=0/4 (unknown=4), constraints=0/25 (unknown=25), base_score=0, action_cost=0, elapsed=40ms, remaining=4660ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[], satisfied_constraints=[]
+[0m
+puton bottle的风险系数是：1
+[LOG]:PutDown(9,cup)
+[LOG]:Move(1)
+[LOG]:FromPlate(10,book)
+[LOG]:PutDown(10,book)
+[LOG]:PickUp(13,bottle)
+[LOG]:Move(4)
+[LOG]:[32m[SenseCurrentLocationOnly] Location 4 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Object 10 detected at location 4
+[LOG]:[SenseCurrentLocationOnly] Object 2 detected at location 4
+[LOG]:[SenseCurrentLocationOnly] Object 9 detected at location 4
+[LOG]:[SenseCurrentLocationOnly] Object 13 detected at location 4
+[LOG]:PutDown(13,bottle)
+[LOG]:[32mTask done
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:bottle,Color:black)[0m
+ConditionY:[35m(Sort:plant,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=1/4 (unknown=3), constraints=0/25 (unknown=24), base_score=21, action_cost=19, elapsed=1094ms, remaining=3606ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton], satisfied_constraints=[]
+[0m
+takeout can的风险系数是：0
+[LOG]:Move(2)
+[LOG]:Open(4,closet)
+[LOG]:TakeOut(11,can)(4,closet)
+[LOG]:[32m[SenseCurrentLocationOnly] Location 2 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Object 8 detected at location 2
+[LOG]:[SenseCurrentLocationOnly] Object 7 detected at location 2
+[LOG]:[SenseCurrentLocationOnly] Object 6 detected at location 2
+[LOG]:[SenseCurrentLocationOnly] Object 5 detected at location 2
+[LOG]:[SenseCurrentLocationOnly] Container 4 detected at location 2
+[LOG]:[32mTask done
+ Behave:[35mtakeout[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:closet,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=1/4 (unknown=3), constraints=8/25 (unknown=15), base_score=172, action_cost=28, elapsed=1574ms, remaining=3126ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton], satisfied_constraints=[12,13,14,15,16,17,18,23]
+[0m
+pickup remotecontrol的风险系数是：0
+[LOG]:Move(6)
+[LOG]:PickUp(12,remotecontrol)
+[LOG]:[32mTask done
+ Behave:[35mpickup[0m
+ConditionX:[35m(Sort:remotecontrol,Color:black)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=2/4 (unknown=2), constraints=9/25 (unknown=14), base_score=226, action_cost=34, elapsed=1846ms, remaining=2854ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,2:pickup], satisfied_constraints=[0,12,13,14,15,16,17,18,23]
+[0m
+[LOG]:[33m[3A][StopGate] no executable candidate in this phase before main-loop
+[0m
+-----check check check-----
+[DBG] goto risk@loc=1 bool=0
+[LOG]:[36m[3A][check-phase] goals=2/4 (unknown=2), constraints=9/25 (unknown=14), base_score=226, action_cost=34, elapsed=1847ms, remaining=2853ms
+[0m
+[LOG]:[36m[3A][check-phase] completed_goals=[0:puton,2:pickup], satisfied_constraints=[0,12,13,14,15,16,17,18,23]
+[0m
+[LOG]:[33m[3A][StopGate] no executable candidate in this phase before check-phase
+[0m
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m(14 cup)(15 book)(16 can)(17 can)(18 remotecontrol)(19 bottle)
+Pos  2:(T):[33m(4 closet inside:[] Open)[0m(5 book)(6 can)(7 remotecontrol)(8 bottle)
+Pos  3:(T):
+Pos  4:(T):[33m(2 plant)[0m(9 cup)(10 book)(13 bottle)
+Pos  5:(F):(11 can)
+Pos  6:(F):[32m(robot hold:12 plate:0)[0m[33m(3 couch)[0m(12 remotecontrol)
+Pos  7:(F):
+Pos  8:(F):
+Pos  9:(F):
+Pos 10:(F):
+Pos 11:(F):
+Pos 12:(F):
+Pos 13:(F):
+Pos 14:(F):
+Pos 15:(F):
+Pos 16:(F):
+Pos 17:(F):
+Pos 18:(F):
+Pos 19:(F):
+Pos 20:(F):
+Pos 21:(F):
+Pos 22:(F):(21 remotecontrol)
+UnknownPos:
+[34m(20 bottle)[0m 
+[LOG]:[36m[3A][multi-goto] goals=2/4 (unknown=2), constraints=9/25 (unknown=14), base_score=226, action_cost=34, elapsed=1863ms, remaining=2837ms
+[0m
+[LOG]:[36m[3A][multi-goto] completed_goals=[0:puton,2:pickup], satisfied_constraints=[0,12,13,14,15,16,17,18,23]
+[0m
+[LOG]:[32m[MultiGoto] Executing multi-goto aggregation - skipping Sense operations
+[0m
+[LOG]:[32m[MultiGoto] BigObject[1]: goto_risk=0
+[0m
+[LOG]:[32m[MultiGoto] small_cand_id_disable: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] small_cand_ids: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] big_cand_ids: 
+[LOG]:[32m1 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] small_cand_ids.size()=0, big_cand_ids.size()=1
+[0m
+[LOG]:[32m[MultiGoto] small_lowrisk_ids.size()=0
+[0m
+[LOG]:[32m[MultiGoto] Entering main aggregation logic
+[0m
+[LOG]:[32m[MultiGoto] Performance optimization: Only checking 1 occupied locations instead of 100 total locations
+[0m
+[LOG]:[33m[MultiGoto] smallobj_loc is not found: -1
+[0m
+[LOG]:[32mFinal-GOTO: choose hub=1
+[0m
+[LOG]:Move(1)
+[LOG]:PutDown(12,remotecontrol)
+[LOG]:[32m[MultiGoto] ExecuteMultiGotoAggregation finished
+[0m
+
+Sovled Task Num:3    Expect Num:4
+[LOG]:[36m[3A][final] goals=1/4 (unknown=2), constraints=9/25 (unknown=14), base_score=180, action_cost=40, elapsed=2135ms, remaining=2565ms
+[0m
+[LOG]:[36m[3A][final] completed_goals=[0:puton], satisfied_constraints=[0,12,13,14,15,16,17,18,23]
+[0m
+#(Plug): Elapsed time=2.136s
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

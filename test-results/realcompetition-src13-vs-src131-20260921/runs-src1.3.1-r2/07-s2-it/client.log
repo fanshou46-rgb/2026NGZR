@@ -1,0 +1,425 @@
+[LOG]:-stage
+[LOG]:-nlp
+[LOG]:-err
+[LOG]:-ask_2
+[LOG]:-path
+[LOG]:nlp 0, err 1
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+#(Plug): Timeout=5000
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32mcase.xml
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+Pos  0:(F):
+Pos  1:(T):[32m(robot hold:0 plate:0)[0m[33m(1 human)[0m
+Pos  2:(F):[33m(3 television)[0m
+Pos  3:(F):[33m(2 desk)[0m
+Pos  4:(F):[33m(5 sofa)[0m(6 can)(7 can)(8 can)(9 can)(10 can)(11 can)(12 cup)(13 cup)
+Pos  5:(F):[33m(4 chair)[0m
+UnknownPos:
+
+[LOG]:[32m[MustIn] correction done.
+[0m
+[LOG]:[32m[MustNear] correction done.
+[0m
+Pos  0:(F):
+Pos  1:(T):[32m(robot hold:0 plate:0)[0m[33m(1 human)[0m
+Pos  2:(F):[33m(3 television)[0m
+Pos  3:(F):[33m(2 desk)[0m
+Pos  4:(F):[33m(5 sofa)[0m(6 can)(7 can)(8 can)(9 can)(10 can)(11 can)(12 cup)(13 cup)
+Pos  5:(F):[33m(4 chair)[0m
+UnknownPos:
+
+Task:
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:white)[0m
+ConditionY:[35m(Sort:sofa,Color:)[0m
+Behave:[35mputdown[0m
+ConditionX:[35m(Sort:can,Color:white)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:can,Color:white)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:red)[0m
+ConditionY:[35m(Sort:sofa,Color:)[0m
+Behave:[35mputdown[0m
+ConditionX:[35m(Sort:can,Color:red)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:can,Color:red)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:green)[0m
+ConditionY:[35m(Sort:sofa,Color:)[0m
+Behave:[35mputdown[0m
+ConditionX:[35m(Sort:can,Color:green)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:can,Color:green)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:sofa,Color:)[0m
+Behave:[35mputdown[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:sofa,Color:)[0m
+Behave:[35mputdown[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:yellow)[0m
+ConditionY:[35m(Sort:sofa,Color:)[0m
+Behave:[35mputdown[0m
+ConditionX:[35m(Sort:can,Color:yellow)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:can,Color:yellow)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:white)[0m
+ConditionY:[35m(Sort:sofa,Color:)[0m
+Behave:[35mputdown[0m
+ConditionX:[35m(Sort:cup,Color:white)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:white)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:sofa,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:desk,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+
+Info:
+
+Not_Info:
+
+Not_Task:
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:sofa,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:red)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+
+NotNot_Info:
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+[FilterConstraintsByTaskConflicts] Conflict found between goto_cons at location 4 and task puton at location 4
+[FilterConstraintsByTaskConflicts] Conflict found between goto_cons at location 4 and task goto at location 4
+[FilterConstraintsByTaskConflicts] Conflict found between goto_cons at location 4 and task puton at location 4
+[FilterConstraintsByTaskConflicts] Conflict found between goto_cons at location 4 and task goto at location 4
+[FilterConstraintsByTaskConflicts] Conflict found between goto_cons at location 4 and task puton at location 4
+[FilterConstraintsByTaskConflicts] Conflict found between goto_cons at location 4 and task goto at location 4
+[FilterConstraintsByTaskConflicts] Conflict found between goto_cons at location 4 and task puton at location 4
+[FilterConstraintsByTaskConflicts] Conflict found between goto_cons at location 4 and task goto at location 4
+[FilterConstraintsByTaskConflicts] Conflict found between goto_cons at location 4 and task puton at location 4
+[FilterConstraintsByTaskConflicts] Conflict found between goto_cons at location 4 and task goto at location 4
+[FilterConstraintsByTaskConflicts] Conflict found between goto_cons at location 4 and task puton at location 4
+[FilterConstraintsByTaskConflicts] Conflict found between goto_cons at location 4 and task goto at location 4
+[FilterConstraintsByTaskConflicts] Conflict found between goto_cons at location 4 and task puton at location 4
+[FilterConstraintsByTaskConflicts] Conflict found between goto_cons at location 4 and task goto at location 4
+[FilterConstraintsByTaskConflicts] Conflict found between goto_cons at location 4 and task goto at location 4
+[FilterConstraintsByTaskConflicts] Conflict found between goto_cons at location 4 with conflict count 15
+[FilterConstraintsByTaskConflicts] Discarded goto_cons at location 0 due to 0 conflicts.
+[FilterConstraintsByTaskConflicts] Discarded goto_cons at location 4 due to 15 conflicts.
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+23
+[LOG]:[33m[Defer] multi-goto detected: 9 tasks; skip in main loop, handle at final aggregation
+[0m
+[LOG]:[32m[MultiPuton] Big object 5 (sort: sofa) appears in 7 puton tasks[0m
+[LOG]:[33m[MultiPuton] Marked task 0 as multi-puton for object 5[0m
+[LOG]:[33m[MultiPuton] Marked task 1 as multi-puton for object 5[0m
+[LOG]:[33m[MultiPuton] Marked task 2 as multi-puton for object 5[0m
+[LOG]:[33m[MultiPuton] Marked task 3 as multi-puton for object 5[0m
+[LOG]:[33m[MultiPuton] Marked task 4 as multi-puton for object 5[0m
+[LOG]:[33m[MultiPuton] Marked task 5 as multi-puton for object 5[0m
+[LOG]:[33m[MultiPuton] Marked task 6 as multi-puton for object 5[0m
+[LOG]:[36m[3A][main-loop] goals=0/23 (unknown=23), constraints=0/2 (unknown=2), base_score=0, action_cost=0, elapsed=33ms, remaining=4667ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[], satisfied_constraints=[]
+[0m
+puton can的风险系数是：0
+[LOG]:Move(4)
+[LOG]:PickUp(6,can)
+[LOG]:[32m[SenseCurrentLocationOnly] Location 4 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Object 6 detected at location 4
+[LOG]:[SenseCurrentLocationOnly] Object 7 detected at location 4
+[LOG]:[SenseCurrentLocationOnly] Object 8 detected at location 4
+[LOG]:[SenseCurrentLocationOnly] Object 9 detected at location 4
+[LOG]:[SenseCurrentLocationOnly] Object 10 detected at location 4
+[LOG]:[SenseCurrentLocationOnly] Object 11 detected at location 4
+[LOG]:[SenseCurrentLocationOnly] Object 12 detected at location 4
+[LOG]:[SenseCurrentLocationOnly] Object 13 detected at location 4
+[LOG]:[33m[SenseCurrentLocationOnly] Object id=5 expected at 4 but not sensed, set location UNKNOWN
+[0m
+[LOG]:AskLoc(5)
+[LOG]:AskLoc(5)
+[LOG]:[33mAskLoc(5) produced no usable bounded location reply
+[0m
+[LOG]:Move(-1)
+[LOG]:[31mMove: invalid target loc=-1 (UNKNOWN or negative)
+[0m
+[LOG]:AskLoc(5)
+[LOG]:Move(6)
+[LOG]:[32m[SenseCurrentLocationOnly] Location 6 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Object 5 detected at location 6
+[LOG]:[SenseCurrentLocationOnly] Object 6 detected at location 6
+[LOG]:PutDown(6,can)
+[LOG]:[32mTask done
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:white)[0m
+ConditionY:[35m(Sort:sofa,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=10/23 (unknown=1), constraints=0/2 (unknown=2), base_score=380, action_cost=20, elapsed=1198ms, remaining=3502ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,7:putdown,8:putdown,9:putdown,10:putdown,11:putdown,12:putdown,13:putdown,15:goto,22:goto], satisfied_constraints=[]
+[0m
+puton can的风险系数是：0
+[LOG]:Move(4)
+[LOG]:PickUp(7,can)
+[LOG]:Move(6)
+[LOG]:PutDown(7,can)
+[LOG]:[32mTask done
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:red)[0m
+ConditionY:[35m(Sort:sofa,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=12/23 (unknown=1), constraints=0/2 (unknown=2), base_score=448, action_cost=32, elapsed=1706ms, remaining=2994ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:puton,7:putdown,8:putdown,9:putdown,10:putdown,11:putdown,12:putdown,13:putdown,15:goto,21:goto,22:goto], satisfied_constraints=[]
+[0m
+puton can的风险系数是：0
+[LOG]:Move(4)
+[LOG]:PickUp(11,can)
+[LOG]:Move(6)
+[LOG]:PutDown(11,can)
+[LOG]:[32mTask done
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:yellow)[0m
+ConditionY:[35m(Sort:sofa,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=14/23 (unknown=1), constraints=0/2 (unknown=2), base_score=516, action_cost=44, elapsed=2238ms, remaining=2462ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:puton,2:puton,7:putdown,8:putdown,9:putdown,10:putdown,11:putdown,12:putdown,13:putdown,15:goto,17:goto,21:goto,22:goto], satisfied_constraints=[]
+[0m
+puton cup的风险系数是：0
+[LOG]:Move(4)
+[LOG]:PickUp(12,cup)
+[LOG]:Move(6)
+[LOG]:PutDown(12,cup)
+[LOG]:[32mTask done
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:white)[0m
+ConditionY:[35m(Sort:sofa,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=16/23 (unknown=1), constraints=0/2 (unknown=2), base_score=584, action_cost=56, elapsed=2754ms, remaining=1946ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:puton,2:puton,3:puton,7:putdown,8:putdown,9:putdown,10:putdown,11:putdown,12:putdown,13:putdown,14:goto,15:goto,17:goto,21:goto,22:goto], satisfied_constraints=[]
+[0m
+[LOG]:[33m[3A][StopGate] skip puton plan in main-loop: estimate=1750ms, safety=300ms, remaining=1946ms
+[0m
+[LOG]:[36m[3A][main-loop] goals=16/23 (unknown=1), constraints=0/2 (unknown=2), base_score=584, action_cost=56, elapsed=2754ms, remaining=1946ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:puton,2:puton,3:puton,7:putdown,8:putdown,9:putdown,10:putdown,11:putdown,12:putdown,13:putdown,14:goto,15:goto,17:goto,21:goto,22:goto], satisfied_constraints=[]
+[0m
+[LOG]:[33m[3A][StopGate] skip puton plan in main-loop: estimate=1750ms, safety=300ms, remaining=1946ms
+[0m
+[LOG]:[36m[3A][main-loop] goals=16/23 (unknown=1), constraints=0/2 (unknown=2), base_score=584, action_cost=56, elapsed=2754ms, remaining=1946ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:puton,2:puton,3:puton,7:putdown,8:putdown,9:putdown,10:putdown,11:putdown,12:putdown,13:putdown,14:goto,15:goto,17:goto,21:goto,22:goto], satisfied_constraints=[]
+[0m
+[LOG]:[33m[3A][StopGate] skip puton plan in main-loop: estimate=1750ms, safety=300ms, remaining=1946ms
+[0m
+[LOG]:[36m[3A][main-loop] goals=16/23 (unknown=1), constraints=0/2 (unknown=2), base_score=584, action_cost=56, elapsed=2754ms, remaining=1946ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:puton,2:puton,3:puton,7:putdown,8:putdown,9:putdown,10:putdown,11:putdown,12:putdown,13:putdown,14:goto,15:goto,17:goto,21:goto,22:goto], satisfied_constraints=[]
+[0m
+putdown 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputdown[0m
+ConditionX:[35m(Sort:can,Color:white)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=16/23 (unknown=1), constraints=0/2 (unknown=2), base_score=584, action_cost=56, elapsed=2755ms, remaining=1945ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:puton,2:puton,3:puton,7:putdown,8:putdown,9:putdown,10:putdown,11:putdown,12:putdown,13:putdown,14:goto,15:goto,17:goto,21:goto,22:goto], satisfied_constraints=[]
+[0m
+putdown 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputdown[0m
+ConditionX:[35m(Sort:can,Color:yellow)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=16/23 (unknown=1), constraints=0/2 (unknown=2), base_score=584, action_cost=56, elapsed=2756ms, remaining=1944ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:puton,2:puton,3:puton,7:putdown,8:putdown,9:putdown,10:putdown,11:putdown,12:putdown,13:putdown,14:goto,15:goto,17:goto,21:goto,22:goto], satisfied_constraints=[]
+[0m
+[LOG]:[32m[Zero-Action] validated as done
+ Behave:[35mputdown[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+[LOG]:[32mTask done (zero-action prevalidated)
+ Behave:[35mputdown[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=16/23 (unknown=1), constraints=0/2 (unknown=2), base_score=584, action_cost=56, elapsed=2756ms, remaining=1944ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:puton,2:puton,3:puton,7:putdown,8:putdown,9:putdown,10:putdown,11:putdown,12:putdown,13:putdown,14:goto,15:goto,17:goto,21:goto,22:goto], satisfied_constraints=[]
+[0m
+putdown 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputdown[0m
+ConditionX:[35m(Sort:cup,Color:white)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=16/23 (unknown=1), constraints=0/2 (unknown=2), base_score=584, action_cost=56, elapsed=2756ms, remaining=1944ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:puton,2:puton,3:puton,7:putdown,8:putdown,9:putdown,10:putdown,11:putdown,12:putdown,13:putdown,14:goto,15:goto,17:goto,21:goto,22:goto], satisfied_constraints=[]
+[0m
+[LOG]:[32m[Zero-Action] validated as done
+ Behave:[35mputdown[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+[LOG]:[32mTask done (zero-action prevalidated)
+ Behave:[35mputdown[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=16/23 (unknown=1), constraints=0/2 (unknown=2), base_score=584, action_cost=56, elapsed=2756ms, remaining=1944ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:puton,2:puton,3:puton,7:putdown,8:putdown,9:putdown,10:putdown,11:putdown,12:putdown,13:putdown,14:goto,15:goto,17:goto,21:goto,22:goto], satisfied_constraints=[]
+[0m
+[LOG]:[32m[Zero-Action] validated as done
+ Behave:[35mputdown[0m
+ConditionX:[35m(Sort:can,Color:green)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+[LOG]:[32mTask done (zero-action prevalidated)
+ Behave:[35mputdown[0m
+ConditionX:[35m(Sort:can,Color:green)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+[LOG]:[36m[3A][main-loop] goals=16/23 (unknown=1), constraints=0/2 (unknown=2), base_score=584, action_cost=56, elapsed=2756ms, remaining=1944ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:puton,2:puton,3:puton,7:putdown,8:putdown,9:putdown,10:putdown,11:putdown,12:putdown,13:putdown,14:goto,15:goto,17:goto,21:goto,22:goto], satisfied_constraints=[]
+[0m
+[LOG]:[33m[3A][StopGate] no executable candidate in this phase before main-loop
+[0m
+-----check check check-----
+[LOG]:[33m[Defer] multi-goto detected: 9 tasks; skip in main loop, handle at final aggregation
+[0m
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m
+Pos  2:(F):[33m(3 television)[0m
+Pos  3:(F):[33m(2 desk)[0m
+Pos  4:(F):(8 can)(9 can)(10 can)(13 cup)
+Pos  5:(F):[33m(4 chair)[0m
+Pos  6:(F):[32m(robot hold:0 plate:0)[0m[33m(5 sofa)[0m(6 can)(7 can)(11 can)(12 cup)
+UnknownPos:
+
+[LOG]:[36m[3A][multi-goto] goals=16/23 (unknown=1), constraints=0/2 (unknown=2), base_score=584, action_cost=56, elapsed=2763ms, remaining=1937ms
+[0m
+[LOG]:[36m[3A][multi-goto] completed_goals=[0:puton,1:puton,2:puton,3:puton,7:putdown,8:putdown,9:putdown,10:putdown,11:putdown,12:putdown,13:putdown,14:goto,15:goto,17:goto,21:goto,22:goto], satisfied_constraints=[]
+[0m
+[LOG]:[32m[MultiGoto] Executing multi-goto aggregation - skipping Sense operations
+[0m
+[LOG]:[32m[MultiGoto] Object[10]: goto_risk=0, pickup_risk=2, mustnear_risk=0, total_risk=2, can_move=false
+[0m
+[LOG]:[32m[MultiGoto] Object[9]: goto_risk=0, pickup_risk=2, mustnear_risk=0, total_risk=2, can_move=false
+[0m
+[LOG]:[32m[MultiGoto] Object[8]: goto_risk=0, pickup_risk=2, mustnear_risk=0, total_risk=2, can_move=false
+[0m
+[LOG]:[32m[MultiGoto] BigObject[5]: goto_risk=0
+[0m
+[LOG]:[32m[MultiGoto] BigObject[2]: goto_risk=0
+[0m
+[LOG]:[32m[MultiGoto] small_cand_id_disable: 
+[LOG]:[32m12 
+[LOG]:[32m11 
+[LOG]:[32m7 
+[LOG]:[32m6 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] small_cand_ids: 
+[LOG]:[32m10 
+[LOG]:[32m9 
+[LOG]:[32m8 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] big_cand_ids: 
+[LOG]:[32m5 
+[LOG]:[32m2 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] small_cand_ids.size()=3, big_cand_ids.size()=2
+[0m
+[LOG]:[32m[MultiGoto] small_lowrisk_ids.size()=3
+[0m
+[LOG]:[32m[MultiGoto] Entering main aggregation logic
+[0m
+[LOG]:[32m[MultiGoto] Performance optimization: Only checking 3 occupied locations instead of 100 total locations
+[0m
+[MultiGoto] location 4 has 3 small objects
+[MultiGoto] most_smallobj_loc 4
+[MultiGoto] location 6 has 4 small objects
+[MultiGoto] most_smallobj_loc 6
+[LOG]:[33m[MultiGoto] smallobj_loc is found: 6
+[0m
+[LOG]:[32mFinal-GOTO: choose hub=6
+[0m
+[LOG]:Move(4)
+[LOG]:PickUp(8,can)
+[LOG]:Move(6)
+[LOG]:PutDown(8,can)
+[LOG]:[32mFinal-GOTO: moved obj[8] to hub=6 (1/500) (via SolveTask_PutOn)
+[0m
+[LOG]:Move(4)
+[LOG]:PickUp(9,can)
+[LOG]:Move(6)
+[LOG]:PutDown(9,can)
+[LOG]:[32mFinal-GOTO: moved obj[9] to hub=6 (2/500) (via SolveTask_PutOn)
+[0m
+[LOG]:[33m[3A][StopGate] stop multi-goto candidates: estimate=1000ms, remaining=918ms
+[0m
+[LOG]:[32mFinal-GOTO: aggregation done, stay at hub=6
+[0m
+[LOG]:[32m[MultiGoto] ExecuteMultiGotoAggregation finished
+[0m
+
+Sovled Task Num:7    Expect Num:23
+[LOG]:[36m[3A][final] goals=20/23 (unknown=1), constraints=0/2 (unknown=2), base_score=720, action_cost=80, elapsed=3783ms, remaining=917ms
+[0m
+[LOG]:[36m[3A][final] completed_goals=[0:puton,1:puton,2:puton,3:puton,4:puton,6:puton,7:putdown,8:putdown,9:putdown,10:putdown,11:putdown,12:putdown,13:putdown,14:goto,15:goto,17:goto,19:goto,20:goto,21:goto,22:goto], satisfied_constraints=[]
+[0m
+#(Plug): Elapsed time=3.784s
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test
