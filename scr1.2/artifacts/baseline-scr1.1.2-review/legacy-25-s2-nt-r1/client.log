@@ -1,0 +1,298 @@
+[LOG]:-stage
+[LOG]:-nlp
+[LOG]:-err
+[LOG]:-ask_2
+[LOG]:-path
+[LOG]:nlp 1, err 1
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+#(Plug): Timeout=5000
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32mcase.xml
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+[LOG]:[32mThe green can must not be on plate.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:green>
+    <N:can>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:on>
+      <NP:>
+        <N:plate>
+
+[LOG]:[32mThere must not be a black can on plate.[0m
+[LOG]:<S:>
+  <THERE:there>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <NP:>
+        <ART:a>
+        <ADJ:black>
+        <N:can>
+      <PREP:on>
+      <NP:>
+        <N:plate>
+
+[LOG]:[32mThere must not be a white can on plate.[0m
+[LOG]:<S:>
+  <THERE:there>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <NP:>
+        <ART:a>
+        <ADJ:white>
+        <N:can>
+      <PREP:on>
+      <NP:>
+        <N:plate>
+
+[LOG]:[32mGive human a can.[0m
+[LOG]:<S:>
+  <VP:>
+    <VP:>
+      <V:give>
+      <NP:>
+        <N:human>
+    <NP:>
+      <ART:a>
+      <N:can>
+
+[LOG]:[32mPut the can on worktable.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:put>
+    <NP:>
+      <ART:the>
+      <N:can>
+    <PREP:on>
+    <NP:>
+      <N:worktable>
+
+[LOG]:[32mGo to teapoy.[0m
+[LOG]:<S:>
+  <VP:>
+    <VP:>
+      <V:go>
+      <PREP:to>
+    <NP:>
+      <N:teapoy>
+
+[LOG]:[32mpick the green can up.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:pick>
+    <NP:>
+      <ART:the>
+      <ADJ:green>
+      <N:can>
+    <PREP:up>
+
+[LOG]:[32mpick the black can up.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:pick>
+    <NP:>
+      <ART:the>
+      <ADJ:black>
+      <N:can>
+    <PREP:up>
+
+Pos  0:(F):
+Pos  1:(T):[33m(1 worktable)[0m
+Pos  2:(T):[33m(2 closet inside:[8] Closed)[0m(8 can)
+Pos  3:(T):[33m(3 microwave inside:[10] Open)[0m(10 can)
+Pos  4:(T):[33m(4 plant)[0m(9 can)
+Pos  5:(T):[32m(robot hold:0 plate:15)[0m[33m(5 sofa)[0m(15 book)
+Pos  6:(F):[33m(6 human)[0m
+Pos  7:(F):[33m(7 teapoy)[0m(11 can)
+UnknownPos:
+[34m(12 bottle)[0m [34m(13 bottle)[0m [34m(14 book)[0m 
+[LOG]:[32m[MustIn] correction done.
+[0m
+[LOG]:[32m[MustNear] lock obj[0] @ 5
+[0m
+[LOG]:[32m[MustNear] lock obj[1] @ 1
+[0m
+[LOG]:[32m[MustNear] lock obj[2] @ 2
+[0m
+[LOG]:[32m[MustNear] lock obj[3] @ 3
+[0m
+[LOG]:[32m[MustNear] lock obj[4] @ 4
+[0m
+[LOG]:[32m[MustNear] lock obj[5] @ 5
+[0m
+[LOG]:[32m[MustNear] lock obj[6] @ 6
+[0m
+[LOG]:[32m[MustNear] lock obj[7] @ 7
+[0m
+[LOG]:[32m[MustNear] lock obj[8] @ 2
+[0m
+[LOG]:[32m[MustNear] lock obj[9] @ 4
+[0m
+[LOG]:[32m[MustNear] lock obj[10] @ 3
+[0m
+[LOG]:[32m[MustNear] lock obj[11] @ 7
+[0m
+[LOG]:[32m[MustNear] lock obj[15] @ 5
+[0m
+[LOG]:[32m[MustNear] correction done.
+[0m
+Pos  0:(F):
+Pos  1:(T):[33m(1 worktable)[0m
+Pos  2:(T):[33m(2 closet inside:[8] Closed)[0m(8 can)
+Pos  3:(T):[33m(3 microwave inside:[10] Open)[0m(10 can)
+Pos  4:(T):[33m(4 plant)[0m(9 can)
+Pos  5:(T):[32m(robot hold:0 plate:15)[0m[33m(5 sofa)[0m(15 book)
+Pos  6:(F):[33m(6 human)[0m
+Pos  7:(F):[33m(7 teapoy)[0m(11 can)
+UnknownPos:
+[34m(12 bottle)[0m [34m(13 bottle)[0m [34m(14 book)[0m 
+Task:
+Behave:[35mgive[0m
+ConditionX:[35m(Sort:can,Color:)[0m
+ConditionY:[35m(Sort:human,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:)[0m
+ConditionY:[35m(Sort:worktable,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:teapoy,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mpickup[0m
+ConditionX:[35m(Sort:can,Color:green)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mpickup[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+
+Info:
+
+Not_Info:
+Behave:[35mplate[0m
+ConditionX:[35m(Sort:can,Color:green)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mplate[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mplate[0m
+ConditionX:[35m(Sort:can,Color:white)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+
+Not_Task:
+
+NotNot_Info:
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+[FilterConstraintsByTaskConflicts] Discarded goto_cons at location 0 due to 0 conflicts.
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+5
+give can的风险系数是：0
+[LOG]:Move(2)
+[LOG]:Open(2,closet)
+[LOG]:TakeOut(8,can)(2,closet)
+[LOG]:Move(6)
+[LOG]:[32m[SenseCurrentLocationOnly] Location 6 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Object 6 detected at location 6
+[LOG]:[SenseCurrentLocationOnly] Object 8 detected at location 6
+[LOG]:[SenseCurrentLocationOnly] Object 15 detected at location 6
+[LOG]:PutDown(8,can)
+[LOG]:[32mTask done
+ Behave:[35mgive[0m
+ConditionX:[35m(Sort:can,Color:)[0m
+ConditionY:[35m(Sort:human,Color:)[0m
+[0m
+puton 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:)[0m
+ConditionY:[35m(Sort:worktable,Color:)[0m
+[0m
+pickup can的风险系数是：0
+[LOG]:Move(4)
+[LOG]:PickUp(9,can)
+[LOG]:[32mTask done
+ Behave:[35mpickup[0m
+ConditionX:[35m(Sort:can,Color:green)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+pickup can的风险系数是：0
+[LOG]:PutDown(9,can)
+[LOG]:Move(3)
+[LOG]:TakeOut(10,can)(3,microwave)
+[LOG]:[32mTask done
+ Behave:[35mpickup[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+[DBG] goto risk@loc=7 bool=0
+goto teapoy的风险系数是：0
+[LOG]:Move(7)
+[LOG]:[32m[SenseCurrentLocationOnly] Location 7 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Object 11 detected at location 7
+[LOG]:[SenseCurrentLocationOnly] Object 7 detected at location 7
+[LOG]:[SenseCurrentLocationOnly] Object 10 detected at location 7
+[LOG]:[SenseCurrentLocationOnly] Object 15 detected at location 7
+[LOG]:[32mTask done
+ Behave:[35mgoto[0m
+ConditionX:[35m(Sort:teapoy,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+-----check check check-----
+Pos  0:(F):
+Pos  1:(T):[33m(1 worktable)[0m
+Pos  2:(T):[33m(2 closet inside:[] Open)[0m
+Pos  3:(T):[33m(3 microwave inside:[] Open)[0m
+Pos  4:(T):[33m(4 plant)[0m(9 can)
+Pos  5:(T):[33m(5 sofa)[0m
+Pos  6:(F):[33m(6 human)[0m(8 can)
+Pos  7:(F):[32m(robot hold:10 plate:15)[0m[33m(7 teapoy)[0m(10 can)(11 can)(15 book)
+UnknownPos:
+[34m(12 bottle)[0m [34m(13 bottle)[0m [34m(14 book)[0m 
+[LOG]:[32m[MultiGoto] Executing multi-goto aggregation - skipping Sense operations
+[0m
+[LOG]:[32m[MultiGoto] small_cand_id_disable: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] small_cand_ids: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] big_cand_ids: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] small_cand_ids.size()=0, big_cand_ids.size()=0
+[0m
+[LOG]:[32m[MultiGoto] small_lowrisk_ids.size()=0
+[0m
+[LOG]:[33m[MultiGoto] Skipping aggregation: small_lowrisk_ids.size()=0, big_cand_ids.size()=0
+[0m
+[LOG]:[32m[MultiGoto] ExecuteMultiGotoAggregation finished
+[0m
+
+Sovled Task Num:4    Expect Num:5
+#(Plug): Elapsed time=1.542s
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

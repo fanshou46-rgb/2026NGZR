@@ -1,0 +1,44 @@
+{
+  "command": [
+    "g++",
+    "-std=c++11",
+    "-O2",
+    "-g",
+    "-Wall",
+    "-Wextra",
+    "-I/home/yifan/env-release-2026/include",
+    "-I/home/yifan/env-release-2026/src",
+    "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/scr1.2/main.cpp",
+    "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/scr1.2/rdfw.cpp",
+    "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/scr1.2/parser.cpp",
+    "-L/home/yifan/env-release-2026/lib",
+    "-lframe",
+    "-lutility",
+    "-lboost_thread",
+    "-lboost_system",
+    "-lboost_chrono",
+    "-lboost_date_time",
+    "-lboost_regex",
+    "-lpthread",
+    "-ldl",
+    "-o",
+    "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/scr1.2/artifacts/build-scr1.2-a/example"
+  ],
+  "source_sha256": {
+    "CMakeLists.txt": "9ad5afc9d40e6e92341b7e38e1b8699f10e56ffad18cd41a2bc1fe7abf5df936",
+    "debuglog.hpp": "746b17d5c62ae2d3d8f1e300a849f1d019458eb11641cd48ecbc9bad113e1fc9",
+    "indexed_vector.hpp": "900b33cd40ae3e508c403dbae12563a43278cd950faceb169524966c2b6547e1",
+    "main.cpp": "199a46b8462755936af96141d2d20075716c69c4d19bb8de9a6893c0a8e01d09",
+    "parser.cpp": "ee0bf43aafa2be02c02362ee16f32bf3c8ad949fb3fcc4f7f646901b480e5936",
+    "parser.hpp": "b6efd33040703d51483d6d303be9d1decde72f492275d1abe78ddbd2fd449887",
+    "rdfw.cpp": "7e2999a46c336d25a7e3ede8a9dc11c192e7b7c66e4daada58b90f7e8234d8af",
+    "rdfw.hpp": "d4d49f3c82f498d4459401a119d1a952269f94bac89418940c16a9e82407a79b",
+    "time_budget.hpp": "6dfb85a5bce2ae169bcb83e57819d50e4514e8dbeff4052b0b8277b7f8a11b75",
+    "words.txt": "66f951c478092c11bf1e29894401401a55c0f26cfc4cf038acfeb1d6a8515a41"
+  },
+  "sdk_sha256": {
+    "bin/cserver": "49a6bb86f180e877701bd478e387babafc801dea4c3cf9751884afb7af68212e",
+    "lib/libasp.so": "bc34c0c324680f121f68ac975728aadc1c31e9234a309ff882562d694589023f",
+    "lib/libframe.a": "dba1f53227c7d08c2f1065eda617d9053cd3c2187a6f4e7ef24ea04c2bc0054a"
+  }
+}

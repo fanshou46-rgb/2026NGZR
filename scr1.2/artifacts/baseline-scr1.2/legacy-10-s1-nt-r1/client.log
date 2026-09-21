@@ -1,0 +1,277 @@
+[LOG]:-stage
+[LOG]:-nlp
+[LOG]:-err
+[LOG]:-ask_2
+[LOG]:-path
+[LOG]:nlp 1, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+#(Plug): Timeout=5000
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32mcase.xml
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+[LOG]:[32mThe door of refrigerator is closed.[0m
+[LOG]:<S:>
+  <NP:>
+    <NP:>
+      <ART:the>
+      <N:door>
+    <OF:of>
+    <NP:>
+      <N:refrigerator>
+  <VP:>
+    <BE:is>
+    <ADJ:closed>
+
+[LOG]:[32mThe door of microwave is opened.[0m
+[LOG]:<S:>
+  <NP:>
+    <NP:>
+      <ART:the>
+      <N:door>
+    <OF:of>
+    <NP:>
+      <N:microwave>
+  <VP:>
+    <BE:is>
+    <ADJ:opened>
+
+[LOG]:[32mDo not open the refrigerator.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:do>
+    <NOT:not>
+    <VP:>
+      <V:open>
+      <NP:>
+        <ART:the>
+        <N:refrigerator>
+
+[LOG]:[32mPut a book on the bed.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:put>
+    <NP:>
+      <ART:a>
+      <N:book>
+    <PREP:on>
+    <NP:>
+      <ART:the>
+      <N:bed>
+
+[LOG]:[32mPut a bottle in the cupboard.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:put>
+    <NP:>
+      <ART:a>
+      <N:bottle>
+    <PREP:in>
+    <NP:>
+      <ART:the>
+      <N:cupboard>
+
+[LOG]:[32mPut the green book on the chair.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:put>
+    <NP:>
+      <ART:the>
+      <ADJ:green>
+      <N:book>
+    <PREP:on>
+    <NP:>
+      <ART:the>
+      <N:chair>
+
+[LOG]:[32mPick up the can.[0m
+[LOG]:<S:>
+  <VP:>
+    <VP:>
+      <V:pick>
+      <PREP:up>
+    <NP:>
+      <ART:the>
+      <N:can>
+
+[LOG]:[32mTake out remotecontrol from cupboard.[0m
+[LOG]:<S:>
+  <VP:>
+    <VP:>
+      <V:take>
+      <PREP:out>
+    <NP:>
+      <N:remotecontrol>
+    <PREP:from>
+    <NP:>
+      <N:cupboard>
+
+[LOG]:[32mPut a cup in microwave.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:put>
+    <NP:>
+      <ART:a>
+      <N:cup>
+    <PREP:in>
+    <NP:>
+      <N:microwave>
+
+Pos  0:(T):
+Pos  1:(F):[33m(1 human)[0m(16 cup)
+Pos  2:(F):[33m(2 desk)[0m(13 bottle)(15 cup)
+Pos  3:(F):[33m(3 television)[0m
+Pos  4:(F):[33m(4 chair)[0m
+Pos  5:(F):[33m(5 bed)[0m
+Pos  6:(F):[33m(6 refrigerator inside:[10,14] Closed)[0m(10 book)(14 bottle)
+Pos  7:(F):[33m(7 closet inside:[] Closed)[0m
+Pos  8:(F):[32m(robot hold:11 plate:18)[0m[33m(8 cupboard inside:[12,17] Open)[0m(11 book)(12 book)(17 remotecontrol)(18 can)
+Pos  9:(F):[33m(9 microwave inside:[] Open)[0m
+UnknownPos:
+
+Task:
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:book,Color:)[0m
+ConditionY:[35m(Sort:bed,Color:)[0m
+Behave:[35mputin[0m
+ConditionX:[35m(Sort:bottle,Color:)[0m
+ConditionY:[35m(Sort:cupboard,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:book,Color:green)[0m
+ConditionY:[35m(Sort:chair,Color:)[0m
+Behave:[35mpickup[0m
+ConditionX:[35m(Sort:can,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mtakeout[0m
+ConditionX:[35m(Sort:remotecontrol,Color:)[0m
+ConditionY:[35m(Sort:cupboard,Color:)[0m
+Behave:[35mputin[0m
+ConditionX:[35m(Sort:cup,Color:)[0m
+ConditionY:[35m(Sort:microwave,Color:)[0m
+
+Info:
+Behave:[35mclosed[0m
+ConditionX:[35m(Sort:refrigerator,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mopened[0m
+ConditionX:[35m(Sort:microwave,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+
+Not_Info:
+
+Not_Task:
+Behave:[35mopen[0m
+ConditionX:[35m(Sort:refrigerator,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+
+NotNot_Info:
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+[FilterConstraintsByTaskConflicts] Discarded goto_cons at location 0 due to 0 conflicts.
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+6
+puton book的风险系数是：1
+[LOG]:PutDown(11,book)
+[LOG]:Move(6)
+[LOG]:Open(6,refrigerator)
+[LOG]:TakeOut(10,book)(6,refrigerator)
+[LOG]:Move(5)
+[LOG]:PutDown(10,book)
+[LOG]:[32mTask done
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:book,Color:)[0m
+ConditionY:[35m(Sort:bed,Color:)[0m
+[0m
+putin bottle的风险系数是：0
+[LOG]:Move(2)
+[LOG]:PickUp(13,bottle)
+[LOG]:Move(8)
+[LOG]:PutIn(13,bottle)(8,cupboard)
+[LOG]:[32mTask done
+ Behave:[35mputin[0m
+ConditionX:[35m(Sort:bottle,Color:)[0m
+ConditionY:[35m(Sort:cupboard,Color:)[0m
+[0m
+puton book的风险系数是：0
+[LOG]:PickUp(11,book)
+[LOG]:Move(4)
+[LOG]:PutDown(11,book)
+[LOG]:[32mTask done
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:book,Color:green)[0m
+ConditionY:[35m(Sort:chair,Color:)[0m
+[0m
+putin cup的风险系数是：0
+[LOG]:Move(2)
+[LOG]:PickUp(15,cup)
+[LOG]:Move(9)
+[LOG]:PutIn(15,cup)(9,microwave)
+[LOG]:[32mTask done
+ Behave:[35mputin[0m
+ConditionX:[35m(Sort:cup,Color:)[0m
+ConditionY:[35m(Sort:microwave,Color:)[0m
+[0m
+takeout remotecontrol的风险系数是：0
+[LOG]:Move(8)
+[LOG]:TakeOut(17,remotecontrol)(8,cupboard)
+[LOG]:[32mTask done
+ Behave:[35mtakeout[0m
+ConditionX:[35m(Sort:remotecontrol,Color:)[0m
+ConditionY:[35m(Sort:cupboard,Color:)[0m
+[0m
+pickup can的风险系数是：0
+[LOG]:[32mTask done
+ Behave:[35mpickup[0m
+ConditionX:[35m(Sort:can,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+-----check check check-----
+Pos  0:(T):
+Pos  1:(F):[33m(1 human)[0m(16 cup)
+Pos  2:(F):[33m(2 desk)[0m
+Pos  3:(F):[33m(3 television)[0m
+Pos  4:(F):[33m(4 chair)[0m(11 book)
+Pos  5:(F):[33m(5 bed)[0m(10 book)
+Pos  6:(F):[33m(6 refrigerator inside:[14] Open)[0m(14 bottle)
+Pos  7:(F):[33m(7 closet inside:[] Closed)[0m
+Pos  8:(F):[32m(robot hold:17 plate:18)[0m[33m(8 cupboard inside:[12,13] Open)[0m(12 book)(13 bottle)(17 remotecontrol)(18 can)
+Pos  9:(F):[33m(9 microwave inside:[15] Open)[0m(15 cup)
+UnknownPos:
+
+[LOG]:[32m[MultiGoto] Executing multi-goto aggregation - skipping Sense operations
+[0m
+[LOG]:[32m[MultiGoto] small_cand_id_disable: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] small_cand_ids: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] big_cand_ids: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] small_cand_ids.size()=0, big_cand_ids.size()=0
+[0m
+[LOG]:[32m[MultiGoto] small_lowrisk_ids.size()=0
+[0m
+[LOG]:[33m[MultiGoto] Skipping aggregation: small_lowrisk_ids.size()=0, big_cand_ids.size()=0
+[0m
+[LOG]:[32m[MultiGoto] ExecuteMultiGotoAggregation finished
+[0m
+
+Sovled Task Num:6    Expect Num:6
+RDFW_METRICS {"elapsed_ms":2221,"budget_ms":4500,"exit_reason":"completed","completed_during_execution":6,"actions":{"Move":8,"Open":1,"PickUp":3,"PutDown":3,"PutIn":2,"TakeOut":2}}
+#(Plug): Elapsed time=2.221s
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

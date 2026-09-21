@@ -1,0 +1,206 @@
+[LOG]:-stage
+[LOG]:-nlp
+[LOG]:-err
+[LOG]:-ask_2
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+#(Plug): Timeout=5000
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32mcase.xml
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+Pos  0:(T):
+Pos  1:(T):[33m(1 human)[0m
+Pos  2:(T):[33m(2 desk)[0m(14 book)(15 bottle)
+Pos  3:(T):[33m(3 television)[0m
+Pos  4:(T):[33m(4 chair)[0m
+Pos  5:(T):[33m(5 bed)[0m
+Pos  6:(T):[33m(6 refrigerator inside:[12,16] Closed)[0m(12 book)(16 bottle)(18 cup)
+Pos  7:(T):[33m(7 closet inside:[19] Closed)[0m(19 remotecontrol)
+Pos  8:(T):[32m(robot hold:13 plate:20)[0m[33m(8 cupboard inside:[] Open)[0m(13 book)(20 can)
+Pos  9:(T):[33m(9 microwave inside:[] Open)[0m(22 bottle)
+Pos 10:(T):[33m(10 sofa)[0m
+Pos 11:(T):[33m(11 table)[0m(17 cup)
+UnknownPos:
+[34m(21 can)[0m 
+Task:
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:)[0m
+ConditionY:[35m(Sort:bed,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:television,Color:)[0m
+Behave:[35mtakeout[0m
+ConditionX:[35m(Sort:remotecontrol,Color:)[0m
+ConditionY:[35m(Sort:cupboard,Color:)[0m
+Behave:[35mpickup[0m
+ConditionX:[35m(Sort:bottle,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:white)[0m
+ConditionY:[35m(Sort:table,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:book,Color:)[0m
+ConditionY:[35m(Sort:table,Color:)[0m
+Behave:[35mgive[0m
+ConditionX:[35m(Sort:book,Color:white)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:sofa,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+
+Info:
+Behave:[35mclosed[0m
+ConditionX:[35m(Sort:refrigerator,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mopened[0m
+ConditionX:[35m(Sort:microwave,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+
+Not_Info:
+Behave:[35mopened[0m
+ConditionX:[35m(Sort:refrigerator,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+
+Not_Task:
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:book,Color:green)[0m
+ConditionY:[35m(Sort:closet,Color:)[0m
+
+NotNot_Info:
+Behave:[35mon[0m
+ConditionX:[35m(Sort:bottle,Color:green)[0m
+ConditionY:[35m(Sort:desk,Color:)[0m
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+[FilterConstraintsByTaskConflicts] Discarded goto_cons at location 0 due to 0 conflicts.
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+8
+[LOG]:[32m[MultiPuton] Big object 11 (sort: table) appears in 2 puton tasks[0m
+[LOG]:[33m[MultiPuton] Marked task 2 as multi-puton for object 11[0m
+[LOG]:[33m[MultiPuton] Marked task 3 as multi-puton for object 11[0m
+puton can的风险系数是：0
+[LOG]:PutDown(13,book)
+[LOG]:FromPlate(20,can)
+[LOG]:Move(5)
+[LOG]:PutDown(20,can)
+[LOG]:[32mTask done
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:)[0m
+ConditionY:[35m(Sort:bed,Color:)[0m
+[0m
+puton bottle的风险系数是：1
+[LOG]:Move(6)
+[LOG]:Open(6,refrigerator)
+[LOG]:TakeOut(16,bottle)(6,refrigerator)
+[LOG]:Move(3)
+[LOG]:PutDown(16,bottle)
+[LOG]:[32mTask done
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:television,Color:)[0m
+[0m
+puton cup的风险系数是：0
+[LOG]:Move(6)
+[LOG]:PickUp(18,cup)
+[LOG]:Move(11)
+[LOG]:PutDown(18,cup)
+[LOG]:[32mTask done
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:white)[0m
+ConditionY:[35m(Sort:table,Color:)[0m
+[0m
+puton book的风险系数是：0
+[LOG]:Move(6)
+[LOG]:TakeOut(12,book)(6,refrigerator)
+[LOG]:Move(11)
+[LOG]:PutDown(12,book)
+[LOG]:[32mTask done
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:book,Color:)[0m
+ConditionY:[35m(Sort:table,Color:)[0m
+[0m
+give book的风险系数是：0
+[LOG]:Move(2)
+[LOG]:PickUp(14,book)
+[LOG]:Move(1)
+[LOG]:PutDown(14,book)
+[LOG]:[32mTask done
+ Behave:[35mgive[0m
+ConditionX:[35m(Sort:book,Color:white)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+takeout remotecontrol的风险系数是：0
+[LOG]:[32mTask done
+ Behave:[35mtakeout[0m
+ConditionX:[35m(Sort:remotecontrol,Color:)[0m
+ConditionY:[35m(Sort:cupboard,Color:)[0m
+[0m
+pickup bottle的风险系数是：1
+[LOG]:Move(2)
+[LOG]:PickUp(15,bottle)
+[LOG]:[32mTask done
+ Behave:[35mpickup[0m
+ConditionX:[35m(Sort:bottle,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+[DBG] goto risk@loc=10 bool=0
+goto sofa的风险系数是：0
+[LOG]:Move(10)
+[LOG]:[32mTask done
+ Behave:[35mgoto[0m
+ConditionX:[35m(Sort:sofa,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+-----check check check-----
+Pos  0:(T):
+Pos  1:(T):[33m(1 human)[0m(14 book)
+Pos  2:(T):[33m(2 desk)[0m
+Pos  3:(T):[33m(3 television)[0m(16 bottle)
+Pos  4:(T):[33m(4 chair)[0m
+Pos  5:(T):[33m(5 bed)[0m(20 can)
+Pos  6:(T):[33m(6 refrigerator inside:[] Open)[0m
+Pos  7:(T):[33m(7 closet inside:[19] Closed)[0m(19 remotecontrol)
+Pos  8:(T):[33m(8 cupboard inside:[] Open)[0m(13 book)
+Pos  9:(T):[33m(9 microwave inside:[] Open)[0m(22 bottle)
+Pos 10:(T):[32m(robot hold:15 plate:0)[0m[33m(10 sofa)[0m(15 bottle)
+Pos 11:(T):[33m(11 table)[0m(12 book)(17 cup)(18 cup)
+UnknownPos:
+[34m(21 can)[0m 
+[LOG]:[32m[MultiGoto] Executing multi-goto aggregation - skipping Sense operations
+[0m
+[LOG]:[32m[MultiGoto] small_cand_id_disable: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] small_cand_ids: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] big_cand_ids: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] small_cand_ids.size()=0, big_cand_ids.size()=0
+[0m
+[LOG]:[32m[MultiGoto] small_lowrisk_ids.size()=0
+[0m
+[LOG]:[33m[MultiGoto] Skipping aggregation: small_lowrisk_ids.size()=0, big_cand_ids.size()=0
+[0m
+[LOG]:[32m[MultiGoto] ExecuteMultiGotoAggregation finished
+[0m
+
+Sovled Task Num:8    Expect Num:8
+#(Plug): Elapsed time=2.957s
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

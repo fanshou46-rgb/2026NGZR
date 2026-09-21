@@ -1,0 +1,13 @@
+/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/scr1.2/artifacts/checks-1/wrong_domain.cpp: In function ‘int main()’:
+/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/scr1.2/artifacts/checks-1/wrong_domain.cpp:2:63: error: no match for ‘operator[]’ (operand types are ‘_home::ObjectVector<int> {aka _home::IndexedVector<_home::Index<_home::ObjectTag>, int>}’ and ‘_home::LocationId {aka _home::Index<_home::LocationTag>}’)
+ int main() { _home::ObjectVector<int> table(2,0); return table[_home::LocationId(1)]; }
+                                                               ^
+In file included from /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/scr1.2/artifacts/checks-1/wrong_domain.cpp:1:0:
+/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/scr1.2/indexed_vector.hpp:27:30: note: candidate: typename _home::IndexedVector<Key, Value>::Base::reference _home::IndexedVector<Key, Value>::operator[](Key) [with Key = _home::Index<_home::ObjectTag>; Value = int; typename _home::IndexedVector<Key, Value>::Base::reference = int&]
+     typename Base::reference operator[](Key key) {
+                              ^~~~~~~~
+/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/scr1.2/indexed_vector.hpp:27:30: note:   no known conversion for argument 1 from ‘_home::LocationId {aka _home::Index<_home::LocationTag>}’ to ‘_home::Index<_home::ObjectTag>’
+/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/scr1.2/indexed_vector.hpp:31:36: note: candidate: typename _home::IndexedVector<Key, Value>::Base::const_reference _home::IndexedVector<Key, Value>::operator[](Key) const [with Key = _home::Index<_home::ObjectTag>; Value = int; typename _home::IndexedVector<Key, Value>::Base::const_reference = const int&]
+     typename Base::const_reference operator[](Key key) const {
+                                    ^~~~~~~~
+/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/scr1.2/indexed_vector.hpp:31:36: note:   no known conversion for argument 1 from ‘_home::LocationId {aka _home::Index<_home::LocationTag>}’ to ‘_home::Index<_home::ObjectTag>’

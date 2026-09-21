@@ -1,0 +1,199 @@
+[LOG]:-stage
+[LOG]:-nlp
+[LOG]:-err
+[LOG]:-ask_2
+[LOG]:-path
+[LOG]:nlp 1, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+#(Plug): Timeout=5000
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32mcase.xml
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+[LOG]:[32mGo to desk.[0m
+[LOG]:<S:>
+  <VP:>
+    <VP:>
+      <V:go>
+      <PREP:to>
+    <NP:>
+      <N:desk>
+
+[LOG]:[32mPick up the red remotecontrol.[0m
+[LOG]:<S:>
+  <VP:>
+    <VP:>
+      <V:pick>
+      <PREP:up>
+    <NP:>
+      <ART:the>
+      <ADJ:red>
+      <N:remotecontrol>
+
+[LOG]:[32mPut the bule cup on airconditioner.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:put>
+    <NP:>
+      <ART:the>
+      <ADJ:bule>
+      <N:cup>
+    <PREP:on>
+    <NP:>
+      <N:airconditioner>
+
+[31m[ERROR]:/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/scr1.1.2/rdfw.cpp:2971 Instruction Error: No object found matching conditionX (sort=cup, color=bule)[0m
+[LOG]:[32mThe red cup is on teapoy.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:red>
+    <N:cup>
+  <VP:>
+    <BE:is>
+    <PREP:on>
+    <NP:>
+      <N:teapoy>
+
+[LOG]:[32mThe cupboard is closed.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <N:cupboard>
+  <VP:>
+    <BE:is>
+    <ADJ:closed>
+
+[LOG]:[32mThe closet must be opened.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <N:closet>
+  <VP:>
+    <MUST:must>
+    <VP:>
+      <BE:be>
+      <ADJ:opened>
+
+Pos  0:(T):
+Pos  1:(T):[33m(1 sofa)[0m
+Pos  2:(T):[33m(2 teapoy)[0m(20 cup)
+Pos  3:(T):[33m(3 bed)[0m
+Pos  4:(T):[33m(4 cupboard inside:[19] Closed)[0m(19 book)
+Pos  5:(T):[33m(5 couch)[0m(24 remotecontrol)(27 cup)
+Pos  6:(T):[33m(6 desk)[0m(22 book)(28 can)
+Pos  7:(T):[33m(7 chair)[0m
+Pos  8:(T):[33m(8 closet inside:[] Open)[0m
+Pos  9:(T):[33m(9 airconditioner)[0m(21 book)
+Pos 10:(T):
+Pos 11:(T):[33m(11 plant)[0m
+Pos 12:(T):[32m(robot hold:18 plate:0)[0m[33m(12 television)[0m(18 bottle)
+Pos 13:(T):
+Pos 14:(T):[33m(14 table)[0m(17 cup)(26 can)
+Pos 15:(T):[33m(15 workspace)[0m(16 cup)(23 can)(25 remotecontrol)
+UnknownPos:
+[34m(10 )[0m [34m(13 )[0m 
+Task:
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:desk,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mpickup[0m
+ConditionX:[35m(Sort:remotecontrol,Color:red)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:bule)[0m
+ConditionY:[35m(Sort:airconditioner,Color:)[0m
+
+Info:
+Behave:[35mon[0m
+ConditionX:[35m(Sort:cup,Color:red)[0m
+ConditionY:[35m(Sort:teapoy,Color:)[0m
+Behave:[35mclosed[0m
+ConditionX:[35m(Sort:cupboard,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+
+Not_Info:
+
+Not_Task:
+
+NotNot_Info:
+Behave:[35mopened[0m
+ConditionX:[35m(Sort:closet,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+[FilterConstraintsByTaskConflicts] Discarded goto_cons at location 0 due to 0 conflicts.
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+2
+pickup remotecontrol的风险系数是：0
+[LOG]:PutDown(18,bottle)
+[LOG]:Move(5)
+[LOG]:PickUp(24,remotecontrol)
+[LOG]:[32mTask done
+ Behave:[35mpickup[0m
+ConditionX:[35m(Sort:remotecontrol,Color:red)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+[DBG] goto risk@loc=6 bool=0
+goto desk的风险系数是：0
+[LOG]:Move(6)
+[LOG]:[32mTask done
+ Behave:[35mgoto[0m
+ConditionX:[35m(Sort:desk,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+-----check check check-----
+Pos  0:(T):
+Pos  1:(T):[33m(1 sofa)[0m
+Pos  2:(T):[33m(2 teapoy)[0m(20 cup)
+Pos  3:(T):[33m(3 bed)[0m
+Pos  4:(T):[33m(4 cupboard inside:[19] Closed)[0m(19 book)
+Pos  5:(T):[33m(5 couch)[0m(27 cup)
+Pos  6:(T):[32m(robot hold:24 plate:0)[0m[33m(6 desk)[0m(22 book)(24 remotecontrol)(28 can)
+Pos  7:(T):[33m(7 chair)[0m
+Pos  8:(T):[33m(8 closet inside:[] Open)[0m
+Pos  9:(T):[33m(9 airconditioner)[0m(21 book)
+Pos 10:(T):
+Pos 11:(T):[33m(11 plant)[0m
+Pos 12:(T):[33m(12 television)[0m(18 bottle)
+Pos 13:(T):
+Pos 14:(T):[33m(14 table)[0m(17 cup)(26 can)
+Pos 15:(T):[33m(15 workspace)[0m(16 cup)(23 can)(25 remotecontrol)
+UnknownPos:
+[34m(10 )[0m [34m(13 )[0m 
+[LOG]:[32m[MultiGoto] Executing multi-goto aggregation - skipping Sense operations
+[0m
+[LOG]:[32m[MultiGoto] small_cand_id_disable: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] small_cand_ids: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] big_cand_ids: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] small_cand_ids.size()=0, big_cand_ids.size()=0
+[0m
+[LOG]:[32m[MultiGoto] small_lowrisk_ids.size()=0
+[0m
+[LOG]:[33m[MultiGoto] Skipping aggregation: small_lowrisk_ids.size()=0, big_cand_ids.size()=0
+[0m
+[LOG]:[32m[MultiGoto] ExecuteMultiGotoAggregation finished
+[0m
+
+Sovled Task Num:2    Expect Num:2
+#(Plug): Elapsed time=0.565s
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

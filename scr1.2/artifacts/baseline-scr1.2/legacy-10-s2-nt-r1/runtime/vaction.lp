@@ -1,0 +1,1 @@
+occurs(takeout(17, 8), 1).

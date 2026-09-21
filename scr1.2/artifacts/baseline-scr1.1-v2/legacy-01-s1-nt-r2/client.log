@@ -1,0 +1,347 @@
+[LOG]:-stage
+[LOG]:-nlp
+[LOG]:-err
+[LOG]:-ask_2
+[LOG]:-path
+[LOG]:nlp 1, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+#(Plug): Timeout=5000
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32mcase.xml
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+[LOG]:[32mThe door of the refrigerator is closed.[0m
+[LOG]:<S:>
+  <NP:>
+    <NP:>
+      <ART:the>
+      <N:door>
+    <OF:of>
+    <NP:>
+      <ART:the>
+      <N:refrigerator>
+  <VP:>
+    <BE:is>
+    <ADJ:closed>
+
+[LOG]:[32mThe door of the microwave is opened.[0m
+[LOG]:<S:>
+  <NP:>
+    <NP:>
+      <ART:the>
+      <N:door>
+    <OF:of>
+    <NP:>
+      <ART:the>
+      <N:microwave>
+  <VP:>
+    <BE:is>
+    <ADJ:opened>
+
+[LOG]:[32mDo not open the door of the refrigerator.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:do>
+    <NOT:not>
+    <VP:>
+      <V:open>
+      <NP:>
+        <NP:>
+          <ART:the>
+          <N:door>
+        <OF:of>
+        <NP:>
+          <ART:the>
+          <N:refrigerator>
+
+[LOG]:[32mDo not put the book which is green on closet.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:do>
+    <NOT:not>
+    <VP:>
+      <V:put>
+      <NP:>
+        <NP:>
+          <ART:the>
+          <N:book>
+        <WHICH:which>
+        <VP:>
+          <BE:is>
+          <ADJ:green>
+      <PREP:on>
+      <NP:>
+        <N:closet>
+
+[LOG]:[32mThe green bottle must be on the desk.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:green>
+    <N:bottle>
+  <VP:>
+    <MUST:must>
+    <VP:>
+      <BE:be>
+      <PREP:on>
+      <NP:>
+        <ART:the>
+        <N:desk>
+
+[LOG]:[32mPut a can on the bed.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:put>
+    <NP:>
+      <ART:a>
+      <N:can>
+    <PREP:on>
+    <NP:>
+      <ART:the>
+      <N:bed>
+
+[LOG]:[32mPut the bottle which is blue on the television.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:put>
+    <NP:>
+      <NP:>
+        <ART:the>
+        <N:bottle>
+      <WHICH:which>
+      <VP:>
+        <BE:is>
+        <ADJ:blue>
+    <PREP:on>
+    <NP:>
+      <ART:the>
+      <N:television>
+
+[LOG]:[32mTake out the remotecontrol from the cupboard.[0m
+[LOG]:<S:>
+  <VP:>
+    <VP:>
+      <V:take>
+      <PREP:out>
+    <NP:>
+      <ART:the>
+      <N:remotecontrol>
+    <PREP:from>
+    <NP:>
+      <ART:the>
+      <N:cupboard>
+
+[LOG]:[32mPick up the bottle.[0m
+[LOG]:<S:>
+  <VP:>
+    <VP:>
+      <V:pick>
+      <PREP:up>
+    <NP:>
+      <ART:the>
+      <N:bottle>
+
+[LOG]:[32mPut a book on the table.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:put>
+    <NP:>
+      <ART:a>
+      <N:book>
+    <PREP:on>
+    <NP:>
+      <ART:the>
+      <N:table>
+
+[LOG]:[32mGive the book which is white for human.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:give>
+    <NP:>
+      <NP:>
+        <ART:the>
+        <N:book>
+      <WHICH:which>
+      <VP:>
+        <BE:is>
+        <ADJ:white>
+    <PREP:for>
+    <NP:>
+      <N:human>
+
+[LOG]:[32mGo to the sofa.[0m
+[LOG]:<S:>
+  <VP:>
+    <VP:>
+      <V:go>
+      <PREP:to>
+    <NP:>
+      <ART:the>
+      <N:sofa>
+
+Pos  0:(T):
+Pos  1:(T):[33m(1 human)[0m
+Pos  2:(T):[33m(2 desk)[0m(14 book)(15 bottle)
+Pos  3:(T):[33m(3 television)[0m
+Pos  4:(T):[33m(4 chair)[0m
+Pos  5:(T):[33m(5 bed)[0m
+Pos  6:(T):[33m(6 refrigerator inside:[12,16] Closed)[0m(12 book)(16 bottle)(18 cup)
+Pos  7:(T):[33m(7 closet inside:[19] Closed)[0m(19 remotecontrol)
+Pos  8:(T):[32m(robot hold:13 plate:20)[0m[33m(8 cupboard inside:[] Open)[0m(13 book)(20 can)
+Pos  9:(T):[33m(9 microwave inside:[] Open)[0m(22 bottle)
+Pos 10:(T):[33m(10 sofa)[0m
+Pos 11:(T):[33m(11 table)[0m(17 cup)
+UnknownPos:
+[34m(21 can)[0m 
+Task:
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:)[0m
+ConditionY:[35m(Sort:bed,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:television,Color:)[0m
+Behave:[35mtakeout[0m
+ConditionX:[35m(Sort:remotecontrol,Color:)[0m
+ConditionY:[35m(Sort:cupboard,Color:)[0m
+Behave:[35mpickup[0m
+ConditionX:[35m(Sort:bottle,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:book,Color:)[0m
+ConditionY:[35m(Sort:table,Color:)[0m
+Behave:[35mgive[0m
+ConditionX:[35m(Sort:book,Color:white)[0m
+ConditionY:[35m(Sort:human,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:sofa,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+
+Info:
+Behave:[35mclosed[0m
+ConditionX:[35m(Sort:refrigerator,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mopened[0m
+ConditionX:[35m(Sort:microwave,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+
+Not_Info:
+
+Not_Task:
+Behave:[35mopen[0m
+ConditionX:[35m(Sort:refrigerator,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:book,Color:green)[0m
+ConditionY:[35m(Sort:closet,Color:)[0m
+
+NotNot_Info:
+Behave:[35mon[0m
+ConditionX:[35m(Sort:bottle,Color:green)[0m
+ConditionY:[35m(Sort:desk,Color:)[0m
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+[FilterConstraintsByTaskConflicts] Discarded goto_cons at location 0 due to 0 conflicts.
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+7
+puton can的风险系数是：0
+[LOG]:PutDown(13,book)
+[LOG]:[32mTask not done
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:)[0m
+ConditionY:[35m(Sort:bed,Color:)[0m
+[0m
+puton bottle的风险系数是：1
+[LOG]:PutDown(13,book)
+[LOG]:[32mTask not done
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:television,Color:)[0m
+[0m
+puton book的风险系数是：1
+[LOG]:PutDown(13,book)
+[LOG]:[32mTask not done
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:book,Color:)[0m
+ConditionY:[35m(Sort:table,Color:)[0m
+[0m
+give book的风险系数是：0
+[LOG]:PutDown(13,book)
+[LOG]:[32mTask not done
+ Behave:[35mgive[0m
+ConditionX:[35m(Sort:book,Color:white)[0m
+ConditionY:[35m(Sort:human,Color:)[0m
+[0m
+takeout remotecontrol的风险系数是：0
+[LOG]:[32mTask done
+ Behave:[35mtakeout[0m
+ConditionX:[35m(Sort:remotecontrol,Color:)[0m
+ConditionY:[35m(Sort:cupboard,Color:)[0m
+[0m
+pickup bottle的风险系数是：1
+[LOG]:PutDown(13,book)
+[LOG]:[32mTask not done
+ Behave:[35mpickup[0m
+ConditionX:[35m(Sort:bottle,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+[DBG] goto risk@loc=10 bool=0
+goto sofa的风险系数是：0
+[LOG]:Move(10)
+[LOG]:[31mMove: Plug::Move(10) failed
+[0m
+[LOG]:[32mTask not done
+ Behave:[35mgoto[0m
+ConditionX:[35m(Sort:sofa,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+-----check check check-----
+Pos  0:(T):
+Pos  1:(T):[33m(1 human)[0m
+Pos  2:(T):[33m(2 desk)[0m(14 book)(15 bottle)
+Pos  3:(T):[33m(3 television)[0m
+Pos  4:(T):[33m(4 chair)[0m
+Pos  5:(T):[33m(5 bed)[0m
+Pos  6:(T):[33m(6 refrigerator inside:[12,16] Closed)[0m(12 book)(16 bottle)(18 cup)
+Pos  7:(T):[33m(7 closet inside:[19] Closed)[0m(19 remotecontrol)
+Pos  8:(T):[32m(robot hold:13 plate:20)[0m[33m(8 cupboard inside:[] Open)[0m(13 book)(20 can)
+Pos  9:(T):[33m(9 microwave inside:[] Open)[0m(22 bottle)
+Pos 10:(T):[33m(10 sofa)[0m
+Pos 11:(T):[33m(11 table)[0m(17 cup)
+UnknownPos:
+[34m(21 can)[0m 
+[LOG]:[32m[MultiGoto] Executing multi-goto aggregation - skipping Sense operations
+[0m
+[LOG]:[32m[MultiGoto] small_cand_id_disable: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] small_cand_ids: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] big_cand_ids: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] small_cand_ids.size()=0, big_cand_ids.size()=0
+[0m
+[LOG]:[32m[MultiGoto] small_lowrisk_ids.size()=0
+[0m
+[LOG]:[33m[MultiGoto] Skipping aggregation: small_lowrisk_ids.size()=0, big_cand_ids.size()=0
+[0m
+[LOG]:[32m[MultiGoto] ExecuteMultiGotoAggregation finished
+[0m
+
+Sovled Task Num:1    Expect Num:7
+#(Plug): Elapsed time=0.586s
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

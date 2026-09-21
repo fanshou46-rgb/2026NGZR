@@ -1,0 +1,54 @@
+{
+  "raw_score": 0,
+  "official_score": 0,
+  "platform_seconds": 0.895,
+  "platform_timed_out": false,
+  "actions": {
+    "putdown": 4,
+    "move": 3,
+    "askloc": 4
+  },
+  "action_count": 11,
+  "client_metrics": null,
+  "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/scr1.2/tests/baseline/s1-it-10.xml",
+  "case_sha256": "861a6492ea69ab65f61f94a59bc7d348bdcccb8c5cf5f4712cb07141b168d8b2",
+  "stage": 1,
+  "mode": "it",
+  "wall_seconds": 1.3876819890000007,
+  "external_timeout": false,
+  "client_exit": 0,
+  "server_exit": -15,
+  "commands": [
+    [
+      "/home/yifan/env-release-2026/bin/cserver",
+      "-td",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/scr1.2/artifacts/baseline-scr1.1-v2/legacy-10-s1-it-r1/runtime/tests",
+      "-eval",
+      "/home/yifan/env-release-2026/lib/libasp",
+      "-log",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/scr1.2/artifacts/baseline-scr1.1-v2/legacy-10-s1-it-r1/runtime/log",
+      "-mode",
+      "it",
+      "-test",
+      "1",
+      "-to",
+      "5000"
+    ],
+    [
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/scr1.2/artifacts/build-scr1.1/example",
+      "-stage",
+      "1",
+      "-nlp",
+      "0",
+      "-err",
+      "0",
+      "-ask_2",
+      "0",
+      "-path",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/scr1.1/words.txt"
+    ]
+  ],
+  "limit_ms": 5000,
+  "budget_ms": null,
+  "status": "ok"
+}

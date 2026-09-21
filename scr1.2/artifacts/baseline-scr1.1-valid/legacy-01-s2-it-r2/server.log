@@ -1,0 +1,49 @@
+=========================================
+= Simulation @Home Competition Platform =
+=========================================
+= Ready to accept a new team
+# Registration from 'RDFW'
+> Configurations:
+	Mode: IT
+	Timeout: 5000
+	TestDir: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/scr1.2/artifacts/baseline-scr1.1-valid/legacy-01-s2-it-r2/runtime/tests/
+	TestSize: 1
+	Single test: 1
+# Testing <case.xml>
+# Result:
+	[PutDown 13|true]
+	[FromPlate 20|true]
+	[Move 5|true]
+	[Sense | 5 20]
+	[PutDown 20|true]
+	[AskLoc 16|not_known]
+	[AskLoc 16|at(16,11)]
+	[Move 11|true]
+	[PickUp 16|false]
+	[Move 9|true]
+	[TakeOut 18 9|false]
+	[AskLoc 18|at(18,6)]
+	[Move 6|true]
+	[PickUp 18|true]
+	[Move 11|true]
+	[Sense | 17 11 18]
+	[PutDown 18|true]
+	[AskLoc 12|inside(12,7)]
+	[Move 7|true]
+	[Open 7|true]
+	[TakeOut 12 7|false]
+	[Sense | 7 19]
+	[Move 11|true]
+	[PutDown 12|false]
+	[AskLoc 14|at(14,10)]
+	[Move 10|true]
+	[PickUp 14|false]
+	[Move 8|true]
+	[TakeOut 19 8|false]
+	[AskLoc 19|inside(19,7)]
+	[Move 2|true]
+	[PickUp 15|true]
+	[Move 10|true]
+	[Sense | 10 15]
+# Time: 3.739s
+# Score: 98
