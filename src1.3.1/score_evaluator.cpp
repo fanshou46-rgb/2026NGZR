@@ -1,0 +1,57 @@
+#include "score_evaluator.hpp"
+#include "rdfw.hpp"
+
+namespace _home {
+
+ScoreSnapshot::ScoreSnapshot()
+    : completed_goals(0), total_goals(0), satisfied_constraints(0),
+      total_constraints(0), unknown_goals(0), unknown_constraints(0),
+      action_cost(0), deterministic_base_score(0) {
+}
+
+ScoreEvaluator::ScoreEvaluator() : action_cost_(0) {
+}
+
+void ScoreEvaluator::reset() {
+    action_cost_ = 0;
+}
+
+void ScoreEvaluator::recordAction(ActionCategory category) {
+    switch (category) {
+    case ActionCategory::MOVE:
+        action_cost_ += 4;
+        break;
+    case ActionCategory::HUMAN_INTERACTION:
+    case ActionCategory::PHYSICAL:
+        action_cost_ += 2;
+        break;
+    case ActionCategory::OBSERVATION:
+        action_cost_ += 1;
+        break;
+    }
+}
+
+int ScoreEvaluator::accumulatedActionCost() const {
+    return action_cost_;
+}
+
+ScoreSnapshot ScoreEvaluator::snapshot(const RDFW& world,
+                                       const TerminalChecker& checker) const {
+    const TerminalSummary terminal = checker.evaluateAll(world);
+    ScoreSnapshot result;
+    result.completed_goals = terminal.satisfied_goals;
+    result.total_goals = terminal.goals.size();
+    result.satisfied_constraints = terminal.satisfied_constraints;
+    result.total_constraints = terminal.constraints.size();
+    result.unknown_goals = terminal.unknown_goals;
+    result.unknown_constraints = terminal.unknown_constraints;
+    result.action_cost = action_cost_;
+
+    const int goal_points = static_cast<int>(result.completed_goals) * 40;
+    const int constraint_points = result.completed_goals == 0
+        ? 0 : static_cast<int>(result.satisfied_constraints) * 20;
+    result.deterministic_base_score = goal_points + constraint_points - action_cost_;
+    return result;
+}
+
+} // namespace _home
