@@ -1,5 +1,9 @@
 # src1.3.2 与 src1.3.3A：realcompetiton_2024 36 题全量对比
 
+> 环境提示：本报告使用当时的默认 WSL（g++ 15.2），不是用户指定的
+> Ubuntu 18.04 / 26env。指定环境下的正式结果见
+> `test-results/realcompetition-src132-vs-src133A-all36-ubuntu1804-26env-20260922/report.md`。
+
 ## 测试协议
 
 - 版本：`src1.3.2`（提交 `2ededf2`）与 `src1.3.3A`（提交 `7a5bff7`）。

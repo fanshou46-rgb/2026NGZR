@@ -35,7 +35,7 @@ def build(version):
     executable = output / 'example'
     if executable.exists():
         return executable
-    output.mkdir(parents=True, exist_ok=False)
+    output.mkdir(parents=True, exist_ok=True)
     sources = (
         'main.cpp', 'rdfw.cpp', 'parser.cpp', 'deadline_manager.cpp',
         'terminal_checker.cpp', 'score_evaluator.cpp', 'candidate_plan.cpp')
@@ -45,7 +45,8 @@ def build(version):
         '-I' + str(SDK / 'src'),
     ] + [str(source / name) for name in sources] + [
         '-L' + str(SDK / 'lib'), '-lframe', '-lutility', '-lboost_thread',
-        '-lboost_chrono', '-lboost_date_time', '-lboost_regex', '-lpthread',
+        '-lboost_system', '-lboost_chrono', '-lboost_date_time',
+        '-lboost_regex', '-lpthread',
         '-ldl', '-o', str(executable),
     ]
     with (output / 'build.log').open('w') as log:
@@ -170,15 +171,23 @@ def compare(left_results, right_results):
 
 
 def main():
-    global RUN_PREFIX
+    global RUN_PREFIX, SDK, RESULT_ROOT
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         '--run-label', default='full',
         help='unique label for raw run directories (default: full)')
+    parser.add_argument(
+        '--sdk', type=Path, default=SDK,
+        help='competition SDK root')
+    parser.add_argument(
+        '--result-root', type=Path, default=RESULT_ROOT,
+        help='directory for builds, raw runs, and comparison files')
     args = parser.parse_args()
     if not re.match(r'^[A-Za-z0-9._-]+$', args.run_label):
         parser.error('run label may contain only letters, digits, dot, underscore, or dash')
     RUN_PREFIX = 'runs-' + args.run_label + '-'
+    SDK = args.sdk.resolve()
+    RESULT_ROOT = args.result_root.resolve()
     compat = Path('/opt/boost174-compat/usr/lib/x86_64-linux-gnu')
     paths = [str(path) for path in (compat, SDK / 'lib') if path.exists()]
     if os.environ.get('LD_LIBRARY_PATH'):
