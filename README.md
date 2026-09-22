@@ -12,7 +12,8 @@
 ├── scr1.2/                # scr 1.2 版本代码、测试、工具与产物
 ├── scr1.3/                # scr 1.3：must-near 关系、证据传播与状态更新修复
 ├── src1.3.1/              # src 1.3.1：确定性终态检查、基础分与时间预算基础设施
-└── src1.3.2/              # src 1.3.2：Stage 3B 确定性候选计划边际收益 shadow 评估
+├── src1.3.2/              # src 1.3.2：Stage 3B 确定性候选计划边际收益 shadow 评估
+└── src1.3.3A/             # src 1.3.3A：输入、Instruction Schema 与索引安全层
 ```
 
 # 提交要求
