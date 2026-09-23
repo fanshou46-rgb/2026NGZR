@@ -1,0 +1,19 @@
+--- 04.xml original instruction
++++ 04.xml repaired instruction
+@@ -1,11 +1,9 @@
+ 
+ (:ins
+     (:info (closed X) (:cond (sort X refrigerator)))
+-    (:task (give human X) (:cond (sort X book) (color X yellow))
+-    (:task (putin X Y) (:cond (sort X cup) (color X white) (sort Y closet))
+-    (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y chair))
+-    (:task (puton X Y) (:cond (sort X bottle) (color X green) (sort Y bed))
+-    (:task (takeout X Y) (:cond (sort X bottle) (color X blue) (sort Y refrigerator))
+-
++    (:task (give human X) (:cond (sort X book) (color X yellow)))
++    (:task (putin X Y) (:cond (sort X cup) (color X white) (sort Y closet)))
++    (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y chair)))
++    (:task (puton X Y) (:cond (sort X bottle) (color X green) (sort Y bed)))
++    (:task (takeout X Y) (:cond (sort X bottle) (color X blue) (sort Y refrigerator)))
+ )
+-
