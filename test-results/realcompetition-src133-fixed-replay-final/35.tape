@@ -1,0 +1,41 @@
+Move 6|true
+PickUp 17|false
+AskLoc 17|not_known
+AskLoc 17|inside(17,6)
+Open 6|true
+TakeOut 17 6|true
+Move 9|false
+AskLoc 2|at(2,8)
+Move 8|true
+Sense|10 18 17
+AskLoc 2|at(2,10)
+Move 10|true
+Sense|2 17
+PutDown 17|true
+Move 6|true
+TakeOut 15 6|true
+Move 10|true
+PutDown 15|true
+Move 8|true
+PickUp 10|true
+Move 6|true
+PutIn 10 6|true
+PickUp 12|true
+Move 4|true
+Sense|3 12
+PutDown 12|true
+Move 8|true
+PickUp 18|true
+Move 10|true
+PutDown 18|true
+Move 7|true
+PickUp 13|true
+Move 10|true
+PutDown 13|true
+Move 6|true
+TakeOut 14 6|true
+Move 10|true
+PutDown 14|true
+Move 6|true
+TakeOut 11 6|true
+Move 4|true

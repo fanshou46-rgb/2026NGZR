@@ -1,0 +1,135 @@
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+SNAP parsed robot=1,0,0
+SNAP object 0 robot 1
+SNAP object 1 human 1 big
+SNAP object 2 desk 3 big
+SNAP object 3 television 2 big
+SNAP object 4 chair 5 big
+SNAP object 5 sofa 4 big
+SNAP object 6 can 4 small white 0 -1
+SNAP object 7 can 4 small red 0 -1
+SNAP object 8 can 4 small green 0 -1
+SNAP object 9 can 4 small black 0 -1
+SNAP object 10 can 4 small blue 0 -1
+SNAP object 11 can 4 small yellow 0 -1
+SNAP object 12 cup 4 small white 0 -1
+SNAP object 13 cup 4 small red 0 -1
+SNAP task 0 puton X=6, Y=5, CX=can/white CY=sofa/ useY=1 missing=0
+SNAP task 1 putdown X=6, Y= CX=can/white CY=/ useY=0 missing=0
+SNAP task 2 goto X=6, Y= CX=can/white CY=/ useY=0 missing=0
+SNAP task 3 puton X=7, Y=5, CX=can/red CY=sofa/ useY=1 missing=0
+SNAP task 4 putdown X=7, Y= CX=can/red CY=/ useY=0 missing=0
+SNAP task 5 goto X=7, Y= CX=can/red CY=/ useY=0 missing=0
+SNAP task 6 puton X=8, Y=5, CX=can/green CY=sofa/ useY=1 missing=0
+SNAP task 7 putdown X=8, Y= CX=can/green CY=/ useY=0 missing=0
+SNAP task 8 goto X=8, Y= CX=can/green CY=/ useY=0 missing=0
+SNAP task 9 puton X=9, Y=5, CX=can/black CY=sofa/ useY=1 missing=0
+SNAP task 10 putdown X=9, Y= CX=can/black CY=/ useY=0 missing=0
+SNAP task 11 goto X=9, Y= CX=can/black CY=/ useY=0 missing=0
+SNAP task 12 puton X=10, Y=5, CX=can/blue CY=sofa/ useY=1 missing=0
+SNAP task 13 putdown X=10, Y= CX=can/blue CY=/ useY=0 missing=0
+SNAP task 14 goto X=10, Y= CX=can/blue CY=/ useY=0 missing=0
+SNAP task 15 puton X=11, Y=5, CX=can/yellow CY=sofa/ useY=1 missing=0
+SNAP task 16 putdown X=11, Y= CX=can/yellow CY=/ useY=0 missing=0
+SNAP task 17 goto X=11, Y= CX=can/yellow CY=/ useY=0 missing=0
+SNAP task 18 puton X=12, Y=5, CX=cup/white CY=sofa/ useY=1 missing=0
+SNAP task 19 putdown X=12, Y= CX=cup/white CY=/ useY=0 missing=0
+SNAP task 20 goto X=12, Y= CX=cup/white CY=/ useY=0 missing=0
+SNAP task 21 goto X=5, Y= CX=sofa/ CY=/ useY=0 missing=0
+SNAP task 22 goto X=2, Y= CX=desk/ CY=/ useY=0 missing=0
+SNAP not_task 0 goto X=5, Y= CX=sofa/ CY=/ useY=0 missing=0
+SNAP not_task 1 goto X=13, Y= CX=cup/red CY=/ useY=0 missing=0
+SNAP END parsed
+SNAP preflight robot=1,0,0
+SNAP object 0 robot 1
+SNAP object 1 human 1 big
+SNAP object 2 desk 3 big
+SNAP object 3 television 2 big
+SNAP object 4 chair 5 big
+SNAP object 5 sofa 4 big
+SNAP object 6 can 4 small white 0 -1
+SNAP object 7 can 4 small red 0 -1
+SNAP object 8 can 4 small green 0 -1
+SNAP object 9 can 4 small black 0 -1
+SNAP object 10 can 4 small blue 0 -1
+SNAP object 11 can 4 small yellow 0 -1
+SNAP object 12 cup 4 small white 0 -1
+SNAP object 13 cup 4 small red 0 -1
+SNAP task 0 puton X=6, Y=5, CX=can/white CY=sofa/ useY=1 missing=0
+SNAP task 1 putdown X=6, Y= CX=can/white CY=/ useY=0 missing=0
+SNAP task 2 goto X=6, Y= CX=can/white CY=/ useY=0 missing=0
+SNAP task 3 puton X=7, Y=5, CX=can/red CY=sofa/ useY=1 missing=0
+SNAP task 4 putdown X=7, Y= CX=can/red CY=/ useY=0 missing=0
+SNAP task 5 goto X=7, Y= CX=can/red CY=/ useY=0 missing=0
+SNAP task 6 puton X=8, Y=5, CX=can/green CY=sofa/ useY=1 missing=0
+SNAP task 7 putdown X=8, Y= CX=can/green CY=/ useY=0 missing=0
+SNAP task 8 goto X=8, Y= CX=can/green CY=/ useY=0 missing=0
+SNAP task 9 puton X=9, Y=5, CX=can/black CY=sofa/ useY=1 missing=0
+SNAP task 10 putdown X=9, Y= CX=can/black CY=/ useY=0 missing=0
+SNAP task 11 goto X=9, Y= CX=can/black CY=/ useY=0 missing=0
+SNAP task 12 puton X=10, Y=5, CX=can/blue CY=sofa/ useY=1 missing=0
+SNAP task 13 putdown X=10, Y= CX=can/blue CY=/ useY=0 missing=0
+SNAP task 14 goto X=10, Y= CX=can/blue CY=/ useY=0 missing=0
+SNAP task 15 puton X=11, Y=5, CX=can/yellow CY=sofa/ useY=1 missing=0
+SNAP task 16 putdown X=11, Y= CX=can/yellow CY=/ useY=0 missing=0
+SNAP task 17 goto X=11, Y= CX=can/yellow CY=/ useY=0 missing=0
+SNAP task 18 puton X=12, Y=5, CX=cup/white CY=sofa/ useY=1 missing=0
+SNAP task 19 putdown X=12, Y= CX=cup/white CY=/ useY=0 missing=0
+SNAP task 20 goto X=12, Y= CX=cup/white CY=/ useY=0 missing=0
+SNAP task 21 goto X=5, Y= CX=sofa/ CY=/ useY=0 missing=0
+SNAP task 22 goto X=2, Y= CX=desk/ CY=/ useY=0 missing=0
+SNAP not_task 0 goto X=5, Y= CX=sofa/ CY=/ useY=0 missing=0
+SNAP not_task 1 goto X=13, Y= CX=cup/red CY=/ useY=0 missing=0
+SNAP END preflight
+[LOG]:[32m[MustIn] correction done.
+[0m
+[LOG]:[32m[MustNear] correction done.
+[0m
+SNAP corrected robot=1,0,0
+SNAP object 0 robot 1
+SNAP object 1 human 1 big
+SNAP object 2 desk 3 big
+SNAP object 3 television 2 big
+SNAP object 4 chair 5 big
+SNAP object 5 sofa 4 big
+SNAP object 6 can 4 small white 0 -1
+SNAP object 7 can 4 small red 0 -1
+SNAP object 8 can 4 small green 0 -1
+SNAP object 9 can 4 small black 0 -1
+SNAP object 10 can 4 small blue 0 -1
+SNAP object 11 can 4 small yellow 0 -1
+SNAP object 12 cup 4 small white 0 -1
+SNAP object 13 cup 4 small red 0 -1
+SNAP task 0 puton X=6, Y=5, CX=can/white CY=sofa/ useY=1 missing=0
+SNAP task 1 putdown X=6, Y= CX=can/white CY=/ useY=0 missing=0
+SNAP task 2 goto X=6, Y= CX=can/white CY=/ useY=0 missing=0
+SNAP task 3 puton X=7, Y=5, CX=can/red CY=sofa/ useY=1 missing=0
+SNAP task 4 putdown X=7, Y= CX=can/red CY=/ useY=0 missing=0
+SNAP task 5 goto X=7, Y= CX=can/red CY=/ useY=0 missing=0
+SNAP task 6 puton X=8, Y=5, CX=can/green CY=sofa/ useY=1 missing=0
+SNAP task 7 putdown X=8, Y= CX=can/green CY=/ useY=0 missing=0
+SNAP task 8 goto X=8, Y= CX=can/green CY=/ useY=0 missing=0
+SNAP task 9 puton X=9, Y=5, CX=can/black CY=sofa/ useY=1 missing=0
+SNAP task 10 putdown X=9, Y= CX=can/black CY=/ useY=0 missing=0
+SNAP task 11 goto X=9, Y= CX=can/black CY=/ useY=0 missing=0
+SNAP task 12 puton X=10, Y=5, CX=can/blue CY=sofa/ useY=1 missing=0
+SNAP task 13 putdown X=10, Y= CX=can/blue CY=/ useY=0 missing=0
+SNAP task 14 goto X=10, Y= CX=can/blue CY=/ useY=0 missing=0
+SNAP task 15 puton X=11, Y=5, CX=can/yellow CY=sofa/ useY=1 missing=0
+SNAP task 16 putdown X=11, Y= CX=can/yellow CY=/ useY=0 missing=0
+SNAP task 17 goto X=11, Y= CX=can/yellow CY=/ useY=0 missing=0
+SNAP task 18 puton X=12, Y=5, CX=cup/white CY=sofa/ useY=1 missing=0
+SNAP task 19 putdown X=12, Y= CX=cup/white CY=/ useY=0 missing=0
+SNAP task 20 goto X=12, Y= CX=cup/white CY=/ useY=0 missing=0
+SNAP task 21 goto X=5, Y= CX=sofa/ CY=/ useY=0 missing=0
+SNAP task 22 goto X=2, Y= CX=desk/ CY=/ useY=0 missing=0
+SNAP not_task 0 goto X=5, Y= CX=sofa/ CY=/ useY=0 missing=0
+SNAP not_task 1 goto X=13, Y= CX=cup/red CY=/ useY=0 missing=0
+SNAP END corrected
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

@@ -1,0 +1,22 @@
+--- src1.3.2
++++ src1.3.3-fixed
+@@ -19,13 +19,13 @@
+ [LOG]:[3A][must-choose-one] goals=0/2 (unknown=2), constraints=0/23 (unknown=23), base_score=-8, action_cost=8, remaining=<clock>
+ [LOG]:[3A][must-choose-one] completed_goals=[], satisfied_constraints=[]
+ [LOG]:[3B][Deadline] phase=must-choose-one task_index=0 behave=pickup can_finish=true remaining_plan_ms=200 safety_ms=300 budget_remaining_ms=<clock>
+-[LOG]:[3B][Deadline] phase=must-choose-one-post-check task_index=0 behave=pickup can_finish=true remaining_plan_ms=100 safety_ms=300 budget_remaining_ms=<clock>
+-[LOG]:[3B][Remaining] event=begin task_index=0 behave=pickup executed=0 total=1 remaining_utility=38 remaining_duration_ms=100
++[LOG]:[3B][Deadline] phase=must-choose-one-post-check task_index=0 behave=pickup can_finish=true remaining_plan_ms=220 safety_ms=300 budget_remaining_ms=<clock>
++[LOG]:[3B][Remaining] event=begin task_index=0 behave=pickup executed=0 total=2 remaining_utility=34 remaining_duration_ms=220
+ pickup bottle的风险系数是：0
+-[LOG]:[3B][Remaining] event=action task_index=0 action=PickUp executed=1 total=1 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+-[LOG]:[3B][Remaining] event=action task_index=0 action=AskLoc executed=1 total=1 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+-[LOG]:[3B][Remaining] event=action task_index=0 action=PickUp executed=1 total=1 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+-[LOG]:[3B][Remaining] event=end task_index=0 behave=pickup succeeded=false executed=1 total=1 remaining_utility=40 remaining_duration_ms=0
++[LOG]:[3B][Remaining] event=action task_index=0 action=Move executed=1 total=2 remaining_utility=38 remaining_duration_ms=100 can_finish=true
++[LOG]:[3B][Remaining] event=action task_index=0 action=AskLoc executed=2 total=2 remaining_utility=40 remaining_duration_ms=0 can_finish=true
++[LOG]:[3B][Remaining] event=action task_index=0 action=PickUp executed=2 total=2 remaining_utility=40 remaining_duration_ms=0 can_finish=true
++[LOG]:[3B][Remaining] event=end task_index=0 behave=pickup succeeded=false executed=2 total=2 remaining_utility=40 remaining_duration_ms=0
+ [LOG]:[3B][Candidate] phase=must-choose-one rank=1 task_index=1 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=-18 score_after=37 marginal_score=55 utility=55 gained_goals=[1] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+ [LOG]:[3A][must-choose-one] goals=0/2 (unknown=2), constraints=0/23 (unknown=23), base_score=-18, action_cost=18, remaining=<clock>
+ [LOG]:[3A][must-choose-one] completed_goals=[], satisfied_constraints=[]

@@ -1,0 +1,105 @@
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+SNAP parsed robot=1,0,17
+SNAP object 0 robot 1
+SNAP object 1 human 1 big
+SNAP object 2 bed 2 big
+SNAP object 3 desk 3 big
+SNAP object 4 chair 4 big
+SNAP object 5 refrigerator 5 container -1
+SNAP object 6 closet 6 container 0
+SNAP object 7 television 7 big
+SNAP object 8 microwave 8 container -1
+SNAP object 9 teapoy 9 big
+SNAP object 10 couch 10 big
+SNAP object 11 sofa 11 big
+SNAP object 12 cupboard 12 container 1
+SNAP object 13 airconditioner 13 big
+SNAP object 14 washmachine 14 container 1
+SNAP object 15 book 10 small yellow 0 -1
+SNAP object 16 book -1 small green -1 -1
+SNAP object 17 book 1 small white 0 -1
+SNAP object 18 bottle 5 small green 5 -1
+SNAP object 19 bottle 14 small blue 14 -1
+SNAP object 20 bottle 3 small yellow 0 -1
+SNAP object 21 cup -1 small white -1 -1
+SNAP task 0 takeout X=18, Y=5, CX=bottle/green CY=refrigerator/ useY=1 missing=0
+SNAP task 1 puton X=19, Y=3, CX=bottle/blue CY=desk/ useY=1 missing=0
+SNAP task 2 give X=21, Y= CX=cup/white CY=/ useY=0 missing=0
+SNAP task 3 pickup X=16, Y= CX=book/green CY=/ useY=0 missing=0
+SNAP task 4 goto X=10, Y= CX=couch/ CY=/ useY=0 missing=0
+SNAP info 0 closed X=8, Y= CX=microwave/ CY=/ useY=0 missing=0
+SNAP info 1 opened X=5, Y= CX=refrigerator/ CY=/ useY=0 missing=0
+SNAP END parsed
+SNAP preflight robot=1,0,17
+SNAP object 0 robot 1
+SNAP object 1 human 1 big
+SNAP object 2 bed 2 big
+SNAP object 3 desk 3 big
+SNAP object 4 chair 4 big
+SNAP object 5 refrigerator 5 container -1
+SNAP object 6 closet 6 container 0
+SNAP object 7 television 7 big
+SNAP object 8 microwave 8 container -1
+SNAP object 9 teapoy 9 big
+SNAP object 10 couch 10 big
+SNAP object 11 sofa 11 big
+SNAP object 12 cupboard 12 container 1
+SNAP object 13 airconditioner 13 big
+SNAP object 14 washmachine 14 container 1
+SNAP object 15 book 10 small yellow 0 -1
+SNAP object 16 book -1 small green -1 -1
+SNAP object 17 book 1 small white 0 -1
+SNAP object 18 bottle 5 small green 5 -1
+SNAP object 19 bottle 14 small blue 14 -1
+SNAP object 20 bottle 3 small yellow 0 -1
+SNAP object 21 cup -1 small white -1 -1
+SNAP task 0 takeout X=18, Y=5, CX=bottle/green CY=refrigerator/ useY=1 missing=0
+SNAP task 1 puton X=19, Y=3, CX=bottle/blue CY=desk/ useY=1 missing=0
+SNAP task 2 give X=21, Y= CX=cup/white CY=/ useY=0 missing=0
+SNAP task 3 pickup X=16, Y= CX=book/green CY=/ useY=0 missing=0
+SNAP task 4 goto X=10, Y= CX=couch/ CY=/ useY=0 missing=0
+SNAP info 0 closed X=8, Y= CX=microwave/ CY=/ useY=0 missing=0
+SNAP info 1 opened X=5, Y= CX=refrigerator/ CY=/ useY=0 missing=0
+SNAP END preflight
+[LOG]:[32m[MustIn] correction done.
+[0m
+[LOG]:[32m[MustNear] correction done.
+[0m
+SNAP corrected robot=1,0,17
+SNAP object 0 robot 1
+SNAP object 1 human 1 big
+SNAP object 2 bed 2 big
+SNAP object 3 desk 3 big
+SNAP object 4 chair 4 big
+SNAP object 5 refrigerator 5 container 1
+SNAP object 6 closet 6 container 0
+SNAP object 7 television 7 big
+SNAP object 8 microwave 8 container 0
+SNAP object 9 teapoy 9 big
+SNAP object 10 couch 10 big
+SNAP object 11 sofa 11 big
+SNAP object 12 cupboard 12 container 1
+SNAP object 13 airconditioner 13 big
+SNAP object 14 washmachine 14 container 1
+SNAP object 15 book 10 small yellow 0 -1
+SNAP object 16 book -1 small green -1 -1
+SNAP object 17 book 1 small white 0 -1
+SNAP object 18 bottle 5 small green 5 -1
+SNAP object 19 bottle 14 small blue 14 -1
+SNAP object 20 bottle 3 small yellow 0 -1
+SNAP object 21 cup -1 small white -1 -1
+SNAP task 0 takeout X=18, Y=5, CX=bottle/green CY=refrigerator/ useY=1 missing=0
+SNAP task 1 puton X=19, Y=3, CX=bottle/blue CY=desk/ useY=1 missing=0
+SNAP task 2 give X=21, Y= CX=cup/white CY=/ useY=0 missing=0
+SNAP task 3 pickup X=16, Y= CX=book/green CY=/ useY=0 missing=0
+SNAP task 4 goto X=10, Y= CX=couch/ CY=/ useY=0 missing=0
+SNAP info 0 closed X=8, Y= CX=microwave/ CY=/ useY=0 missing=0
+SNAP info 1 opened X=5, Y= CX=refrigerator/ CY=/ useY=0 missing=0
+SNAP END corrected
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

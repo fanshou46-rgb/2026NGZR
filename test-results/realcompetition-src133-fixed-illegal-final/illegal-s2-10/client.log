@@ -1,0 +1,25 @@
+[LOG]:-deduplicate
+[LOG]:-stage
+[LOG]:-nlp
+[LOG]:-err
+[LOG]:-ask_2
+[LOG]:-path
+[LOG]:nlp 0, err 1
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+#(Plug): Timeout=5000
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32mcase.xml
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+[31m[ERROR]:/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.3.3-fixed/rdfw.cpp:4878 Env sentence has an unknown predicate or wrong field count: (:domain )[0m
+[31m[ERROR]:/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.3.3-fixed/rdfw.cpp:5014 Ignoring invalid environment fact: (:domain )[0m
+[31m[ERROR]:/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.3.3-fixed/rdfw.cpp:5071 WorldState contains no usable facts[0m
+ParseEnv Failed! Skipping this test.
+# Test skipped due to environment parsing failure
+#(Plug): Elapsed time=0.004s
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

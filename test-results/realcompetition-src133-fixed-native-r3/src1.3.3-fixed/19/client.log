@@ -1,0 +1,737 @@
+[LOG]:-stage
+[LOG]:-nlp
+[LOG]:-err
+[LOG]:-ask_2
+[LOG]:-path
+[LOG]:nlp 0, err 1
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+#(Plug): Timeout=5000
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32mcase.xml
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+[LOG]:[Preflight][Duplicate] 0:goto:X[5,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight][Duplicate] 0:goto:X[9,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight][Duplicate] 0:goto:X[10,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight][Duplicate] 0:goto:X[11,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight][Duplicate] 0:goto:X[12,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight][Duplicate] 0:goto:X[13,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight][Duplicate] 0:goto:X[8,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight][Duplicate] 0:goto:X[14,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight][Duplicate] 0:goto:X[15,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight][Duplicate] 0:goto:X[16,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight][Duplicate] 0:goto:X[17,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight][Duplicate] 0:goto:X[18,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight][Duplicate] 0:goto:X[19,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight][Duplicate] 0:goto:X[9,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight][Duplicate] 0:goto:X[10,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight][Duplicate] 0:goto:X[11,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight] task raw=34 unique=18 duplicate=16 rejected=0; constraint raw=1 unique=1 duplicate=0 rejected=0; world_errors=0
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m
+Pos  2:(T):[32m(robot hold:0 plate:0)[0m[33m(20 desk)[0m
+Pos  3:(T):
+Pos  4:(T):
+Pos  5:(T):
+Pos  6:(T):
+Pos  7:(T):(10 cup)(11 cup)
+Pos  8:(T):(9 cup)(12 cup)
+Pos  9:(T):(8 cup)(13 cup)
+Pos 10:(T):(7 can)(14 bottle)
+Pos 11:(T):(6 can)(15 bottle)
+Pos 12:(T):(5 can)(16 bottle)
+Pos 13:(T):(4 can)(17 bottle)
+Pos 14:(T):(3 can)(18 bottle)
+Pos 15:(T):(2 can)(19 bottle)
+UnknownPos:
+
+[LOG]:[32m[MustIn] correction done.
+[0m
+[LOG]:[32m[MustNear] correction done.
+[0m
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m
+Pos  2:(T):[32m(robot hold:0 plate:0)[0m[33m(20 desk)[0m
+Pos  3:(T):
+Pos  4:(T):
+Pos  5:(T):
+Pos  6:(T):
+Pos  7:(T):(10 cup)(11 cup)
+Pos  8:(T):(9 cup)(12 cup)
+Pos  9:(T):(8 cup)(13 cup)
+Pos 10:(T):(7 can)(14 bottle)
+Pos 11:(T):(6 can)(15 bottle)
+Pos 12:(T):(5 can)(16 bottle)
+Pos 13:(T):(4 can)(17 bottle)
+Pos 14:(T):(3 can)(18 bottle)
+Pos 15:(T):(2 can)(19 bottle)
+UnknownPos:
+
+Task:
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:can,Color:red)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:can,Color:white)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:can,Color:green)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:can,Color:yellow)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:red)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:white)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:yellow)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:green)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:blue)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:bottle,Color:black)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:bottle,Color:red)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:bottle,Color:white)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:bottle,Color:yellow)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:bottle,Color:green)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:can,Color:yellow)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:red)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:white)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:yellow)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:green)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:blue)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:bottle,Color:black)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:bottle,Color:red)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:bottle,Color:white)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:bottle,Color:yellow)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:bottle,Color:green)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:red)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:white)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+
+Info:
+
+Not_Info:
+
+Not_Task:
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+
+NotNot_Info:
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+[FilterConstraintsByTaskConflicts] Conflict found between goto_cons at location 10 and task goto
+[FilterConstraintsByTaskConflicts] Conflict found between goto_cons at location 10 and task goto
+[FilterConstraintsByTaskConflicts] Conflict found between goto_cons at location 10 and task goto
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+34
+[LOG]:[33m[Defer] multi-goto detected: 34 tasks; skip in main loop, handle at final aggregation
+[0m
+[LOG]:[33m[Defer] skip MustChooseOne because multi-goto remain=34
+[0m
+-----check check check-----
+[LOG]:[33m[Defer] multi-goto detected: 34 tasks; skip in main loop, handle at final aggregation
+[0m
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m
+Pos  2:(T):[32m(robot hold:0 plate:0)[0m[33m(20 desk)[0m
+Pos  3:(T):
+Pos  4:(T):
+Pos  5:(T):
+Pos  6:(T):
+Pos  7:(T):(10 cup)(11 cup)
+Pos  8:(T):(9 cup)(12 cup)
+Pos  9:(T):(8 cup)(13 cup)
+Pos 10:(T):(7 can)(14 bottle)
+Pos 11:(T):(6 can)(15 bottle)
+Pos 12:(T):(5 can)(16 bottle)
+Pos 13:(T):(4 can)(17 bottle)
+Pos 14:(T):(3 can)(18 bottle)
+Pos 15:(T):(2 can)(19 bottle)
+UnknownPos:
+
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=1 task_index=3 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=235 marginal_score=235 utility=235 gained_goals=[3,4,15,16,24,25] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=2 task_index=4 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=235 marginal_score=235 utility=235 gained_goals=[3,4,15,16,24,25] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=3 task_index=15 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=235 marginal_score=235 utility=235 gained_goals=[3,4,15,16,24,25] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=4 task_index=16 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=235 marginal_score=235 utility=235 gained_goals=[3,4,15,16,24,25] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=5 task_index=24 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=235 marginal_score=235 utility=235 gained_goals=[3,4,15,16,24,25] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=6 task_index=25 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=235 marginal_score=235 utility=235 gained_goals=[3,4,15,16,24,25] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=7 task_index=2 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=195 marginal_score=195 utility=195 gained_goals=[2,5,14,17,23] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=8 task_index=5 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=195 marginal_score=195 utility=195 gained_goals=[2,5,14,17,23] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=9 task_index=14 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=195 marginal_score=195 utility=195 gained_goals=[2,5,14,17,23] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=10 task_index=17 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=195 marginal_score=195 utility=195 gained_goals=[2,5,14,17,23] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=11 task_index=23 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=195 marginal_score=195 utility=195 gained_goals=[2,5,14,17,23] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=12 task_index=1 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=155 marginal_score=155 utility=155 gained_goals=[1,10,22,31] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=13 task_index=6 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=155 marginal_score=155 utility=155 gained_goals=[6,7,27,28] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=14 task_index=7 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=155 marginal_score=155 utility=155 gained_goals=[6,7,27,28] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=15 task_index=10 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=155 marginal_score=155 utility=155 gained_goals=[1,10,22,31] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=16 task_index=22 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=155 marginal_score=155 utility=155 gained_goals=[1,10,22,31] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=17 task_index=27 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=155 marginal_score=155 utility=155 gained_goals=[6,7,27,28] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=18 task_index=28 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=155 marginal_score=155 utility=155 gained_goals=[6,7,27,28] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=19 task_index=31 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=155 marginal_score=155 utility=155 gained_goals=[1,10,22,31] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=20 task_index=0 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=115 marginal_score=115 utility=115 gained_goals=[0,20,30] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=21 task_index=8 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=115 marginal_score=115 utility=115 gained_goals=[8,21,29] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=22 task_index=9 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=115 marginal_score=115 utility=115 gained_goals=[9,13,26] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=23 task_index=11 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=115 marginal_score=115 utility=115 gained_goals=[11,19,32] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=24 task_index=12 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=115 marginal_score=115 utility=115 gained_goals=[12,18,33] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=25 task_index=13 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=115 marginal_score=115 utility=115 gained_goals=[9,13,26] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=26 task_index=18 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=115 marginal_score=115 utility=115 gained_goals=[12,18,33] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=27 task_index=19 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=115 marginal_score=115 utility=115 gained_goals=[11,19,32] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=28 task_index=20 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=115 marginal_score=115 utility=115 gained_goals=[0,20,30] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=29 task_index=21 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=115 marginal_score=115 utility=115 gained_goals=[8,21,29] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=30 task_index=26 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=115 marginal_score=115 utility=115 gained_goals=[9,13,26] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=31 task_index=29 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=115 marginal_score=115 utility=115 gained_goals=[8,21,29] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=32 task_index=30 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=115 marginal_score=115 utility=115 gained_goals=[0,20,30] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=33 task_index=32 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=115 marginal_score=115 utility=115 gained_goals=[11,19,32] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=34 task_index=33 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=115 marginal_score=115 utility=115 gained_goals=[12,18,33] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3A][multi-goto] goals=0/34 (unknown=34), constraints=0/1 (unknown=1), base_score=0, action_cost=0, elapsed=42ms, remaining=4658ms
+[0m
+[LOG]:[36m[3A][multi-goto] completed_goals=[], satisfied_constraints=[]
+[0m
+[LOG]:[32m[MultiGoto] Executing multi-goto aggregation - skipping Sense operations
+[0m
+[LOG]:[32m[MultiGoto] Object[15]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[5]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[9]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[10]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[11]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[12]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[13]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[8]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[14]: goto_risk=1, pickup_risk=0, mustnear_risk=0, total_risk=1, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[19]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[16]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[17]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[18]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[19]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[9]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[10]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[11]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[12]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[3]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[4]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[6]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[7]: goto_risk=1, pickup_risk=0, mustnear_risk=0, total_risk=1, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[5]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[9]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[10]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[11]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[2]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[13]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[8]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[14]: goto_risk=1, pickup_risk=0, mustnear_risk=0, total_risk=1, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[15]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[16]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[17]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] Object[18]: goto_risk=0, pickup_risk=0, mustnear_risk=0, total_risk=0, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] small_cand_id_disable: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] small_cand_ids: 
+[LOG]:[32m15 
+[LOG]:[32m5 
+[LOG]:[32m9 
+[LOG]:[32m10 
+[LOG]:[32m11 
+[LOG]:[32m12 
+[LOG]:[32m13 
+[LOG]:[32m8 
+[LOG]:[32m14 
+[LOG]:[32m19 
+[LOG]:[32m16 
+[LOG]:[32m17 
+[LOG]:[32m18 
+[LOG]:[32m19 
+[LOG]:[32m9 
+[LOG]:[32m10 
+[LOG]:[32m11 
+[LOG]:[32m12 
+[LOG]:[32m3 
+[LOG]:[32m4 
+[LOG]:[32m6 
+[LOG]:[32m7 
+[LOG]:[32m5 
+[LOG]:[32m9 
+[LOG]:[32m10 
+[LOG]:[32m11 
+[LOG]:[32m2 
+[LOG]:[32m13 
+[LOG]:[32m8 
+[LOG]:[32m14 
+[LOG]:[32m15 
+[LOG]:[32m16 
+[LOG]:[32m17 
+[LOG]:[32m18 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] big_cand_ids: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] small_cand_ids.size()=34, big_cand_ids.size()=0
+[0m
+[LOG]:[32m[MultiGoto] small_lowrisk_ids.size()=34
+[0m
+[LOG]:[32m[MultiGoto] Entering main aggregation logic
+[0m
+[LOG]:[32m[MultiGoto] Performance optimization: Only checking 9 occupied locations instead of 100 total locations
+[0m
+[MultiGoto] location 7 has 6 small objects
+[MultiGoto] most_smallobj_loc 7
+[MultiGoto] location 8 has 5 small objects
+[MultiGoto] location 9 has 4 small objects
+[MultiGoto] location 10 has 3 small objects
+[MultiGoto] location 11 has 3 small objects
+[MultiGoto] location 12 has 4 small objects
+[MultiGoto] location 13 has 3 small objects
+[MultiGoto] location 14 has 3 small objects
+[MultiGoto] location 15 has 3 small objects
+[LOG]:[33m[MultiGoto] smallobj_loc is found: 7
+[0m
+[LOG]:[32mFinal-GOTO: choose hub=7
+[0m
+[LOG]:[32m[MultiGoto] hub location=7 representative_object=10
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto-relocation task_index=34 behave=multi-goto-puton actions=3 duration_ms=320 action_cost=8 marginal_score=152 utility=152 gained_goals=[3,15,24,34] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=multi-goto-relocation task_index=34 behave=multi-goto-puton can_finish=true remaining_plan_ms=320 safety_ms=300 budget_remaining_ms=4651
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=34 behave=multi-goto-puton executed=0 total=3 remaining_utility=152 remaining_duration_ms=320
+[0m
+[LOG]:Move(7)
+[LOG]:[36m[3B][Remaining] event=action task_index=34 action=Move executed=1 total=3 remaining_utility=156 remaining_duration_ms=200 can_finish=true
+[0m
+[LOG]:PickUp(10,cup)
+[LOG]:[36m[3B][Remaining] event=action task_index=34 action=PickUp executed=2 total=3 remaining_utility=158 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:PutDown(10,cup)
+[LOG]:[36m[3B][Remaining] event=action task_index=34 action=PutDown executed=3 total=3 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=34 behave=multi-goto-puton succeeded=true executed=3 total=3 remaining_utility=40 remaining_duration_ms=0
+[0m
+[LOG]:[32mFinal-GOTO: moved obj[10] to hub=7 (1/500) (via SolveTask_PutOn)
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto-relocation task_index=34 behave=multi-goto-puton actions=0 duration_ms=0 action_cost=0 marginal_score=0 utility=0 gained_goals=[] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=multi-goto-relocation task_index=34 behave=multi-goto-puton can_finish=true remaining_plan_ms=0 safety_ms=300 budget_remaining_ms=4267
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=34 behave=multi-goto-puton executed=0 total=0 remaining_utility=40 remaining_duration_ms=0
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=34 behave=multi-goto-puton succeeded=true executed=0 total=0 remaining_utility=40 remaining_duration_ms=0
+[0m
+[LOG]:[32mFinal-GOTO: moved obj[10] to hub=7 (2/500) (via SolveTask_PutOn)
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto-relocation task_index=34 behave=multi-goto-puton actions=0 duration_ms=0 action_cost=0 marginal_score=0 utility=0 gained_goals=[] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=multi-goto-relocation task_index=34 behave=multi-goto-puton can_finish=true remaining_plan_ms=0 safety_ms=300 budget_remaining_ms=4267
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=34 behave=multi-goto-puton executed=0 total=0 remaining_utility=40 remaining_duration_ms=0
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=34 behave=multi-goto-puton succeeded=true executed=0 total=0 remaining_utility=40 remaining_duration_ms=0
+[0m
+[LOG]:[32mFinal-GOTO: moved obj[10] to hub=7 (3/500) (via SolveTask_PutOn)
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto-relocation task_index=34 behave=multi-goto-puton actions=2 duration_ms=200 action_cost=4 marginal_score=156 utility=156 gained_goals=[4,16,25,34] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=multi-goto-relocation task_index=34 behave=multi-goto-puton can_finish=true remaining_plan_ms=200 safety_ms=300 budget_remaining_ms=4266
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=34 behave=multi-goto-puton executed=0 total=2 remaining_utility=156 remaining_duration_ms=200
+[0m
+[LOG]:PickUp(11,cup)
+[LOG]:[36m[3B][Remaining] event=action task_index=34 action=PickUp executed=1 total=2 remaining_utility=158 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:PutDown(11,cup)
+[LOG]:[36m[3B][Remaining] event=action task_index=34 action=PutDown executed=2 total=2 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=34 behave=multi-goto-puton succeeded=true executed=2 total=2 remaining_utility=40 remaining_duration_ms=0
+[0m
+[LOG]:[32mFinal-GOTO: moved obj[11] to hub=7 (4/500) (via SolveTask_PutOn)
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto-relocation task_index=34 behave=multi-goto-puton actions=0 duration_ms=0 action_cost=0 marginal_score=0 utility=0 gained_goals=[] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=multi-goto-relocation task_index=34 behave=multi-goto-puton can_finish=true remaining_plan_ms=0 safety_ms=300 budget_remaining_ms=3999
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=34 behave=multi-goto-puton executed=0 total=0 remaining_utility=40 remaining_duration_ms=0
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=34 behave=multi-goto-puton succeeded=true executed=0 total=0 remaining_utility=40 remaining_duration_ms=0
+[0m
+[LOG]:[32mFinal-GOTO: moved obj[11] to hub=7 (5/500) (via SolveTask_PutOn)
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto-relocation task_index=34 behave=multi-goto-puton actions=0 duration_ms=0 action_cost=0 marginal_score=0 utility=0 gained_goals=[] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=multi-goto-relocation task_index=34 behave=multi-goto-puton can_finish=true remaining_plan_ms=0 safety_ms=300 budget_remaining_ms=3999
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=34 behave=multi-goto-puton executed=0 total=0 remaining_utility=40 remaining_duration_ms=0
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=34 behave=multi-goto-puton succeeded=true executed=0 total=0 remaining_utility=40 remaining_duration_ms=0
+[0m
+[LOG]:[32mFinal-GOTO: moved obj[11] to hub=7 (6/500) (via SolveTask_PutOn)
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto-relocation task_index=34 behave=multi-goto-puton actions=4 duration_ms=440 action_cost=12 marginal_score=68 utility=68 gained_goals=[26,34] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=multi-goto-relocation task_index=34 behave=multi-goto-puton can_finish=true remaining_plan_ms=440 safety_ms=300 budget_remaining_ms=3998
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=34 behave=multi-goto-puton executed=0 total=4 remaining_utility=68 remaining_duration_ms=440
+[0m
+[LOG]:Move(15)
+[LOG]:[36m[3B][Remaining] event=action task_index=34 action=Move executed=1 total=4 remaining_utility=72 remaining_duration_ms=320 can_finish=true
+[0m
+[LOG]:PickUp(2,can)
+[LOG]:[36m[3B][Remaining] event=action task_index=34 action=PickUp executed=2 total=4 remaining_utility=314 remaining_duration_ms=220 can_finish=true
+[0m
+[LOG]:Move(7)
+[LOG]:[36m[3B][Remaining] event=action task_index=34 action=Move executed=3 total=4 remaining_utility=278 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:PutDown(2,can)
+[LOG]:[36m[3B][Remaining] event=action task_index=34 action=PutDown executed=4 total=4 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=34 behave=multi-goto-puton succeeded=true executed=4 total=4 remaining_utility=40 remaining_duration_ms=0
+[0m
+[LOG]:[32mFinal-GOTO: moved obj[2] to hub=7 (7/500) (via SolveTask_PutOn)
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto-relocation task_index=34 behave=multi-goto-puton actions=4 duration_ms=440 action_cost=12 marginal_score=68 utility=68 gained_goals=[18,34] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=multi-goto-relocation task_index=34 behave=multi-goto-puton can_finish=true remaining_plan_ms=440 safety_ms=300 budget_remaining_ms=3474
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=34 behave=multi-goto-puton executed=0 total=4 remaining_utility=68 remaining_duration_ms=440
+[0m
+[LOG]:Move(14)
+[LOG]:[36m[3B][Remaining] event=action task_index=34 action=Move executed=1 total=4 remaining_utility=72 remaining_duration_ms=320 can_finish=true
+[0m
+[LOG]:PickUp(3,can)
+[LOG]:[36m[3B][Remaining] event=action task_index=34 action=PickUp executed=2 total=4 remaining_utility=354 remaining_duration_ms=220 can_finish=true
+[0m
+[LOG]:Move(7)
+[LOG]:[36m[3B][Remaining] event=action task_index=34 action=Move executed=3 total=4 remaining_utility=318 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:PutDown(3,can)
+[LOG]:[36m[3B][Remaining] event=action task_index=34 action=PutDown executed=4 total=4 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=34 behave=multi-goto-puton succeeded=true executed=4 total=4 remaining_utility=40 remaining_duration_ms=0
+[0m
+[LOG]:[32mFinal-GOTO: moved obj[3] to hub=7 (8/500) (via SolveTask_PutOn)
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto-relocation task_index=34 behave=multi-goto-puton actions=4 duration_ms=440 action_cost=12 marginal_score=68 utility=68 gained_goals=[19,34] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=multi-goto-relocation task_index=34 behave=multi-goto-puton can_finish=true remaining_plan_ms=440 safety_ms=300 budget_remaining_ms=2958
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=34 behave=multi-goto-puton executed=0 total=4 remaining_utility=68 remaining_duration_ms=440
+[0m
+[LOG]:Move(13)
+[LOG]:[36m[3B][Remaining] event=action task_index=34 action=Move executed=1 total=4 remaining_utility=72 remaining_duration_ms=320 can_finish=true
+[0m
+[LOG]:PickUp(4,can)
+[LOG]:[36m[3B][Remaining] event=action task_index=34 action=PickUp executed=2 total=4 remaining_utility=394 remaining_duration_ms=220 can_finish=true
+[0m
+[LOG]:Move(7)
+[LOG]:[36m[3B][Remaining] event=action task_index=34 action=Move executed=3 total=4 remaining_utility=358 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:PutDown(4,can)
+[LOG]:[36m[3B][Remaining] event=action task_index=34 action=PutDown executed=4 total=4 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=34 behave=multi-goto-puton succeeded=true executed=4 total=4 remaining_utility=40 remaining_duration_ms=0
+[0m
+[LOG]:[32mFinal-GOTO: moved obj[4] to hub=7 (9/500) (via SolveTask_PutOn)
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto-relocation task_index=34 behave=multi-goto-puton actions=4 duration_ms=440 action_cost=12 marginal_score=108 utility=108 gained_goals=[1,22,34] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=multi-goto-relocation task_index=34 behave=multi-goto-puton can_finish=true remaining_plan_ms=440 safety_ms=300 budget_remaining_ms=2458
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=34 behave=multi-goto-puton executed=0 total=4 remaining_utility=108 remaining_duration_ms=440
+[0m
+[LOG]:Move(12)
+[LOG]:[36m[3B][Remaining] event=action task_index=34 action=Move executed=1 total=4 remaining_utility=112 remaining_duration_ms=320 can_finish=true
+[0m
+[LOG]:PickUp(5,can)
+[LOG]:[36m[3B][Remaining] event=action task_index=34 action=PickUp executed=2 total=4 remaining_utility=474 remaining_duration_ms=220 can_finish=true
+[0m
+[LOG]:Move(7)
+[LOG]:[36m[3B][Remaining] event=action task_index=34 action=Move executed=3 total=4 remaining_utility=398 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:PutDown(5,can)
+[LOG]:[36m[3B][Remaining] event=action task_index=34 action=PutDown executed=4 total=4 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=34 behave=multi-goto-puton succeeded=true executed=4 total=4 remaining_utility=40 remaining_duration_ms=0
+[0m
+[LOG]:[32mFinal-GOTO: moved obj[5] to hub=7 (10/500) (via SolveTask_PutOn)
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto-relocation task_index=34 behave=multi-goto-puton actions=0 duration_ms=0 action_cost=0 marginal_score=0 utility=0 gained_goals=[] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=multi-goto-relocation task_index=34 behave=multi-goto-puton can_finish=true remaining_plan_ms=0 safety_ms=300 budget_remaining_ms=1955
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=34 behave=multi-goto-puton executed=0 total=0 remaining_utility=40 remaining_duration_ms=0
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=34 behave=multi-goto-puton succeeded=true executed=0 total=0 remaining_utility=40 remaining_duration_ms=0
+[0m
+[LOG]:[32mFinal-GOTO: moved obj[5] to hub=7 (11/500) (via SolveTask_PutOn)
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto-relocation task_index=34 behave=multi-goto-puton actions=4 duration_ms=440 action_cost=12 marginal_score=68 utility=68 gained_goals=[20,34] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=multi-goto-relocation task_index=34 behave=multi-goto-puton can_finish=true remaining_plan_ms=440 safety_ms=300 budget_remaining_ms=1954
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=34 behave=multi-goto-puton executed=0 total=4 remaining_utility=68 remaining_duration_ms=440
+[0m
+[LOG]:Move(11)
+[LOG]:[36m[3B][Remaining] event=action task_index=34 action=Move executed=1 total=4 remaining_utility=72 remaining_duration_ms=320 can_finish=true
+[0m
+[LOG]:PickUp(6,can)
+[LOG]:[36m[3B][Remaining] event=action task_index=34 action=PickUp executed=2 total=4 remaining_utility=514 remaining_duration_ms=220 can_finish=true
+[0m
+[LOG]:Move(7)
+[LOG]:[36m[3B][Remaining] event=action task_index=34 action=Move executed=3 total=4 remaining_utility=478 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:PutDown(6,can)
+[LOG]:[36m[3B][Remaining] event=action task_index=34 action=PutDown executed=4 total=4 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=34 behave=multi-goto-puton succeeded=true executed=4 total=4 remaining_utility=40 remaining_duration_ms=0
+[0m
+[LOG]:[32mFinal-GOTO: moved obj[6] to hub=7 (12/500) (via SolveTask_PutOn)
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto-relocation task_index=34 behave=multi-goto-puton actions=4 duration_ms=440 action_cost=12 marginal_score=68 utility=68 gained_goals=[21,34] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=multi-goto-relocation task_index=34 behave=multi-goto-puton can_finish=true remaining_plan_ms=440 safety_ms=300 budget_remaining_ms=1454
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=34 behave=multi-goto-puton executed=0 total=4 remaining_utility=68 remaining_duration_ms=440
+[0m
+[LOG]:Move(10)
+[LOG]:[36m[3B][Remaining] event=action task_index=34 action=Move executed=1 total=4 remaining_utility=72 remaining_duration_ms=320 can_finish=true
+[0m
+[LOG]:PickUp(7,can)
+[LOG]:[36m[3B][Remaining] event=action task_index=34 action=PickUp executed=2 total=4 remaining_utility=554 remaining_duration_ms=220 can_finish=true
+[0m
+[LOG]:Move(7)
+[LOG]:[36m[3B][Remaining] event=action task_index=34 action=Move executed=3 total=4 remaining_utility=518 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:PutDown(7,can)
+[LOG]:[36m[3B][Remaining] event=action task_index=34 action=PutDown executed=4 total=4 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=34 behave=multi-goto-puton succeeded=true executed=4 total=4 remaining_utility=40 remaining_duration_ms=0
+[0m
+[LOG]:[32mFinal-GOTO: moved obj[7] to hub=7 (13/500) (via SolveTask_PutOn)
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto-relocation task_index=34 behave=multi-goto-puton actions=4 duration_ms=440 action_cost=12 marginal_score=108 utility=108 gained_goals=[7,28,34] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=multi-goto-relocation task_index=34 behave=multi-goto-puton can_finish=true remaining_plan_ms=440 safety_ms=300 budget_remaining_ms=958
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=34 behave=multi-goto-puton executed=0 total=4 remaining_utility=108 remaining_duration_ms=440
+[0m
+[LOG]:Move(9)
+[LOG]:[36m[3B][Remaining] event=action task_index=34 action=Move executed=1 total=4 remaining_utility=112 remaining_duration_ms=320 can_finish=true
+[0m
+[LOG]:PickUp(8,cup)
+[LOG]:[36m[3B][Remaining] event=action task_index=34 action=PickUp executed=2 total=4 remaining_utility=634 remaining_duration_ms=220 can_finish=true
+[0m
+[LOG]:Move(7)
+[LOG]:[36m[3B][Remaining] event=action task_index=34 action=Move executed=3 total=4 remaining_utility=558 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:PutDown(8,cup)
+[LOG]:[36m[3B][Remaining] event=action task_index=34 action=PutDown executed=4 total=4 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=34 behave=multi-goto-puton succeeded=true executed=4 total=4 remaining_utility=40 remaining_duration_ms=0
+[0m
+[LOG]:[32mFinal-GOTO: moved obj[8] to hub=7 (14/500) (via SolveTask_PutOn)
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto-relocation task_index=34 behave=multi-goto-puton actions=0 duration_ms=0 action_cost=0 marginal_score=0 utility=0 gained_goals=[] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=multi-goto-relocation task_index=34 behave=multi-goto-puton can_finish=true remaining_plan_ms=0 safety_ms=300 budget_remaining_ms=443
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=34 behave=multi-goto-puton executed=0 total=0 remaining_utility=40 remaining_duration_ms=0
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=34 behave=multi-goto-puton succeeded=true executed=0 total=0 remaining_utility=40 remaining_duration_ms=0
+[0m
+[LOG]:[32mFinal-GOTO: moved obj[8] to hub=7 (15/500) (via SolveTask_PutOn)
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto-relocation task_index=34 behave=multi-goto-puton actions=4 duration_ms=440 action_cost=12 marginal_score=148 utility=148 gained_goals=[2,14,23,34] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[33m[3B][Deadline] phase=multi-goto-relocation task_index=34 behave=multi-goto-puton can_finish=false remaining_plan_ms=440 safety_ms=300 budget_remaining_ms=442
+[0m
+[LOG]:[32mFinal-GOTO: aggregation done, stay at hub=7
+[0m
+[LOG]:[32m[MultiGoto] ExecuteMultiGotoAggregation finished
+[0m
+
+Sovled Task Num:0    Expect Num:34
+[LOG]:[36m[3A][final] goals=15/34 (unknown=19), constraints=0/1 (unknown=1), base_score=504, action_cost=96, elapsed=4259ms, remaining=441ms
+[0m
+[LOG]:[36m[3A][final] completed_goals=[1:goto,3:goto,4:goto,7:goto,15:goto,16:goto,18:goto,19:goto,20:goto,21:goto,22:goto,24:goto,25:goto,26:goto,28:goto], satisfied_constraints=[]
+[0m
+#(Plug): Elapsed time=4.26s
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

@@ -1,0 +1,21 @@
+--- src1.3.2
++++ src1.3.3-fixed
+@@ -195,15 +195,7 @@
+ [LOG]:[3B][Remaining] event=begin task_index=35 behave=multi-goto-puton executed=0 total=0 remaining_utility=40 remaining_duration_ms=0
+ [LOG]:[3B][Remaining] event=end task_index=35 behave=multi-goto-puton succeeded=true executed=0 total=0 remaining_utility=40 remaining_duration_ms=0
+ [LOG]:[3B][Candidate] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton actions=4 duration_ms=440 action_cost=12 marginal_score=108 utility=108 gained_goals=[7,25,35] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+-[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=440 safety_ms=300 budget_remaining_ms=<clock>
+-[LOG]:[3B][Remaining] event=begin task_index=35 behave=multi-goto-puton executed=0 total=4 remaining_utility=108 remaining_duration_ms=440
+-[LOG]:[3B][Remaining] event=action task_index=35 action=Move executed=1 total=4 remaining_utility=112 remaining_duration_ms=320 can_finish=true
+-[LOG]:[3B][Remaining] event=action task_index=35 action=PickUp executed=2 total=4 remaining_utility=794 remaining_duration_ms=220 can_finish=true
+-[LOG]:[3B][Remaining] event=action task_index=35 action=Move executed=3 total=4 remaining_utility=718 remaining_duration_ms=100 can_finish=true
+-[LOG]:[3B][Remaining] event=action task_index=35 action=PutDown executed=4 total=4 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+-[LOG]:[3B][Remaining] event=end task_index=35 behave=multi-goto-puton succeeded=true executed=4 total=4 remaining_utility=40 remaining_duration_ms=0
+-[LOG]:[3B][Candidate] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton actions=0 duration_ms=0 action_cost=0 marginal_score=0 utility=0 gained_goals=[] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+-[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=false remaining_plan_ms=0 safety_ms=300 budget_remaining_ms=<clock>
++[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=false remaining_plan_ms=440 safety_ms=300 budget_remaining_ms=<clock>
+ [LOG]:[MultiGoto] ExecuteMultiGotoAggregation finished
+-[LOG]:[3A][final] goals=19/35 (unknown=16), constraints=0/0 (unknown=0), base_score=652, action_cost=108, remaining=<clock>
+-[LOG]:[3A][final] completed_goals=[1:goto,2:goto,3:goto,4:goto,5:goto,6:goto,7:goto,9:goto,12:goto,17:goto,19:goto,20:goto,21:goto,22:goto,23:goto,24:goto,25:goto,27:goto,30:goto], satisfied_constraints=[]
++[LOG]:[3A][final] goals=17/35 (unknown=18), constraints=0/0 (unknown=0), base_score=584, action_cost=96, remaining=<clock>
++[LOG]:[3A][final] completed_goals=[1:goto,2:goto,3:goto,4:goto,5:goto,6:goto,9:goto,12:goto,17:goto,19:goto,20:goto,21:goto,22:goto,23:goto,24:goto,27:goto,30:goto], satisfied_constraints=[]

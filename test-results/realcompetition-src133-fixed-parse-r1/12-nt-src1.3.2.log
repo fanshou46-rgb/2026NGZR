@@ -1,0 +1,169 @@
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+[LOG]:[32mThe refrigerator is closed.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <N:refrigerator>
+  <VP:>
+    <BE:is>
+    <ADJ:closed>
+
+[LOG]:[32mGive human the yellow book.[0m
+[LOG]:<S:>
+  <VP:>
+    <VP:>
+      <V:give>
+      <NP:>
+        <N:human>
+    <NP:>
+      <ART:the>
+      <ADJ:yellow>
+      <N:book>
+
+[LOG]:[32mPut the white cup in the closet.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:put>
+    <NP:>
+      <ART:the>
+      <ADJ:white>
+      <N:cup>
+    <PREP:in>
+    <NP:>
+      <ART:the>
+      <N:closet>
+
+[LOG]:[32mPut the green book on the chair.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:put>
+    <NP:>
+      <ART:the>
+      <ADJ:green>
+      <N:book>
+    <PREP:on>
+    <NP:>
+      <ART:the>
+      <N:chair>
+
+[LOG]:[32mPut the green bottle on the bed.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:put>
+    <NP:>
+      <ART:the>
+      <ADJ:green>
+      <N:bottle>
+    <PREP:on>
+    <NP:>
+      <ART:the>
+      <N:bed>
+
+[LOG]:[32mTake out the bottle which is blue from the refrigerator.[0m
+[LOG]:<S:>
+  <VP:>
+    <VP:>
+      <V:take>
+      <PREP:out>
+    <NP:>
+      <NP:>
+        <ART:the>
+        <N:bottle>
+      <WHICH:which>
+      <VP:>
+        <BE:is>
+        <ADJ:blue>
+    <PREP:from>
+    <NP:>
+      <ART:the>
+      <N:refrigerator>
+
+SNAP parsed robot=1,0,10
+SNAP object 0 robot 1
+SNAP object 1 human 1 big
+SNAP object 2 desk 2 big
+SNAP object 3 television 3 big
+SNAP object 4 chair 4 big
+SNAP object 5 bed 5 big
+SNAP object 6 refrigerator 6 container -1
+SNAP object 7 closet 7 container 0
+SNAP object 8 cupboard 8 container 1
+SNAP object 9 microwave 9 container 1
+SNAP object 10 book 1 small yellow 0 -1
+SNAP object 11 book 5 small green 0 -1
+SNAP object 12 bottle 7 small white 7 -1
+SNAP object 13 bottle 2 small green 0 -1
+SNAP object 14 bottle 6 small blue 6 -1
+SNAP object 15 cup -1 small black -1 -1
+SNAP object 16 cup 1 small white 0 -1
+SNAP object 17 remotecontrol 1 small white 0 -1
+SNAP task 0 give X=10, Y= CX=book/yellow CY=human/ useY=0 missing=0
+SNAP task 1 putin X=16, Y=7, CX=cup/white CY=closet/ useY=1 missing=0
+SNAP task 2 puton X=11, Y=4, CX=book/green CY=chair/ useY=1 missing=0
+SNAP task 3 puton X=13, Y=5, CX=bottle/green CY=bed/ useY=1 missing=0
+SNAP task 4 takeout X=14, Y=6, CX=bottle/blue CY=refrigerator/ useY=1 missing=0
+SNAP info 0 closed X=6, Y= CX=refrigerator/ CY=/ useY=0 missing=0
+SNAP END parsed
+SNAP preflight robot=1,0,10
+SNAP object 0 robot 1
+SNAP object 1 human 1 big
+SNAP object 2 desk 2 big
+SNAP object 3 television 3 big
+SNAP object 4 chair 4 big
+SNAP object 5 bed 5 big
+SNAP object 6 refrigerator 6 container -1
+SNAP object 7 closet 7 container 0
+SNAP object 8 cupboard 8 container 1
+SNAP object 9 microwave 9 container 1
+SNAP object 10 book 1 small yellow 0 -1
+SNAP object 11 book 5 small green 0 -1
+SNAP object 12 bottle 7 small white 7 -1
+SNAP object 13 bottle 2 small green 0 -1
+SNAP object 14 bottle 6 small blue 6 -1
+SNAP object 15 cup -1 small black -1 -1
+SNAP object 16 cup 1 small white 0 -1
+SNAP object 17 remotecontrol 1 small white 0 -1
+SNAP task 0 give X=10, Y= CX=book/yellow CY=human/ useY=0 missing=0
+SNAP task 1 putin X=16, Y=7, CX=cup/white CY=closet/ useY=1 missing=0
+SNAP task 2 puton X=11, Y=4, CX=book/green CY=chair/ useY=1 missing=0
+SNAP task 3 puton X=13, Y=5, CX=bottle/green CY=bed/ useY=1 missing=0
+SNAP task 4 takeout X=14, Y=6, CX=bottle/blue CY=refrigerator/ useY=1 missing=0
+SNAP info 0 closed X=6, Y= CX=refrigerator/ CY=/ useY=0 missing=0
+SNAP END preflight
+[LOG]:[32m[MustIn] correction done.
+[0m
+[LOG]:[32m[MustNear] correction done.
+[0m
+SNAP corrected robot=1,0,10
+SNAP object 0 robot 1
+SNAP object 1 human 1 big
+SNAP object 2 desk 2 big
+SNAP object 3 television 3 big
+SNAP object 4 chair 4 big
+SNAP object 5 bed 5 big
+SNAP object 6 refrigerator 6 container 0
+SNAP object 7 closet 7 container 0
+SNAP object 8 cupboard 8 container 1
+SNAP object 9 microwave 9 container 1
+SNAP object 10 book 1 small yellow 0 -1
+SNAP object 11 book 5 small green 0 -1
+SNAP object 12 bottle 7 small white 7 -1
+SNAP object 13 bottle 2 small green 0 -1
+SNAP object 14 bottle 6 small blue 6 -1
+SNAP object 15 cup -1 small black -1 -1
+SNAP object 16 cup 1 small white 0 -1
+SNAP object 17 remotecontrol 1 small white 0 -1
+SNAP task 0 give X=10, Y= CX=book/yellow CY=human/ useY=0 missing=0
+SNAP task 1 putin X=16, Y=7, CX=cup/white CY=closet/ useY=1 missing=0
+SNAP task 2 puton X=11, Y=4, CX=book/green CY=chair/ useY=1 missing=0
+SNAP task 3 puton X=13, Y=5, CX=bottle/green CY=bed/ useY=1 missing=0
+SNAP task 4 takeout X=14, Y=6, CX=bottle/blue CY=refrigerator/ useY=1 missing=0
+SNAP info 0 closed X=6, Y= CX=refrigerator/ CY=/ useY=0 missing=0
+SNAP END corrected
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

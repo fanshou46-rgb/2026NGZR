@@ -1,0 +1,233 @@
+[LOG]:-path
+[LOG]:-err
+[LOG]:-ask_2
+[LOG]:nlp 0, err 1
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32mRDFW
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+Pos  0:(F):
+Pos  1:(T):[32m(robot hold:3 plate:2)[0m[33m(1 human)[0m(2 can)(3 can)(4 can)
+Pos  2:(F):(5 can)(6 can)(7 can)(8 bottle)(9 bottle)(10 bottle)(11 bottle)(12 bottle)(13 bottle)(14 cup)(15 cup)(16 cup)(17 cup)(18 cup)(19 cup)(20 remotecontrol)(21 remotecontrol)(22 remotecontrol)(23 remotecontrol)(24 remotecontrol)(25 remotecontrol)(26 book)
+UnknownPos:
+
+[LOG]:[32m[MustIn] correction done.
+[0m
+[LOG]:[32m[MustNear] relation obj 2 <-> obj 4
+[0m
+[LOG]:[32m[MustNear] inferred obj 2 at location 1
+[0m
+[LOG]:[32m[MustNear] inferred obj 4 at location 1
+[0m
+[LOG]:[32m[MustNear] correction done.
+[0m
+Pos  0:(F):
+Pos  1:(T):[32m(robot hold:3 plate:2)[0m[33m(1 human)[0m(2 can)(3 can)(4 can)
+Pos  2:(F):(5 can)(6 can)(7 can)(8 bottle)(9 bottle)(10 bottle)(11 bottle)(12 bottle)(13 bottle)(14 cup)(15 cup)(16 cup)(17 cup)(18 cup)(19 cup)(20 remotecontrol)(21 remotecontrol)(22 remotecontrol)(23 remotecontrol)(24 remotecontrol)(25 remotecontrol)(26 book)
+UnknownPos:
+
+Task:
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:can,Color:white)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mpickup[0m
+ConditionX:[35m(Sort:can,Color:red)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+
+Info:
+
+Not_Info:
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:can,Color:red)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:can,Color:green)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:can,Color:yellow)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:bottle,Color:blue)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:bottle,Color:black)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:bottle,Color:white)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:bottle,Color:red)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:bottle,Color:green)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:bottle,Color:yellow)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:cup,Color:blue)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:cup,Color:black)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:cup,Color:white)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:cup,Color:red)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:cup,Color:green)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:cup,Color:yellow)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:remotecontrol,Color:blue)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:remotecontrol,Color:black)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:remotecontrol,Color:white)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:remotecontrol,Color:red)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:remotecontrol,Color:green)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:remotecontrol,Color:yellow)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:book,Color:blue)[0m
+
+Not_Task:
+
+NotNot_Info:
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:can,Color:white)[0m
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+the plate object must putdown here!
+[LOG]:PutDown(3,can)
+REPLAY 0 PutDown 3|true
+[LOG]:FromPlate(2,can)
+REPLAY 1 FromPlate 2|true
+[LOG]:PutDown(2,can)
+REPLAY 2 PutDown 2|true
+[FilterConstraintsByTaskConflicts] Discarded goto_cons at location 0 due to 0 conflicts.
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+2
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=1 task_index=0 behave=pickup legacy_choice=true eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=54 score_after=68 marginal_score=14 utility=14 gained_goals=[0] lost_goals=[1] broken_constraints=[] preserved_constraints=[22]
+[0m
+[LOG]:[36m[3A][main-loop] goals=1/2 (unknown=1), constraints=1/23 (unknown=22), base_score=54, action_cost=6, elapsed=240ms, remaining=4460ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[1:goto], satisfied_constraints=[22]
+[0m
+[LOG]:[36m[3B][Deadline] phase=main-loop task_index=0 behave=pickup can_finish=true remaining_plan_ms=220 safety_ms=300 budget_remaining_ms=4460
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=0 behave=pickup executed=0 total=2 remaining_utility=14 remaining_duration_ms=220
+[0m
+pickup can的风险系数是：0
+[LOG]:Move(2)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=Move executed=1 total=2 remaining_utility=18 remaining_duration_ms=100 can_finish=true
+[0m
+REPLAY 3 Move 2|true
+[LOG]:PickUp(5,can)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=PickUp executed=2 total=2 remaining_utility=80 remaining_duration_ms=0 can_finish=true
+[0m
+REPLAY 4 PickUp 5|true
+[LOG]:[32mTask done
+ Behave:[35mpickup[0m
+ConditionX:[35m(Sort:can,Color:red)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=0 behave=pickup succeeded=true executed=2 total=2 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[36m[3A][main-loop] goals=1/2 (unknown=0), constraints=2/23 (unknown=21), base_score=68, action_cost=12, elapsed=4700ms, remaining=0ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:pickup], satisfied_constraints=[0,22]
+[0m
+[LOG]:[33m[3A][StopGate] deadline reached; normal stop before main-loop
+[0m
+-----check check check-----
+
+Sovled Task Num:1    Expect Num:2
+[LOG]:[36m[3A][final] goals=1/2 (unknown=0), constraints=2/23 (unknown=21), base_score=68, action_cost=12, elapsed=4700ms, remaining=0ms
+[0m
+[LOG]:[36m[3A][final] completed_goals=[0:pickup], satisfied_constraints=[0,22]
+[0m
+SNAP final robot=2,5,0
+SNAP object 0 robot 2
+SNAP object 1 human 1 big
+SNAP object 2 can 1 small blue 0 -1
+SNAP object 3 can 1 small black 0 -1
+SNAP object 4 can 1 small white 0 -1
+SNAP object 5 can 2 small red 0 -1
+SNAP object 6 can 2 small green 0 -1
+SNAP object 7 can 2 small yellow 0 -1
+SNAP object 8 bottle 2 small blue 0 -1
+SNAP object 9 bottle 2 small black 0 -1
+SNAP object 10 bottle 2 small white 0 -1
+SNAP object 11 bottle 2 small red 0 -1
+SNAP object 12 bottle 2 small green 0 -1
+SNAP object 13 bottle 2 small yellow 0 -1
+SNAP object 14 cup 2 small blue 0 -1
+SNAP object 15 cup 2 small black 0 -1
+SNAP object 16 cup 2 small white 0 -1
+SNAP object 17 cup 2 small red 0 -1
+SNAP object 18 cup 2 small green 0 -1
+SNAP object 19 cup 2 small yellow 0 -1
+SNAP object 20 remotecontrol 2 small blue 0 -1
+SNAP object 21 remotecontrol 2 small black 0 -1
+SNAP object 22 remotecontrol 2 small white 0 -1
+SNAP object 23 remotecontrol 2 small red 0 -1
+SNAP object 24 remotecontrol 2 small green 0 -1
+SNAP object 25 remotecontrol 2 small yellow 0 -1
+SNAP object 26 book 2 small blue 0 -1
+SNAP task 0 pickup X=5, Y= CX=can/red CY=/ useY=0 missing=0
+SNAP task 1 goto X=4, Y= CX=can/white CY=/ useY=0 missing=0
+SNAP not_info 0 near X=2, Y=5, CX=can/blue CY=can/red useY=1 missing=0
+SNAP not_info 1 near X=2, Y=6, CX=can/blue CY=can/green useY=1 missing=0
+SNAP not_info 2 near X=2, Y=7, CX=can/blue CY=can/yellow useY=1 missing=0
+SNAP not_info 3 near X=2, Y=8, CX=can/blue CY=bottle/blue useY=1 missing=0
+SNAP not_info 4 near X=2, Y=9, CX=can/blue CY=bottle/black useY=1 missing=0
+SNAP not_info 5 near X=2, Y=10, CX=can/blue CY=bottle/white useY=1 missing=0
+SNAP not_info 6 near X=2, Y=11, CX=can/blue CY=bottle/red useY=1 missing=0
+SNAP not_info 7 near X=2, Y=12, CX=can/blue CY=bottle/green useY=1 missing=0
+SNAP not_info 8 near X=2, Y=13, CX=can/blue CY=bottle/yellow useY=1 missing=0
+SNAP not_info 9 near X=2, Y=14, CX=can/blue CY=cup/blue useY=1 missing=0
+SNAP not_info 10 near X=2, Y=15, CX=can/blue CY=cup/black useY=1 missing=0
+SNAP not_info 11 near X=2, Y=16, CX=can/blue CY=cup/white useY=1 missing=0
+SNAP not_info 12 near X=2, Y=17, CX=can/blue CY=cup/red useY=1 missing=0
+SNAP not_info 13 near X=2, Y=18, CX=can/blue CY=cup/green useY=1 missing=0
+SNAP not_info 14 near X=2, Y=19, CX=can/blue CY=cup/yellow useY=1 missing=0
+SNAP not_info 15 near X=2, Y=20, CX=can/blue CY=remotecontrol/blue useY=1 missing=0
+SNAP not_info 16 near X=2, Y=21, CX=can/blue CY=remotecontrol/black useY=1 missing=0
+SNAP not_info 17 near X=2, Y=22, CX=can/blue CY=remotecontrol/white useY=1 missing=0
+SNAP not_info 18 near X=2, Y=23, CX=can/blue CY=remotecontrol/red useY=1 missing=0
+SNAP not_info 19 near X=2, Y=24, CX=can/blue CY=remotecontrol/green useY=1 missing=0
+SNAP not_info 20 near X=2, Y=25, CX=can/blue CY=remotecontrol/yellow useY=1 missing=0
+SNAP not_info 21 near X=2, Y=26, CX=can/blue CY=book/blue useY=1 missing=0
+SNAP must_info 0 near X=2, Y=4, CX=can/blue CY=can/white useY=1 missing=0
+SNAP END final
+REPLAY COMPLETE 5
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

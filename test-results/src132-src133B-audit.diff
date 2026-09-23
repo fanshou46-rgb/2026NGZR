@@ -1,0 +1,2640 @@
+diff --git a/src1.3.2/rdfw.cpp b/src1.3.3B/rdfw.cpp
+index 0f78230..3288ae2 100644
+--- a/src1.3.2/rdfw.cpp
++++ b/src1.3.3B/rdfw.cpp
+@@ -7,6 +7,9 @@
+  #include <unordered_map>
+  #include <set>
+  #include <map>
++# include <cerrno>
++# include <cctype>
++# include <cstdlib>
+ # include <algorithm>
+ # include <cstring>
+ # include <iostream>
+@@ -25,6 +28,114 @@ ostream &operator<<(ostream &os, const Instruction &instr);
+ 
+ namespace {
+ 
++bool ParseBoundedInt(const std::string& text, int minimum, int maximum,
++                     int& value) {
++    if (text.empty()) return false;
++    errno = 0;
++    char* end = nullptr;
++    const long long parsed = std::strtoll(text.c_str(), &end, 10);
++    if (errno == ERANGE || end == text.c_str() || !end || *end != '\0' ||
++        parsed < minimum || parsed > maximum) {
++        return false;
++    }
++    value = static_cast<int>(parsed);
++    return true;
++}
++
++std::string TrimCopy(const std::string& input) {
++    std::size_t begin = 0;
++    while (begin < input.size() &&
++           std::isspace(static_cast<unsigned char>(input[begin]))) ++begin;
++    std::size_t end = input.size();
++    while (end > begin &&
++           std::isspace(static_cast<unsigned char>(input[end - 1]))) --end;
++    return input.substr(begin, end - begin);
++}
++
++std::vector<std::string> SplitWhitespace(const std::string& input) {
++    std::istringstream stream(input);
++    std::vector<std::string> result;
++    std::string token;
++    while (stream >> token) result.push_back(token);
++    return result;
++}
++
++bool ParseInstructionFormTree(const std::string& form,
++                              std::shared_ptr<SyntaxNode>& result,
++                              std::string& error) {
++    result.reset();
++    if (form.empty() || form.size() > 64 * 1024) {
++        error = "empty or oversized instruction form";
++        return false;
++    }
++
++    std::shared_ptr<SyntaxNode> root = std::make_shared<SyntaxNode>();
++    std::vector<std::shared_ptr<SyntaxNode>> path(1, root);
++    std::size_t text_start = 0;
++    std::size_t node_count = 1;
++    for (std::size_t i = 0; i < form.size(); ++i) {
++        if (form[i] == '(') {
++            const std::string value = TrimCopy(form.substr(text_start, i - text_start));
++            if (!value.empty()) path.back()->value += value;
++            if (path.size() >= 64 || node_count >= 1024) {
++                error = "instruction nesting/node limit exceeded";
++                return false;
++            }
++            std::shared_ptr<SyntaxNode> child = std::make_shared<SyntaxNode>();
++            path.back()->sons.push_back(child);
++            path.push_back(child);
++            ++node_count;
++            text_start = i + 1;
++        } else if (form[i] == ')') {
++            if (path.size() <= 1) {
++                error = "unexpected closing parenthesis";
++                return false;
++            }
++            const std::string value = TrimCopy(form.substr(text_start, i - text_start));
++            if (!value.empty()) path.back()->value += value;
++            path.pop_back();
++            text_start = i + 1;
++        }
++    }
++    if (path.size() != 1 || root->sons.size() != 1 || !root->sons[0]) {
++        error = "unbalanced or empty instruction form";
++        return false;
++    }
++    result = root->sons[0];
++    return true;
++}
++
++bool InstructionMarkerAt(const std::string& input, std::size_t pos,
++                         std::string* tag = nullptr) {
++    static const char* markers[] = {
++        "(:cons_notnot", "(:cons_not", "(:task", "(:info"
++    };
++    for (const char* marker : markers) {
++        const std::size_t length = std::strlen(marker);
++        const std::size_t after = pos + length;
++        if (after <= input.size() && input.compare(pos, length, marker) == 0 &&
++            (after == input.size() ||
++             std::isspace(static_cast<unsigned char>(input[after])) ||
++             input[after] == '(' || input[after] == ')')) {
++            if (tag) *tag = marker;
++            return true;
++        }
++    }
++    return false;
++}
++
++bool IsSmallObject(const std::shared_ptr<Object>& object) {
++    return static_cast<bool>(std::dynamic_pointer_cast<SmallObject>(object));
++}
++
++bool IsBigObject(const std::shared_ptr<Object>& object) {
++    return static_cast<bool>(std::dynamic_pointer_cast<BigObject>(object));
++}
++
++bool IsContainerObject(const std::shared_ptr<Object>& object) {
++    return static_cast<bool>(std::dynamic_pointer_cast<Container>(object));
++}
++
+ std::string IndexListString(const std::vector<std::size_t>& values) {
+     std::ostringstream out;
+     out << '[';
+@@ -50,6 +161,11 @@ RDFW::RDFW() : Plug("RDFW") {
+ 
+ }
+ 
++RDFW::~RDFW() {
++    delete nlp_parser;
++    nlp_parser = nullptr;
++}
++
+ CandidatePlan RDFW::PreviewCandidatePlan(std::size_t candidate_task_index) {
+     return BuildCandidatePlan(candidate_task_index);
+ }
+@@ -157,9 +273,14 @@ CandidatePlan RDFW::BuildCandidatePlan(std::size_t candidate_task_index) {
+     DebugLogSuppressed() = true;
+     std::cout.setstate(std::ios_base::failbit);
+     bool succeeded = false;
+-    if (!tasks[candidate_task_index].hasMissingObjects) {
+-        succeeded = ZeroActionPreCheck(tasks[candidate_task_index]) ||
+-                    SolveTask(tasks[candidate_task_index]);
++    if (tasks[candidate_task_index].IsUsable()) {
++        try {
++            succeeded = ZeroActionPreCheck(tasks[candidate_task_index]) ||
++                        SolveTask(tasks[candidate_task_index]);
++        } catch (const std::exception& error) {
++            LOG_ERROR("[InputSafety] candidate isolated exception: %s", error.what());
++            succeeded = false;
++        }
+     }
+     const TerminalSummary terminal_after = terminal_checker.evaluateAll(*this);
+     const ScoreSnapshot score_after = score_evaluator.snapshot(*this, terminal_checker);
+@@ -251,7 +372,7 @@ CandidatePlan RDFW::BuildCandidatePlan(std::size_t candidate_task_index) {
+     return CandidatePlanEvaluator::evaluate(
+         candidate_task_index, tasks[candidate_task_index].behave,
+         tasks[candidate_task_index].isEnable &&
+-            !tasks[candidate_task_index].hasMissingObjects &&
++            tasks[candidate_task_index].IsUsable() &&
+             tasks[candidate_task_index].risk < 2,
+         succeeded, actions, terminal_before, terminal_after,
+         score_before, score_after);
+@@ -259,8 +380,9 @@ CandidatePlan RDFW::BuildCandidatePlan(std::size_t candidate_task_index) {
+ 
+ CandidatePlan RDFW::BuildSyntheticPutOnCandidate(unsigned int object_id,
+                                                   unsigned int target_id) {
+-    if (object_id >= objects.size() || target_id >= objects.size() ||
+-        !objects[object_id] || !objects[target_id]) return CandidatePlan();
++    if (!IsValidObjectId(static_cast<int>(object_id)) ||
++        !IsValidObjectId(static_cast<int>(target_id)) ||
++        !dynamic_pointer_cast<SmallObject>(objects[object_id])) return CandidatePlan();
+     Instruction synthetic;
+     synthetic.behave = "puton";
+     synthetic.X.push_back(objects[object_id]);
+@@ -388,7 +510,7 @@ bool RDFW::StopGate(const char* phase, bool include_goto,
+         bool has_deferred_goto = false;
+         if (!include_goto) {
+             for (std::size_t i = 0; i < tasks.size(); ++i) {
+-                if (tasks[i].isEnable && !tasks[i].hasMissingObjects &&
++                if (tasks[i].isEnable && tasks[i].IsUsable() &&
+                     tasks[i].behave == "goto") {
+                     has_deferred_goto = true;
+                     break;
+@@ -480,7 +602,8 @@ bool RDFW::DryRunActionSucceeds(
+     const char* name, const std::vector<unsigned int>& arguments) const {
+     const std::string action(name);
+     if (action == "Move")
+-        return !arguments.empty() && static_cast<int>(arguments[0]) >= 0;
++        return !arguments.empty() && arguments[0] <=
++               static_cast<unsigned int>(MAX_LOCATION_ID);
+     if (arguments.empty() || arguments[0] >= objects.size() ||
+         !objects[arguments[0]]) return false;
+ 
+@@ -670,27 +793,48 @@ void RDFW::Init(int argc, char **argv) // 改
+             }
+ 
+             // Set Option Value (Option value is in the next arg.)
++            int parsed_option = 0;
+             switch (option)
+             {
+                 case NLP:
+-                    isNaturalParse = stoi(nextArg); // Extract next arg's value (e.g.  -nlp 0)
++                    if (!ParseBoundedInt(nextArg, 0, 1, parsed_option)) {
++                        LOG_ERROR("Invalid -nlp value: %s", nextArg.c_str());
++                        break;
++                    }
++                    isNaturalParse = parsed_option;
+                     i++;
+                     break;
+                 case ERR:
+-                    isErrorCorrection = stoi(nextArg);
++                    if (!ParseBoundedInt(nextArg, 0, 1, parsed_option)) {
++                        LOG_ERROR("Invalid -err value: %s", nextArg.c_str());
++                        break;
++                    }
++                    isErrorCorrection = parsed_option;
+                     i++;
+                     break;
+                 case ASK_2:
+-                    isAskTwice = stoi(nextArg);
++                    if (!ParseBoundedInt(nextArg, 0, 1, parsed_option)) {
++                        LOG_ERROR("Invalid -ask_2 value: %s", nextArg.c_str());
++                        break;
++                    }
++                    isAskTwice = parsed_option;
+                     i++;
+                     break;
+                 case PATH:
++                    if (nextArg.empty()) {
++                        LOG_ERROR("Missing -path value");
++                        break;
++                    }
+                     path = nextArg;
+                     i++;
+                     break;
+                 case STAGE:
+                 {
+-                    int temp = stoi(nextArg);
++                    int temp = 0;
++                    if (!ParseBoundedInt(nextArg, 1, 2, temp)) {
++                        LOG_ERROR("Invalid -stage value: %s", nextArg.c_str());
++                        break;
++                    }
+                     if(temp==1) stage=1;
+                     if(temp==2) stage=2;
+                     i++;
+@@ -707,7 +851,10 @@ void RDFW::Init(int argc, char **argv) // 改
+     }
+     LOG("nlp %d, err %d", isNaturalParse, isErrorCorrection);
+ 
+-    objects.push_back(shared_from_this());  // 向物品中添加当前对象
++    // objects[0] is an identity view of this Robot, not an owning reference.
++    // Owning shared_from_this() here creates RDFW -> objects[0] -> RDFW.
++    objects.push_back(shared_ptr<Object>(static_cast<Object*>(this),
++                                         [](Object*) {}));
+ 
+     if (isErrorCorrection)
+         posCorrectFlag.push_back(false);
+@@ -736,6 +883,8 @@ void RDFW::Plan() // 改
+     shadow_dry_run = false;
+     shadow_action_sink = nullptr;
+     has_active_candidate = false;
++    discarded_instruction_count = 0;
++    preflight_report = QuestionPreflightReport();
+ 
+     // ==================== 测试开始前的状态验证 ====================
+     cout << "#(RDFW): Starting new test - verifying clean state" << endl;
+@@ -825,9 +974,12 @@ void RDFW::Plan() // 改
+     cout <<  "--------------------------------------------" << endl;
+     cout << "Ready to Parse Tasks and Cons." << endl;
+ 
+-    const string task_str = GetTaskDes();
++    const string task_str = TrimCopy(GetTaskDes());
+ 
+-    if(task_str[0]=='(')  {  // check IT or NT
++    if(task_str.empty()) {
++        LOG_ERROR("Instruction description is empty; continuing with no tasks");
++        isNaturalParse = 0;
++    } else if(task_str[0]=='(')  {  // check IT or NT
+         isNaturalParse=0;
+     } else {
+         isNaturalParse=1;
+@@ -838,12 +990,16 @@ void RDFW::Plan() // 改
+         ParseNaturalLanguage(task_str);
+     } else {
+         if (ParseInstruction(task_str) == false) {
+-            cout << "Parse Natural Language Failed. Skipping this test." << endl;
+-            cout << "# Test skipped due to instruction parsing failure" << endl;
+-            return;  // Exit Plan() gracefully, allowing Fini() to be called
++            cout << "Instruction input contained no usable forms; continuing safely." << endl;
+         }
+     }
+ 
++    // One gate for both IT and NL, before any info/correction/risk/goal consumer.
++    if (!RunQuestionPreflight()) {
++        LOG_ERROR("[Preflight] unsafe WorldState; skipping question before planning");
++        return;
++    }
++
+     // Parse Info Complements
+     for (const auto &v : infos){
+         ParseInfo(v);
+@@ -862,8 +1018,12 @@ void RDFW::Plan() // 改
+     // Find Human Infomation from Objects
+     human = nullptr;
+     for (const auto &obj : objects) {
+-        if (obj->sort == "human") {
+-            human = ObjectPtrCast<BigObject>(obj);
++        if (obj && obj->sort == "human") {
++            human = std::dynamic_pointer_cast<BigObject>(obj);
++            if (!human) {
++                LOG_ERROR("Human object %d is not a big object; give tasks will be isolated",
++                          obj->id);
++            }
+             break;
+         }
+     }
+@@ -970,6 +1130,10 @@ void RDFW::ExecuteMainTaskLoop(bool defer_multi_goto)
+         if (pair.second >= 2) {
+             unsigned int bigObjectId = pair.first;
+             int taskCount = pair.second;
++            if (!IsValidObjectId(static_cast<int>(bigObjectId))) {
++                LOG_ERROR("[MultiPuton] ignored invalid object id %u", bigObjectId);
++                continue;
++            }
+             LOG(GREEN "[MultiPuton] Big object %d (sort: %s) appears in %d puton tasks" RESET,
+                 bigObjectId, objects[bigObjectId]->sort.c_str(), taskCount);
+ 
+@@ -987,7 +1151,7 @@ void RDFW::ExecuteMainTaskLoop(bool defer_multi_goto)
+     for (task_index = 0; task_index < tasksSize; ++task_index)
+     {
+         // 跳过包含不存在物体的任务
+-        if (tasks[task_index].hasMissingObjects) {
++        if (!tasks[task_index].IsUsable()) {
+             continue;
+         }
+ 
+@@ -1048,7 +1212,7 @@ void RDFW::ExecuteCheckPhase(bool defer_multi_goto)
+ {
+     for(task_index = 0; task_index < tasks.size(); ++task_index){
+         // 跳过包含不存在物体的任务
+-        if (tasks[task_index].hasMissingObjects) {
++        if (!tasks[task_index].IsUsable()) {
+             continue;
+         }
+ 
+@@ -1097,19 +1261,23 @@ void RDFW::Cons_plan(){
+     int x;
+     for(auto cons:not_infoConstrains){
+         // 跳过包含不存在物体的约束
+-        if (cons.hasMissingObjects) {
++        if (!cons.IsUsable() || cons.X.empty() || !cons.X[0]) {
+             continue;
+         }
+ 
+         if(cons.behave=="on") {
++            if (cons.Y.empty() || !cons.Y[0] || cons.Y[0]->location < 0 ||
++                !EnsureLocationCapacity(cons.Y[0]->location)) continue;
+             if(cons.X[0]->location!=cons.Y[0]->location) putdown_cons[cons.X[0]->id][cons.Y[0]->location]++;
+             else if(cons.X[0]->id==plate_id||cons.X[0]->id==hold_id) putdown_cons[cons.X[0]->id][cons.Y[0]->location]++;
+         }
+         else if(cons.behave=="inside"||cons.behave=="in") {
++             if (cons.Y.empty() || !cons.Y[0]) continue;
+              auto small=dynamic_pointer_cast<SmallObject>(cons.X[0]);
+-            if(small->inside!=cons.Y[0]->id) putin_cons[cons.X[0]->id][cons.Y[0]->id]++;
++            if(small && small->inside!=cons.Y[0]->id) putin_cons[cons.X[0]->id][cons.Y[0]->id]++;
+         }
+         else if(cons.behave == "near"||cons.behave == "nextto") {
++            if (cons.Y.empty() || !cons.Y[0]) continue;
+             if(cons.Y[0]->location!=cons.X[0]->location) //如果约束没有触犯
+             {
+             if(cons.Y[0]->location!=UNKNOWN) move_cons[cons.X[0]->id][cons.Y[0]->location]++;
+@@ -1119,23 +1287,24 @@ void RDFW::Cons_plan(){
+         else if(cons.behave == "plate") toplate_cons[cons.X[0]->id]++;
+         else if(cons.behave == "opened") {
+             auto cont=dynamic_pointer_cast<Container>(cons.X[0]);
+-            if(cont->isOpen!=1) open_cons[cons.X[0]->id]++;
++            if(cont && cont->isOpen!=1) open_cons[cons.X[0]->id]++;
+         }
+         else if(cons.behave == "closed")
+         {
+             auto cont=dynamic_pointer_cast<Container>(cons.X[0]);
+-            if(cont->isOpen==1) close_cons[cons.X[0]->id]++;
++            if(cont && cont->isOpen==1) close_cons[cons.X[0]->id]++;
+         }
+     }
+     for(auto cons:notnot_infoConstrains){
+         // 跳过包含不存在物体的约束
+-        if (cons.hasMissingObjects) {
++        if (!cons.IsUsable() || cons.X.empty() || !cons.X[0]) {
+             continue;
+         }
+ 
+-            if(cons.behave=="on"&&cons.X[0]->location==cons.Y[0]->location) {
++            if(cons.behave=="on" && !cons.Y.empty() && cons.Y[0] &&
++               cons.X[0]->location==cons.Y[0]->location) {
+                 auto small=dynamic_pointer_cast<SmallObject>(cons.X[0]);
+-               if(small->inside!=cons.Y[0]->id) cons.X[0]->is_keep++;
++               if(small && small->inside!=cons.Y[0]->id) cons.X[0]->is_keep++;
+             }
+             else if((cons.behave=="near" || cons.behave=="nextto") && !cons.Y.empty()){
+                 // 关系图已由 BuildMustNearRelations 对称构建；这里仅维护当前
+@@ -1154,43 +1323,47 @@ void RDFW::Cons_plan(){
+             else if(cons.behave=="plate"&& plate_id==cons.X[0]->id)fromplate_cons[cons.X[0]->id]++;
+             else if(cons.behave=="inside"||cons.behave=="in")
+             {
++            if (cons.Y.empty() || !cons.Y[0]) continue;
+             auto small=dynamic_pointer_cast<SmallObject>(cons.X[0]);
+-            if(small->inside==cons.Y[0]->id)  takeout_cons[cons.X[0]->id][cons.Y[0]->id]++;
++            if(small && small->inside==cons.Y[0]->id)  takeout_cons[cons.X[0]->id][cons.Y[0]->id]++;
+             }
+            else if(cons.behave=="closed") {
+              auto cont=dynamic_pointer_cast<Container>(cons.X[0]);
+-            if(cont->isOpen!=1) open_cons[cons.X[0]->id]++;
++            if(cont && cont->isOpen!=1) open_cons[cons.X[0]->id]++;
+            }
+            else if(cons.behave=="opened") {
+             auto cont=dynamic_pointer_cast<Container>(cons.X[0]);
+-            if(cont->isOpen!=1) close_cons[cons.X[0]->id]++;
++            if(cont && cont->isOpen!=1) close_cons[cons.X[0]->id]++;
+            }
+     }
+     for(auto cons:not_taskConstrains){
+         // 跳过包含不存在物体的约束
+-        if (cons.hasMissingObjects) {
++        if (!cons.IsUsable() || cons.X.empty() || !cons.X[0]) {
+             continue;
+         }
+ 
+         //这里不用判断一开始是否触犯约束
+-         if(cons.behave=="takeout") takeout_cons[cons.X[0]->id][cons.Y[0]->id]++;
+-         else if(cons.behave=="putin") putin_cons[cons.X[0]->id][cons.Y[0]->id]++;
+-         else if(cons.behave=="puton") putdown_cons[cons.X[0]->id][cons.Y[0]->location]++;
+-         else if(cons.behave=="goto") goto_cons[cons.X[0]->location]++;
++         if(cons.behave=="takeout" && !cons.Y.empty() && cons.Y[0]) takeout_cons[cons.X[0]->id][cons.Y[0]->id]++;
++         else if(cons.behave=="putin" && !cons.Y.empty() && cons.Y[0]) putin_cons[cons.X[0]->id][cons.Y[0]->id]++;
++         else if(cons.behave=="puton" && !cons.Y.empty() && cons.Y[0] &&
++                 cons.Y[0]->location >= 0 && EnsureLocationCapacity(cons.Y[0]->location))
++             putdown_cons[cons.X[0]->id][cons.Y[0]->location]++;
++         else if(cons.behave=="goto" && cons.X[0]->location >= 0 &&
++                 EnsureLocationCapacity(cons.X[0]->location)) goto_cons[cons.X[0]->location]++;
+          else if(cons.behave=="open") open_cons[cons.X[0]->id]++;
+          else if(cons.behave=="close") close_cons[cons.X[0]->id]++;
+          else if(cons.behave=="pickup") pickup_cons[cons.X[0]->id]++;
+          else if(cons.behave=="give") givehuman_cons[cons.X[0]->id]++;
+          else if(cons.behave == "putdown") putdown1_cons[cons.X[0]->id]++ ;
+     }
+-    if(hold_id>0) {
++    if(IsValidObjectId(hold_id) && location >= 0 && EnsureLocationCapacity(location)) {
+         x=hold_id;
+      if(objects[x]->is_keep>putdown1_cons[x]+putdown_cons[x][location]+fromplate_cons[x]){
+         cout<<"the hold object must putdown here!"<<endl;
+          PutDown(x);
+      }
+      }
+-    if(plate_id>0)
++    if(IsValidObjectId(plate_id) && location >= 0 && EnsureLocationCapacity(location))
+     {
+         x=plate_id;
+      if(objects[x]->is_keep>putdown1_cons[x]+putdown_cons[x][location]+fromplate_cons[x]){
+@@ -1206,46 +1379,43 @@ void RDFW::Cons_plan(){
+ 
+ void RDFW::FilterConstraintsByTaskConflicts() {
+     // 只计算goto_cons和open_cons与多少任务冲突，超过4个则舍弃这个约束
+-    // 定义一个需要舍弃的gotocons数组
+-    int discard_gotoconsloc[100] = {0};
+-    int discard_gotoconsloc_count[100] = {0};
++    vector<pair<int, int>> discarded_goto;
+     int sum_conflict_count=0;
+     int max_effect=0;
+     int max_effect_loc=0;
+-    int i=0;//计数
+     // 1. 处理goto_cons
+     for (int loc = 0; loc < (int)goto_cons.size(); ++loc) {
+         if (goto_cons[loc] > 0) {
+             int conflict_count = 0;
+             for (const auto& task : tasks) {
+                 // 判断任务是否会与goto约束冲突
+-                if (task.isEnable) {
+-                    if ((task.behave == "goto" && task.X.size() > 0 && task.X[0]->location == loc) ||
+-                        (task.behave == "putin" && task.Y.size() > 0 && task.Y[0]->location == loc) ||
+-                        (task.behave == "putin" && task.X.size() > 0 && task.X[0]->location == loc)||
+-                        (task.behave == "puton" && task.Y.size() > 0 && task.Y[0]->location == loc)||
+-                        (task.behave == "puton" && task.X.size() > 0 && task.X[0]->location == loc)||
+-                        (task.behave == "open" && task.X.size() > 0 && task.X[0]->location == loc)||
+-                        (task.behave == "close" && task.X.size() > 0 && task.X[0]->location == loc)||
+-                        (task.behave == "pickup" && task.X.size() > 0 && task.X[0]->location == loc)||
+-                        (task.behave == "give" && task.X.size() > 0 && task.X[0]->location == loc)||
+-                        (task.behave == "give" && task.Y.size() > 0 && task.Y[0]->location == loc)||
+-                        (task.behave == "takeout" && task.Y.size() > 0 && task.Y[0]->location == loc)) {
++                if (task.isEnable && task.IsUsable()) {
++                    const bool has_x = !task.X.empty() && task.X[0];
++                    const bool has_y = !task.Y.empty() && task.Y[0];
++                    if ((task.behave == "goto" && has_x && task.X[0]->location == loc) ||
++                        (task.behave == "putin" && has_y && task.Y[0]->location == loc) ||
++                        (task.behave == "putin" && has_x && task.X[0]->location == loc)||
++                        (task.behave == "puton" && has_y && task.Y[0]->location == loc)||
++                        (task.behave == "puton" && has_x && task.X[0]->location == loc)||
++                        (task.behave == "open" && has_x && task.X[0]->location == loc)||
++                        (task.behave == "close" && has_x && task.X[0]->location == loc)||
++                        (task.behave == "pickup" && has_x && task.X[0]->location == loc)||
++                        (task.behave == "give" && has_x && task.X[0]->location == loc)||
++                        (task.behave == "give" && has_y && task.Y[0]->location == loc)||
++                        (task.behave == "takeout" && has_y && task.Y[0]->location == loc)) {
+                         conflict_count++;
+-                        cout << "[FilterConstraintsByTaskConflicts] Conflict found between goto_cons at location " << loc << " and task " << task.behave << " at location " << task.X[0]->location << endl;
++                        cout << "[FilterConstraintsByTaskConflicts] Conflict found between goto_cons at location " << loc << " and task " << task.behave << endl;
+                     }
+                 }
+             }
+             if (conflict_count - goto_cons[loc] > 2) {
+-                discard_gotoconsloc[i] = loc;
+-                discard_gotoconsloc_count[i] = conflict_count;
++                discarded_goto.push_back(make_pair(loc, conflict_count));
+                 sum_conflict_count+=conflict_count;
+                 if (conflict_count - goto_cons[loc] > max_effect) {
+                     max_effect = conflict_count - goto_cons[loc];
+                     max_effect_loc = loc;
+                 }
+                 cout << "[FilterConstraintsByTaskConflicts] Conflict found between goto_cons at location " << loc << " with conflict count " << conflict_count << endl;
+-                i++;
+             }
+         }
+     }
+@@ -1256,49 +1426,46 @@ void RDFW::FilterConstraintsByTaskConflicts() {
+         cout << "[FilterConstraintsByTaskConflicts] Discarded goto_cons at location " << max_effect_loc << " due to " << max_effect << " conflicts." << endl;
+     }
+     else{
+-        while(i>=0){
+-            goto_cons[discard_gotoconsloc[i]] = 0;
+-            cout << "[FilterConstraintsByTaskConflicts] Discarded goto_cons at location " << discard_gotoconsloc[i] << " due to " << discard_gotoconsloc_count[i] << " conflicts." << endl;
+-            i--;
++        for (auto it = discarded_goto.rbegin(); it != discarded_goto.rend(); ++it) {
++            goto_cons[it->first] = 0;
++            cout << "[FilterConstraintsByTaskConflicts] Discarded goto_cons at location " << it->first << " due to " << it->second << " conflicts." << endl;
+         }
+     }
+ 
+     // 2. 处理open_cons，逻辑同goto_cons
+-    int discard_openconsid[100] = {0};
+-    int discard_openconsid_count[100] = {0};
++    vector<pair<int, int>> discarded_open;
+     int sum_conflict_count_open=0;
+     int max_effect_open=0;
+     int max_effect_id=0;
+-    int j=0;
+     for (int id = 0; id < (int)open_cons.size(); ++id) {
+         if (open_cons[id] > 0) {
+             int conflict_count = 0;
+             for (const auto& task : tasks) {
+                 // 判断任务是否会与open约束冲突
+                 // 这里假设冲突定义为：任务涉及该id，且是open/putin/takeout/puton/pickup/give等
+-                if (task.isEnable) {
+-                    if ((task.behave == "open" && task.X.size() > 0 && task.X[0]->id == id) ||
+-                        (task.behave == "putin" && task.Y.size() > 0 && task.Y[0]->id == id) ||
+-                        (task.behave == "putin" && task.X.size() > 0 && task.X[0]->id == id)||
+-                        (task.behave == "takeout" && task.Y.size() > 0 && task.Y[0]->id == id)||
+-                        (task.behave == "puton" && task.Y.size() > 0 && task.Y[0]->id == id)||
+-                        (task.behave == "pickup" && task.X.size() > 0 && task.X[0]->id == id)||
+-                        (task.behave == "give" && task.X.size() > 0 && task.X[0]->id == id)
++                if (task.isEnable && task.IsUsable()) {
++                    const bool has_x = !task.X.empty() && task.X[0];
++                    const bool has_y = !task.Y.empty() && task.Y[0];
++                    if ((task.behave == "open" && has_x && task.X[0]->id == id) ||
++                        (task.behave == "putin" && has_y && task.Y[0]->id == id) ||
++                        (task.behave == "putin" && has_x && task.X[0]->id == id)||
++                        (task.behave == "takeout" && has_y && task.Y[0]->id == id)||
++                        (task.behave == "puton" && has_y && task.Y[0]->id == id)||
++                        (task.behave == "pickup" && has_x && task.X[0]->id == id)||
++                        (task.behave == "give" && has_x && task.X[0]->id == id)
+                     ) {
+                         conflict_count++;
+                     }
+                 }
+             }
+             if (conflict_count - open_cons[id] > 2) {
+-                discard_openconsid[j] = id;
+-                discard_openconsid_count[j] = conflict_count;
++                discarded_open.push_back(make_pair(id, conflict_count));
+                 sum_conflict_count_open += conflict_count;
+                 if (conflict_count > max_effect_open) {
+                     max_effect_open = conflict_count;
+                     max_effect_id = id;
+                 }
+                 cout << "[FilterConstraintsByTaskConflicts] Conflict found between open_cons for id " << id << " with conflict count " << conflict_count << endl;
+-                j++;
+             }
+         }
+     }
+@@ -1308,9 +1475,9 @@ void RDFW::FilterConstraintsByTaskConflicts() {
+         cout << "[FilterConstraintsByTaskConflicts] Discarded open_cons for id " << max_effect_id << " due to " << max_effect_open << " conflicts." << endl;
+     }
+     else{
+-        for(int k = 0; k < j; k++){
+-            open_cons[discard_openconsid[k]] = 0;
+-            cout << "[FilterConstraintsByTaskConflicts] Discarded open_cons for id " << discard_openconsid[k] << " due to " << discard_openconsid_count[k] << " conflicts." << endl;
++        for (const auto& item : discarded_open) {
++            open_cons[item.first] = 0;
++            cout << "[FilterConstraintsByTaskConflicts] Discarded open_cons for id " << item.first << " due to " << item.second << " conflicts." << endl;
+         }
+     }
+ 
+@@ -1380,7 +1547,7 @@ vector<Instruction> RDFW::TaskOptimization()
+     bool hasGoto = false;
+     for(int i=0;i<tasks.size();i++){
+         // 跳过包含不存在物体的任务
+-        if (tasks[i].hasMissingObjects) {
++        if (!tasks[i].IsUsable()) {
+             continue;
+         }
+ 
+@@ -1396,7 +1563,7 @@ bool RDFW::HasRequestedTask(const string &behave, unsigned int object_id,
+     for (const auto &task : tasks) {
+         // 与原索引一致：不按 isEnable/isfalse 过滤，只匹配 X[0]/Y[0]。
+         // 扩展到全部候选对象会改变冲突策略，不属于本次结构简化。
+-        if (task.hasMissingObjects || task.behave != behave ||
++        if (!task.IsUsable() || task.behave != behave ||
+             task.X.empty() || !task.X[0] || task.X[0]->id != object_id) {
+             continue;
+         }
+@@ -1419,50 +1586,70 @@ bool RDFW::HasRequestedTask(const string &behave, unsigned int object_id,
+ //计算任务风险
+ int RDFW::CalculateTaskRisk(Instruction &t){
+     t.risk=0;
++    if (!t.IsUsable() || t.X.empty() || !t.X[0] ||
++        !IsValidObjectId(t.X[0]->id)) {
++        t.risk = std::numeric_limits<int>::max() / 4;
++        return t.risk;
++    }
++    const bool needs_y = t.behave == "takeout" || t.behave == "putin" ||
++                         t.behave == "puton";
++    if (needs_y && (t.Y.empty() || !t.Y[0] ||
++                    !IsValidObjectId(t.Y[0]->id))) {
++        t.risk = std::numeric_limits<int>::max() / 4;
++        return t.risk;
++    }
++    auto goto_risk = [&](int loc) {
++        if (loc < 0 || !EnsureLocationCapacity(loc)) return 0;
++        return goto_cons[loc];
++    };
+    if(t.behave=="takeout")
+    {
+      auto small=dynamic_pointer_cast<SmallObject>(t.X[0]);
++    if (!small) return std::numeric_limits<int>::max() / 4;
+     if(small->inside!=t.Y[0]->id) return 0;//如果任务满足
+-       EnsureLocationCapacity(t.Y[0]->location);
+-     t.risk+=takeout_cons[t.X[0]->id][t.Y[0]->id]+goto_cons[t.Y[0]->location];
++     t.risk+=takeout_cons[t.X[0]->id][t.Y[0]->id]+goto_risk(t.Y[0]->location);
+      t.risk+=open_cons[t.Y[0]->id];
+     }
+ 
+      else if(t.behave=="putin") {
+-         auto small=dynamic_pointer_cast<SmallObject>(t.X[0]);
+-          if(small->inside==t.Y[0]->id) return 0;
+-         EnsureLocationCapacity(t.Y[0]->location);
+-
+-            t.risk+=putin_cons[t.X[0]->id][t.Y[0]->id]+open_cons[t.Y[0]->id]+move_cons[t.X[0]->id][t.Y[0]->location];
+-            if(t.X[0]->location!=t.Y[0]->location) t.risk+=goto_cons[t.Y[0]->location];
++          auto small=dynamic_pointer_cast<SmallObject>(t.X[0]);
++          if (!small) return std::numeric_limits<int>::max() / 4;
++           if(small->inside==t.Y[0]->id) return 0;
++            t.risk+=putin_cons[t.X[0]->id][t.Y[0]->id]+open_cons[t.Y[0]->id];
++            if (t.Y[0]->location >= 0 && EnsureLocationCapacity(t.Y[0]->location))
++                t.risk += move_cons[t.X[0]->id][t.Y[0]->location];
++            if(t.X[0]->location!=t.Y[0]->location) t.risk+=goto_risk(t.Y[0]->location);
+             CalculateStepRisk(t);
+ 
+       }
+       else if(t.behave=="puton") {
+-          EnsureLocationCapacity(t.Y[0]->location);
+-
+-          t.risk+= putdown_cons[t.X[0]->id][t.Y[0]->location]+move_cons[t.X[0]->id][t.Y[0]->location]+putdown1_cons[t.X[0]->id];
+-        if(t.X[0]->location!=t.Y[0]->location) t.risk+=goto_cons[t.Y[0]->location];
++          if (t.Y[0]->location >= 0 && EnsureLocationCapacity(t.Y[0]->location))
++              t.risk+= putdown_cons[t.X[0]->id][t.Y[0]->location]+move_cons[t.X[0]->id][t.Y[0]->location];
++          t.risk += putdown1_cons[t.X[0]->id];
++        if(t.X[0]->location!=t.Y[0]->location) t.risk+=goto_risk(t.Y[0]->location);
+         CalculateStepRisk(t);
+       }
+       else if (t.behave == "goto") {
+           int loc = t.X[0]->location;
+-          t.risk += goto_cons[loc];
++          t.risk += goto_risk(loc);
+            // 调试日志，明确 t.risk 的组成
+           std::cout << "[DBG] goto risk@loc=" << loc
+-                    << " bool=" << goto_cons[loc]
++                    << " bool=" << goto_risk(loc)
+                    << std::endl;
+       }
+ 
+-      else if(t.behave=="open") t.risk+=open_cons[t.X[0]->id]+goto_cons[t.X[0]->location];
+-      else if(t.behave=="close") t.risk+=close_cons[t.X[0]->id]+goto_cons[t.X[0]->location];
++      else if(t.behave=="open") t.risk+=open_cons[t.X[0]->id]+goto_risk(t.X[0]->location);
++      else if(t.behave=="close") t.risk+=close_cons[t.X[0]->id]+goto_risk(t.X[0]->location);
+       else if(t.behave=="pickup") {
+          CalculateStepRisk(t);
+       }
+       else if(t.behave=="give") {
+          CalculateStepRisk(t);
+-         t.risk+=givehuman_cons[t.X[0]->id]+move_cons[t.X[0]->id][human->location]+putdown1_cons[t.X[0]->id];
+-         if(t.X[0]->location!=human->location) t.risk+=goto_cons[human->location];
++         if (!human) return std::numeric_limits<int>::max() / 4;
++         t.risk+=givehuman_cons[t.X[0]->id]+putdown1_cons[t.X[0]->id];
++         if (human->location >= 0 && EnsureLocationCapacity(human->location))
++             t.risk += move_cons[t.X[0]->id][human->location];
++         if(t.X[0]->location!=human->location) t.risk+=goto_risk(human->location);
+          auto small=dynamic_pointer_cast<SmallObject>(t.X[0]);
+       }
+       else if(t.behave == "putdown")t.risk+=putdown1_cons[t.X[0]->id];
+@@ -1475,8 +1662,8 @@ int RDFW::CalculateTaskRisk(Instruction &t){
+         for (const auto &cons : notnot_infoConstrains) {
+             if (cons.behave == "near") { // 你的“next to”在解析里等同于 near
+                 const auto aId = t.X[0]->id;
+-                bool a_is_X = (cons.X.size() > 0 && cons.X[0]->id == aId);
+-                bool a_is_Y = (cons.Y.size() > 0 && cons.Y[0]->id == aId);
++                bool a_is_X = (!cons.X.empty() && cons.X[0] && cons.X[0]->id == aId);
++                bool a_is_Y = (!cons.Y.empty() && cons.Y[0] && cons.Y[0]->id == aId);
+                 if (!(a_is_X || a_is_Y)) continue;
+ 
+                 // 找到与 t.X[0] 成 near 关系的“另一端对象”
+@@ -1502,21 +1689,50 @@ int RDFW::CalculateTaskRisk(Instruction &t){
+ 
+ //计算步骤风险------计算获取物体的约束值
+ int RDFW:: CalculateStepRisk(Instruction &t){
+-    if (t.X.empty() || !t.X[0]) return 0;
++    if (t.X.empty() || !t.X[0] || !IsValidObjectId(t.X[0]->id)) return 0;
+     if(t.X[0]->location!=location && t.X[0]->location >= 0) {
+-        EnsureLocationCapacity(t.X[0]->location);
++        if (!EnsureLocationCapacity(t.X[0]->location)) return 0;
+         t.risk+=goto_cons[t.X[0]->location];
+     }
+     auto small=dynamic_pointer_cast<SmallObject>(t.X[0]);
+     if (!small) return 0;
+-    if(small->inside!=UNKNOWN&&small->inside!=NONE)t.risk+=open_cons[small->inside]+takeout_cons[small->id][small->inside];
++    if(small->inside!=UNKNOWN&&small->inside!=NONE &&
++       IsValidObjectId(small->inside))
++        t.risk+=open_cons[small->inside]+takeout_cons[small->id][small->inside];
+     else if(small->inside==NONE) t.risk+=pickup_cons[small->id];
+     return 1;
+ }
+ 
+ // ==== helpers for capacity & existence ====
+-inline void RDFW::EnsureLocationCapacity(int loc) {
+-    if (loc < 0) return;
++bool RDFW::IsValidObjectId(int id) const {
++    return id > 0 && id <= static_cast<int>(MAX_OBJECT_ID) &&
++           static_cast<std::size_t>(id) < objects.size() && objects[id];
++}
++
++shared_ptr<Object> RDFW::GetObject(int id) const {
++    return IsValidObjectId(id) ? objects[static_cast<std::size_t>(id)] : nullptr;
++}
++
++bool RDFW::EnsureLocationCapacity(int loc) {
++    if (loc < 0 || loc > MAX_LOCATION_ID) {
++        LOG_ERROR("Location id %d is outside the supported range [0,%d]",
++                  loc, MAX_LOCATION_ID);
++        return false;
++    }
++
++    // Normal inputs stay inside the preallocated range.  Keep this hot path
++    // constant-time; full row scans are needed only when a new location column
++    // is actually requested.
++    const std::size_t required = static_cast<std::size_t>(loc) + 1;
++    if (required <= posCorrectFlag.size() &&
++        required <= posSensedFlag.size() &&
++        required <= locationSensedObjects.size() &&
++        required <= goto_cons.size() &&
++        required <= rightlocation.size() &&
++        (putdown_cons.empty() || required <= putdown_cons.front().size()) &&
++        (move_cons.empty() || required <= move_cons.front().size())) {
++        return true;
++    }
+ 
+     // 扩展位置相关的动态数组
+     if (loc >= (int)posCorrectFlag.size()) posCorrectFlag.resize(loc + 1, true); // 位置维度
+@@ -1525,25 +1741,23 @@ inline void RDFW::EnsureLocationCapacity(int loc) {
+ 
+     // 扩展约束数组
+     if (loc >= (int)goto_cons.size()) goto_cons.resize(loc + 1, 0);
+-    if (loc >= (int)putdown1_cons.size()) putdown1_cons.resize(loc + 1, 0);
+-    if (loc >= (int)open_cons.size()) open_cons.resize(loc + 1, 0);
+-    if (loc >= (int)close_cons.size()) close_cons.resize(loc + 1, 0);
+-    if (loc >= (int)pickup_cons.size()) pickup_cons.resize(loc + 1, 0);
+-    if (loc >= (int)givehuman_cons.size()) givehuman_cons.resize(loc + 1, 0);
+-    if (loc >= (int)fromplate_cons.size()) fromplate_cons.resize(loc + 1, 0);
+-    if (loc >= (int)toplate_cons.size()) toplate_cons.resize(loc + 1, 0);
+     if (loc >= (int)rightlocation.size()) rightlocation.resize(loc + 1, false);
+ 
+-    // 扩展二维约束数组
+-    if (loc >= (int)putin_cons.size()) putin_cons.resize(loc + 1, vector<int>(putin_cons.empty() ? 0 : putin_cons[0].size(), 0));
+-    if (loc >= (int)takeout_cons.size()) takeout_cons.resize(loc + 1, vector<int>(takeout_cons.empty() ? 0 : takeout_cons[0].size(), 0));
+-    if (loc >= (int)putdown_cons.size()) putdown_cons.resize(loc + 1, vector<int>(putdown_cons.empty() ? 0 : putdown_cons[0].size(), 0));
+-    if (loc >= (int)move_cons.size()) move_cons.resize(loc + 1, vector<int>(move_cons.empty() ? 0 : move_cons[0].size(), 0));
+-    // mustnear_cons 的两个维度都是对象 id，不能用位置 loc 扩容。
+-
++    // putdown/move 的行是对象 id，列是位置；位置扩容必须扩每一行，
++    // 不能把位置误当成对象 id 去新增行。
++    for (auto& row : putdown_cons)
++        if (row.size() <= static_cast<std::size_t>(loc)) row.resize(loc + 1, 0);
++    for (auto& row : move_cons)
++        if (row.size() <= static_cast<std::size_t>(loc)) row.resize(loc + 1, 0);
++    return true;
+ }
+ 
+-inline void RDFW::EnsureObjectExists(unsigned id, bool prefer_small) {
++bool RDFW::EnsureObjectExists(unsigned id, bool prefer_small) {
++    if (id == 0 || id > MAX_OBJECT_ID) {
++        LOG_ERROR("Object id %u is outside the supported range [1,%u]",
++                  id, MAX_OBJECT_ID);
++        return false;
++    }
+     if (id >= objects.size()) {
+         size_t last = objects.size();
+         objects.resize(id + 1);
+@@ -1558,6 +1772,27 @@ inline void RDFW::EnsureObjectExists(unsigned id, bool prefer_small) {
+         }
+     }
+     const size_t object_count = objects.size();
++
++    goto_cons.resize(std::max(goto_cons.size(), rightlocation.size()), 0);
++    putdown1_cons.resize(object_count, 0);
++    open_cons.resize(object_count, 0);
++    close_cons.resize(object_count, 0);
++    pickup_cons.resize(object_count, 0);
++    givehuman_cons.resize(object_count, 0);
++    fromplate_cons.resize(object_count, 0);
++    toplate_cons.resize(object_count, 0);
++
++    putin_cons.resize(object_count);
++    takeout_cons.resize(object_count);
++    for (auto& row : putin_cons) row.resize(object_count, 0);
++    for (auto& row : takeout_cons) row.resize(object_count, 0);
++
++    const std::size_t location_count = std::max<std::size_t>(100, rightlocation.size());
++    putdown_cons.resize(object_count);
++    move_cons.resize(object_count);
++    for (auto& row : putdown_cons) row.resize(location_count, 0);
++    for (auto& row : move_cons) row.resize(location_count, 0);
++
+     if (mustnear_cons.size() < object_count) mustnear_cons.resize(object_count);
+     for (auto& row : mustnear_cons) {
+         if (row.size() < object_count) row.resize(object_count, 0);
+@@ -1566,10 +1801,11 @@ inline void RDFW::EnsureObjectExists(unsigned id, bool prefer_small) {
+         mustNearComponent.resize(object_count, UNKNOWN);
+     if (lock_by_mustnear.size() < object_count)
+         lock_by_mustnear.resize(object_count, false);
+-    EnsureEvidenceCapacity(id);
++    return EnsureEvidenceCapacity(id);
+ }
+ 
+-void RDFW::EnsureEvidenceCapacity(unsigned int id) {
++bool RDFW::EnsureEvidenceCapacity(unsigned int id) {
++    if (id > MAX_OBJECT_ID) return false;
+     const size_t required = static_cast<size_t>(id) + 1;
+     if (objectLocationVerified.size() < required)
+         objectLocationVerified.resize(required, false);
+@@ -1579,17 +1815,18 @@ void RDFW::EnsureEvidenceCapacity(unsigned int id) {
+         objectInsideVerified.resize(required, false);
+     if (containerStateVerified.size() < required)
+         containerStateVerified.resize(required, false);
++    return true;
+ }
+ 
+ void RDFW::MarkDirectLocationEvidence(unsigned int id, bool verified) {
+-    EnsureEvidenceCapacity(id);
++    if (!EnsureEvidenceCapacity(id)) return;
+     objectLocationVerified[id] = verified;
+     objectLocationInferredByMustNear[id] = false;
+ }
+ 
+ void RDFW::InvalidateSenseAtLocation(int loc) {
+     if (loc < 0) return;
+-    EnsureLocationCapacity(loc);
++    if (!EnsureLocationCapacity(loc)) return;
+     posSensedFlag[loc] = false;
+     locationSensedObjects[loc].object_ids.clear();
+     locationSensedObjects[loc].container_id = NONE;
+@@ -1619,6 +1856,11 @@ bool RDFW::SolveTask(const Instruction &task) // 改
+ {
+     bool success = false;//是否成功执行
+ 
++    if (!task.IsUsable()) {
++        LogInstructionError(task);
++        return false;
++    }
++
+     if (task.behave == "puton" || task.behave == "putin" || task.behave == "takeout")
+     {
+         if (task.X.empty() || task.Y.empty())
+@@ -1628,6 +1870,7 @@ bool RDFW::SolveTask(const Instruction &task) // 改
+         }
+         for (const auto &a : task.X)
+         {
++            if (!a || !IsValidObjectId(a->id) || !task.Y[0]) return false;
+             cout<<task.behave<<" "<<a->sort<<"的风险系数是："<<task.risk<<endl;
+             success = DoBehavious(task.behave, a->id, task.Y[0]->id);
+             if (!success)
+@@ -1643,6 +1886,7 @@ bool RDFW::SolveTask(const Instruction &task) // 改
+     {
+         for (const auto &a : task.X)
+         {
++            if (!a || !IsValidObjectId(a->id)) return false;
+             cout<<task.behave<<" "<<a->sort<<"的风险系数是："<<task.risk<<endl;
+             success = DoBehavious(task.behave,a->id);
+             if (!success)
+@@ -1655,6 +1899,8 @@ bool RDFW::SolveTask(const Instruction &task) // 改
+ //执行行为---一个对象
+ bool RDFW::DoBehavious(const string &behavious, unsigned int x)
+ {
++    if (x == 0 || x > MAX_OBJECT_ID || !IsValidObjectId(static_cast<int>(x)))
++        return false;
+     if (behavious == "move" || behavious == "Move" || behavious == "Goto" || behavious == "goto")
+         return SolveTask_Goto(x);
+     else if (behavious == "pickup" || behavious == "PickUp")
+@@ -1682,6 +1928,9 @@ bool RDFW::DoBehavious(const string &behavious, unsigned int x)
+ //执行行为---两个对象
+ bool RDFW::DoBehavious(const string &behavious, unsigned int a, unsigned int b) //dobehavious函数
+ {
++    if (a == 0 || b == 0 || a > MAX_OBJECT_ID || b > MAX_OBJECT_ID ||
++        !IsValidObjectId(static_cast<int>(a)) ||
++        !IsValidObjectId(static_cast<int>(b))) return false;
+     if (behavious == "putin" || behavious == "PutIn")
+     {
+         return SolveTask_Putin(a,b);
+@@ -1706,8 +1955,10 @@ bool RDFW::DoBehavious(const string &behavious, unsigned int a, unsigned int b)
+ //拿起物体的逻辑
+ bool RDFW::HoldSmallObject(unsigned int a)
+ {
++    if (!IsValidObjectId(static_cast<int>(a)) ||
++        !dynamic_pointer_cast<SmallObject>(objects[a])) return false;
+     int t = 0;
+-    auto target_small = ObjectPtrCast<SmallObject>(objects[a]);
++    auto target_small = dynamic_pointer_cast<SmallObject>(objects[a]);
+     ///这是stage1的逻辑
+      if(stage==1)
+     {
+@@ -1722,7 +1973,9 @@ bool RDFW::HoldSmallObject(unsigned int a)
+     if(target_small->inside==NONE) return PickUp(a);
+     else if(target_small->inside!=UNKNOWN)//说明小物体在容器里面
+     {
+-       auto target_cont = ObjectPtrCast<Container>(objects[target_small->inside]);
++       if (!IsValidObjectId(target_small->inside)) return false;
++       auto target_cont = dynamic_pointer_cast<Container>(objects[target_small->inside]);
++       if (!target_cont) return false;
+        if(!target_cont->isOpen && !Open(target_cont->id)) return false;
+        return  TakeOut(a,target_cont->id);
+     }
+@@ -1775,7 +2028,7 @@ bool RDFW::HoldSmallObject(unsigned int a)
+                      if (target_small->location == location && PickUp(a)) return 1;
+ 
+                      // 先保证容量（这是“语句”，必须放在 if 条件外执行）
+-                     EnsureLocationCapacity(location);
++                     if (!EnsureLocationCapacity(location)) return false;
+ 
+                      // 然后再按条件判断
+                      if ( posSensedFlag[location]
+@@ -1783,8 +2036,8 @@ bool RDFW::HoldSmallObject(unsigned int a)
+                           && HasContainerAtLocation(location)
+                           && [&]{
+                                  unsigned int cont_id = GetContainerAtLocation(location);
+-                                 if (cont_id > 0) {
+-                                     auto cont = ObjectPtrCast<Container>(objects[cont_id]);
++                                 if (IsValidObjectId(static_cast<int>(cont_id))) {
++                                     auto cont = dynamic_pointer_cast<Container>(objects[cont_id]);
+                                      return (cont && cont->isOpen);
+                                  }
+                                  return false;
+@@ -1809,6 +2062,11 @@ bool RDFW::HoldSmallObject(unsigned int a)
+                 else
+                 {
+                     int initial_cont_id=target_small->inside;
++                    if (!IsValidObjectId(initial_cont_id) ||
++                        !dynamic_pointer_cast<Container>(objects[initial_cont_id])) {
++                        target_small->inside = UNKNOWN;
++                        continue;
++                    }
+                     TakeOutResult result = TakeOutLogic(a,target_small->inside);
+                     if(result == TakeOutResult::Success) return true;
+                     else
+@@ -1850,7 +2108,11 @@ bool RDFW::HoldSmallObject(unsigned int a)
+ 
+ // 从容器拿出物体的逻辑。显式结果类型避免数字返回码在调用处被误解。
+ RDFW::TakeOutResult RDFW::TakeOutLogic(unsigned int small,unsigned int cont){
+-    auto target_cont = ObjectPtrCast<Container>(objects[cont]);
++    if (!IsValidObjectId(static_cast<int>(small)) ||
++        !IsValidObjectId(static_cast<int>(cont))) {
++        return TakeOutResult::NeedContainerLocation;
++    }
++    auto target_cont = dynamic_pointer_cast<Container>(objects[cont]);
+     if (!target_cont) return TakeOutResult::NeedContainerLocation;
+     auto verified_absent_from_open_container = [&]() -> bool {
+         if (!target_cont->isOpen || !IsContainerStateVerified(cont)) return false;
+@@ -1914,6 +2176,8 @@ RDFW::TakeOutResult RDFW::TakeOutLogic(unsigned int small,unsigned int cont){
+ //pickup任务
+ bool RDFW::SolveTask_PickUp(unsigned int a)
+ {
++    if (!IsValidObjectId(static_cast<int>(a)) ||
++        !dynamic_pointer_cast<SmallObject>(objects[a])) return false;
+     if(HasRequestedTask("putdown", a)){
+         if(hold_id==a||plate_id==a) return true;
+         else {
+@@ -1927,6 +2191,8 @@ bool RDFW::SolveTask_PickUp(unsigned int a)
+ 
+ bool RDFW::SolveTask_PutDown(unsigned int a)
+ {
++    if (!IsValidObjectId(static_cast<int>(a)) ||
++        !dynamic_pointer_cast<SmallObject>(objects[a])) return false;
+     if(HasRequestedTask("pickup", a)){
+         if(hold_id!=a&&plate_id!=a) return true;
+         else {
+@@ -1935,6 +2201,7 @@ bool RDFW::SolveTask_PutDown(unsigned int a)
+         }
+     }
+     if(hold_id==a){
++        if (location < 0 || !EnsureLocationCapacity(location)) return false;
+         if(putdown_cons[a][location]) {
+             int safe_location = findrightlocation(a);
+             if (safe_location == UNKNOWN || !Move(safe_location)) return false;
+@@ -1942,6 +2209,7 @@ bool RDFW::SolveTask_PutDown(unsigned int a)
+         return PutDown(a);
+     }
+     else if(plate_id==a){
++        if (location < 0 || !EnsureLocationCapacity(location)) return false;
+         if(hold_id>0) {
+             if (!PutDown(hold_id)) return false;
+             if(putdown_cons[a][location]) {
+@@ -1964,7 +2232,7 @@ bool RDFW::SolveTask_PutDown(unsigned int a)
+             return true;
+         if (!HoldSmallObject(a)) return false;
+         if (location < 0) return false;
+-        EnsureLocationCapacity(location);
++        if (!EnsureLocationCapacity(location)) return false;
+         if (putdown_cons[a][location]) {
+             int safe_location = findrightlocation(a);
+             if (safe_location == UNKNOWN || !Move(safe_location)) return false;
+@@ -1976,6 +2244,7 @@ bool RDFW::SolveTask_PutDown(unsigned int a)
+ //goto任务
+ bool RDFW::SolveTask_Goto(unsigned int a)
+ {
++    if (!IsValidObjectId(static_cast<int>(a))) return false;
+     if(stage==1)
+     {
+         if(location==objects[a]->location){
+@@ -2037,6 +2306,8 @@ bool RDFW::SolveTask_Goto(unsigned int a)
+ //open任务
+ bool RDFW::SolveTask_Open(unsigned int a)
+ {
++    if (!IsValidObjectId(static_cast<int>(a)) ||
++        !dynamic_pointer_cast<Container>(objects[a])) return false;
+     auto cnt=dynamic_pointer_cast<Container>(objects[a]);
+     if(HasRequestedTask("close", a)){
+         if(cnt->isOpen && (stage == 1 || IsContainerStateVerified(a))) return true;
+@@ -2091,6 +2362,8 @@ bool RDFW::SolveTask_Open(unsigned int a)
+ //close任务
+ bool RDFW::SolveTask_Close(unsigned int a)
+ {
++    if (!IsValidObjectId(static_cast<int>(a)) ||
++        !dynamic_pointer_cast<Container>(objects[a])) return false;
+     auto cnt=dynamic_pointer_cast<Container>(objects[a]);
+     if(HasRequestedTask("open", a))
+     {
+@@ -2146,7 +2419,9 @@ bool RDFW::SolveTask_Close(unsigned int a)
+ 
+ //give任务
+ bool RDFW::SolveTask_Give(unsigned int a)
+-  {
++{
++    if (!IsValidObjectId(static_cast<int>(a)) ||
++        !dynamic_pointer_cast<SmallObject>(objects[a]) || !human) return false;
+         if (human != nullptr){
+             if(human->location==UNKNOWN)
+              {
+@@ -2166,6 +2441,10 @@ bool RDFW::SolveTask_Give(unsigned int a)
+ //putin任务
+ bool RDFW::SolveTask_Putin(unsigned int a, unsigned int b)
+ {
++    if (!IsValidObjectId(static_cast<int>(a)) ||
++        !IsValidObjectId(static_cast<int>(b)) ||
++        !dynamic_pointer_cast<SmallObject>(objects[a]) ||
++        !dynamic_pointer_cast<Container>(objects[b])) return false;
+     if(HasRequestedTask("takeout", a, b))
+     {
+         if(Isinside(a,b) && (stage == 1 || IsInsideVerified(a))) return true;
+@@ -2293,6 +2572,10 @@ bool RDFW::SolveTask_Putin(unsigned int a, unsigned int b)
+ //takeout任务
+ bool RDFW::SolveTask_TakeOut(unsigned int a, unsigned int b)
+ {
++    if (!IsValidObjectId(static_cast<int>(a)) ||
++        !IsValidObjectId(static_cast<int>(b)) ||
++        !dynamic_pointer_cast<SmallObject>(objects[a]) ||
++        !dynamic_pointer_cast<Container>(objects[b])) return false;
+     if(HasRequestedTask("putin", a, b)){
+          if(Isinside(a,b)==0) return true;
+         else {
+@@ -2366,6 +2649,9 @@ bool RDFW::SolveTask_TakeOut(unsigned int a, unsigned int b)
+ //puton任务
+ bool RDFW::SolveTask_PutOn(unsigned int a, unsigned int b)
+ {
++    if (!IsValidObjectId(static_cast<int>(a)) ||
++        !IsValidObjectId(static_cast<int>(b)) ||
++        !dynamic_pointer_cast<SmallObject>(objects[a])) return false;
+     //10.27
+     auto small=dynamic_pointer_cast<SmallObject>(objects[a]);
+     if(small && small->inside==NONE && small->location==objects[b]->location &&
+@@ -2460,7 +2746,7 @@ void RDFW::MustChooseOne(void){
+         if (StopGate("must-choose-one", true, candidates)) return;
+         for(int i=0;i<tasks.size();i++){
+             // 跳过包含不存在物体的任务
+-            if (tasks[i].hasMissingObjects) {
++            if (!tasks[i].IsUsable()) {
+                 continue;
+             }
+ 
+@@ -2566,15 +2852,17 @@ void RDFW::ExecuteMultiGotoAggregation()
+     small_cand_ids.reserve(32);
+     big_cand_ids.reserve(32);
+     for (auto &t : tasks) {
+-        if(t.behave == "goto"){
++        if(t.behave == "goto" && t.IsUsable()){
+             if(t.isEnable){
+                 for (auto &x : t.X) {
++                    if (!x || !IsValidObjectId(static_cast<int>(x->id))) continue;
+                     if (std::dynamic_pointer_cast<SmallObject>(x))
+                         small_cand_ids.push_back(x->id);
+                     else if (std::dynamic_pointer_cast<BigObject>(x))
+                         big_cand_ids.push_back(x->id);}
+                 }else{
+                     for (auto &x : t.X) {
++                        if (!x || !IsValidObjectId(static_cast<int>(x->id))) continue;
+                         if (std::dynamic_pointer_cast<SmallObject>(x))
+                             small_cand_ids_disable.push_back(x->id);
+                     }
+@@ -2589,8 +2877,10 @@ void RDFW::ExecuteMultiGotoAggregation()
+             small_cand_ids_disable.begin(),
+             small_cand_ids_disable.end(),
+             [&](unsigned id) {
++                if (!IsValidObjectId(static_cast<int>(id))) return true;
+                 int loc = (objects[id] ? objects[id]->location : UNKNOWN);
+-                int risk = (loc != UNKNOWN && loc >= 0) ? goto_cons[loc] : 99;
++                int risk = (loc >= 0 && loc < static_cast<int>(goto_cons.size()))
++                    ? goto_cons[loc] : 99;
+                 return risk > 2;
+             }
+         ),
+@@ -2622,11 +2912,13 @@ void RDFW::ExecuteMultiGotoAggregation()
+     std::vector<unsigned> small_lowrisk_ids; // 约束值小于2的小物体id
+     // 小物体：计算 goto/pickup/mustnear
+     for (auto id : small_cand_ids) {
++        if (!IsValidObjectId(static_cast<int>(id))) continue;
+         SmallGotoPickupInfo info;
+         info.id = id;
+         // 2. 去到小物体当前位置
+         int loc = (objects[id] ? objects[id]->location : UNKNOWN);
+-        info.goto_risk = (loc != UNKNOWN && loc >= 0) ? goto_cons[loc] : 99;
++        info.goto_risk = (loc >= 0 && loc < static_cast<int>(goto_cons.size()))
++            ? goto_cons[loc] : 99;
+         // 3. 拿起小物体的约束
+         info.pickup_risk = pickup_cons[id];
+         // 4. mustnear 约束（第二维同样是对象 id，不是位置）
+@@ -2650,10 +2942,12 @@ void RDFW::ExecuteMultiGotoAggregation()
+     };
+     std::vector<BigGotoInfo> big_goto_infos;
+     for (auto id : big_cand_ids) {
++        if (!IsValidObjectId(static_cast<int>(id))) continue;
+         BigGotoInfo info;
+         info.id = id;
+         int loc = (objects[id] ? objects[id]->location : UNKNOWN);
+-        info.goto_risk = (loc != UNKNOWN && loc >= 0) ? goto_cons[loc] : 99;
++        info.goto_risk = (loc >= 0 && loc < static_cast<int>(goto_cons.size()))
++            ? goto_cons[loc] : 99;
+         LOG(GREEN "[MultiGoto] BigObject[%u]: goto_risk=%d\n" RESET, id, info.goto_risk);
+         big_goto_infos.push_back(info);
+     }
+@@ -2825,7 +3119,7 @@ void RDFW::ExecuteMultiGotoAggregation()
+ 
+     if(chosen_loc == -1){
+     for (auto big_id : big_cand_ids) {
+-        if (objects[big_id]) {
++        if (IsValidObjectId(static_cast<int>(big_id))) {
+             int loc = objects[big_id]->location;
+             // 确保位置可达
+             if (loc >= 0 && loc < (int)rightlocation.size() && rightlocation[loc]) {
+@@ -2912,11 +3206,14 @@ void RDFW::ExecuteMultiGotoAggregation()
+             auto ViolationsIfGoto = [&](unsigned id) -> int {
+                 if (id >= objects.size() || !objects[id]) return 99;
+                 int loc = objects[id]->location;
+-                if (loc == UNKNOWN || loc < 0) return 99;
++                if (loc < 0 || loc >= static_cast<int>(goto_cons.size())) return 99;
+                 return goto_cons[loc];
+             };
+             auto SafeForIdAt = [&](unsigned id, int h) -> bool {
+-                if (h < 0) return false;
++                if (!IsValidObjectId(static_cast<int>(id)) || h < 0 ||
++                    id >= putdown_cons.size() || id >= move_cons.size() ||
++                    static_cast<std::size_t>(h) >= putdown_cons[id].size() ||
++                    static_cast<std::size_t>(h) >= move_cons[id].size()) return false;
+                 return putdown_cons[id][h] == 0 && move_cons[id][h] == 0;
+             };
+             if (ViolationsIfGoto(id) < 2 && SafeForIdAt(id, chosen_loc)) {
+@@ -2952,10 +3249,16 @@ void RDFW::ExecuteMultiGotoAggregation()
+             };
+ 
+             // 护栏：hold/plate 不在集合且跨区会触发 move 约束时，先就地处理
+-            if (hold_id > 0 && !in_set(hold_id) && move_cons[hold_id][chosen_loc]) {
++            if (IsValidObjectId(hold_id) && !in_set(hold_id) &&
++                chosen_loc >= 0 && hold_id < static_cast<int>(move_cons.size()) &&
++                static_cast<std::size_t>(chosen_loc) < move_cons[hold_id].size() &&
++                move_cons[hold_id][chosen_loc]) {
+                 PutDown(hold_id);
+             }
+-            if (plate_id > 0 && !in_set(plate_id) && move_cons[plate_id][chosen_loc]) {
++            if (IsValidObjectId(plate_id) && !in_set(plate_id) &&
++                chosen_loc >= 0 && plate_id < static_cast<int>(move_cons.size()) &&
++                static_cast<std::size_t>(chosen_loc) < move_cons[plate_id].size() &&
++                move_cons[plate_id][chosen_loc]) {
+                 if (hold_id > 0) PutDown(hold_id);
+                 FromPlate(plate_id);
+                 PutDown(plate_id);
+@@ -3089,16 +3392,17 @@ bool ParseAskLocationReply(const string& reply, unsigned int expected_id,
+         "^\\s*(at|inside)\\s*\\(\\s*([0-9]+)\\s*,\\s*([0-9]+)\\s*\\)\\s*$");
+     smatch match;
+     if (!regex_match(reply, match, pattern) || match.size() != 4) return false;
+-    try {
+-        const unsigned long reply_id = stoul(match[2].str());
+-        const unsigned long reply_target = stoul(match[3].str());
+-        if (reply_id != expected_id) return false;
+-        relation = match[1].str();
+-        target = static_cast<unsigned int>(reply_target);
+-        return true;
+-    } catch (const exception&) {
++    int reply_id = 0;
++    int reply_target = 0;
++    if (!ParseBoundedInt(match[2].str(), 1,
++                         static_cast<int>(MAX_OBJECT_ID), reply_id) ||
++        !ParseBoundedInt(match[3].str(), 0, MAX_LOCATION_ID, reply_target) ||
++        static_cast<unsigned int>(reply_id) != expected_id) return false;
++    relation = match[1].str();
++    if (relation == "inside" && reply_target > static_cast<int>(MAX_OBJECT_ID))
+         return false;
+-    }
++    target = static_cast<unsigned int>(reply_target);
++    return true;
+ }
+ }
+ 
+@@ -3154,7 +3458,7 @@ bool RDFW::GetSmallObjectStatus(unsigned int a)
+         }
+         if (!already_listed) cont->smallObjectsInside.push_back(small);
+     } else {
+-        EnsureLocationCapacity(static_cast<int>(chosen_target));
++        if (!EnsureLocationCapacity(static_cast<int>(chosen_target))) return false;
+         small->location = static_cast<int>(chosen_target);
+         small->inside = NONE;
+     }
+@@ -3162,7 +3466,7 @@ bool RDFW::GetSmallObjectStatus(unsigned int a)
+     MarkDirectLocationEvidence(a, false);
+     objectInsideVerified[a] = false;
+     if (small->location >= 0) {
+-        EnsureLocationCapacity(small->location);
++        if (!EnsureLocationCapacity(small->location)) return false;
+         posCorrectFlag[small->location] = false;
+     }
+     RefreshMustNearConstraintState(false);
+@@ -3193,7 +3497,7 @@ bool RDFW::GetBigObjectStatus(unsigned int a)
+         return false;
+     }
+ 
+-    EnsureLocationCapacity(static_cast<int>(chosen_location));
++    if (!EnsureLocationCapacity(static_cast<int>(chosen_location))) return false;
+     objects[a]->location = static_cast<int>(chosen_location);
+     if (auto cont = dynamic_pointer_cast<Container>(objects[a])) {
+         for (const auto& item : cont->smallObjectsInside) {
+@@ -3248,7 +3552,7 @@ void RDFW::SenseCurrentLocationOnly(bool force)
+     unsigned int sensed_container_id = NONE;
+     // 获取当前位置
+     int curr_loc = location;
+-    if (curr_loc < 0) return;
++    if (curr_loc < 0 || !EnsureLocationCapacity(curr_loc)) return;
+ 
+     // 检查位置是否已经感知过，避免重复感知
+     if (curr_loc >= posSensedFlag.size()) {
+@@ -3484,6 +3788,10 @@ int RDFW::findrightlocation(unsigned int a)
+ 
+ //判断小物体是否在容器里面
+ bool RDFW::Isinside(unsigned int a, unsigned int b){
++    if (!IsValidObjectId(static_cast<int>(a)) ||
++        !IsValidObjectId(static_cast<int>(b)) ||
++        !dynamic_pointer_cast<SmallObject>(objects[a]) ||
++        !dynamic_pointer_cast<Container>(objects[b])) return false;
+     auto small = ObjectPtrCast<SmallObject>(objects[a]);
+     if(small->inside==objects[b]->id) return true;
+     else return false;
+@@ -3492,15 +3800,22 @@ bool RDFW::Isinside(unsigned int a, unsigned int b){
+ 
+ //判断任务是否继续---跟违反的约束有关
+ bool RDFW::IsKeepingGoing(unsigned int index){
+-    if (index >= tasks.size() || tasks[index].X.empty() || !tasks[index].X[0]) return false;
++    if (index >= tasks.size() || !tasks[index].IsUsable() ||
++        tasks[index].X.empty() || !tasks[index].X[0] ||
++        !IsValidObjectId(tasks[index].X[0]->id)) return false;
+     auto &t=tasks[index];
++    const bool needs_y = t.behave == "takeout" || t.behave == "putin" ||
++                         t.behave == "puton";
++    if (needs_y && (t.Y.empty() || !t.Y[0] ||
++                    !IsValidObjectId(t.Y[0]->id))) return false;
+     t.risk=0;
+       if(t.behave=="takeout")
+       {
+         auto small=dynamic_pointer_cast<SmallObject>(t.X[0]);
++        if (!small) return false;
+         if(small->inside==t.Y[0]->id){ //如果任务没有满足
+             const int target_location = t.Y[0]->location;
+-            if (target_location >= 0) EnsureLocationCapacity(target_location);
++            if (target_location >= 0 && !EnsureLocationCapacity(target_location)) return false;
+         t.risk+=takeout_cons[t.X[0]->id][t.Y[0]->id];
+         if (target_location >= 0) t.risk+=goto_cons[target_location];
+         t.risk+=open_cons[t.Y[0]->id];
+@@ -3509,10 +3824,11 @@ bool RDFW::IsKeepingGoing(unsigned int index){
+ 
+         else if(t.behave=="putin") {
+             auto small=dynamic_pointer_cast<SmallObject>(t.X[0]);
++             if (!small) return false;
+              if(small->inside!=t.Y[0]->id) //如果任务没有满足
+              {
+                 const int target_location = t.Y[0]->location;
+-                if (target_location >= 0) EnsureLocationCapacity(target_location);
++                if (target_location >= 0 && !EnsureLocationCapacity(target_location)) return false;
+                t.risk+=putin_cons[t.X[0]->id][t.Y[0]->id]+open_cons[t.Y[0]->id];
+                if (target_location >= 0) {
+                    t.risk+=move_cons[t.X[0]->id][target_location];
+@@ -3523,7 +3839,7 @@ bool RDFW::IsKeepingGoing(unsigned int index){
+          }
+          else if(t.behave=="puton") {
+              const int target_location = t.Y[0]->location;
+-             if (target_location >= 0) EnsureLocationCapacity(target_location);
++             if (target_location >= 0 && !EnsureLocationCapacity(target_location)) return false;
+              t.risk+=putdown1_cons[t.X[0]->id];
+              if (target_location >= 0) {
+                  t.risk+= putdown_cons[t.X[0]->id][target_location]+move_cons[t.X[0]->id][target_location];
+@@ -3531,14 +3847,17 @@ bool RDFW::IsKeepingGoing(unsigned int index){
+              }
+            CalculateStepRisk(t);
+          }
+-         else if(t.behave=="goto" && t.X[0]->location >= 0) t.risk+=goto_cons[t.X[0]->location];
++         else if(t.behave=="goto" && t.X[0]->location >= 0 &&
++                 EnsureLocationCapacity(t.X[0]->location)) t.risk+=goto_cons[t.X[0]->location];
+          else if(t.behave=="open") {
+              t.risk+=open_cons[t.X[0]->id];
+-             if (t.X[0]->location >= 0) t.risk+=goto_cons[t.X[0]->location];
++             if (t.X[0]->location >= 0 && EnsureLocationCapacity(t.X[0]->location))
++                 t.risk+=goto_cons[t.X[0]->location];
+          }
+          else if(t.behave=="close") {
+              t.risk+=close_cons[t.X[0]->id];
+-             if (t.X[0]->location >= 0) t.risk+=goto_cons[t.X[0]->location];
++             if (t.X[0]->location >= 0 && EnsureLocationCapacity(t.X[0]->location))
++                 t.risk+=goto_cons[t.X[0]->location];
+          }
+          else if(t.behave=="pickup") {
+             CalculateStepRisk(t);
+@@ -3547,6 +3866,7 @@ bool RDFW::IsKeepingGoing(unsigned int index){
+             CalculateStepRisk(t);
+             t.risk+=givehuman_cons[t.X[0]->id]+putdown1_cons[t.X[0]->id];
+             if (human && human->location >= 0) {
++                if (!EnsureLocationCapacity(human->location)) return false;
+                 t.risk+=move_cons[t.X[0]->id][human->location];
+                 if(t.X[0]->location!=human->location) t.risk+=goto_cons[human->location];
+             }
+@@ -3567,15 +3887,22 @@ bool RDFW::IsKeepingGoing(unsigned int index){
+ //判断物体是否满足条件
+ bool Condition::IsObjectSatisfy(const shared_ptr<Object> &target) const
+  {
+-     if (!target || sort == "")
++     if (!target)
+          return false;
+-     if (sort != target->sort)
++     if (has_explicit_id && target->id != object_id)
+          return false;
++     if (!has_explicit_id && sort.empty()) return false;
++     if (!sort.empty() && sort != target->sort) return false;
++     if (declared_type == "small" && !IsSmallObject(target)) return false;
++     if (declared_type == "big" && !IsBigObject(target)) return false;
++     if (declared_type == "container" && !IsContainerObject(target)) return false;
++     if (!declared_type.empty() && declared_type != "object" &&
++         declared_type != "small" && declared_type != "big" &&
++         declared_type != "container") return false;
+      if (color != "") // target maybe point to SmallObject
+      {
+          auto tem = dynamic_pointer_cast<SmallObject>(target); // Convert type safely
+-         if (tem && tem->color != color)
+-             return false;
++         if (!tem || tem->color != color) return false;
+      }
+      return true;
+  }
+@@ -3591,14 +3918,21 @@ bool Condition::IsObjectSatisfy(const shared_ptr<Object> &target) const
+ //搜索条件物体
+  void Instruction::SearchConditionObject(const shared_ptr<RDFW> &rdfw, bool is_every)
+  {
++     X.clear();
++     Y.clear();
++     hasMissingObjects = false;
++     if (!rdfw || !syntaxValid) {
++         hasMissingObjects = true;
++         return;
++     }
+      for (auto v : rdfw->objects)
+      {
+-         if (conditionX.IsObjectSatisfy(v))
++         if (v && v->id > 0 && conditionX.IsObjectSatisfy(v))
+          {
+              if (is_every == true || X.size() == 0)
+                  X.push_back(v);
+          }
+-         if (isUseY && conditionY.IsObjectSatisfy(v))
++         if (v && v->id > 0 && isUseY && conditionY.IsObjectSatisfy(v))
+          {
+              if (is_every == true || Y.size() == 0)
+                  Y.push_back(v);
+@@ -3622,6 +3956,10 @@ bool Condition::IsObjectSatisfy(const shared_ptr<Object> &target) const
+ /**====================== 原子动作 =========================== */
+ bool RDFW::TakeOut(unsigned int a, unsigned int b)
+ {
++    if (!IsValidObjectId(static_cast<int>(a)) ||
++        !IsValidObjectId(static_cast<int>(b)) ||
++        !dynamic_pointer_cast<SmallObject>(objects[a]) ||
++        !dynamic_pointer_cast<Container>(objects[b])) return false;
+     auto small = ObjectPtrCast<SmallObject>(objects[a]);
+     auto cont = ObjectPtrCast<Container>(objects[b]);
+     LOG("TakeOut(%d,%s)(%d,%s)", a, small->sort.c_str(), b, cont->sort.c_str());
+@@ -3652,6 +3990,10 @@ bool RDFW::TakeOut(unsigned int a, unsigned int b)
+ 
+ bool RDFW::PutIn(unsigned int a, unsigned int b)
+ {
++    if (!IsValidObjectId(static_cast<int>(a)) ||
++        !IsValidObjectId(static_cast<int>(b)) ||
++        !dynamic_pointer_cast<SmallObject>(objects[a]) ||
++        !dynamic_pointer_cast<Container>(objects[b])) return false;
+     auto cont = ObjectPtrCast<Container>(objects[b]);
+     auto small = ObjectPtrCast<SmallObject>(objects[a]);
+     if (!cont || !small) return 0; // 直接早退，避免 LOG 解引用空指针
+@@ -3688,6 +4030,8 @@ bool RDFW::PutIn(unsigned int a, unsigned int b)
+ }
+ bool RDFW::Close(unsigned int a)
+ {
++    if (!IsValidObjectId(static_cast<int>(a)) ||
++        !dynamic_pointer_cast<Container>(objects[a])) return false;
+     shared_ptr<Container> container = ObjectPtrCast<Container>(objects[a]);
+     if (!container) return 0;
+     LOG("(%d,%s) has closed", a, container->sort.c_str());
+@@ -3710,6 +4054,8 @@ bool RDFW::Close(unsigned int a)
+ }
+ bool RDFW::Open(unsigned int a)
+ {
++    if (!IsValidObjectId(static_cast<int>(a)) ||
++        !dynamic_pointer_cast<Container>(objects[a])) return false;
+     shared_ptr<Container> container = ObjectPtrCast<Container>(objects[a]);
+     if (!container) return 0;
+     LOG("Open(%d,%s)", a, container->sort.c_str());
+@@ -3732,6 +4078,8 @@ bool RDFW::Open(unsigned int a)
+ }
+ bool RDFW::FromPlate(unsigned int a)
+ {
++    if (!IsValidObjectId(static_cast<int>(a)) ||
++        !dynamic_pointer_cast<SmallObject>(objects[a])) return false;
+     LOG("FromPlate(%d,%s)", a, objects[a]->sort.c_str());
+     const std::vector<unsigned int> arguments{a};
+     RecordAction(ActionCategory::PHYSICAL, "FromPlate", arguments);
+@@ -3751,6 +4099,8 @@ bool RDFW::FromPlate(unsigned int a)
+ }
+ bool RDFW::ToPlate(unsigned int a)
+ {
++    if (!IsValidObjectId(static_cast<int>(a)) ||
++        !dynamic_pointer_cast<SmallObject>(objects[a])) return false;
+     LOG("ToPlate(%d,%s)", a, objects[a]->sort.c_str());
+     const std::vector<unsigned int> arguments{a};
+     RecordAction(ActionCategory::PHYSICAL, "ToPlate", arguments);
+@@ -3771,6 +4121,8 @@ bool RDFW::ToPlate(unsigned int a)
+ 
+ bool RDFW::PutDown(unsigned int a)
+ {
++    if (!IsValidObjectId(static_cast<int>(a)) ||
++        !dynamic_pointer_cast<SmallObject>(objects[a])) return false;
+     LOG("PutDown(%d,%s)", a, objects[a]->sort.c_str());
+     const std::vector<unsigned int> arguments{a};
+     RecordAction(ActionCategory::PHYSICAL, "PutDown", arguments);
+@@ -3788,8 +4140,8 @@ bool RDFW::PutDown(unsigned int a)
+         InvalidateSenseAtLocation(location);
+         UpdateTaskList("putdown", objects[a]);
+         putdown1_cons[a]=0;
+-        EnsureLocationCapacity(location);
+-        putdown_cons[a][location]=0;
++        if (location >= 0 && EnsureLocationCapacity(location))
++            putdown_cons[a][location]=0;
+         RefreshMustNearConstraintState(false);
+         return 1;
+     }
+@@ -3797,6 +4149,8 @@ bool RDFW::PutDown(unsigned int a)
+ }
+ bool RDFW::PickUp(unsigned int a)
+ {
++    if (!IsValidObjectId(static_cast<int>(a)) ||
++        !dynamic_pointer_cast<SmallObject>(objects[a])) return false;
+     auto small = ObjectPtrCast<SmallObject>(objects[a]);
+     if (!small) return 0;
+     LOG("PickUp(%d,%s)", small->id, small->sort.c_str());
+@@ -3825,13 +4179,13 @@ bool RDFW::Move(unsigned int a)
+     LOG("Move(%d)", a);
+ 
+     // 1) 位置边界检查（使用动态数组大小）
+-    if ((int)a == UNKNOWN || (int)a < 0) {
++    if (a > static_cast<unsigned int>(MAX_LOCATION_ID)) {
+         LOG(RED "Move: invalid target loc=%d (UNKNOWN or negative)\n" RESET, (int)a);
+         return 0;
+     }
+ 
+     // 2) 确保数组容量足够，动态扩展
+-    EnsureLocationCapacity(a);
++    if (!EnsureLocationCapacity(static_cast<int>(a))) return false;
+ 
+     // 3) 当前任务 X[0] 是否存在（聚合阶段常常不存在）
+     const bool has_taskX0 =
+@@ -3896,7 +4250,7 @@ bool RDFW::Move(unsigned int a)
+ 
+     }
+     */
+-    EnsureLocationCapacity(a);
++    if (!EnsureLocationCapacity(static_cast<int>(a))) return false;
+     goto_cons[a] = 0;                          // a 边界在上面已保证
+     if (hold_id > 0 && safe_idx(hold_id)) {
+         move_cons[hold_id][a] = 0;
+@@ -3929,12 +4283,17 @@ void RDFW::PrintEnv()
+      // Check each object's position and put into objPos
+      for (auto v : objects)
+      {
++         if (!v) continue;
+          if (v->location == UNKNOWN)
+          {
+              unknownPos.push_back(v);
+              continue;
+          }
+-         if (v->location >= objPos.size())
++         if (v->location < 0 || v->location > MAX_LOCATION_ID) {
++             unknownPos.push_back(v);
++             continue;
++         }
++         if (static_cast<std::size_t>(v->location) >= objPos.size())
+              objPos.resize(v->location + 1); // expand objPos
+          objPos[v->location].push_back(v);
+      }
+@@ -3992,48 +4351,102 @@ void RDFW::PrintEnv()
+ 
+ bool RDFW::ParseInstruction(const string &taskDis) // 改并且新增两个函数
+ {
+-    if (taskDis.empty())
+-    {
+-        LOG_ERROR("Instruction is null");
++    if (taskDis.empty() || taskDis.size() > MAX_INPUT_BYTES) {
++        LOG_ERROR("Instruction input is empty or oversized");
+         return false;
+     }
+ 
+-    shared_ptr<SyntaxNode> root = make_shared<SyntaxNode>();
+-    vector<shared_ptr<SyntaxNode>> leaf_path;
+-    shared_ptr<SyntaxNode> curr_leaf = root;
+-    leaf_path.push_back(curr_leaf);
+-    int tag1 = 0;
++    // A fully balanced but invalid constraint (e.g. two payload children) is
++    // quarantined as one wrapper. Only a broken bracket stream needs marker
++    // resynchronization: never execute a second child of a closed bad wrapper.
++    int input_depth = 0;
++    bool balanced_input = true;
++    for (char ch : taskDis) {
++        if (ch == '(') ++input_depth;
++        else if (ch == ')' && --input_depth < 0) balanced_input = false;
++    }
++    balanced_input = balanced_input && input_depth == 0;
++
++    std::size_t parsed_forms = 0;
++    std::size_t cursor = 0;
++    while (cursor < taskDis.size()) {
++        std::size_t start = string::npos;
++        std::string marker;
++        for (std::size_t i = cursor; i < taskDis.size(); ++i) {
++            if (taskDis[i] == '(' && InstructionMarkerAt(taskDis, i, &marker)) {
++                start = i;
++                break;
++            }
++        }
++        if (start == string::npos) break;
++
++        const bool simple_form = marker == "(:task" || marker == "(:info";
++        bool constraint_child_seen = false;
++        bool opaque_invalid_child = false;
++        int depth = 0;
++        std::size_t end = string::npos;
++        std::size_t recovery = string::npos;
++        for (std::size_t i = start; i < taskDis.size(); ++i) {
++            if (i > start && !simple_form && !constraint_child_seen &&
++                taskDis[i] == '(' && depth == 1) {
++                std::string child_marker;
++                InstructionMarkerAt(taskDis, i, &child_marker);
++                opaque_invalid_child = child_marker != "(:task" && child_marker != "(:info";
++                constraint_child_seen = true;
++                ++depth;
++                continue;
++            }
++            if (i > start && taskDis[i] == '(' &&
++                InstructionMarkerAt(taskDis, i) &&
++                (simple_form || !balanced_input) &&
++                !(opaque_invalid_child && depth > 1)) {
++                // A constraint owns exactly one direct task/info child. Never
++                // promote that child to an executable task during recovery,
++                // even if its kind is illegal (e.g. cons_notnot + task).
++                recovery = i;
++                break;
++            }
++            if (taskDis[i] == '(') ++depth;
++            else if (taskDis[i] == ')') {
++                if (--depth == 0) {
++                    end = i + 1;
++                    break;
++                }
++                if (depth < 0) break;
++            }
++        }
+ 
+-    for (int i = 0; i < taskDis.size(); i++)
+-    {
+-        if (taskDis[i] == '(')
+-        {
+-            const string value = ExtractValue(taskDis, tag1, i);
+-            curr_leaf->value += value;
+-            tag1 = i + 1;
+-            auto p = make_shared<SyntaxNode>();
+-            curr_leaf->sons.emplace_back(p);
+-            curr_leaf = p;
+-            leaf_path.push_back(curr_leaf);
+-        }
+-        else if (taskDis[i] == ')')
+-        {
+-            const string value = ExtractValue(taskDis, tag1, i);
+-            curr_leaf->value += value;
+-            tag1 = i + 1;
+-            curr_leaf = *(leaf_path.end() - 2);
+-            leaf_path.pop_back();
++        if (end == string::npos) {
++            ++discarded_instruction_count;
++            LOG_ERROR("Isolated malformed instruction form at byte %zu", start);
++            cursor = recovery == string::npos ? taskDis.size() : recovery;
++            continue;
+         }
++
++        shared_ptr<SyntaxNode> node;
++        string error;
++        const string form = taskDis.substr(start, end - start);
++        if (!ParseInstructionFormTree(form, node, error)) {
++            ++discarded_instruction_count;
++            LOG_ERROR("Isolated malformed instruction (%s): %s",
++                      error.c_str(), form.c_str());
++        } else {
++            ExtractInstructions(vector<shared_ptr<SyntaxNode>>(1, node));
++            ++parsed_forms;
++        }
++        cursor = end;
+     }
+-    ExtractInstructions(root->sons[0]->sons);
+-    return true;
++    return parsed_forms > 0;
+ }
+ 
+ 
+ 
+ string RDFW::ExtractValue(const string &taskDis, int tag1, int tag2)
+ {
++    if (tag1 < 0 || tag2 < tag1 || static_cast<std::size_t>(tag2) > taskDis.size())
++        return "";
+     const string value = taskDis.substr(tag1, tag2 - tag1);
++    if (value.empty()) return value;
+     return (value.back() == ' ' ? value.substr(0, value.size() - 1) : value);
+ }
+ 
+@@ -4041,27 +4454,233 @@ string RDFW::ExtractValue(const string &taskDis, int tag1, int tag2)
+ 
+ void RDFW::ExtractInstructions(const vector<shared_ptr<SyntaxNode>> &nodes)
+ {
+-    // instructions.reserve(nodes.size());
+     for (const auto &node : nodes)
+     {
++        if (!node) {
++            ++discarded_instruction_count;
++            LOG_ERROR("Ignoring null instruction syntax node");
++            continue;
++        }
+         string instructionType = node->value;
+ 
+         if (instructionType == ":task")
+         {
+-            tasks.emplace_back(Instruction(node, shared_from_this())); // 创建一个新的 Instruction 对象
++            AddValidatedInstruction(node, InstructionKind::TASK, tasks);
+         }
+         else if (instructionType == ":cons_not")
+         {
+-            for (auto y : node->sons)
+-            {
+-                if (y->value == ":info") not_infoConstrains.emplace_back(Instruction(node->sons[0], shared_from_this()));
+-                if (y->value == ":task")not_taskConstrains.emplace_back(Instruction(node->sons[0], shared_from_this()));
++            if (node->sons.size() != 1 || !node->sons[0]) {
++                ++discarded_instruction_count;
++                LOG_ERROR("Ignoring malformed :cons_not wrapper");
++                continue;
++            }
++            const auto& child = node->sons[0];
++            if (child->value == ":info")
++                AddValidatedInstruction(child, InstructionKind::NOT_INFO_CONSTRAINT,
++                                        not_infoConstrains);
++            else if (child->value == ":task")
++                AddValidatedInstruction(child, InstructionKind::NOT_TASK_CONSTRAINT,
++                                        not_taskConstrains);
++            else {
++                ++discarded_instruction_count;
++                LOG_ERROR("Ignoring :cons_not with invalid child %s",
++                          child->value.c_str());
++            }
++        }
++        else if (instructionType == ":cons_notnot") {
++            if (node->sons.size() != 1 || !node->sons[0] ||
++                node->sons[0]->value != ":info") {
++                ++discarded_instruction_count;
++                LOG_ERROR("Ignoring malformed :cons_notnot wrapper");
++                continue;
++            }
++            AddValidatedInstruction(node->sons[0],
++                                    InstructionKind::MUST_INFO_CONSTRAINT,
++                                    notnot_infoConstrains);
++        }
++        else if (instructionType == ":info")
++            AddValidatedInstruction(node, InstructionKind::INFO, infos);
++        else {
++            ++discarded_instruction_count;
++            LOG_ERROR("Ignoring unknown instruction node %s", instructionType.c_str());
++        }
++    }
++}
++
++bool RDFW::AddValidatedInstruction(const shared_ptr<SyntaxNode>& node,
++                                   InstructionKind kind,
++                                   vector<Instruction>& destination) {
++    try {
++        Instruction instruction(node, shared_from_this());
++        if (!ValidateInstruction(instruction, kind)) {
++            ++discarded_instruction_count;
++            LOG_ERROR("[InputSafety] isolated instruction behave=%s reason=%s",
++                      instruction.behave.c_str(),
++                      instruction.validationMessage.c_str());
++            return false;
++        }
++        destination.push_back(instruction);
++        return true;
++    } catch (const std::exception& error) {
++        ++discarded_instruction_count;
++        LOG_ERROR("[InputSafety] isolated instruction exception: %s", error.what());
++        return false;
++    }
++}
++
++bool RDFW::ValidateInstruction(Instruction &instruction, InstructionKind kind) {
++    enum class RequiredType { ANY, SMALL, BIG, CONTAINER };
++    struct Schema {
++        std::size_t parameter_count;
++        bool uses_y;
++        RequiredType x_type;
++        RequiredType y_type;
++        bool task_form;
++        bool info_form;
++        bool give_form;
++    };
++
++    auto reject = [&](const string& message) {
++        instruction.validationStatus = Instruction::ValidationStatus::REJECTED;
++        instruction.validationMessage = message;
++        instruction.syntaxValid = false;
++        return false;
++    };
++
++    if (!instruction.syntaxValid) {
++        return reject(instruction.validationMessage.empty()
++                          ? "invalid syntax tree" : instruction.validationMessage);
++    }
++
++    Schema schema = {0, false, RequiredType::ANY, RequiredType::ANY,
++                     false, false, false};
++    const string& behave = instruction.behave;
++    if (behave == "goto")
++        schema = {1, false, RequiredType::ANY, RequiredType::ANY, true, false, false};
++    else if (behave == "pickup" || behave == "putdown")
++        schema = {1, false, RequiredType::SMALL, RequiredType::ANY, true, false, false};
++    else if (behave == "open" || behave == "close")
++        schema = {1, false, RequiredType::CONTAINER, RequiredType::ANY, true, false, false};
++    else if (behave == "give")
++        schema = {2, false, RequiredType::SMALL, RequiredType::ANY, true, false, true};
++    else if (behave == "putin" || behave == "takeout")
++        schema = {2, true, RequiredType::SMALL, RequiredType::CONTAINER, true, false, false};
++    else if (behave == "puton")
++        schema = {2, true, RequiredType::SMALL, RequiredType::BIG, true, false, false};
++    else if (behave == "opened" || behave == "closed")
++        schema = {1, false, RequiredType::CONTAINER, RequiredType::ANY, false, true, false};
++    else if (behave == "plate")
++        schema = {1, false, RequiredType::SMALL, RequiredType::ANY, false, true, false};
++    else if (behave == "inside" || behave == "in")
++        schema = {2, true, RequiredType::SMALL, RequiredType::CONTAINER, false, true, false};
++    else if (behave == "on")
++        schema = {2, true, RequiredType::SMALL, RequiredType::BIG, false, true, false};
++    else if (behave == "near" || behave == "nextto")
++        schema = {2, true, RequiredType::ANY, RequiredType::ANY, false, true, false};
++    else
++        return reject("unknown behavior");
++
++    const bool wants_task = kind == InstructionKind::TASK ||
++                            kind == InstructionKind::NOT_TASK_CONSTRAINT;
++    if ((wants_task && !schema.task_form) || (!wants_task && !schema.info_form))
++        return reject("behavior is not valid for this instruction kind");
++
++    if (instruction.structuredSource) {
++        if (instruction.declaredParameters.size() != schema.parameter_count)
++            return reject("action parameter count does not match schema");
++        if (schema.give_form) {
++            if (instruction.declaredParameters[0] != "human" ||
++                instruction.declaredParameters[1] != "X")
++                return reject("give must bind as (give human X)");
++        } else {
++            if (instruction.declaredParameters.empty() ||
++                instruction.declaredParameters[0] != "X")
++                return reject("first action parameter must bind X");
++            if (schema.uses_y && instruction.declaredParameters[1] != "Y")
++                return reject("second action parameter must bind Y");
++        }
++    }
++
++    bool repaired = false;
++    if (schema.uses_y && !instruction.isUseY && !instruction.Y.empty()) {
++        instruction.isUseY = true;
++        repaired = true;
++    }
++    if (!schema.uses_y && (instruction.isUseY || !instruction.Y.empty()))
++        return reject("unary instruction contains a Y binding");
++    if (instruction.X.empty()) return reject("X binding resolved to an empty set");
++    if (schema.uses_y && instruction.Y.empty())
++        return reject("Y binding resolved to an empty set");
++
++    auto registered = [&](const shared_ptr<Object>& object) {
++        return object && object->id > 0 &&
++               object->id <= static_cast<int>(MAX_OBJECT_ID) &&
++               static_cast<std::size_t>(object->id) < objects.size() &&
++               objects[object->id] == object;
++    };
++    auto type_matches = [](const shared_ptr<Object>& object, RequiredType type) {
++        switch (type) {
++            case RequiredType::SMALL: return IsSmallObject(object);
++            case RequiredType::BIG: return IsBigObject(object);
++            case RequiredType::CONTAINER: return IsContainerObject(object);
++            case RequiredType::ANY: return static_cast<bool>(object);
++        }
++        return false;
++    };
++    auto declared_type_matches = [](const shared_ptr<Object>& object,
++                                    const string& declared) {
++        if (declared.empty() || declared == "object") return true;
++        if (declared == "small") return IsSmallObject(object);
++        if (declared == "big") return IsBigObject(object);
++        if (declared == "container") return IsContainerObject(object);
++        return false;
++    };
++
++    bool inferred = false;
++    for (const auto& object : instruction.X) {
++        if (!registered(object)) return reject("X contains an invalid object reference");
++        if (!type_matches(object, schema.x_type))
++            return reject("X actual object type violates schema");
++        if (!declared_type_matches(object, instruction.conditionX.declared_type))
++            return reject("X declared type conflicts with actual object type");
++        if (schema.x_type != RequiredType::ANY &&
++            instruction.conditionX.declared_type.empty()) inferred = true;
++    }
++    for (const auto& object : instruction.Y) {
++        if (!registered(object)) return reject("Y contains an invalid object reference");
++        if (!type_matches(object, schema.y_type))
++            return reject("Y actual object type violates schema");
++        if (!declared_type_matches(object, instruction.conditionY.declared_type))
++            return reject("Y declared type conflicts with actual object type");
++        if (schema.y_type != RequiredType::ANY &&
++            instruction.conditionY.declared_type.empty()) inferred = true;
++    }
++
++    if (schema.give_form) {
++        bool valid_human = false;
++        for (const auto& object : objects) {
++            if (object && object->sort == "human" && IsBigObject(object)) {
++                valid_human = true;
++                break;
+             }
+         }
+-        else if (instructionType == ":cons_notnot")notnot_infoConstrains.emplace_back(Instruction(node->sons[0], shared_from_this())); // 创建一个新的 Instruction 对象
+-        else if (instructionType == ":info")infos.emplace_back(Instruction(node, shared_from_this()));
++        if (!valid_human) return reject("give has no valid human target");
++    }
+ 
++    instruction.hasMissingObjects = false;
++    instruction.validationStatus = repaired
++        ? Instruction::ValidationStatus::REPAIRED
++        : (inferred ? Instruction::ValidationStatus::INFERRED
++                    : Instruction::ValidationStatus::VALID);
++    instruction.validationMessage = inferred
++        ? "required runtime type inferred from bound object"
++        : (repaired ? "binding metadata repaired from resolved objects" : "schema valid");
++    if (instruction.validationStatus != Instruction::ValidationStatus::VALID) {
++        LOG("[InputSafety] instruction %s status=%s",
++            behave.c_str(),
++            Instruction::ValidationStatusName(instruction.validationStatus));
+     }
++    return true;
+ }
+ 
+ 
+@@ -4073,16 +4692,25 @@ void RDFW::ExtractInstructions(const vector<shared_ptr<SyntaxNode>> &nodes)
+  */
+ void RDFW::ParseNaturalLanguage(const string &src) //
+ {
+-    int lp = 0;
+-    for (int i = 0; i < src.size(); i++)
+-    {
+-        if (src[i] == '.')  // separated by sentence "."
+-        {
+-            string str = src.substr(lp, (i + 1) - lp);  // extract sentence (lp:start,  i:end)
+-            LOG(GREEN "%s" RESET, str.c_str()); // print sentence in log
+-            ParseNaturalLanguageSentence(str);  // parse sentence info
+-            lp = i + 2;
++    if (src.size() > MAX_INPUT_BYTES) {
++        LOG_ERROR("Natural-language instruction input is oversized");
++        return;
++    }
++    std::size_t begin = 0;
++    while (begin < src.size()) {
++        const std::size_t delimiter = src.find('.', begin);
++        const std::size_t end = delimiter == string::npos ? src.size() : delimiter + 1;
++        const string sentence = TrimCopy(src.substr(begin, end - begin));
++        if (!sentence.empty()) {
++            LOG(GREEN "%s" RESET, sentence.c_str());
++            if (!ParseNaturalLanguageSentence(sentence)) {
++                ++discarded_instruction_count;
++                LOG_ERROR("[InputSafety] isolated malformed NL instruction: %s",
++                          sentence.c_str());
++            }
+         }
++        if (delimiter == string::npos) break;
++        begin = delimiter + 1;
+     }
+ }
+ 
+@@ -4095,15 +4723,21 @@ void RDFW::ParseNaturalLanguage(const string &src) //
+  */
+ bool RDFW::ParseNaturalLanguageSentence(const string &s) // 改
+ {
+-    if (!nlp_parser->parse(s))  // Fail to parse
++    if (!nlp_parser || s.empty() || s.size() > 64 * 1024 ||
++        !nlp_parser->parse(s))  // Fail to parse
+     {
+         errorlist.push_back(s);
+         return false;
+     }
+ 
+     auto tree = nlp_parser->root;
++    if (!tree) {
++        errorlist.push_back(s);
++        return false;
++    }
+     vector<Instruction> *list_p = nullptr;
+     bool is_task = true;
++    InstructionKind instruction_kind = InstructionKind::TASK;
+ 
+     switch (tree->sons.size())
+     {
+@@ -4112,9 +4746,15 @@ bool RDFW::ParseNaturalLanguageSentence(const string &s) // 改
+         if (tree->sons[0]->token.type == VP)
+         {
+             if (nlp_parser->is_not)
++            {
+                 list_p = &not_taskConstrains;
++                instruction_kind = InstructionKind::NOT_TASK_CONSTRAINT;
++            }
+             else
++            {
+                 list_p = &tasks;
++                instruction_kind = InstructionKind::TASK;
++            }
+         }
+         break;
+     }
+@@ -4127,12 +4767,21 @@ bool RDFW::ParseNaturalLanguageSentence(const string &s) // 改
+         if (nlp_parser->is_must)
+         {
+             if (nlp_parser->is_not)
++            {
+                 list_p = &not_infoConstrains;
++                instruction_kind = InstructionKind::NOT_INFO_CONSTRAINT;
++            }
+             else
++            {
+                 list_p = &notnot_infoConstrains;
++                instruction_kind = InstructionKind::MUST_INFO_CONSTRAINT;
++            }
+         }
+         else
++        {
+             list_p = &infos;
++            instruction_kind = InstructionKind::INFO;
++        }
+         break;
+     }
+     default:
+@@ -4142,6 +4791,7 @@ bool RDFW::ParseNaturalLanguageSentence(const string &s) // 改
+     if (list_p == nullptr)
+     {
+         LOG_ERROR("NLP Parse Error");
++        return false;
+     }
+     else
+     {
+@@ -4152,9 +4802,13 @@ bool RDFW::ParseNaturalLanguageSentence(const string &s) // 改
+         else
+             instr = nlp_parser->get_info_instruction();
+ 
+-        // 添加至Instruction vector
++        instr.SearchConditionObject(shared_from_this(), nlp_parser->is_every);
++        if (!ValidateInstruction(instr, instruction_kind)) {
++            LOG_ERROR("[InputSafety] rejected NL instruction: %s",
++                      instr.validationMessage.c_str());
++            return false;
++        }
+         list_p->push_back(instr);
+-        list_p->back().SearchConditionObject(shared_from_this(), nlp_parser->is_every);
+     }
+ 
+     return true;
+@@ -4164,120 +4818,122 @@ bool RDFW::ParseNaturalLanguageSentence(const string &s) // 改
+ 
+ bool RDFW::ParseEnvSentence(const string &sentence) // 改
+ {
+-    int pos = 1;
+-    vector<string> tokenList;
+-    tokenList.reserve(3); // Reserve space for up to 3 tokens
+-
+-    // Extract token
+-    for (int i = 1; i < sentence.size(); i++)
+-    {
+-        if (sentence[i] == ' ' || sentence[i] == ')')
+-        {
+-            tokenList.emplace_back(&sentence[pos], &sentence[i]);
+-            pos = i + 1;
+-        }
++    if (sentence.size() < 3 || sentence.front() != '(' || sentence.back() != ')') {
++        LOG_ERROR("Env sentence has invalid delimiters: %s", sentence.c_str());
++        return false;
+     }
++    const vector<string> tokenList =
++        SplitWhitespace(sentence.substr(1, sentence.size() - 2));
++    if (tokenList.empty()) return false;
+ 
+-    if (tokenList.size() != 2 && tokenList.size() != 3)
+-    {
+-        LOG_ERROR("Env Sentence (%s) error", sentence.c_str());
++    const string &firstToken = tokenList[0];
++    const bool unary = firstToken == "hold" || firstToken == "plate" ||
++                       firstToken == "opened" || firstToken == "closed";
++    const bool ternary = firstToken == "at" || firstToken == "sort" ||
++                         firstToken == "size" || firstToken == "color" ||
++                         firstToken == "inside" || firstToken == "type";
++    const std::size_t expected_tokens = unary ? 2 : (ternary ? 3 : 0);
++    if (expected_tokens == 0 || tokenList.size() != expected_tokens) {
++        LOG_ERROR("Env sentence has an unknown predicate or wrong field count: %s",
++                  sentence.c_str());
+         return false;
+     }
+ 
+-    const string &firstToken = tokenList[0];
+-    int index = stoi(tokenList[1]);
+-    int lastSize = objects.size();
++    int index = 0;
++    if (!ParseBoundedInt(tokenList[1], 0, static_cast<int>(MAX_OBJECT_ID), index)) {
++        LOG_ERROR("Env sentence has an invalid object id: %s", sentence.c_str());
++        return false;
++    }
+ 
+     // set robot status
+     if (firstToken == "hold")
+     {
++        if (index < 0 || index > static_cast<int>(MAX_OBJECT_ID)) return false;
+         this->hold_id = index;
++        return true;
+     }
+     else if (firstToken == "plate")
+     {
+         this->plate_id = index;
++        return true;
+     }
+-    else
+-    {
+-        while (index >= lastSize)
+-        {
+-            objects.emplace_back(make_shared<Object>(lastSize++));
+-            posCorrectFlag.push_back(!isErrorCorrection);
+-        }
+ 
+-        auto &obj = objects[index];
++    if (index == 0 && firstToken != "at") {
++        LOG_ERROR("Only an at fact may target robot id 0: %s", sentence.c_str());
++        return false;
++    }
++    if (index > 0 && !EnsureObjectExists(static_cast<unsigned int>(index))) return false;
++    if (static_cast<std::size_t>(index) >= objects.size() || !objects[index]) return false;
++    auto &obj = objects[index];
+ 
+-        if (firstToken == "opened" || firstToken == "closed")
+-        {
+-            auto containerPtr = dynamic_pointer_cast<Container>(obj);
+-            if (containerPtr == nullptr)
+-            {
+-                containerPtr = make_shared<Container>(obj);
+-                obj = containerPtr;
+-            }
+-            containerPtr->isOpen = (firstToken == "opened");
+-        }
+-        else if (firstToken == "at")
+-        {
+-            int L = stoi(tokenList[2]);
+-            EnsureLocationCapacity(L);
+-            obj->location = L;
+-            rightlocation[L] = 1;
+-        }
+-        else if (firstToken == "sort")
+-        {
+-            obj->sort = tokenList[2];
++    auto remember_small = [&](const shared_ptr<SmallObject>& small) {
++        for (const auto& existing : smallObjects)
++            if (existing && existing->id == small->id) return;
++        smallObjects.push_back(small);
++    };
++
++    if (firstToken == "opened" || firstToken == "closed") {
++        if (dynamic_pointer_cast<SmallObject>(obj)) {
++            LOG_ERROR("Container state applied to small object id %d", index);
++            return false;
+         }
+-        else if (firstToken == "size")
+-        {
+-            if (tokenList[2] == "big")
+-            {
+-                if (dynamic_pointer_cast<BigObject>(obj) == nullptr)
+-                {
+-                    auto bigObjPtr = make_shared<BigObject>(obj);
+-                    obj = bigObjPtr;
+-                }
+-            }
+-            else if (tokenList[2] == "small")
+-            {
+-                if (dynamic_pointer_cast<SmallObject>(obj) == nullptr)
+-                {
+-                    auto smallObjPtr = make_shared<SmallObject>(obj);
+-                    smallObjects.push_back(smallObjPtr);
+-                    obj = smallObjPtr;
+-                }
+-            }
++        auto containerPtr = dynamic_pointer_cast<Container>(obj);
++        if (!containerPtr) {
++            containerPtr = make_shared<Container>(obj);
++            obj = containerPtr;
++        }
++        containerPtr->isOpen = (firstToken == "opened");
++    } else if (firstToken == "at") {
++        int location_id = 0;
++        if (!ParseBoundedInt(tokenList[2], 0, MAX_LOCATION_ID, location_id) ||
++            !EnsureLocationCapacity(location_id)) {
++            LOG_ERROR("Env sentence has an invalid location: %s", sentence.c_str());
++            return false;
+         }
+-        else if (firstToken == "color")
+-        {
+-            auto smallObjPtr = dynamic_pointer_cast<SmallObject>(obj);
+-            if (smallObjPtr == nullptr)
+-            {
+-                smallObjPtr = make_shared<SmallObject>(obj);
+-                smallObjects.push_back(smallObjPtr);
+-                obj = smallObjPtr;
++        obj->location = location_id;
++        rightlocation[location_id] = true;
++    } else if (firstToken == "sort") {
++        if (tokenList[2].empty()) return false;
++        obj->sort = tokenList[2];
++    } else if (firstToken == "size") {
++        if (tokenList[2] == "big") {
++            if (dynamic_pointer_cast<SmallObject>(obj)) return false;
++            if (!dynamic_pointer_cast<BigObject>(obj)) obj = make_shared<BigObject>(obj);
++        } else if (tokenList[2] == "small") {
++            if (dynamic_pointer_cast<BigObject>(obj)) return false;
++            auto small = dynamic_pointer_cast<SmallObject>(obj);
++            if (!small) {
++                small = make_shared<SmallObject>(obj);
++                obj = small;
+             }
+-            smallObjPtr->color = tokenList[2];
++            remember_small(small);
++        } else {
++            return false;
+         }
+-        else if (firstToken == "inside")
+-        {
+-            auto smallObjPtr = dynamic_pointer_cast<SmallObject>(obj);
+-            if (smallObjPtr == nullptr)
+-            {
+-                smallObjPtr = make_shared<SmallObject>(obj);
+-                smallObjects.push_back(smallObjPtr);
+-                obj = smallObjPtr;
+-            }
+-            smallObjPtr->inside = stoi(tokenList[2]);
++    } else if (firstToken == "color" || firstToken == "inside") {
++        if (dynamic_pointer_cast<BigObject>(obj)) return false;
++        auto small = dynamic_pointer_cast<SmallObject>(obj);
++        if (!small) {
++            small = make_shared<SmallObject>(obj);
++            obj = small;
+         }
+-        else if (firstToken == "type" && tokenList[2] == "container")
+-        {
+-            if (dynamic_pointer_cast<Container>(obj) == nullptr)
+-            {
+-                auto containerPtr = make_shared<Container>(obj);
+-                obj = containerPtr;
++        remember_small(small);
++        if (firstToken == "color") {
++            small->color = tokenList[2];
++        } else {
++            int container_id = 0;
++            if (!ParseBoundedInt(tokenList[2], 1,
++                                 static_cast<int>(MAX_OBJECT_ID), container_id)) {
++                LOG_ERROR("Env sentence has an invalid inside reference: %s",
++                          sentence.c_str());
++                return false;
+             }
++            small->inside = container_id;
+         }
++    } else if (firstToken == "type") {
++        if (tokenList[2] != "container" || dynamic_pointer_cast<SmallObject>(obj))
++            return false;
++        if (!dynamic_pointer_cast<Container>(obj)) obj = make_shared<Container>(obj);
+     }
+ 
+     return true;
+@@ -4287,34 +4943,66 @@ bool RDFW::ParseEnvSentence(const string &sentence) // 改
+ 
+ bool RDFW::ParseEnv(const string &env) // 没改
+ {
+-    regex reg("\\(.*?\\)");
+-    cmatch m;
+-    auto pos = env.data() + 1;
+-    auto end = env.data() + env.size();
++    if (env.empty() || env.size() > MAX_INPUT_BYTES || objects.empty() || !objects[0]) {
++        LOG_ERROR("WorldState input is empty, oversized, or lacks robot object 0");
++        return false;
++    }
+ 
+-    // separate sentence and parse
+-    for (; regex_search(pos, end, m, reg); pos = m.suffix().first)
+-    {
+-        string str = m.str();
+-        if (ParseEnvSentence(str) == false)
+-        {
+-            LOG_ERROR("Parse Env Sentence ERROR\n %s", env.c_str());
+-            return false;
++    // The platform wraps leaf facts in (:domain ...).  Parse only innermost
++    // parenthesized forms so the wrapper can never be mistaken for a fact.
++    struct EnvOpen { std::size_t offset; bool has_child; };
++    vector<EnvOpen> open_forms;
++    std::size_t valid_facts = 0;
++    for (std::size_t cursor = 0; cursor < env.size(); ++cursor) {
++        if (env[cursor] == '(') {
++            if (!open_forms.empty()) open_forms.back().has_child = true;
++            open_forms.push_back(EnvOpen{cursor, false});
++            continue;
++        }
++        if (env[cursor] != ')') continue;
++        if (open_forms.empty()) {
++            LOG_ERROR("Ignoring unmatched environment ')' at byte %zu", cursor);
++            continue;
++        }
++        const EnvOpen current = open_forms.back();
++        open_forms.pop_back();
++        if (current.has_child) continue;
++        const string fact = env.substr(current.offset, cursor - current.offset + 1);
++        if (ParseEnvSentence(fact)) {
++            ++valid_facts;
++        } else {
++            LOG_ERROR("Ignoring invalid environment fact: %s", fact.c_str());
+         }
+     }
++    if (!open_forms.empty())
++        LOG_ERROR("Ignoring %zu unterminated environment form(s)", open_forms.size());
+ 
+     // set robot status
+     if (hold_id > 0)
+     {
+-        SetHold(ObjectPtrCast<SmallObject>(objects[hold_id]));
+-        MarkDirectLocationEvidence(hold_id, stage == 1);
+-        objectInsideVerified[hold_id] = (stage == 1);
++        auto held = std::dynamic_pointer_cast<SmallObject>(GetObject(hold_id));
++        if (!held) {
++            LOG_ERROR("Ignoring invalid hold reference %d", hold_id);
++            hold_id = NONE;
++            SetHold(nullptr);
++        } else {
++            SetHold(held);
++            MarkDirectLocationEvidence(hold_id, stage == 1);
++            objectInsideVerified[hold_id] = (stage == 1);
++        }
+     }
+     if (plate_id > 0)
+     {
+-        SetPlate(ObjectPtrCast<SmallObject>(objects[plate_id]));
+-        MarkDirectLocationEvidence(plate_id, stage == 1);
+-        objectInsideVerified[plate_id] = (stage == 1);
++        auto plated = std::dynamic_pointer_cast<SmallObject>(GetObject(plate_id));
++        if (!plated || plate_id == hold_id) {
++            LOG_ERROR("Ignoring invalid plate reference %d", plate_id);
++            plate_id = NONE;
++            SetPlate(nullptr);
++        } else {
++            SetPlate(plated);
++            MarkDirectLocationEvidence(plate_id, stage == 1);
++            objectInsideVerified[plate_id] = (stage == 1);
++        }
+     }
+ 
+     for (const auto &s : smallObjects)
+@@ -4323,7 +5011,7 @@ bool RDFW::ParseEnv(const string &env) // 没改
+             continue;
+         if (s->inside != UNKNOWN && s->inside != NONE)
+         {
+-            auto p = dynamic_pointer_cast<Container>(objects[s->inside]);
++            auto p = dynamic_pointer_cast<Container>(GetObject(s->inside));
+             if (p != nullptr)
+             {
+                 p->smallObjectsInside.push_back(s);
+@@ -4339,6 +5027,10 @@ bool RDFW::ParseEnv(const string &env) // 没改
+             s->inside = NONE;
+     }
+ 
++    if (valid_facts == 0) {
++        LOG_ERROR("WorldState contains no usable facts");
++        return false;
++    }
+     return true;
+ }
+ 
+@@ -4347,7 +5039,9 @@ bool RDFW::ParseEnv(const string &env) // 没改
+ void RDFW::ParseInfo(const Instruction &info) // 改
+ {
+     // 跳过包含不存在物体的info
+-    if (info.hasMissingObjects) {
++    if (!info.IsUsable() || info.X.empty() || !info.X[0] ||
++        (info.isUseY && (info.Y.empty() || !info.Y[0]))) {
++        LOG_ERROR("[InputSafety] skipped unusable info %s", info.behave.c_str());
+         return;
+     }
+ 
+@@ -4395,7 +5089,9 @@ void RDFW::ParseInfo(const Instruction &info) // 改
+     {
+         if (plate == nullptr)
+         {
+-            SetPlate(ObjectPtrCast<SmallObject>(info.X[0]));
++            auto small = dynamic_pointer_cast<SmallObject>(info.X[0]);
++            if (!small) return;
++            SetPlate(small);
+         }
+         else
+         {
+@@ -4404,12 +5100,14 @@ void RDFW::ParseInfo(const Instruction &info) // 改
+     }
+     else if (behave == "inside" || behave == "in")
+     {
+-        auto c = ObjectPtrCast<Container>(info.Y[0]);
++        auto c = dynamic_pointer_cast<Container>(info.Y[0]);
++        if (!c) return;
+         int cId = c->id;
+ 
+         for (auto v : info.X)
+         {
+-            auto p = ObjectPtrCast<SmallObject>(v);
++            auto p = dynamic_pointer_cast<SmallObject>(v);
++            if (!p) continue;
+             p->inside = cId;
+             p->location=c->location;
+             c->smallObjectsInside.push_back(p);
+@@ -4419,7 +5117,8 @@ void RDFW::ParseInfo(const Instruction &info) // 改
+     {
+         for (auto v : info.X)
+         {
+-            auto p = ObjectPtrCast<Container>(v);
++            auto p = dynamic_pointer_cast<Container>(v);
++            if (!p) continue;
+             p->isOpen = true;
+         }
+     }
+@@ -4427,7 +5126,8 @@ void RDFW::ParseInfo(const Instruction &info) // 改
+     {
+         for (auto v : info.X)
+         {
+-            auto p = ObjectPtrCast<Container>(v);
++            auto p = dynamic_pointer_cast<Container>(v);
++            if (!p) continue;
+             p->isOpen = false;
+         }
+     }
+@@ -4476,10 +5176,14 @@ void RDFW::LogInstructionError(const Instruction &task) // 新增
+ 
+ //执行完任务后更新约束
+ void RDFW::AfterSolveTask(const Instruction &task){
++    if (!task.IsUsable() || task.X.empty() || !task.X[0] ||
++        !IsValidObjectId(task.X[0]->id)) return;
+     if(task.behave=="pickup") for(int i=0;i<(int)pickup_cons.size();i++) pickup_cons[i]+=2;
+     else if(task.behave=="putdown") pickup_cons[task.X[0]->id]+=2;
+-    else if(task.behave=="takeout") putin_cons[task.X[0]->id][task.Y[0]->id]+=2;
+-    else if(task.behave=="putin") takeout_cons[task.X[0]->id][task.Y[0]->id]+=2;
++    else if(task.behave=="takeout" && !task.Y.empty() && task.Y[0] &&
++            IsValidObjectId(task.Y[0]->id)) putin_cons[task.X[0]->id][task.Y[0]->id]+=2;
++    else if(task.behave=="putin" && !task.Y.empty() && task.Y[0] &&
++            IsValidObjectId(task.Y[0]->id)) takeout_cons[task.X[0]->id][task.Y[0]->id]+=2;
+ //这里要删除
+ //    else if(task.behave=="goto") for(int i=0;i<50;i++) goto_cons[i]+=2;
+     else task.X[0]->is_keep+=2;
+@@ -4542,6 +5246,7 @@ void RDFW::AfterSolveTask(const Instruction &task){
+ 
+ void RDFW::Fini()
+ {
++    preflight_report = QuestionPreflightReport();
+     cout << "#(RDFW): Fini - Comprehensive state cleanup for next test" << endl;
+ 
+     // ==================== 机器人状态重置 ====================
+@@ -4653,7 +5358,8 @@ void RDFW::Fini()
+     }
+ 
+     // ==================== 重新初始化基础状态 ====================
+-    objects.push_back(shared_from_this());
++    objects.push_back(shared_ptr<Object>(static_cast<Object*>(this),
++                                         [](Object*) {}));
+     if (isErrorCorrection)
+         posCorrectFlag.push_back(false);
+     else
+@@ -4727,7 +5433,7 @@ void RDFW::OptimizeMemoryUsage() {
+          }
+      }
+      if (last != str_source.size())
+-         out.push_back(str_source.substr(last, str_source.size() - 1));
++         out.push_back(str_source.substr(last));
+  }
+ 
+ 
+@@ -4736,38 +5442,113 @@ void RDFW::OptimizeMemoryUsage() {
+ 
+  Instruction::Instruction() {}
+ 
++ const char* Instruction::ValidationStatusName(ValidationStatus status)
++ {
++     switch (status) {
++         case ValidationStatus::UNCHECKED: return "UNCHECKED";
++         case ValidationStatus::VALID: return "VALID";
++         case ValidationStatus::REPAIRED: return "REPAIRED";
++         case ValidationStatus::INFERRED: return "INFERRED";
++         case ValidationStatus::REJECTED: return "REJECTED";
++     }
++     return "UNKNOWN";
++ }
++
+  Instruction::Instruction(const shared_ptr<SyntaxNode> &node, const shared_ptr<RDFW> &rdfw) // 改
+  {
+-     vector<string> disc;
+-     split_string(disc, node->sons[0]->value, ' '); // node是ins下一层的小节点
+-     behave = disc[0];
++     structuredSource = true;
++     auto invalidate = [&](const string& message) {
++         syntaxValid = false;
++         validationStatus = ValidationStatus::REJECTED;
++         validationMessage = message;
++     };
++
++     if (!node || node->sons.size() != 2 || !node->sons[0] || !node->sons[1]) {
++         invalidate("instruction must contain one action and one :cond node");
++         return;
++     }
++     if (node->sons[1]->value != ":cond") {
++         invalidate("instruction has no valid :cond node");
++         return;
++     }
+ 
+-    for (const auto &n : node->sons[1]->sons) // sons[1]是cond节点
+-    {
+-        vector<string> temp;
+-        split_string(temp, n->value, ' ');
++     const vector<string> action = SplitWhitespace(node->sons[0]->value);
++     if (action.empty()) {
++         invalidate("instruction action is empty");
++         return;
++     }
++     behave = action[0];
++     declaredParameters.assign(action.begin() + 1, action.end());
+ 
+-        // 检查temp向量是否有足够的元素
+-        if (temp.size() < 3) {
+-            LOG_ERROR("Invalid condition format: %s", n->value.c_str());
+-            continue;
+-        }
++     for (const auto &n : node->sons[1]->sons) // sons[1]是cond节点
++     {
++         if (!n || !n->sons.empty()) {
++             invalidate("condition contains an empty or nested node");
++             return;
++         }
++         const vector<string> fields = SplitWhitespace(n->value);
++         if (fields.size() != 3) {
++             invalidate("condition must contain exactly three fields");
++             return;
++         }
++         if (fields[1] != "X" && fields[1] != "Y") {
++             invalidate("condition binds an unknown variable");
++             return;
++         }
++         if (std::find(declaredParameters.begin(), declaredParameters.end(),
++                       fields[1]) == declaredParameters.end()) {
++             invalidate("condition variable is not declared by the action");
++             return;
++         }
+ 
+-        Condition *con = &conditionX;
+-        if (temp[1] == "Y")
+-        {
+-            isUseY = true;
+-            con = &conditionY;
+-        }
+-        if (temp[0] == "color")
+-        {
+-            con->color = temp[2];
+-        }
+-        else if (temp[0] == "sort")
+-        {
+-            con->sort = temp[2];
+-        }
+-    }
++         Condition *condition = &conditionX;
++         if (fields[1] == "Y") {
++             isUseY = true;
++             condition = &conditionY;
++         }
++
++         if (fields[0] == "color") {
++             if (!condition->color.empty() && condition->color != fields[2]) {
++                 invalidate("conflicting color conditions");
++                 return;
++             }
++             condition->color = fields[2];
++         } else if (fields[0] == "sort") {
++             if (!condition->sort.empty() && condition->sort != fields[2]) {
++                 invalidate("conflicting sort conditions");
++                 return;
++             }
++             condition->sort = fields[2];
++         } else if (fields[0] == "type") {
++             if (fields[2] != "object" && fields[2] != "small" &&
++                 fields[2] != "big" && fields[2] != "container") {
++                 invalidate("unknown condition object type");
++                 return;
++             }
++             if (!condition->declared_type.empty() &&
++                 condition->declared_type != fields[2]) {
++                 invalidate("conflicting type conditions");
++                 return;
++             }
++             condition->declared_type = fields[2];
++         } else if (fields[0] == "id") {
++             int object_id = 0;
++             if (!ParseBoundedInt(fields[2], 1,
++                                  static_cast<int>(MAX_OBJECT_ID), object_id)) {
++                 invalidate("condition contains an invalid object id");
++                 return;
++             }
++             if (condition->has_explicit_id && condition->object_id != object_id) {
++                 invalidate("conflicting id conditions");
++                 return;
++             }
++             condition->has_explicit_id = true;
++             condition->object_id = object_id;
++         } else {
++             invalidate("unknown condition predicate");
++             return;
++         }
++     }
+ 
+      SearchConditionObject(rdfw);
+  }
+@@ -4781,6 +5562,7 @@ void RDFW::OptimizeMemoryUsage() {
+ 
+  ostream &operator<<(ostream &os, shared_ptr<SyntaxNode> sn)
+  {
++     if (!sn) return os << "<null syntax node>|" << endl;
+      static int layer = 0;
+      for (int i = 0; i < layer; i++)
+          os << "-";
+@@ -4857,7 +5639,7 @@ void RDFW::BuildMustNearRelations() {
+     };
+ 
+     for (const auto& cons : notnot_infoConstrains) {
+-        if (cons.hasMissingObjects ||
++        if (!cons.IsUsable() ||
+             (cons.behave != "near" && cons.behave != "nextto")) continue;
+ 
+         // 自然语言中的 every 会让 X/Y 各包含多个对象；must-near 应覆盖
+@@ -5018,7 +5800,8 @@ void RDFW::ApplyMustInConstraintCorrection() {
+     // 采集 mustin（或同义）约束：记录每个物体唯一的容器
+     std::vector<int> obj_to_cont(numObjs, -1);
+     for (const auto& cons : notnot_infoConstrains) {
+-        if (cons.behave == "inside"||cons.behave == "in" && !cons.X.empty() && !cons.Y.empty())
++        if (cons.IsUsable() && (cons.behave == "inside" || cons.behave == "in") &&
++            !cons.X.empty() && cons.X[0] && !cons.Y.empty() && cons.Y[0])
+         {
+             const int x = static_cast<int>(cons.X[0]->id);
+             const int y = static_cast<int>(cons.Y[0]->id);

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ILLEGAL F24: must-not-near is already false in the initial true state -->
+<test>
+<env mis="on" err="on" ans="on"><info>
+(hold 0) (plate 0) (at 0 1)
+(sort 1 human) (size 1 big) (at 1 1)
+(sort 2 cup) (size 2 small) (color 2 red) (at 2 2)
+(sort 3 table) (size 3 big) (at 3 2)
+</info><mis></mis><err><r></r><w></w></err><extra></extra></env>
+<instr>(:ins
+(:cons_not (:info (near X Y) (:cond (sort X cup) (color X red) (sort Y table))))
+(:task (goto X) (:cond (sort X human)))
+)</instr>
+<nl>The red cup must not be near the table. Go to the human.</nl>
+</test>

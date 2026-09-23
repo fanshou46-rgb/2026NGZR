@@ -1,0 +1,209 @@
+[LOG]:-stage
+[LOG]:-nlp
+[LOG]:-err
+[LOG]:-ask_2
+[LOG]:-path
+[LOG]:nlp 0, err 1
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+#(Plug): Timeout=5000
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32mcase.xml
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+[LOG]:[InputSafety] instruction pickup status=INFERRED
+[LOG]:[InputSafety] instruction pickup status=INFERRED
+[LOG]:[Preflight] task raw=1 unique=1 duplicate=0 rejected=0; constraint raw=15 unique=15 duplicate=0 rejected=0; world_errors=0
+Pos  0:(F):[32m(robot hold:0 plate:0)[0m
+Pos  1:(T):[33m(1 human)[0m
+Pos  2:(T):[33m(2 table)[0m
+Pos  3:(T):[33m(3 couch)[0m
+Pos  4:(T):[33m(4 chair)[0m
+Pos  5:(T):
+Pos  6:(T):
+Pos  7:(T):
+Pos  8:(T):(8 cup)(9 can)(10 remotecontrol)(11 book)(12 cup)
+Pos  9:(T):(13 can)
+UnknownPos:
+[34m(5 teapoy)[0m [34m(6 workspace)[0m [34m(7 bottle)[0m 
+[LOG]:[32m[MustIn] correction done.
+[0m
+[LOG]:[32m[MustNear] relation obj 8 <-> obj 12
+[0m
+[LOG]:[32m[MustNear] relation obj 9 <-> obj 12
+[0m
+[LOG]:[32m[MustNear] relation obj 7 <-> obj 12
+[0m
+[LOG]:[32m[MustNear] relation obj 10 <-> obj 12
+[0m
+[LOG]:[32m[MustNear] relation obj 11 <-> obj 12
+[0m
+[LOG]:[32m[MustNear] relation obj 13 <-> obj 12
+[0m
+[LOG]:[32m[MustNear] inferred obj 7 at location 8
+[0m
+[LOG]:[32m[MustNear] inferred obj 8 at location 8
+[0m
+[LOG]:[32m[MustNear] inferred obj 9 at location 8
+[0m
+[LOG]:[32m[MustNear] inferred obj 10 at location 8
+[0m
+[LOG]:[32m[MustNear] inferred obj 11 at location 8
+[0m
+[LOG]:[32m[MustNear] inferred obj 12 at location 8
+[0m
+[LOG]:[32m[MustNear] inferred obj 13 at location 8
+[0m
+[LOG]:[32m[MustNear] correction done.
+[0m
+Pos  0:(F):[32m(robot hold:0 plate:0)[0m
+Pos  1:(T):[33m(1 human)[0m
+Pos  2:(T):[33m(2 table)[0m
+Pos  3:(T):[33m(3 couch)[0m
+Pos  4:(T):[33m(4 chair)[0m
+Pos  5:(T):
+Pos  6:(T):
+Pos  7:(T):
+Pos  8:(T):(7 bottle)(8 cup)(9 can)(10 remotecontrol)(11 book)(12 cup)(13 can)
+UnknownPos:
+[34m(5 teapoy)[0m [34m(6 workspace)[0m 
+Task:
+Behave:[35mpickup[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:INFERRED required runtime type inferred from bound object
+
+Info:
+
+Not_Info:
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:table,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:book,Color:white)[0m
+ConditionY:[35m(Sort:table,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:couch,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:red)[0m
+ConditionY:[35m(Sort:chair,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:cup,Color:green)[0m
+ConditionY:[35m(Sort:teapoy,Color:)[0m
+Validation:VALID schema valid
+
+Not_Task:
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:table,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:chair,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:couch,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:teapoy,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+
+NotNot_Info:
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:cup,Color:green)[0m
+ConditionY:[35m(Sort:cup,Color:black)[0m
+Validation:VALID schema valid
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:red)[0m
+ConditionY:[35m(Sort:cup,Color:black)[0m
+Validation:VALID schema valid
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:cup,Color:black)[0m
+Validation:VALID schema valid
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:remotecontrol,Color:yellow)[0m
+ConditionY:[35m(Sort:cup,Color:black)[0m
+Validation:VALID schema valid
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:book,Color:white)[0m
+ConditionY:[35m(Sort:cup,Color:black)[0m
+Validation:VALID schema valid
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:cup,Color:black)[0m
+Validation:VALID schema valid
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+1
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=1 task_index=0 behave=pickup legacy_choice=true eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=0 score_after=154 marginal_score=154 utility=154 gained_goals=[0] lost_goals=[] broken_constraints=[] preserved_constraints=[5,6,7,8,9,10]
+[0m
+[LOG]:[36m[3A][main-loop] goals=0/1 (unknown=1), constraints=6/15 (unknown=9), base_score=0, action_cost=0, elapsed=20ms, remaining=4680ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[], satisfied_constraints=[5,6,7,8,9,10]
+[0m
+[LOG]:[36m[3B][Deadline] phase=main-loop task_index=0 behave=pickup can_finish=true remaining_plan_ms=220 safety_ms=300 budget_remaining_ms=4680
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=0 behave=pickup executed=0 total=2 remaining_utility=154 remaining_duration_ms=220
+[0m
+pickup cup的风险系数是：0
+[LOG]:Move(8)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=Move executed=1 total=2 remaining_utility=158 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:PickUp(12,cup)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=PickUp executed=2 total=2 remaining_utility=160 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[32mTask done
+ Behave:[35mpickup[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:INFERRED required runtime type inferred from bound object
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=0 behave=pickup succeeded=true executed=2 total=2 remaining_utility=0 remaining_duration_ms=0
+[0m
+-----check check check-----
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m
+Pos  2:(T):[33m(2 table)[0m
+Pos  3:(T):[33m(3 couch)[0m
+Pos  4:(T):[33m(4 chair)[0m
+Pos  5:(T):
+Pos  6:(T):
+Pos  7:(T):
+Pos  8:(T):[32m(robot hold:12 plate:0)[0m(7 bottle)(8 cup)(9 can)(10 remotecontrol)(11 book)(12 cup)(13 can)
+UnknownPos:
+[34m(5 teapoy)[0m [34m(6 workspace)[0m 
+[LOG]:[36m[3A][multi-goto] goals=1/1 (unknown=0), constraints=6/15 (unknown=9), base_score=154, action_cost=6, elapsed=314ms, remaining=4386ms
+[0m
+[LOG]:[36m[3A][multi-goto] completed_goals=[0:pickup], satisfied_constraints=[5,6,7,8,9,10]
+[0m
+[LOG]:[32m[3A][StopGate] all goals are SATISFIED; normal stop before multi-goto
+[0m
+
+Sovled Task Num:1    Expect Num:1
+[LOG]:[36m[3A][final] goals=1/1 (unknown=0), constraints=6/15 (unknown=9), base_score=154, action_cost=6, elapsed=315ms, remaining=4385ms
+[0m
+[LOG]:[36m[3A][final] completed_goals=[0:pickup], satisfied_constraints=[5,6,7,8,9,10]
+[0m
+#(Plug): Elapsed time=0.316s
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

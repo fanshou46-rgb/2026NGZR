@@ -1,0 +1,14 @@
+PutDown 20|true
+PickUp 16|true
+Move 11|false
+AskLoc 9|not_known
+AskLoc 9|at(9,11)
+Move 11|false
+AskLoc 9|at(9,11)
+Move 11|false
+PutDown 16|true
+Move 11|false
+AskLoc 13|at(13,11)
+Move 11|false
+PickUp 18|true
+PutDown 18|true

@@ -1,0 +1,56 @@
+{
+  "raw_score": 169,
+  "official_score": 169,
+  "platform_seconds": 0.284,
+  "platform_timed_out": false,
+  "actions": {
+    "move": 1,
+    "sense": 1
+  },
+  "action_count": 2,
+  "client_metrics": null,
+  "final_goals": 2,
+  "credited_constraints": 0,
+  "platform_error": false,
+  "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/illegal_fault_model_2026/illegal-s2-04-semantic-duplicate-goto.xml",
+  "case_sha256": "6fa821a8cc7f093f30d146416cf6c714f80b0f1aa5a3fbe8ec238917fdf2754b",
+  "stage": 2,
+  "mode": "it",
+  "wall_seconds": 0.7395347820000779,
+  "external_timeout": false,
+  "client_exit": 0,
+  "server_exit": -15,
+  "commands": [
+    [
+      "/home/yifan/env-release-2026/bin/cserver",
+      "-td",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/realcompetition-src133-fixed-illegal-final/illegal-s2-04/runtime/tests",
+      "-eval",
+      "/home/yifan/env-release-2026/lib/libasp",
+      "-log",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/realcompetition-src133-fixed-illegal-final/illegal-s2-04/runtime/log",
+      "-mode",
+      "it",
+      "-test",
+      "1",
+      "-to",
+      "5000"
+    ],
+    [
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/realcompetition-src133-fixed-illegal-final/unique-goals.sh",
+      "-stage",
+      "2",
+      "-nlp",
+      "0",
+      "-err",
+      "1",
+      "-ask_2",
+      "1",
+      "-path",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.3.3-fixed/words.txt"
+    ]
+  ],
+  "limit_ms": 5000,
+  "budget_ms": null,
+  "status": "ok"
+}

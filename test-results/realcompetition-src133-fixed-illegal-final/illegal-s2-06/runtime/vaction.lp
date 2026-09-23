@@ -1,0 +1,1 @@
+occurs(askloc(2), 1).

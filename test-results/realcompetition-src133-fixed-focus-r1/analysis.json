@@ -1,0 +1,356 @@
+[
+  {
+    "id": "06",
+    "scores": [
+      81,
+      83
+    ],
+    "raw_scores": [
+      81,
+      83
+    ],
+    "base_scores": [
+      160,
+      160
+    ],
+    "costs": [
+      91,
+      91
+    ],
+    "time_bonus": [
+      12,
+      14
+    ],
+    "times": [
+      4.356,
+      4.29
+    ],
+    "goals": [
+      4,
+      4
+    ],
+    "constraints": [
+      0,
+      0
+    ],
+    "action_counts": [
+      36,
+      36
+    ],
+    "valid": true,
+    "actions_equal": true,
+    "observations_equal": true,
+    "parsed_equal": true,
+    "decisions_equal": true,
+    "first_event_difference": null,
+    "first_decision_difference": null,
+    "decision_evidence": {
+      "src1.3.2": [
+        {
+          "line": 209,
+          "text": "[LOG]:[3B][Deadline] phase=main-loop task_index=0 behave=puton can_finish=true remaining_plan_ms=420 safety_ms=300 budget_remaining_ms=4670"
+        },
+        {
+          "line": 295,
+          "text": "[LOG]:[3B][Deadline] phase=main-loop task_index=1 behave=puton can_finish=true remaining_plan_ms=420 safety_ms=300 budget_remaining_ms=3665"
+        },
+        {
+          "line": 355,
+          "text": "[LOG]:[3B][Deadline] phase=main-loop task_index=2 behave=puton can_finish=true remaining_plan_ms=300 safety_ms=300 budget_remaining_ms=3198"
+        },
+        {
+          "line": 434,
+          "text": "[LOG]:[3B][Deadline] phase=main-loop task_index=3 behave=puton can_finish=true remaining_plan_ms=200 safety_ms=300 budget_remaining_ms=2373"
+        },
+        {
+          "line": 493,
+          "text": "[LOG]:[3B][Deadline] phase=main-loop task_index=4 behave=puton can_finish=true remaining_plan_ms=200 safety_ms=300 budget_remaining_ms=1762"
+        },
+        {
+          "line": 544,
+          "text": "[LOG]:[3B][Deadline] phase=main-loop task_index=5 behave=puton can_finish=true remaining_plan_ms=200 safety_ms=300 budget_remaining_ms=1426"
+        },
+        {
+          "line": 593,
+          "text": "[LOG]:[3B][Deadline] phase=main-loop task_index=6 behave=puton can_finish=true remaining_plan_ms=200 safety_ms=300 budget_remaining_ms=1070"
+        },
+        {
+          "line": 640,
+          "text": "[LOG]:[3B][Deadline] phase=main-loop task_index=7 behave=puton can_finish=true remaining_plan_ms=320 safety_ms=300 budget_remaining_ms=726"
+        },
+        {
+          "line": 685,
+          "text": "[LOG]:[3B][StopGate] no complete candidate plan fits before main-loop; candidate_count=10 deferred_goto=false"
+        },
+        {
+          "line": 690,
+          "text": "[LOG]:[3A][final] goals=4/18 (unknown=10), constraints=0/5 (unknown=5), base_score=69, action_cost=91, elapsed=4355ms, remaining=345ms"
+        },
+        {
+          "line": 692,
+          "text": "[LOG]:[3A][final] completed_goals=[0:puton,2:puton,3:puton,7:puton], satisfied_constraints=[]"
+        }
+      ],
+      "src1.3.3-fixed": [
+        {
+          "line": 268,
+          "text": "[LOG]:[3B][Deadline] phase=main-loop task_index=0 behave=puton can_finish=true remaining_plan_ms=420 safety_ms=300 budget_remaining_ms=4674"
+        },
+        {
+          "line": 355,
+          "text": "[LOG]:[3B][Deadline] phase=main-loop task_index=1 behave=puton can_finish=true remaining_plan_ms=420 safety_ms=300 budget_remaining_ms=3679"
+        },
+        {
+          "line": 416,
+          "text": "[LOG]:[3B][Deadline] phase=main-loop task_index=2 behave=puton can_finish=true remaining_plan_ms=300 safety_ms=300 budget_remaining_ms=3235"
+        },
+        {
+          "line": 496,
+          "text": "[LOG]:[3B][Deadline] phase=main-loop task_index=3 behave=puton can_finish=true remaining_plan_ms=200 safety_ms=300 budget_remaining_ms=2427"
+        },
+        {
+          "line": 556,
+          "text": "[LOG]:[3B][Deadline] phase=main-loop task_index=4 behave=puton can_finish=true remaining_plan_ms=200 safety_ms=300 budget_remaining_ms=1807"
+        },
+        {
+          "line": 608,
+          "text": "[LOG]:[3B][Deadline] phase=main-loop task_index=5 behave=puton can_finish=true remaining_plan_ms=200 safety_ms=300 budget_remaining_ms=1468"
+        },
+        {
+          "line": 658,
+          "text": "[LOG]:[3B][Deadline] phase=main-loop task_index=6 behave=puton can_finish=true remaining_plan_ms=200 safety_ms=300 budget_remaining_ms=1132"
+        },
+        {
+          "line": 706,
+          "text": "[LOG]:[3B][Deadline] phase=main-loop task_index=7 behave=puton can_finish=true remaining_plan_ms=320 safety_ms=300 budget_remaining_ms=784"
+        },
+        {
+          "line": 752,
+          "text": "[LOG]:[3B][StopGate] no complete candidate plan fits before main-loop; candidate_count=10 deferred_goto=false"
+        },
+        {
+          "line": 757,
+          "text": "[LOG]:[3A][final] goals=4/18 (unknown=10), constraints=0/5 (unknown=5), base_score=69, action_cost=91, elapsed=4289ms, remaining=411ms"
+        },
+        {
+          "line": 759,
+          "text": "[LOG]:[3A][final] completed_goals=[0:puton,2:puton,3:puton,7:puton], satisfied_constraints=[]"
+        }
+      ]
+    },
+    "explanation": "动作及观测相同；目标/约束得分和动作成本相同。原始分差仅来自官方实际耗时奖励（2 分一档）。 得分分解 Δraw = Δ目标约束 0 - Δ成本 0 + Δ耗时奖励 2 = 2。"
+  },
+  {
+    "id": "29",
+    "scores": [
+      602,
+      600
+    ],
+    "raw_scores": [
+      602,
+      600
+    ],
+    "base_scores": [
+      680,
+      680
+    ],
+    "costs": [
+      96,
+      96
+    ],
+    "time_bonus": [
+      18,
+      16
+    ],
+    "times": [
+      4.098,
+      4.122
+    ],
+    "goals": [
+      17,
+      17
+    ],
+    "constraints": [
+      0,
+      0
+    ],
+    "action_counts": [
+      33,
+      33
+    ],
+    "valid": true,
+    "actions_equal": true,
+    "observations_equal": true,
+    "parsed_equal": true,
+    "decisions_equal": true,
+    "first_event_difference": null,
+    "first_decision_difference": null,
+    "decision_evidence": {
+      "src1.3.2": [
+        {
+          "line": 423,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=320 safety_ms=300 budget_remaining_ms=4658"
+        },
+        {
+          "line": 442,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=0 safety_ms=300 budget_remaining_ms=4293"
+        },
+        {
+          "line": 452,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=200 safety_ms=300 budget_remaining_ms=4292"
+        },
+        {
+          "line": 468,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=0 safety_ms=300 budget_remaining_ms=4053"
+        },
+        {
+          "line": 478,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=440 safety_ms=300 budget_remaining_ms=4052"
+        },
+        {
+          "line": 500,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=0 safety_ms=300 budget_remaining_ms=3553"
+        },
+        {
+          "line": 510,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=440 safety_ms=300 budget_remaining_ms=3552"
+        },
+        {
+          "line": 532,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=0 safety_ms=300 budget_remaining_ms=3069"
+        },
+        {
+          "line": 542,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=440 safety_ms=300 budget_remaining_ms=3068"
+        },
+        {
+          "line": 564,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=0 safety_ms=300 budget_remaining_ms=2557"
+        },
+        {
+          "line": 574,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=440 safety_ms=300 budget_remaining_ms=2556"
+        },
+        {
+          "line": 596,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=440 safety_ms=300 budget_remaining_ms=2072"
+        },
+        {
+          "line": 618,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=0 safety_ms=300 budget_remaining_ms=1577"
+        },
+        {
+          "line": 628,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=440 safety_ms=300 budget_remaining_ms=1576"
+        },
+        {
+          "line": 650,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=0 safety_ms=300 budget_remaining_ms=1093"
+        },
+        {
+          "line": 660,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=440 safety_ms=300 budget_remaining_ms=1092"
+        },
+        {
+          "line": 682,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=0 safety_ms=300 budget_remaining_ms=605"
+        },
+        {
+          "line": 692,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=false remaining_plan_ms=440 safety_ms=300 budget_remaining_ms=604"
+        },
+        {
+          "line": 700,
+          "text": "[LOG]:[3A][final] goals=17/35 (unknown=18), constraints=0/0 (unknown=0), base_score=584, action_cost=96, elapsed=4097ms, remaining=603ms"
+        },
+        {
+          "line": 702,
+          "text": "[LOG]:[3A][final] completed_goals=[1:goto,2:goto,3:goto,4:goto,5:goto,6:goto,9:goto,12:goto,17:goto,19:goto,20:goto,21:goto,22:goto,23:goto,24:goto,27:goto,30:goto], satisfied_constraints=[]"
+        }
+      ],
+      "src1.3.3-fixed": [
+        {
+          "line": 475,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=320 safety_ms=300 budget_remaining_ms=4658"
+        },
+        {
+          "line": 494,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=0 safety_ms=300 budget_remaining_ms=4285"
+        },
+        {
+          "line": 504,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=200 safety_ms=300 budget_remaining_ms=4284"
+        },
+        {
+          "line": 520,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=0 safety_ms=300 budget_remaining_ms=4037"
+        },
+        {
+          "line": 530,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=440 safety_ms=300 budget_remaining_ms=4036"
+        },
+        {
+          "line": 552,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=0 safety_ms=300 budget_remaining_ms=3549"
+        },
+        {
+          "line": 562,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=440 safety_ms=300 budget_remaining_ms=3548"
+        },
+        {
+          "line": 584,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=0 safety_ms=300 budget_remaining_ms=3049"
+        },
+        {
+          "line": 594,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=440 safety_ms=300 budget_remaining_ms=3048"
+        },
+        {
+          "line": 616,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=0 safety_ms=300 budget_remaining_ms=2569"
+        },
+        {
+          "line": 626,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=440 safety_ms=300 budget_remaining_ms=2568"
+        },
+        {
+          "line": 648,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=440 safety_ms=300 budget_remaining_ms=2076"
+        },
+        {
+          "line": 670,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=0 safety_ms=300 budget_remaining_ms=1585"
+        },
+        {
+          "line": 680,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=440 safety_ms=300 budget_remaining_ms=1584"
+        },
+        {
+          "line": 702,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=0 safety_ms=300 budget_remaining_ms=1085"
+        },
+        {
+          "line": 712,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=440 safety_ms=300 budget_remaining_ms=1084"
+        },
+        {
+          "line": 734,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=true remaining_plan_ms=0 safety_ms=300 budget_remaining_ms=581"
+        },
+        {
+          "line": 744,
+          "text": "[LOG]:[3B][Deadline] phase=multi-goto-relocation task_index=35 behave=multi-goto-puton can_finish=false remaining_plan_ms=440 safety_ms=300 budget_remaining_ms=580"
+        },
+        {
+          "line": 752,
+          "text": "[LOG]:[3A][final] goals=17/35 (unknown=18), constraints=0/0 (unknown=0), base_score=584, action_cost=96, elapsed=4121ms, remaining=579ms"
+        },
+        {
+          "line": 754,
+          "text": "[LOG]:[3A][final] completed_goals=[1:goto,2:goto,3:goto,4:goto,5:goto,6:goto,9:goto,12:goto,17:goto,19:goto,20:goto,21:goto,22:goto,23:goto,24:goto,27:goto,30:goto], satisfied_constraints=[]"
+        }
+      ]
+    },
+    "explanation": "动作及观测相同；目标/约束得分和动作成本相同。原始分差仅来自官方实际耗时奖励（2 分一档）。 得分分解 Δraw = Δ目标约束 0 - Δ成本 0 + Δ耗时奖励 -2 = -2。"
+  }
+]

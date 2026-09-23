@@ -1,0 +1,7 @@
+h(hold(2),0).
+h(at(0,1),0).
+h(at(2,1),0).
+h(at(1,1),0).
+h(plate(0),0).
+false(3,cons).
+false(2,cons).

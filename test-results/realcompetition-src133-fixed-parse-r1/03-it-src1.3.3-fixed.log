@@ -1,0 +1,137 @@
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+[LOG]:[InputSafety] instruction pickup status=INFERRED
+SNAP parsed robot=0,0,0
+SNAP object 0 robot 0
+SNAP object 1 human 1 big
+SNAP object 2 table 2 big
+SNAP object 3 couch 3 big
+SNAP object 4 chair 4 big
+SNAP object 5 teapoy -1 big
+SNAP object 6 workspace -1 big
+SNAP object 7 bottle -1 small blue -1 -1
+SNAP object 8 cup 8 small green 0 -1
+SNAP object 9 can 8 small red 0 -1
+SNAP object 10 remotecontrol 8 small yellow 0 -1
+SNAP object 11 book 8 small white 0 -1
+SNAP object 12 cup 8 small black 0 -1
+SNAP object 13 can 9 small blue 0 -1
+SNAP task 0 pickup X=12, Y= CX=cup/black CY=/ useY=0 missing=0
+SNAP not_task 0 goto X=2, Y= CX=table/ CY=/ useY=0 missing=0
+SNAP not_task 1 goto X=4, Y= CX=chair/ CY=/ useY=0 missing=0
+SNAP not_task 2 goto X=3, Y= CX=couch/ CY=/ useY=0 missing=0
+SNAP not_task 3 goto X=5, Y= CX=teapoy/ CY=/ useY=0 missing=0
+SNAP not_info 0 near X=13, Y=2, CX=can/blue CY=table/ useY=1 missing=0
+SNAP not_info 1 near X=11, Y=2, CX=book/white CY=table/ useY=1 missing=0
+SNAP not_info 2 near X=7, Y=3, CX=bottle/blue CY=couch/ useY=1 missing=0
+SNAP not_info 3 near X=9, Y=4, CX=can/red CY=chair/ useY=1 missing=0
+SNAP not_info 4 near X=8, Y=5, CX=cup/green CY=teapoy/ useY=1 missing=0
+SNAP must_info 0 near X=8, Y=12, CX=cup/green CY=cup/black useY=1 missing=0
+SNAP must_info 1 near X=9, Y=12, CX=can/red CY=cup/black useY=1 missing=0
+SNAP must_info 2 near X=7, Y=12, CX=bottle/blue CY=cup/black useY=1 missing=0
+SNAP must_info 3 near X=10, Y=12, CX=remotecontrol/yellow CY=cup/black useY=1 missing=0
+SNAP must_info 4 near X=11, Y=12, CX=book/white CY=cup/black useY=1 missing=0
+SNAP must_info 5 near X=13, Y=12, CX=can/blue CY=cup/black useY=1 missing=0
+SNAP END parsed
+[LOG]:[InputSafety] instruction pickup status=INFERRED
+[LOG]:[Preflight] task raw=1 unique=1 duplicate=0 rejected=0; constraint raw=15 unique=15 duplicate=0 rejected=0; world_errors=0
+SNAP preflight robot=0,0,0
+SNAP object 0 robot 0
+SNAP object 1 human 1 big
+SNAP object 2 table 2 big
+SNAP object 3 couch 3 big
+SNAP object 4 chair 4 big
+SNAP object 5 teapoy -1 big
+SNAP object 6 workspace -1 big
+SNAP object 7 bottle -1 small blue -1 -1
+SNAP object 8 cup 8 small green 0 -1
+SNAP object 9 can 8 small red 0 -1
+SNAP object 10 remotecontrol 8 small yellow 0 -1
+SNAP object 11 book 8 small white 0 -1
+SNAP object 12 cup 8 small black 0 -1
+SNAP object 13 can 9 small blue 0 -1
+SNAP task 0 pickup X=12, Y= CX=cup/black CY=/ useY=0 missing=0
+SNAP not_task 0 goto X=2, Y= CX=table/ CY=/ useY=0 missing=0
+SNAP not_task 1 goto X=4, Y= CX=chair/ CY=/ useY=0 missing=0
+SNAP not_task 2 goto X=3, Y= CX=couch/ CY=/ useY=0 missing=0
+SNAP not_task 3 goto X=5, Y= CX=teapoy/ CY=/ useY=0 missing=0
+SNAP not_info 0 near X=13, Y=2, CX=can/blue CY=table/ useY=1 missing=0
+SNAP not_info 1 near X=11, Y=2, CX=book/white CY=table/ useY=1 missing=0
+SNAP not_info 2 near X=7, Y=3, CX=bottle/blue CY=couch/ useY=1 missing=0
+SNAP not_info 3 near X=9, Y=4, CX=can/red CY=chair/ useY=1 missing=0
+SNAP not_info 4 near X=8, Y=5, CX=cup/green CY=teapoy/ useY=1 missing=0
+SNAP must_info 0 near X=8, Y=12, CX=cup/green CY=cup/black useY=1 missing=0
+SNAP must_info 1 near X=9, Y=12, CX=can/red CY=cup/black useY=1 missing=0
+SNAP must_info 2 near X=7, Y=12, CX=bottle/blue CY=cup/black useY=1 missing=0
+SNAP must_info 3 near X=10, Y=12, CX=remotecontrol/yellow CY=cup/black useY=1 missing=0
+SNAP must_info 4 near X=11, Y=12, CX=book/white CY=cup/black useY=1 missing=0
+SNAP must_info 5 near X=13, Y=12, CX=can/blue CY=cup/black useY=1 missing=0
+SNAP END preflight
+[LOG]:[32m[MustIn] correction done.
+[0m
+[LOG]:[32m[MustNear] relation obj 8 <-> obj 12
+[0m
+[LOG]:[32m[MustNear] relation obj 9 <-> obj 12
+[0m
+[LOG]:[32m[MustNear] relation obj 7 <-> obj 12
+[0m
+[LOG]:[32m[MustNear] relation obj 10 <-> obj 12
+[0m
+[LOG]:[32m[MustNear] relation obj 11 <-> obj 12
+[0m
+[LOG]:[32m[MustNear] relation obj 13 <-> obj 12
+[0m
+[LOG]:[32m[MustNear] inferred obj 7 at location 8
+[0m
+[LOG]:[32m[MustNear] inferred obj 8 at location 8
+[0m
+[LOG]:[32m[MustNear] inferred obj 9 at location 8
+[0m
+[LOG]:[32m[MustNear] inferred obj 10 at location 8
+[0m
+[LOG]:[32m[MustNear] inferred obj 11 at location 8
+[0m
+[LOG]:[32m[MustNear] inferred obj 12 at location 8
+[0m
+[LOG]:[32m[MustNear] inferred obj 13 at location 8
+[0m
+[LOG]:[32m[MustNear] correction done.
+[0m
+SNAP corrected robot=0,0,0
+SNAP object 0 robot 0
+SNAP object 1 human 1 big
+SNAP object 2 table 2 big
+SNAP object 3 couch 3 big
+SNAP object 4 chair 4 big
+SNAP object 5 teapoy -1 big
+SNAP object 6 workspace -1 big
+SNAP object 7 bottle 8 small blue -1 -1
+SNAP object 8 cup 8 small green 0 -1
+SNAP object 9 can 8 small red 0 -1
+SNAP object 10 remotecontrol 8 small yellow 0 -1
+SNAP object 11 book 8 small white 0 -1
+SNAP object 12 cup 8 small black 0 -1
+SNAP object 13 can 8 small blue 0 -1
+SNAP task 0 pickup X=12, Y= CX=cup/black CY=/ useY=0 missing=0
+SNAP not_task 0 goto X=2, Y= CX=table/ CY=/ useY=0 missing=0
+SNAP not_task 1 goto X=4, Y= CX=chair/ CY=/ useY=0 missing=0
+SNAP not_task 2 goto X=3, Y= CX=couch/ CY=/ useY=0 missing=0
+SNAP not_task 3 goto X=5, Y= CX=teapoy/ CY=/ useY=0 missing=0
+SNAP not_info 0 near X=13, Y=2, CX=can/blue CY=table/ useY=1 missing=0
+SNAP not_info 1 near X=11, Y=2, CX=book/white CY=table/ useY=1 missing=0
+SNAP not_info 2 near X=7, Y=3, CX=bottle/blue CY=couch/ useY=1 missing=0
+SNAP not_info 3 near X=9, Y=4, CX=can/red CY=chair/ useY=1 missing=0
+SNAP not_info 4 near X=8, Y=5, CX=cup/green CY=teapoy/ useY=1 missing=0
+SNAP must_info 0 near X=8, Y=12, CX=cup/green CY=cup/black useY=1 missing=0
+SNAP must_info 1 near X=9, Y=12, CX=can/red CY=cup/black useY=1 missing=0
+SNAP must_info 2 near X=7, Y=12, CX=bottle/blue CY=cup/black useY=1 missing=0
+SNAP must_info 3 near X=10, Y=12, CX=remotecontrol/yellow CY=cup/black useY=1 missing=0
+SNAP must_info 4 near X=11, Y=12, CX=book/white CY=cup/black useY=1 missing=0
+SNAP must_info 5 near X=13, Y=12, CX=can/blue CY=cup/black useY=1 missing=0
+SNAP END corrected
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

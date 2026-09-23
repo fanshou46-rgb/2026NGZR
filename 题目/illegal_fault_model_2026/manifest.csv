@@ -1,0 +1,21 @@
+id,stage,file,fault_id,fault,expected_boundary
+illegal-s1-01,1,illegal-s1-01-duplicate-task.xml,F19,exact duplicate task,B deduplicates before planning
+illegal-s1-02,1,illegal-s1-02-duplicate-constraint.xml,F22,semantic duplicate prohibited-action constraint with reordered conditions,B keeps one risk weight
+illegal-s1-03,1,illegal-s1-03-duplicate-goto.xml,F20,duplicate goto,B does not enter multi-goto for one unique goal
+illegal-s1-04,1,illegal-s1-04-duplicate-vs-conflict.xml,F19/F23,duplicate open plus conflicting close,B removes duplicate and preserves conflict
+illegal-s1-05,1,illegal-s1-05-malformed-constraint.xml,F16,unterminated constraint followed by a valid task,B locally recovers suffix task
+illegal-s1-06,1,illegal-s1-06-sparse-id-reference.xml,F04,sparse object ID sequence,known A/B gap: B tolerates unused placeholder slots
+illegal-s1-07,1,illegal-s1-07-multiple-human.xml,F05,multiple human objects,B stops untrustworthy WorldState
+illegal-s1-08,1,illegal-s1-08-human-wrong-id.xml,F05,human is not object 1,B stops untrustworthy WorldState
+illegal-s1-09,1,illegal-s1-09-big-location-collision.xml,F11,two big objects share a Stage 1 location,B stops untrustworthy WorldState
+illegal-s1-10,1,illegal-s1-10-untyped-object.xml,F06,referenced object has sort and at but no size,B stops untrustworthy WorldState
+illegal-s2-01,2,illegal-s2-01-semantic-duplicate-task.xml,F19,duplicate task with reordered conditions,B semantic key deduplicates
+illegal-s2-02,2,illegal-s2-02-alias-duplicate-constraint.xml,F22,duplicate inside constraint with reordered conditions,B semantic key keeps one risk weight
+illegal-s2-03,2,illegal-s2-03-symmetric-near-duplicate.xml,F22,symmetric near duplicate constraints with swapped operands,B canonical relation deduplicates
+illegal-s2-04,2,illegal-s2-04-semantic-duplicate-goto.xml,F20,duplicate goto in Stage 2,B semantic key prevents duplicate aggregation
+illegal-s2-05,2,illegal-s2-05-duplicate-vs-conflict.xml,F19/F23,duplicate open plus legal close conflict,B removes only the duplicate
+illegal-s2-06,2,illegal-s2-06-malformed-constraint.xml,F16,broken constraint followed by valid task and constraint,B locally recovers both suffix forms
+illegal-s2-07,2,illegal-s2-07-duplicate-info.xml,F26,duplicate info relation,known B gap: info is intentionally not deduplicated
+illegal-s2-08,2,illegal-s2-08-initially-broken-constraint.xml,F24,constraint is already broken in the true initial state,known A/B semantic gap
+illegal-s2-09,2,illegal-s2-09-conflicting-env-fields.xml,F07,same object has conflicting at facts,known A/B last-write-wins gap
+illegal-s2-10,2,illegal-s2-10-malformed-xml.xml,F01,missing nl closing tag,platform rejects before either client

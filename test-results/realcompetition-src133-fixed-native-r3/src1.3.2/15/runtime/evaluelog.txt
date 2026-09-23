@@ -1,0 +1,104 @@
+Start for a new team: RDFW
+The initial score is 0.
+Executing the action: putdown(13) score -2
+Current socre is: -2
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is h(hold(0),1) h(at(0,12),1) h(at(10,12),1) h(at(13,12),1) h(at(19,2),1) h(at(16,2),1) h(at(11,5),1) h(at(20,20),1) h(at(17,2),1) h(at(15,15),1) h(at(9,2),1) h(at(8,8),1) h(at(7,7),1) h(at(6,6),1) h(at(5,5),1) h(at(4,4),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(plate(10),1) h(opened(3),1) h(closed(8),1) h(closed(7),1) h(closed(6),1) h(inside(18,7),1) h(inside(14,3),1) h(inside(12,7),1) false(1,cons) 
+Executing the action: askloc(11) score -2
+Current socre is: -4
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is false(1,cons) h(at(0,12),1) h(at(1,1),1) h(at(2,2),1) h(at(3,3),1) h(at(4,4),1) h(at(5,5),1) h(at(6,6),1) h(at(7,7),1) h(at(8,8),1) h(at(9,2),1) h(at(15,15),1) h(at(17,2),1) h(at(20,20),1) h(at(11,5),1) h(at(16,2),1) h(at(19,2),1) h(at(13,12),1) h(at(10,12),1) h(hold(0),1) h(plate(10),1) h(opened(3),1) h(closed(8),1) h(closed(7),1) h(closed(6),1) h(inside(12,7),1) h(inside(14,3),1) h(inside(18,7),1) answer(at(11,5),1) 
+askloc(11)'s right result is : at(11,5)
+By possibility return the wrong answer set.
+Return possible wrong answer: at(11,2)
+Executing the action: move(2) score -4
+Current socre is: -8
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is false(1,cons) h(at(0,2),1) h(at(1,1),1) h(at(2,2),1) h(at(3,3),1) h(at(4,4),1) h(at(5,5),1) h(at(6,6),1) h(at(7,7),1) h(at(8,8),1) h(at(9,2),1) h(at(15,15),1) h(at(17,2),1) h(at(20,20),1) h(at(11,5),1) h(at(16,2),1) h(at(19,2),1) h(at(13,12),1) h(hold(0),1) h(plate(10),1) h(at(10,2),1) h(opened(3),1) h(closed(8),1) h(closed(7),1) h(closed(6),1) h(inside(12,7),1) h(inside(14,3),1) h(inside(18,7),1) 
+Executing the action: pickup(11) score -2
+Current socre is: -10
+running the batch for asp: ./vrunact.sh
+Execution failed!
+Executing the action: askloc(19) score -2
+Current socre is: -12
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is false(1,cons) h(at(0,2),1) h(at(10,2),1) h(at(13,12),1) h(at(19,2),1) h(at(16,2),1) h(at(11,5),1) h(at(20,20),1) h(at(17,2),1) h(at(15,15),1) h(at(9,2),1) h(at(8,8),1) h(at(7,7),1) h(at(6,6),1) h(at(5,5),1) h(at(4,4),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(hold(0),1) h(plate(10),1) h(opened(3),1) h(closed(8),1) h(closed(7),1) h(closed(6),1) h(inside(18,7),1) h(inside(14,3),1) h(inside(12,7),1) answer(at(19,2),1) 
+askloc(19)'s right result is : at(19,2)
+By possibility return the right answer set.
+Return possible wrong answer: at(19,2)
+Executing the action: pickup(19) score -2
+Current socre is: -14
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is false(1,cons) h(hold(19),1) h(at(0,2),1) h(at(19,2),1) h(at(10,2),1) h(at(13,12),1) h(at(16,2),1) h(at(11,5),1) h(at(20,20),1) h(at(17,2),1) h(at(15,15),1) h(at(9,2),1) h(at(8,8),1) h(at(7,7),1) h(at(6,6),1) h(at(5,5),1) h(at(4,4),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(plate(10),1) h(opened(3),1) h(closed(8),1) h(closed(7),1) h(closed(6),1) h(inside(18,7),1) h(inside(14,3),1) h(inside(12,7),1) 
+Executing the action: sense score -1
+Current socre is: -15
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is false(1,cons) h(at(0,2),1) h(at(1,1),1) h(at(2,2),1) h(at(3,3),1) h(at(4,4),1) h(at(5,5),1) h(at(6,6),1) h(at(7,7),1) h(at(8,8),1) h(at(9,2),1) h(at(15,15),1) h(at(17,2),1) h(at(20,20),1) h(at(11,5),1) h(at(16,2),1) h(at(13,12),1) h(at(10,2),1) h(at(19,2),1) h(hold(19),1) h(plate(10),1) h(opened(3),1) h(closed(8),1) h(closed(7),1) h(closed(6),1) h(inside(12,7),1) h(inside(14,3),1) h(inside(18,7),1) sensed(19,1) sensed(10,1) sensed(16,1) sensed(17,1) sensed(9,1) sensed(2,1) 
+Sense results are: sensecolor> should be the form of (color <num> <cname>) in the s-expressionbj(A <color> should be the form of (color <num> <cname>) in the s-expression <color> should be the form of (color <num> <cname>) in the s-expressionobj((
+Executing the action: putdown(19) score -2
+Current socre is: -17
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is false(1,cons) h(hold(0),1) h(at(0,2),1) h(at(1,1),1) h(at(2,2),1) h(at(3,3),1) h(at(4,4),1) h(at(5,5),1) h(at(6,6),1) h(at(7,7),1) h(at(8,8),1) h(at(9,2),1) h(at(15,15),1) h(at(17,2),1) h(at(20,20),1) h(at(11,5),1) h(at(16,2),1) h(at(13,12),1) h(at(10,2),1) h(at(19,2),1) h(plate(10),1) h(opened(3),1) h(closed(8),1) h(closed(7),1) h(closed(6),1) h(inside(12,7),1) h(inside(14,3),1) h(inside(18,7),1) 
+Executing the action: move(15) score -4
+Current socre is: -21
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is false(1,cons) h(at(0,15),1) h(at(19,2),1) h(at(13,12),1) h(at(16,2),1) h(at(11,5),1) h(at(20,20),1) h(at(17,2),1) h(at(15,15),1) h(at(9,2),1) h(at(8,8),1) h(at(7,7),1) h(at(6,6),1) h(at(5,5),1) h(at(4,4),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(hold(0),1) h(plate(10),1) h(at(10,15),1) h(opened(3),1) h(closed(8),1) h(closed(7),1) h(closed(6),1) h(inside(18,7),1) h(inside(14,3),1) h(inside(12,7),1) 
+Executing the action: pickup(15) score -2
+Current socre is: -23
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is false(1,cons) h(hold(15),1) h(at(0,15),1) h(at(15,15),1) h(at(10,15),1) h(at(1,1),1) h(at(2,2),1) h(at(3,3),1) h(at(4,4),1) h(at(5,5),1) h(at(6,6),1) h(at(7,7),1) h(at(8,8),1) h(at(9,2),1) h(at(17,2),1) h(at(20,20),1) h(at(11,5),1) h(at(16,2),1) h(at(13,12),1) h(at(19,2),1) h(plate(10),1) h(opened(3),1) h(closed(8),1) h(closed(7),1) h(closed(6),1) h(inside(12,7),1) h(inside(14,3),1) h(inside(18,7),1) 
+Executing the action: move(20) score -4
+Current socre is: -27
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is false(1,cons) h(at(0,20),1) h(at(19,2),1) h(at(13,12),1) h(at(16,2),1) h(at(11,5),1) h(at(20,20),1) h(at(17,2),1) h(at(9,2),1) h(at(8,8),1) h(at(7,7),1) h(at(6,6),1) h(at(5,5),1) h(at(4,4),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(hold(15),1) h(at(15,20),1) h(plate(10),1) h(at(10,20),1) h(opened(3),1) h(closed(8),1) h(closed(7),1) h(closed(6),1) h(inside(18,7),1) h(inside(14,3),1) h(inside(12,7),1) 
+Executing the action: sense score -1
+Current socre is: -28
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is false(1,cons) h(at(0,20),1) h(at(10,20),1) h(at(15,20),1) h(at(1,1),1) h(at(2,2),1) h(at(3,3),1) h(at(4,4),1) h(at(5,5),1) h(at(6,6),1) h(at(7,7),1) h(at(8,8),1) h(at(9,2),1) h(at(17,2),1) h(at(20,20),1) h(at(11,5),1) h(at(16,2),1) h(at(13,12),1) h(at(19,2),1) h(hold(15),1) h(plate(10),1) h(opened(3),1) h(closed(8),1) h(closed(7),1) h(closed(6),1) h(inside(12,7),1) h(inside(14,3),1) h(inside(18,7),1) sensed(20,1) sensed(15,1) sensed(10,1) 
+Sense results are: senseolor> should be the form of (color <num> <cname>) in the s-expressionbj(
+Executing the action: putdown(15) score -2
+Current socre is: -30
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is false(1,cons) h(hold(0),1) h(at(0,20),1) h(at(10,20),1) h(at(15,20),1) h(at(1,1),1) h(at(2,2),1) h(at(3,3),1) h(at(4,4),1) h(at(5,5),1) h(at(6,6),1) h(at(7,7),1) h(at(8,8),1) h(at(9,2),1) h(at(17,2),1) h(at(20,20),1) h(at(11,5),1) h(at(16,2),1) h(at(13,12),1) h(at(19,2),1) h(plate(10),1) h(opened(3),1) h(closed(8),1) h(closed(7),1) h(closed(6),1) h(inside(12,7),1) h(inside(14,3),1) h(inside(18,7),1) 
+Executing the action: move(3) score -4
+Current socre is: -34
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is false(1,cons) h(at(0,3),1) h(at(19,2),1) h(at(13,12),1) h(at(16,2),1) h(at(11,5),1) h(at(20,20),1) h(at(17,2),1) h(at(9,2),1) h(at(8,8),1) h(at(7,7),1) h(at(6,6),1) h(at(5,5),1) h(at(4,4),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(at(15,20),1) h(hold(0),1) h(plate(10),1) h(at(10,3),1) h(opened(3),1) h(closed(8),1) h(closed(7),1) h(closed(6),1) h(inside(18,7),1) h(inside(14,3),1) h(inside(12,7),1) 
+Executing the action: takeout(18, 3) score -2
+Current socre is: -36
+running the batch for asp: ./vrunact.sh
+Execution failed!
+Executing the action: askloc(18) score -2
+Current socre is: -38
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is false(1,cons) h(at(0,3),1) h(at(10,3),1) h(at(15,20),1) h(at(1,1),1) h(at(2,2),1) h(at(3,3),1) h(at(4,4),1) h(at(5,5),1) h(at(6,6),1) h(at(7,7),1) h(at(8,8),1) h(at(9,2),1) h(at(17,2),1) h(at(20,20),1) h(at(11,5),1) h(at(16,2),1) h(at(13,12),1) h(at(19,2),1) h(hold(0),1) h(plate(10),1) h(opened(3),1) h(closed(8),1) h(closed(7),1) h(closed(6),1) h(inside(12,7),1) h(inside(14,3),1) h(inside(18,7),1) answer(inside(18,7),1) 
+askloc(18)'s right result is : inside(18,7)
+By possibility return the wrong answer set.
+Return possible wrong answer: at(18,5)
+Executing the action: move(5) score -4
+Current socre is: -42
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is false(1,cons) h(at(0,5),1) h(at(15,20),1) h(at(1,1),1) h(at(2,2),1) h(at(3,3),1) h(at(4,4),1) h(at(5,5),1) h(at(6,6),1) h(at(7,7),1) h(at(8,8),1) h(at(9,2),1) h(at(17,2),1) h(at(20,20),1) h(at(11,5),1) h(at(16,2),1) h(at(13,12),1) h(at(19,2),1) h(hold(0),1) h(plate(10),1) h(at(10,5),1) h(opened(3),1) h(closed(8),1) h(closed(7),1) h(closed(6),1) h(inside(12,7),1) h(inside(14,3),1) h(inside(18,7),1) 
+Executing the action: pickup(18) score -2
+Current socre is: -44
+running the batch for asp: ./vrunact.sh
+Execution failed!
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is value(5,40) value(3,40) value(4,40) true(goal) 
+RDFW's score is : 132

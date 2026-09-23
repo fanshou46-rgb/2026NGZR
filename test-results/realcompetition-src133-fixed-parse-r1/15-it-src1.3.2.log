@@ -1,0 +1,99 @@
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+SNAP parsed robot=12,13,10
+SNAP object 0 robot 12
+SNAP object 1 human 1 big
+SNAP object 2 desk 2 big
+SNAP object 3 washmachine 3 container 1
+SNAP object 4 bed 4 big
+SNAP object 5 sofa 5 big
+SNAP object 6 cupboard 6 container 0
+SNAP object 7 closet 7 container -1
+SNAP object 8 refrigerator 8 container 0
+SNAP object 9 cup 2 small red 0 -1
+SNAP object 10 cup 12 small yellow 0 -1
+SNAP object 11 bottle -1 small white -1 -1
+SNAP object 12 bottle 7 small yellow 7 -1
+SNAP object 13 bottle 12 small blue 0 -1
+SNAP object 14 book 3 small red 3 -1
+SNAP object 15 book 15 small blue 0 -1
+SNAP object 16 book -1 small green -1 -1
+SNAP object 17 remotecontrol 2 small black 0 -1
+SNAP object 18 can 3 small red 3 -1
+SNAP object 19 can -1 small yellow -1 -1
+SNAP object 20 plant 20 big
+SNAP task 0 putin X=11, Y=7, CX=bottle/white CY=closet/ useY=1 missing=0
+SNAP task 1 puton X=19, Y=2, CX=can/yellow CY=desk/ useY=1 missing=0
+SNAP task 2 puton X=15, Y=20, CX=book/blue CY=plant/ useY=1 missing=0
+SNAP task 3 putin X=18, Y=7, CX=can/red CY=closet/ useY=1 missing=0
+SNAP info 0 closed X=7, Y= CX=closet/ CY=/ useY=0 missing=0
+SNAP not_task 0 putdown X=13, Y= CX=bottle/blue CY=/ useY=0 missing=0
+SNAP END parsed
+SNAP preflight robot=12,13,10
+SNAP object 0 robot 12
+SNAP object 1 human 1 big
+SNAP object 2 desk 2 big
+SNAP object 3 washmachine 3 container 1
+SNAP object 4 bed 4 big
+SNAP object 5 sofa 5 big
+SNAP object 6 cupboard 6 container 0
+SNAP object 7 closet 7 container -1
+SNAP object 8 refrigerator 8 container 0
+SNAP object 9 cup 2 small red 0 -1
+SNAP object 10 cup 12 small yellow 0 -1
+SNAP object 11 bottle -1 small white -1 -1
+SNAP object 12 bottle 7 small yellow 7 -1
+SNAP object 13 bottle 12 small blue 0 -1
+SNAP object 14 book 3 small red 3 -1
+SNAP object 15 book 15 small blue 0 -1
+SNAP object 16 book -1 small green -1 -1
+SNAP object 17 remotecontrol 2 small black 0 -1
+SNAP object 18 can 3 small red 3 -1
+SNAP object 19 can -1 small yellow -1 -1
+SNAP object 20 plant 20 big
+SNAP task 0 putin X=11, Y=7, CX=bottle/white CY=closet/ useY=1 missing=0
+SNAP task 1 puton X=19, Y=2, CX=can/yellow CY=desk/ useY=1 missing=0
+SNAP task 2 puton X=15, Y=20, CX=book/blue CY=plant/ useY=1 missing=0
+SNAP task 3 putin X=18, Y=7, CX=can/red CY=closet/ useY=1 missing=0
+SNAP info 0 closed X=7, Y= CX=closet/ CY=/ useY=0 missing=0
+SNAP not_task 0 putdown X=13, Y= CX=bottle/blue CY=/ useY=0 missing=0
+SNAP END preflight
+[LOG]:[32m[MustIn] correction done.
+[0m
+[LOG]:[32m[MustNear] correction done.
+[0m
+SNAP corrected robot=12,13,10
+SNAP object 0 robot 12
+SNAP object 1 human 1 big
+SNAP object 2 desk 2 big
+SNAP object 3 washmachine 3 container 1
+SNAP object 4 bed 4 big
+SNAP object 5 sofa 5 big
+SNAP object 6 cupboard 6 container 0
+SNAP object 7 closet 7 container 0
+SNAP object 8 refrigerator 8 container 0
+SNAP object 9 cup 2 small red 0 -1
+SNAP object 10 cup 12 small yellow 0 -1
+SNAP object 11 bottle -1 small white -1 -1
+SNAP object 12 bottle 7 small yellow 7 -1
+SNAP object 13 bottle 12 small blue 0 -1
+SNAP object 14 book 3 small red 3 -1
+SNAP object 15 book 15 small blue 0 -1
+SNAP object 16 book -1 small green -1 -1
+SNAP object 17 remotecontrol 2 small black 0 -1
+SNAP object 18 can 3 small red 3 -1
+SNAP object 19 can -1 small yellow -1 -1
+SNAP object 20 plant 20 big
+SNAP task 0 putin X=11, Y=7, CX=bottle/white CY=closet/ useY=1 missing=0
+SNAP task 1 puton X=19, Y=2, CX=can/yellow CY=desk/ useY=1 missing=0
+SNAP task 2 puton X=15, Y=20, CX=book/blue CY=plant/ useY=1 missing=0
+SNAP task 3 putin X=18, Y=7, CX=can/red CY=closet/ useY=1 missing=0
+SNAP info 0 closed X=7, Y= CX=closet/ CY=/ useY=0 missing=0
+SNAP not_task 0 putdown X=13, Y= CX=bottle/blue CY=/ useY=0 missing=0
+SNAP END corrected
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

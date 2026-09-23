@@ -1,0 +1,20 @@
+<configuration info>
+TeamName: RDFW
+Mode: IT
+Timeout: 5000
+TestDir: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/realcompetition-src133-fixed-illegal-final/illegal-s1-07/runtime/tests/
+TestSize: 1
+Single test: case.xml
+Grader path: /home/yifan/env-release-2026/lib/libasp
+
+<case.xml>
+# Environment Description:
+(:domain (hold 0) (plate 0) (at 0 1) (sort 1 human) (size 1 big) (at 1 1) (sort 2 human) (size 2 big) (at 2 2) (sort 3 table) (size 3 big) (at 3 3)  )
+# Task Description:
+(:ins (:task (goto X) (:cond (sort X table))))
+# Results:
+	[Move 3|true]
+
+# Time: 0.178
+# Score: 132
+

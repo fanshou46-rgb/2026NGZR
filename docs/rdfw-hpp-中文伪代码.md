@@ -756,4 +756,3 @@ solved_task_num = 0
 6. 头文件中的 `SmallObject` 和 `BigObject` 构造函数调用基类时写成了 `Object(location, sort, id)`，但 `Object` 的参数顺序是 `(id, sort, location)`。本文没有擅自修正源码语义；这是值得单独核查的参数顺序问题。
 7. 动态查找表默认按 100 初始化，而 must-near 并查集是固定长度 256；读取或修改对象容量逻辑时要同时检查这两套边界。
 8. `DeleteObjectInside` 删除后仍继续递增下标；若列表里存在相邻重复项，可能跳过后一个重复项。
-

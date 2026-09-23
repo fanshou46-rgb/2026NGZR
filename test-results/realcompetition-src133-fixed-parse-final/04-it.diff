@@ -1,0 +1,34 @@
+--- src1.3.2
++++ src1.3.3-fixed
+@@ -18,6 +18,10 @@
+ SNAP object 16 cup 1 small white 0 -1
+ SNAP object 17 remotecontrol 1 small white 0 -1
+ SNAP task 0 give X=10, Y= CX=book/yellow CY=/ useY=0 missing=0
++SNAP task 1 putin X=16, Y=7, CX=cup/white CY=closet/ useY=1 missing=0
++SNAP task 2 puton X=11, Y=4, CX=book/green CY=chair/ useY=1 missing=0
++SNAP task 3 puton X=13, Y=5, CX=bottle/green CY=bed/ useY=1 missing=0
++SNAP task 4 takeout X=14, Y=6, CX=bottle/blue CY=refrigerator/ useY=1 missing=0
+ SNAP info 0 closed X=6, Y= CX=refrigerator/ CY=/ useY=0 missing=0
+ SNAP END parsed
+ SNAP preflight robot=1,0,10
+@@ -40,6 +44,10 @@
+ SNAP object 16 cup 1 small white 0 -1
+ SNAP object 17 remotecontrol 1 small white 0 -1
+ SNAP task 0 give X=10, Y= CX=book/yellow CY=/ useY=0 missing=0
++SNAP task 1 putin X=16, Y=7, CX=cup/white CY=closet/ useY=1 missing=0
++SNAP task 2 puton X=11, Y=4, CX=book/green CY=chair/ useY=1 missing=0
++SNAP task 3 puton X=13, Y=5, CX=bottle/green CY=bed/ useY=1 missing=0
++SNAP task 4 takeout X=14, Y=6, CX=bottle/blue CY=refrigerator/ useY=1 missing=0
+ SNAP info 0 closed X=6, Y= CX=refrigerator/ CY=/ useY=0 missing=0
+ SNAP END preflight
+ SNAP corrected robot=1,0,10
+@@ -62,5 +70,9 @@
+ SNAP object 16 cup 1 small white 0 -1
+ SNAP object 17 remotecontrol 1 small white 0 -1
+ SNAP task 0 give X=10, Y= CX=book/yellow CY=/ useY=0 missing=0
++SNAP task 1 putin X=16, Y=7, CX=cup/white CY=closet/ useY=1 missing=0
++SNAP task 2 puton X=11, Y=4, CX=book/green CY=chair/ useY=1 missing=0
++SNAP task 3 puton X=13, Y=5, CX=bottle/green CY=bed/ useY=1 missing=0
++SNAP task 4 takeout X=14, Y=6, CX=bottle/blue CY=refrigerator/ useY=1 missing=0
+ SNAP info 0 closed X=6, Y= CX=refrigerator/ CY=/ useY=0 missing=0
+ SNAP END corrected

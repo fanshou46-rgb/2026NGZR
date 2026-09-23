@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ILLEGAL F07: object 2 has two conflicting at facts; both clients use the last -->
+<test>
+<env mis="on" err="on" ans="on"><info>
+(hold 0) (plate 0) (at 0 1)
+(sort 1 human) (size 1 big) (at 1 1)
+(sort 2 cup) (size 2 small) (color 2 red) (at 2 2) (at 2 3)
+(sort 3 table) (size 3 big) (at 3 3)
+</info><mis></mis><err><r></r><w></w></err><extra></extra></env>
+<instr>(:ins (:task (goto X) (:cond (sort X cup) (color X red))))</instr>
+<nl>Go to the red cup.</nl>
+</test>

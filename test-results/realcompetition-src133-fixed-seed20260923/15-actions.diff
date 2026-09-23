@@ -1,0 +1,33 @@
+--- src1.3.2
++++ src1.3.3-fixed
+@@ -1,15 +1,12 @@
+ PutDown 13
+ AskLoc 11
+-Move 5
++Move 8
+ PickUp 11
+-Move 7
+-PutDown 11
+-Open 7
+-PickUp 11
+-PutIn 11 7
+ AskLoc 19
+-Move 5
++Move 2
+ PickUp 19
++Sense
++PutDown 19
+ Move 15
+ PickUp 15
+ Move 20
+@@ -18,4 +15,9 @@
+ Move 3
+ TakeOut 18 3
+ AskLoc 18
+-PickUp 18
++Move 8
++Open 8
++TakeOut 18 8
++Sense
++Move 7
++PutDown 18

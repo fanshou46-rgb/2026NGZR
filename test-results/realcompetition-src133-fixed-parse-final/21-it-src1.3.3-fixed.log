@@ -1,0 +1,215 @@
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+SNAP parsed robot=2,0,0
+SNAP object 0 robot 2
+SNAP object 1 human 1 big
+SNAP object 2 remotecontrol 15 small black 0 -1
+SNAP object 3 remotecontrol 14 small red 0 -1
+SNAP object 4 remotecontrol 13 small white 0 -1
+SNAP object 5 remotecontrol 12 small yellow 0 -1
+SNAP object 6 remotecontrol 11 small green 0 -1
+SNAP object 7 remotecontrol 10 small blue 0 -1
+SNAP object 8 cup 9 small black 0 -1
+SNAP object 9 book 8 small black 0 -1
+SNAP object 10 book 7 small red 0 -1
+SNAP object 11 book 7 small white 0 -1
+SNAP object 12 book 8 small yellow 0 -1
+SNAP object 13 book 9 small green 0 -1
+SNAP object 14 book 10 small blue 0 -1
+SNAP object 15 cup 11 small red 0 -1
+SNAP object 16 cup 12 small white 0 -1
+SNAP object 17 cup 13 small yellow 0 -1
+SNAP object 18 cup 14 small green 0 -1
+SNAP object 19 cup 15 small blue 0 -1
+SNAP object 20 chair 2 big
+SNAP task 0 goto X=2, Y= CX=remotecontrol/black CY=/ useY=0 missing=0
+SNAP task 1 goto X=3, Y= CX=remotecontrol/red CY=/ useY=0 missing=0
+SNAP task 2 goto X=4, Y= CX=remotecontrol/white CY=/ useY=0 missing=0
+SNAP task 3 goto X=6, Y= CX=remotecontrol/green CY=/ useY=0 missing=0
+SNAP task 4 goto X=7, Y= CX=remotecontrol/blue CY=/ useY=0 missing=0
+SNAP task 5 goto X=5, Y= CX=remotecontrol/yellow CY=/ useY=0 missing=0
+SNAP task 6 goto X=12, Y= CX=book/yellow CY=/ useY=0 missing=0
+SNAP task 7 goto X=13, Y= CX=book/green CY=/ useY=0 missing=0
+SNAP task 8 goto X=14, Y= CX=book/blue CY=/ useY=0 missing=0
+SNAP task 9 goto X=8, Y= CX=cup/black CY=/ useY=0 missing=0
+SNAP task 10 goto X=15, Y= CX=cup/red CY=/ useY=0 missing=0
+SNAP task 11 goto X=16, Y= CX=cup/white CY=/ useY=0 missing=0
+SNAP task 12 goto X=17, Y= CX=cup/yellow CY=/ useY=0 missing=0
+SNAP task 13 goto X=18, Y= CX=cup/green CY=/ useY=0 missing=0
+SNAP task 14 goto X=19, Y= CX=cup/blue CY=/ useY=0 missing=0
+SNAP task 15 goto X=2, Y= CX=remotecontrol/black CY=/ useY=0 missing=0
+SNAP task 16 goto X=3, Y= CX=remotecontrol/red CY=/ useY=0 missing=0
+SNAP task 17 goto X=4, Y= CX=remotecontrol/white CY=/ useY=0 missing=0
+SNAP task 18 goto X=6, Y= CX=remotecontrol/green CY=/ useY=0 missing=0
+SNAP task 19 goto X=7, Y= CX=remotecontrol/blue CY=/ useY=0 missing=0
+SNAP task 20 goto X=5, Y= CX=remotecontrol/yellow CY=/ useY=0 missing=0
+SNAP task 21 goto X=9, Y= CX=book/black CY=/ useY=0 missing=0
+SNAP task 22 goto X=10, Y= CX=book/red CY=/ useY=0 missing=0
+SNAP task 23 goto X=11, Y= CX=book/white CY=/ useY=0 missing=0
+SNAP task 24 goto X=12, Y= CX=book/yellow CY=/ useY=0 missing=0
+SNAP task 25 goto X=13, Y= CX=book/green CY=/ useY=0 missing=0
+SNAP task 26 goto X=14, Y= CX=book/blue CY=/ useY=0 missing=0
+SNAP task 27 goto X=8, Y= CX=cup/black CY=/ useY=0 missing=0
+SNAP task 28 goto X=15, Y= CX=cup/red CY=/ useY=0 missing=0
+SNAP task 29 goto X=16, Y= CX=cup/white CY=/ useY=0 missing=0
+SNAP task 30 goto X=17, Y= CX=cup/yellow CY=/ useY=0 missing=0
+SNAP task 31 goto X=18, Y= CX=cup/green CY=/ useY=0 missing=0
+SNAP task 32 goto X=19, Y= CX=cup/blue CY=/ useY=0 missing=0
+SNAP task 33 goto X=12, Y= CX=book/yellow CY=/ useY=0 missing=0
+SNAP task 34 goto X=13, Y= CX=book/green CY=/ useY=0 missing=0
+SNAP task 35 goto X=14, Y= CX=book/blue CY=/ useY=0 missing=0
+SNAP not_task 0 goto X=20, Y= CX=chair/ CY=/ useY=0 missing=0
+SNAP not_task 1 goto X=20, Y= CX=chair/ CY=/ useY=0 missing=0
+SNAP END parsed
+[LOG]:[Preflight][Duplicate] 0:goto:X[2,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight][Duplicate] 0:goto:X[3,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight][Duplicate] 0:goto:X[4,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight][Duplicate] 0:goto:X[6,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight][Duplicate] 0:goto:X[7,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight][Duplicate] 0:goto:X[5,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight][Duplicate] 0:goto:X[12,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight][Duplicate] 0:goto:X[13,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight][Duplicate] 0:goto:X[14,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight][Duplicate] 0:goto:X[8,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight][Duplicate] 0:goto:X[15,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight][Duplicate] 0:goto:X[16,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight][Duplicate] 0:goto:X[17,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight][Duplicate] 0:goto:X[18,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight][Duplicate] 0:goto:X[19,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight][Duplicate] 0:goto:X[12,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight][Duplicate] 0:goto:X[13,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight][Duplicate] 0:goto:X[14,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight][Duplicate] 2:goto:X[20,]:Y[] policy=preserve-occurrences
+[LOG]:[Preflight] task raw=36 unique=18 duplicate=18 rejected=0; constraint raw=2 unique=1 duplicate=1 rejected=0; world_errors=0
+SNAP preflight robot=2,0,0
+SNAP object 0 robot 2
+SNAP object 1 human 1 big
+SNAP object 2 remotecontrol 15 small black 0 -1
+SNAP object 3 remotecontrol 14 small red 0 -1
+SNAP object 4 remotecontrol 13 small white 0 -1
+SNAP object 5 remotecontrol 12 small yellow 0 -1
+SNAP object 6 remotecontrol 11 small green 0 -1
+SNAP object 7 remotecontrol 10 small blue 0 -1
+SNAP object 8 cup 9 small black 0 -1
+SNAP object 9 book 8 small black 0 -1
+SNAP object 10 book 7 small red 0 -1
+SNAP object 11 book 7 small white 0 -1
+SNAP object 12 book 8 small yellow 0 -1
+SNAP object 13 book 9 small green 0 -1
+SNAP object 14 book 10 small blue 0 -1
+SNAP object 15 cup 11 small red 0 -1
+SNAP object 16 cup 12 small white 0 -1
+SNAP object 17 cup 13 small yellow 0 -1
+SNAP object 18 cup 14 small green 0 -1
+SNAP object 19 cup 15 small blue 0 -1
+SNAP object 20 chair 2 big
+SNAP task 0 goto X=2, Y= CX=remotecontrol/black CY=/ useY=0 missing=0
+SNAP task 1 goto X=3, Y= CX=remotecontrol/red CY=/ useY=0 missing=0
+SNAP task 2 goto X=4, Y= CX=remotecontrol/white CY=/ useY=0 missing=0
+SNAP task 3 goto X=6, Y= CX=remotecontrol/green CY=/ useY=0 missing=0
+SNAP task 4 goto X=7, Y= CX=remotecontrol/blue CY=/ useY=0 missing=0
+SNAP task 5 goto X=5, Y= CX=remotecontrol/yellow CY=/ useY=0 missing=0
+SNAP task 6 goto X=12, Y= CX=book/yellow CY=/ useY=0 missing=0
+SNAP task 7 goto X=13, Y= CX=book/green CY=/ useY=0 missing=0
+SNAP task 8 goto X=14, Y= CX=book/blue CY=/ useY=0 missing=0
+SNAP task 9 goto X=8, Y= CX=cup/black CY=/ useY=0 missing=0
+SNAP task 10 goto X=15, Y= CX=cup/red CY=/ useY=0 missing=0
+SNAP task 11 goto X=16, Y= CX=cup/white CY=/ useY=0 missing=0
+SNAP task 12 goto X=17, Y= CX=cup/yellow CY=/ useY=0 missing=0
+SNAP task 13 goto X=18, Y= CX=cup/green CY=/ useY=0 missing=0
+SNAP task 14 goto X=19, Y= CX=cup/blue CY=/ useY=0 missing=0
+SNAP task 15 goto X=2, Y= CX=remotecontrol/black CY=/ useY=0 missing=0
+SNAP task 16 goto X=3, Y= CX=remotecontrol/red CY=/ useY=0 missing=0
+SNAP task 17 goto X=4, Y= CX=remotecontrol/white CY=/ useY=0 missing=0
+SNAP task 18 goto X=6, Y= CX=remotecontrol/green CY=/ useY=0 missing=0
+SNAP task 19 goto X=7, Y= CX=remotecontrol/blue CY=/ useY=0 missing=0
+SNAP task 20 goto X=5, Y= CX=remotecontrol/yellow CY=/ useY=0 missing=0
+SNAP task 21 goto X=9, Y= CX=book/black CY=/ useY=0 missing=0
+SNAP task 22 goto X=10, Y= CX=book/red CY=/ useY=0 missing=0
+SNAP task 23 goto X=11, Y= CX=book/white CY=/ useY=0 missing=0
+SNAP task 24 goto X=12, Y= CX=book/yellow CY=/ useY=0 missing=0
+SNAP task 25 goto X=13, Y= CX=book/green CY=/ useY=0 missing=0
+SNAP task 26 goto X=14, Y= CX=book/blue CY=/ useY=0 missing=0
+SNAP task 27 goto X=8, Y= CX=cup/black CY=/ useY=0 missing=0
+SNAP task 28 goto X=15, Y= CX=cup/red CY=/ useY=0 missing=0
+SNAP task 29 goto X=16, Y= CX=cup/white CY=/ useY=0 missing=0
+SNAP task 30 goto X=17, Y= CX=cup/yellow CY=/ useY=0 missing=0
+SNAP task 31 goto X=18, Y= CX=cup/green CY=/ useY=0 missing=0
+SNAP task 32 goto X=19, Y= CX=cup/blue CY=/ useY=0 missing=0
+SNAP task 33 goto X=12, Y= CX=book/yellow CY=/ useY=0 missing=0
+SNAP task 34 goto X=13, Y= CX=book/green CY=/ useY=0 missing=0
+SNAP task 35 goto X=14, Y= CX=book/blue CY=/ useY=0 missing=0
+SNAP not_task 0 goto X=20, Y= CX=chair/ CY=/ useY=0 missing=0
+SNAP not_task 1 goto X=20, Y= CX=chair/ CY=/ useY=0 missing=0
+SNAP END preflight
+[LOG]:[32m[MustIn] correction done.
+[0m
+[LOG]:[32m[MustNear] correction done.
+[0m
+SNAP corrected robot=2,0,0
+SNAP object 0 robot 2
+SNAP object 1 human 1 big
+SNAP object 2 remotecontrol 15 small black 0 -1
+SNAP object 3 remotecontrol 14 small red 0 -1
+SNAP object 4 remotecontrol 13 small white 0 -1
+SNAP object 5 remotecontrol 12 small yellow 0 -1
+SNAP object 6 remotecontrol 11 small green 0 -1
+SNAP object 7 remotecontrol 10 small blue 0 -1
+SNAP object 8 cup 9 small black 0 -1
+SNAP object 9 book 8 small black 0 -1
+SNAP object 10 book 7 small red 0 -1
+SNAP object 11 book 7 small white 0 -1
+SNAP object 12 book 8 small yellow 0 -1
+SNAP object 13 book 9 small green 0 -1
+SNAP object 14 book 10 small blue 0 -1
+SNAP object 15 cup 11 small red 0 -1
+SNAP object 16 cup 12 small white 0 -1
+SNAP object 17 cup 13 small yellow 0 -1
+SNAP object 18 cup 14 small green 0 -1
+SNAP object 19 cup 15 small blue 0 -1
+SNAP object 20 chair 2 big
+SNAP task 0 goto X=2, Y= CX=remotecontrol/black CY=/ useY=0 missing=0
+SNAP task 1 goto X=3, Y= CX=remotecontrol/red CY=/ useY=0 missing=0
+SNAP task 2 goto X=4, Y= CX=remotecontrol/white CY=/ useY=0 missing=0
+SNAP task 3 goto X=6, Y= CX=remotecontrol/green CY=/ useY=0 missing=0
+SNAP task 4 goto X=7, Y= CX=remotecontrol/blue CY=/ useY=0 missing=0
+SNAP task 5 goto X=5, Y= CX=remotecontrol/yellow CY=/ useY=0 missing=0
+SNAP task 6 goto X=12, Y= CX=book/yellow CY=/ useY=0 missing=0
+SNAP task 7 goto X=13, Y= CX=book/green CY=/ useY=0 missing=0
+SNAP task 8 goto X=14, Y= CX=book/blue CY=/ useY=0 missing=0
+SNAP task 9 goto X=8, Y= CX=cup/black CY=/ useY=0 missing=0
+SNAP task 10 goto X=15, Y= CX=cup/red CY=/ useY=0 missing=0
+SNAP task 11 goto X=16, Y= CX=cup/white CY=/ useY=0 missing=0
+SNAP task 12 goto X=17, Y= CX=cup/yellow CY=/ useY=0 missing=0
+SNAP task 13 goto X=18, Y= CX=cup/green CY=/ useY=0 missing=0
+SNAP task 14 goto X=19, Y= CX=cup/blue CY=/ useY=0 missing=0
+SNAP task 15 goto X=2, Y= CX=remotecontrol/black CY=/ useY=0 missing=0
+SNAP task 16 goto X=3, Y= CX=remotecontrol/red CY=/ useY=0 missing=0
+SNAP task 17 goto X=4, Y= CX=remotecontrol/white CY=/ useY=0 missing=0
+SNAP task 18 goto X=6, Y= CX=remotecontrol/green CY=/ useY=0 missing=0
+SNAP task 19 goto X=7, Y= CX=remotecontrol/blue CY=/ useY=0 missing=0
+SNAP task 20 goto X=5, Y= CX=remotecontrol/yellow CY=/ useY=0 missing=0
+SNAP task 21 goto X=9, Y= CX=book/black CY=/ useY=0 missing=0
+SNAP task 22 goto X=10, Y= CX=book/red CY=/ useY=0 missing=0
+SNAP task 23 goto X=11, Y= CX=book/white CY=/ useY=0 missing=0
+SNAP task 24 goto X=12, Y= CX=book/yellow CY=/ useY=0 missing=0
+SNAP task 25 goto X=13, Y= CX=book/green CY=/ useY=0 missing=0
+SNAP task 26 goto X=14, Y= CX=book/blue CY=/ useY=0 missing=0
+SNAP task 27 goto X=8, Y= CX=cup/black CY=/ useY=0 missing=0
+SNAP task 28 goto X=15, Y= CX=cup/red CY=/ useY=0 missing=0
+SNAP task 29 goto X=16, Y= CX=cup/white CY=/ useY=0 missing=0
+SNAP task 30 goto X=17, Y= CX=cup/yellow CY=/ useY=0 missing=0
+SNAP task 31 goto X=18, Y= CX=cup/green CY=/ useY=0 missing=0
+SNAP task 32 goto X=19, Y= CX=cup/blue CY=/ useY=0 missing=0
+SNAP task 33 goto X=12, Y= CX=book/yellow CY=/ useY=0 missing=0
+SNAP task 34 goto X=13, Y= CX=book/green CY=/ useY=0 missing=0
+SNAP task 35 goto X=14, Y= CX=book/blue CY=/ useY=0 missing=0
+SNAP not_task 0 goto X=20, Y= CX=chair/ CY=/ useY=0 missing=0
+SNAP not_task 1 goto X=20, Y= CX=chair/ CY=/ useY=0 missing=0
+SNAP END corrected
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

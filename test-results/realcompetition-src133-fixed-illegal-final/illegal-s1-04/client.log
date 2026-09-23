@@ -1,0 +1,112 @@
+[LOG]:-deduplicate
+[LOG]:-stage
+[LOG]:-nlp
+[LOG]:-err
+[LOG]:-ask_2
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+#(Plug): Timeout=5000
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32mcase.xml
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+[LOG]:[Preflight][Duplicate] 0:open:X[2,]:Y[] policy=unique-goals
+[LOG]:[Preflight] task raw=3 unique=2 duplicate=1 rejected=0; constraint raw=0 unique=0 duplicate=0 rejected=0; world_errors=0
+Pos  0:(T):
+Pos  1:(T):[32m(robot hold:0 plate:0)[0m[33m(2 closet inside:[] Open)[0m
+Pos  2:(T):[33m(1 human)[0m
+UnknownPos:
+
+Task:
+Behave:[35mopen[0m
+ConditionX:[35m(Sort:closet,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+Behave:[35mclose[0m
+ConditionX:[35m(Sort:closet,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+
+Info:
+
+Not_Info:
+
+Not_Task:
+
+NotNot_Info:
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+2
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=1 task_index=0 behave=open legacy_choice=true eligible=true complete=true actions=0 duration_ms=0 action_cost=0 score_before=40 score_after=40 marginal_score=0 utility=0 gained_goals=[] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=2 task_index=1 behave=close legacy_choice=false eligible=true complete=false actions=0 duration_ms=0 action_cost=0 score_before=40 score_after=40 marginal_score=0 utility=0 gained_goals=[] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3A][main-loop] goals=1/2 (unknown=0), constraints=0/0 (unknown=0), base_score=40, action_cost=0, elapsed=11ms, remaining=4689ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:open], satisfied_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=main-loop task_index=0 behave=open can_finish=true remaining_plan_ms=0 safety_ms=300 budget_remaining_ms=4689
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=0 behave=open executed=0 total=0 remaining_utility=0 remaining_duration_ms=0
+[0m
+open closet的风险系数是：0
+[LOG]:[32mTask done
+ Behave:[35mopen[0m
+ConditionX:[35m(Sort:closet,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=0 behave=open succeeded=true executed=0 total=0 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=1 task_index=1 behave=close legacy_choice=true eligible=true complete=false actions=0 duration_ms=0 action_cost=0 score_before=40 score_after=40 marginal_score=0 utility=0 gained_goals=[] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3A][main-loop] goals=1/2 (unknown=0), constraints=0/0 (unknown=0), base_score=40, action_cost=0, elapsed=12ms, remaining=4688ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:open], satisfied_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=main-loop task_index=1 behave=close can_finish=true remaining_plan_ms=0 safety_ms=300 budget_remaining_ms=4688
+[0m
+close 的风险系数是：2
+[LOG]:[32mtoo many cons
+ Behave:[35mclose[0m
+ConditionX:[35m(Sort:closet,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+[0m
+-----check check check-----
+Pos  0:(T):
+Pos  1:(T):[32m(robot hold:0 plate:0)[0m[33m(2 closet inside:[] Open)[0m
+Pos  2:(T):[33m(1 human)[0m
+UnknownPos:
+
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=1 task_index=1 behave=close legacy_choice=false eligible=false complete=false actions=0 duration_ms=0 action_cost=0 score_before=40 score_after=40 marginal_score=0 utility=0 gained_goals=[] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3A][multi-goto] goals=1/2 (unknown=0), constraints=0/0 (unknown=0), base_score=40, action_cost=0, elapsed=16ms, remaining=4684ms
+[0m
+[LOG]:[36m[3A][multi-goto] completed_goals=[0:open], satisfied_constraints=[]
+[0m
+[LOG]:[33m[3B][StopGate] no complete candidate plan fits before multi-goto; candidate_count=1 deferred_goto=false
+[0m
+
+Sovled Task Num:1    Expect Num:2
+[LOG]:[36m[3A][final] goals=1/2 (unknown=0), constraints=0/0 (unknown=0), base_score=40, action_cost=0, elapsed=17ms, remaining=4683ms
+[0m
+[LOG]:[36m[3A][final] completed_goals=[0:open], satisfied_constraints=[]
+[0m
+#(Plug): Elapsed time=0.017s
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

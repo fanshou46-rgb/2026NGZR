@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ILLEGAL F16: cons_not is missing its closing parenthesis; close task is valid suffix -->
+<test>
+<env mis="off" err="off" ans="off"><info>
+(hold 0) (plate 0) (at 0 1)
+(sort 1 human) (size 1 big) (at 1 2)
+(sort 2 cup) (size 2 small) (color 2 red) (at 2 1)
+(sort 3 closet) (size 3 big) (at 3 1) (type 3 container) (opened 3)
+</info><mis></mis><err><r></r><w></w></err><extra></extra></env>
+<instr>(:ins
+(:cons_not (:task (pickup X) (:cond (sort X cup) (color X red)))
+(:task (close X) (:cond (sort X closet) (type X container)))
+</instr>
+<nl>Do not pick up the red cup. Close the closet.</nl>
+</test>

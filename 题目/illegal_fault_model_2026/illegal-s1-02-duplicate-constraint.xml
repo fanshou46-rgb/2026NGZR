@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ILLEGAL F22: duplicate prohibited-action constraint raises A risk to 2 -->
+<test>
+<env mis="off" err="off" ans="off"><info>
+(hold 0) (plate 0) (at 0 1)
+(sort 1 human) (size 1 big) (at 1 1)
+(sort 2 cup) (size 2 small) (color 2 red) (at 2 1)
+</info><mis></mis><err><r></r><w></w></err><extra></extra></env>
+<instr>(:ins
+(:task (pickup X) (:cond (sort X cup) (color X red)))
+(:cons_not (:task (pickup X) (:cond (sort X cup) (color X red))))
+(:cons_not (:task (pickup X) (:cond (color X red) (sort X cup))))
+)</instr>
+<nl>Pick up the red cup. Do not pick up the red cup. Do not pick up the red cup.</nl>
+</test>

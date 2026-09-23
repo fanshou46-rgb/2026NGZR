@@ -1,0 +1,32 @@
+--- src1.3.2
++++ src1.3.3-fixed
+@@ -231,26 +231,6 @@
+ [LOG]:[3B][Candidate] phase=main-loop rank=11 task_index=17 behave=puton legacy_choice=false eligible=true complete=true actions=5 duration_ms=540 action_cost=13 score_before=37 score_after=64 marginal_score=27 utility=27 gained_goals=[17] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+ [LOG]:[3A][main-loop] goals=3/18 (unknown=10), constraints=0/5 (unknown=5), base_score=37, action_cost=83, remaining=<clock>
+ [LOG]:[3A][main-loop] completed_goals=[0:puton,2:puton,3:puton], satisfied_constraints=[]
+-[LOG]:[3B][Deadline] phase=main-loop task_index=7 behave=puton can_finish=true remaining_plan_ms=320 safety_ms=300 budget_remaining_ms=<clock>
+-[LOG]:[3B][Remaining] event=begin task_index=7 behave=puton executed=0 total=3 remaining_utility=32 remaining_duration_ms=320
+-puton can的风险系数是：0
+-[LOG]:[3B][Remaining] event=action task_index=7 action=PickUp executed=1 total=3 remaining_utility=34 remaining_duration_ms=220 can_finish=true
+-[LOG]:[3B][Remaining] event=action task_index=7 action=Move executed=2 total=3 remaining_utility=38 remaining_duration_ms=100 can_finish=true
+-[LOG]:[3B][Remaining] event=action task_index=7 action=PutDown executed=3 total=3 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+-[LOG]:Task done
+-[LOG]:[3B][Remaining] event=end task_index=7 behave=puton succeeded=true executed=3 total=3 remaining_utility=0 remaining_duration_ms=0
+-[LOG]:[3B][Candidate] phase=main-loop rank=1 task_index=8 behave=puton legacy_choice=true eligible=true complete=true actions=4 duration_ms=440 action_cost=12 score_before=69 score_after=97 marginal_score=28 utility=28 gained_goals=[8] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+-[LOG]:[3B][Candidate] phase=main-loop rank=2 task_index=10 behave=puton legacy_choice=false eligible=true complete=true actions=4 duration_ms=440 action_cost=12 score_before=69 score_after=97 marginal_score=28 utility=28 gained_goals=[10] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+-[LOG]:[3B][Candidate] phase=main-loop rank=3 task_index=11 behave=puton legacy_choice=false eligible=true complete=true actions=4 duration_ms=440 action_cost=12 score_before=69 score_after=97 marginal_score=28 utility=28 gained_goals=[11] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+-[LOG]:[3B][Candidate] phase=main-loop rank=4 task_index=12 behave=puton legacy_choice=false eligible=true complete=true actions=4 duration_ms=440 action_cost=12 score_before=69 score_after=97 marginal_score=28 utility=28 gained_goals=[12] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+-[LOG]:[3B][Candidate] phase=main-loop rank=5 task_index=9 behave=puton legacy_choice=false eligible=true complete=true actions=5 duration_ms=540 action_cost=13 score_before=69 score_after=96 marginal_score=27 utility=27 gained_goals=[9] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+-[LOG]:[3B][Candidate] phase=main-loop rank=6 task_index=13 behave=puton legacy_choice=false eligible=true complete=true actions=5 duration_ms=540 action_cost=13 score_before=69 score_after=96 marginal_score=27 utility=27 gained_goals=[13] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+-[LOG]:[3B][Candidate] phase=main-loop rank=7 task_index=14 behave=puton legacy_choice=false eligible=true complete=true actions=5 duration_ms=540 action_cost=13 score_before=69 score_after=96 marginal_score=27 utility=27 gained_goals=[14] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+-[LOG]:[3B][Candidate] phase=main-loop rank=8 task_index=15 behave=puton legacy_choice=false eligible=true complete=true actions=5 duration_ms=540 action_cost=13 score_before=69 score_after=96 marginal_score=27 utility=27 gained_goals=[15] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+-[LOG]:[3B][Candidate] phase=main-loop rank=9 task_index=16 behave=puton legacy_choice=false eligible=true complete=true actions=5 duration_ms=540 action_cost=13 score_before=69 score_after=96 marginal_score=27 utility=27 gained_goals=[16] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+-[LOG]:[3B][Candidate] phase=main-loop rank=10 task_index=17 behave=puton legacy_choice=false eligible=true complete=true actions=5 duration_ms=540 action_cost=13 score_before=69 score_after=96 marginal_score=27 utility=27 gained_goals=[17] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+-[LOG]:[3A][main-loop] goals=4/18 (unknown=10), constraints=0/5 (unknown=5), base_score=69, action_cost=91, remaining=<clock>
+-[LOG]:[3A][main-loop] completed_goals=[0:puton,2:puton,3:puton,7:puton], satisfied_constraints=[]
+-[LOG]:[3B][StopGate] no complete candidate plan fits before main-loop; candidate_count=10 deferred_goto=false
+-[LOG]:[3A][final] goals=4/18 (unknown=10), constraints=0/5 (unknown=5), base_score=69, action_cost=91, remaining=<clock>
+-[LOG]:[3A][final] completed_goals=[0:puton,2:puton,3:puton,7:puton], satisfied_constraints=[]
++[LOG]:[3B][StopGate] no complete candidate plan fits before main-loop; candidate_count=11 deferred_goto=false
++[LOG]:[3A][final] goals=3/18 (unknown=10), constraints=0/5 (unknown=5), base_score=37, action_cost=83, remaining=<clock>
++[LOG]:[3A][final] completed_goals=[0:puton,2:puton,3:puton], satisfied_constraints=[]

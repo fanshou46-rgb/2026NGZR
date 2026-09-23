@@ -1,0 +1,122 @@
+[LOG]:-deduplicate
+[LOG]:-stage
+[LOG]:-nlp
+[LOG]:-err
+[LOG]:-ask_2
+[LOG]:-path
+[LOG]:nlp 0, err 1
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+#(Plug): Timeout=5000
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32mcase.xml
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+[LOG]:[Preflight] task raw=1 unique=1 duplicate=0 rejected=0; constraint raw=1 unique=1 duplicate=0 rejected=0; world_errors=0
+Pos  0:(F):
+Pos  1:(T):[32m(robot hold:0 plate:0)[0m[33m(1 human)[0m
+Pos  2:(T):(2 cup)[33m(3 table)[0m
+UnknownPos:
+
+[LOG]:[32m[MustIn] correction done.
+[0m
+[LOG]:[32m[MustNear] correction done.
+[0m
+Pos  0:(F):
+Pos  1:(T):[32m(robot hold:0 plate:0)[0m[33m(1 human)[0m
+Pos  2:(T):(2 cup)[33m(3 table)[0m
+UnknownPos:
+
+Task:
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:human,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+
+Info:
+
+Not_Info:
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:cup,Color:red)[0m
+ConditionY:[35m(Sort:table,Color:)[0m
+Validation:VALID schema valid
+
+Not_Task:
+
+NotNot_Info:
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+1
+[LOG]:[36m[3A][main-loop] goals=0/1 (unknown=1), constraints=0/1 (unknown=1), base_score=0, action_cost=0, elapsed=13ms, remaining=4687ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[], satisfied_constraints=[]
+[0m
+[LOG]:[33m[3B][StopGate] no complete candidate plan fits before main-loop; candidate_count=0 deferred_goto=true
+[0m
+[LOG]:[36m[3B][Candidate] phase=must-choose-one rank=1 task_index=0 behave=goto legacy_choice=false eligible=true complete=true actions=1 duration_ms=100 action_cost=1 score_before=0 score_after=39 marginal_score=39 utility=39 gained_goals=[0] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3A][must-choose-one] goals=0/1 (unknown=1), constraints=0/1 (unknown=1), base_score=0, action_cost=0, elapsed=13ms, remaining=4687ms
+[0m
+[LOG]:[36m[3A][must-choose-one] completed_goals=[], satisfied_constraints=[]
+[0m
+stage=2
+[LOG]:[36m[3B][Candidate] phase=must-choose-one rank=1 task_index=0 behave=goto legacy_choice=false eligible=true complete=true actions=1 duration_ms=100 action_cost=1 score_before=0 score_after=39 marginal_score=39 utility=39 gained_goals=[0] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3A][must-choose-one] goals=0/1 (unknown=1), constraints=0/1 (unknown=1), base_score=0, action_cost=0, elapsed=14ms, remaining=4686ms
+[0m
+[LOG]:[36m[3A][must-choose-one] completed_goals=[], satisfied_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=must-choose-one task_index=0 behave=goto can_finish=true remaining_plan_ms=100 safety_ms=300 budget_remaining_ms=4686
+[0m
+Must Choose one:goto
+[LOG]:[36m[3B][Deadline] phase=must-choose-one-post-check task_index=0 behave=goto can_finish=true remaining_plan_ms=100 safety_ms=300 budget_remaining_ms=4685
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=0 behave=goto executed=0 total=1 remaining_utility=39 remaining_duration_ms=100
+[0m
+goto human的风险系数是：0
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=Sense executed=1 total=1 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[32m[SenseCurrentLocationOnly] Location 1 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Object 1 detected at location 1
+[LOG]:[36m[3B][Remaining] event=end task_index=0 behave=goto succeeded=true executed=1 total=1 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[32mTask done
+ Behave:[35mgoto[0m
+ConditionX:[35m(Sort:human,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+[0m
+-----check check check-----
+Pos  0:(F):
+Pos  1:(T):[32m(robot hold:0 plate:0)[0m[33m(1 human)[0m
+Pos  2:(T):(2 cup)[33m(3 table)[0m
+UnknownPos:
+
+[LOG]:[36m[3A][multi-goto] goals=1/1 (unknown=0), constraints=0/1 (unknown=1), base_score=39, action_cost=1, elapsed=163ms, remaining=4537ms
+[0m
+[LOG]:[36m[3A][multi-goto] completed_goals=[0:goto], satisfied_constraints=[]
+[0m
+[LOG]:[32m[3A][StopGate] all goals are SATISFIED; normal stop before multi-goto
+[0m
+
+Sovled Task Num:1    Expect Num:1
+[LOG]:[36m[3A][final] goals=1/1 (unknown=0), constraints=0/1 (unknown=1), base_score=39, action_cost=1, elapsed=164ms, remaining=4536ms
+[0m
+[LOG]:[36m[3A][final] completed_goals=[0:goto], satisfied_constraints=[]
+[0m
+#(Plug): Elapsed time=0.165s
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

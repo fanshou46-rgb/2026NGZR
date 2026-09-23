@@ -1,0 +1,79 @@
+{
+  "raw_score": 426,
+  "official_score": 426,
+  "platform_seconds": 0.311,
+  "platform_timed_out": false,
+  "actions": [
+    "Move 8",
+    "PickUp 12"
+  ],
+  "action_count": 2,
+  "client_metrics": null,
+  "final_goals": 1,
+  "credited_constraints": 15,
+  "platform_error": false,
+  "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/realcompetiton_2024/03.xml",
+  "case_sha256": "922d7f053ac90009711033704a48d3ff08aab9d5529d13f738042faf048c0f4b",
+  "stage": 2,
+  "mode": "it",
+  "wall_seconds": 0.8434580739999973,
+  "external_timeout": false,
+  "client_exit": 0,
+  "server_exit": -15,
+  "commands": [
+    [
+      "/home/yifan/env-release-2026/bin/cserver",
+      "-td",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/realcompetition-src133-fixed-native-r3/src1.3.3-fixed/03/runtime/tests",
+      "-eval",
+      "/home/yifan/env-release-2026/lib/libasp",
+      "-log",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/realcompetition-src133-fixed-native-r3/src1.3.3-fixed/03/runtime/log",
+      "-mode",
+      "it",
+      "-test",
+      "1",
+      "-to",
+      "5000"
+    ],
+    [
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/realcompetition-src133-fixed-native-r1/build-src1.3.3-fixed/example",
+      "-stage",
+      "2",
+      "-nlp",
+      "0",
+      "-err",
+      "1",
+      "-ask_2",
+      "1",
+      "-path",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.3.3-fixed/words.txt"
+    ]
+  ],
+  "limit_ms": 5000,
+  "budget_ms": null,
+  "status": "ok",
+  "observations": [],
+  "parsed": "Behave:pickup\nConditionX:(Sort:cup,Color:black)\nConditionY:(Sort:,Color:)\n\nInfo:\n\nNot_Info:\nBehave:near\nConditionX:(Sort:can,Color:blue)\nConditionY:(Sort:table,Color:)\nBehave:near\nConditionX:(Sort:book,Color:white)\nConditionY:(Sort:table,Color:)\nBehave:near\nConditionX:(Sort:bottle,Color:blue)\nConditionY:(Sort:couch,Color:)\nBehave:near\nConditionX:(Sort:can,Color:red)\nConditionY:(Sort:chair,Color:)\nBehave:near\nConditionX:(Sort:cup,Color:green)\nConditionY:(Sort:teapoy,Color:)\n\nNot_Task:\nBehave:goto\nConditionX:(Sort:table,Color:)\nConditionY:(Sort:,Color:)\nBehave:goto\nConditionX:(Sort:chair,Color:)\nConditionY:(Sort:,Color:)\nBehave:goto\nConditionX:(Sort:couch,Color:)\nConditionY:(Sort:,Color:)\nBehave:goto\nConditionX:(Sort:teapoy,Color:)\nConditionY:(Sort:,Color:)\n\nNotNot_Info:\nBehave:near\nConditionX:(Sort:cup,Color:green)\nConditionY:(Sort:cup,Color:black)\nBehave:near\nConditionX:(Sort:can,Color:red)\nConditionY:(Sort:cup,Color:black)\nBehave:near\nConditionX:(Sort:bottle,Color:blue)\nConditionY:(Sort:cup,Color:black)\nBehave:near\nConditionX:(Sort:remotecontrol,Color:yellow)\nConditionY:(Sort:cup,Color:black)\nBehave:near\nConditionX:(Sort:book,Color:white)\nConditionY:(Sort:cup,Color:black)\nBehave:near\nConditionX:(Sort:can,Color:blue)\nConditionY:(Sort:cup,Color:black)",
+  "decisions": [
+    "[LOG]:[3B][Candidate] phase=main-loop rank=1 task_index=0 behave=pickup legacy_choice=true eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=0 score_after=154 marginal_score=154 utility=154 gained_goals=[0] lost_goals=[] broken_constraints=[] preserved_constraints=[5,6,7,8,9,10]",
+    "[LOG]:[3A][main-loop] goals=0/1 (unknown=1), constraints=6/15 (unknown=9), base_score=0, action_cost=0, remaining=<clock>",
+    "[LOG]:[3A][main-loop] completed_goals=[], satisfied_constraints=[5,6,7,8,9,10]",
+    "[LOG]:[3B][Deadline] phase=main-loop task_index=0 behave=pickup can_finish=true remaining_plan_ms=220 safety_ms=300 budget_remaining_ms=<clock>",
+    "[LOG]:[3B][Remaining] event=begin task_index=0 behave=pickup executed=0 total=2 remaining_utility=154 remaining_duration_ms=220",
+    "pickup cup的风险系数是：0",
+    "[LOG]:[3B][Remaining] event=action task_index=0 action=Move executed=1 total=2 remaining_utility=158 remaining_duration_ms=100 can_finish=true",
+    "[LOG]:[3B][Remaining] event=action task_index=0 action=PickUp executed=2 total=2 remaining_utility=160 remaining_duration_ms=0 can_finish=true",
+    "[LOG]:Task done",
+    "[LOG]:[3B][Remaining] event=end task_index=0 behave=pickup succeeded=true executed=2 total=2 remaining_utility=0 remaining_duration_ms=0",
+    "[LOG]:[3A][multi-goto] goals=1/1 (unknown=0), constraints=6/15 (unknown=9), base_score=154, action_cost=6, remaining=<clock>",
+    "[LOG]:[3A][multi-goto] completed_goals=[0:pickup], satisfied_constraints=[5,6,7,8,9,10]",
+    "[LOG]:[3A][StopGate] all goals are SATISFIED; normal stop before multi-goto",
+    "[LOG]:[3A][final] goals=1/1 (unknown=0), constraints=6/15 (unknown=9), base_score=154, action_cost=6, remaining=<clock>",
+    "[LOG]:[3A][final] completed_goals=[0:pickup], satisfied_constraints=[5,6,7,8,9,10]"
+  ],
+  "preflight": [
+    "[Preflight] task raw=1 unique=1 duplicate=0 rejected=0; constraint raw=15 unique=15 duplicate=0 rejected=0; world_errors=0"
+  ],
+  "errors": []
+}

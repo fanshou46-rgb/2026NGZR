@@ -1,0 +1,58 @@
+--- src1.3.2
++++ src1.3.3-fixed
+@@ -1,16 +1,19 @@
+ Move 6
+ PickUp 17
+ AskLoc 17
++AskLoc 17
++Move 1
++PickUp 17
++Move 6
+ Open 6
+-TakeOut 17 6
++TakeOut 15 6
+ Move 9
++AskLoc 2
++Move 7
++Sense
+ AskLoc 2
+ Move 10
+ Sense
+-PutDown 17
+-Move 6
+-TakeOut 15 6
+-Move 10
+ PutDown 15
+ Move 8
+ PickUp 10
+@@ -20,6 +23,19 @@
+ Move 4
+ Sense
+ PutDown 12
++AskLoc 17
++PickUp 17
++AskLoc 17
++Move 8
++PickUp 17
++AskLoc 17
++Move 10
++PickUp 17
++AskLoc 17
++Move 6
++TakeOut 17 6
++Move 10
++PutDown 17
+ Move 8
+ PickUp 18
+ Move 10
+@@ -28,10 +44,3 @@
+ PickUp 13
+ Move 10
+ PutDown 13
+-Move 6
+-TakeOut 14 6
+-Move 10
+-PutDown 14
+-Move 6
+-TakeOut 11 6
+-Move 4

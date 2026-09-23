@@ -1,0 +1,21 @@
+--- src1.3.2
++++ src1.3.3-fixed
+@@ -1,6 +1,18 @@
+ Behave:give
+ ConditionX:(Sort:book,Color:yellow)
+ ConditionY:(Sort:,Color:)
++Behave:putin
++ConditionX:(Sort:cup,Color:white)
++ConditionY:(Sort:closet,Color:)
++Behave:puton
++ConditionX:(Sort:book,Color:green)
++ConditionY:(Sort:chair,Color:)
++Behave:puton
++ConditionX:(Sort:bottle,Color:green)
++ConditionY:(Sort:bed,Color:)
++Behave:takeout
++ConditionX:(Sort:bottle,Color:blue)
++ConditionY:(Sort:refrigerator,Color:)
+ 
+ Info:
+ Behave:closed

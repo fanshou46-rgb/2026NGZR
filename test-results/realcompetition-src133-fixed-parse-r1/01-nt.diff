@@ -1,0 +1,132 @@
+--- src1.3.2
++++ src1.3.3-fixed
+@@ -25,25 +25,24 @@
+ SNAP object 23 cup 17 small yellow 0 -1
+ SNAP object 24 book 1 small white 0 -1
+ SNAP object 25 book -1 small red -1 -1
+-SNAP task 0 give X=24, Y=1, CX=book/white CY=human/ useY=1 missing=0
+-SNAP task 1 goto X=6, Y= CX=can/white CY=/ useY=0 missing=0
+-SNAP task 2 goto X=7, Y= CX=can/red CY=/ useY=0 missing=0
+-SNAP task 3 goto X=8, Y= CX=can/green CY=/ useY=0 missing=0
+-SNAP task 4 goto X=9, Y= CX=can/black CY=/ useY=0 missing=0
+-SNAP task 5 goto X=10, Y= CX=can/blue CY=/ useY=0 missing=0
+-SNAP task 6 goto X=11, Y= CX=can/yellow CY=/ useY=0 missing=0
+-SNAP task 7 goto X=12, Y= CX=cup/white CY=/ useY=0 missing=0
+-SNAP task 8 goto X=13, Y= CX=cup/red CY=/ useY=0 missing=0
+-SNAP task 9 goto X=15, Y= CX=bottle/white CY=/ useY=0 missing=0
+-SNAP task 10 goto X=16, Y= CX=cup/blue CY=/ useY=0 missing=0
+-SNAP task 11 goto X=17, Y= CX=bottle/red CY=/ useY=0 missing=0
+-SNAP task 12 goto X=18, Y= CX=bottle/green CY=/ useY=0 missing=0
+-SNAP task 13 goto X=19, Y= CX=bottle/black CY=/ useY=0 missing=0
+-SNAP task 14 goto X=20, Y= CX=bottle/yellow CY=/ useY=0 missing=0
+-SNAP task 15 goto X=21, Y= CX=cup/green CY=/ useY=0 missing=0
+-SNAP task 16 goto X=22, Y= CX=cup/black CY=/ useY=0 missing=0
+-SNAP task 17 goto X=23, Y= CX=cup/yellow CY=/ useY=0 missing=0
+-SNAP task 18 puton X=25, Y=4, CX=book/red CY=chair/ useY=1 missing=0
++SNAP task 0 goto X=6, Y= CX=can/white CY=/ useY=0 missing=0
++SNAP task 1 goto X=7, Y= CX=can/red CY=/ useY=0 missing=0
++SNAP task 2 goto X=8, Y= CX=can/green CY=/ useY=0 missing=0
++SNAP task 3 goto X=9, Y= CX=can/black CY=/ useY=0 missing=0
++SNAP task 4 goto X=10, Y= CX=can/blue CY=/ useY=0 missing=0
++SNAP task 5 goto X=11, Y= CX=can/yellow CY=/ useY=0 missing=0
++SNAP task 6 goto X=12, Y= CX=cup/white CY=/ useY=0 missing=0
++SNAP task 7 goto X=13, Y= CX=cup/red CY=/ useY=0 missing=0
++SNAP task 8 goto X=15, Y= CX=bottle/white CY=/ useY=0 missing=0
++SNAP task 9 goto X=16, Y= CX=cup/blue CY=/ useY=0 missing=0
++SNAP task 10 goto X=17, Y= CX=bottle/red CY=/ useY=0 missing=0
++SNAP task 11 goto X=18, Y= CX=bottle/green CY=/ useY=0 missing=0
++SNAP task 12 goto X=19, Y= CX=bottle/black CY=/ useY=0 missing=0
++SNAP task 13 goto X=20, Y= CX=bottle/yellow CY=/ useY=0 missing=0
++SNAP task 14 goto X=21, Y= CX=cup/green CY=/ useY=0 missing=0
++SNAP task 15 goto X=22, Y= CX=cup/black CY=/ useY=0 missing=0
++SNAP task 16 goto X=23, Y= CX=cup/yellow CY=/ useY=0 missing=0
++SNAP task 17 puton X=25, Y=4, CX=book/red CY=chair/ useY=1 missing=0
+ SNAP END parsed
+ SNAP preflight robot=1,24,0
+ SNAP object 0 robot 1
+@@ -72,25 +71,24 @@
+ SNAP object 23 cup 17 small yellow 0 -1
+ SNAP object 24 book 1 small white 0 -1
+ SNAP object 25 book -1 small red -1 -1
+-SNAP task 0 give X=24, Y=1, CX=book/white CY=human/ useY=1 missing=0
+-SNAP task 1 goto X=6, Y= CX=can/white CY=/ useY=0 missing=0
+-SNAP task 2 goto X=7, Y= CX=can/red CY=/ useY=0 missing=0
+-SNAP task 3 goto X=8, Y= CX=can/green CY=/ useY=0 missing=0
+-SNAP task 4 goto X=9, Y= CX=can/black CY=/ useY=0 missing=0
+-SNAP task 5 goto X=10, Y= CX=can/blue CY=/ useY=0 missing=0
+-SNAP task 6 goto X=11, Y= CX=can/yellow CY=/ useY=0 missing=0
+-SNAP task 7 goto X=12, Y= CX=cup/white CY=/ useY=0 missing=0
+-SNAP task 8 goto X=13, Y= CX=cup/red CY=/ useY=0 missing=0
+-SNAP task 9 goto X=15, Y= CX=bottle/white CY=/ useY=0 missing=0
+-SNAP task 10 goto X=16, Y= CX=cup/blue CY=/ useY=0 missing=0
+-SNAP task 11 goto X=17, Y= CX=bottle/red CY=/ useY=0 missing=0
+-SNAP task 12 goto X=18, Y= CX=bottle/green CY=/ useY=0 missing=0
+-SNAP task 13 goto X=19, Y= CX=bottle/black CY=/ useY=0 missing=0
+-SNAP task 14 goto X=20, Y= CX=bottle/yellow CY=/ useY=0 missing=0
+-SNAP task 15 goto X=21, Y= CX=cup/green CY=/ useY=0 missing=0
+-SNAP task 16 goto X=22, Y= CX=cup/black CY=/ useY=0 missing=0
+-SNAP task 17 goto X=23, Y= CX=cup/yellow CY=/ useY=0 missing=0
+-SNAP task 18 puton X=25, Y=4, CX=book/red CY=chair/ useY=1 missing=0
++SNAP task 0 goto X=6, Y= CX=can/white CY=/ useY=0 missing=0
++SNAP task 1 goto X=7, Y= CX=can/red CY=/ useY=0 missing=0
++SNAP task 2 goto X=8, Y= CX=can/green CY=/ useY=0 missing=0
++SNAP task 3 goto X=9, Y= CX=can/black CY=/ useY=0 missing=0
++SNAP task 4 goto X=10, Y= CX=can/blue CY=/ useY=0 missing=0
++SNAP task 5 goto X=11, Y= CX=can/yellow CY=/ useY=0 missing=0
++SNAP task 6 goto X=12, Y= CX=cup/white CY=/ useY=0 missing=0
++SNAP task 7 goto X=13, Y= CX=cup/red CY=/ useY=0 missing=0
++SNAP task 8 goto X=15, Y= CX=bottle/white CY=/ useY=0 missing=0
++SNAP task 9 goto X=16, Y= CX=cup/blue CY=/ useY=0 missing=0
++SNAP task 10 goto X=17, Y= CX=bottle/red CY=/ useY=0 missing=0
++SNAP task 11 goto X=18, Y= CX=bottle/green CY=/ useY=0 missing=0
++SNAP task 12 goto X=19, Y= CX=bottle/black CY=/ useY=0 missing=0
++SNAP task 13 goto X=20, Y= CX=bottle/yellow CY=/ useY=0 missing=0
++SNAP task 14 goto X=21, Y= CX=cup/green CY=/ useY=0 missing=0
++SNAP task 15 goto X=22, Y= CX=cup/black CY=/ useY=0 missing=0
++SNAP task 16 goto X=23, Y= CX=cup/yellow CY=/ useY=0 missing=0
++SNAP task 17 puton X=25, Y=4, CX=book/red CY=chair/ useY=1 missing=0
+ SNAP END preflight
+ SNAP corrected robot=1,24,0
+ SNAP object 0 robot 1
+@@ -119,23 +117,22 @@
+ SNAP object 23 cup 17 small yellow 0 -1
+ SNAP object 24 book 1 small white 0 -1
+ SNAP object 25 book -1 small red -1 -1
+-SNAP task 0 give X=24, Y=1, CX=book/white CY=human/ useY=1 missing=0
+-SNAP task 1 goto X=6, Y= CX=can/white CY=/ useY=0 missing=0
+-SNAP task 2 goto X=7, Y= CX=can/red CY=/ useY=0 missing=0
+-SNAP task 3 goto X=8, Y= CX=can/green CY=/ useY=0 missing=0
+-SNAP task 4 goto X=9, Y= CX=can/black CY=/ useY=0 missing=0
+-SNAP task 5 goto X=10, Y= CX=can/blue CY=/ useY=0 missing=0
+-SNAP task 6 goto X=11, Y= CX=can/yellow CY=/ useY=0 missing=0
+-SNAP task 7 goto X=12, Y= CX=cup/white CY=/ useY=0 missing=0
+-SNAP task 8 goto X=13, Y= CX=cup/red CY=/ useY=0 missing=0
+-SNAP task 9 goto X=15, Y= CX=bottle/white CY=/ useY=0 missing=0
+-SNAP task 10 goto X=16, Y= CX=cup/blue CY=/ useY=0 missing=0
+-SNAP task 11 goto X=17, Y= CX=bottle/red CY=/ useY=0 missing=0
+-SNAP task 12 goto X=18, Y= CX=bottle/green CY=/ useY=0 missing=0
+-SNAP task 13 goto X=19, Y= CX=bottle/black CY=/ useY=0 missing=0
+-SNAP task 14 goto X=20, Y= CX=bottle/yellow CY=/ useY=0 missing=0
+-SNAP task 15 goto X=21, Y= CX=cup/green CY=/ useY=0 missing=0
+-SNAP task 16 goto X=22, Y= CX=cup/black CY=/ useY=0 missing=0
+-SNAP task 17 goto X=23, Y= CX=cup/yellow CY=/ useY=0 missing=0
+-SNAP task 18 puton X=25, Y=4, CX=book/red CY=chair/ useY=1 missing=0
++SNAP task 0 goto X=6, Y= CX=can/white CY=/ useY=0 missing=0
++SNAP task 1 goto X=7, Y= CX=can/red CY=/ useY=0 missing=0
++SNAP task 2 goto X=8, Y= CX=can/green CY=/ useY=0 missing=0
++SNAP task 3 goto X=9, Y= CX=can/black CY=/ useY=0 missing=0
++SNAP task 4 goto X=10, Y= CX=can/blue CY=/ useY=0 missing=0
++SNAP task 5 goto X=11, Y= CX=can/yellow CY=/ useY=0 missing=0
++SNAP task 6 goto X=12, Y= CX=cup/white CY=/ useY=0 missing=0
++SNAP task 7 goto X=13, Y= CX=cup/red CY=/ useY=0 missing=0
++SNAP task 8 goto X=15, Y= CX=bottle/white CY=/ useY=0 missing=0
++SNAP task 9 goto X=16, Y= CX=cup/blue CY=/ useY=0 missing=0
++SNAP task 10 goto X=17, Y= CX=bottle/red CY=/ useY=0 missing=0
++SNAP task 11 goto X=18, Y= CX=bottle/green CY=/ useY=0 missing=0
++SNAP task 12 goto X=19, Y= CX=bottle/black CY=/ useY=0 missing=0
++SNAP task 13 goto X=20, Y= CX=bottle/yellow CY=/ useY=0 missing=0
++SNAP task 14 goto X=21, Y= CX=cup/green CY=/ useY=0 missing=0
++SNAP task 15 goto X=22, Y= CX=cup/black CY=/ useY=0 missing=0
++SNAP task 16 goto X=23, Y= CX=cup/yellow CY=/ useY=0 missing=0
++SNAP task 17 puton X=25, Y=4, CX=book/red CY=chair/ useY=1 missing=0
+ SNAP END corrected

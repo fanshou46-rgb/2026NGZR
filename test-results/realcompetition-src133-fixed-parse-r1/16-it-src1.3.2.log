@@ -1,0 +1,196 @@
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+SNAP parsed robot=22,20,2
+SNAP object 0 robot 22
+SNAP object 1 human 1 big
+SNAP object 2 bottle 22 small red 0 -1
+SNAP object 3 bottle 11 small blue 0 -1
+SNAP object 4 bottle 11 small yellow 0 -1
+SNAP object 5 bottle 11 small white 0 -1
+SNAP object 6 bottle 11 small black 0 -1
+SNAP object 7 cup 11 small red 0 -1
+SNAP object 8 cup 11 small blue 0 -1
+SNAP object 9 closet 11 container 0
+SNAP object 10 book 12 small red 0 -1
+SNAP object 11 book 12 small blue 0 -1
+SNAP object 12 book 11 small yellow 0 -1
+SNAP object 13 book 11 small black 0 -1
+SNAP object 14 can 11 small blue 0 -1
+SNAP object 15 can 12 small red 0 -1
+SNAP object 16 can 22 small yellow 0 -1
+SNAP object 17 can 22 small black 0 -1
+SNAP object 18 can 22 small white 0 -1
+SNAP object 19 table 22 big
+SNAP object 20 remotecontrol 22 small red 0 -1
+SNAP object 21 remotecontrol -1 small blue -1 -1
+SNAP object 22 remotecontrol -1 small black -1 -1
+SNAP object 23 remotecontrol -1 small yellow -1 -1
+SNAP object 24 remotecontrol -1 small white -1 -1
+SNAP object 25 remotecontrol -1 small green -1 -1
+SNAP object 26 cup 22 small white 0 -1
+SNAP object 27 cup 22 small black 0 -1
+SNAP task 0 puton X=16, Y=9, CX=can/yellow CY=closet/ useY=1 missing=0
+SNAP task 1 puton X=13, Y=19, CX=book/black CY=table/ useY=1 missing=0
+SNAP task 2 putdown X=18, Y= CX=can/white CY=/ useY=0 missing=0
+SNAP not_info 0 near X=2, Y=17, CX=bottle/red CY=can/black useY=1 missing=0
+SNAP not_info 1 near X=2, Y=18, CX=bottle/red CY=can/white useY=1 missing=0
+SNAP not_info 2 near X=2, Y=16, CX=bottle/red CY=can/yellow useY=1 missing=0
+SNAP not_info 3 near X=2, Y=19, CX=bottle/red CY=table/ useY=1 missing=0
+SNAP not_info 4 near X=2, Y=22, CX=bottle/red CY=remotecontrol/black useY=1 missing=0
+SNAP not_info 5 near X=2, Y=21, CX=bottle/red CY=remotecontrol/blue useY=1 missing=0
+SNAP not_info 6 near X=2, Y=23, CX=bottle/red CY=remotecontrol/yellow useY=1 missing=0
+SNAP not_info 7 near X=2, Y=25, CX=bottle/red CY=remotecontrol/green useY=1 missing=0
+SNAP not_info 8 near X=2, Y=24, CX=bottle/red CY=remotecontrol/white useY=1 missing=0
+SNAP not_info 9 near X=2, Y=21, CX=bottle/red CY=remotecontrol/blue useY=1 missing=0
+SNAP not_info 10 near X=2, Y=22, CX=bottle/red CY=remotecontrol/black useY=1 missing=0
+SNAP not_info 11 near X=2, Y=21, CX=bottle/red CY=remotecontrol/blue useY=1 missing=0
+SNAP not_info 12 near X=2, Y=23, CX=bottle/red CY=remotecontrol/yellow useY=1 missing=0
+SNAP not_info 13 near X=2, Y=25, CX=bottle/red CY=remotecontrol/green useY=1 missing=0
+SNAP not_info 14 near X=2, Y=24, CX=bottle/red CY=remotecontrol/white useY=1 missing=0
+SNAP not_info 15 near X=2, Y=21, CX=bottle/red CY=remotecontrol/blue useY=1 missing=0
+SNAP must_info 0 near X=20, Y=4, CX=remotecontrol/red CY=bottle/yellow useY=1 missing=0
+SNAP must_info 1 near X=20, Y=5, CX=remotecontrol/red CY=bottle/white useY=1 missing=0
+SNAP must_info 2 near X=20, Y=6, CX=remotecontrol/red CY=bottle/black useY=1 missing=0
+SNAP must_info 3 near X=20, Y=8, CX=remotecontrol/red CY=cup/blue useY=1 missing=0
+SNAP must_info 4 near X=20, Y=7, CX=remotecontrol/red CY=cup/red useY=1 missing=0
+SNAP END parsed
+SNAP preflight robot=22,20,2
+SNAP object 0 robot 22
+SNAP object 1 human 1 big
+SNAP object 2 bottle 22 small red 0 -1
+SNAP object 3 bottle 11 small blue 0 -1
+SNAP object 4 bottle 11 small yellow 0 -1
+SNAP object 5 bottle 11 small white 0 -1
+SNAP object 6 bottle 11 small black 0 -1
+SNAP object 7 cup 11 small red 0 -1
+SNAP object 8 cup 11 small blue 0 -1
+SNAP object 9 closet 11 container 0
+SNAP object 10 book 12 small red 0 -1
+SNAP object 11 book 12 small blue 0 -1
+SNAP object 12 book 11 small yellow 0 -1
+SNAP object 13 book 11 small black 0 -1
+SNAP object 14 can 11 small blue 0 -1
+SNAP object 15 can 12 small red 0 -1
+SNAP object 16 can 22 small yellow 0 -1
+SNAP object 17 can 22 small black 0 -1
+SNAP object 18 can 22 small white 0 -1
+SNAP object 19 table 22 big
+SNAP object 20 remotecontrol 22 small red 0 -1
+SNAP object 21 remotecontrol -1 small blue -1 -1
+SNAP object 22 remotecontrol -1 small black -1 -1
+SNAP object 23 remotecontrol -1 small yellow -1 -1
+SNAP object 24 remotecontrol -1 small white -1 -1
+SNAP object 25 remotecontrol -1 small green -1 -1
+SNAP object 26 cup 22 small white 0 -1
+SNAP object 27 cup 22 small black 0 -1
+SNAP task 0 puton X=16, Y=9, CX=can/yellow CY=closet/ useY=1 missing=0
+SNAP task 1 puton X=13, Y=19, CX=book/black CY=table/ useY=1 missing=0
+SNAP task 2 putdown X=18, Y= CX=can/white CY=/ useY=0 missing=0
+SNAP not_info 0 near X=2, Y=17, CX=bottle/red CY=can/black useY=1 missing=0
+SNAP not_info 1 near X=2, Y=18, CX=bottle/red CY=can/white useY=1 missing=0
+SNAP not_info 2 near X=2, Y=16, CX=bottle/red CY=can/yellow useY=1 missing=0
+SNAP not_info 3 near X=2, Y=19, CX=bottle/red CY=table/ useY=1 missing=0
+SNAP not_info 4 near X=2, Y=22, CX=bottle/red CY=remotecontrol/black useY=1 missing=0
+SNAP not_info 5 near X=2, Y=21, CX=bottle/red CY=remotecontrol/blue useY=1 missing=0
+SNAP not_info 6 near X=2, Y=23, CX=bottle/red CY=remotecontrol/yellow useY=1 missing=0
+SNAP not_info 7 near X=2, Y=25, CX=bottle/red CY=remotecontrol/green useY=1 missing=0
+SNAP not_info 8 near X=2, Y=24, CX=bottle/red CY=remotecontrol/white useY=1 missing=0
+SNAP not_info 9 near X=2, Y=21, CX=bottle/red CY=remotecontrol/blue useY=1 missing=0
+SNAP not_info 10 near X=2, Y=22, CX=bottle/red CY=remotecontrol/black useY=1 missing=0
+SNAP not_info 11 near X=2, Y=21, CX=bottle/red CY=remotecontrol/blue useY=1 missing=0
+SNAP not_info 12 near X=2, Y=23, CX=bottle/red CY=remotecontrol/yellow useY=1 missing=0
+SNAP not_info 13 near X=2, Y=25, CX=bottle/red CY=remotecontrol/green useY=1 missing=0
+SNAP not_info 14 near X=2, Y=24, CX=bottle/red CY=remotecontrol/white useY=1 missing=0
+SNAP not_info 15 near X=2, Y=21, CX=bottle/red CY=remotecontrol/blue useY=1 missing=0
+SNAP must_info 0 near X=20, Y=4, CX=remotecontrol/red CY=bottle/yellow useY=1 missing=0
+SNAP must_info 1 near X=20, Y=5, CX=remotecontrol/red CY=bottle/white useY=1 missing=0
+SNAP must_info 2 near X=20, Y=6, CX=remotecontrol/red CY=bottle/black useY=1 missing=0
+SNAP must_info 3 near X=20, Y=8, CX=remotecontrol/red CY=cup/blue useY=1 missing=0
+SNAP must_info 4 near X=20, Y=7, CX=remotecontrol/red CY=cup/red useY=1 missing=0
+SNAP END preflight
+[LOG]:[32m[MustIn] correction done.
+[0m
+[LOG]:[32m[MustNear] relation obj 20 <-> obj 4
+[0m
+[LOG]:[32m[MustNear] relation obj 20 <-> obj 5
+[0m
+[LOG]:[32m[MustNear] relation obj 20 <-> obj 6
+[0m
+[LOG]:[32m[MustNear] relation obj 20 <-> obj 8
+[0m
+[LOG]:[32m[MustNear] relation obj 20 <-> obj 7
+[0m
+[LOG]:[32m[MustNear] inferred obj 4 at location 11
+[0m
+[LOG]:[32m[MustNear] inferred obj 5 at location 11
+[0m
+[LOG]:[32m[MustNear] inferred obj 6 at location 11
+[0m
+[LOG]:[32m[MustNear] inferred obj 7 at location 11
+[0m
+[LOG]:[32m[MustNear] inferred obj 8 at location 11
+[0m
+[LOG]:[32m[MustNear] inferred obj 20 at location 11
+[0m
+[LOG]:[32m[MustNear] correction done.
+[0m
+SNAP corrected robot=22,20,2
+SNAP object 0 robot 22
+SNAP object 1 human 1 big
+SNAP object 2 bottle 22 small red 0 -1
+SNAP object 3 bottle 11 small blue 0 -1
+SNAP object 4 bottle 11 small yellow 0 -1
+SNAP object 5 bottle 11 small white 0 -1
+SNAP object 6 bottle 11 small black 0 -1
+SNAP object 7 cup 11 small red 0 -1
+SNAP object 8 cup 11 small blue 0 -1
+SNAP object 9 closet 11 container 0
+SNAP object 10 book 12 small red 0 -1
+SNAP object 11 book 12 small blue 0 -1
+SNAP object 12 book 11 small yellow 0 -1
+SNAP object 13 book 11 small black 0 -1
+SNAP object 14 can 11 small blue 0 -1
+SNAP object 15 can 12 small red 0 -1
+SNAP object 16 can 22 small yellow 0 -1
+SNAP object 17 can 22 small black 0 -1
+SNAP object 18 can 22 small white 0 -1
+SNAP object 19 table 22 big
+SNAP object 20 remotecontrol 11 small red 0 -1
+SNAP object 21 remotecontrol -1 small blue -1 -1
+SNAP object 22 remotecontrol -1 small black -1 -1
+SNAP object 23 remotecontrol -1 small yellow -1 -1
+SNAP object 24 remotecontrol -1 small white -1 -1
+SNAP object 25 remotecontrol -1 small green -1 -1
+SNAP object 26 cup 22 small white 0 -1
+SNAP object 27 cup 22 small black 0 -1
+SNAP task 0 puton X=16, Y=9, CX=can/yellow CY=closet/ useY=1 missing=0
+SNAP task 1 puton X=13, Y=19, CX=book/black CY=table/ useY=1 missing=0
+SNAP task 2 putdown X=18, Y= CX=can/white CY=/ useY=0 missing=0
+SNAP not_info 0 near X=2, Y=17, CX=bottle/red CY=can/black useY=1 missing=0
+SNAP not_info 1 near X=2, Y=18, CX=bottle/red CY=can/white useY=1 missing=0
+SNAP not_info 2 near X=2, Y=16, CX=bottle/red CY=can/yellow useY=1 missing=0
+SNAP not_info 3 near X=2, Y=19, CX=bottle/red CY=table/ useY=1 missing=0
+SNAP not_info 4 near X=2, Y=22, CX=bottle/red CY=remotecontrol/black useY=1 missing=0
+SNAP not_info 5 near X=2, Y=21, CX=bottle/red CY=remotecontrol/blue useY=1 missing=0
+SNAP not_info 6 near X=2, Y=23, CX=bottle/red CY=remotecontrol/yellow useY=1 missing=0
+SNAP not_info 7 near X=2, Y=25, CX=bottle/red CY=remotecontrol/green useY=1 missing=0
+SNAP not_info 8 near X=2, Y=24, CX=bottle/red CY=remotecontrol/white useY=1 missing=0
+SNAP not_info 9 near X=2, Y=21, CX=bottle/red CY=remotecontrol/blue useY=1 missing=0
+SNAP not_info 10 near X=2, Y=22, CX=bottle/red CY=remotecontrol/black useY=1 missing=0
+SNAP not_info 11 near X=2, Y=21, CX=bottle/red CY=remotecontrol/blue useY=1 missing=0
+SNAP not_info 12 near X=2, Y=23, CX=bottle/red CY=remotecontrol/yellow useY=1 missing=0
+SNAP not_info 13 near X=2, Y=25, CX=bottle/red CY=remotecontrol/green useY=1 missing=0
+SNAP not_info 14 near X=2, Y=24, CX=bottle/red CY=remotecontrol/white useY=1 missing=0
+SNAP not_info 15 near X=2, Y=21, CX=bottle/red CY=remotecontrol/blue useY=1 missing=0
+SNAP must_info 0 near X=20, Y=4, CX=remotecontrol/red CY=bottle/yellow useY=1 missing=0
+SNAP must_info 1 near X=20, Y=5, CX=remotecontrol/red CY=bottle/white useY=1 missing=0
+SNAP must_info 2 near X=20, Y=6, CX=remotecontrol/red CY=bottle/black useY=1 missing=0
+SNAP must_info 3 near X=20, Y=8, CX=remotecontrol/red CY=cup/blue useY=1 missing=0
+SNAP must_info 4 near X=20, Y=7, CX=remotecontrol/red CY=cup/red useY=1 missing=0
+SNAP END corrected
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

@@ -1,0 +1,21 @@
+id,stage,fault_id,a_score,b_score,delta,a_actions,b_actions,b_handling,interpretation
+illegal-s1-01,1,F19,174,174,0,1,1,deduplicate task,one pickup satisfies both source goals; same external action
+illegal-s1-02,1,F22,98,134,36,0,1,deduplicate constraint,A risk 2 skips pickup; B risk 1 executes pickup
+illegal-s1-03,1,F20,172,172,0,1,1,deduplicate goto,A uses multi-goto; B uses ordinary goto; same Move result in Stage 1
+illegal-s1-04,1,F19/F23,178,178,0,0,0,remove duplicate and keep conflict,B keeps unique open and conflicting close
+illegal-s1-05,1,F16,0,0,0,0,1,recover suffix,A loses suffix; B attempts Close; malformed source remains unscorable
+illegal-s1-06,1,F04,132,132,0,1,1,known gap,A/B both tolerate the unused sparse-ID placeholder
+illegal-s1-07,1,F05,132,98,-34,1,0,safe stop,B reports two humans and performs no platform action
+illegal-s1-08,1,F05,132,98,-34,1,0,safe stop,B reports human is not object 1 and performs no platform action
+illegal-s1-09,1,F11,132,98,-34,1,0,safe stop,B reports two Stage 1 big objects at location 2
+illegal-s1-10,1,F06,132,98,-34,1,0,safe stop,B rejects untyped binding and untrustworthy world
+illegal-s2-01,2,F19,174,174,0,1,1,deduplicate task,one pickup; same external action
+illegal-s2-02,2,F22,98,130,32,0,2,deduplicate constraint,A risk 2 skips putin; B risk 1 executes PickUp and PutIn
+illegal-s2-03,2,F22,119,121,2,4,4,deduplicate symmetric relation,same actions; score difference is runtime efficiency
+illegal-s2-04,2,F20,172,169,-3,1,2,deduplicate goto,A duplicate triggers no-Sense multi-goto; B ordinary goto performs Sense
+illegal-s2-05,2,F19/F23,138,138,0,0,0,remove duplicate and keep conflict,B keeps unique open and conflicting close
+illegal-s2-06,2,F16,0,0,0,0,3,recover suffix,A loses suffix; B attempts Pickup and two AskLoc; source remains unscorable
+illegal-s2-07,2,F26,114,110,-4,6,7,known gap,duplicate infos remain; AskLoc returns different locations so action delta is stochastic
+illegal-s2-08,2,F24,155,155,0,1,1,known gap,initially broken constraint is not rejected; same Sense
+illegal-s2-09,2,F07,129,129,0,2,2,known gap,conflicting at facts use last-write-wins; same Move and Sense
+illegal-s2-10,2,F01,0,0,0,0,0,platform rejection,missing nl end tag prevents either client from receiving the question

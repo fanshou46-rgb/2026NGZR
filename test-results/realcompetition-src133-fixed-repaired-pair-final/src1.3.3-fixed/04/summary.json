@@ -1,0 +1,62 @@
+{
+  "raw_score": 205,
+  "official_score": 205,
+  "platform_seconds": 2.078,
+  "platform_timed_out": false,
+  "actions": {
+    "fromplate": 1,
+    "sense": 3,
+    "putdown": 4,
+    "pickup": 4,
+    "move": 6,
+    "open": 2,
+    "putin": 1,
+    "takeout": 1
+  },
+  "action_count": 22,
+  "client_metrics": null,
+  "final_goals": 5,
+  "credited_constraints": 0,
+  "platform_error": false,
+  "case": "/tmp/rdfw-fixed-repaired-fixtures-final/04.xml",
+  "case_sha256": "8d861e0dda157d5c3722fd71996c7d031103553e2d99c0f28d753eef2f35f925",
+  "stage": 2,
+  "mode": "it",
+  "wall_seconds": 2.473899230999905,
+  "external_timeout": false,
+  "client_exit": 0,
+  "server_exit": -15,
+  "commands": [
+    [
+      "/home/yifan/env-release-2026/bin/cserver",
+      "-td",
+      "/tmp/rdfw-fixed-repaired-pair-final/src1.3.3-fixed/04/runtime/tests",
+      "-eval",
+      "/home/yifan/env-release-2026/lib/libasp",
+      "-log",
+      "/tmp/rdfw-fixed-repaired-pair-final/src1.3.3-fixed/04/runtime/log",
+      "-mode",
+      "it",
+      "-test",
+      "1",
+      "-to",
+      "5000"
+    ],
+    [
+      "/tmp/rdfw-fixed-final-seed-20260923/build-src1.3.3-fixed/example",
+      "-stage",
+      "2",
+      "-nlp",
+      "0",
+      "-err",
+      "1",
+      "-ask_2",
+      "1",
+      "-path",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.3.3-fixed/words.txt"
+    ]
+  ],
+  "limit_ms": 5000,
+  "budget_ms": null,
+  "status": "ok"
+}

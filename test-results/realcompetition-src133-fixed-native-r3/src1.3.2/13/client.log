@@ -1,0 +1,388 @@
+[LOG]:-stage
+[LOG]:-nlp
+[LOG]:-err
+[LOG]:-ask_2
+[LOG]:-path
+[LOG]:nlp 0, err 1
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+#(Plug): Timeout=5000
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32mcase.xml
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+Pos  0:(F):
+Pos  1:(F):[33m(1 human)[0m(4 bottle)
+Pos  2:(F):[32m(robot hold:3 plate:2)[0m(2 bottle)(3 bottle)(5 bottle)(6 bottle)(7 bottle)(8 cup)(9 cup)(10 cup)(11 cup)(12 cup)(13 cup)(14 book)(15 book)(16 book)(17 book)(18 book)(19 book)(20 can)(21 can)(22 can)(23 can)(24 can)(25 can)(26 remotecontrol)
+UnknownPos:
+
+[LOG]:[32m[MustIn] correction done.
+[0m
+[LOG]:[32m[MustNear] relation obj 2 <-> obj 4
+[0m
+[LOG]:[33m[MustNear] component 2 has conflicting/insufficient evidence; not propagated
+[0m
+[LOG]:[32m[MustNear] correction done.
+[0m
+Pos  0:(F):
+Pos  1:(F):[33m(1 human)[0m(4 bottle)
+Pos  2:(F):[32m(robot hold:3 plate:2)[0m(2 bottle)(3 bottle)(5 bottle)(6 bottle)(7 bottle)(8 cup)(9 cup)(10 cup)(11 cup)(12 cup)(13 cup)(14 book)(15 book)(16 book)(17 book)(18 book)(19 book)(20 can)(21 can)(22 can)(23 can)(24 can)(25 can)(26 remotecontrol)
+UnknownPos:
+
+Task:
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:bottle,Color:white)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mpickup[0m
+ConditionX:[35m(Sort:bottle,Color:red)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+
+Info:
+
+Not_Info:
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:bottle,Color:red)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:bottle,Color:green)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:bottle,Color:yellow)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:cup,Color:blue)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:cup,Color:black)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:cup,Color:white)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:cup,Color:red)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:cup,Color:green)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:cup,Color:yellow)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:book,Color:blue)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:book,Color:black)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:book,Color:white)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:book,Color:red)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:book,Color:green)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:book,Color:yellow)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:can,Color:blue)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:can,Color:black)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:can,Color:white)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:can,Color:red)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:can,Color:green)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:can,Color:yellow)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:remotecontrol,Color:blue)[0m
+
+Not_Task:
+
+NotNot_Info:
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:bottle,Color:white)[0m
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+[FilterConstraintsByTaskConflicts] Discarded goto_cons at location 0 due to 0 conflicts.
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+2
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=1 task_index=0 behave=pickup legacy_choice=true eligible=true complete=true actions=2 duration_ms=200 action_cost=4 score_before=0 score_after=36 marginal_score=36 utility=36 gained_goals=[0] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3A][main-loop] goals=0/2 (unknown=2), constraints=0/23 (unknown=23), base_score=0, action_cost=0, elapsed=15ms, remaining=4685ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[], satisfied_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=main-loop task_index=0 behave=pickup can_finish=true remaining_plan_ms=200 safety_ms=300 budget_remaining_ms=4685
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=0 behave=pickup executed=0 total=2 remaining_utility=36 remaining_duration_ms=200
+[0m
+pickup bottle的风险系数是：0
+[LOG]:PutDown(3,bottle)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=PutDown executed=1 total=2 remaining_utility=38 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:[33m[MustNear] component 2 has conflicting/insufficient evidence; not propagated
+[0m
+[LOG]:PickUp(5,bottle)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=PickUp executed=2 total=2 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=AskLoc executed=2 total=2 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:AskLoc(5)
+[LOG]:[33m[MustNear] component 2 has conflicting/insufficient evidence; not propagated
+[0m
+[LOG]:PickUp(5,bottle)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=PickUp executed=2 total=2 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[32mTask not done
+ Behave:[35mpickup[0m
+ConditionX:[35m(Sort:bottle,Color:red)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=0 behave=pickup succeeded=false executed=2 total=2 remaining_utility=40 remaining_duration_ms=0
+[0m
+[LOG]:[36m[3A][main-loop] goals=0/2 (unknown=2), constraints=0/23 (unknown=23), base_score=-8, action_cost=8, elapsed=538ms, remaining=4162ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[], satisfied_constraints=[]
+[0m
+[LOG]:[33m[3B][StopGate] no complete candidate plan fits before main-loop; candidate_count=0 deferred_goto=true
+[0m
+[LOG]:[36m[3B][Candidate] phase=must-choose-one rank=1 task_index=1 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=-8 score_after=47 marginal_score=55 utility=55 gained_goals=[1] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3A][must-choose-one] goals=0/2 (unknown=2), constraints=0/23 (unknown=23), base_score=-8, action_cost=8, elapsed=539ms, remaining=4161ms
+[0m
+[LOG]:[36m[3A][must-choose-one] completed_goals=[], satisfied_constraints=[]
+[0m
+stage=2
+[LOG]:[36m[3B][Candidate] phase=must-choose-one rank=1 task_index=1 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=-8 score_after=47 marginal_score=55 utility=55 gained_goals=[1] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3A][must-choose-one] goals=0/2 (unknown=2), constraints=0/23 (unknown=23), base_score=-8, action_cost=8, elapsed=539ms, remaining=4161ms
+[0m
+[LOG]:[36m[3A][must-choose-one] completed_goals=[], satisfied_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=must-choose-one task_index=0 behave=pickup can_finish=true remaining_plan_ms=200 safety_ms=300 budget_remaining_ms=4160
+[0m
+Must Choose one:pickup
+[LOG]:AskLoc(5)
+[LOG]:[33m[MustNear] component 2 has conflicting/insufficient evidence; not propagated
+[0m
+[LOG]:[36m[3B][Deadline] phase=must-choose-one-post-check task_index=0 behave=pickup can_finish=true remaining_plan_ms=100 safety_ms=300 budget_remaining_ms=4049
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=0 behave=pickup executed=0 total=1 remaining_utility=38 remaining_duration_ms=100
+[0m
+pickup bottle的风险系数是：0
+[LOG]:PickUp(5,bottle)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=PickUp executed=1 total=1 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=AskLoc executed=1 total=1 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:AskLoc(5)
+[LOG]:[33m[MustNear] component 2 has conflicting/insufficient evidence; not propagated
+[0m
+[LOG]:PickUp(5,bottle)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=PickUp executed=1 total=1 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=0 behave=pickup succeeded=false executed=1 total=1 remaining_utility=40 remaining_duration_ms=0
+[0m
+[LOG]:[36m[3B][Candidate] phase=must-choose-one rank=1 task_index=1 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=-16 score_after=39 marginal_score=55 utility=55 gained_goals=[1] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3A][must-choose-one] goals=0/2 (unknown=2), constraints=0/23 (unknown=23), base_score=-16, action_cost=16, elapsed=970ms, remaining=3730ms
+[0m
+[LOG]:[36m[3A][must-choose-one] completed_goals=[], satisfied_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=must-choose-one task_index=0 behave=pickup can_finish=true remaining_plan_ms=200 safety_ms=300 budget_remaining_ms=3729
+[0m
+Must Choose one:pickup
+[LOG]:AskLoc(5)
+[LOG]:[33m[MustNear] component 2 has conflicting/insufficient evidence; not propagated
+[0m
+[LOG]:[36m[3B][Deadline] phase=must-choose-one-post-check task_index=0 behave=pickup can_finish=true remaining_plan_ms=100 safety_ms=300 budget_remaining_ms=3613
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=0 behave=pickup executed=0 total=1 remaining_utility=38 remaining_duration_ms=100
+[0m
+pickup bottle的风险系数是：0
+[LOG]:PickUp(5,bottle)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=PickUp executed=1 total=1 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=AskLoc executed=1 total=1 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:AskLoc(5)
+[LOG]:[33m[MustNear] component 2 has conflicting/insufficient evidence; not propagated
+[0m
+[LOG]:PickUp(5,bottle)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=PickUp executed=1 total=1 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=0 behave=pickup succeeded=false executed=1 total=1 remaining_utility=40 remaining_duration_ms=0
+[0m
+[LOG]:[36m[3B][Candidate] phase=must-choose-one rank=1 task_index=1 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=-24 score_after=31 marginal_score=55 utility=55 gained_goals=[1] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3A][must-choose-one] goals=0/2 (unknown=2), constraints=0/23 (unknown=23), base_score=-24, action_cost=24, elapsed=1427ms, remaining=3273ms
+[0m
+[LOG]:[36m[3A][must-choose-one] completed_goals=[], satisfied_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=must-choose-one task_index=0 behave=pickup can_finish=true remaining_plan_ms=200 safety_ms=300 budget_remaining_ms=3273
+[0m
+Must Choose one:pickup
+[LOG]:AskLoc(5)
+[LOG]:[33m[MustNear] component 2 has conflicting/insufficient evidence; not propagated
+[0m
+[LOG]:[36m[3B][Deadline] phase=must-choose-one-post-check task_index=0 behave=pickup can_finish=true remaining_plan_ms=100 safety_ms=300 budget_remaining_ms=3154
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=0 behave=pickup executed=0 total=1 remaining_utility=38 remaining_duration_ms=100
+[0m
+pickup bottle的风险系数是：0
+[LOG]:PickUp(5,bottle)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=PickUp executed=1 total=1 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=AskLoc executed=1 total=1 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:AskLoc(5)
+[LOG]:[33m[MustNear] component 2 has conflicting/insufficient evidence; not propagated
+[0m
+[LOG]:PickUp(5,bottle)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=PickUp executed=1 total=1 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=0 behave=pickup succeeded=false executed=1 total=1 remaining_utility=40 remaining_duration_ms=0
+[0m
+[LOG]:[36m[3B][Candidate] phase=must-choose-one rank=1 task_index=1 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=-32 score_after=23 marginal_score=55 utility=55 gained_goals=[1] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3A][must-choose-one] goals=0/2 (unknown=2), constraints=0/23 (unknown=23), base_score=-32, action_cost=32, elapsed=1875ms, remaining=2825ms
+[0m
+[LOG]:[36m[3A][must-choose-one] completed_goals=[], satisfied_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=must-choose-one task_index=0 behave=pickup can_finish=true remaining_plan_ms=200 safety_ms=300 budget_remaining_ms=2825
+[0m
+Must Choose one:pickup
+[LOG]:[36m[3B][Remaining] event=begin task_index=0 behave=pickup executed=0 total=2 remaining_utility=-4 remaining_duration_ms=200
+[0m
+pickup bottle的风险系数是：0
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=AskLoc executed=1 total=2 remaining_utility=-2 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:AskLoc(5)
+[LOG]:[33m[MustNear] component 2 has conflicting/insufficient evidence; not propagated
+[0m
+[LOG]:PickUp(5,bottle)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=PickUp executed=2 total=2 remaining_utility=0 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=0 behave=pickup succeeded=false executed=2 total=2 remaining_utility=0 remaining_duration_ms=0
+[0m
+-----check check check-----
+[DBG] goto risk@loc=1 bool=0
+[LOG]:[36m[3A][check-phase] goals=0/2 (unknown=2), constraints=0/23 (unknown=23), base_score=-36, action_cost=36, elapsed=2087ms, remaining=2613ms
+[0m
+[LOG]:[36m[3A][check-phase] completed_goals=[], satisfied_constraints=[]
+[0m
+[LOG]:[33m[3B][StopGate] no complete candidate plan fits before check-phase; candidate_count=0 deferred_goto=true
+[0m
+Pos  0:(F):
+Pos  1:(F):[33m(1 human)[0m(4 bottle)
+Pos  2:(F):[32m(robot hold:0 plate:2)[0m(2 bottle)(3 bottle)(6 bottle)(7 bottle)(8 cup)(9 cup)(10 cup)(11 cup)(12 cup)(13 cup)(14 book)(15 book)(16 book)(17 book)(18 book)(19 book)(20 can)(21 can)(22 can)(23 can)(24 can)(25 can)(26 remotecontrol)
+UnknownPos:
+[34m(5 bottle)[0m 
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=1 task_index=1 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=-36 score_after=19 marginal_score=55 utility=55 gained_goals=[1] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3A][multi-goto] goals=0/2 (unknown=2), constraints=0/23 (unknown=23), base_score=-36, action_cost=36, elapsed=2090ms, remaining=2610ms
+[0m
+[LOG]:[36m[3A][multi-goto] completed_goals=[], satisfied_constraints=[]
+[0m
+[LOG]:[32m[MultiGoto] Executing multi-goto aggregation - skipping Sense operations
+[0m
+[LOG]:[32m[MultiGoto] Object[4]: goto_risk=0, pickup_risk=0, mustnear_risk=1, total_risk=1, can_move=true
+[0m
+[LOG]:[32m[MultiGoto] small_cand_id_disable: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] small_cand_ids: 
+[LOG]:[32m4 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] big_cand_ids: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] small_cand_ids.size()=1, big_cand_ids.size()=0
+[0m
+[LOG]:[32m[MultiGoto] small_lowrisk_ids.size()=1
+[0m
+[LOG]:[32m[MultiGoto] Entering main aggregation logic
+[0m
+[LOG]:[32m[MultiGoto] Performance optimization: Only checking 1 occupied locations instead of 100 total locations
+[0m
+[LOG]:[33m[MultiGoto] smallobj_loc is not found: -1
+[0m
+[LOG]:[33m[MultiGoto] bigobj_loc is not found: -1
+[0m
+[LOG]:[33m[MultiGoto] No optimal location found, using first available: 1
+[0m
+[LOG]:[32mFinal-GOTO: choose hub=1
+[0m
+[LOG]:[32m[MultiGoto] hub location=1 representative_object=1
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto-relocation task_index=2 behave=multi-goto-puton actions=4 duration_ms=420 action_cost=9 marginal_score=91 utility=91 gained_goals=[1,2] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=multi-goto-relocation task_index=2 behave=multi-goto-puton can_finish=true remaining_plan_ms=420 safety_ms=300 budget_remaining_ms=2610
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=2 behave=multi-goto-puton executed=0 total=4 remaining_utility=91 remaining_duration_ms=420
+[0m
+[LOG]:Move(1)
+[LOG]:[36m[3B][Remaining] event=action task_index=2 action=Move executed=1 total=4 remaining_utility=95 remaining_duration_ms=300 can_finish=true
+[0m
+[LOG]:[31mMove: Plug::Move(1) failed
+[0m
+[LOG]:[36m[3B][Remaining] event=action task_index=2 action=AskLoc executed=2 total=4 remaining_utility=97 remaining_duration_ms=200 can_finish=true
+[0m
+[LOG]:AskLoc(4)
+[LOG]:[33m[MustNear] component 2 has conflicting/insufficient evidence; not propagated
+[0m
+[LOG]:Move(1)
+[LOG]:[36m[3B][Remaining] event=action task_index=2 action=Move executed=3 total=4 remaining_utility=98 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:[31mMove: Plug::Move(1) failed
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=2 behave=multi-goto-puton succeeded=false executed=3 total=4 remaining_utility=98 remaining_duration_ms=100
+[0m
+[LOG]:[36m[3B][Deadline] phase=multi-goto-final-move task_index=18446744073709551615 behave=multi-goto-final-move can_finish=true remaining_plan_ms=120 safety_ms=300 budget_remaining_ms=2270
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=18446744073709551615 behave=multi-goto-final-move executed=0 total=1 remaining_utility=-4 remaining_duration_ms=120
+[0m
+[LOG]:Move(1)
+[LOG]:[36m[3B][Remaining] event=action task_index=18446744073709551615 action=Move executed=1 total=1 remaining_utility=0 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[31mMove: Plug::Move(1) failed
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=18446744073709551615 behave=multi-goto-final-move succeeded=false executed=1 total=1 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[32mFinal-GOTO: aggregation done, stay at hub=1
+[0m
+[LOG]:[32m[MultiGoto] ExecuteMultiGotoAggregation finished
+[0m
+
+Sovled Task Num:0    Expect Num:2
+[LOG]:[36m[3A][final] goals=0/2 (unknown=2), constraints=0/23 (unknown=23), base_score=-50, action_cost=50, elapsed=2551ms, remaining=2149ms
+[0m
+[LOG]:[36m[3A][final] completed_goals=[], satisfied_constraints=[]
+[0m
+#(Plug): Elapsed time=2.552s
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

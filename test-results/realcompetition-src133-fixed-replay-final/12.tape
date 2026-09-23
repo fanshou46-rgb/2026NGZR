@@ -1,0 +1,22 @@
+FromPlate 10|true
+Sense|10 16 1
+PutDown 10|true
+PickUp 16|true
+Move 7|true
+PutDown 16|true
+Open 7|true
+PickUp 16|true
+PutIn 16 7|true
+Move 5|true
+PickUp 11|true
+Move 4|true
+Sense|4 11
+PutDown 11|true
+Move 2|true
+PickUp 13|true
+Move 5|true
+Sense|5 13
+PutDown 13|true
+Move 6|true
+Open 6|true
+TakeOut 14 6|true

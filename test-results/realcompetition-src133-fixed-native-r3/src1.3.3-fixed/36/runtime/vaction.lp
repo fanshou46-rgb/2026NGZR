@@ -1,0 +1,1 @@
+occurs(takeout(11, 6), 1).

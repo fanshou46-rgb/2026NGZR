@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ILLEGAL F11: table and chair occupy one Stage 1 location -->
+<test>
+<env mis="off" err="off" ans="off"><info>
+(hold 0) (plate 0) (at 0 1)
+(sort 1 human) (size 1 big) (at 1 1)
+(sort 2 table) (size 2 big) (at 2 2)
+(sort 3 chair) (size 3 big) (at 3 2)
+</info><mis></mis><err><r></r><w></w></err><extra></extra></env>
+<instr>(:ins (:task (goto X) (:cond (sort X chair))))</instr>
+<nl>Go to the chair.</nl>
+</test>

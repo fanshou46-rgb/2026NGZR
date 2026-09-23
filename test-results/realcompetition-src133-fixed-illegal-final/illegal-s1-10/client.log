@@ -1,0 +1,62 @@
+[LOG]:-deduplicate
+[LOG]:-stage
+[LOG]:-nlp
+[LOG]:-err
+[LOG]:-ask_2
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+#(Plug): Timeout=5000
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32mcase.xml
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+[LOG]:[Preflight][WorldWarning] object lacks stable sort/runtime type; isolate bindings: 2
+[31m[ERROR]:/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.3.3-fixed/question_preflight.cpp:107 [Preflight] isolated unmodelled/invalid binding: goto[0m
+[LOG]:[Preflight] task raw=1 unique=0 duplicate=0 rejected=1; constraint raw=0 unique=0 duplicate=0 rejected=0; world_errors=0
+Pos  0:(T):
+Pos  1:(T):[32m(robot hold:0 plate:0)[0m[33m(1 human)[0m
+Pos  2:(T):(2 table)
+UnknownPos:
+
+Task:
+
+Info:
+
+Not_Info:
+
+Not_Task:
+
+NotNot_Info:
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+0
+[LOG]:[36m[3A][must-choose-one] goals=0/0 (unknown=0), constraints=0/0 (unknown=0), base_score=0, action_cost=0, elapsed=10ms, remaining=4690ms
+[0m
+[LOG]:[36m[3A][must-choose-one] completed_goals=[], satisfied_constraints=[]
+[0m
+[LOG]:[33m[3B][StopGate] no complete candidate plan fits before must-choose-one; candidate_count=0 deferred_goto=false
+[0m
+-----check check check-----
+
+Sovled Task Num:0    Expect Num:0
+[LOG]:[36m[3A][final] goals=0/0 (unknown=0), constraints=0/0 (unknown=0), base_score=0, action_cost=0, elapsed=12ms, remaining=4688ms
+[0m
+[LOG]:[36m[3A][final] completed_goals=[], satisfied_constraints=[]
+[0m
+#(Plug): Elapsed time=0.012s
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

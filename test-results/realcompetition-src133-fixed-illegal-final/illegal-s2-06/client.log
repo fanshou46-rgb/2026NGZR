@@ -1,0 +1,112 @@
+[LOG]:-deduplicate
+[LOG]:-stage
+[LOG]:-nlp
+[LOG]:-err
+[LOG]:-ask_2
+[LOG]:-path
+[LOG]:nlp 0, err 1
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+#(Plug): Timeout=5000
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32mcase.xml
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+[31m[ERROR]:/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.3.3-fixed/rdfw.cpp:4450 Isolated malformed instruction form at byte 6[0m
+[LOG]:[InputSafety] instruction pickup status=INFERRED
+[LOG]:[InputSafety] instruction pickup status=INFERRED
+[LOG]:[Preflight] task raw=1 unique=1 duplicate=0 rejected=0; constraint raw=1 unique=1 duplicate=0 rejected=0; world_errors=0
+Pos  0:(F):
+Pos  1:(T):[32m(robot hold:0 plate:0)[0m(2 cup)[33m(3 closet inside:[] Open)[0m
+Pos  2:(T):[33m(1 human)[0m
+UnknownPos:
+
+[LOG]:[32m[MustIn] correction done.
+[0m
+[LOG]:[32m[MustNear] correction done.
+[0m
+Pos  0:(F):
+Pos  1:(T):[32m(robot hold:0 plate:0)[0m(2 cup)[33m(3 closet inside:[] Open)[0m
+Pos  2:(T):[33m(1 human)[0m
+UnknownPos:
+
+Task:
+Behave:[35mpickup[0m
+ConditionX:[35m(Sort:cup,Color:red)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:INFERRED required runtime type inferred from bound object
+
+Info:
+
+Not_Info:
+
+Not_Task:
+Behave:[35mopen[0m
+ConditionX:[35m(Sort:closet,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:VALID schema valid
+
+NotNot_Info:
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+1
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=1 task_index=0 behave=pickup legacy_choice=true eligible=true complete=true actions=1 duration_ms=100 action_cost=2 score_before=0 score_after=38 marginal_score=38 utility=38 gained_goals=[0] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3A][main-loop] goals=0/1 (unknown=1), constraints=0/1 (unknown=1), base_score=0, action_cost=0, elapsed=12ms, remaining=4688ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[], satisfied_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=main-loop task_index=0 behave=pickup can_finish=true remaining_plan_ms=100 safety_ms=300 budget_remaining_ms=4688
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=0 behave=pickup executed=0 total=1 remaining_utility=38 remaining_duration_ms=100
+[0m
+pickup cup的风险系数是：0
+[LOG]:PickUp(2,cup)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=PickUp executed=1 total=1 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=AskLoc executed=1 total=1 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:AskLoc(2)
+[31m[ERROR]:/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.3.3-fixed/rdfw.cpp:3549 AskLoc returned empty string for object (2,cup)[0m
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=AskLoc executed=1 total=1 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:AskLoc(2)
+[31m[ERROR]:/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.3.3-fixed/rdfw.cpp:3549 AskLoc returned empty string for object (2,cup)[0m
+[LOG]:[33mAskLoc(2) produced no usable bounded reply
+[0m
+[LOG]:[32mTask not done
+ Behave:[35mpickup[0m
+ConditionX:[35m(Sort:cup,Color:red)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:INFERRED required runtime type inferred from bound object
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=0 behave=pickup succeeded=false executed=1 total=1 remaining_utility=40 remaining_duration_ms=0
+[0m
+[LOG]:[36m[3A][must-choose-one] goals=0/1 (unknown=1), constraints=0/1 (unknown=1), base_score=-6, action_cost=6, elapsed=234ms, remaining=4466ms
+[0m
+[LOG]:[36m[3A][must-choose-one] completed_goals=[], satisfied_constraints=[]
+[0m
+[LOG]:[33m[3B][StopGate] no complete candidate plan fits before must-choose-one; candidate_count=0 deferred_goto=false
+[0m
+-----check check check-----
+
+Sovled Task Num:0    Expect Num:1
+[LOG]:[36m[3A][final] goals=0/1 (unknown=1), constraints=0/1 (unknown=1), base_score=-6, action_cost=6, elapsed=235ms, remaining=4465ms
+[0m
+[LOG]:[36m[3A][final] completed_goals=[], satisfied_constraints=[]
+[0m
+#(Plug): Elapsed time=0.236s
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

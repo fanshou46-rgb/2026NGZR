@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ILLEGAL F26: duplicate supplemental info; B intentionally does not deduplicate infos -->
+<test>
+<env mis="on" err="on" ans="on"><info>
+(hold 0) (plate 0) (at 0 1)
+(sort 1 human) (size 1 big) (at 1 2)
+(sort 2 cup) (size 2 small) (color 2 red)
+(sort 3 closet) (size 3 big) (at 3 1) (type 3 container) (opened 3)
+</info><mis></mis><err><r></r><w></w></err><extra></extra></env>
+<instr>(:ins
+(:info (inside X Y) (:cond (sort X cup) (color X red) (sort Y closet) (type Y container)))
+(:info (inside X Y) (:cond (sort X cup) (color X red) (sort Y closet) (type Y container)))
+(:task (takeout X Y) (:cond (sort X cup) (color X red) (sort Y closet) (type Y container)))
+)</instr>
+<nl>The red cup is in the closet. The red cup is in the closet. Take the red cup out of the closet.</nl>
+</test>

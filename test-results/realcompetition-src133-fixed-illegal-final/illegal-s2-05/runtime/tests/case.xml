@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ILLEGAL duplicate task plus legal open/close conflict control -->
+<test>
+<env mis="on" err="on" ans="on"><info>
+(hold 0) (plate 0) (at 0 1)
+(sort 1 human) (size 1 big) (at 1 2)
+(sort 2 closet) (size 2 big) (at 2 1) (type 2 container) (closed 2)
+</info><mis></mis><err><r></r><w></w></err><extra></extra></env>
+<instr>(:ins
+(:task (open X) (:cond (sort X closet) (type X container)))
+(:task (open X) (:cond (sort X closet) (type X container)))
+(:task (close X) (:cond (sort X closet) (type X container)))
+)</instr>
+<nl>Open the closet. Open the closet. Close the closet.</nl>
+</test>

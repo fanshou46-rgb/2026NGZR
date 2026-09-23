@@ -1,0 +1,41 @@
+<configuration info>
+TeamName: RDFW
+Mode: IT
+Timeout: 5000
+TestDir: /tmp/rdfw-fixed-final-natural/src1.3.3-fixed/12/runtime/tests/
+TestSize: 1
+Single test: case.xml
+Grader path: /home/yifan/env-release-2026/lib/libasp
+
+<case.xml>
+# Environment Description:
+(:domain (hold 0) (plate 10) (at 0 1) (sort 1 human) (size 1 big) (at 1 1) (sort 2 desk) (size 2 big) (at 2 2) (sort 3 television) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 bed) (size 5 big) (at 5 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (closed 7) (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (opened 8) (sort 9 microwave) (size 9 big) (at 9 9) (type 9 container) (opened 9) (sort 10 book) (size 10 small) (color 10 yellow) (sort 11 book) (size 11 small) (color 11 green) (at 11 5) (sort 12 bottle) (size 12 small) (color 12 white) (sort 13 bottle) (size 13 small) (color 13 green) (at 13 2) (sort 14 bottle) (size 14 small) (color 14 blue) (inside 14 6) (sort 15 cup) (size 15 small) (color 15 black) (sort 16 cup) (size 16 small) (color 16 white) (at 16 1) (sort 17 remotecontrol) (size 17 small) (color 17 white)  (inside 12 7) (at 17 1))
+# Task Description:
+(:ins (:info (closed X) (:cond (sort X refrigerator))) (:task (give human X) (:cond (sort X book) (color X yellow))) (:task (putin X Y) (:cond (sort X cup) (color X white) (sort Y closet))) (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y chair))) (:task (puton X Y) (:cond (sort X bottle) (color X green) (sort Y bed))) (:task (takeout X Y) (:cond (sort X bottle) (color X blue) (sort Y refrigerator))))
+# Results:
+	[FromPlate 10|true]
+	[Sense | 10 16 1]
+	[PutDown 10|true]
+	[PickUp 16|true]
+	[Move 7|true]
+	[PutDown 16|true]
+	[Open 7|true]
+	[PickUp 16|true]
+	[PutIn 16 7|true]
+	[Move 5|true]
+	[PickUp 11|true]
+	[Move 4|true]
+	[Sense | 4 11]
+	[PutDown 11|true]
+	[Move 2|true]
+	[PickUp 13|true]
+	[Move 5|true]
+	[Sense | 5 13]
+	[PutDown 13|true]
+	[Move 6|true]
+	[Open 6|true]
+	[TakeOut 14 6|true]
+
+# Time: 2.06
+# Score: 205
+

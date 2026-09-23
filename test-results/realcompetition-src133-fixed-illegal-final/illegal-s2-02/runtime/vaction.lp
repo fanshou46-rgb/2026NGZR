@@ -1,0 +1,1 @@
+occurs(putin(2, 3), 1).

@@ -1,0 +1,296 @@
+[LOG]:-stage
+[LOG]:-nlp
+[LOG]:-err
+[LOG]:-ask_2
+[LOG]:-path
+[LOG]:nlp 0, err 1
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+#(Plug): Timeout=5000
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32mcase.xml
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m(17 remotecontrol)
+Pos  2:(T):[32m(robot hold:0 plate:0)[0m[33m(2 desk)[0m(13 bottle)(15 cup)
+Pos  3:(F):[33m(3 television)[0m
+Pos  4:(F):[33m(4 chair)[0m
+Pos  5:(F):[33m(5 bed)[0m(11 book)(18 can)
+Pos  6:(F):[33m(6 refrigerator inside:[] Closed)[0m
+Pos  7:(F):[33m(7 closet inside:[] Closed)[0m
+Pos  8:(F):[33m(8 cupboard inside:[12] Open)[0m(12 book)
+Pos  9:(F):[33m(9 microwave inside:[16] Open)[0m(16 cup)
+UnknownPos:
+[34m(10 book)[0m [34m(14 bottle)[0m 
+[LOG]:[32m[MustIn] correction done.
+[0m
+[LOG]:[32m[MustNear] correction done.
+[0m
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m(17 remotecontrol)
+Pos  2:(T):[32m(robot hold:0 plate:0)[0m[33m(2 desk)[0m(13 bottle)(15 cup)
+Pos  3:(F):[33m(3 television)[0m
+Pos  4:(F):[33m(4 chair)[0m
+Pos  5:(F):[33m(5 bed)[0m(11 book)(18 can)
+Pos  6:(F):[33m(6 refrigerator inside:[] Closed)[0m
+Pos  7:(F):[33m(7 closet inside:[] Closed)[0m
+Pos  8:(F):[33m(8 cupboard inside:[12] Open)[0m(12 book)
+Pos  9:(F):[33m(9 microwave inside:[16] Open)[0m(16 cup)
+UnknownPos:
+[34m(10 book)[0m [34m(14 bottle)[0m 
+Task:
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:book,Color:white)[0m
+ConditionY:[35m(Sort:bed,Color:)[0m
+Behave:[35mputin[0m
+ConditionX:[35m(Sort:bottle,Color:green)[0m
+ConditionY:[35m(Sort:cupboard,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:book,Color:green)[0m
+ConditionY:[35m(Sort:chair,Color:)[0m
+Behave:[35mpickup[0m
+ConditionX:[35m(Sort:can,Color:red)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mputin[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:microwave,Color:)[0m
+
+Info:
+Behave:[35mclosed[0m
+ConditionX:[35m(Sort:refrigerator,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mopened[0m
+ConditionX:[35m(Sort:microwave,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+
+Not_Info:
+
+Not_Task:
+Behave:[35mopen[0m
+ConditionX:[35m(Sort:refrigerator,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+
+NotNot_Info:
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+[FilterConstraintsByTaskConflicts] Discarded goto_cons at location 0 due to 0 conflicts.
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+5
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=1 task_index=4 behave=pickup legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=0 score_after=34 marginal_score=34 utility=34 gained_goals=[4] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=2 task_index=1 behave=putin legacy_choice=false eligible=true complete=true actions=3 duration_ms=320 action_cost=8 score_before=0 score_after=32 marginal_score=32 utility=32 gained_goals=[1] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=3 task_index=3 behave=putin legacy_choice=false eligible=true complete=true actions=3 duration_ms=320 action_cost=8 score_before=0 score_after=32 marginal_score=32 utility=32 gained_goals=[3] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=4 task_index=0 behave=puton legacy_choice=true eligible=true complete=true actions=5 duration_ms=540 action_cost=13 score_before=0 score_after=27 marginal_score=27 utility=27 gained_goals=[0] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=5 task_index=2 behave=puton legacy_choice=false eligible=true complete=true actions=5 duration_ms=540 action_cost=13 score_before=0 score_after=27 marginal_score=27 utility=27 gained_goals=[2] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3A][main-loop] goals=0/5 (unknown=5), constraints=0/1 (unknown=1), base_score=0, action_cost=0, elapsed=20ms, remaining=4680ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[], satisfied_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=main-loop task_index=0 behave=puton can_finish=true remaining_plan_ms=540 safety_ms=300 budget_remaining_ms=4680
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=0 behave=puton executed=0 total=5 remaining_utility=27 remaining_duration_ms=540
+[0m
+puton book的风险系数是：0
+[LOG]:Move(8)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=Move executed=1 total=5 remaining_utility=31 remaining_duration_ms=420 can_finish=true
+[0m
+[LOG]:TakeOut(12,book)(8,cupboard)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=TakeOut executed=2 total=5 remaining_utility=33 remaining_duration_ms=320 can_finish=true
+[0m
+[LOG]:Move(5)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=Move executed=3 total=5 remaining_utility=37 remaining_duration_ms=200 can_finish=true
+[0m
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=Sense executed=4 total=5 remaining_utility=38 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:[32m[SenseCurrentLocationOnly] Location 5 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Object 18 detected at location 5
+[LOG]:[SenseCurrentLocationOnly] Object 11 detected at location 5
+[LOG]:[SenseCurrentLocationOnly] Object 5 detected at location 5
+[LOG]:[SenseCurrentLocationOnly] Object 12 detected at location 5
+[LOG]:PutDown(12,book)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=PutDown executed=5 total=5 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[32mTask done
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:book,Color:white)[0m
+ConditionY:[35m(Sort:bed,Color:)[0m
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=0 behave=puton succeeded=true executed=5 total=5 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=1 task_index=4 behave=pickup legacy_choice=false eligible=true complete=true actions=1 duration_ms=100 action_cost=2 score_before=27 score_after=65 marginal_score=38 utility=38 gained_goals=[4] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=2 task_index=2 behave=puton legacy_choice=false eligible=true complete=true actions=4 duration_ms=420 action_cost=9 score_before=27 score_after=58 marginal_score=31 utility=31 gained_goals=[2] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=3 task_index=1 behave=putin legacy_choice=true eligible=true complete=true actions=4 duration_ms=440 action_cost=12 score_before=27 score_after=55 marginal_score=28 utility=28 gained_goals=[1] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=4 task_index=3 behave=putin legacy_choice=false eligible=true complete=true actions=4 duration_ms=440 action_cost=12 score_before=27 score_after=55 marginal_score=28 utility=28 gained_goals=[3] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3A][main-loop] goals=1/5 (unknown=3), constraints=0/1 (unknown=1), base_score=27, action_cost=13, elapsed=632ms, remaining=4068ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton], satisfied_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=main-loop task_index=1 behave=putin can_finish=true remaining_plan_ms=440 safety_ms=300 budget_remaining_ms=4068
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=1 behave=putin executed=0 total=4 remaining_utility=28 remaining_duration_ms=440
+[0m
+putin bottle的风险系数是：0
+[LOG]:Move(2)
+[LOG]:[36m[3B][Remaining] event=action task_index=1 action=Move executed=1 total=4 remaining_utility=32 remaining_duration_ms=320 can_finish=true
+[0m
+[LOG]:PickUp(13,bottle)
+[LOG]:[36m[3B][Remaining] event=action task_index=1 action=PickUp executed=2 total=4 remaining_utility=34 remaining_duration_ms=220 can_finish=true
+[0m
+[LOG]:Move(8)
+[LOG]:[36m[3B][Remaining] event=action task_index=1 action=Move executed=3 total=4 remaining_utility=38 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:PutIn(13,bottle)(8,cupboard)
+[LOG]:[36m[3B][Remaining] event=action task_index=1 action=PutIn executed=4 total=4 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[32mTask done
+ Behave:[35mputin[0m
+ConditionX:[35m(Sort:bottle,Color:green)[0m
+ConditionY:[35m(Sort:cupboard,Color:)[0m
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=1 behave=putin succeeded=true executed=4 total=4 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=1 task_index=4 behave=pickup legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=55 score_after=89 marginal_score=34 utility=34 gained_goals=[4] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=2 task_index=3 behave=putin legacy_choice=false eligible=true complete=true actions=4 duration_ms=440 action_cost=12 score_before=55 score_after=83 marginal_score=28 utility=28 gained_goals=[3] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=3 task_index=2 behave=puton legacy_choice=true eligible=true complete=true actions=5 duration_ms=540 action_cost=13 score_before=55 score_after=82 marginal_score=27 utility=27 gained_goals=[2] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3A][main-loop] goals=2/5 (unknown=2), constraints=0/1 (unknown=1), base_score=55, action_cost=25, elapsed=1096ms, remaining=3604ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:putin], satisfied_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=main-loop task_index=2 behave=puton can_finish=true remaining_plan_ms=540 safety_ms=300 budget_remaining_ms=3604
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=2 behave=puton executed=0 total=5 remaining_utility=27 remaining_duration_ms=540
+[0m
+puton book的风险系数是：0
+[LOG]:Move(5)
+[LOG]:[36m[3B][Remaining] event=action task_index=2 action=Move executed=1 total=5 remaining_utility=31 remaining_duration_ms=420 can_finish=true
+[0m
+[LOG]:PickUp(11,book)
+[LOG]:[36m[3B][Remaining] event=action task_index=2 action=PickUp executed=2 total=5 remaining_utility=33 remaining_duration_ms=320 can_finish=true
+[0m
+[LOG]:Move(4)
+[LOG]:[36m[3B][Remaining] event=action task_index=2 action=Move executed=3 total=5 remaining_utility=37 remaining_duration_ms=200 can_finish=true
+[0m
+[LOG]:[36m[3B][Remaining] event=action task_index=2 action=Sense executed=4 total=5 remaining_utility=38 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:[32m[SenseCurrentLocationOnly] Location 4 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Object 4 detected at location 4
+[LOG]:[SenseCurrentLocationOnly] Object 11 detected at location 4
+[LOG]:PutDown(11,book)
+[LOG]:[36m[3B][Remaining] event=action task_index=2 action=PutDown executed=5 total=5 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[32mTask done
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:book,Color:green)[0m
+ConditionY:[35m(Sort:chair,Color:)[0m
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=2 behave=puton succeeded=true executed=5 total=5 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=1 task_index=4 behave=pickup legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=82 score_after=116 marginal_score=34 utility=34 gained_goals=[4] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=2 task_index=3 behave=putin legacy_choice=true eligible=true complete=true actions=4 duration_ms=440 action_cost=12 score_before=82 score_after=110 marginal_score=28 utility=28 gained_goals=[3] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3A][main-loop] goals=3/5 (unknown=1), constraints=0/1 (unknown=1), base_score=82, action_cost=38, elapsed=1668ms, remaining=3032ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:putin,2:puton], satisfied_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=main-loop task_index=3 behave=putin can_finish=true remaining_plan_ms=440 safety_ms=300 budget_remaining_ms=3032
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=3 behave=putin executed=0 total=4 remaining_utility=28 remaining_duration_ms=440
+[0m
+putin cup的风险系数是：0
+[LOG]:Move(2)
+[LOG]:[36m[3B][Remaining] event=action task_index=3 action=Move executed=1 total=4 remaining_utility=32 remaining_duration_ms=320 can_finish=true
+[0m
+[LOG]:PickUp(15,cup)
+[LOG]:[36m[3B][Remaining] event=action task_index=3 action=PickUp executed=2 total=4 remaining_utility=34 remaining_duration_ms=220 can_finish=true
+[0m
+[LOG]:Move(9)
+[LOG]:[36m[3B][Remaining] event=action task_index=3 action=Move executed=3 total=4 remaining_utility=38 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:PutIn(15,cup)(9,microwave)
+[LOG]:[36m[3B][Remaining] event=action task_index=3 action=PutIn executed=4 total=4 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[32mTask done
+ Behave:[35mputin[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:microwave,Color:)[0m
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=3 behave=putin succeeded=true executed=4 total=4 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=1 task_index=4 behave=pickup legacy_choice=true eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=110 score_after=144 marginal_score=34 utility=34 gained_goals=[4] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3A][main-loop] goals=4/5 (unknown=0), constraints=0/1 (unknown=1), base_score=110, action_cost=50, elapsed=2132ms, remaining=2568ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,1:putin,2:puton,3:putin], satisfied_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=main-loop task_index=4 behave=pickup can_finish=true remaining_plan_ms=220 safety_ms=300 budget_remaining_ms=2568
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=4 behave=pickup executed=0 total=2 remaining_utility=34 remaining_duration_ms=220
+[0m
+pickup can的风险系数是：0
+[LOG]:Move(5)
+[LOG]:[36m[3B][Remaining] event=action task_index=4 action=Move executed=1 total=2 remaining_utility=38 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:PickUp(18,can)
+[LOG]:[36m[3B][Remaining] event=action task_index=4 action=PickUp executed=2 total=2 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[32mTask done
+ Behave:[35mpickup[0m
+ConditionX:[35m(Sort:can,Color:red)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=4 behave=pickup succeeded=true executed=2 total=2 remaining_utility=0 remaining_duration_ms=0
+[0m
+-----check check check-----
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m(17 remotecontrol)
+Pos  2:(T):[33m(2 desk)[0m
+Pos  3:(F):[33m(3 television)[0m
+Pos  4:(F):[33m(4 chair)[0m(11 book)
+Pos  5:(F):[32m(robot hold:18 plate:0)[0m[33m(5 bed)[0m(12 book)(18 can)
+Pos  6:(F):[33m(6 refrigerator inside:[] Closed)[0m
+Pos  7:(F):[33m(7 closet inside:[] Closed)[0m
+Pos  8:(F):[33m(8 cupboard inside:[13] Open)[0m(13 bottle)
+Pos  9:(F):[33m(9 microwave inside:[16,15] Open)[0m(15 cup)(16 cup)
+UnknownPos:
+[34m(10 book)[0m [34m(14 bottle)[0m 
+[LOG]:[36m[3A][multi-goto] goals=5/5 (unknown=0), constraints=0/1 (unknown=1), base_score=144, action_cost=56, elapsed=2376ms, remaining=2324ms
+[0m
+[LOG]:[36m[3A][multi-goto] completed_goals=[0:puton,1:putin,2:puton,3:putin,4:pickup], satisfied_constraints=[]
+[0m
+[LOG]:[32m[3A][StopGate] all goals are SATISFIED; normal stop before multi-goto
+[0m
+
+Sovled Task Num:5    Expect Num:5
+[LOG]:[36m[3A][final] goals=5/5 (unknown=0), constraints=0/1 (unknown=1), base_score=144, action_cost=56, elapsed=2377ms, remaining=2323ms
+[0m
+[LOG]:[36m[3A][final] completed_goals=[0:puton,1:putin,2:puton,3:putin,4:pickup], satisfied_constraints=[]
+[0m
+#(Plug): Elapsed time=2.378s
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

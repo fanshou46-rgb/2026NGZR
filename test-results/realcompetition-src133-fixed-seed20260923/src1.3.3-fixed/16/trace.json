@@ -1,0 +1,93 @@
+{
+  "raw_score": 109,
+  "official_score": 109,
+  "platform_seconds": 0.839,
+  "platform_timed_out": false,
+  "actions": [
+    "PutDown 20",
+    "PickUp 16",
+    "Move 11",
+    "AskLoc 9",
+    "Sense",
+    "PutDown 16"
+  ],
+  "action_count": 6,
+  "client_metrics": null,
+  "final_goals": 1,
+  "credited_constraints": 0,
+  "platform_error": false,
+  "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/realcompetiton_2024/16.xml",
+  "case_sha256": "2ca8eabbbc95f948366549fd0f3f2a07bb28fe862a5dd88f9c062ad2862a6a5f",
+  "stage": 2,
+  "mode": "it",
+  "wall_seconds": 1.4462402489999704,
+  "external_timeout": false,
+  "client_exit": 0,
+  "server_exit": -15,
+  "commands": [
+    [
+      "/home/yifan/env-release-2026/bin/cserver",
+      "-td",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/realcompetition-src133-fixed-seed20260923/src1.3.3-fixed/16/runtime/tests",
+      "-eval",
+      "/home/yifan/env-release-2026/lib/libasp",
+      "-log",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/realcompetition-src133-fixed-seed20260923/src1.3.3-fixed/16/runtime/log",
+      "-mode",
+      "it",
+      "-test",
+      "1",
+      "-to",
+      "5000"
+    ],
+    [
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/realcompetition-src133-fixed-seed20260923/build-src1.3.3-fixed/example",
+      "-stage",
+      "2",
+      "-nlp",
+      "0",
+      "-err",
+      "1",
+      "-ask_2",
+      "1",
+      "-path",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.3.3-fixed/words.txt"
+    ]
+  ],
+  "limit_ms": 5000,
+  "budget_ms": null,
+  "status": "ok",
+  "observations": [
+    "[AskLoc 9|at(9,22)]",
+    "[Sense | 17 18 19 26 27 25 21 22 23 24 20 16 3 4 5 6 7 8 9 12 13 14 10 11 15 2]"
+  ],
+  "parsed": "Behave:puton\nConditionX:(Sort:can,Color:yellow)\nConditionY:(Sort:closet,Color:)\nBehave:puton\nConditionX:(Sort:book,Color:black)\nConditionY:(Sort:table,Color:)\nBehave:putdown\nConditionX:(Sort:can,Color:white)\nConditionY:(Sort:,Color:)\n\nInfo:\n\nNot_Info:\nBehave:near\nConditionX:(Sort:bottle,Color:red)\nConditionY:(Sort:can,Color:black)\nBehave:near\nConditionX:(Sort:bottle,Color:red)\nConditionY:(Sort:can,Color:white)\nBehave:near\nConditionX:(Sort:bottle,Color:red)\nConditionY:(Sort:can,Color:yellow)\nBehave:near\nConditionX:(Sort:bottle,Color:red)\nConditionY:(Sort:table,Color:)\nBehave:near\nConditionX:(Sort:bottle,Color:red)\nConditionY:(Sort:remotecontrol,Color:black)\nBehave:near\nConditionX:(Sort:bottle,Color:red)\nConditionY:(Sort:remotecontrol,Color:blue)\nBehave:near\nConditionX:(Sort:bottle,Color:red)\nConditionY:(Sort:remotecontrol,Color:yellow)\nBehave:near\nConditionX:(Sort:bottle,Color:red)\nConditionY:(Sort:remotecontrol,Color:green)\nBehave:near\nConditionX:(Sort:bottle,Color:red)\nConditionY:(Sort:remotecontrol,Color:white)\nBehave:near\nConditionX:(Sort:bottle,Color:red)\nConditionY:(Sort:remotecontrol,Color:blue)\nBehave:near\nConditionX:(Sort:bottle,Color:red)\nConditionY:(Sort:remotecontrol,Color:black)\nBehave:near\nConditionX:(Sort:bottle,Color:red)\nConditionY:(Sort:remotecontrol,Color:blue)\nBehave:near\nConditionX:(Sort:bottle,Color:red)\nConditionY:(Sort:remotecontrol,Color:yellow)\nBehave:near\nConditionX:(Sort:bottle,Color:red)\nConditionY:(Sort:remotecontrol,Color:green)\nBehave:near\nConditionX:(Sort:bottle,Color:red)\nConditionY:(Sort:remotecontrol,Color:white)\nBehave:near\nConditionX:(Sort:bottle,Color:red)\nConditionY:(Sort:remotecontrol,Color:blue)\n\nNot_Task:\n\nNotNot_Info:\nBehave:near\nConditionX:(Sort:remotecontrol,Color:red)\nConditionY:(Sort:bottle,Color:yellow)\nBehave:near\nConditionX:(Sort:remotecontrol,Color:red)\nConditionY:(Sort:bottle,Color:white)\nBehave:near\nConditionX:(Sort:remotecontrol,Color:red)\nConditionY:(Sort:bottle,Color:black)\nBehave:near\nConditionX:(Sort:remotecontrol,Color:red)\nConditionY:(Sort:cup,Color:blue)\nBehave:near\nConditionX:(Sort:remotecontrol,Color:red)\nConditionY:(Sort:cup,Color:red)",
+  "decisions": [
+    "[LOG]:[3B][Candidate] phase=main-loop rank=1 task_index=1 behave=puton legacy_choice=false eligible=true complete=true actions=5 duration_ms=540 action_cost=13 score_before=-2 score_after=165 marginal_score=167 utility=167 gained_goals=[1,2] lost_goals=[] broken_constraints=[0,1,2,3] preserved_constraints=[]",
+    "[LOG]:[3B][Candidate] phase=main-loop rank=2 task_index=2 behave=putdown legacy_choice=false eligible=true complete=true actions=2 duration_ms=200 action_cost=4 score_before=-2 score_after=34 marginal_score=36 utility=36 gained_goals=[2] lost_goals=[] broken_constraints=[] preserved_constraints=[]",
+    "[LOG]:[3B][Candidate] phase=main-loop rank=3 task_index=0 behave=puton legacy_choice=true eligible=true complete=true actions=4 duration_ms=420 action_cost=9 score_before=-2 score_after=29 marginal_score=31 utility=31 gained_goals=[0] lost_goals=[] broken_constraints=[2] preserved_constraints=[]",
+    "[LOG]:[3A][main-loop] goals=0/3 (unknown=3), constraints=0/21 (unknown=16), base_score=-2, action_cost=2, remaining=<clock>",
+    "[LOG]:[3A][main-loop] completed_goals=[], satisfied_constraints=[]",
+    "[LOG]:[3B][Deadline] phase=main-loop task_index=0 behave=puton can_finish=true remaining_plan_ms=420 safety_ms=300 budget_remaining_ms=<clock>",
+    "[LOG]:[3B][Remaining] event=begin task_index=0 behave=puton executed=0 total=4 remaining_utility=31 remaining_duration_ms=420",
+    "puton can的风险系数是：0",
+    "[LOG]:[3B][Remaining] event=action task_index=0 action=PickUp executed=1 total=4 remaining_utility=33 remaining_duration_ms=320 can_finish=true",
+    "[LOG]:[3B][Remaining] event=action task_index=0 action=Move executed=2 total=4 remaining_utility=37 remaining_duration_ms=200 can_finish=true",
+    "[LOG]:[3B][Remaining] event=action task_index=0 action=AskLoc executed=3 total=4 remaining_utility=38 remaining_duration_ms=100 can_finish=true",
+    "[LOG]:[3B][Remaining] event=action task_index=0 action=Sense executed=4 total=4 remaining_utility=40 remaining_duration_ms=0 can_finish=true",
+    "[LOG]:[3B][Remaining] event=action task_index=0 action=PutDown executed=4 total=4 remaining_utility=-140 remaining_duration_ms=0 can_finish=true",
+    "[LOG]:Task done",
+    "[LOG]:[3B][Remaining] event=end task_index=0 behave=puton succeeded=true executed=4 total=4 remaining_utility=-180 remaining_duration_ms=0",
+    "[LOG]:[3B][Candidate] phase=main-loop rank=1 task_index=1 behave=puton legacy_choice=true eligible=true complete=true actions=0 duration_ms=0 action_cost=0 score_before=207 score_after=207 marginal_score=0 utility=0 gained_goals=[] lost_goals=[] broken_constraints=[] preserved_constraints=[16,17,18,19,20]",
+    "[LOG]:[3B][Candidate] phase=main-loop rank=2 task_index=2 behave=putdown legacy_choice=false eligible=true complete=true actions=0 duration_ms=0 action_cost=0 score_before=207 score_after=207 marginal_score=0 utility=0 gained_goals=[] lost_goals=[] broken_constraints=[] preserved_constraints=[16,17,18,19,20]",
+    "[LOG]:[3A][main-loop] goals=3/3 (unknown=0), constraints=5/21 (unknown=0), base_score=207, action_cost=13, remaining=<clock>",
+    "[LOG]:[3A][main-loop] completed_goals=[0:puton,1:puton,2:putdown], satisfied_constraints=[16,17,18,19,20]",
+    "[LOG]:[3A][StopGate] all goals are SATISFIED; normal stop before main-loop",
+    "[LOG]:[3A][final] goals=3/3 (unknown=0), constraints=5/21 (unknown=0), base_score=207, action_cost=13, remaining=<clock>",
+    "[LOG]:[3A][final] completed_goals=[0:puton,1:puton,2:putdown], satisfied_constraints=[16,17,18,19,20]"
+  ],
+  "preflight": [
+    "[Preflight] task raw=3 unique=3 duplicate=0 rejected=0; constraint raw=21 unique=14 duplicate=7 rejected=0; world_errors=0"
+  ],
+  "errors": []
+}

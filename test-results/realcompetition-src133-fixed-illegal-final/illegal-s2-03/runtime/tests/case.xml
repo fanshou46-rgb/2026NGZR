@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ILLEGAL F22: near with swapped operands is one symmetric constraint -->
+<test>
+<env mis="on" err="on" ans="on"><info>
+(hold 0) (plate 0) (at 0 1)
+(sort 1 human) (size 1 big) (at 1 3)
+(sort 2 cup) (size 2 small) (color 2 red) (at 2 1)
+(sort 3 table) (size 3 big) (at 3 2)
+</info><mis></mis><err><r></r><w></w></err><extra></extra></env>
+<instr>(:ins
+(:task (puton X Y) (:cond (sort X cup) (color X red) (sort Y table)))
+(:cons_notnot (:info (near X Y) (:cond (sort X cup) (color X red) (sort Y table))))
+(:cons_notnot (:info (near X Y) (:cond (sort X table) (sort Y cup) (color Y red))))
+)</instr>
+<nl>Put the red cup on the table. The red cup must be near the table. The table must be next to the red cup.</nl>
+</test>

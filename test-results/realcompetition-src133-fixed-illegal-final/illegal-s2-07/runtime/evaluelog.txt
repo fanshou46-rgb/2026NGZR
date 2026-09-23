@@ -1,0 +1,38 @@
+Start for a new team: RDFW
+The initial score is 0.
+Executing the action: takeout(2, 3) score -2
+Current socre is: -2
+running the batch for asp: ./vrunact.sh
+Execution failed!
+Executing the action: askloc(2) score -2
+Current socre is: -4
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is h(at(0,1),1) h(at(3,1),1) h(at(1,2),1) h(hold(0),1) h(plate(0),1) h(opened(3),1) 
+Can not find answer(*,1) in the answer set.
+Executing the action: askloc(2) score -2
+Current socre is: -6
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is h(at(0,1),1) h(at(3,1),1) h(at(1,2),1) h(hold(0),1) h(plate(0),1) h(opened(3),1) 
+Can not find answer(*,1) in the answer set.
+Executing the action: open(3) score -2
+Current socre is: -8
+running the batch for asp: ./vrunact.sh
+Execution failed!
+Executing the action: askloc(3) score -2
+Current socre is: -10
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is h(at(0,1),1) h(at(3,1),1) h(at(1,2),1) h(hold(0),1) h(plate(0),1) h(opened(3),1) answer(at(3,1),1) 
+askloc(3)'s right result is : at(3,1)
+By possibility return the right answer set.
+Return possible wrong answer: at(3,1)
+Executing the action: takeout(2, 3) score -2
+Current socre is: -12
+running the batch for asp: ./vrunact.sh
+Execution failed!
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is value(1,40) true(goal) 
+RDFW's score is : 116

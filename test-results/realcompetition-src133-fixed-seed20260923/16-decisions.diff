@@ -1,0 +1,47 @@
+--- src1.3.2
++++ src1.3.3-fixed
+@@ -9,34 +9,14 @@
+ [LOG]:[3B][Remaining] event=action task_index=0 action=PickUp executed=1 total=4 remaining_utility=33 remaining_duration_ms=320 can_finish=true
+ [LOG]:[3B][Remaining] event=action task_index=0 action=Move executed=2 total=4 remaining_utility=37 remaining_duration_ms=200 can_finish=true
+ [LOG]:[3B][Remaining] event=action task_index=0 action=AskLoc executed=3 total=4 remaining_utility=38 remaining_duration_ms=100 can_finish=true
+-[LOG]:[3B][Remaining] event=action task_index=0 action=Move executed=4 total=4 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+-[LOG]:[3B][Remaining] event=action task_index=0 action=AskLoc executed=4 total=4 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+-[LOG]:[3B][Remaining] event=action task_index=0 action=Move executed=4 total=4 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+-[LOG]:[3B][Remaining] event=end task_index=0 behave=puton succeeded=false executed=4 total=4 remaining_utility=40 remaining_duration_ms=0
+-[LOG]:[3B][Candidate] phase=main-loop rank=1 task_index=1 behave=puton legacy_choice=true eligible=true complete=true actions=6 duration_ms=640 action_cost=15 score_before=-20 score_after=145 marginal_score=165 utility=165 gained_goals=[1,2] lost_goals=[] broken_constraints=[0,1,2,3] preserved_constraints=[]
+-[LOG]:[3B][Candidate] phase=main-loop rank=2 task_index=2 behave=putdown legacy_choice=false eligible=true complete=true actions=3 duration_ms=300 action_cost=6 score_before=-20 score_after=14 marginal_score=34 utility=34 gained_goals=[2] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+-[LOG]:[3A][main-loop] goals=0/3 (unknown=3), constraints=0/21 (unknown=16), base_score=-20, action_cost=20, remaining=<clock>
+-[LOG]:[3A][main-loop] completed_goals=[], satisfied_constraints=[]
+-[LOG]:[3B][Deadline] phase=main-loop task_index=1 behave=puton can_finish=true remaining_plan_ms=640 safety_ms=300 budget_remaining_ms=<clock>
+-[LOG]:[3B][Remaining] event=begin task_index=1 behave=puton executed=0 total=6 remaining_utility=165 remaining_duration_ms=640
+-puton book的风险系数是：0
+-[LOG]:[3B][Remaining] event=action task_index=1 action=PutDown executed=1 total=6 remaining_utility=167 remaining_duration_ms=540 can_finish=true
+-[LOG]:[3B][Remaining] event=action task_index=1 action=Move executed=2 total=6 remaining_utility=171 remaining_duration_ms=420 can_finish=true
+-[LOG]:[3B][Remaining] event=action task_index=1 action=AskLoc executed=3 total=6 remaining_utility=173 remaining_duration_ms=320 can_finish=true
+-[LOG]:[3B][Remaining] event=action task_index=1 action=Move executed=4 total=6 remaining_utility=177 remaining_duration_ms=200 can_finish=true
+-[LOG]:[3B][Remaining] event=end task_index=1 behave=puton succeeded=false executed=4 total=6 remaining_utility=177 remaining_duration_ms=200
+-[LOG]:[3B][Candidate] phase=main-loop rank=1 task_index=2 behave=putdown legacy_choice=true eligible=true complete=true actions=2 duration_ms=200 action_cost=4 score_before=-32 score_after=4 marginal_score=36 utility=36 gained_goals=[2] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+-[LOG]:[3A][main-loop] goals=0/3 (unknown=3), constraints=0/21 (unknown=16), base_score=-32, action_cost=32, remaining=<clock>
+-[LOG]:[3A][main-loop] completed_goals=[], satisfied_constraints=[]
+-[LOG]:[3B][Deadline] phase=main-loop task_index=2 behave=putdown can_finish=true remaining_plan_ms=200 safety_ms=300 budget_remaining_ms=<clock>
+-[LOG]:[3B][Remaining] event=begin task_index=2 behave=putdown executed=0 total=2 remaining_utility=36 remaining_duration_ms=200
+-putdown can的风险系数是：0
+-[LOG]:[3B][Remaining] event=action task_index=2 action=PickUp executed=1 total=2 remaining_utility=38 remaining_duration_ms=100 can_finish=true
+-[LOG]:[3B][Remaining] event=action task_index=2 action=PutDown executed=2 total=2 remaining_utility=40 remaining_duration_ms=0 can_finish=true
++[LOG]:[3B][Remaining] event=action task_index=0 action=Sense executed=4 total=4 remaining_utility=40 remaining_duration_ms=0 can_finish=true
++[LOG]:[3B][Remaining] event=action task_index=0 action=PutDown executed=4 total=4 remaining_utility=-140 remaining_duration_ms=0 can_finish=true
+ [LOG]:Task done
+-[LOG]:[3B][Remaining] event=end task_index=2 behave=putdown succeeded=true executed=2 total=2 remaining_utility=0 remaining_duration_ms=0
+-[LOG]:[3A][multi-goto] goals=1/3 (unknown=2), constraints=0/21 (unknown=16), base_score=4, action_cost=36, remaining=<clock>
+-[LOG]:[3A][multi-goto] completed_goals=[2:putdown], satisfied_constraints=[]
+-[LOG]:[3B][StopGate] no complete candidate plan fits before multi-goto; candidate_count=0 deferred_goto=false
+-[LOG]:[3A][final] goals=1/3 (unknown=2), constraints=0/21 (unknown=16), base_score=4, action_cost=36, remaining=<clock>
+-[LOG]:[3A][final] completed_goals=[2:putdown], satisfied_constraints=[]
++[LOG]:[3B][Remaining] event=end task_index=0 behave=puton succeeded=true executed=4 total=4 remaining_utility=-180 remaining_duration_ms=0
++[LOG]:[3B][Candidate] phase=main-loop rank=1 task_index=1 behave=puton legacy_choice=true eligible=true complete=true actions=0 duration_ms=0 action_cost=0 score_before=207 score_after=207 marginal_score=0 utility=0 gained_goals=[] lost_goals=[] broken_constraints=[] preserved_constraints=[16,17,18,19,20]
++[LOG]:[3B][Candidate] phase=main-loop rank=2 task_index=2 behave=putdown legacy_choice=false eligible=true complete=true actions=0 duration_ms=0 action_cost=0 score_before=207 score_after=207 marginal_score=0 utility=0 gained_goals=[] lost_goals=[] broken_constraints=[] preserved_constraints=[16,17,18,19,20]
++[LOG]:[3A][main-loop] goals=3/3 (unknown=0), constraints=5/21 (unknown=0), base_score=207, action_cost=13, remaining=<clock>
++[LOG]:[3A][main-loop] completed_goals=[0:puton,1:puton,2:putdown], satisfied_constraints=[16,17,18,19,20]
++[LOG]:[3A][StopGate] all goals are SATISFIED; normal stop before main-loop
++[LOG]:[3A][final] goals=3/3 (unknown=0), constraints=5/21 (unknown=0), base_score=207, action_cost=13, remaining=<clock>
++[LOG]:[3A][final] completed_goals=[0:puton,1:puton,2:putdown], satisfied_constraints=[16,17,18,19,20]

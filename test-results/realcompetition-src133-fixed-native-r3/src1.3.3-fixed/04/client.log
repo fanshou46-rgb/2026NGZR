@@ -1,0 +1,137 @@
+[LOG]:-stage
+[LOG]:-nlp
+[LOG]:-err
+[LOG]:-ask_2
+[LOG]:-path
+[LOG]:nlp 0, err 1
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+#(Plug): Timeout=5000
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32mcase.xml
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+[LOG]:[InputSafety] instruction closed status=INFERRED
+[31m[ERROR]:/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.3.3-fixed/rdfw.cpp:4430 Isolated malformed instruction form at byte 55[0m
+[31m[ERROR]:/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.3.3-fixed/rdfw.cpp:4430 Isolated malformed instruction form at byte 116[0m
+[31m[ERROR]:/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.3.3-fixed/rdfw.cpp:4430 Isolated malformed instruction form at byte 188[0m
+[31m[ERROR]:/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.3.3-fixed/rdfw.cpp:4430 Isolated malformed instruction form at byte 260[0m
+[LOG]:[InputSafety] instruction takeout status=INFERRED
+[LOG]:[InputSafety] instruction takeout status=INFERRED
+[LOG]:[InputSafety] instruction closed status=INFERRED
+[LOG]:[Preflight] task raw=1 unique=1 duplicate=0 rejected=0; constraint raw=0 unique=0 duplicate=0 rejected=0; world_errors=0
+Pos  0:(F):
+Pos  1:(T):[32m(robot hold:0 plate:10)[0m[33m(1 human)[0m(10 book)(16 cup)(17 remotecontrol)
+Pos  2:(T):[33m(2 desk)[0m(13 bottle)
+Pos  3:(T):[33m(3 television)[0m
+Pos  4:(T):[33m(4 chair)[0m
+Pos  5:(T):[33m(5 bed)[0m(11 book)
+Pos  6:(T):[33m(6 refrigerator inside:[14] Closed)[0m(14 bottle)
+Pos  7:(T):[33m(7 closet inside:[12] Closed)[0m(12 bottle)
+Pos  8:(T):[33m(8 cupboard inside:[] Open)[0m
+Pos  9:(T):[33m(9 microwave inside:[] Open)[0m
+UnknownPos:
+[34m(15 cup)[0m 
+[LOG]:[32m[MustIn] correction done.
+[0m
+[LOG]:[32m[MustNear] correction done.
+[0m
+Pos  0:(F):
+Pos  1:(T):[32m(robot hold:0 plate:10)[0m[33m(1 human)[0m(10 book)(16 cup)(17 remotecontrol)
+Pos  2:(T):[33m(2 desk)[0m(13 bottle)
+Pos  3:(T):[33m(3 television)[0m
+Pos  4:(T):[33m(4 chair)[0m
+Pos  5:(T):[33m(5 bed)[0m(11 book)
+Pos  6:(T):[33m(6 refrigerator inside:[14] Closed)[0m(14 bottle)
+Pos  7:(T):[33m(7 closet inside:[12] Closed)[0m(12 bottle)
+Pos  8:(T):[33m(8 cupboard inside:[] Open)[0m
+Pos  9:(T):[33m(9 microwave inside:[] Open)[0m
+UnknownPos:
+[34m(15 cup)[0m 
+Task:
+Behave:[35mtakeout[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:refrigerator,Color:)[0m
+Validation:INFERRED required runtime type inferred from bound object
+
+Info:
+Behave:[35mclosed[0m
+ConditionX:[35m(Sort:refrigerator,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Validation:INFERRED required runtime type inferred from bound object
+
+Not_Info:
+
+Not_Task:
+
+NotNot_Info:
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+1
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=1 task_index=0 behave=takeout legacy_choice=true eligible=true complete=true actions=3 duration_ms=320 action_cost=8 score_before=0 score_after=32 marginal_score=32 utility=32 gained_goals=[0] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3A][main-loop] goals=0/1 (unknown=1), constraints=0/0 (unknown=0), base_score=0, action_cost=0, elapsed=19ms, remaining=4681ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[], satisfied_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=main-loop task_index=0 behave=takeout can_finish=true remaining_plan_ms=320 safety_ms=300 budget_remaining_ms=4681
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=0 behave=takeout executed=0 total=3 remaining_utility=32 remaining_duration_ms=320
+[0m
+takeout bottle的风险系数是：0
+[LOG]:Move(6)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=Move executed=1 total=3 remaining_utility=36 remaining_duration_ms=200 can_finish=true
+[0m
+[LOG]:[31mMove: Plug::Move(6) failed
+[0m
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=AskLoc executed=2 total=3 remaining_utility=38 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:AskLoc(6)
+[31m[ERROR]:/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.3.3-fixed/rdfw.cpp:3545 AskLoc returned empty string for object (6,refrigerator)[0m
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=AskLoc executed=3 total=3 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:AskLoc(6)
+[31m[ERROR]:/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.3.3-fixed/rdfw.cpp:3545 AskLoc returned empty string for object (6,refrigerator)[0m
+[LOG]:[33mAskLoc(6) produced no usable bounded location reply
+[0m
+[LOG]:Move(6)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=Move executed=3 total=3 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[31mMove: Plug::Move(6) failed
+[0m
+[LOG]:[32mTask not done
+ Behave:[35mtakeout[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:refrigerator,Color:)[0m
+Validation:INFERRED required runtime type inferred from bound object
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=0 behave=takeout succeeded=false executed=3 total=3 remaining_utility=40 remaining_duration_ms=0
+[0m
+[LOG]:[36m[3A][must-choose-one] goals=0/1 (unknown=1), constraints=0/0 (unknown=0), base_score=-12, action_cost=12, elapsed=349ms, remaining=4351ms
+[0m
+[LOG]:[36m[3A][must-choose-one] completed_goals=[], satisfied_constraints=[]
+[0m
+[LOG]:[33m[3B][StopGate] no complete candidate plan fits before must-choose-one; candidate_count=0 deferred_goto=false
+[0m
+-----check check check-----
+
+Sovled Task Num:0    Expect Num:1
+[LOG]:[36m[3A][final] goals=0/1 (unknown=1), constraints=0/0 (unknown=0), base_score=-12, action_cost=12, elapsed=351ms, remaining=4349ms
+[0m
+[LOG]:[36m[3A][final] completed_goals=[], satisfied_constraints=[]
+[0m
+#(Plug): Elapsed time=0.351s
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

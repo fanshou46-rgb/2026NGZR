@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ILLEGAL F22: same inside constraint with reordered conditions -->
+<test>
+<env mis="on" err="on" ans="on"><info>
+(hold 0) (plate 0) (at 0 1)
+(sort 1 human) (size 1 big) (at 1 2)
+(sort 2 cup) (size 2 small) (color 2 red) (at 2 1)
+(sort 3 closet) (size 3 big) (at 3 1) (type 3 container) (opened 3)
+</info><mis></mis><err><r></r><w></w></err><extra></extra></env>
+<instr>(:ins
+(:task (putin X Y) (:cond (sort X cup) (color X red) (sort Y closet) (type Y container)))
+(:cons_not (:info (inside X Y) (:cond (sort X cup) (color X red) (sort Y closet) (type Y container))))
+(:cons_not (:info (inside X Y) (:cond (type Y container) (sort Y closet) (color X red) (sort X cup))))
+)</instr>
+<nl>Put the red cup in the closet. The red cup must not be in the closet. The red cup must not be in the closet.</nl>
+</test>
