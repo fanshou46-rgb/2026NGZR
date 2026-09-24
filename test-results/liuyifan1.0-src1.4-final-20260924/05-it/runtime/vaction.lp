@@ -1,0 +1,1 @@
+occurs(close(2), 1).

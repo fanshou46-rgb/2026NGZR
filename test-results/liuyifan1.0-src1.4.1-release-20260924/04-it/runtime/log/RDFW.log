@@ -1,0 +1,34 @@
+<configuration info>
+TeamName: RDFW
+Mode: IT
+Timeout: 5000
+TestDir: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/liuyifan1.0-src1.4.1-release-20260924/04-it/runtime/tests/
+TestSize: 1
+Single test: case.xml
+Grader path: /home/yifan/env-release-2026/lib/libasp
+
+<case.xml>
+# Environment Description:
+(:domain (hold 0) (plate 0) (at 0 2) (sort 1 human) (size 1 big) (at 1 1) (sort 2 table) (size 2 big) (at 2 2) (sort 3 cupboard) (size 3 big) (at 3 3) (type 3 container) (sort 4 microwave) (size 4 big) (at 4 4) (type 4 container) (sort 5 book) (size 5 small) (color 5 red) (sort 6 cup) (size 6 small) (color 6 blue) (at 6 2) (sort 7 bottle) (size 7 small) (color 7 white) (at 7 2) (sort 8 can) (size 8 small) (color 8 green) (at 8 2)  (at 5 4) (opened 3))
+# Task Description:
+(:ins (:info (closed X) (:cond (sort X microwave))) (:cons_notnot (:info (inside X Y) (:cond (sort X book) (color X red) (sort Y cupboard) (type Y container)))) (:cons_notnot (:info (closed X) (:cond (sort X cupboard)))) (:task (putin X Y) (:cond (sort X cup) (color X blue) (sort Y microwave) (type Y container))) (:task (putin X Y) (:cond (sort X bottle) (color X white) (sort Y microwave) (type Y container))) (:task (putin X Y) (:cond (sort X can) (color X green) (sort Y microwave) (type Y container))) (:task (close X) (:cond (sort X microwave) (type X container))) (:task (goto X) (:cond (sort X microwave))) (:task (close X) (:cond (sort X cupboard) (type X container))) )
+# Results:
+	[PickUp 6|true]
+	[Move 4|true]
+	[PutDown 6|true]
+	[Open 4|true]
+	[PickUp 6|true]
+	[PutIn 6 4|true]
+	[Move 2|true]
+	[PickUp 7|true]
+	[Move 4|true]
+	[PutIn 7 4|true]
+	[Move 2|true]
+	[PickUp 8|true]
+	[Move 4|true]
+	[PutIn 8 4|true]
+	[Close 4|true]
+
+# Time: 1.696
+# Score: 306
+

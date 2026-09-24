@@ -1,0 +1,26 @@
+<configuration info>
+TeamName: RDFW
+Mode: NT
+Timeout: 5000
+TestDir: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/liuyifan1.0-src1.4.1-verified-20260924/06-nt/runtime/tests/
+TestSize: 1
+Single test: case.xml
+Grader path: /home/yifan/env-release-2026/lib/libasp
+
+<case.xml>
+# Environment Description:
+(:domain (hold 0) (plate 0) (at 0 4) (sort 1 human) (size 1 big) (at 1 1) (sort 2 table) (size 2 big) (at 2 2) (sort 3 cupboard) (size 3 big) (at 3 3) (type 3 container) (closed 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 cup) (size 5 small) (color 5 red) (inside 5 3) (sort 6 book) (size 6 small) (color 6 blue) (at 6 4) (sort 7 bottle) (size 7 small) (color 7 white) (at 7 4)  )
+# Task Description:
+The cupboard must be closed. The red cup must be in the cupboard. The red cup must not be near the human. Give the red cup to me. Put the blue book on the table. Go to the blue book. Put the white bottle on the table. Go to the white bottle. Go to the table.
+# Results:
+	[PickUp 6|true]
+	[Move 2|true]
+	[PutDown 6|true]
+	[Move 4|true]
+	[PickUp 7|true]
+	[Move 2|true]
+	[PutDown 7|true]
+
+# Time: 0.852
+# Score: 322
+

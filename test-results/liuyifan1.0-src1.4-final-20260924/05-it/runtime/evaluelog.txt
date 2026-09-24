@@ -1,0 +1,56 @@
+Start for a new team: RDFW
+The initial score is 0.
+Executing the action: open(2) score -2
+Current socre is: -2
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is h(opened(2),1) h(at(0,2),1) h(at(7,2),1) h(at(6,2),1) h(at(5,2),1) h(at(4,2),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(hold(0),1) h(plate(0),1) false(1,ncons) 
+Executing the action: pickup(4) score -2
+Current socre is: -4
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is false(1,ncons) h(hold(4),1) h(at(0,2),1) h(at(4,2),1) h(at(1,1),1) h(at(2,2),1) h(at(3,3),1) h(at(5,2),1) h(at(6,2),1) h(at(7,2),1) h(plate(0),1) h(opened(2),1) 
+Executing the action: putin(4, 2) score -2
+Current socre is: -6
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is false(1,ncons) h(inside(4,2),1) h(hold(0),1) h(at(0,2),1) h(at(7,2),1) h(at(6,2),1) h(at(5,2),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(plate(0),1) h(opened(2),1) 
+Executing the action: pickup(5) score -2
+Current socre is: -8
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is false(1,ncons) h(hold(5),1) h(at(0,2),1) h(at(5,2),1) h(at(1,1),1) h(at(2,2),1) h(at(3,3),1) h(at(6,2),1) h(at(7,2),1) h(plate(0),1) h(opened(2),1) h(inside(4,2),1) 
+Executing the action: putin(5, 2) score -2
+Current socre is: -10
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is false(1,ncons) h(inside(5,2),1) h(hold(0),1) h(at(0,2),1) h(at(7,2),1) h(at(6,2),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(plate(0),1) h(opened(2),1) h(inside(4,2),1) 
+Executing the action: pickup(6) score -2
+Current socre is: -12
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is false(1,ncons) h(hold(6),1) h(at(0,2),1) h(at(6,2),1) h(at(1,1),1) h(at(2,2),1) h(at(3,3),1) h(at(7,2),1) h(plate(0),1) h(opened(2),1) h(inside(4,2),1) h(inside(5,2),1) 
+Executing the action: putin(6, 2) score -2
+Current socre is: -14
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is false(1,ncons) h(inside(6,2),1) h(hold(0),1) h(at(0,2),1) h(at(7,2),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(plate(0),1) h(opened(2),1) h(inside(5,2),1) h(inside(4,2),1) 
+Executing the action: pickup(7) score -2
+Current socre is: -16
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is false(1,ncons) h(hold(7),1) h(at(0,2),1) h(at(7,2),1) h(at(1,1),1) h(at(2,2),1) h(at(3,3),1) h(plate(0),1) h(opened(2),1) h(inside(4,2),1) h(inside(5,2),1) h(inside(6,2),1) 
+Executing the action: putin(7, 2) score -2
+Current socre is: -18
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is false(1,ncons) h(inside(7,2),1) h(hold(0),1) h(at(0,2),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(plate(0),1) h(opened(2),1) h(inside(6,2),1) h(inside(5,2),1) h(inside(4,2),1) 
+Executing the action: close(2) score -2
+Current socre is: -20
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is false(1,ncons) h(closed(2),1) h(at(0,2),1) h(at(1,1),1) h(at(2,2),1) h(at(3,3),1) h(hold(0),1) h(plate(0),1) h(inside(4,2),1) h(inside(5,2),1) h(inside(6,2),1) h(inside(7,2),1) 
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is value(5,40) value(4,40) value(3,40) value(2,40) value(6,40) value(7,40) true(goal) 
+RDFW's score is : 296

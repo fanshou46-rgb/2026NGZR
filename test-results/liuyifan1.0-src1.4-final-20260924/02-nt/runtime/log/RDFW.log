@@ -1,0 +1,35 @@
+<configuration info>
+TeamName: RDFW
+Mode: NT
+Timeout: 5000
+TestDir: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/liuyifan1.0-src1.4-final-20260924/02-nt/runtime/tests/
+TestSize: 1
+Single test: case.xml
+Grader path: /home/yifan/env-release-2026/lib/libasp
+
+<case.xml>
+# Environment Description:
+(:domain (hold 0) (plate 0) (at 0 2) (sort 1 human) (size 1 big) (at 1 1) (sort 2 table) (size 2 big) (at 2 2) (sort 3 chair) (size 3 big) (at 3 3) (sort 4 sofa) (size 4 big) (at 4 4) (sort 5 book) (size 5 small) (color 5 red) (at 5 3) (sort 6 cup) (size 6 small) (color 6 blue) (at 6 3) (sort 7 bottle) (size 7 small) (color 7 white) (at 7 4) (sort 8 can) (size 8 small) (color 8 green) (at 8 4)  )
+# Task Description:
+Go to the red book. Put the red book on the table. Go to the blue cup. Put the blue cup on the table. Go to the white bottle. Put the white bottle on the table. Go to the green can. Put the green can on the table. Go to the table.
+# Results:
+	[Move 3|true]
+	[PickUp 5|true]
+	[Move 2|true]
+	[PutDown 5|true]
+	[Move 3|true]
+	[PickUp 6|true]
+	[Move 2|true]
+	[PutDown 6|true]
+	[Move 4|true]
+	[PickUp 7|true]
+	[Move 2|true]
+	[PutDown 7|true]
+	[Move 4|true]
+	[PickUp 8|true]
+	[Move 2|true]
+	[PutDown 8|true]
+
+# Time: 1.91
+# Score: 372
+

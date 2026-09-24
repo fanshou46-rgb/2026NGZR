@@ -1,0 +1,333 @@
+[LOG]:-stage
+[LOG]:-nlp
+[LOG]:-err
+[LOG]:-ask_2
+[LOG]:-path
+[LOG]:nlp 1, err 1
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+#(Plug): Timeout=5000
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32mcase.xml
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+[LOG]:[32mThe M#icrowave is closed.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <N:microwave>
+  <VP:>
+    <BE:is>
+    <ADJ:closed>
+
+[LOG]:[32mThe R#ed B#ook must be in the C#upboard.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:red>
+    <N:book>
+  <VP:>
+    <MUST:must>
+    <VP:>
+      <BE:be>
+      <PREP:in>
+      <NP:>
+        <ART:the>
+        <N:cupboard>
+
+[LOG]:[32mThe C#upboard must be closed.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <N:cupboard>
+  <VP:>
+    <MUST:must>
+    <VP:>
+      <BE:be>
+      <ADJ:closed>
+
+[LOG]:[32mPut the B#lue C#up in the M#icrowave.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:put>
+    <NP:>
+      <ART:the>
+      <ADJ:blue>
+      <N:cup>
+    <PREP:in>
+    <NP:>
+      <ART:the>
+      <N:microwave>
+
+[LOG]:[32mPut the W#hite B#ottle in the M#icrowave.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:put>
+    <NP:>
+      <ART:the>
+      <ADJ:white>
+      <N:bottle>
+    <PREP:in>
+    <NP:>
+      <ART:the>
+      <N:microwave>
+
+[LOG]:[32mPut the G#reen C#an in the M#icrowave.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:put>
+    <NP:>
+      <ART:the>
+      <ADJ:green>
+      <N:can>
+    <PREP:in>
+    <NP:>
+      <ART:the>
+      <N:microwave>
+
+[LOG]:[32mClose the M#icrowave.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:close>
+    <NP:>
+      <ART:the>
+      <N:microwave>
+
+[LOG]:[32mGo to the M#icrowave.[0m
+[LOG]:<S:>
+  <VP:>
+    <VP:>
+      <V:go>
+      <PREP:to>
+    <NP:>
+      <ART:the>
+      <N:microwave>
+
+[LOG]:[32mClose the C#upboard.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:close>
+    <NP:>
+      <ART:the>
+      <N:cupboard>
+
+[LOG]:[Preflight] task raw=6 unique=6 duplicate=0 rejected=0; constraint raw=2 unique=2 duplicate=0 rejected=0; world_errors=0
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m
+Pos  2:(T):[32m(robot hold:0 plate:0)[0m[33m(2 table)[0m(6 cup)(7 bottle)(8 can)
+Pos  3:(T):[33m(3 cupboard inside:[] Open)[0m
+Pos  4:(T):[33m(4 microwave inside:[] Closed)[0m(5 book)
+UnknownPos:
+
+[LOG]:[32m[AutoOpenClose] set container 3 closed (by notnot)
+[0m
+x: 5 y: 3
+obj_to_cont[x]: 3
+sm->inside: 0
+[LOG]:[32m[MustIn] (direct) set obj 5 @ 3 (in 3)
+[0m
+[LOG]:[32m[MustIn] correction done.
+[0m
+[LOG]:[32m[MustNear] correction done.
+[0m
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m
+Pos  2:(T):[32m(robot hold:0 plate:0)[0m[33m(2 table)[0m(6 cup)(7 bottle)(8 can)
+Pos  3:(T):[33m(3 cupboard inside:[5] Closed)[0m(5 book)
+Pos  4:(T):[33m(4 microwave inside:[] Closed)[0m
+UnknownPos:
+
+Task:
+Behave:[35mputin[0m
+ConditionX:[35m(Sort:cup,Color:blue)[0m
+ConditionY:[35m(Sort:microwave,Color:)[0m
+Behave:[35mputin[0m
+ConditionX:[35m(Sort:bottle,Color:white)[0m
+ConditionY:[35m(Sort:microwave,Color:)[0m
+Behave:[35mputin[0m
+ConditionX:[35m(Sort:can,Color:green)[0m
+ConditionY:[35m(Sort:microwave,Color:)[0m
+Behave:[35mclose[0m
+ConditionX:[35m(Sort:microwave,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:microwave,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mclose[0m
+ConditionX:[35m(Sort:cupboard,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+
+Info:
+Behave:[35mclosed[0m
+ConditionX:[35m(Sort:microwave,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+
+Not_Info:
+
+Not_Task:
+
+NotNot_Info:
+Behave:[35min[0m
+ConditionX:[35m(Sort:book,Color:red)[0m
+ConditionY:[35m(Sort:cupboard,Color:)[0m
+Behave:[35mclosed[0m
+ConditionX:[35m(Sort:cupboard,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+6
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=1 task_index=0 behave=putin legacy_choice=true eligible=true complete=true actions=6 duration_ms=620 action_cost=14 score_before=120 score_after=146 marginal_score=26 utility=26 gained_goals=[0,5] lost_goals=[3] broken_constraints=[] preserved_constraints=[0,1]
+[0m
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=2 task_index=1 behave=putin legacy_choice=false eligible=true complete=true actions=6 duration_ms=620 action_cost=14 score_before=120 score_after=146 marginal_score=26 utility=26 gained_goals=[1,5] lost_goals=[3] broken_constraints=[] preserved_constraints=[0,1]
+[0m
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=3 task_index=2 behave=putin legacy_choice=false eligible=true complete=true actions=6 duration_ms=620 action_cost=14 score_before=120 score_after=146 marginal_score=26 utility=26 gained_goals=[2,5] lost_goals=[3] broken_constraints=[] preserved_constraints=[0,1]
+[0m
+[LOG]:[36m[3A][main-loop] goals=2/6 (unknown=4), constraints=2/2 (unknown=0), base_score=120, action_cost=0, elapsed=15ms, remaining=4685ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[3:close,4:close], satisfied_constraints=[0,1]
+[0m
+[LOG]:[36m[3B][Deadline] phase=main-loop task_index=0 behave=putin can_finish=true remaining_plan_ms=620 safety_ms=300 budget_remaining_ms=4685
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=0 behave=putin executed=0 total=6 remaining_utility=26 remaining_duration_ms=620
+[0m
+putin cup的风险系数是：0
+[LOG]:PickUp(6,cup)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=PickUp executed=1 total=6 remaining_utility=28 remaining_duration_ms=520 can_finish=true
+[0m
+[LOG]:Move(4)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=Move executed=2 total=6 remaining_utility=32 remaining_duration_ms=400 can_finish=true
+[0m
+[LOG]:PutDown(6,cup)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=PutDown executed=3 total=6 remaining_utility=34 remaining_duration_ms=300 can_finish=true
+[0m
+[LOG]:Open(4,microwave)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=Open executed=4 total=6 remaining_utility=36 remaining_duration_ms=200 can_finish=true
+[0m
+[LOG]:PickUp(6,cup)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=PickUp executed=5 total=6 remaining_utility=38 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:PutIn(6,cup)(4,microwave)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=PutIn executed=6 total=6 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[32mTask done
+ Behave:[35mputin[0m
+ConditionX:[35m(Sort:cup,Color:blue)[0m
+ConditionY:[35m(Sort:microwave,Color:)[0m
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=0 behave=putin succeeded=true executed=6 total=6 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=1 task_index=3 behave=close legacy_choice=false eligible=true complete=true actions=1 duration_ms=100 action_cost=2 score_before=146 score_after=184 marginal_score=38 utility=38 gained_goals=[3] lost_goals=[] broken_constraints=[] preserved_constraints=[0,1]
+[0m
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=2 task_index=1 behave=putin legacy_choice=true eligible=true complete=true actions=4 duration_ms=440 action_cost=12 score_before=146 score_after=174 marginal_score=28 utility=28 gained_goals=[1] lost_goals=[] broken_constraints=[] preserved_constraints=[0,1]
+[0m
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=3 task_index=2 behave=putin legacy_choice=false eligible=true complete=true actions=4 duration_ms=440 action_cost=12 score_before=146 score_after=174 marginal_score=28 utility=28 gained_goals=[2] lost_goals=[] broken_constraints=[] preserved_constraints=[0,1]
+[0m
+[LOG]:[36m[3A][main-loop] goals=3/6 (unknown=2), constraints=2/2 (unknown=0), base_score=146, action_cost=14, elapsed=701ms, remaining=3999ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:putin,4:close,5:goto], satisfied_constraints=[0,1]
+[0m
+[LOG]:[36m[3B][Deadline] phase=main-loop task_index=1 behave=putin can_finish=true remaining_plan_ms=440 safety_ms=300 budget_remaining_ms=3999
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=1 behave=putin executed=0 total=4 remaining_utility=28 remaining_duration_ms=440
+[0m
+putin bottle的风险系数是：0
+[LOG]:Move(2)
+[LOG]:[36m[3B][Remaining] event=action task_index=1 action=Move executed=1 total=4 remaining_utility=32 remaining_duration_ms=320 can_finish=true
+[0m
+[LOG]:PickUp(7,bottle)
+[LOG]:[36m[3B][Remaining] event=action task_index=1 action=PickUp executed=2 total=4 remaining_utility=74 remaining_duration_ms=220 can_finish=true
+[0m
+[LOG]:Move(4)
+[LOG]:[36m[3B][Remaining] event=action task_index=1 action=Move executed=3 total=4 remaining_utility=78 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:PutIn(7,bottle)(4,microwave)
+[LOG]:[36m[3B][Remaining] event=action task_index=1 action=PutIn executed=4 total=4 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[32mTask done
+ Behave:[35mputin[0m
+ConditionX:[35m(Sort:bottle,Color:white)[0m
+ConditionY:[35m(Sort:microwave,Color:)[0m
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=1 behave=putin succeeded=true executed=4 total=4 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=1 task_index=3 behave=close legacy_choice=false eligible=true complete=true actions=1 duration_ms=100 action_cost=2 score_before=174 score_after=212 marginal_score=38 utility=38 gained_goals=[3] lost_goals=[] broken_constraints=[] preserved_constraints=[0,1]
+[0m
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=2 task_index=2 behave=putin legacy_choice=true eligible=true complete=true actions=4 duration_ms=440 action_cost=12 score_before=174 score_after=202 marginal_score=28 utility=28 gained_goals=[2] lost_goals=[] broken_constraints=[] preserved_constraints=[0,1]
+[0m
+[LOG]:[36m[3A][main-loop] goals=4/6 (unknown=1), constraints=2/2 (unknown=0), base_score=174, action_cost=26, elapsed=1156ms, remaining=3544ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:putin,1:putin,4:close,5:goto], satisfied_constraints=[0,1]
+[0m
+[LOG]:[36m[3B][Deadline] phase=main-loop task_index=2 behave=putin can_finish=true remaining_plan_ms=440 safety_ms=300 budget_remaining_ms=3544
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=2 behave=putin executed=0 total=4 remaining_utility=28 remaining_duration_ms=440
+[0m
+putin can的风险系数是：0
+[LOG]:Move(2)
+[LOG]:[36m[3B][Remaining] event=action task_index=2 action=Move executed=1 total=4 remaining_utility=32 remaining_duration_ms=320 can_finish=true
+[0m
+[LOG]:PickUp(8,can)
+[LOG]:[36m[3B][Remaining] event=action task_index=2 action=PickUp executed=2 total=4 remaining_utility=74 remaining_duration_ms=220 can_finish=true
+[0m
+[LOG]:Move(4)
+[LOG]:[36m[3B][Remaining] event=action task_index=2 action=Move executed=3 total=4 remaining_utility=78 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:PutIn(8,can)(4,microwave)
+[LOG]:[36m[3B][Remaining] event=action task_index=2 action=PutIn executed=4 total=4 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[32mTask done
+ Behave:[35mputin[0m
+ConditionX:[35m(Sort:can,Color:green)[0m
+ConditionY:[35m(Sort:microwave,Color:)[0m
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=2 behave=putin succeeded=true executed=4 total=4 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=1 task_index=3 behave=close legacy_choice=true eligible=true complete=true actions=1 duration_ms=100 action_cost=2 score_before=202 score_after=240 marginal_score=38 utility=38 gained_goals=[3] lost_goals=[] broken_constraints=[] preserved_constraints=[0,1]
+[0m
+[LOG]:[36m[3A][main-loop] goals=5/6 (unknown=0), constraints=2/2 (unknown=0), base_score=202, action_cost=38, elapsed=1584ms, remaining=3116ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:putin,1:putin,2:putin,4:close,5:goto], satisfied_constraints=[0,1]
+[0m
+[LOG]:[36m[3B][Deadline] phase=main-loop task_index=3 behave=close can_finish=true remaining_plan_ms=100 safety_ms=300 budget_remaining_ms=3116
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=3 behave=close executed=0 total=1 remaining_utility=38 remaining_duration_ms=100
+[0m
+close microwave的风险系数是：0
+[LOG]:(4,microwave) has closed
+[LOG]:[36m[3B][Remaining] event=action task_index=3 action=Close executed=1 total=1 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[32mTask done
+ Behave:[35mclose[0m
+ConditionX:[35m(Sort:microwave,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=3 behave=close succeeded=true executed=1 total=1 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[36m[3A][main-loop] goals=6/6 (unknown=0), constraints=2/2 (unknown=0), base_score=240, action_cost=40, elapsed=1696ms, remaining=3004ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:putin,1:putin,2:putin,3:close,4:close,5:goto], satisfied_constraints=[0,1]
+[0m
+[LOG]:[32m[3A][StopGate] all goals are SATISFIED; normal stop before main-loop
+[0m
+-----check check check-----
+
+Sovled Task Num:4    Expect Num:6
+[LOG]:[36m[3A][final] goals=6/6 (unknown=0), constraints=2/2 (unknown=0), base_score=240, action_cost=40, elapsed=1698ms, remaining=3002ms
+[0m
+[LOG]:[36m[3A][final] completed_goals=[0:putin,1:putin,2:putin,3:close,4:close,5:goto], satisfied_constraints=[0,1]
+[0m
+#(Plug): Elapsed time=1.698s
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test
