@@ -1,0 +1,26 @@
+<configuration info>
+TeamName: RDFW
+Mode: IT
+Timeout: 5000
+TestDir: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/liuyifan1.0-src1.5-release-20260924/06-it/runtime/tests/
+TestSize: 1
+Single test: case.xml
+Grader path: /home/yifan/env-release-2026/lib/libasp
+
+<case.xml>
+# Environment Description:
+(:domain (hold 0) (plate 0) (at 0 4) (sort 1 human) (size 1 big) (at 1 1) (sort 2 table) (size 2 big) (at 2 2) (sort 3 cupboard) (size 3 big) (at 3 3) (type 3 container) (closed 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 cup) (size 5 small) (color 5 red) (inside 5 3) (sort 6 book) (size 6 small) (color 6 blue) (at 6 4) (sort 7 bottle) (size 7 small) (color 7 white) (at 7 4)  )
+# Task Description:
+(:ins (:cons_notnot (:info (closed X) (:cond (sort X cupboard)))) (:cons_notnot (:info (inside X Y) (:cond (sort X cup) (color X red) (sort Y cupboard) (type Y container)))) (:cons_not (:info (near X Y) (:cond (sort X cup) (color X red) (sort Y human)))) (:task (give human X) (:cond (sort X cup) (color X red))) (:task (puton X Y) (:cond (sort X book) (color X blue) (sort Y table))) (:task (goto X) (:cond (sort X book) (color X blue))) (:task (puton X Y) (:cond (sort X bottle) (color X white) (sort Y table))) (:task (goto X) (:cond (sort X bottle) (color X white))) (:task (goto X) (:cond (sort X table))) )
+# Results:
+	[PickUp 6|true]
+	[Move 2|true]
+	[PutDown 6|true]
+	[Move 4|true]
+	[PickUp 7|true]
+	[Move 2|true]
+	[PutDown 7|true]
+
+# Time: 0.835
+# Score: 322
+

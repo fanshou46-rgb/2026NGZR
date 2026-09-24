@@ -1,0 +1,1 @@
+occurs(putdown(7), 1).

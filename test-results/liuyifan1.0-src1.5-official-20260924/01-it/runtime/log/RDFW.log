@@ -1,0 +1,35 @@
+<configuration info>
+TeamName: RDFW
+Mode: IT
+Timeout: 5000
+TestDir: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/liuyifan1.0-src1.5-official-20260924/01-it/runtime/tests/
+TestSize: 1
+Single test: case.xml
+Grader path: /home/yifan/env-release-2026/lib/libasp
+
+<case.xml>
+# Environment Description:
+(:domain (hold 0) (plate 0) (at 0 2) (sort 1 human) (size 1 big) (at 1 1) (sort 2 table) (size 2 big) (at 2 2) (sort 3 chair) (size 3 big) (at 3 3) (sort 4 sofa) (size 4 big) (at 4 4) (sort 5 book) (size 5 small) (color 5 red) (at 5 2) (sort 6 cup) (size 6 small) (color 6 blue) (at 6 2) (sort 7 bottle) (size 7 small) (color 7 white) (at 7 3) (sort 8 can) (size 8 small) (color 8 green) (at 8 3) (sort 9 remotecontrol) (size 9 small) (color 9 yellow) (at 9 4) (sort 10 book) (size 10 small) (color 10 black) (at 10 4)  )
+# Task Description:
+(:ins (:task (goto X) (:cond (sort X book) (color X red))) (:task (goto X) (:cond (sort X cup) (color X blue))) (:task (goto X) (:cond (sort X bottle) (color X white))) (:task (goto X) (:cond (sort X can) (color X green))) (:task (goto X) (:cond (sort X remotecontrol) (color X yellow))) (:task (goto X) (:cond (sort X book) (color X black))) (:task (goto X) (:cond (sort X table))) )
+# Results:
+	[Move 3|true]
+	[PickUp 7|true]
+	[Move 2|true]
+	[PutDown 7|true]
+	[Move 3|true]
+	[PickUp 8|true]
+	[Move 2|true]
+	[PutDown 8|true]
+	[Move 4|true]
+	[PickUp 9|true]
+	[Move 2|true]
+	[PutDown 9|true]
+	[Move 4|true]
+	[PickUp 10|true]
+	[Move 2|true]
+	[PutDown 10|true]
+
+# Time: 1.995
+# Score: 292
+

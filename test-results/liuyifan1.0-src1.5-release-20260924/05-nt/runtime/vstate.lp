@@ -1,0 +1,12 @@
+h(closed(2),0).
+h(at(0,2),0).
+h(at(1,1),0).
+h(at(2,2),0).
+h(at(3,3),0).
+h(hold(0),0).
+h(plate(0),0).
+h(inside(4,2),0).
+h(inside(5,2),0).
+h(inside(6,2),0).
+h(inside(7,2),0).
+false(1,ncons).
