@@ -276,7 +276,15 @@ std::vector<CandidateEvidence> RDFW::CaptureCandidateEvidence() const {
 }
 
 CandidatePlan RDFW::BuildCandidatePlan(std::size_t candidate_task_index) {
+    return BuildTaskGroupPlan(std::vector<std::size_t>(1, candidate_task_index));
+}
+
+CandidatePlan RDFW::BuildTaskGroupPlan(const std::vector<std::size_t>& group) {
+    if (group.empty()) return CandidatePlan();
+    const std::size_t candidate_task_index = group.front();
     if (candidate_task_index >= tasks.size()) return CandidatePlan();
+    for (std::size_t index : group)
+        if (index >= tasks.size()) return CandidatePlan();
     InitializeConstraintLedger();
 
     struct ObjectState {
@@ -384,14 +392,25 @@ CandidatePlan RDFW::BuildCandidatePlan(std::size_t candidate_task_index) {
     task_index = static_cast<int>(candidate_task_index);
     DebugLogSuppressed() = true;
     std::cout.setstate(std::ios_base::failbit);
-    bool succeeded = false;
-    if (tasks[candidate_task_index].IsUsable()) {
+    bool succeeded = true;
+    for (std::size_t step = 0; step < group.size(); ++step) {
+        const std::size_t index = group[step];
+        if (!tasks[index].IsUsable()) { succeeded = false; break; }
+        task_index = static_cast<int>(index);
         try {
-            succeeded = ZeroActionPreCheck(tasks[candidate_task_index]) ||
-                        SolveTask(tasks[candidate_task_index]);
+            if (!(ZeroActionPreCheck(tasks[index]) || SolveTask(tasks[index]))) {
+                succeeded = false;
+                break;
+            }
+            // Match the real task loop before projecting the next task.
+            if (step + 1 < group.size()) {
+                tasks[index].isEnable = false;
+                AfterSolveTask(tasks[index]);
+            }
         } catch (const std::exception& error) {
-            LOG_ERROR("[InputSafety] candidate isolated exception: %s", error.what());
+            LOG_ERROR("[InputSafety] group isolated exception: %s", error.what());
             succeeded = false;
+            break;
         }
     }
     const TerminalSummary terminal_after = terminal_checker.evaluateAll(*this);
@@ -498,8 +517,9 @@ CandidatePlan RDFW::BuildCandidatePlan(std::size_t candidate_task_index) {
     plan.generated_ms = static_cast<std::size_t>(deadline_manager.elapsed().count());
     plan.world_revision = world_revision;
     plan.evidence = CaptureCandidateEvidence();
-    // Keep the existing heuristic gate, and also reject a plan whose actual
-    // sequence irreversibly forfeits two or more still-creditable constraints.
+    plan.task_indices = group;
+    // Preserve the legacy eligibility annotation; the score gate separately
+    // evaluates whether a complete trade is profitable.
     plan.eligible = plan.eligible && plan.broken_constraints.size() < 2;
     return plan;
 }
@@ -549,6 +569,43 @@ CandidatePlan RDFW::BuildSyntheticPutOnCandidate(unsigned int object_id,
     corrected.evidence = result.evidence;
     corrected.task_indices = corrected.gained_goals;
     return corrected;
+}
+
+CandidatePlan RDFW::PreviewFinalMove(unsigned int destination) {
+    InitializeConstraintLedger();
+    const TerminalSummary before = terminal_checker.evaluateAll(*this);
+    const ScoreSnapshot score_before = score_evaluator.snapshot(*this, terminal_checker);
+    const int old_location = location;
+    const int old_hold_location = hold ? hold->location : UNKNOWN;
+    const int old_plate_location = plate ? plate->location : UNKNOWN;
+    const std::vector<bool> old_eligible = constraint_eligible;
+    const std::size_t old_revision = world_revision;
+    const ScoreEvaluator old_evaluator = score_evaluator;
+
+    location = static_cast<int>(destination);
+    if (hold) hold->location = location;
+    if (plate) plate->location = location;
+    score_evaluator.recordAction(ActionCategory::MOVE);
+    UpdateConstraintLedger("Move", std::vector<unsigned int>{destination});
+    const TerminalSummary after = terminal_checker.evaluateAll(*this);
+    const ScoreSnapshot score_after = score_evaluator.snapshot(*this, terminal_checker);
+
+    location = old_location;
+    if (hold) hold->location = old_hold_location;
+    if (plate) plate->location = old_plate_location;
+    constraint_eligible = old_eligible;
+    world_revision = old_revision;
+    score_evaluator = old_evaluator;
+    CandidatePlan plan = CandidatePlanEvaluator::evaluate(
+        std::numeric_limits<std::size_t>::max(), "multi-goto-final-move",
+        true, true,
+        std::vector<CandidateAction>{CandidateAction(
+            "Move", std::vector<unsigned int>{destination}, ActionCategory::MOVE)},
+        before, after, score_before, score_after);
+    plan.candidate_id = next_candidate_id++;
+    plan.generated_ms = static_cast<std::size_t>(deadline_manager.elapsed().count());
+    plan.world_revision = world_revision;
+    return plan;
 }
 
 std::vector<CandidatePlan> RDFW::EvaluateShadowCandidates(
@@ -729,6 +786,106 @@ bool RDFW::CanStartPlan(const CandidatePlan& candidate, const char* phase) const
         static_cast<long long>(remaining_plan.count()),
         static_cast<long long>(plan_safety_margin.count()),
         static_cast<long long>(deadline_manager.remaining().count()));
+    return false;
+}
+
+bool RDFW::ShouldStartConstraintTrade(
+    const CandidatePlan& candidate,
+    const std::vector<CandidatePlan>& alternatives,
+    const char* phase) {
+    if (candidate.broken_constraints.empty()) return true;
+    if (!candidate.dry_run_succeeded) return false;
+
+    // A valid incumbent is always available: stop now.  Include every
+    // currently executable one-task plan that preserves the constraint.
+    const ScoreSnapshot current = score_evaluator.snapshot(*this, terminal_checker);
+    int incumbent = current.deterministic_base_score;
+    for (const CandidatePlan& other : alternatives) {
+        if (other.task_index == candidate.task_index || !other.eligible ||
+            !other.dry_run_succeeded || !other.broken_constraints.empty() ||
+            !deadline_manager.canFinish(other.remainingDuration(), plan_safety_margin))
+            continue;
+        incumbent = std::max(incumbent, other.score_after.deterministic_base_score);
+    }
+
+    auto profitable = [&](const CandidatePlan& plan) {
+        return plan.dry_run_succeeded &&
+            plan.score_after.deterministic_base_score > incumbent &&
+            deadline_manager.canFinish(plan.remainingDuration(), plan_safety_margin);
+    };
+    if (profitable(candidate)) {
+        LOG("[TradeoffDecision] phase=%s task=%zu decision=execute "
+            "score=%d incumbent=%d group=1\n", phase, candidate.task_index,
+            candidate.score_after.deterministic_base_score, incumbent);
+        return true;
+    }
+
+    // Search only tasks that would forfeit the same still-creditable
+    // constraint. A lost goal may be restored at the end, while the
+    // constraint ledger correctly keeps an earlier violation lost.
+    std::vector<std::size_t> related;
+    for (const CandidatePlan& other : alternatives) {
+        if (other.task_index == candidate.task_index || !other.eligible ||
+            !other.dry_run_succeeded) continue;
+        bool shared = false;
+        for (std::size_t broken : candidate.broken_constraints)
+            shared |= std::find(other.broken_constraints.begin(),
+                                other.broken_constraints.end(), broken) !=
+                      other.broken_constraints.end();
+        if (shared) related.push_back(other.task_index);
+    }
+    std::sort(related.begin(), related.end());
+    const auto search_start = std::chrono::steady_clock::now();
+    const std::chrono::milliseconds search_limit(25);
+    std::vector<std::size_t> group(1, candidate.task_index);
+    int best_score = candidate.score_after.deterministic_base_score;
+    for (std::size_t prefix = 0; prefix <= related.size() && group.size() <= 4;
+         ++prefix) {
+        if (std::chrono::steady_clock::now() - search_start >= search_limit ||
+            deadline_manager.remaining() <= plan_safety_margin + search_limit)
+            break;
+        CandidatePlan projected = prefix == 0 ? candidate : BuildTaskGroupPlan(group);
+        if (projected.dry_run_succeeded) {
+            best_score = std::max(best_score,
+                projected.score_after.deterministic_base_score);
+            if (profitable(projected)) {
+                LOG("[TradeoffDecision] phase=%s task=%zu decision=execute "
+                    "score=%d incumbent=%d group=%zu\n", phase,
+                    candidate.task_index, projected.score_after.deterministic_base_score,
+                    incumbent, group.size());
+                return true;
+            }
+            std::vector<std::size_t> with_restoration = group;
+            for (std::size_t lost : projected.lost_goals) {
+                if (with_restoration.size() >= 6) break;
+                if (std::find(with_restoration.begin(), with_restoration.end(), lost) ==
+                    with_restoration.end()) with_restoration.push_back(lost);
+            }
+            if (with_restoration.size() > group.size() &&
+                std::chrono::steady_clock::now() - search_start < search_limit) {
+                CandidatePlan restored = BuildTaskGroupPlan(with_restoration);
+                if (restored.dry_run_succeeded) {
+                    best_score = std::max(best_score,
+                        restored.score_after.deterministic_base_score);
+                    if (profitable(restored)) {
+                        LOG("[TradeoffDecision] phase=%s task=%zu decision=execute "
+                            "score=%d incumbent=%d group=%zu\n", phase,
+                            candidate.task_index,
+                            restored.score_after.deterministic_base_score,
+                            incumbent, with_restoration.size());
+                        return true;
+                    }
+                }
+            }
+        }
+        if (prefix == related.size() || group.size() == 4) break;
+        group.push_back(related[prefix]);
+    }
+    LOG("[TradeoffDecision] phase=%s task=%zu decision=skip best=%d "
+        "incumbent=%d search_ms=%lld\n", phase, candidate.task_index,
+        best_score, incumbent,
+        static_cast<long long>(std::chrono::duration_cast<std::chrono::milliseconds>(
+            std::chrono::steady_clock::now() - search_start).count()));
     return false;
 }
 
@@ -1485,6 +1642,8 @@ void RDFW::ExecuteMainTaskLoop(bool defer_multi_goto)
         const CandidatePlan* selected_candidate = FindCandidate(candidates, task_index);
         if (!selected_candidate) continue;
         if (!CanStartPlan(*selected_candidate, "main-loop")) continue;
+        if (!ShouldStartConstraintTrade(*selected_candidate, candidates, "main-loop"))
+            continue;
 
         isPass = false;
          /*============== 风险预判 ================*/
@@ -1547,6 +1706,8 @@ void RDFW::ExecuteCheckPhase(bool defer_multi_goto)
             const CandidatePlan* selected_candidate = FindCandidate(candidates, task_index);
             if (!selected_candidate) continue;
             if (!CanStartPlan(*selected_candidate, "check-phase")) continue;
+            if (!ShouldStartConstraintTrade(*selected_candidate, candidates, "check-phase"))
+                continue;
             BeginCandidateExecution(*selected_candidate, "legacy_check_phase_task_order");
             bool zero_ok = ZeroActionPreCheck(tasks[task_index]);
             if (zero_ok) {
@@ -1585,6 +1746,8 @@ void RDFW::ExecuteTerminalRecovery() {
             if (!plan.eligible || !plan.dry_run_succeeded ||
                 plan.marginal_score <= 0 || plan.actions.empty()) continue;
             if (!deadline_manager.canFinish(plan.remainingDuration(), plan_safety_margin)) continue;
+            if (!ShouldStartConstraintTrade(plan, candidates, "terminal-recovery"))
+                continue;
             if (!best || plan.marginal_score > best->marginal_score) best = &plan;
         }
         if (!best) {
@@ -3119,6 +3282,8 @@ void RDFW::MustChooseOne(void){
                task_index=flag;
                CandidatePlan candidate = BuildCandidatePlan(task_index);
                if (!CanStartPlan(candidate, "must-choose-one")) return;
+               if (!ShouldStartConstraintTrade(candidate, candidates, "must-choose-one"))
+                   return;
                cout<<"Must Choose one:"<<tasks[flag].behave<<endl;
                BeginCandidateExecution(candidate, "legacy_must_choose_one_risk");
                const bool solved = SolveTask(tasks[task_index]);
@@ -3164,6 +3329,8 @@ void RDFW::MustChooseOne(void){
                 task_index=flag;
                CandidatePlan candidate = BuildCandidatePlan(task_index);
                if (!CanStartPlan(candidate, "must-choose-one")) return;
+               if (!ShouldStartConstraintTrade(candidate, candidates, "must-choose-one"))
+                   return;
                cout<<"Must Choose one:"<<tasks[flag].behave<<endl;
                if(t>3){
                 BeginCandidateExecution(candidate, "legacy_must_choose_one_risk");
@@ -3201,6 +3368,10 @@ void RDFW::MustChooseOne(void){
 
             candidate = BuildCandidatePlan(task_index);
             if (!CanStartPlan(candidate, "must-choose-one-post-check")) return;
+            candidates = EvaluateShadowCandidates(
+                "must-choose-one-post-check", true, task_index);
+            if (!ShouldStartConstraintTrade(candidate, candidates,
+                                            "must-choose-one-post-check")) return;
             BeginCandidateExecution(candidate, "legacy_must_choose_one_risk");
             const bool solved = SolveTask(tasks[task_index]);
             EndCandidateExecution(solved);
@@ -3630,20 +3801,9 @@ void RDFW::ExecuteMultiGotoAggregation()
         // 没有可搬的，就至少停在 chosen_loc
         if (move_set.empty()) {
             if (location != chosen_loc) {
-                const TerminalSummary terminal = terminal_checker.evaluateAll(*this);
-                const ScoreSnapshot before = score_evaluator.snapshot(*this, terminal_checker);
-                ScoreSnapshot after = before;
-                after.action_cost += ScoreEvaluator::costForAction(ActionCategory::MOVE);
-                after.deterministic_base_score -=
-                    ScoreEvaluator::costForAction(ActionCategory::MOVE);
-                const CandidatePlan final_move = CandidatePlanEvaluator::evaluate(
-                    std::numeric_limits<std::size_t>::max(), "multi-goto-final-move",
-                    true, true,
-                    std::vector<CandidateAction>{CandidateAction(
-                        "Move", std::vector<unsigned int>{
-                            static_cast<unsigned int>(chosen_loc)}, ActionCategory::MOVE)},
-                    terminal, terminal, before, after);
-                if (CanStartPlan(final_move, "multi-goto-final-move")) {
+                const CandidatePlan final_move = PreviewFinalMove(chosen_loc);
+                if (final_move.marginal_score > 0 &&
+                    CanStartPlan(final_move, "multi-goto-final-move")) {
                     BeginCandidateExecution(final_move, "multi_goto_hub_final_move");
                     const bool moved_to_hub = Move(chosen_loc);
                     EndCandidateExecution(moved_to_hub);
@@ -3723,20 +3883,9 @@ void RDFW::ExecuteMultiGotoAggregation()
 
             // 收尾：最终停在 chosen_loc
             if (location != chosen_loc) {
-                const TerminalSummary terminal = terminal_checker.evaluateAll(*this);
-                const ScoreSnapshot before = score_evaluator.snapshot(*this, terminal_checker);
-                ScoreSnapshot after = before;
-                after.action_cost += ScoreEvaluator::costForAction(ActionCategory::MOVE);
-                after.deterministic_base_score -=
-                    ScoreEvaluator::costForAction(ActionCategory::MOVE);
-                const CandidatePlan final_move = CandidatePlanEvaluator::evaluate(
-                    std::numeric_limits<std::size_t>::max(), "multi-goto-final-move",
-                    true, true,
-                    std::vector<CandidateAction>{CandidateAction(
-                        "Move", std::vector<unsigned int>{
-                            static_cast<unsigned int>(chosen_loc)}, ActionCategory::MOVE)},
-                    terminal, terminal, before, after);
-                if (CanStartPlan(final_move, "multi-goto-final-move")) {
+                const CandidatePlan final_move = PreviewFinalMove(chosen_loc);
+                if (final_move.marginal_score > 0 &&
+                    CanStartPlan(final_move, "multi-goto-final-move")) {
                     BeginCandidateExecution(final_move, "multi_goto_hub_final_move");
                     const bool moved_to_hub = Move(chosen_loc);
                     EndCandidateExecution(moved_to_hub);

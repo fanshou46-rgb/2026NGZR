@@ -696,6 +696,12 @@ namespace _home
         static const std::size_t NO_FAILED_REVISION = static_cast<std::size_t>(-1);
 
         CandidatePlan BuildCandidatePlan(std::size_t candidate_task_index);
+        CandidatePlan BuildTaskGroupPlan(const std::vector<std::size_t>& group);
+        CandidatePlan PreviewFinalMove(unsigned int destination);
+        bool ShouldStartConstraintTrade(
+            const CandidatePlan& candidate,
+            const std::vector<CandidatePlan>& alternatives,
+            const char* phase);
         std::vector<CandidateEvidence> CaptureCandidateEvidence() const;
         CandidatePlan BuildSyntheticPutOnCandidate(unsigned int object_id,
                                                     unsigned int target_id);

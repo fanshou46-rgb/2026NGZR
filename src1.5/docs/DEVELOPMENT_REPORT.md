@@ -2,6 +2,8 @@
 
 日期：2026-09-24。基于 src1.4.1。只增加候选决策、执行结果及误差的记录；任务顺序、风险门槛、截止门槛、动作流程与官方评分逻辑未改。
 
+本报告记录原始 1.5 反馈版本；后续的决策修改见[约束收益规划](CONSTRAINT_TRADEOFF_PLANNER.md)。
+
 ## 1. 当前决策流程审计
 
 `RDFW` 保存世界对象、事实值、Verified 标志、EvidenceSource、任务与全过程约束 ledger。`TerminalChecker` 从世界和 ledger 计算目标与约束终态；`ScoreEvaluator` 按 40×目标 + 20×计分约束 − 动作成本计算确定性基础分。`EvaluateShadowCandidates` 为可用任务重算风险，`BuildCandidatePlan` 隔离 dry-run，产出动作序列、前后终态、分数、目标增减、约束破坏/保持、成本、边际分、效用与预计时长。候选按效用排序用于旁路展示；主循环仍按原任务顺序与风险条件执行，StopGate 和期限门槛阻止不能完整执行的计划；最终回收沿用已有正边际收益规则。MultiGoto 沿用既有汇聚策略。

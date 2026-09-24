@@ -4,6 +4,9 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 enable_testing()
 get_filename_component(SOURCE_DIR ".." ABSOLUTE)
+file(READ "${SOURCE_DIR}/words.txt" TEST_WORDS)
+string(REPLACE "\r\n" "\n" TEST_WORDS "${TEST_WORDS}")
+file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/words.txt" "${TEST_WORDS}")
 add_library(rdfw_test_core STATIC
     ../rdfw.cpp ../parser.cpp ../deadline_manager.cpp ../terminal_checker.cpp
     ../score_evaluator.cpp ../candidate_plan.cpp ../question_preflight.cpp)
@@ -13,5 +16,5 @@ foreach(test_name input_safety_tests three_a_tests question_preflight_tests lega
     target_link_libraries(${test_name} rdfw_test_core)
     # These fixtures use assert, including setup expressions.
     target_compile_options(${test_name} PRIVATE -UNDEBUG)
-    add_test(NAME ${test_name} COMMAND ${test_name} "${SOURCE_DIR}/words.txt")
+    add_test(NAME ${test_name} COMMAND ${test_name} "${CMAKE_CURRENT_BINARY_DIR}/words.txt")
 endforeach()

@@ -60,9 +60,8 @@ struct PredictionError {
     int utility = 0;
 };
 
-// A complete action sequence emitted by the existing planner for one task
-// group.  Stage 3B only observes and scores these plans; it does not use their
-// utility to replace the legacy task choice.
+// A complete action sequence emitted by the existing planner for a task group.
+// The constraint trade-off gate uses these score predictions before execution.
 struct CandidatePlan {
     std::size_t candidate_id;
     std::size_t generated_ms;
