@@ -1,0 +1,21 @@
+<configuration info>
+TeamName: RDFW
+Mode: IT
+Timeout: 5000
+TestDir: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/realcompetition-src1.5-all36-seed20260924/03/runtime/tests/
+TestSize: 1
+Single test: case.xml
+Grader path: /home/yifan/env-release-2026/lib/libasp
+
+<case.xml>
+# Environment Description:
+(:domain (hold 0) (plate 0) (at 0 0) (sort 1 human) (size 1 big) (at 1 1) (sort 2 table) (size 2 big) (at 2 2) (sort 3 couch) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 teapoy) (size 5 big) (sort 6 workspace) (size 6 big) (sort 7 bottle) (size 7 small) (color 7 blue) (sort 8 cup) (size 8 small) (color 8 green) (at 8 8) (sort 9 can) (size 9 small) (color 9 red) (at 9 8) (sort 10 remotecontrol) (size 10 small) (color 10 yellow) (at 10 8) (sort 11 book) (size 11 small) (color 11 white) (at 11 8) (sort 12 cup) (size 12 small) (color 12 black) (at 12 8) (sort 13 can) (size 13 small) (color 13 blue)  (at 13 9))
+# Task Description:
+(:ins (:cons_notnot (:info (near X Y) (:cond (sort X cup) (color X green) (sort Y cup) (color Y black)))) (:cons_notnot (:info (near X Y) (:cond (sort X can) (color X red) (sort Y cup) (color Y black)))) (:cons_notnot (:info (near X Y) (:cond (sort X bottle) (color X blue) (sort Y cup) (color Y black)))) (:cons_notnot (:info (near X Y) (:cond (sort X remotecontrol) (color X yellow) (sort Y cup) (color Y black)))) (:cons_notnot (:info (near X Y) (:cond (sort X book) (color X white) (sort Y cup) (color Y black)))) (:cons_notnot (:info (near X Y) (:cond (sort X can) (color X blue) (sort Y cup) (color Y black)))) (:cons_not (:info (near X Y) (:cond (sort X can) (color X blue) (sort Y table)))) (:cons_not (:info (near X Y) (:cond (sort X book) (color X white) (sort Y table)))) (:cons_not (:info (near X Y) (:cond (sort X bottle) (color X blue) (sort Y couch)))) (:cons_not (:info (near X Y) (:cond (sort X can) (color X red) (sort Y chair)))) (:cons_not (:info (near X Y) (:cond (sort X cup) (color X green) (sort Y teapoy)))) (:cons_not (:task (goto X) (:cond (sort X table)))) (:cons_not (:task (goto X) (:cond (sort X chair)))) (:cons_not (:task (goto X) (:cond (sort X couch)))) (:cons_not (:task (goto X) (:cond (sort X teapoy)))) (:task (pickup X) (:cond (sort X cup) (color X black))) )
+# Results:
+	[Move 8|true]
+	[PickUp 12|true]
+
+# Time: 0.322
+# Score: 426
+
