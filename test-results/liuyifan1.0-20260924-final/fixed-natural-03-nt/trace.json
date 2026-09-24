@@ -1,0 +1,178 @@
+{
+  "raw_score": 373,
+  "official_score": 373,
+  "platform_seconds": 1.078,
+  "platform_timed_out": false,
+  "actions": {
+    "move": 4,
+    "pickup": 2,
+    "sense": 1,
+    "putdown": 2
+  },
+  "action_count": 9,
+  "client_metrics": null,
+  "final_goals": 7,
+  "credited_constraints": 2,
+  "platform_error": false,
+  "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/liuyifan1.0/03.xml",
+  "case_sha256": "107fb25a459ef4742fb7be46be120b2345f6f5879d31edd347be5d8bfeae7134",
+  "stage": 2,
+  "mode": "nt",
+  "wall_seconds": 1.5418180820000202,
+  "external_timeout": false,
+  "client_exit": 0,
+  "server_exit": -15,
+  "commands": [
+    [
+      "/home/yifan/env-release-2026/bin/cserver",
+      "-td",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/liuyifan1.0-20260924-final/fixed-natural-03-nt/runtime/tests",
+      "-eval",
+      "/home/yifan/env-release-2026/lib/libasp",
+      "-log",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/liuyifan1.0-20260924-final/fixed-natural-03-nt/runtime/log",
+      "-mode",
+      "nt",
+      "-test",
+      "1",
+      "-to",
+      "5000"
+    ],
+    [
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/liuyifan1.0-20260924-final/build-fixed/example",
+      "-stage",
+      "2",
+      "-nlp",
+      "1",
+      "-err",
+      "1",
+      "-ask_2",
+      "1",
+      "-path",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.3.3-fixed/words.txt"
+    ]
+  ],
+  "limit_ms": 5000,
+  "budget_ms": null,
+  "status": "ok",
+  "id": "03",
+  "who": "fixed",
+  "seed": "natural",
+  "title": "must-near 纠错与缺失补全",
+  "events": [
+    {
+      "action": "Move",
+      "args": "3",
+      "reply": "true"
+    },
+    {
+      "action": "PickUp",
+      "args": "7",
+      "reply": "true"
+    },
+    {
+      "action": "Move",
+      "args": "2",
+      "reply": "true"
+    },
+    {
+      "action": "Sense",
+      "args": "",
+      "reply": "5 6 2 7"
+    },
+    {
+      "action": "PutDown",
+      "args": "7",
+      "reply": "true"
+    },
+    {
+      "action": "Move",
+      "args": "3",
+      "reply": "true"
+    },
+    {
+      "action": "PickUp",
+      "args": "8",
+      "reply": "true"
+    },
+    {
+      "action": "Move",
+      "args": "2",
+      "reply": "true"
+    },
+    {
+      "action": "PutDown",
+      "args": "8",
+      "reply": "true"
+    }
+  ],
+  "action_cost": 25,
+  "failed_actions": [],
+  "evaluator_valid": true,
+  "base_score": 295,
+  "efficiency_score": 78,
+  "decisions": [
+    "[LOG]:[Preflight] task raw=7 unique=7 duplicate=0 rejected=0; constraint raw=2 unique=2 duplicate=0 rejected=0; world_errors=0",
+    "[LOG]:[MustIn] correction done.",
+    "[LOG]:[MustNear] relation obj 5 <-> obj 2",
+    "[LOG]:[MustNear] relation obj 6 <-> obj 2",
+    "[LOG]:[MustNear] component 5 has conflicting/insufficient evidence; not propagated",
+    "[LOG]:[MustNear] correction done.",
+    "[LOG]:[3A][main-loop] goals=0/7 (unknown=7), constraints=0/2 (unknown=2), base_score=0, action_cost=0, elapsed=15ms, remaining=4685ms",
+    "[LOG]:[3A][main-loop] completed_goals=[], satisfied_constraints=[]",
+    "puton bottle的风险系数是：0",
+    "[LOG]:[MustNear] component 5 has conflicting/insufficient evidence; not propagated",
+    "[LOG]:[MustNear] component 5 has conflicting/insufficient evidence; not propagated",
+    "[LOG]:[MustNear] component 5 has conflicting/insufficient evidence; not propagated",
+    "[LOG]:Task done",
+    "[LOG]:[3A][main-loop] goals=5/7 (unknown=2), constraints=2/2 (unknown=0), base_score=227, action_cost=13, elapsed=593ms, remaining=4107ms",
+    "[LOG]:[3A][main-loop] completed_goals=[0:puton,2:goto,3:goto,4:goto,6:goto], satisfied_constraints=[0,1]",
+    "puton can的风险系数是：0",
+    "[LOG]:Task done",
+    "[LOG]:[3A][multi-goto] goals=7/7 (unknown=0), constraints=2/2 (unknown=0), base_score=295, action_cost=25, elapsed=1076ms, remaining=3624ms",
+    "[LOG]:[3A][multi-goto] completed_goals=[0:puton,1:puton,2:goto,3:goto,4:goto,5:goto,6:goto], satisfied_constraints=[0,1]",
+    "[LOG]:[3A][StopGate] all goals are SATISFIED; normal stop before multi-goto",
+    "[LOG]:[3A][final] goals=7/7 (unknown=0), constraints=2/2 (unknown=0), base_score=295, action_cost=25, elapsed=1077ms, remaining=3623ms",
+    "[LOG]:[3A][final] completed_goals=[0:puton,1:puton,2:goto,3:goto,4:goto,5:goto,6:goto], satisfied_constraints=[0,1]"
+  ],
+  "official_values": [
+    [
+      1,
+      20
+    ],
+    [
+      2,
+      20
+    ],
+    [
+      3,
+      40
+    ],
+    [
+      4,
+      40
+    ],
+    [
+      5,
+      40
+    ],
+    [
+      6,
+      40
+    ],
+    [
+      7,
+      40
+    ],
+    [
+      8,
+      40
+    ],
+    [
+      9,
+      40
+    ]
+  ],
+  "output": "test-results/liuyifan1.0-20260924-final/fixed-natural-03-nt",
+  "event_parser": "single-line canonical server action stream v1"
+}

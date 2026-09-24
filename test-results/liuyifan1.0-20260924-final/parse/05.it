@@ -1,0 +1,10 @@
+
+(:ins
+(:cons_notnot (:info (closed X) (:cond (sort X cupboard))))
+(:task (putin X Y) (:cond (sort X book) (color X red) (sort Y cupboard) (type Y container)))
+(:task (putin X Y) (:cond (sort X cup) (color X blue) (sort Y cupboard) (type Y container)))
+(:task (putin X Y) (:cond (sort X bottle) (color X white) (sort Y cupboard) (type Y container)))
+(:task (putin X Y) (:cond (sort X can) (color X green) (sort Y cupboard) (type Y container)))
+(:task (close X) (:cond (sort X cupboard) (type X container)))
+(:task (goto X) (:cond (sort X cupboard)))
+)

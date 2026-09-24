@@ -1,0 +1,13 @@
+h(at(0,3),0).
+h(at(1,1),0).
+h(at(2,2),0).
+h(at(3,3),0).
+h(at(4,4),0).
+h(hold(0),0).
+h(plate(0),0).
+h(closed(4),0).
+h(closed(3),0).
+h(inside(8,4),0).
+h(inside(7,4),0).
+h(inside(6,4),0).
+h(inside(5,3),0).

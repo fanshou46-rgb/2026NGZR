@@ -1,0 +1,182 @@
+{
+  "raw_score": 302,
+  "official_score": 302,
+  "platform_seconds": 1.648,
+  "platform_timed_out": false,
+  "actions": {
+    "move": 7,
+    "open": 1,
+    "pickup": 3,
+    "putin": 3,
+    "close": 1
+  },
+  "action_count": 15,
+  "client_metrics": null,
+  "final_goals": 6,
+  "credited_constraints": 2,
+  "platform_error": false,
+  "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/liuyifan1.0/04.xml",
+  "case_sha256": "b151637e85e1d38b9be12d668359638e3f5bcf243d2ce506b82d9e765b9ec30e",
+  "stage": 2,
+  "mode": "it",
+  "wall_seconds": 2.1420911080000025,
+  "external_timeout": false,
+  "client_exit": 0,
+  "server_exit": -15,
+  "commands": [
+    [
+      "/home/yifan/env-release-2026/bin/cserver",
+      "-td",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/liuyifan1.0-20260924-final/reference-natural-04-it/runtime/tests",
+      "-eval",
+      "/home/yifan/env-release-2026/lib/libasp",
+      "-log",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/liuyifan1.0-20260924-final/reference-natural-04-it/runtime/log",
+      "-mode",
+      "it",
+      "-test",
+      "1",
+      "-to",
+      "5000"
+    ],
+    [
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/liuyifan1.0-20260924-final/reference-client",
+      "-stage",
+      "2",
+      "-nlp",
+      "0",
+      "-err",
+      "1",
+      "-ask_2",
+      "1",
+      "-path",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.3.3-fixed/words.txt"
+    ]
+  ],
+  "limit_ms": 5000,
+  "budget_ms": null,
+  "status": "ok",
+  "id": "04",
+  "who": "reference",
+  "seed": "natural",
+  "title": "容器状态纠错与合法语言扰动",
+  "events": [
+    {
+      "action": "Move",
+      "args": "4",
+      "reply": "true"
+    },
+    {
+      "action": "Open",
+      "args": "4",
+      "reply": "true"
+    },
+    {
+      "action": "Move",
+      "args": "2",
+      "reply": "true"
+    },
+    {
+      "action": "PickUp",
+      "args": "6",
+      "reply": "true"
+    },
+    {
+      "action": "Move",
+      "args": "4",
+      "reply": "true"
+    },
+    {
+      "action": "PutIn",
+      "args": "6 4",
+      "reply": "true"
+    },
+    {
+      "action": "Move",
+      "args": "2",
+      "reply": "true"
+    },
+    {
+      "action": "PickUp",
+      "args": "7",
+      "reply": "true"
+    },
+    {
+      "action": "Move",
+      "args": "4",
+      "reply": "true"
+    },
+    {
+      "action": "PutIn",
+      "args": "7 4",
+      "reply": "true"
+    },
+    {
+      "action": "Move",
+      "args": "2",
+      "reply": "true"
+    },
+    {
+      "action": "PickUp",
+      "args": "8",
+      "reply": "true"
+    },
+    {
+      "action": "Move",
+      "args": "4",
+      "reply": "true"
+    },
+    {
+      "action": "PutIn",
+      "args": "8 4",
+      "reply": "true"
+    },
+    {
+      "action": "Close",
+      "args": "4",
+      "reply": "true"
+    }
+  ],
+  "action_cost": 44,
+  "failed_actions": [],
+  "evaluator_valid": true,
+  "base_score": 236,
+  "efficiency_score": 66,
+  "decisions": [],
+  "official_values": [
+    [
+      1,
+      20
+    ],
+    [
+      2,
+      20
+    ],
+    [
+      3,
+      40
+    ],
+    [
+      4,
+      40
+    ],
+    [
+      5,
+      40
+    ],
+    [
+      6,
+      40
+    ],
+    [
+      7,
+      40
+    ],
+    [
+      8,
+      40
+    ]
+  ],
+  "output": "test-results/liuyifan1.0-20260924-final/reference-natural-04-it",
+  "event_parser": "single-line canonical server action stream v1"
+}

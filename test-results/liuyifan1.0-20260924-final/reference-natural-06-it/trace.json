@@ -1,0 +1,140 @@
+{
+  "raw_score": 322,
+  "official_score": 322,
+  "platform_seconds": 0.82,
+  "platform_timed_out": false,
+  "actions": {
+    "pickup": 2,
+    "move": 3,
+    "putdown": 2
+  },
+  "action_count": 7,
+  "client_metrics": null,
+  "final_goals": 5,
+  "credited_constraints": 3,
+  "platform_error": false,
+  "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/liuyifan1.0/06.xml",
+  "case_sha256": "575d629cf37b163b9242e0d1efb4a323ae4626086eb7ea93d2c95876d4185148",
+  "stage": 1,
+  "mode": "it",
+  "wall_seconds": 1.2920149400000014,
+  "external_timeout": false,
+  "client_exit": 0,
+  "server_exit": -15,
+  "commands": [
+    [
+      "/home/yifan/env-release-2026/bin/cserver",
+      "-td",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/liuyifan1.0-20260924-final/reference-natural-06-it/runtime/tests",
+      "-eval",
+      "/home/yifan/env-release-2026/lib/libasp",
+      "-log",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/liuyifan1.0-20260924-final/reference-natural-06-it/runtime/log",
+      "-mode",
+      "it",
+      "-test",
+      "1",
+      "-to",
+      "5000"
+    ],
+    [
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/liuyifan1.0-20260924-final/reference-client",
+      "-stage",
+      "1",
+      "-nlp",
+      "0",
+      "-err",
+      "0",
+      "-ask_2",
+      "0",
+      "-path",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.3.3-fixed/words.txt"
+    ]
+  ],
+  "limit_ms": 5000,
+  "budget_ms": null,
+  "status": "ok",
+  "id": "06",
+  "who": "reference",
+  "seed": "natural",
+  "title": "放弃低收益目标保住三个约束",
+  "events": [
+    {
+      "action": "PickUp",
+      "args": "6",
+      "reply": "true"
+    },
+    {
+      "action": "Move",
+      "args": "2",
+      "reply": "true"
+    },
+    {
+      "action": "PutDown",
+      "args": "6",
+      "reply": "true"
+    },
+    {
+      "action": "Move",
+      "args": "4",
+      "reply": "true"
+    },
+    {
+      "action": "PickUp",
+      "args": "7",
+      "reply": "true"
+    },
+    {
+      "action": "Move",
+      "args": "2",
+      "reply": "true"
+    },
+    {
+      "action": "PutDown",
+      "args": "7",
+      "reply": "true"
+    }
+  ],
+  "action_cost": 20,
+  "failed_actions": [],
+  "evaluator_valid": true,
+  "base_score": 240,
+  "efficiency_score": 82,
+  "decisions": [],
+  "official_values": [
+    [
+      1,
+      20
+    ],
+    [
+      2,
+      20
+    ],
+    [
+      3,
+      20
+    ],
+    [
+      5,
+      40
+    ],
+    [
+      6,
+      40
+    ],
+    [
+      7,
+      40
+    ],
+    [
+      8,
+      40
+    ],
+    [
+      9,
+      40
+    ]
+  ],
+  "output": "test-results/liuyifan1.0-20260924-final/reference-natural-06-it",
+  "event_parser": "single-line canonical server action stream v1"
+}

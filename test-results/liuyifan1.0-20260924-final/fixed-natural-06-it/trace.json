@@ -1,0 +1,159 @@
+{
+  "raw_score": 324,
+  "official_score": 324,
+  "platform_seconds": 0.793,
+  "platform_timed_out": false,
+  "actions": {
+    "pickup": 2,
+    "move": 3,
+    "putdown": 2
+  },
+  "action_count": 7,
+  "client_metrics": null,
+  "final_goals": 5,
+  "credited_constraints": 3,
+  "platform_error": false,
+  "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/liuyifan1.0/06.xml",
+  "case_sha256": "575d629cf37b163b9242e0d1efb4a323ae4626086eb7ea93d2c95876d4185148",
+  "stage": 1,
+  "mode": "it",
+  "wall_seconds": 1.2902082579999785,
+  "external_timeout": false,
+  "client_exit": 0,
+  "server_exit": -15,
+  "commands": [
+    [
+      "/home/yifan/env-release-2026/bin/cserver",
+      "-td",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/liuyifan1.0-20260924-final/fixed-natural-06-it/runtime/tests",
+      "-eval",
+      "/home/yifan/env-release-2026/lib/libasp",
+      "-log",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/liuyifan1.0-20260924-final/fixed-natural-06-it/runtime/log",
+      "-mode",
+      "it",
+      "-test",
+      "1",
+      "-to",
+      "5000"
+    ],
+    [
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/liuyifan1.0-20260924-final/build-fixed/example",
+      "-stage",
+      "1",
+      "-nlp",
+      "0",
+      "-err",
+      "0",
+      "-ask_2",
+      "0",
+      "-path",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.3.3-fixed/words.txt"
+    ]
+  ],
+  "limit_ms": 5000,
+  "budget_ms": null,
+  "status": "ok",
+  "id": "06",
+  "who": "fixed",
+  "seed": "natural",
+  "title": "放弃低收益目标保住三个约束",
+  "events": [
+    {
+      "action": "PickUp",
+      "args": "6",
+      "reply": "true"
+    },
+    {
+      "action": "Move",
+      "args": "2",
+      "reply": "true"
+    },
+    {
+      "action": "PutDown",
+      "args": "6",
+      "reply": "true"
+    },
+    {
+      "action": "Move",
+      "args": "4",
+      "reply": "true"
+    },
+    {
+      "action": "PickUp",
+      "args": "7",
+      "reply": "true"
+    },
+    {
+      "action": "Move",
+      "args": "2",
+      "reply": "true"
+    },
+    {
+      "action": "PutDown",
+      "args": "7",
+      "reply": "true"
+    }
+  ],
+  "action_cost": 20,
+  "failed_actions": [],
+  "evaluator_valid": true,
+  "base_score": 240,
+  "efficiency_score": 84,
+  "decisions": [
+    "[LOG]:[Preflight] task raw=6 unique=6 duplicate=0 rejected=0; constraint raw=3 unique=3 duplicate=0 rejected=0; world_errors=0",
+    "[LOG]:[3A][main-loop] goals=2/6 (unknown=0), constraints=3/3 (unknown=0), base_score=140, action_cost=0, elapsed=11ms, remaining=4689ms",
+    "[LOG]:[3A][main-loop] completed_goals=[3:goto,4:goto], satisfied_constraints=[0,1,2]",
+    "give 的风险系数是：3",
+    "[LOG]:too many cons",
+    "[LOG]:[3A][main-loop] goals=2/6 (unknown=0), constraints=3/3 (unknown=0), base_score=140, action_cost=0, elapsed=12ms, remaining=4688ms",
+    "[LOG]:[3A][main-loop] completed_goals=[3:goto,4:goto], satisfied_constraints=[0,1,2]",
+    "puton book的风险系数是：0",
+    "[LOG]:Task done",
+    "[LOG]:[3A][main-loop] goals=3/6 (unknown=0), constraints=3/3 (unknown=0), base_score=172, action_cost=8, elapsed=359ms, remaining=4341ms",
+    "[LOG]:[3A][main-loop] completed_goals=[1:puton,3:goto,5:goto], satisfied_constraints=[0,1,2]",
+    "puton bottle的风险系数是：0",
+    "[LOG]:Task done",
+    "[LOG]:[3A][multi-goto] goals=5/6 (unknown=0), constraints=3/3 (unknown=0), base_score=240, action_cost=20, elapsed=790ms, remaining=3910ms",
+    "[LOG]:[3A][multi-goto] completed_goals=[1:puton,2:puton,3:goto,4:goto,5:goto], satisfied_constraints=[0,1,2]",
+    "[LOG]:Final-GOTO: choose hub=2",
+    "[LOG]:[3A][final] goals=5/6 (unknown=0), constraints=3/3 (unknown=0), base_score=240, action_cost=20, elapsed=792ms, remaining=3908ms",
+    "[LOG]:[3A][final] completed_goals=[1:puton,2:puton,3:goto,4:goto,5:goto], satisfied_constraints=[0,1,2]"
+  ],
+  "official_values": [
+    [
+      1,
+      20
+    ],
+    [
+      2,
+      20
+    ],
+    [
+      3,
+      20
+    ],
+    [
+      5,
+      40
+    ],
+    [
+      6,
+      40
+    ],
+    [
+      7,
+      40
+    ],
+    [
+      8,
+      40
+    ],
+    [
+      9,
+      40
+    ]
+  ],
+  "output": "test-results/liuyifan1.0-20260924-final/fixed-natural-06-it",
+  "event_parser": "single-line canonical server action stream v1"
+}

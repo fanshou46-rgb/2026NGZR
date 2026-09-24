@@ -1,0 +1,233 @@
+{
+  "raw_score": 253,
+  "official_score": 253,
+  "platform_seconds": 1.995,
+  "platform_timed_out": false,
+  "actions": {
+    "pickup": 4,
+    "move": 6,
+    "putdown": 1,
+    "open": 1,
+    "putin": 3,
+    "close": 2,
+    "sense": 1
+  },
+  "action_count": 18,
+  "client_metrics": null,
+  "final_goals": 5,
+  "credited_constraints": 2,
+  "platform_error": false,
+  "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/liuyifan1.0/04.xml",
+  "case_sha256": "b151637e85e1d38b9be12d668359638e3f5bcf243d2ce506b82d9e765b9ec30e",
+  "stage": 2,
+  "mode": "it",
+  "wall_seconds": 2.4920589379999853,
+  "external_timeout": false,
+  "client_exit": 0,
+  "server_exit": -15,
+  "commands": [
+    [
+      "/home/yifan/env-release-2026/bin/cserver",
+      "-td",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/liuyifan1.0-20260924-final/fixed-natural-04-it/runtime/tests",
+      "-eval",
+      "/home/yifan/env-release-2026/lib/libasp",
+      "-log",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/liuyifan1.0-20260924-final/fixed-natural-04-it/runtime/log",
+      "-mode",
+      "it",
+      "-test",
+      "1",
+      "-to",
+      "5000"
+    ],
+    [
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/liuyifan1.0-20260924-final/build-fixed/example",
+      "-stage",
+      "2",
+      "-nlp",
+      "0",
+      "-err",
+      "1",
+      "-ask_2",
+      "1",
+      "-path",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.3.3-fixed/words.txt"
+    ]
+  ],
+  "limit_ms": 5000,
+  "budget_ms": null,
+  "status": "ok",
+  "id": "04",
+  "who": "fixed",
+  "seed": "natural",
+  "title": "容器状态纠错与合法语言扰动",
+  "events": [
+    {
+      "action": "PickUp",
+      "args": "6",
+      "reply": "true"
+    },
+    {
+      "action": "Move",
+      "args": "4",
+      "reply": "true"
+    },
+    {
+      "action": "PutDown",
+      "args": "6",
+      "reply": "true"
+    },
+    {
+      "action": "Open",
+      "args": "4",
+      "reply": "true"
+    },
+    {
+      "action": "PickUp",
+      "args": "6",
+      "reply": "true"
+    },
+    {
+      "action": "PutIn",
+      "args": "6 4",
+      "reply": "true"
+    },
+    {
+      "action": "Move",
+      "args": "2",
+      "reply": "true"
+    },
+    {
+      "action": "PickUp",
+      "args": "7",
+      "reply": "true"
+    },
+    {
+      "action": "Move",
+      "args": "4",
+      "reply": "true"
+    },
+    {
+      "action": "PutIn",
+      "args": "7 4",
+      "reply": "true"
+    },
+    {
+      "action": "Move",
+      "args": "2",
+      "reply": "true"
+    },
+    {
+      "action": "PickUp",
+      "args": "8",
+      "reply": "true"
+    },
+    {
+      "action": "Move",
+      "args": "4",
+      "reply": "true"
+    },
+    {
+      "action": "PutIn",
+      "args": "8 4",
+      "reply": "true"
+    },
+    {
+      "action": "Close",
+      "args": "4",
+      "reply": "true"
+    },
+    {
+      "action": "Move",
+      "args": "3",
+      "reply": "true"
+    },
+    {
+      "action": "Close",
+      "args": "3",
+      "reply": "false"
+    },
+    {
+      "action": "Sense",
+      "args": "",
+      "reply": "3"
+    }
+  ],
+  "action_cost": 47,
+  "failed_actions": [
+    {
+      "action": "Close",
+      "args": "3",
+      "reply": "false"
+    }
+  ],
+  "evaluator_valid": true,
+  "base_score": 193,
+  "efficiency_score": 60,
+  "decisions": [
+    "[LOG]:[Preflight] task raw=6 unique=6 duplicate=0 rejected=0; constraint raw=2 unique=2 duplicate=0 rejected=0; world_errors=0",
+    "[LOG]:[AutoOpenClose] set container 3 closed (by notnot)",
+    "[LOG]:[MustIn] (direct) set obj 5 @ 3 (in 3)",
+    "[LOG]:[MustIn] correction done.",
+    "[LOG]:[MustNear] correction done.",
+    "[LOG]:[3A][main-loop] goals=0/6 (unknown=6), constraints=0/2 (unknown=2), base_score=0, action_cost=0, elapsed=16ms, remaining=4684ms",
+    "[LOG]:[3A][main-loop] completed_goals=[], satisfied_constraints=[]",
+    "putin cup的风险系数是：0",
+    "[LOG]:Task done",
+    "[LOG]:[3A][main-loop] goals=2/6 (unknown=3), constraints=0/2 (unknown=2), base_score=66, action_cost=14, elapsed=713ms, remaining=3987ms",
+    "[LOG]:[3A][main-loop] completed_goals=[0:putin,5:goto], satisfied_constraints=[]",
+    "putin bottle的风险系数是：0",
+    "[LOG]:Task done",
+    "[LOG]:[3A][main-loop] goals=3/6 (unknown=2), constraints=0/2 (unknown=2), base_score=94, action_cost=26, elapsed=1142ms, remaining=3558ms",
+    "[LOG]:[3A][main-loop] completed_goals=[0:putin,1:putin,5:goto], satisfied_constraints=[]",
+    "putin can的风险系数是：0",
+    "[LOG]:Task done",
+    "[LOG]:[3A][main-loop] goals=4/6 (unknown=1), constraints=0/2 (unknown=2), base_score=122, action_cost=38, elapsed=1577ms, remaining=3123ms",
+    "[LOG]:[3A][main-loop] completed_goals=[0:putin,1:putin,2:putin,5:goto], satisfied_constraints=[]",
+    "close microwave的风险系数是：0",
+    "[LOG]:Task done",
+    "[LOG]:[3A][main-loop] goals=5/6 (unknown=1), constraints=0/2 (unknown=2), base_score=160, action_cost=40, elapsed=1681ms, remaining=3019ms",
+    "[LOG]:[3A][main-loop] completed_goals=[0:putin,1:putin,2:putin,3:close,5:goto], satisfied_constraints=[]",
+    "close cupboard的风险系数是：0",
+    "[LOG]:Task done",
+    "[LOG]:[3A][main-loop] goals=5/6 (unknown=0), constraints=1/2 (unknown=1), base_score=173, action_cost=47, elapsed=1989ms, remaining=2711ms",
+    "[LOG]:[3A][main-loop] completed_goals=[0:putin,1:putin,2:putin,3:close,4:close], satisfied_constraints=[1]",
+    "[LOG]:[3A][multi-goto] goals=5/6 (unknown=0), constraints=1/2 (unknown=1), base_score=173, action_cost=47, elapsed=1993ms, remaining=2707ms",
+    "[LOG]:[3A][multi-goto] completed_goals=[0:putin,1:putin,2:putin,3:close,4:close], satisfied_constraints=[1]",
+    "[LOG]:[3A][final] goals=5/6 (unknown=0), constraints=1/2 (unknown=1), base_score=173, action_cost=47, elapsed=1994ms, remaining=2706ms",
+    "[LOG]:[3A][final] completed_goals=[0:putin,1:putin,2:putin,3:close,4:close], satisfied_constraints=[1]"
+  ],
+  "official_values": [
+    [
+      1,
+      20
+    ],
+    [
+      2,
+      20
+    ],
+    [
+      3,
+      40
+    ],
+    [
+      4,
+      40
+    ],
+    [
+      5,
+      40
+    ],
+    [
+      6,
+      40
+    ],
+    [
+      8,
+      40
+    ]
+  ],
+  "output": "test-results/liuyifan1.0-20260924-final/fixed-natural-04-it",
+  "event_parser": "single-line canonical server action stream v1"
+}

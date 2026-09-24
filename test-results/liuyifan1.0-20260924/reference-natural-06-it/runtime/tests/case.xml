@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test>
+<env mis="off" err="off" ans="off">
+<info>
+(hold 0) (plate 0) (at 0 4)
+(sort 1 human) (size 1 big) (at 1 1)
+(sort 2 table) (size 2 big) (at 2 2)
+(sort 3 cupboard) (size 3 big) (at 3 3) (type 3 container) (closed 3)
+(sort 4 chair) (size 4 big) (at 4 4)
+(sort 5 cup) (size 5 small) (color 5 red) (inside 5 3)
+(sort 6 book) (size 6 small) (color 6 blue) (at 6 4)
+(sort 7 bottle) (size 7 small) (color 7 white) (at 7 4)
+</info>
+<mis></mis>
+<err>
+<r></r>
+<w></w>
+</err>
+<extra></extra>
+</env>
+<instr>
+(:ins
+(:cons_notnot (:info (closed X) (:cond (sort X cupboard))))
+(:cons_notnot (:info (inside X Y) (:cond (sort X cup) (color X red) (sort Y cupboard) (type Y container))))
+(:cons_notnot (:info (near X Y) (:cond (sort X cup) (color X red) (sort Y cupboard))))
+(:task (give human X) (:cond (sort X cup) (color X red)))
+(:task (puton X Y) (:cond (sort X book) (color X blue) (sort Y table)))
+(:task (goto X) (:cond (sort X book) (color X blue)))
+(:task (puton X Y) (:cond (sort X bottle) (color X white) (sort Y table)))
+(:task (goto X) (:cond (sort X bottle) (color X white)))
+(:task (goto X) (:cond (sort X table)))
+)
+</instr>
+<nl>
+The cupboard must be closed.
+The red cup must be in the cupboard.
+The red cup must be near the cupboard.
+Give the red cup to me.
+Put the blue book on the table.
+Go to the blue book.
+Put the white bottle on the table.
+Go to the white bottle.
+Go to the table.
+</nl>
+</test>

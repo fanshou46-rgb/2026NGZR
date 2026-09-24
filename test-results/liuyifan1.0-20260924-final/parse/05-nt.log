@@ -1,0 +1,141 @@
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+[LOG]:[32mThe cupboard must be closed.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <N:cupboard>
+  <VP:>
+    <MUST:must>
+    <VP:>
+      <BE:be>
+      <ADJ:closed>
+
+[LOG]:[32mPut the red book in the cupboard.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:put>
+    <NP:>
+      <ART:the>
+      <ADJ:red>
+      <N:book>
+    <PREP:in>
+    <NP:>
+      <ART:the>
+      <N:cupboard>
+
+[LOG]:[32mPut the blue cup in the cupboard.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:put>
+    <NP:>
+      <ART:the>
+      <ADJ:blue>
+      <N:cup>
+    <PREP:in>
+    <NP:>
+      <ART:the>
+      <N:cupboard>
+
+[LOG]:[32mPut the white bottle in the cupboard.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:put>
+    <NP:>
+      <ART:the>
+      <ADJ:white>
+      <N:bottle>
+    <PREP:in>
+    <NP:>
+      <ART:the>
+      <N:cupboard>
+
+[LOG]:[32mPut the green can in the cupboard.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:put>
+    <NP:>
+      <ART:the>
+      <ADJ:green>
+      <N:can>
+    <PREP:in>
+    <NP:>
+      <ART:the>
+      <N:cupboard>
+
+[LOG]:[32mClose the cupboard.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:close>
+    <NP:>
+      <ART:the>
+      <N:cupboard>
+
+[LOG]:[32mGo to the cupboard.[0m
+[LOG]:<S:>
+  <VP:>
+    <VP:>
+      <V:go>
+      <PREP:to>
+    <NP:>
+      <ART:the>
+      <N:cupboard>
+
+SNAP parsed robot=2,0,0
+SNAP object 0 robot 2
+SNAP object 1 human 1 big
+SNAP object 2 cupboard 2 container 0
+SNAP object 3 table 3 big
+SNAP object 4 book 2 small red 0 -1
+SNAP object 5 cup 2 small blue 0 -1
+SNAP object 6 bottle 2 small white 0 -1
+SNAP object 7 can 2 small green 0 -1
+SNAP task 0 putin X=4, Y=2, CX=book/red CY=cupboard/ useY=1 missing=0
+SNAP task 1 putin X=5, Y=2, CX=cup/blue CY=cupboard/ useY=1 missing=0
+SNAP task 2 putin X=6, Y=2, CX=bottle/white CY=cupboard/ useY=1 missing=0
+SNAP task 3 putin X=7, Y=2, CX=can/green CY=cupboard/ useY=1 missing=0
+SNAP task 4 close X=2, Y= CX=cupboard/ CY=/ useY=0 missing=0
+SNAP task 5 goto X=2, Y= CX=cupboard/ CY=/ useY=0 missing=0
+SNAP must_info 0 closed X=2, Y= CX=cupboard/ CY=/ useY=0 missing=0
+SNAP END parsed
+[LOG]:[Preflight] task raw=6 unique=6 duplicate=0 rejected=0; constraint raw=1 unique=1 duplicate=0 rejected=0; world_errors=0
+SNAP preflight robot=2,0,0
+SNAP object 0 robot 2
+SNAP object 1 human 1 big
+SNAP object 2 cupboard 2 container 0
+SNAP object 3 table 3 big
+SNAP object 4 book 2 small red 0 -1
+SNAP object 5 cup 2 small blue 0 -1
+SNAP object 6 bottle 2 small white 0 -1
+SNAP object 7 can 2 small green 0 -1
+SNAP task 0 putin X=4, Y=2, CX=book/red CY=cupboard/ useY=1 missing=0
+SNAP task 1 putin X=5, Y=2, CX=cup/blue CY=cupboard/ useY=1 missing=0
+SNAP task 2 putin X=6, Y=2, CX=bottle/white CY=cupboard/ useY=1 missing=0
+SNAP task 3 putin X=7, Y=2, CX=can/green CY=cupboard/ useY=1 missing=0
+SNAP task 4 close X=2, Y= CX=cupboard/ CY=/ useY=0 missing=0
+SNAP task 5 goto X=2, Y= CX=cupboard/ CY=/ useY=0 missing=0
+SNAP must_info 0 closed X=2, Y= CX=cupboard/ CY=/ useY=0 missing=0
+SNAP END preflight
+SNAP corrected robot=2,0,0
+SNAP object 0 robot 2
+SNAP object 1 human 1 big
+SNAP object 2 cupboard 2 container 0
+SNAP object 3 table 3 big
+SNAP object 4 book 2 small red 0 -1
+SNAP object 5 cup 2 small blue 0 -1
+SNAP object 6 bottle 2 small white 0 -1
+SNAP object 7 can 2 small green 0 -1
+SNAP task 0 putin X=4, Y=2, CX=book/red CY=cupboard/ useY=1 missing=0
+SNAP task 1 putin X=5, Y=2, CX=cup/blue CY=cupboard/ useY=1 missing=0
+SNAP task 2 putin X=6, Y=2, CX=bottle/white CY=cupboard/ useY=1 missing=0
+SNAP task 3 putin X=7, Y=2, CX=can/green CY=cupboard/ useY=1 missing=0
+SNAP task 4 close X=2, Y= CX=cupboard/ CY=/ useY=0 missing=0
+SNAP task 5 goto X=2, Y= CX=cupboard/ CY=/ useY=0 missing=0
+SNAP must_info 0 closed X=2, Y= CX=cupboard/ CY=/ useY=0 missing=0
+SNAP END corrected
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

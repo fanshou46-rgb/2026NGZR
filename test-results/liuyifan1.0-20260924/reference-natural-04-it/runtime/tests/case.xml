@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(hold 0) (plate 0) (at 0 2)
+(sort 1 human) (size 1 big) (at 1 1)
+(sort 2 table) (size 2 big) (at 2 2)
+(sort 3 cupboard) (size 3 big) (at 3 3) (type 3 container)
+(sort 4 microwave) (size 4 big) (at 4 4) (type 4 container)
+(sort 5 book) (size 5 small) (color 5 red)
+(sort 6 cup) (size 6 small) (color 6 blue) (at 6 2)
+(sort 7 bottle) (size 7 small) (color 7 white) (at 7 2)
+(sort 8 can) (size 8 small) (color 8 green) (at 8 2)
+</info>
+<mis></mis>
+<err>
+<r>(inside 5 3) (closed 3)</r>
+<w>(at 5 4) (opened 3)</w>
+</err>
+<extra>(closed 4)</extra>
+</env>
+<instr>
+(:ins
+(:info (closed X) (:cond (sort X microwave)))
+(:cons_notnot (:info (inside X Y) (:cond (sort X book) (color X red) (sort Y cupboard) (type Y container))))
+(:cons_notnot (:info (closed X) (:cond (sort X cupboard))))
+(:task (putin X Y) (:cond (sort X cup) (color X blue) (sort Y microwave) (type Y container)))
+(:task (putin X Y) (:cond (sort X bottle) (color X white) (sort Y microwave) (type Y container)))
+(:task (putin X Y) (:cond (sort X can) (color X green) (sort Y microwave) (type Y container)))
+(:task (close X) (:cond (sort X microwave) (type X container)))
+(:task (goto X) (:cond (sort X microwave)))
+(:task (close X) (:cond (sort X cupboard) (type X container)))
+)
+</instr>
+<nl>
+The M#icrowave is closed.
+The R#ed B#ook must be in the C#upboard.
+The C#upboard must be closed.
+Put the B#lue C#up in the M#icrowave.
+Put the W#hite B#ottle in the M#icrowave.
+Put the G#reen C#an in the M#icrowave.
+Close the M#icrowave.
+Go to the M#icrowave.
+Close the C#upboard.
+</nl>
+</test>

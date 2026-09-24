@@ -1,0 +1,79 @@
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+SNAP parsed robot=2,0,0
+SNAP object 0 robot 2
+SNAP object 1 human 1 big
+SNAP object 2 table 2 big
+SNAP object 3 chair 3 big
+SNAP object 4 sofa 4 big
+SNAP object 5 book 4 small red 0 -1
+SNAP object 6 cup -1 small blue -1 -1
+SNAP object 7 bottle 3 small white 0 -1
+SNAP object 8 can 3 small green 0 -1
+SNAP task 0 goto X=5, Y= CX=book/red CY=/ useY=0 missing=0
+SNAP task 1 goto X=6, Y= CX=cup/blue CY=/ useY=0 missing=0
+SNAP task 2 puton X=7, Y=2, CX=bottle/white CY=table/ useY=1 missing=0
+SNAP task 3 goto X=7, Y= CX=bottle/white CY=/ useY=0 missing=0
+SNAP task 4 puton X=8, Y=2, CX=can/green CY=table/ useY=1 missing=0
+SNAP task 5 goto X=8, Y= CX=can/green CY=/ useY=0 missing=0
+SNAP task 6 goto X=2, Y= CX=table/ CY=/ useY=0 missing=0
+SNAP must_info 0 near X=5, Y=2, CX=book/red CY=table/ useY=1 missing=0
+SNAP must_info 1 near X=6, Y=2, CX=cup/blue CY=table/ useY=1 missing=0
+SNAP END parsed
+[LOG]:[Preflight] task raw=7 unique=7 duplicate=0 rejected=0; constraint raw=2 unique=2 duplicate=0 rejected=0; world_errors=0
+SNAP preflight robot=2,0,0
+SNAP object 0 robot 2
+SNAP object 1 human 1 big
+SNAP object 2 table 2 big
+SNAP object 3 chair 3 big
+SNAP object 4 sofa 4 big
+SNAP object 5 book 4 small red 0 -1
+SNAP object 6 cup -1 small blue -1 -1
+SNAP object 7 bottle 3 small white 0 -1
+SNAP object 8 can 3 small green 0 -1
+SNAP task 0 goto X=5, Y= CX=book/red CY=/ useY=0 missing=0
+SNAP task 1 goto X=6, Y= CX=cup/blue CY=/ useY=0 missing=0
+SNAP task 2 puton X=7, Y=2, CX=bottle/white CY=table/ useY=1 missing=0
+SNAP task 3 goto X=7, Y= CX=bottle/white CY=/ useY=0 missing=0
+SNAP task 4 puton X=8, Y=2, CX=can/green CY=table/ useY=1 missing=0
+SNAP task 5 goto X=8, Y= CX=can/green CY=/ useY=0 missing=0
+SNAP task 6 goto X=2, Y= CX=table/ CY=/ useY=0 missing=0
+SNAP must_info 0 near X=5, Y=2, CX=book/red CY=table/ useY=1 missing=0
+SNAP must_info 1 near X=6, Y=2, CX=cup/blue CY=table/ useY=1 missing=0
+SNAP END preflight
+[LOG]:[32m[MustIn] correction done.
+[0m
+[LOG]:[32m[MustNear] relation obj 5 <-> obj 2
+[0m
+[LOG]:[32m[MustNear] relation obj 6 <-> obj 2
+[0m
+[LOG]:[33m[MustNear] component 5 has conflicting/insufficient evidence; not propagated
+[0m
+[LOG]:[32m[MustNear] correction done.
+[0m
+SNAP corrected robot=2,0,0
+SNAP object 0 robot 2
+SNAP object 1 human 1 big
+SNAP object 2 table 2 big
+SNAP object 3 chair 3 big
+SNAP object 4 sofa 4 big
+SNAP object 5 book 4 small red 0 -1
+SNAP object 6 cup -1 small blue -1 -1
+SNAP object 7 bottle 3 small white 0 -1
+SNAP object 8 can 3 small green 0 -1
+SNAP task 0 goto X=5, Y= CX=book/red CY=/ useY=0 missing=0
+SNAP task 1 goto X=6, Y= CX=cup/blue CY=/ useY=0 missing=0
+SNAP task 2 puton X=7, Y=2, CX=bottle/white CY=table/ useY=1 missing=0
+SNAP task 3 goto X=7, Y= CX=bottle/white CY=/ useY=0 missing=0
+SNAP task 4 puton X=8, Y=2, CX=can/green CY=table/ useY=1 missing=0
+SNAP task 5 goto X=8, Y= CX=can/green CY=/ useY=0 missing=0
+SNAP task 6 goto X=2, Y= CX=table/ CY=/ useY=0 missing=0
+SNAP must_info 0 near X=5, Y=2, CX=book/red CY=table/ useY=1 missing=0
+SNAP must_info 1 near X=6, Y=2, CX=cup/blue CY=table/ useY=1 missing=0
+SNAP END corrected
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

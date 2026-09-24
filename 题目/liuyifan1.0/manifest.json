@@ -1,0 +1,1240 @@
+[
+  {
+    "id": "01",
+    "stage": 1,
+    "title": "自由终态汇聚",
+    "robot": 2,
+    "objects": [
+      {
+        "id": 1,
+        "sort": "human",
+        "size": "big",
+        "at": 1
+      },
+      {
+        "id": 2,
+        "sort": "table",
+        "size": "big",
+        "at": 2
+      },
+      {
+        "id": 3,
+        "sort": "chair",
+        "size": "big",
+        "at": 3
+      },
+      {
+        "id": 4,
+        "sort": "sofa",
+        "size": "big",
+        "at": 4
+      },
+      {
+        "id": 5,
+        "sort": "book",
+        "size": "small",
+        "color": "red",
+        "at": 2
+      },
+      {
+        "id": 6,
+        "sort": "cup",
+        "size": "small",
+        "color": "blue",
+        "at": 2
+      },
+      {
+        "id": 7,
+        "sort": "bottle",
+        "size": "small",
+        "color": "white",
+        "at": 3
+      },
+      {
+        "id": 8,
+        "sort": "can",
+        "size": "small",
+        "color": "green",
+        "at": 3
+      },
+      {
+        "id": 9,
+        "sort": "remotecontrol",
+        "size": "small",
+        "color": "yellow",
+        "at": 4
+      },
+      {
+        "id": 10,
+        "sort": "book",
+        "size": "small",
+        "color": "black",
+        "at": 4
+      }
+    ],
+    "instructions": [
+      {
+        "kind": "task",
+        "action": "goto",
+        "x": 5,
+        "y": null,
+        "it": "(:task (goto X) (:cond (sort X book) (color X red)))",
+        "nt": "Go to the red book."
+      },
+      {
+        "kind": "task",
+        "action": "goto",
+        "x": 6,
+        "y": null,
+        "it": "(:task (goto X) (:cond (sort X cup) (color X blue)))",
+        "nt": "Go to the blue cup."
+      },
+      {
+        "kind": "task",
+        "action": "goto",
+        "x": 7,
+        "y": null,
+        "it": "(:task (goto X) (:cond (sort X bottle) (color X white)))",
+        "nt": "Go to the white bottle."
+      },
+      {
+        "kind": "task",
+        "action": "goto",
+        "x": 8,
+        "y": null,
+        "it": "(:task (goto X) (:cond (sort X can) (color X green)))",
+        "nt": "Go to the green can."
+      },
+      {
+        "kind": "task",
+        "action": "goto",
+        "x": 9,
+        "y": null,
+        "it": "(:task (goto X) (:cond (sort X remotecontrol) (color X yellow)))",
+        "nt": "Go to the yellow remotecontrol."
+      },
+      {
+        "kind": "task",
+        "action": "goto",
+        "x": 10,
+        "y": null,
+        "it": "(:task (goto X) (:cond (sort X book) (color X black)))",
+        "nt": "Go to the black book."
+      },
+      {
+        "kind": "task",
+        "action": "goto",
+        "x": 2,
+        "y": null,
+        "it": "(:task (goto X) (:cond (sort X table)))",
+        "nt": "Go to the table."
+      }
+    ],
+    "witness": [
+      [
+        "Move",
+        3
+      ],
+      [
+        "PickUp",
+        7
+      ],
+      [
+        "Move",
+        2
+      ],
+      [
+        "PutDown",
+        7
+      ],
+      [
+        "Move",
+        3
+      ],
+      [
+        "PickUp",
+        8
+      ],
+      [
+        "Move",
+        2
+      ],
+      [
+        "PutDown",
+        8
+      ],
+      [
+        "Move",
+        4
+      ],
+      [
+        "PickUp",
+        9
+      ],
+      [
+        "Move",
+        2
+      ],
+      [
+        "PutDown",
+        9
+      ],
+      [
+        "Move",
+        4
+      ],
+      [
+        "PickUp",
+        10
+      ],
+      [
+        "Move",
+        2
+      ],
+      [
+        "PutDown",
+        10
+      ]
+    ],
+    "intent": "六个不同小物体 goto 与 table goto；搬到 table 后停留，同时完成七个终态目标。",
+    "expected_goals": 7,
+    "expected_constraints": 0,
+    "strategy": "保留桌边红书、蓝杯，将白瓶、绿罐、黄遥控器、黑书搬到桌边，最终停在位置2。",
+    "rendered_nt": [
+      "Go to the red book.",
+      "Go to the blue cup.",
+      "Go to the white bottle.",
+      "Go to the green can.",
+      "Go to the yellow remotecontrol.",
+      "Go to the black book.",
+      "Go to the table."
+    ],
+    "goals": 7,
+    "constraints": 0
+  },
+  {
+    "id": "02",
+    "stage": 1,
+    "title": "搬运与到达共享终态",
+    "robot": 2,
+    "objects": [
+      {
+        "id": 1,
+        "sort": "human",
+        "size": "big",
+        "at": 1
+      },
+      {
+        "id": 2,
+        "sort": "table",
+        "size": "big",
+        "at": 2
+      },
+      {
+        "id": 3,
+        "sort": "chair",
+        "size": "big",
+        "at": 3
+      },
+      {
+        "id": 4,
+        "sort": "sofa",
+        "size": "big",
+        "at": 4
+      },
+      {
+        "id": 5,
+        "sort": "book",
+        "size": "small",
+        "color": "red",
+        "at": 3
+      },
+      {
+        "id": 6,
+        "sort": "cup",
+        "size": "small",
+        "color": "blue",
+        "at": 3
+      },
+      {
+        "id": 7,
+        "sort": "bottle",
+        "size": "small",
+        "color": "white",
+        "at": 4
+      },
+      {
+        "id": 8,
+        "sort": "can",
+        "size": "small",
+        "color": "green",
+        "at": 4
+      }
+    ],
+    "instructions": [
+      {
+        "kind": "task",
+        "action": "goto",
+        "x": 5,
+        "y": null,
+        "it": "(:task (goto X) (:cond (sort X book) (color X red)))",
+        "nt": "Go to the red book."
+      },
+      {
+        "kind": "task",
+        "action": "puton",
+        "x": 5,
+        "y": 2,
+        "it": "(:task (puton X Y) (:cond (sort X book) (color X red) (sort Y table)))",
+        "nt": "Put the red book on the table."
+      },
+      {
+        "kind": "task",
+        "action": "goto",
+        "x": 6,
+        "y": null,
+        "it": "(:task (goto X) (:cond (sort X cup) (color X blue)))",
+        "nt": "Go to the blue cup."
+      },
+      {
+        "kind": "task",
+        "action": "puton",
+        "x": 6,
+        "y": 2,
+        "it": "(:task (puton X Y) (:cond (sort X cup) (color X blue) (sort Y table)))",
+        "nt": "Put the blue cup on the table."
+      },
+      {
+        "kind": "task",
+        "action": "goto",
+        "x": 7,
+        "y": null,
+        "it": "(:task (goto X) (:cond (sort X bottle) (color X white)))",
+        "nt": "Go to the white bottle."
+      },
+      {
+        "kind": "task",
+        "action": "puton",
+        "x": 7,
+        "y": 2,
+        "it": "(:task (puton X Y) (:cond (sort X bottle) (color X white) (sort Y table)))",
+        "nt": "Put the white bottle on the table."
+      },
+      {
+        "kind": "task",
+        "action": "goto",
+        "x": 8,
+        "y": null,
+        "it": "(:task (goto X) (:cond (sort X can) (color X green)))",
+        "nt": "Go to the green can."
+      },
+      {
+        "kind": "task",
+        "action": "puton",
+        "x": 8,
+        "y": 2,
+        "it": "(:task (puton X Y) (:cond (sort X can) (color X green) (sort Y table)))",
+        "nt": "Put the green can on the table."
+      },
+      {
+        "kind": "task",
+        "action": "goto",
+        "x": 2,
+        "y": null,
+        "it": "(:task (goto X) (:cond (sort X table)))",
+        "nt": "Go to the table."
+      }
+    ],
+    "witness": [
+      [
+        "Move",
+        3
+      ],
+      [
+        "PickUp",
+        5
+      ],
+      [
+        "Move",
+        2
+      ],
+      [
+        "PutDown",
+        5
+      ],
+      [
+        "Move",
+        3
+      ],
+      [
+        "PickUp",
+        6
+      ],
+      [
+        "Move",
+        2
+      ],
+      [
+        "PutDown",
+        6
+      ],
+      [
+        "Move",
+        4
+      ],
+      [
+        "PickUp",
+        7
+      ],
+      [
+        "Move",
+        2
+      ],
+      [
+        "PutDown",
+        7
+      ],
+      [
+        "Move",
+        4
+      ],
+      [
+        "PickUp",
+        8
+      ],
+      [
+        "Move",
+        2
+      ],
+      [
+        "PutDown",
+        8
+      ]
+    ],
+    "intent": "四个 puton、四个小物体 goto、一个 table goto；同一布局满足九个不同目标。",
+    "expected_goals": 9,
+    "expected_constraints": 0,
+    "strategy": "四件物体全部放到桌边，最终停在桌边；后续 goto 不应再移动已完成的物体。",
+    "rendered_nt": [
+      "Go to the red book.",
+      "Put the red book on the table.",
+      "Go to the blue cup.",
+      "Put the blue cup on the table.",
+      "Go to the white bottle.",
+      "Put the white bottle on the table.",
+      "Go to the green can.",
+      "Put the green can on the table.",
+      "Go to the table."
+    ],
+    "goals": 9,
+    "constraints": 0
+  },
+  {
+    "id": "03",
+    "stage": 2,
+    "title": "must-near 纠错与缺失补全",
+    "robot": 2,
+    "objects": [
+      {
+        "id": 1,
+        "sort": "human",
+        "size": "big",
+        "at": 1
+      },
+      {
+        "id": 2,
+        "sort": "table",
+        "size": "big",
+        "at": 2
+      },
+      {
+        "id": 3,
+        "sort": "chair",
+        "size": "big",
+        "at": 3
+      },
+      {
+        "id": 4,
+        "sort": "sofa",
+        "size": "big",
+        "at": 4
+      },
+      {
+        "id": 5,
+        "sort": "book",
+        "size": "small",
+        "color": "red",
+        "at": 2
+      },
+      {
+        "id": 6,
+        "sort": "cup",
+        "size": "small",
+        "color": "blue",
+        "at": 2
+      },
+      {
+        "id": 7,
+        "sort": "bottle",
+        "size": "small",
+        "color": "white",
+        "at": 3
+      },
+      {
+        "id": 8,
+        "sort": "can",
+        "size": "small",
+        "color": "green",
+        "at": 3
+      }
+    ],
+    "mis": [
+      [
+        "at",
+        6,
+        2
+      ]
+    ],
+    "errors": [
+      [
+        [
+          "at",
+          5,
+          2
+        ],
+        [
+          "at",
+          5,
+          4
+        ]
+      ]
+    ],
+    "instructions": [
+      {
+        "kind": "must",
+        "action": "near",
+        "x": 5,
+        "y": 2,
+        "it": "(:cons_notnot (:info (near X Y) (:cond (sort X book) (color X red) (sort Y table))))",
+        "nt": "The red book must be near the table."
+      },
+      {
+        "kind": "must",
+        "action": "near",
+        "x": 6,
+        "y": 2,
+        "it": "(:cons_notnot (:info (near X Y) (:cond (sort X cup) (color X blue) (sort Y table))))",
+        "nt": "The blue cup must be near the table."
+      },
+      {
+        "kind": "task",
+        "action": "goto",
+        "x": 5,
+        "y": null,
+        "it": "(:task (goto X) (:cond (sort X book) (color X red)))",
+        "nt": "Go to the red book."
+      },
+      {
+        "kind": "task",
+        "action": "goto",
+        "x": 6,
+        "y": null,
+        "it": "(:task (goto X) (:cond (sort X cup) (color X blue)))",
+        "nt": "Go to the blue cup."
+      },
+      {
+        "kind": "task",
+        "action": "puton",
+        "x": 7,
+        "y": 2,
+        "it": "(:task (puton X Y) (:cond (sort X bottle) (color X white) (sort Y table)))",
+        "nt": "Put the white bottle on the table."
+      },
+      {
+        "kind": "task",
+        "action": "goto",
+        "x": 7,
+        "y": null,
+        "it": "(:task (goto X) (:cond (sort X bottle) (color X white)))",
+        "nt": "Go to the white bottle."
+      },
+      {
+        "kind": "task",
+        "action": "puton",
+        "x": 8,
+        "y": 2,
+        "it": "(:task (puton X Y) (:cond (sort X can) (color X green) (sort Y table)))",
+        "nt": "Put the green can on the table."
+      },
+      {
+        "kind": "task",
+        "action": "goto",
+        "x": 8,
+        "y": null,
+        "it": "(:task (goto X) (:cond (sort X can) (color X green)))",
+        "nt": "Go to the green can."
+      },
+      {
+        "kind": "task",
+        "action": "goto",
+        "x": 2,
+        "y": null,
+        "it": "(:task (goto X) (:cond (sort X table)))",
+        "nt": "Go to the table."
+      }
+    ],
+    "witness": [
+      [
+        "Move",
+        3
+      ],
+      [
+        "PickUp",
+        7
+      ],
+      [
+        "Move",
+        2
+      ],
+      [
+        "PutDown",
+        7
+      ],
+      [
+        "Move",
+        3
+      ],
+      [
+        "PickUp",
+        8
+      ],
+      [
+        "Move",
+        2
+      ],
+      [
+        "PutDown",
+        8
+      ]
+    ],
+    "intent": "红书位置错误、蓝杯位置缺失；两个真实成立的 must-near 以 table 为可靠锚点。",
+    "expected_goals": 7,
+    "expected_constraints": 2,
+    "strategy": "约束推断红书和蓝杯均在桌边并保留原位，只搬白瓶、绿罐到桌边。",
+    "rendered_nt": [
+      "The red book must be near the table.",
+      "The blue cup must be near the table.",
+      "Go to the red book.",
+      "Go to the blue cup.",
+      "Put the white bottle on the table.",
+      "Go to the white bottle.",
+      "Put the green can on the table.",
+      "Go to the green can.",
+      "Go to the table."
+    ],
+    "goals": 7,
+    "constraints": 2
+  },
+  {
+    "id": "04",
+    "stage": 2,
+    "title": "容器状态纠错与合法语言扰动",
+    "robot": 2,
+    "objects": [
+      {
+        "id": 1,
+        "sort": "human",
+        "size": "big",
+        "at": 1
+      },
+      {
+        "id": 2,
+        "sort": "table",
+        "size": "big",
+        "at": 2
+      },
+      {
+        "id": 3,
+        "sort": "cupboard",
+        "size": "big",
+        "at": 3,
+        "type": "container",
+        "closed": true
+      },
+      {
+        "id": 4,
+        "sort": "microwave",
+        "size": "big",
+        "at": 4,
+        "type": "container",
+        "closed": true
+      },
+      {
+        "id": 5,
+        "sort": "book",
+        "size": "small",
+        "color": "red",
+        "inside": 3
+      },
+      {
+        "id": 6,
+        "sort": "cup",
+        "size": "small",
+        "color": "blue",
+        "at": 2
+      },
+      {
+        "id": 7,
+        "sort": "bottle",
+        "size": "small",
+        "color": "white",
+        "at": 2
+      },
+      {
+        "id": 8,
+        "sort": "can",
+        "size": "small",
+        "color": "green",
+        "at": 2
+      }
+    ],
+    "extra": [
+      [
+        "closed",
+        4
+      ]
+    ],
+    "errors": [
+      [
+        [
+          "inside",
+          5,
+          3
+        ],
+        [
+          "at",
+          5,
+          4
+        ]
+      ],
+      [
+        [
+          "closed",
+          3
+        ],
+        [
+          "opened",
+          3
+        ]
+      ]
+    ],
+    "instructions": [
+      {
+        "kind": "info",
+        "action": "closed",
+        "x": 4,
+        "y": null,
+        "it": "(:info (closed X) (:cond (sort X microwave)))",
+        "nt": "The microwave is closed."
+      },
+      {
+        "kind": "must",
+        "action": "inside",
+        "x": 5,
+        "y": 3,
+        "it": "(:cons_notnot (:info (inside X Y) (:cond (sort X book) (color X red) (sort Y cupboard) (type Y container))))",
+        "nt": "The red book must be in the cupboard."
+      },
+      {
+        "kind": "must",
+        "action": "closed",
+        "x": 3,
+        "y": null,
+        "it": "(:cons_notnot (:info (closed X) (:cond (sort X cupboard))))",
+        "nt": "The cupboard must be closed."
+      },
+      {
+        "kind": "task",
+        "action": "putin",
+        "x": 6,
+        "y": 4,
+        "it": "(:task (putin X Y) (:cond (sort X cup) (color X blue) (sort Y microwave) (type Y container)))",
+        "nt": "Put the blue cup in the microwave."
+      },
+      {
+        "kind": "task",
+        "action": "putin",
+        "x": 7,
+        "y": 4,
+        "it": "(:task (putin X Y) (:cond (sort X bottle) (color X white) (sort Y microwave) (type Y container)))",
+        "nt": "Put the white bottle in the microwave."
+      },
+      {
+        "kind": "task",
+        "action": "putin",
+        "x": 8,
+        "y": 4,
+        "it": "(:task (putin X Y) (:cond (sort X can) (color X green) (sort Y microwave) (type Y container)))",
+        "nt": "Put the green can in the microwave."
+      },
+      {
+        "kind": "task",
+        "action": "close",
+        "x": 4,
+        "y": null,
+        "it": "(:task (close X) (:cond (sort X microwave) (type X container)))",
+        "nt": "Close the microwave."
+      },
+      {
+        "kind": "task",
+        "action": "goto",
+        "x": 4,
+        "y": null,
+        "it": "(:task (goto X) (:cond (sort X microwave)))",
+        "nt": "Go to the microwave."
+      },
+      {
+        "kind": "task",
+        "action": "close",
+        "x": 3,
+        "y": null,
+        "it": "(:task (close X) (:cond (sort X cupboard) (type X container)))",
+        "nt": "Close the cupboard."
+      }
+    ],
+    "noise": true,
+    "witness": [
+      [
+        "Move",
+        4
+      ],
+      [
+        "Open",
+        4
+      ],
+      [
+        "Move",
+        2
+      ],
+      [
+        "PickUp",
+        6
+      ],
+      [
+        "Move",
+        4
+      ],
+      [
+        "PutIn",
+        6,
+        4
+      ],
+      [
+        "Move",
+        2
+      ],
+      [
+        "PickUp",
+        7
+      ],
+      [
+        "Move",
+        4
+      ],
+      [
+        "PutIn",
+        7,
+        4
+      ],
+      [
+        "Move",
+        2
+      ],
+      [
+        "PickUp",
+        8
+      ],
+      [
+        "Move",
+        4
+      ],
+      [
+        "PutIn",
+        8,
+        4
+      ],
+      [
+        "Close",
+        4
+      ]
+    ],
+    "intent": "错误红书位置、错误 cupboard 开关状态；extra 用 info 补充 microwave 关闭状态；NT只扰动物体名和颜色词。",
+    "expected_goals": 6,
+    "expected_constraints": 2,
+    "strategy": "用 must-inside、must-closed 修正 cupboard 信息，保持红书和柜门不动；将蓝杯、白瓶、绿罐放入 microwave 并关门。",
+    "rendered_nt": [
+      "The M#icrowave is closed.",
+      "The R#ed B#ook must be in the C#upboard.",
+      "The C#upboard must be closed.",
+      "Put the B#lue C#up in the M#icrowave.",
+      "Put the W#hite B#ottle in the M#icrowave.",
+      "Put the G#reen C#an in the M#icrowave.",
+      "Close the M#icrowave.",
+      "Go to the M#icrowave.",
+      "Close the C#upboard."
+    ],
+    "goals": 6,
+    "constraints": 2
+  },
+  {
+    "id": "05",
+    "stage": 1,
+    "title": "牺牲一个约束解锁四个目标",
+    "robot": 2,
+    "objects": [
+      {
+        "id": 1,
+        "sort": "human",
+        "size": "big",
+        "at": 1
+      },
+      {
+        "id": 2,
+        "sort": "cupboard",
+        "size": "big",
+        "at": 2,
+        "type": "container",
+        "closed": true
+      },
+      {
+        "id": 3,
+        "sort": "table",
+        "size": "big",
+        "at": 3
+      },
+      {
+        "id": 4,
+        "sort": "book",
+        "size": "small",
+        "color": "red",
+        "at": 2
+      },
+      {
+        "id": 5,
+        "sort": "cup",
+        "size": "small",
+        "color": "blue",
+        "at": 2
+      },
+      {
+        "id": 6,
+        "sort": "bottle",
+        "size": "small",
+        "color": "white",
+        "at": 2
+      },
+      {
+        "id": 7,
+        "sort": "can",
+        "size": "small",
+        "color": "green",
+        "at": 2
+      }
+    ],
+    "instructions": [
+      {
+        "kind": "must",
+        "action": "closed",
+        "x": 2,
+        "y": null,
+        "it": "(:cons_notnot (:info (closed X) (:cond (sort X cupboard))))",
+        "nt": "The cupboard must be closed."
+      },
+      {
+        "kind": "task",
+        "action": "putin",
+        "x": 4,
+        "y": 2,
+        "it": "(:task (putin X Y) (:cond (sort X book) (color X red) (sort Y cupboard) (type Y container)))",
+        "nt": "Put the red book in the cupboard."
+      },
+      {
+        "kind": "task",
+        "action": "putin",
+        "x": 5,
+        "y": 2,
+        "it": "(:task (putin X Y) (:cond (sort X cup) (color X blue) (sort Y cupboard) (type Y container)))",
+        "nt": "Put the blue cup in the cupboard."
+      },
+      {
+        "kind": "task",
+        "action": "putin",
+        "x": 6,
+        "y": 2,
+        "it": "(:task (putin X Y) (:cond (sort X bottle) (color X white) (sort Y cupboard) (type Y container)))",
+        "nt": "Put the white bottle in the cupboard."
+      },
+      {
+        "kind": "task",
+        "action": "putin",
+        "x": 7,
+        "y": 2,
+        "it": "(:task (putin X Y) (:cond (sort X can) (color X green) (sort Y cupboard) (type Y container)))",
+        "nt": "Put the green can in the cupboard."
+      },
+      {
+        "kind": "task",
+        "action": "close",
+        "x": 2,
+        "y": null,
+        "it": "(:task (close X) (:cond (sort X cupboard) (type X container)))",
+        "nt": "Close the cupboard."
+      },
+      {
+        "kind": "task",
+        "action": "goto",
+        "x": 2,
+        "y": null,
+        "it": "(:task (goto X) (:cond (sort X cupboard)))",
+        "nt": "Go to the cupboard."
+      }
+    ],
+    "witness": [
+      [
+        "Open",
+        2
+      ],
+      [
+        "PickUp",
+        4
+      ],
+      [
+        "PutIn",
+        4,
+        2
+      ],
+      [
+        "PickUp",
+        5
+      ],
+      [
+        "PutIn",
+        5,
+        2
+      ],
+      [
+        "PickUp",
+        6
+      ],
+      [
+        "PutIn",
+        6,
+        2
+      ],
+      [
+        "PickUp",
+        7
+      ],
+      [
+        "PutIn",
+        7,
+        2
+      ],
+      [
+        "Close",
+        2
+      ]
+    ],
+    "expected_goals": 6,
+    "expected_constraints": 0,
+    "intent": "must-closed 与四个 putin 冲突；柜门重新关闭仍不能挽回全过程约束分。",
+    "strategy": "打开 cupboard，依次放入四件物体，再关门；牺牲20约束分，新增160目标分，参考动作成本20。",
+    "rendered_nt": [
+      "The cupboard must be closed.",
+      "Put the red book in the cupboard.",
+      "Put the blue cup in the cupboard.",
+      "Put the white bottle in the cupboard.",
+      "Put the green can in the cupboard.",
+      "Close the cupboard.",
+      "Go to the cupboard."
+    ],
+    "goals": 6,
+    "constraints": 1
+  },
+  {
+    "id": "06",
+    "stage": 1,
+    "title": "放弃低收益目标保住三个约束",
+    "robot": 4,
+    "objects": [
+      {
+        "id": 1,
+        "sort": "human",
+        "size": "big",
+        "at": 1
+      },
+      {
+        "id": 2,
+        "sort": "table",
+        "size": "big",
+        "at": 2
+      },
+      {
+        "id": 3,
+        "sort": "cupboard",
+        "size": "big",
+        "at": 3,
+        "type": "container",
+        "closed": true
+      },
+      {
+        "id": 4,
+        "sort": "chair",
+        "size": "big",
+        "at": 4
+      },
+      {
+        "id": 5,
+        "sort": "cup",
+        "size": "small",
+        "color": "red",
+        "inside": 3
+      },
+      {
+        "id": 6,
+        "sort": "book",
+        "size": "small",
+        "color": "blue",
+        "at": 4
+      },
+      {
+        "id": 7,
+        "sort": "bottle",
+        "size": "small",
+        "color": "white",
+        "at": 4
+      }
+    ],
+    "instructions": [
+      {
+        "kind": "must",
+        "action": "closed",
+        "x": 3,
+        "y": null,
+        "it": "(:cons_notnot (:info (closed X) (:cond (sort X cupboard))))",
+        "nt": "The cupboard must be closed."
+      },
+      {
+        "kind": "must",
+        "action": "inside",
+        "x": 5,
+        "y": 3,
+        "it": "(:cons_notnot (:info (inside X Y) (:cond (sort X cup) (color X red) (sort Y cupboard) (type Y container))))",
+        "nt": "The red cup must be in the cupboard."
+      },
+      {
+        "kind": "must_not",
+        "action": "near",
+        "x": 5,
+        "y": 1,
+        "it": "(:cons_not (:info (near X Y) (:cond (sort X cup) (color X red) (sort Y human))))",
+        "nt": "The red cup must not be near the human."
+      },
+      {
+        "kind": "task",
+        "action": "give",
+        "x": 5,
+        "y": null,
+        "it": "(:task (give human X) (:cond (sort X cup) (color X red)))",
+        "nt": "Give the red cup to me."
+      },
+      {
+        "kind": "task",
+        "action": "puton",
+        "x": 6,
+        "y": 2,
+        "it": "(:task (puton X Y) (:cond (sort X book) (color X blue) (sort Y table)))",
+        "nt": "Put the blue book on the table."
+      },
+      {
+        "kind": "task",
+        "action": "goto",
+        "x": 6,
+        "y": null,
+        "it": "(:task (goto X) (:cond (sort X book) (color X blue)))",
+        "nt": "Go to the blue book."
+      },
+      {
+        "kind": "task",
+        "action": "puton",
+        "x": 7,
+        "y": 2,
+        "it": "(:task (puton X Y) (:cond (sort X bottle) (color X white) (sort Y table)))",
+        "nt": "Put the white bottle on the table."
+      },
+      {
+        "kind": "task",
+        "action": "goto",
+        "x": 7,
+        "y": null,
+        "it": "(:task (goto X) (:cond (sort X bottle) (color X white)))",
+        "nt": "Go to the white bottle."
+      },
+      {
+        "kind": "task",
+        "action": "goto",
+        "x": 2,
+        "y": null,
+        "it": "(:task (goto X) (:cond (sort X table)))",
+        "nt": "Go to the table."
+      }
+    ],
+    "witness": [
+      [
+        "PickUp",
+        6
+      ],
+      [
+        "Move",
+        2
+      ],
+      [
+        "PutDown",
+        6
+      ],
+      [
+        "Move",
+        4
+      ],
+      [
+        "PickUp",
+        7
+      ],
+      [
+        "Move",
+        2
+      ],
+      [
+        "PutDown",
+        7
+      ]
+    ],
+    "expected_goals": 5,
+    "expected_constraints": 3,
+    "intent": "交付红杯将破坏 must-closed、must-inside、must-not-near human 三个不同约束；完成另外五个兼容目标更有利。",
+    "strategy": "不取红杯、不打开 cupboard；只搬蓝书、白瓶到桌边，完成五个目标并维护三个约束。",
+    "rendered_nt": [
+      "The cupboard must be closed.",
+      "The red cup must be in the cupboard.",
+      "The red cup must not be near the human.",
+      "Give the red cup to me.",
+      "Put the blue book on the table.",
+      "Go to the blue book.",
+      "Put the white bottle on the table.",
+      "Go to the white bottle.",
+      "Go to the table."
+    ],
+    "goals": 6,
+    "constraints": 3
+  }
+]

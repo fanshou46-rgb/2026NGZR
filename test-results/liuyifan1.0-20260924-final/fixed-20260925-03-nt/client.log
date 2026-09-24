@@ -1,0 +1,311 @@
+[LOG]:-stage
+[LOG]:-nlp
+[LOG]:-err
+[LOG]:-ask_2
+[LOG]:-path
+[LOG]:nlp 1, err 1
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+#(Plug): Timeout=5000
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32mcase.xml
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+[LOG]:[32mThe red book must be near the table.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:red>
+    <N:book>
+  <VP:>
+    <MUST:must>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <N:table>
+
+[LOG]:[32mThe blue cup must be near the table.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:blue>
+    <N:cup>
+  <VP:>
+    <MUST:must>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <N:table>
+
+[LOG]:[32mGo to the red book.[0m
+[LOG]:<S:>
+  <VP:>
+    <VP:>
+      <V:go>
+      <PREP:to>
+    <NP:>
+      <ART:the>
+      <ADJ:red>
+      <N:book>
+
+[LOG]:[32mGo to the blue cup.[0m
+[LOG]:<S:>
+  <VP:>
+    <VP:>
+      <V:go>
+      <PREP:to>
+    <NP:>
+      <ART:the>
+      <ADJ:blue>
+      <N:cup>
+
+[LOG]:[32mPut the white bottle on the table.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:put>
+    <NP:>
+      <ART:the>
+      <ADJ:white>
+      <N:bottle>
+    <PREP:on>
+    <NP:>
+      <ART:the>
+      <N:table>
+
+[LOG]:[32mGo to the white bottle.[0m
+[LOG]:<S:>
+  <VP:>
+    <VP:>
+      <V:go>
+      <PREP:to>
+    <NP:>
+      <ART:the>
+      <ADJ:white>
+      <N:bottle>
+
+[LOG]:[32mPut the green can on the table.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:put>
+    <NP:>
+      <ART:the>
+      <ADJ:green>
+      <N:can>
+    <PREP:on>
+    <NP:>
+      <ART:the>
+      <N:table>
+
+[LOG]:[32mGo to the green can.[0m
+[LOG]:<S:>
+  <VP:>
+    <VP:>
+      <V:go>
+      <PREP:to>
+    <NP:>
+      <ART:the>
+      <ADJ:green>
+      <N:can>
+
+[LOG]:[32mGo to the table.[0m
+[LOG]:<S:>
+  <VP:>
+    <VP:>
+      <V:go>
+      <PREP:to>
+    <NP:>
+      <ART:the>
+      <N:table>
+
+[LOG]:[Preflight] task raw=7 unique=7 duplicate=0 rejected=0; constraint raw=2 unique=2 duplicate=0 rejected=0; world_errors=0
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m
+Pos  2:(T):[32m(robot hold:0 plate:0)[0m[33m(2 table)[0m
+Pos  3:(T):[33m(3 chair)[0m(7 bottle)(8 can)
+Pos  4:(T):[33m(4 sofa)[0m(5 book)
+UnknownPos:
+[34m(6 cup)[0m 
+[LOG]:[32m[MustIn] correction done.
+[0m
+[LOG]:[32m[MustNear] relation obj 5 <-> obj 2
+[0m
+[LOG]:[32m[MustNear] relation obj 6 <-> obj 2
+[0m
+[LOG]:[33m[MustNear] component 5 has conflicting/insufficient evidence; not propagated
+[0m
+[LOG]:[32m[MustNear] correction done.
+[0m
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m
+Pos  2:(T):[32m(robot hold:0 plate:0)[0m[33m(2 table)[0m
+Pos  3:(T):[33m(3 chair)[0m(7 bottle)(8 can)
+Pos  4:(T):[33m(4 sofa)[0m(5 book)
+UnknownPos:
+[34m(6 cup)[0m 
+Task:
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:book,Color:red)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:cup,Color:blue)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:bottle,Color:white)[0m
+ConditionY:[35m(Sort:table,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:bottle,Color:white)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:green)[0m
+ConditionY:[35m(Sort:table,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:can,Color:green)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:table,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+
+Info:
+
+Not_Info:
+
+Not_Task:
+
+NotNot_Info:
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:book,Color:red)[0m
+ConditionY:[35m(Sort:table,Color:)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:cup,Color:blue)[0m
+ConditionY:[35m(Sort:table,Color:)[0m
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+7
+[LOG]:[33m[Defer] multi-goto detected: 5 tasks; skip in main loop, handle at final aggregation
+[0m
+[LOG]:[32m[MultiPuton] Big object 2 (sort: table) appears in 2 puton tasks[0m
+[LOG]:[33m[MultiPuton] Marked task 0 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 1 as multi-puton for object 2[0m
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=1 task_index=0 behave=puton legacy_choice=true eligible=true complete=true actions=5 duration_ms=540 action_cost=13 score_before=0 score_after=227 marginal_score=227 utility=227 gained_goals=[0,2,3,4,6] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=2 task_index=1 behave=puton legacy_choice=false eligible=true complete=true actions=5 duration_ms=540 action_cost=13 score_before=0 score_after=227 marginal_score=227 utility=227 gained_goals=[1,2,3,5,6] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3A][main-loop] goals=0/7 (unknown=7), constraints=0/2 (unknown=2), base_score=0, action_cost=0, elapsed=13ms, remaining=4687ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[], satisfied_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=main-loop task_index=0 behave=puton can_finish=true remaining_plan_ms=540 safety_ms=300 budget_remaining_ms=4687
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=0 behave=puton executed=0 total=5 remaining_utility=227 remaining_duration_ms=540
+[0m
+puton bottle的风险系数是：0
+[LOG]:Move(3)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=Move executed=1 total=5 remaining_utility=231 remaining_duration_ms=420 can_finish=true
+[0m
+[LOG]:[33m[MustNear] component 5 has conflicting/insufficient evidence; not propagated
+[0m
+[LOG]:PickUp(7,bottle)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=PickUp executed=2 total=5 remaining_utility=233 remaining_duration_ms=320 can_finish=true
+[0m
+[LOG]:[33m[MustNear] component 5 has conflicting/insufficient evidence; not propagated
+[0m
+[LOG]:Move(2)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=Move executed=3 total=5 remaining_utility=197 remaining_duration_ms=200 can_finish=true
+[0m
+[LOG]:[33m[MustNear] component 5 has conflicting/insufficient evidence; not propagated
+[0m
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=Sense executed=4 total=5 remaining_utility=198 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:[32m[SenseCurrentLocationOnly] Location 2 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Object 5 detected at location 2
+[LOG]:[SenseCurrentLocationOnly] Object 6 detected at location 2
+[LOG]:[SenseCurrentLocationOnly] Object 2 detected at location 2
+[LOG]:[SenseCurrentLocationOnly] Object 7 detected at location 2
+[LOG]:PutDown(7,bottle)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=PutDown executed=5 total=5 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[32mTask done
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:bottle,Color:white)[0m
+ConditionY:[35m(Sort:table,Color:)[0m
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=0 behave=puton succeeded=true executed=5 total=5 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=1 task_index=1 behave=puton legacy_choice=true eligible=true complete=true actions=4 duration_ms=440 action_cost=12 score_before=227 score_after=295 marginal_score=68 utility=68 gained_goals=[1,5] lost_goals=[] broken_constraints=[] preserved_constraints=[0,1]
+[0m
+[LOG]:[36m[3A][main-loop] goals=5/7 (unknown=2), constraints=2/2 (unknown=0), base_score=227, action_cost=13, elapsed=583ms, remaining=4117ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:puton,2:goto,3:goto,4:goto,6:goto], satisfied_constraints=[0,1]
+[0m
+[LOG]:[36m[3B][Deadline] phase=main-loop task_index=1 behave=puton can_finish=true remaining_plan_ms=440 safety_ms=300 budget_remaining_ms=4117
+[0m
+[LOG]:[36m[3B][Remaining] event=begin task_index=1 behave=puton executed=0 total=4 remaining_utility=68 remaining_duration_ms=440
+[0m
+puton can的风险系数是：0
+[LOG]:Move(3)
+[LOG]:[36m[3B][Remaining] event=action task_index=1 action=Move executed=1 total=4 remaining_utility=72 remaining_duration_ms=320 can_finish=true
+[0m
+[LOG]:PickUp(8,can)
+[LOG]:[36m[3B][Remaining] event=action task_index=1 action=PickUp executed=2 total=4 remaining_utility=234 remaining_duration_ms=220 can_finish=true
+[0m
+[LOG]:Move(2)
+[LOG]:[36m[3B][Remaining] event=action task_index=1 action=Move executed=3 total=4 remaining_utility=198 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:PutDown(8,can)
+[LOG]:[36m[3B][Remaining] event=action task_index=1 action=PutDown executed=4 total=4 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[32mTask done
+ Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:green)[0m
+ConditionY:[35m(Sort:table,Color:)[0m
+[0m
+[LOG]:[36m[3B][Remaining] event=end task_index=1 behave=puton succeeded=true executed=4 total=4 remaining_utility=0 remaining_duration_ms=0
+[0m
+-----check check check-----
+[LOG]:[33m[Defer] multi-goto detected: 5 tasks; skip in main loop, handle at final aggregation
+[0m
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m
+Pos  2:(T):[32m(robot hold:0 plate:0)[0m[33m(2 table)[0m(5 book)(6 cup)(7 bottle)(8 can)
+Pos  3:(T):[33m(3 chair)[0m
+Pos  4:(T):[33m(4 sofa)[0m
+UnknownPos:
+
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=1 task_index=2 behave=goto legacy_choice=false eligible=true complete=true actions=0 duration_ms=0 action_cost=0 score_before=295 score_after=295 marginal_score=0 utility=0 gained_goals=[] lost_goals=[] broken_constraints=[] preserved_constraints=[0,1]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=2 task_index=3 behave=goto legacy_choice=false eligible=true complete=true actions=0 duration_ms=0 action_cost=0 score_before=295 score_after=295 marginal_score=0 utility=0 gained_goals=[] lost_goals=[] broken_constraints=[] preserved_constraints=[0,1]
+[0m
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=3 task_index=6 behave=goto legacy_choice=false eligible=true complete=true actions=0 duration_ms=0 action_cost=0 score_before=295 score_after=295 marginal_score=0 utility=0 gained_goals=[] lost_goals=[] broken_constraints=[] preserved_constraints=[0,1]
+[0m
+[LOG]:[36m[3A][multi-goto] goals=7/7 (unknown=0), constraints=2/2 (unknown=0), base_score=295, action_cost=25, elapsed=1030ms, remaining=3670ms
+[0m
+[LOG]:[36m[3A][multi-goto] completed_goals=[0:puton,1:puton,2:goto,3:goto,4:goto,5:goto,6:goto], satisfied_constraints=[0,1]
+[0m
+[LOG]:[32m[3A][StopGate] all goals are SATISFIED; normal stop before multi-goto
+[0m
+
+Sovled Task Num:2    Expect Num:7
+[LOG]:[36m[3A][final] goals=7/7 (unknown=0), constraints=2/2 (unknown=0), base_score=295, action_cost=25, elapsed=1031ms, remaining=3669ms
+[0m
+[LOG]:[36m[3A][final] completed_goals=[0:puton,1:puton,2:goto,3:goto,4:goto,5:goto,6:goto], satisfied_constraints=[0,1]
+[0m
+#(Plug): Elapsed time=1.032s
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

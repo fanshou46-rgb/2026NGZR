@@ -1,0 +1,177 @@
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+[LOG]:[32mThe cupboard must be closed.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <N:cupboard>
+  <VP:>
+    <MUST:must>
+    <VP:>
+      <BE:be>
+      <ADJ:closed>
+
+[LOG]:[32mThe red cup must be in the cupboard.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:red>
+    <N:cup>
+  <VP:>
+    <MUST:must>
+    <VP:>
+      <BE:be>
+      <PREP:in>
+      <NP:>
+        <ART:the>
+        <N:cupboard>
+
+[LOG]:[32mThe red cup must be near the cupboard.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:red>
+    <N:cup>
+  <VP:>
+    <MUST:must>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <N:cupboard>
+
+[LOG]:[32mGive the red cup to me.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:give>
+    <NP:>
+      <ART:the>
+      <ADJ:red>
+      <N:cup>
+    <PREP:to>
+    <NP:>
+      <N:me>
+
+[LOG]:[32mPut the blue book on the table.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:put>
+    <NP:>
+      <ART:the>
+      <ADJ:blue>
+      <N:book>
+    <PREP:on>
+    <NP:>
+      <ART:the>
+      <N:table>
+
+[LOG]:[32mGo to the blue book.[0m
+[LOG]:<S:>
+  <VP:>
+    <VP:>
+      <V:go>
+      <PREP:to>
+    <NP:>
+      <ART:the>
+      <ADJ:blue>
+      <N:book>
+
+[LOG]:[32mPut the white bottle on the table.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:put>
+    <NP:>
+      <ART:the>
+      <ADJ:white>
+      <N:bottle>
+    <PREP:on>
+    <NP:>
+      <ART:the>
+      <N:table>
+
+[LOG]:[32mGo to the white bottle.[0m
+[LOG]:<S:>
+  <VP:>
+    <VP:>
+      <V:go>
+      <PREP:to>
+    <NP:>
+      <ART:the>
+      <ADJ:white>
+      <N:bottle>
+
+[LOG]:[32mGo to the table.[0m
+[LOG]:<S:>
+  <VP:>
+    <VP:>
+      <V:go>
+      <PREP:to>
+    <NP:>
+      <ART:the>
+      <N:table>
+
+SNAP parsed robot=4,0,0
+SNAP object 0 robot 4
+SNAP object 1 human 1 big
+SNAP object 2 table 2 big
+SNAP object 3 cupboard 3 container 0
+SNAP object 4 chair 4 big
+SNAP object 5 cup 3 small red 3 -1
+SNAP object 6 book 4 small blue 0 -1
+SNAP object 7 bottle 4 small white 0 -1
+SNAP task 0 give X=5, Y=1, CX=cup/red CY=human/ useY=1 missing=0
+SNAP task 1 puton X=6, Y=2, CX=book/blue CY=table/ useY=1 missing=0
+SNAP task 2 goto X=6, Y= CX=book/blue CY=/ useY=0 missing=0
+SNAP task 3 puton X=7, Y=2, CX=bottle/white CY=table/ useY=1 missing=0
+SNAP task 4 goto X=7, Y= CX=bottle/white CY=/ useY=0 missing=0
+SNAP task 5 goto X=2, Y= CX=table/ CY=/ useY=0 missing=0
+SNAP must_info 0 closed X=3, Y= CX=cupboard/ CY=/ useY=0 missing=0
+SNAP must_info 1 in X=5, Y=3, CX=cup/red CY=cupboard/ useY=1 missing=0
+SNAP must_info 2 near X=5, Y=3, CX=cup/red CY=cupboard/ useY=1 missing=0
+SNAP END parsed
+[LOG]:[Preflight] task raw=6 unique=6 duplicate=0 rejected=0; constraint raw=3 unique=3 duplicate=0 rejected=0; world_errors=0
+SNAP preflight robot=4,0,0
+SNAP object 0 robot 4
+SNAP object 1 human 1 big
+SNAP object 2 table 2 big
+SNAP object 3 cupboard 3 container 0
+SNAP object 4 chair 4 big
+SNAP object 5 cup 3 small red 3 -1
+SNAP object 6 book 4 small blue 0 -1
+SNAP object 7 bottle 4 small white 0 -1
+SNAP task 0 give X=5, Y=1, CX=cup/red CY=human/ useY=1 missing=0
+SNAP task 1 puton X=6, Y=2, CX=book/blue CY=table/ useY=1 missing=0
+SNAP task 2 goto X=6, Y= CX=book/blue CY=/ useY=0 missing=0
+SNAP task 3 puton X=7, Y=2, CX=bottle/white CY=table/ useY=1 missing=0
+SNAP task 4 goto X=7, Y= CX=bottle/white CY=/ useY=0 missing=0
+SNAP task 5 goto X=2, Y= CX=table/ CY=/ useY=0 missing=0
+SNAP must_info 0 closed X=3, Y= CX=cupboard/ CY=/ useY=0 missing=0
+SNAP must_info 1 in X=5, Y=3, CX=cup/red CY=cupboard/ useY=1 missing=0
+SNAP must_info 2 near X=5, Y=3, CX=cup/red CY=cupboard/ useY=1 missing=0
+SNAP END preflight
+SNAP corrected robot=4,0,0
+SNAP object 0 robot 4
+SNAP object 1 human 1 big
+SNAP object 2 table 2 big
+SNAP object 3 cupboard 3 container 0
+SNAP object 4 chair 4 big
+SNAP object 5 cup 3 small red 3 -1
+SNAP object 6 book 4 small blue 0 -1
+SNAP object 7 bottle 4 small white 0 -1
+SNAP task 0 give X=5, Y=1, CX=cup/red CY=human/ useY=1 missing=0
+SNAP task 1 puton X=6, Y=2, CX=book/blue CY=table/ useY=1 missing=0
+SNAP task 2 goto X=6, Y= CX=book/blue CY=/ useY=0 missing=0
+SNAP task 3 puton X=7, Y=2, CX=bottle/white CY=table/ useY=1 missing=0
+SNAP task 4 goto X=7, Y= CX=bottle/white CY=/ useY=0 missing=0
+SNAP task 5 goto X=2, Y= CX=table/ CY=/ useY=0 missing=0
+SNAP must_info 0 closed X=3, Y= CX=cupboard/ CY=/ useY=0 missing=0
+SNAP must_info 1 in X=5, Y=3, CX=cup/red CY=cupboard/ useY=1 missing=0
+SNAP must_info 2 near X=5, Y=3, CX=cup/red CY=cupboard/ useY=1 missing=0
+SNAP END corrected
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

@@ -1,0 +1,145 @@
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+[LOG]:[32mGo to the red book.[0m
+[LOG]:<S:>
+  <VP:>
+    <VP:>
+      <V:go>
+      <PREP:to>
+    <NP:>
+      <ART:the>
+      <ADJ:red>
+      <N:book>
+
+[LOG]:[32mGo to the blue cup.[0m
+[LOG]:<S:>
+  <VP:>
+    <VP:>
+      <V:go>
+      <PREP:to>
+    <NP:>
+      <ART:the>
+      <ADJ:blue>
+      <N:cup>
+
+[LOG]:[32mGo to the white bottle.[0m
+[LOG]:<S:>
+  <VP:>
+    <VP:>
+      <V:go>
+      <PREP:to>
+    <NP:>
+      <ART:the>
+      <ADJ:white>
+      <N:bottle>
+
+[LOG]:[32mGo to the green can.[0m
+[LOG]:<S:>
+  <VP:>
+    <VP:>
+      <V:go>
+      <PREP:to>
+    <NP:>
+      <ART:the>
+      <ADJ:green>
+      <N:can>
+
+[LOG]:[32mGo to the yellow remotecontrol.[0m
+[LOG]:<S:>
+  <VP:>
+    <VP:>
+      <V:go>
+      <PREP:to>
+    <NP:>
+      <ART:the>
+      <ADJ:yellow>
+      <N:remotecontrol>
+
+[LOG]:[32mGo to the black book.[0m
+[LOG]:<S:>
+  <VP:>
+    <VP:>
+      <V:go>
+      <PREP:to>
+    <NP:>
+      <ART:the>
+      <ADJ:black>
+      <N:book>
+
+[LOG]:[32mGo to the table.[0m
+[LOG]:<S:>
+  <VP:>
+    <VP:>
+      <V:go>
+      <PREP:to>
+    <NP:>
+      <ART:the>
+      <N:table>
+
+SNAP parsed robot=2,0,0
+SNAP object 0 robot 2
+SNAP object 1 human 1 big
+SNAP object 2 table 2 big
+SNAP object 3 chair 3 big
+SNAP object 4 sofa 4 big
+SNAP object 5 book 2 small red 0 -1
+SNAP object 6 cup 2 small blue 0 -1
+SNAP object 7 bottle 3 small white 0 -1
+SNAP object 8 can 3 small green 0 -1
+SNAP object 9 remotecontrol 4 small yellow 0 -1
+SNAP object 10 book 4 small black 0 -1
+SNAP task 0 goto X=5, Y= CX=book/red CY=/ useY=0 missing=0
+SNAP task 1 goto X=6, Y= CX=cup/blue CY=/ useY=0 missing=0
+SNAP task 2 goto X=7, Y= CX=bottle/white CY=/ useY=0 missing=0
+SNAP task 3 goto X=8, Y= CX=can/green CY=/ useY=0 missing=0
+SNAP task 4 goto X=9, Y= CX=remotecontrol/yellow CY=/ useY=0 missing=0
+SNAP task 5 goto X=10, Y= CX=book/black CY=/ useY=0 missing=0
+SNAP task 6 goto X=2, Y= CX=table/ CY=/ useY=0 missing=0
+SNAP END parsed
+[LOG]:[Preflight] task raw=7 unique=7 duplicate=0 rejected=0; constraint raw=0 unique=0 duplicate=0 rejected=0; world_errors=0
+SNAP preflight robot=2,0,0
+SNAP object 0 robot 2
+SNAP object 1 human 1 big
+SNAP object 2 table 2 big
+SNAP object 3 chair 3 big
+SNAP object 4 sofa 4 big
+SNAP object 5 book 2 small red 0 -1
+SNAP object 6 cup 2 small blue 0 -1
+SNAP object 7 bottle 3 small white 0 -1
+SNAP object 8 can 3 small green 0 -1
+SNAP object 9 remotecontrol 4 small yellow 0 -1
+SNAP object 10 book 4 small black 0 -1
+SNAP task 0 goto X=5, Y= CX=book/red CY=/ useY=0 missing=0
+SNAP task 1 goto X=6, Y= CX=cup/blue CY=/ useY=0 missing=0
+SNAP task 2 goto X=7, Y= CX=bottle/white CY=/ useY=0 missing=0
+SNAP task 3 goto X=8, Y= CX=can/green CY=/ useY=0 missing=0
+SNAP task 4 goto X=9, Y= CX=remotecontrol/yellow CY=/ useY=0 missing=0
+SNAP task 5 goto X=10, Y= CX=book/black CY=/ useY=0 missing=0
+SNAP task 6 goto X=2, Y= CX=table/ CY=/ useY=0 missing=0
+SNAP END preflight
+SNAP corrected robot=2,0,0
+SNAP object 0 robot 2
+SNAP object 1 human 1 big
+SNAP object 2 table 2 big
+SNAP object 3 chair 3 big
+SNAP object 4 sofa 4 big
+SNAP object 5 book 2 small red 0 -1
+SNAP object 6 cup 2 small blue 0 -1
+SNAP object 7 bottle 3 small white 0 -1
+SNAP object 8 can 3 small green 0 -1
+SNAP object 9 remotecontrol 4 small yellow 0 -1
+SNAP object 10 book 4 small black 0 -1
+SNAP task 0 goto X=5, Y= CX=book/red CY=/ useY=0 missing=0
+SNAP task 1 goto X=6, Y= CX=cup/blue CY=/ useY=0 missing=0
+SNAP task 2 goto X=7, Y= CX=bottle/white CY=/ useY=0 missing=0
+SNAP task 3 goto X=8, Y= CX=can/green CY=/ useY=0 missing=0
+SNAP task 4 goto X=9, Y= CX=remotecontrol/yellow CY=/ useY=0 missing=0
+SNAP task 5 goto X=10, Y= CX=book/black CY=/ useY=0 missing=0
+SNAP task 6 goto X=2, Y= CX=table/ CY=/ useY=0 missing=0
+SNAP END corrected
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

@@ -1,0 +1,41 @@
+Start for a new team: RDFW
+The initial score is 0.
+Executing the action: pickup(6) score -2
+Current socre is: -2
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is h(hold(6),1) h(at(0,4),1) h(at(6,4),1) h(at(7,4),1) h(at(4,4),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(plate(0),1) h(closed(3),1) h(inside(5,3),1) 
+Executing the action: move(2) score -4
+Current socre is: -6
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is h(at(0,2),1) h(at(1,1),1) h(at(2,2),1) h(at(3,3),1) h(at(4,4),1) h(at(7,4),1) h(hold(6),1) h(at(6,2),1) h(plate(0),1) h(closed(3),1) h(inside(5,3),1) 
+Executing the action: putdown(6) score -2
+Current socre is: -8
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is h(hold(0),1) h(at(0,2),1) h(at(6,2),1) h(at(7,4),1) h(at(4,4),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(plate(0),1) h(closed(3),1) h(inside(5,3),1) 
+Executing the action: move(4) score -4
+Current socre is: -12
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is h(at(0,4),1) h(at(1,1),1) h(at(2,2),1) h(at(3,3),1) h(at(4,4),1) h(at(7,4),1) h(at(6,2),1) h(hold(0),1) h(plate(0),1) h(closed(3),1) h(inside(5,3),1) 
+Executing the action: pickup(7) score -2
+Current socre is: -14
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is h(hold(7),1) h(at(0,4),1) h(at(7,4),1) h(at(6,2),1) h(at(4,4),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(plate(0),1) h(closed(3),1) h(inside(5,3),1) 
+Executing the action: move(2) score -4
+Current socre is: -18
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is h(at(0,2),1) h(at(1,1),1) h(at(2,2),1) h(at(3,3),1) h(at(4,4),1) h(at(6,2),1) h(hold(7),1) h(at(7,2),1) h(plate(0),1) h(closed(3),1) h(inside(5,3),1) 
+Executing the action: putdown(7) score -2
+Current socre is: -20
+running the batch for asp: ./vrunact.sh
+Execution success!
+Computed answer set is h(hold(0),1) h(at(0,2),1) h(at(7,2),1) h(at(6,2),1) h(at(4,4),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(plate(0),1) h(closed(3),1) h(inside(5,3),1) 
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is value(8,40) value(6,40) value(9,40) value(7,40) value(5,40) true(goal) value(3,20) value(1,20) value(2,20) 
+RDFW's score is : 324
