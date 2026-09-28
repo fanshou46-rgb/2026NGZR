@@ -1,0 +1,5090 @@
+[
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.4/tests/fixtures/decision/01-stop-before-conflicting-pickup.xml",
+    "case_sha256": "810a2e58cc04f90f768736e4327b962ff9fe9d9f375559c907ea2d063be93e3c",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 68,
+      "official": 160,
+      "goals": 2,
+      "constraints": 0,
+      "actions": {
+        "move": 2,
+        "pickup": 1,
+        "putdown": 1
+      },
+      "action_sequence": [
+        "Move 2",
+        "PickUp 2",
+        "Move 3",
+        "PutDown 2"
+      ],
+      "platform_seconds": 0.371,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=68 stop=0 safe_prefix=68 broken_prefix=-1"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 68,
+      "official": 160,
+      "goals": 2,
+      "constraints": 0,
+      "actions": {
+        "move": 2,
+        "pickup": 1,
+        "putdown": 1
+      },
+      "action_sequence": [
+        "Move 2",
+        "PickUp 2",
+        "Move 3",
+        "PutDown 2"
+      ],
+      "platform_seconds": 0.367,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=68 stop=0 safe_prefix=68 broken_prefix=-1"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.4/tests/fixtures/decision/01-stop-before-conflicting-pickup.xml",
+    "case_sha256": "810a2e58cc04f90f768736e4327b962ff9fe9d9f375559c907ea2d063be93e3c",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 68,
+      "official": 160,
+      "goals": 2,
+      "constraints": 0,
+      "actions": {
+        "move": 2,
+        "pickup": 1,
+        "putdown": 1
+      },
+      "action_sequence": [
+        "Move 2",
+        "PickUp 2",
+        "Move 3",
+        "PutDown 2"
+      ],
+      "platform_seconds": 0.381,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=68 stop=0 safe_prefix=68 broken_prefix=-1"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 68,
+      "official": 160,
+      "goals": 2,
+      "constraints": 0,
+      "actions": {
+        "move": 2,
+        "pickup": 1,
+        "putdown": 1
+      },
+      "action_sequence": [
+        "Move 2",
+        "PickUp 2",
+        "Move 3",
+        "PutDown 2"
+      ],
+      "platform_seconds": 0.375,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=68 stop=0 safe_prefix=68 broken_prefix=-1"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.4/tests/fixtures/decision/02-pickup-route-and-capacity.xml",
+    "case_sha256": "1dab588adfa702e3e0815faeeeae8cdf1f4b885c4227ca37d86f72d2a6730b6c",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 34,
+      "official": 130,
+      "goals": 1,
+      "constraints": 0,
+      "actions": {
+        "move": 1,
+        "pickup": 1
+      },
+      "action_sequence": [
+        "Move 2",
+        "PickUp 2"
+      ],
+      "platform_seconds": 0.19,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=34 stop=0 safe_prefix=34 broken_prefix=-1"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 34,
+      "official": 130,
+      "goals": 1,
+      "constraints": 0,
+      "actions": {
+        "move": 1,
+        "pickup": 1
+      },
+      "action_sequence": [
+        "Move 2",
+        "PickUp 2"
+      ],
+      "platform_seconds": 0.186,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=34 stop=0 safe_prefix=34 broken_prefix=-1"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.4/tests/fixtures/decision/02-pickup-route-and-capacity.xml",
+    "case_sha256": "1dab588adfa702e3e0815faeeeae8cdf1f4b885c4227ca37d86f72d2a6730b6c",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 34,
+      "official": 130,
+      "goals": 1,
+      "constraints": 0,
+      "actions": {
+        "move": 1,
+        "pickup": 1
+      },
+      "action_sequence": [
+        "Move 2",
+        "PickUp 2"
+      ],
+      "platform_seconds": 0.188,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=34 stop=0 safe_prefix=34 broken_prefix=-1"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 34,
+      "official": 130,
+      "goals": 1,
+      "constraints": 0,
+      "actions": {
+        "move": 1,
+        "pickup": 1
+      },
+      "action_sequence": [
+        "Move 2",
+        "PickUp 2"
+      ],
+      "platform_seconds": 0.187,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=34 stop=0 safe_prefix=34 broken_prefix=-1"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.4/tests/fixtures/decision/04-reorder-container-and-pickup.xml",
+    "case_sha256": "c8836194e63fee197ef171f606bfc386c0986524a8a998facdcab94314377a5c",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 106,
+      "official": 196,
+      "goals": 3,
+      "constraints": 0,
+      "actions": {
+        "move": 2,
+        "close": 1,
+        "open": 1,
+        "pickup": 1
+      },
+      "action_sequence": [
+        "Move 3",
+        "Close 3",
+        "Move 2",
+        "Open 2",
+        "PickUp 4"
+      ],
+      "platform_seconds": 0.472,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=group group=[1,0,2] reference=102 stop=0 predicted=106 continuation_actions=5 terminal=after_group"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 106,
+      "official": 196,
+      "goals": 3,
+      "constraints": 0,
+      "actions": {
+        "move": 2,
+        "close": 1,
+        "open": 1,
+        "pickup": 1
+      },
+      "action_sequence": [
+        "Move 3",
+        "Close 3",
+        "Move 2",
+        "Open 2",
+        "PickUp 4"
+      ],
+      "platform_seconds": 0.46,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=group group=[1,0,2] reference=102 stop=0 predicted=106 continuation_actions=5 terminal=after_group"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.4/tests/fixtures/decision/04-reorder-container-and-pickup.xml",
+    "case_sha256": "c8836194e63fee197ef171f606bfc386c0986524a8a998facdcab94314377a5c",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 106,
+      "official": 196,
+      "goals": 3,
+      "constraints": 0,
+      "actions": {
+        "move": 2,
+        "close": 1,
+        "open": 1,
+        "pickup": 1
+      },
+      "action_sequence": [
+        "Move 3",
+        "Close 3",
+        "Move 2",
+        "Open 2",
+        "PickUp 4"
+      ],
+      "platform_seconds": 0.464,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=group group=[1,0,2] reference=102 stop=0 predicted=106 continuation_actions=5 terminal=after_group"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 106,
+      "official": 196,
+      "goals": 3,
+      "constraints": 0,
+      "actions": {
+        "move": 2,
+        "close": 1,
+        "open": 1,
+        "pickup": 1
+      },
+      "action_sequence": [
+        "Move 3",
+        "Close 3",
+        "Move 2",
+        "Open 2",
+        "PickUp 4"
+      ],
+      "platform_seconds": 0.464,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=group group=[1,0,2] reference=102 stop=0 predicted=106 continuation_actions=5 terminal=after_group"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.4/tests/fixtures/combinatorial_gain/01-two-rooms-four-goals.xml",
+    "case_sha256": "0dd68dbbbb943a032ecbb97e752dbfb7ea0565b38e20b670d37c8fadb4be0340",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 144,
+      "official": 232,
+      "goals": 4,
+      "constraints": 0,
+      "actions": {
+        "move": 2,
+        "open": 2,
+        "close": 2
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Close 4",
+        "Move 3",
+        "Close 3",
+        "Open 5"
+      ],
+      "platform_seconds": 0.552,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=group group=[0,2,1,3] reference=136 stop=0 predicted=144 continuation_actions=6 terminal=after_group"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 144,
+      "official": 232,
+      "goals": 4,
+      "constraints": 0,
+      "actions": {
+        "move": 2,
+        "open": 2,
+        "close": 2
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Close 4",
+        "Move 3",
+        "Close 3",
+        "Open 5"
+      ],
+      "platform_seconds": 0.555,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=group group=[0,2,1,3] reference=136 stop=0 predicted=144 continuation_actions=6 terminal=after_group"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.4/tests/fixtures/combinatorial_gain/01-two-rooms-four-goals.xml",
+    "case_sha256": "0dd68dbbbb943a032ecbb97e752dbfb7ea0565b38e20b670d37c8fadb4be0340",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 144,
+      "official": 232,
+      "goals": 4,
+      "constraints": 0,
+      "actions": {
+        "move": 2,
+        "open": 2,
+        "close": 2
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Close 4",
+        "Move 3",
+        "Close 3",
+        "Open 5"
+      ],
+      "platform_seconds": 0.572,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=group group=[0,2,1,3] reference=136 stop=0 predicted=144 continuation_actions=6 terminal=after_group"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 144,
+      "official": 232,
+      "goals": 4,
+      "constraints": 0,
+      "actions": {
+        "move": 2,
+        "open": 2,
+        "close": 2
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Close 4",
+        "Move 3",
+        "Close 3",
+        "Open 5"
+      ],
+      "platform_seconds": 0.572,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=group group=[0,2,1,3] reference=136 stop=0 predicted=144 continuation_actions=6 terminal=after_group"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.4/tests/fixtures/combinatorial_gain/02-two-rooms-five-goals.xml",
+    "case_sha256": "18cf7a4d43e998eda26267fc1924ea29aebff92f4c471d812de1c2ed1fc740ac",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 178,
+      "official": 262,
+      "goals": 5,
+      "constraints": 0,
+      "actions": {
+        "move": 3,
+        "open": 3,
+        "close": 2
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Open 4",
+        "Move 3",
+        "Close 3",
+        "Close 5",
+        "Move 2",
+        "Open 6"
+      ],
+      "platform_seconds": 0.764,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=group group=[0,2,1,3] reference=170 stop=0 predicted=178 continuation_actions=8 terminal=legacy_tail"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 178,
+      "official": 262,
+      "goals": 5,
+      "constraints": 0,
+      "actions": {
+        "move": 3,
+        "open": 3,
+        "close": 2
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Open 4",
+        "Move 3",
+        "Close 3",
+        "Close 5",
+        "Move 2",
+        "Open 6"
+      ],
+      "platform_seconds": 0.743,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=group group=[0,2,1,3] reference=170 stop=0 predicted=178 continuation_actions=8 terminal=legacy_tail"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.4/tests/fixtures/combinatorial_gain/02-two-rooms-five-goals.xml",
+    "case_sha256": "18cf7a4d43e998eda26267fc1924ea29aebff92f4c471d812de1c2ed1fc740ac",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 178,
+      "official": 262,
+      "goals": 5,
+      "constraints": 0,
+      "actions": {
+        "move": 3,
+        "open": 3,
+        "close": 2
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Open 4",
+        "Move 3",
+        "Close 3",
+        "Close 5",
+        "Move 2",
+        "Open 6"
+      ],
+      "platform_seconds": 0.746,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=group group=[0,2,1,3] reference=170 stop=0 predicted=178 continuation_actions=8 terminal=legacy_tail"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 178,
+      "official": 262,
+      "goals": 5,
+      "constraints": 0,
+      "actions": {
+        "move": 3,
+        "open": 3,
+        "close": 2
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Open 4",
+        "Move 3",
+        "Close 3",
+        "Close 5",
+        "Move 2",
+        "Open 6"
+      ],
+      "platform_seconds": 0.741,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=group group=[0,2,1,3] reference=170 stop=0 predicted=178 continuation_actions=8 terminal=legacy_tail"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.4/tests/fixtures/combinatorial_gain/03-two-rooms-six-goals.xml",
+    "case_sha256": "5a947114458645296f71e5347b97b2b0b6c68b47db9989f12d034984c903f805",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 220,
+      "official": 304,
+      "goals": 6,
+      "constraints": 0,
+      "actions": {
+        "move": 2,
+        "open": 3,
+        "close": 3
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Open 4",
+        "Open 6",
+        "Move 3",
+        "Close 3",
+        "Close 5",
+        "Close 7"
+      ],
+      "platform_seconds": 0.745,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=group group=[0,2,4,1] reference=204 stop=0 predicted=220 continuation_actions=8 terminal=legacy_tail"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 220,
+      "official": 304,
+      "goals": 6,
+      "constraints": 0,
+      "actions": {
+        "move": 2,
+        "open": 3,
+        "close": 3
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Open 4",
+        "Open 6",
+        "Move 3",
+        "Close 3",
+        "Close 5",
+        "Close 7"
+      ],
+      "platform_seconds": 0.762,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=group group=[0,2,4,1] reference=204 stop=0 predicted=220 continuation_actions=8 terminal=legacy_tail"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.4/tests/fixtures/combinatorial_gain/03-two-rooms-six-goals.xml",
+    "case_sha256": "5a947114458645296f71e5347b97b2b0b6c68b47db9989f12d034984c903f805",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 220,
+      "official": 304,
+      "goals": 6,
+      "constraints": 0,
+      "actions": {
+        "move": 2,
+        "open": 3,
+        "close": 3
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Open 4",
+        "Open 6",
+        "Move 3",
+        "Close 3",
+        "Close 5",
+        "Close 7"
+      ],
+      "platform_seconds": 0.758,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=group group=[0,2,4,1] reference=204 stop=0 predicted=220 continuation_actions=8 terminal=legacy_tail"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 220,
+      "official": 304,
+      "goals": 6,
+      "constraints": 0,
+      "actions": {
+        "move": 2,
+        "open": 3,
+        "close": 3
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Open 4",
+        "Open 6",
+        "Move 3",
+        "Close 3",
+        "Close 5",
+        "Close 7"
+      ],
+      "platform_seconds": 0.744,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=group group=[0,2,4,1] reference=204 stop=0 predicted=220 continuation_actions=8 terminal=legacy_tail"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.4/tests/fixtures/combinatorial_gain/04-three-rooms-six-goals.xml",
+    "case_sha256": "72cf5257fd4db7f800c586275416ab2fdebebd88bc5a0c29389dc187aad352e2",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 216,
+      "official": 298,
+      "goals": 6,
+      "constraints": 0,
+      "actions": {
+        "move": 3,
+        "open": 3,
+        "close": 3
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Close 5",
+        "Move 3",
+        "Close 3",
+        "Open 6",
+        "Move 4",
+        "Open 4",
+        "Close 7"
+      ],
+      "platform_seconds": 0.832,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=group group=[0,3,1,4] reference=204 stop=0 predicted=216 continuation_actions=9 terminal=legacy_tail"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 216,
+      "official": 298,
+      "goals": 6,
+      "constraints": 0,
+      "actions": {
+        "move": 3,
+        "open": 3,
+        "close": 3
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Close 5",
+        "Move 3",
+        "Close 3",
+        "Open 6",
+        "Move 4",
+        "Open 4",
+        "Close 7"
+      ],
+      "platform_seconds": 0.85,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=group group=[0,3,1,4] reference=204 stop=0 predicted=216 continuation_actions=9 terminal=legacy_tail"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.4/tests/fixtures/combinatorial_gain/04-three-rooms-six-goals.xml",
+    "case_sha256": "72cf5257fd4db7f800c586275416ab2fdebebd88bc5a0c29389dc187aad352e2",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 216,
+      "official": 298,
+      "goals": 6,
+      "constraints": 0,
+      "actions": {
+        "move": 3,
+        "open": 3,
+        "close": 3
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Close 5",
+        "Move 3",
+        "Close 3",
+        "Open 6",
+        "Move 4",
+        "Open 4",
+        "Close 7"
+      ],
+      "platform_seconds": 0.835,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=group group=[0,3,1,4] reference=204 stop=0 predicted=216 continuation_actions=9 terminal=legacy_tail"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 216,
+      "official": 298,
+      "goals": 6,
+      "constraints": 0,
+      "actions": {
+        "move": 3,
+        "open": 3,
+        "close": 3
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Close 5",
+        "Move 3",
+        "Close 3",
+        "Open 6",
+        "Move 4",
+        "Open 4",
+        "Close 7"
+      ],
+      "platform_seconds": 0.845,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=group group=[0,3,1,4] reference=204 stop=0 predicted=216 continuation_actions=9 terminal=legacy_tail"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/C01.xml",
+    "case_sha256": "c133859d1d64f76708bc5b1f4854e7b88f4e6601f44c9edc251fb06f98a72267",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 58,
+      "official": 156,
+      "goals": 1,
+      "constraints": 1,
+      "actions": {
+        "pickup": 1
+      },
+      "action_sequence": [
+        "PickUp 4"
+      ],
+      "platform_seconds": 0.097,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=58 stop=0 safe_prefix=58 broken_prefix=-1"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 58,
+      "official": 156,
+      "goals": 1,
+      "constraints": 1,
+      "actions": {
+        "pickup": 1
+      },
+      "action_sequence": [
+        "PickUp 4"
+      ],
+      "platform_seconds": 0.097,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=58 stop=0 safe_prefix=58 broken_prefix=-1"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/C01.xml",
+    "case_sha256": "c133859d1d64f76708bc5b1f4854e7b88f4e6601f44c9edc251fb06f98a72267",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 58,
+      "official": 156,
+      "goals": 1,
+      "constraints": 1,
+      "actions": {
+        "pickup": 1
+      },
+      "action_sequence": [
+        "PickUp 4"
+      ],
+      "platform_seconds": 0.09,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=58 stop=0 safe_prefix=58 broken_prefix=-1"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 58,
+      "official": 156,
+      "goals": 1,
+      "constraints": 1,
+      "actions": {
+        "pickup": 1
+      },
+      "action_sequence": [
+        "PickUp 4"
+      ],
+      "platform_seconds": 0.092,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=58 stop=0 safe_prefix=58 broken_prefix=-1"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/C02.xml",
+    "case_sha256": "89d2138909f75ee4ac6a78b7965627d9c525a146d7447fa8142c02190570bed4",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 98,
+      "official": 196,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {
+        "pickup": 1
+      },
+      "action_sequence": [
+        "PickUp 4"
+      ],
+      "platform_seconds": 0.089,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=98 stop=60 safe_prefix=98 broken_prefix=-1"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 98,
+      "official": 196,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {
+        "pickup": 1
+      },
+      "action_sequence": [
+        "PickUp 4"
+      ],
+      "platform_seconds": 0.089,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=98 stop=60 safe_prefix=98 broken_prefix=-1"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/C02.xml",
+    "case_sha256": "89d2138909f75ee4ac6a78b7965627d9c525a146d7447fa8142c02190570bed4",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 98,
+      "official": 196,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {
+        "pickup": 1
+      },
+      "action_sequence": [
+        "PickUp 4"
+      ],
+      "platform_seconds": 0.093,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=98 stop=60 safe_prefix=98 broken_prefix=-1"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 98,
+      "official": 196,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {
+        "pickup": 1
+      },
+      "action_sequence": [
+        "PickUp 4"
+      ],
+      "platform_seconds": 0.092,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=98 stop=60 safe_prefix=98 broken_prefix=-1"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/C03.xml",
+    "case_sha256": "082cf8b176e9d7576ddc72920fd7ca272e0d6c09ca914ca3e1b01cb203487890",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 100,
+      "official": 200,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.0,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=100 stop=100 safe_prefix=-1 broken_prefix=-1"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 100,
+      "official": 200,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.0,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=100 stop=100 safe_prefix=-1 broken_prefix=-1"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/C03.xml",
+    "case_sha256": "082cf8b176e9d7576ddc72920fd7ca272e0d6c09ca914ca3e1b01cb203487890",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 100,
+      "official": 200,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.0,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=100 stop=100 safe_prefix=-1 broken_prefix=-1"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 100,
+      "official": 200,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.0,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=100 stop=100 safe_prefix=-1 broken_prefix=-1"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/C04.xml",
+    "case_sha256": "9984b8ce1eee820d4c21c2381de0a5b1ba89e7a1e8513df4e9c559bc99a03ca8",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 52,
+      "official": 146,
+      "goals": 1,
+      "constraints": 1,
+      "actions": {
+        "pickup": 1,
+        "move": 1,
+        "putdown": 1
+      },
+      "action_sequence": [
+        "PickUp 4",
+        "Move 1",
+        "PutDown 4"
+      ],
+      "platform_seconds": 0.275,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=52 stop=0 safe_prefix=52 broken_prefix=-1"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 52,
+      "official": 146,
+      "goals": 1,
+      "constraints": 1,
+      "actions": {
+        "pickup": 1,
+        "move": 1,
+        "putdown": 1
+      },
+      "action_sequence": [
+        "PickUp 4",
+        "Move 1",
+        "PutDown 4"
+      ],
+      "platform_seconds": 0.273,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=52 stop=0 safe_prefix=52 broken_prefix=-1"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/C04.xml",
+    "case_sha256": "9984b8ce1eee820d4c21c2381de0a5b1ba89e7a1e8513df4e9c559bc99a03ca8",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 52,
+      "official": 146,
+      "goals": 1,
+      "constraints": 1,
+      "actions": {
+        "pickup": 1,
+        "move": 1,
+        "putdown": 1
+      },
+      "action_sequence": [
+        "PickUp 4",
+        "Move 1",
+        "PutDown 4"
+      ],
+      "platform_seconds": 0.273,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=52 stop=0 safe_prefix=52 broken_prefix=-1"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 52,
+      "official": 146,
+      "goals": 1,
+      "constraints": 1,
+      "actions": {
+        "pickup": 1,
+        "move": 1,
+        "putdown": 1
+      },
+      "action_sequence": [
+        "PickUp 4",
+        "Move 1",
+        "PutDown 4"
+      ],
+      "platform_seconds": 0.283,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=52 stop=0 safe_prefix=52 broken_prefix=-1"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/C05.xml",
+    "case_sha256": "b9af71e1fdbc23b674410780db624bc44a52fbc113b343d13db59bbe061e90cb",
+    "stage": 2,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 99,
+      "official": 197,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {
+        "sense": 1
+      },
+      "action_sequence": [
+        "Sense "
+      ],
+      "platform_seconds": 0.089,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 99,
+      "official": 197,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {
+        "sense": 1
+      },
+      "action_sequence": [
+        "Sense "
+      ],
+      "platform_seconds": 0.093,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/C05.xml",
+    "case_sha256": "b9af71e1fdbc23b674410780db624bc44a52fbc113b343d13db59bbe061e90cb",
+    "stage": 2,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 99,
+      "official": 197,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {
+        "sense": 1
+      },
+      "action_sequence": [
+        "Sense "
+      ],
+      "platform_seconds": 0.09,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 99,
+      "official": 197,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {
+        "sense": 1
+      },
+      "action_sequence": [
+        "Sense "
+      ],
+      "platform_seconds": 0.09,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/C06.xml",
+    "case_sha256": "f6ce7e3fd0297c5b2a5f97927f87452039d1123a85419585e0ccec88e47f54d5",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 96,
+      "official": 194,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {
+        "move": 1
+      },
+      "action_sequence": [
+        "Move 3"
+      ],
+      "platform_seconds": 0.09,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 96,
+      "official": 194,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {
+        "move": 1
+      },
+      "action_sequence": [
+        "Move 3"
+      ],
+      "platform_seconds": 0.093,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/C06.xml",
+    "case_sha256": "f6ce7e3fd0297c5b2a5f97927f87452039d1123a85419585e0ccec88e47f54d5",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 96,
+      "official": 194,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {
+        "move": 1
+      },
+      "action_sequence": [
+        "Move 3"
+      ],
+      "platform_seconds": 0.094,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 96,
+      "official": 194,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {
+        "move": 1
+      },
+      "action_sequence": [
+        "Move 3"
+      ],
+      "platform_seconds": 0.09,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/C07.xml",
+    "case_sha256": "ccaecc1ec381bc8cd6de7f24d75af10b2174f828b8c541314594d201f80fc5cc",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 98,
+      "official": 196,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {
+        "pickup": 1
+      },
+      "action_sequence": [
+        "PickUp 4"
+      ],
+      "platform_seconds": 0.094,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=98 stop=60 safe_prefix=98 broken_prefix=-1"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 98,
+      "official": 196,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {
+        "pickup": 1
+      },
+      "action_sequence": [
+        "PickUp 4"
+      ],
+      "platform_seconds": 0.092,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=98 stop=60 safe_prefix=98 broken_prefix=-1"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/C07.xml",
+    "case_sha256": "ccaecc1ec381bc8cd6de7f24d75af10b2174f828b8c541314594d201f80fc5cc",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 98,
+      "official": 196,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {
+        "pickup": 1
+      },
+      "action_sequence": [
+        "PickUp 4"
+      ],
+      "platform_seconds": 0.089,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=98 stop=60 safe_prefix=98 broken_prefix=-1"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 98,
+      "official": 196,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {
+        "pickup": 1
+      },
+      "action_sequence": [
+        "PickUp 4"
+      ],
+      "platform_seconds": 0.089,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=98 stop=60 safe_prefix=98 broken_prefix=-1"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/C08.xml",
+    "case_sha256": "52c7365ac89d1731392e165127a4661689686cf9fecdf07f38a489196c8687e7",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 100,
+      "official": 200,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.0,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 100,
+      "official": 200,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.0,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/C08.xml",
+    "case_sha256": "52c7365ac89d1731392e165127a4661689686cf9fecdf07f38a489196c8687e7",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 100,
+      "official": 200,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.0,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 100,
+      "official": 200,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.0,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/C09.xml",
+    "case_sha256": "5f8a2e81b8bffc551e8b625a747ef122989ce51378c35ba2979c6d82635e113e",
+    "stage": 2,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 87,
+      "official": 175,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {
+        "pickup": 2,
+        "putdown": 2,
+        "move": 1,
+        "sense": 1
+      },
+      "action_sequence": [
+        "PickUp 4",
+        "PutDown 4",
+        "Move 3",
+        "PickUp 5",
+        "Sense ",
+        "PutDown 5"
+      ],
+      "platform_seconds": 0.552,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 87,
+      "official": 175,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {
+        "pickup": 2,
+        "putdown": 2,
+        "move": 1,
+        "sense": 1
+      },
+      "action_sequence": [
+        "PickUp 4",
+        "PutDown 4",
+        "Move 3",
+        "PickUp 5",
+        "Sense ",
+        "PutDown 5"
+      ],
+      "platform_seconds": 0.555,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/C09.xml",
+    "case_sha256": "5f8a2e81b8bffc551e8b625a747ef122989ce51378c35ba2979c6d82635e113e",
+    "stage": 2,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 87,
+      "official": 175,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {
+        "pickup": 2,
+        "putdown": 2,
+        "move": 1,
+        "sense": 1
+      },
+      "action_sequence": [
+        "PickUp 4",
+        "PutDown 4",
+        "Move 3",
+        "PickUp 5",
+        "Sense ",
+        "PutDown 5"
+      ],
+      "platform_seconds": 0.56,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 87,
+      "official": 175,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {
+        "pickup": 2,
+        "putdown": 2,
+        "move": 1,
+        "sense": 1
+      },
+      "action_sequence": [
+        "PickUp 4",
+        "PutDown 4",
+        "Move 3",
+        "PickUp 5",
+        "Sense ",
+        "PutDown 5"
+      ],
+      "platform_seconds": 0.55,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/C10.xml",
+    "case_sha256": "1d182fcf4b34a534411d88881a1a9c5b659b430c8afe3e1060e45ad82f1c0132",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 140,
+      "official": 240,
+      "goals": 3,
+      "constraints": 1,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.0,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 140,
+      "official": 240,
+      "goals": 3,
+      "constraints": 1,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.0,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/C10.xml",
+    "case_sha256": "1d182fcf4b34a534411d88881a1a9c5b659b430c8afe3e1060e45ad82f1c0132",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 140,
+      "official": 240,
+      "goals": 3,
+      "constraints": 1,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.0,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 140,
+      "official": 240,
+      "goals": 3,
+      "constraints": 1,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.0,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/N01.xml",
+    "case_sha256": "e30b6413142de28e8472ac61433839767dff1bc26008c558b9ff2a388042f702",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 100,
+      "official": 198,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.001,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=100 stop=100 safe_prefix=-1 broken_prefix=74"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 100,
+      "official": 198,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.001,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=100 stop=100 safe_prefix=-1 broken_prefix=74"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/N01.xml",
+    "case_sha256": "e30b6413142de28e8472ac61433839767dff1bc26008c558b9ff2a388042f702",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 100,
+      "official": 198,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.001,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=100 stop=100 safe_prefix=-1 broken_prefix=74"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 100,
+      "official": 198,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.001,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=100 stop=100 safe_prefix=-1 broken_prefix=74"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/N02.xml",
+    "case_sha256": "b7e91767e99fa4e0198ec5ac3b42585011f16f4a994e90cafb3383cc65853ee4",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 100,
+      "official": 198,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.001,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=100 stop=100 safe_prefix=-1 broken_prefix=74"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 100,
+      "official": 198,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.001,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=100 stop=100 safe_prefix=-1 broken_prefix=74"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/N02.xml",
+    "case_sha256": "b7e91767e99fa4e0198ec5ac3b42585011f16f4a994e90cafb3383cc65853ee4",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 100,
+      "official": 198,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.001,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=100 stop=100 safe_prefix=-1 broken_prefix=74"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 100,
+      "official": 198,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.001,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=100 stop=100 safe_prefix=-1 broken_prefix=74"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/N03.xml",
+    "case_sha256": "896a9df8563f3d681732437df325137de263665ddd3eba15fa39e1021ff42e5b",
+    "stage": 2,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 99,
+      "official": 197,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {
+        "sense": 1
+      },
+      "action_sequence": [
+        "Sense "
+      ],
+      "platform_seconds": 0.09,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 99,
+      "official": 197,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {
+        "sense": 1
+      },
+      "action_sequence": [
+        "Sense "
+      ],
+      "platform_seconds": 0.09,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/N03.xml",
+    "case_sha256": "896a9df8563f3d681732437df325137de263665ddd3eba15fa39e1021ff42e5b",
+    "stage": 2,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 99,
+      "official": 197,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {
+        "sense": 1
+      },
+      "action_sequence": [
+        "Sense "
+      ],
+      "platform_seconds": 0.091,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 99,
+      "official": 197,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {
+        "sense": 1
+      },
+      "action_sequence": [
+        "Sense "
+      ],
+      "platform_seconds": 0.091,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/N04.xml",
+    "case_sha256": "04cdea520eada3279fcced956f54c3c8d0fca10b506489104186b87b69b1aecb",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 100,
+      "official": 198,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.001,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=100 stop=100 safe_prefix=-1 broken_prefix=74"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 100,
+      "official": 198,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.001,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=100 stop=100 safe_prefix=-1 broken_prefix=74"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/N04.xml",
+    "case_sha256": "04cdea520eada3279fcced956f54c3c8d0fca10b506489104186b87b69b1aecb",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 100,
+      "official": 198,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.001,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=100 stop=100 safe_prefix=-1 broken_prefix=74"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 100,
+      "official": 198,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.001,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=100 stop=100 safe_prefix=-1 broken_prefix=74"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/N05.xml",
+    "case_sha256": "d0a551bb0ede52ea029c4035c616d12753405b69abddcf46d11eac80f28f1e87",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 80,
+      "official": 178,
+      "goals": 1,
+      "constraints": 2,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.001,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=80 stop=80 safe_prefix=-1 broken_prefix=68"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 80,
+      "official": 178,
+      "goals": 1,
+      "constraints": 2,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.001,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=80 stop=80 safe_prefix=-1 broken_prefix=68"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/N05.xml",
+    "case_sha256": "d0a551bb0ede52ea029c4035c616d12753405b69abddcf46d11eac80f28f1e87",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 80,
+      "official": 178,
+      "goals": 1,
+      "constraints": 2,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.001,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=80 stop=80 safe_prefix=-1 broken_prefix=68"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 80,
+      "official": 178,
+      "goals": 1,
+      "constraints": 2,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.001,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=80 stop=80 safe_prefix=-1 broken_prefix=68"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/N06.xml",
+    "case_sha256": "91196a77fbaf3e7d0af6956536bcc9a7db243abd1fb583bc16876cacfb7e8a1d",
+    "stage": 2,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 80,
+      "official": 180,
+      "goals": 1,
+      "constraints": 2,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.0,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 80,
+      "official": 178,
+      "goals": 1,
+      "constraints": 2,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.001,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/N06.xml",
+    "case_sha256": "91196a77fbaf3e7d0af6956536bcc9a7db243abd1fb583bc16876cacfb7e8a1d",
+    "stage": 2,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 80,
+      "official": 180,
+      "goals": 1,
+      "constraints": 2,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.0,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 80,
+      "official": 180,
+      "goals": 1,
+      "constraints": 2,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.0,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/N07.xml",
+    "case_sha256": "82705b981ac29a111841b3507930f3ec5eb0d5e45a06ca8ee74b5f087bb0be33",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 80,
+      "official": 180,
+      "goals": 1,
+      "constraints": 2,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.0,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=80 stop=80 safe_prefix=-1 broken_prefix=66"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 80,
+      "official": 178,
+      "goals": 1,
+      "constraints": 2,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.001,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=80 stop=80 safe_prefix=-1 broken_prefix=66"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/N07.xml",
+    "case_sha256": "82705b981ac29a111841b3507930f3ec5eb0d5e45a06ca8ee74b5f087bb0be33",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 80,
+      "official": 180,
+      "goals": 1,
+      "constraints": 2,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.0,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=80 stop=80 safe_prefix=-1 broken_prefix=66"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 80,
+      "official": 178,
+      "goals": 1,
+      "constraints": 2,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.001,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=80 stop=80 safe_prefix=-1 broken_prefix=66"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/N08.xml",
+    "case_sha256": "b2b6607945350e4e04b1bd218ba2a4b967cfb72c7050cd70a90b95499c19725c",
+    "stage": 2,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 79,
+      "official": 177,
+      "goals": 1,
+      "constraints": 2,
+      "actions": {
+        "sense": 1
+      },
+      "action_sequence": [
+        "Sense "
+      ],
+      "platform_seconds": 0.095,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 79,
+      "official": 177,
+      "goals": 1,
+      "constraints": 2,
+      "actions": {
+        "sense": 1
+      },
+      "action_sequence": [
+        "Sense "
+      ],
+      "platform_seconds": 0.091,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/N08.xml",
+    "case_sha256": "b2b6607945350e4e04b1bd218ba2a4b967cfb72c7050cd70a90b95499c19725c",
+    "stage": 2,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 79,
+      "official": 177,
+      "goals": 1,
+      "constraints": 2,
+      "actions": {
+        "sense": 1
+      },
+      "action_sequence": [
+        "Sense "
+      ],
+      "platform_seconds": 0.089,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 79,
+      "official": 177,
+      "goals": 1,
+      "constraints": 2,
+      "actions": {
+        "sense": 1
+      },
+      "action_sequence": [
+        "Sense "
+      ],
+      "platform_seconds": 0.096,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/N09.xml",
+    "case_sha256": "e69a278e13f412ee99c6b2c41868cfa221ed32fe214ee45a5f748534392a172c",
+    "stage": 2,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 99,
+      "official": 197,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {
+        "sense": 1
+      },
+      "action_sequence": [
+        "Sense "
+      ],
+      "platform_seconds": 0.093,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 99,
+      "official": 197,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {
+        "sense": 1
+      },
+      "action_sequence": [
+        "Sense "
+      ],
+      "platform_seconds": 0.09,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/N09.xml",
+    "case_sha256": "e69a278e13f412ee99c6b2c41868cfa221ed32fe214ee45a5f748534392a172c",
+    "stage": 2,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 99,
+      "official": 197,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {
+        "sense": 1
+      },
+      "action_sequence": [
+        "Sense "
+      ],
+      "platform_seconds": 0.094,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 99,
+      "official": 197,
+      "goals": 2,
+      "constraints": 1,
+      "actions": {
+        "sense": 1
+      },
+      "action_sequence": [
+        "Sense "
+      ],
+      "platform_seconds": 0.089,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/N10.xml",
+    "case_sha256": "d1af5bd7f55ba40ab2827ba1418db6811fa35ad0fb6dcbc7aa618204dbb317a5",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 80,
+      "official": 178,
+      "goals": 1,
+      "constraints": 2,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.001,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=80 stop=80 safe_prefix=-1 broken_prefix=68"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 80,
+      "official": 178,
+      "goals": 1,
+      "constraints": 2,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.001,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=80 stop=80 safe_prefix=-1 broken_prefix=68"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/N10.xml",
+    "case_sha256": "d1af5bd7f55ba40ab2827ba1418db6811fa35ad0fb6dcbc7aa618204dbb317a5",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 80,
+      "official": 178,
+      "goals": 1,
+      "constraints": 2,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.001,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=80 stop=80 safe_prefix=-1 broken_prefix=68"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 80,
+      "official": 178,
+      "goals": 1,
+      "constraints": 2,
+      "actions": {},
+      "action_sequence": [],
+      "platform_seconds": 0.001,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=80 stop=80 safe_prefix=-1 broken_prefix=68"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/P01.xml",
+    "case_sha256": "faca2fcbb0cc51db2d5b5901af51ab30fe09b3f8a8b67e8b233d6347d0ef0ea1",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 148,
+      "official": 236,
+      "goals": 4,
+      "constraints": 0,
+      "actions": {
+        "open": 1,
+        "pickup": 2,
+        "putin": 2,
+        "close": 1
+      },
+      "action_sequence": [
+        "Open 2",
+        "PickUp 4",
+        "PutIn 4 2",
+        "PickUp 5",
+        "PutIn 5 2",
+        "Close 2"
+      ],
+      "platform_seconds": 0.553,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=148 stop=100 safe_prefix=-1 broken_prefix=148"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 148,
+      "official": 236,
+      "goals": 4,
+      "constraints": 0,
+      "actions": {
+        "open": 1,
+        "pickup": 2,
+        "putin": 2,
+        "close": 1
+      },
+      "action_sequence": [
+        "Open 2",
+        "PickUp 4",
+        "PutIn 4 2",
+        "PickUp 5",
+        "PutIn 5 2",
+        "Close 2"
+      ],
+      "platform_seconds": 0.556,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=148 stop=100 safe_prefix=-1 broken_prefix=148"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/P01.xml",
+    "case_sha256": "faca2fcbb0cc51db2d5b5901af51ab30fe09b3f8a8b67e8b233d6347d0ef0ea1",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 148,
+      "official": 236,
+      "goals": 4,
+      "constraints": 0,
+      "actions": {
+        "open": 1,
+        "pickup": 2,
+        "putin": 2,
+        "close": 1
+      },
+      "action_sequence": [
+        "Open 2",
+        "PickUp 4",
+        "PutIn 4 2",
+        "PickUp 5",
+        "PutIn 5 2",
+        "Close 2"
+      ],
+      "platform_seconds": 0.555,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=148 stop=100 safe_prefix=-1 broken_prefix=148"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 148,
+      "official": 236,
+      "goals": 4,
+      "constraints": 0,
+      "actions": {
+        "open": 1,
+        "pickup": 2,
+        "putin": 2,
+        "close": 1
+      },
+      "action_sequence": [
+        "Open 2",
+        "PickUp 4",
+        "PutIn 4 2",
+        "PickUp 5",
+        "PutIn 5 2",
+        "Close 2"
+      ],
+      "platform_seconds": 0.551,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=148 stop=100 safe_prefix=-1 broken_prefix=148"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/P02.xml",
+    "case_sha256": "e9aa689410a4641080d7df00a459b4f1258e7546e76008eaddb932848ab9dc41",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 148,
+      "official": 236,
+      "goals": 4,
+      "constraints": 0,
+      "actions": {
+        "open": 1,
+        "pickup": 2,
+        "putin": 2,
+        "close": 1
+      },
+      "action_sequence": [
+        "Open 2",
+        "PickUp 4",
+        "PutIn 4 2",
+        "PickUp 5",
+        "PutIn 5 2",
+        "Close 2"
+      ],
+      "platform_seconds": 0.564,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=148 stop=100 safe_prefix=-1 broken_prefix=148"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 148,
+      "official": 236,
+      "goals": 4,
+      "constraints": 0,
+      "actions": {
+        "open": 1,
+        "pickup": 2,
+        "putin": 2,
+        "close": 1
+      },
+      "action_sequence": [
+        "Open 2",
+        "PickUp 4",
+        "PutIn 4 2",
+        "PickUp 5",
+        "PutIn 5 2",
+        "Close 2"
+      ],
+      "platform_seconds": 0.549,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=148 stop=100 safe_prefix=-1 broken_prefix=148"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/P02.xml",
+    "case_sha256": "e9aa689410a4641080d7df00a459b4f1258e7546e76008eaddb932848ab9dc41",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 148,
+      "official": 236,
+      "goals": 4,
+      "constraints": 0,
+      "actions": {
+        "open": 1,
+        "pickup": 2,
+        "putin": 2,
+        "close": 1
+      },
+      "action_sequence": [
+        "Open 2",
+        "PickUp 4",
+        "PutIn 4 2",
+        "PickUp 5",
+        "PutIn 5 2",
+        "Close 2"
+      ],
+      "platform_seconds": 0.562,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=148 stop=100 safe_prefix=-1 broken_prefix=148"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 148,
+      "official": 236,
+      "goals": 4,
+      "constraints": 0,
+      "actions": {
+        "open": 1,
+        "pickup": 2,
+        "putin": 2,
+        "close": 1
+      },
+      "action_sequence": [
+        "Open 2",
+        "PickUp 4",
+        "PutIn 4 2",
+        "PickUp 5",
+        "PutIn 5 2",
+        "Close 2"
+      ],
+      "platform_seconds": 0.555,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=148 stop=100 safe_prefix=-1 broken_prefix=148"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/P03.xml",
+    "case_sha256": "722bdfaacf5a83a74b7627ff729a57c5976d4f0991c1ac4d70131c8625c62cc7",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 184,
+      "official": 268,
+      "goals": 5,
+      "constraints": 0,
+      "actions": {
+        "open": 1,
+        "pickup": 3,
+        "putin": 3,
+        "close": 1
+      },
+      "action_sequence": [
+        "Open 2",
+        "PickUp 6",
+        "PutIn 6 2",
+        "PickUp 5",
+        "PutIn 5 2",
+        "PickUp 4",
+        "PutIn 4 2",
+        "Close 2"
+      ],
+      "platform_seconds": 0.755,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=184 stop=100 safe_prefix=-1 broken_prefix=184"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 184,
+      "official": 268,
+      "goals": 5,
+      "constraints": 0,
+      "actions": {
+        "open": 1,
+        "pickup": 3,
+        "putin": 3,
+        "close": 1
+      },
+      "action_sequence": [
+        "Open 2",
+        "PickUp 6",
+        "PutIn 6 2",
+        "PickUp 5",
+        "PutIn 5 2",
+        "PickUp 4",
+        "PutIn 4 2",
+        "Close 2"
+      ],
+      "platform_seconds": 0.753,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=184 stop=100 safe_prefix=-1 broken_prefix=184"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/P03.xml",
+    "case_sha256": "722bdfaacf5a83a74b7627ff729a57c5976d4f0991c1ac4d70131c8625c62cc7",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 184,
+      "official": 268,
+      "goals": 5,
+      "constraints": 0,
+      "actions": {
+        "open": 1,
+        "pickup": 3,
+        "putin": 3,
+        "close": 1
+      },
+      "action_sequence": [
+        "Open 2",
+        "PickUp 6",
+        "PutIn 6 2",
+        "PickUp 5",
+        "PutIn 5 2",
+        "PickUp 4",
+        "PutIn 4 2",
+        "Close 2"
+      ],
+      "platform_seconds": 0.742,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=184 stop=100 safe_prefix=-1 broken_prefix=184"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 184,
+      "official": 268,
+      "goals": 5,
+      "constraints": 0,
+      "actions": {
+        "open": 1,
+        "pickup": 3,
+        "putin": 3,
+        "close": 1
+      },
+      "action_sequence": [
+        "Open 2",
+        "PickUp 6",
+        "PutIn 6 2",
+        "PickUp 5",
+        "PutIn 5 2",
+        "PickUp 4",
+        "PutIn 4 2",
+        "Close 2"
+      ],
+      "platform_seconds": 0.743,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=184 stop=100 safe_prefix=-1 broken_prefix=184"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/P04.xml",
+    "case_sha256": "0c22a342b59d7bf489a6acd21488f313908527f80d16a9d305612656bb829bc1",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 220,
+      "official": 300,
+      "goals": 6,
+      "constraints": 0,
+      "actions": {
+        "open": 1,
+        "pickup": 4,
+        "putin": 4,
+        "close": 1
+      },
+      "action_sequence": [
+        "Open 2",
+        "PickUp 7",
+        "PutIn 7 2",
+        "PickUp 4",
+        "PutIn 4 2",
+        "PickUp 6",
+        "PutIn 6 2",
+        "PickUp 5",
+        "PutIn 5 2",
+        "Close 2"
+      ],
+      "platform_seconds": 0.935,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=220 stop=100 safe_prefix=-1 broken_prefix=220"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 220,
+      "official": 300,
+      "goals": 6,
+      "constraints": 0,
+      "actions": {
+        "open": 1,
+        "pickup": 4,
+        "putin": 4,
+        "close": 1
+      },
+      "action_sequence": [
+        "Open 2",
+        "PickUp 7",
+        "PutIn 7 2",
+        "PickUp 4",
+        "PutIn 4 2",
+        "PickUp 6",
+        "PutIn 6 2",
+        "PickUp 5",
+        "PutIn 5 2",
+        "Close 2"
+      ],
+      "platform_seconds": 0.933,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=220 stop=100 safe_prefix=-1 broken_prefix=220"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/P04.xml",
+    "case_sha256": "0c22a342b59d7bf489a6acd21488f313908527f80d16a9d305612656bb829bc1",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 220,
+      "official": 300,
+      "goals": 6,
+      "constraints": 0,
+      "actions": {
+        "open": 1,
+        "pickup": 4,
+        "putin": 4,
+        "close": 1
+      },
+      "action_sequence": [
+        "Open 2",
+        "PickUp 7",
+        "PutIn 7 2",
+        "PickUp 4",
+        "PutIn 4 2",
+        "PickUp 6",
+        "PutIn 6 2",
+        "PickUp 5",
+        "PutIn 5 2",
+        "Close 2"
+      ],
+      "platform_seconds": 0.943,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=220 stop=100 safe_prefix=-1 broken_prefix=220"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 220,
+      "official": 300,
+      "goals": 6,
+      "constraints": 0,
+      "actions": {
+        "open": 1,
+        "pickup": 4,
+        "putin": 4,
+        "close": 1
+      },
+      "action_sequence": [
+        "Open 2",
+        "PickUp 7",
+        "PutIn 7 2",
+        "PickUp 4",
+        "PutIn 4 2",
+        "PickUp 6",
+        "PutIn 6 2",
+        "PickUp 5",
+        "PutIn 5 2",
+        "Close 2"
+      ],
+      "platform_seconds": 0.938,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reference=220 stop=100 safe_prefix=-1 broken_prefix=220"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/P05.xml",
+    "case_sha256": "fd7e16bfe8fa5887c5c853e062c00cf2fdc96f101134cf48f14b5082c314ed9b",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 104,
+      "official": 192,
+      "goals": 3,
+      "constraints": 0,
+      "actions": {
+        "pickup": 2,
+        "move": 2,
+        "putdown": 2
+      },
+      "action_sequence": [
+        "PickUp 4",
+        "Move 3",
+        "PutDown 4",
+        "PickUp 5",
+        "Move 2",
+        "PutDown 5"
+      ],
+      "platform_seconds": 0.568,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 104,
+      "official": 192,
+      "goals": 3,
+      "constraints": 0,
+      "actions": {
+        "pickup": 2,
+        "move": 2,
+        "putdown": 2
+      },
+      "action_sequence": [
+        "PickUp 4",
+        "Move 3",
+        "PutDown 4",
+        "PickUp 5",
+        "Move 2",
+        "PutDown 5"
+      ],
+      "platform_seconds": 0.557,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/P05.xml",
+    "case_sha256": "fd7e16bfe8fa5887c5c853e062c00cf2fdc96f101134cf48f14b5082c314ed9b",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 104,
+      "official": 192,
+      "goals": 3,
+      "constraints": 0,
+      "actions": {
+        "pickup": 2,
+        "move": 2,
+        "putdown": 2
+      },
+      "action_sequence": [
+        "PickUp 4",
+        "Move 3",
+        "PutDown 4",
+        "PickUp 5",
+        "Move 2",
+        "PutDown 5"
+      ],
+      "platform_seconds": 0.56,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 104,
+      "official": 192,
+      "goals": 3,
+      "constraints": 0,
+      "actions": {
+        "pickup": 2,
+        "move": 2,
+        "putdown": 2
+      },
+      "action_sequence": [
+        "PickUp 4",
+        "Move 3",
+        "PutDown 4",
+        "PickUp 5",
+        "Move 2",
+        "PutDown 5"
+      ],
+      "platform_seconds": 0.564,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/P06.xml",
+    "case_sha256": "57c6815f0e6c7a88678f52039f23cf2812c499f77066b315551c0275ff78c73c",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 232,
+      "official": 326,
+      "goals": 6,
+      "constraints": 0,
+      "actions": {
+        "pickup": 1,
+        "move": 1,
+        "putdown": 1
+      },
+      "action_sequence": [
+        "PickUp 4",
+        "Move 3",
+        "PutDown 4"
+      ],
+      "platform_seconds": 0.278,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 232,
+      "official": 326,
+      "goals": 6,
+      "constraints": 0,
+      "actions": {
+        "pickup": 1,
+        "move": 1,
+        "putdown": 1
+      },
+      "action_sequence": [
+        "PickUp 4",
+        "Move 3",
+        "PutDown 4"
+      ],
+      "platform_seconds": 0.278,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/P06.xml",
+    "case_sha256": "57c6815f0e6c7a88678f52039f23cf2812c499f77066b315551c0275ff78c73c",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 232,
+      "official": 326,
+      "goals": 6,
+      "constraints": 0,
+      "actions": {
+        "pickup": 1,
+        "move": 1,
+        "putdown": 1
+      },
+      "action_sequence": [
+        "PickUp 4",
+        "Move 3",
+        "PutDown 4"
+      ],
+      "platform_seconds": 0.28,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 232,
+      "official": 326,
+      "goals": 6,
+      "constraints": 0,
+      "actions": {
+        "pickup": 1,
+        "move": 1,
+        "putdown": 1
+      },
+      "action_sequence": [
+        "PickUp 4",
+        "Move 3",
+        "PutDown 4"
+      ],
+      "platform_seconds": 0.278,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/P07.xml",
+    "case_sha256": "dfcfe3d1208e9c5eb8418bfcb5ab77e782fb20ca8bca53da8fdd14216f969b2d",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 102,
+      "official": 188,
+      "goals": 3,
+      "constraints": 0,
+      "actions": {
+        "open": 1,
+        "takeout": 1,
+        "move": 2,
+        "putdown": 2,
+        "pickup": 1
+      },
+      "action_sequence": [
+        "Open 2",
+        "TakeOut 3 2",
+        "Move 1",
+        "PutDown 3",
+        "PickUp 4",
+        "Move 2",
+        "PutDown 4"
+      ],
+      "platform_seconds": 0.646,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 102,
+      "official": 188,
+      "goals": 3,
+      "constraints": 0,
+      "actions": {
+        "open": 1,
+        "takeout": 1,
+        "move": 2,
+        "putdown": 2,
+        "pickup": 1
+      },
+      "action_sequence": [
+        "Open 2",
+        "TakeOut 3 2",
+        "Move 1",
+        "PutDown 3",
+        "PickUp 4",
+        "Move 2",
+        "PutDown 4"
+      ],
+      "platform_seconds": 0.655,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/P07.xml",
+    "case_sha256": "dfcfe3d1208e9c5eb8418bfcb5ab77e782fb20ca8bca53da8fdd14216f969b2d",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 102,
+      "official": 188,
+      "goals": 3,
+      "constraints": 0,
+      "actions": {
+        "open": 1,
+        "takeout": 1,
+        "move": 2,
+        "putdown": 2,
+        "pickup": 1
+      },
+      "action_sequence": [
+        "Open 2",
+        "TakeOut 3 2",
+        "Move 1",
+        "PutDown 3",
+        "PickUp 4",
+        "Move 2",
+        "PutDown 4"
+      ],
+      "platform_seconds": 0.655,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 102,
+      "official": 188,
+      "goals": 3,
+      "constraints": 0,
+      "actions": {
+        "open": 1,
+        "takeout": 1,
+        "move": 2,
+        "putdown": 2,
+        "pickup": 1
+      },
+      "action_sequence": [
+        "Open 2",
+        "TakeOut 3 2",
+        "Move 1",
+        "PutDown 3",
+        "PickUp 4",
+        "Move 2",
+        "PutDown 4"
+      ],
+      "platform_seconds": 0.65,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/P08.xml",
+    "case_sha256": "db5c046ac23048cf89cf5815bfe90da4a2c3e4c40ddbf69c2b4f699d007d47db",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 190,
+      "official": 282,
+      "goals": 5,
+      "constraints": 0,
+      "actions": {
+        "open": 1,
+        "takeout": 1,
+        "move": 1,
+        "putdown": 1
+      },
+      "action_sequence": [
+        "Open 2",
+        "TakeOut 3 2",
+        "Move 1",
+        "PutDown 3"
+      ],
+      "platform_seconds": 0.368,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 190,
+      "official": 282,
+      "goals": 5,
+      "constraints": 0,
+      "actions": {
+        "open": 1,
+        "takeout": 1,
+        "move": 1,
+        "putdown": 1
+      },
+      "action_sequence": [
+        "Open 2",
+        "TakeOut 3 2",
+        "Move 1",
+        "PutDown 3"
+      ],
+      "platform_seconds": 0.365,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/P08.xml",
+    "case_sha256": "db5c046ac23048cf89cf5815bfe90da4a2c3e4c40ddbf69c2b4f699d007d47db",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 190,
+      "official": 282,
+      "goals": 5,
+      "constraints": 0,
+      "actions": {
+        "open": 1,
+        "takeout": 1,
+        "move": 1,
+        "putdown": 1
+      },
+      "action_sequence": [
+        "Open 2",
+        "TakeOut 3 2",
+        "Move 1",
+        "PutDown 3"
+      ],
+      "platform_seconds": 0.367,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 190,
+      "official": 282,
+      "goals": 5,
+      "constraints": 0,
+      "actions": {
+        "open": 1,
+        "takeout": 1,
+        "move": 1,
+        "putdown": 1
+      },
+      "action_sequence": [
+        "Open 2",
+        "TakeOut 3 2",
+        "Move 1",
+        "PutDown 3"
+      ],
+      "platform_seconds": 0.376,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/P09.xml",
+    "case_sha256": "438e1bfa779af0b1c6419f4e1e3517561f02c29f58bdad2f61f256aa4399989e",
+    "stage": 2,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 144,
+      "official": 228,
+      "goals": 4,
+      "constraints": 0,
+      "actions": {
+        "pickup": 3,
+        "putdown": 1,
+        "open": 1,
+        "putin": 2,
+        "close": 1
+      },
+      "action_sequence": [
+        "PickUp 5",
+        "PutDown 5",
+        "Open 2",
+        "PickUp 5",
+        "PutIn 5 2",
+        "PickUp 4",
+        "PutIn 4 2",
+        "Close 2"
+      ],
+      "platform_seconds": 0.739,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 144,
+      "official": 228,
+      "goals": 4,
+      "constraints": 0,
+      "actions": {
+        "pickup": 3,
+        "putdown": 1,
+        "open": 1,
+        "putin": 2,
+        "close": 1
+      },
+      "action_sequence": [
+        "PickUp 5",
+        "PutDown 5",
+        "Open 2",
+        "PickUp 5",
+        "PutIn 5 2",
+        "PickUp 4",
+        "PutIn 4 2",
+        "Close 2"
+      ],
+      "platform_seconds": 0.746,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/P09.xml",
+    "case_sha256": "438e1bfa779af0b1c6419f4e1e3517561f02c29f58bdad2f61f256aa4399989e",
+    "stage": 2,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 144,
+      "official": 228,
+      "goals": 4,
+      "constraints": 0,
+      "actions": {
+        "pickup": 3,
+        "putdown": 1,
+        "open": 1,
+        "putin": 2,
+        "close": 1
+      },
+      "action_sequence": [
+        "PickUp 5",
+        "PutDown 5",
+        "Open 2",
+        "PickUp 5",
+        "PutIn 5 2",
+        "PickUp 4",
+        "PutIn 4 2",
+        "Close 2"
+      ],
+      "platform_seconds": 0.748,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 144,
+      "official": 228,
+      "goals": 4,
+      "constraints": 0,
+      "actions": {
+        "pickup": 3,
+        "putdown": 1,
+        "open": 1,
+        "putin": 2,
+        "close": 1
+      },
+      "action_sequence": [
+        "PickUp 5",
+        "PutDown 5",
+        "Open 2",
+        "PickUp 5",
+        "PutIn 5 2",
+        "PickUp 4",
+        "PutIn 4 2",
+        "Close 2"
+      ],
+      "platform_seconds": 0.759,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/P10.xml",
+    "case_sha256": "b79143d012c3ddf1d6ff842ea76888691de0a04a1fb4c996c9dfd4e79b65f8c8",
+    "stage": 2,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 184,
+      "official": 268,
+      "goals": 5,
+      "constraints": 0,
+      "actions": {
+        "pickup": 2,
+        "move": 1,
+        "sense": 2,
+        "putdown": 1,
+        "askloc": 2
+      },
+      "action_sequence": [
+        "PickUp 4",
+        "Move 3",
+        "Sense ",
+        "PutDown 4",
+        "PickUp 5",
+        "Sense ",
+        "AskLoc 2",
+        "AskLoc 2"
+      ],
+      "platform_seconds": 0.741,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 184,
+      "official": 268,
+      "goals": 5,
+      "constraints": 0,
+      "actions": {
+        "pickup": 2,
+        "move": 1,
+        "sense": 2,
+        "putdown": 1,
+        "askloc": 2
+      },
+      "action_sequence": [
+        "PickUp 4",
+        "Move 3",
+        "Sense ",
+        "PutDown 4",
+        "PickUp 5",
+        "Sense ",
+        "AskLoc 2",
+        "AskLoc 2"
+      ],
+      "platform_seconds": 0.745,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/P10.xml",
+    "case_sha256": "b79143d012c3ddf1d6ff842ea76888691de0a04a1fb4c996c9dfd4e79b65f8c8",
+    "stage": 2,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 184,
+      "official": 268,
+      "goals": 5,
+      "constraints": 0,
+      "actions": {
+        "pickup": 2,
+        "move": 1,
+        "sense": 2,
+        "putdown": 1,
+        "askloc": 2
+      },
+      "action_sequence": [
+        "PickUp 4",
+        "Move 3",
+        "Sense ",
+        "PutDown 4",
+        "PickUp 5",
+        "Sense ",
+        "AskLoc 2",
+        "AskLoc 2"
+      ],
+      "platform_seconds": 0.743,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 184,
+      "official": 268,
+      "goals": 5,
+      "constraints": 0,
+      "actions": {
+        "pickup": 2,
+        "move": 1,
+        "sense": 2,
+        "putdown": 1,
+        "askloc": 2
+      },
+      "action_sequence": [
+        "PickUp 4",
+        "Move 3",
+        "Sense ",
+        "PutDown 4",
+        "PickUp 5",
+        "Sense ",
+        "AskLoc 2",
+        "AskLoc 2"
+      ],
+      "platform_seconds": 0.75,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/realcompetiton_2024/01.xml",
+    "case_sha256": "b2b1eea1b786a4050876ed2cc3e8405cdbf5fac1dd440effd13d62183d637ee6",
+    "stage": 2,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 421,
+      "official": 427,
+      "goals": 14,
+      "constraints": 0,
+      "actions": {
+        "putdown": 13,
+        "pickup": 12,
+        "sense": 1,
+        "move": 22
+      },
+      "action_sequence": [
+        "PutDown 24",
+        "PickUp 24",
+        "Sense ",
+        "PutDown 24",
+        "Move 2",
+        "PickUp 7",
+        "Move 1",
+        "PutDown 7",
+        "Move 3",
+        "PickUp 8",
+        "Move 1",
+        "PutDown 8",
+        "Move 4",
+        "PickUp 9",
+        "Move 1",
+        "PutDown 9",
+        "Move 5",
+        "PickUp 10",
+        "Move 1",
+        "PutDown 10",
+        "Move 6",
+        "PickUp 11",
+        "Move 1",
+        "PutDown 11",
+        "Move 7",
+        "PickUp 12",
+        "Move 1",
+        "PutDown 12",
+        "Move 8",
+        "PickUp 13",
+        "Move 1",
+        "PutDown 13",
+        "Move 9",
+        "PickUp 15",
+        "Move 1",
+        "PutDown 15",
+        "Move 10",
+        "PickUp 16",
+        "Move 1",
+        "PutDown 16",
+        "Move 12",
+        "PickUp 18",
+        "Move 1",
+        "PutDown 18",
+        "Move 13",
+        "PickUp 19",
+        "Move 1",
+        "PutDown 19"
+      ],
+      "platform_seconds": 4.672,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 421,
+      "official": 427,
+      "goals": 14,
+      "constraints": 0,
+      "actions": {
+        "putdown": 13,
+        "pickup": 12,
+        "sense": 1,
+        "move": 22
+      },
+      "action_sequence": [
+        "PutDown 24",
+        "PickUp 24",
+        "Sense ",
+        "PutDown 24",
+        "Move 2",
+        "PickUp 7",
+        "Move 1",
+        "PutDown 7",
+        "Move 3",
+        "PickUp 8",
+        "Move 1",
+        "PutDown 8",
+        "Move 4",
+        "PickUp 9",
+        "Move 1",
+        "PutDown 9",
+        "Move 5",
+        "PickUp 10",
+        "Move 1",
+        "PutDown 10",
+        "Move 6",
+        "PickUp 11",
+        "Move 1",
+        "PutDown 11",
+        "Move 7",
+        "PickUp 12",
+        "Move 1",
+        "PutDown 12",
+        "Move 8",
+        "PickUp 13",
+        "Move 1",
+        "PutDown 13",
+        "Move 9",
+        "PickUp 15",
+        "Move 1",
+        "PutDown 15",
+        "Move 10",
+        "PickUp 16",
+        "Move 1",
+        "PutDown 16",
+        "Move 12",
+        "PickUp 18",
+        "Move 1",
+        "PutDown 18",
+        "Move 13",
+        "PickUp 19",
+        "Move 1",
+        "PutDown 19"
+      ],
+      "platform_seconds": 4.696,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/realcompetiton_2024/01.xml",
+    "case_sha256": "b2b1eea1b786a4050876ed2cc3e8405cdbf5fac1dd440effd13d62183d637ee6",
+    "stage": 2,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 381,
+      "official": 387,
+      "goals": 13,
+      "constraints": 0,
+      "actions": {
+        "putdown": 13,
+        "pickup": 12,
+        "sense": 1,
+        "move": 22
+      },
+      "action_sequence": [
+        "PutDown 24",
+        "PickUp 24",
+        "Sense ",
+        "PutDown 24",
+        "Move 2",
+        "PickUp 7",
+        "Move 1",
+        "PutDown 7",
+        "Move 3",
+        "PickUp 8",
+        "Move 1",
+        "PutDown 8",
+        "Move 4",
+        "PickUp 9",
+        "Move 1",
+        "PutDown 9",
+        "Move 5",
+        "PickUp 10",
+        "Move 1",
+        "PutDown 10",
+        "Move 6",
+        "PickUp 11",
+        "Move 1",
+        "PutDown 11",
+        "Move 7",
+        "PickUp 12",
+        "Move 1",
+        "PutDown 12",
+        "Move 8",
+        "PickUp 13",
+        "Move 1",
+        "PutDown 13",
+        "Move 9",
+        "PickUp 15",
+        "Move 1",
+        "PutDown 15",
+        "Move 10",
+        "PickUp 16",
+        "Move 1",
+        "PutDown 16",
+        "Move 11",
+        "PickUp 17",
+        "Move 1",
+        "PutDown 17",
+        "Move 12",
+        "PickUp 18",
+        "Move 1",
+        "PutDown 18"
+      ],
+      "platform_seconds": 4.681,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 381,
+      "official": 387,
+      "goals": 13,
+      "constraints": 0,
+      "actions": {
+        "putdown": 13,
+        "pickup": 12,
+        "sense": 1,
+        "move": 22
+      },
+      "action_sequence": [
+        "PutDown 24",
+        "PickUp 24",
+        "Sense ",
+        "PutDown 24",
+        "Move 2",
+        "PickUp 7",
+        "Move 1",
+        "PutDown 7",
+        "Move 3",
+        "PickUp 8",
+        "Move 1",
+        "PutDown 8",
+        "Move 4",
+        "PickUp 9",
+        "Move 1",
+        "PutDown 9",
+        "Move 5",
+        "PickUp 10",
+        "Move 1",
+        "PutDown 10",
+        "Move 6",
+        "PickUp 11",
+        "Move 1",
+        "PutDown 11",
+        "Move 7",
+        "PickUp 12",
+        "Move 1",
+        "PutDown 12",
+        "Move 8",
+        "PickUp 13",
+        "Move 1",
+        "PutDown 13",
+        "Move 9",
+        "PickUp 15",
+        "Move 1",
+        "PutDown 15",
+        "Move 10",
+        "PickUp 16",
+        "Move 1",
+        "PutDown 16",
+        "Move 11",
+        "PickUp 17",
+        "Move 1",
+        "PutDown 17",
+        "Move 12",
+        "PickUp 18",
+        "Move 1",
+        "PutDown 18"
+      ],
+      "platform_seconds": 4.67,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/realcompetiton_2024/03.xml",
+    "case_sha256": "922d7f053ac90009711033704a48d3ff08aab9d5529d13f738042faf048c0f4b",
+    "stage": 2,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 334,
+      "official": 430,
+      "goals": 1,
+      "constraints": 15,
+      "actions": {
+        "move": 1,
+        "pickup": 1
+      },
+      "action_sequence": [
+        "Move 8",
+        "PickUp 12"
+      ],
+      "platform_seconds": 0.185,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 334,
+      "official": 430,
+      "goals": 1,
+      "constraints": 15,
+      "actions": {
+        "move": 1,
+        "pickup": 1
+      },
+      "action_sequence": [
+        "Move 8",
+        "PickUp 12"
+      ],
+      "platform_seconds": 0.185,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/realcompetiton_2024/03.xml",
+    "case_sha256": "922d7f053ac90009711033704a48d3ff08aab9d5529d13f738042faf048c0f4b",
+    "stage": 2,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 334,
+      "official": 430,
+      "goals": 1,
+      "constraints": 15,
+      "actions": {
+        "move": 1,
+        "pickup": 1
+      },
+      "action_sequence": [
+        "Move 8",
+        "PickUp 12"
+      ],
+      "platform_seconds": 0.183,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 334,
+      "official": 430,
+      "goals": 1,
+      "constraints": 15,
+      "actions": {
+        "move": 1,
+        "pickup": 1
+      },
+      "action_sequence": [
+        "Move 8",
+        "PickUp 12"
+      ],
+      "platform_seconds": 0.182,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/realcompetiton_2024/06.xml",
+    "case_sha256": "b63527c3bf958ecd89c8dd3eec6407e92c4368b18cf5df81c00d79129d43bacf",
+    "stage": 2,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 326,
+      "official": 332,
+      "goals": 10,
+      "constraints": 3,
+      "actions": {
+        "sense": 4,
+        "move": 21,
+        "pickup": 10,
+        "askloc": 3,
+        "putdown": 10
+      },
+      "action_sequence": [
+        "Sense ",
+        "Move 7",
+        "PickUp 12",
+        "Move 8",
+        "Sense ",
+        "AskLoc 4",
+        "AskLoc 4",
+        "AskLoc 4",
+        "Move 5",
+        "Sense ",
+        "PutDown 12",
+        "Move 7",
+        "PickUp 17",
+        "Move 5",
+        "PutDown 17",
+        "Move 7",
+        "PickUp 16",
+        "Move 5",
+        "PutDown 16",
+        "Move 7",
+        "PickUp 15",
+        "Move 5",
+        "PutDown 15",
+        "Move 7",
+        "PickUp 14",
+        "Move 5",
+        "PutDown 14",
+        "Move 7",
+        "PickUp 13",
+        "Move 5",
+        "PutDown 13",
+        "Move 8",
+        "PickUp 23",
+        "Move 3",
+        "Sense ",
+        "PutDown 23",
+        "Move 8",
+        "PickUp 22",
+        "Move 3",
+        "PutDown 22",
+        "Move 8",
+        "PickUp 21",
+        "Move 3",
+        "PutDown 21",
+        "Move 8",
+        "PickUp 20",
+        "Move 3",
+        "PutDown 20"
+      ],
+      "platform_seconds": 4.651,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 298,
+      "official": 310,
+      "goals": 9,
+      "constraints": 3,
+      "actions": {
+        "sense": 4,
+        "move": 19,
+        "pickup": 9,
+        "askloc": 3,
+        "putdown": 9
+      },
+      "action_sequence": [
+        "Sense ",
+        "Move 7",
+        "PickUp 12",
+        "Move 8",
+        "Sense ",
+        "AskLoc 4",
+        "AskLoc 4",
+        "AskLoc 4",
+        "Move 5",
+        "Sense ",
+        "PutDown 12",
+        "Move 7",
+        "PickUp 17",
+        "Move 5",
+        "PutDown 17",
+        "Move 7",
+        "PickUp 16",
+        "Move 5",
+        "PutDown 16",
+        "Move 7",
+        "PickUp 15",
+        "Move 5",
+        "PutDown 15",
+        "Move 7",
+        "PickUp 14",
+        "Move 5",
+        "PutDown 14",
+        "Move 7",
+        "PickUp 13",
+        "Move 5",
+        "PutDown 13",
+        "Move 8",
+        "PickUp 23",
+        "Move 3",
+        "Sense ",
+        "PutDown 23",
+        "Move 8",
+        "PickUp 22",
+        "Move 3",
+        "PutDown 22",
+        "Move 8",
+        "PickUp 21",
+        "Move 3",
+        "PutDown 21"
+      ],
+      "platform_seconds": 4.317,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/realcompetiton_2024/06.xml",
+    "case_sha256": "b63527c3bf958ecd89c8dd3eec6407e92c4368b18cf5df81c00d79129d43bacf",
+    "stage": 2,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 298,
+      "official": 312,
+      "goals": 9,
+      "constraints": 3,
+      "actions": {
+        "sense": 4,
+        "move": 19,
+        "pickup": 9,
+        "askloc": 3,
+        "putdown": 9
+      },
+      "action_sequence": [
+        "Sense ",
+        "Move 7",
+        "PickUp 12",
+        "Move 8",
+        "Sense ",
+        "AskLoc 4",
+        "AskLoc 4",
+        "AskLoc 4",
+        "Move 5",
+        "Sense ",
+        "PutDown 12",
+        "Move 7",
+        "PickUp 17",
+        "Move 5",
+        "PutDown 17",
+        "Move 7",
+        "PickUp 16",
+        "Move 5",
+        "PutDown 16",
+        "Move 7",
+        "PickUp 15",
+        "Move 5",
+        "PutDown 15",
+        "Move 7",
+        "PickUp 14",
+        "Move 5",
+        "PutDown 14",
+        "Move 7",
+        "PickUp 13",
+        "Move 5",
+        "PutDown 13",
+        "Move 8",
+        "PickUp 23",
+        "Move 3",
+        "Sense ",
+        "PutDown 23",
+        "Move 8",
+        "PickUp 22",
+        "Move 3",
+        "PutDown 22",
+        "Move 8",
+        "PickUp 21",
+        "Move 3",
+        "PutDown 21"
+      ],
+      "platform_seconds": 4.3,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 298,
+      "official": 310,
+      "goals": 9,
+      "constraints": 3,
+      "actions": {
+        "sense": 4,
+        "move": 19,
+        "pickup": 9,
+        "askloc": 3,
+        "putdown": 9
+      },
+      "action_sequence": [
+        "Sense ",
+        "Move 7",
+        "PickUp 12",
+        "Move 8",
+        "Sense ",
+        "AskLoc 4",
+        "AskLoc 4",
+        "AskLoc 4",
+        "Move 5",
+        "Sense ",
+        "PutDown 12",
+        "Move 7",
+        "PickUp 17",
+        "Move 5",
+        "PutDown 17",
+        "Move 7",
+        "PickUp 16",
+        "Move 5",
+        "PutDown 16",
+        "Move 7",
+        "PickUp 15",
+        "Move 5",
+        "PutDown 15",
+        "Move 7",
+        "PickUp 14",
+        "Move 5",
+        "PutDown 14",
+        "Move 7",
+        "PickUp 13",
+        "Move 5",
+        "PutDown 13",
+        "Move 8",
+        "PickUp 23",
+        "Move 3",
+        "Sense ",
+        "PutDown 23",
+        "Move 8",
+        "PickUp 22",
+        "Move 3",
+        "PutDown 22",
+        "Move 8",
+        "PickUp 21",
+        "Move 3",
+        "PutDown 21"
+      ],
+      "platform_seconds": 4.301,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/realcompetiton_2024/15.xml",
+    "case_sha256": "1da256d1c1c936b940050b194c127e776fea2bc12bb45e68e1669309f90a274d",
+    "stage": 2,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 89,
+      "official": 163,
+      "goals": 3,
+      "constraints": 0,
+      "actions": {
+        "putdown": 2,
+        "move": 3,
+        "pickup": 1,
+        "sense": 1,
+        "takeout": 2,
+        "askloc": 3,
+        "open": 1
+      },
+      "action_sequence": [
+        "PutDown 13",
+        "Move 15",
+        "PickUp 15",
+        "Move 20",
+        "Sense ",
+        "PutDown 15",
+        "Move 3",
+        "TakeOut 18 3",
+        "AskLoc 18",
+        "AskLoc 18",
+        "Open 3",
+        "AskLoc 3",
+        "TakeOut 18 3"
+      ],
+      "platform_seconds": 1.254,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 89,
+      "official": 163,
+      "goals": 3,
+      "constraints": 0,
+      "actions": {
+        "putdown": 2,
+        "move": 3,
+        "pickup": 1,
+        "sense": 1,
+        "takeout": 2,
+        "askloc": 3,
+        "open": 1
+      },
+      "action_sequence": [
+        "PutDown 13",
+        "Move 15",
+        "PickUp 15",
+        "Move 20",
+        "Sense ",
+        "PutDown 15",
+        "Move 3",
+        "TakeOut 18 3",
+        "AskLoc 18",
+        "AskLoc 18",
+        "Open 3",
+        "AskLoc 3",
+        "TakeOut 18 3"
+      ],
+      "platform_seconds": 1.25,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/realcompetiton_2024/15.xml",
+    "case_sha256": "1da256d1c1c936b940050b194c127e776fea2bc12bb45e68e1669309f90a274d",
+    "stage": 2,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 89,
+      "official": 163,
+      "goals": 3,
+      "constraints": 0,
+      "actions": {
+        "putdown": 2,
+        "move": 3,
+        "pickup": 1,
+        "sense": 1,
+        "takeout": 2,
+        "askloc": 3,
+        "open": 1
+      },
+      "action_sequence": [
+        "PutDown 13",
+        "Move 15",
+        "PickUp 15",
+        "Move 20",
+        "Sense ",
+        "PutDown 15",
+        "Move 3",
+        "TakeOut 18 3",
+        "AskLoc 18",
+        "AskLoc 18",
+        "Open 3",
+        "AskLoc 3",
+        "TakeOut 18 3"
+      ],
+      "platform_seconds": 1.264,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 89,
+      "official": 163,
+      "goals": 3,
+      "constraints": 0,
+      "actions": {
+        "putdown": 2,
+        "move": 3,
+        "pickup": 1,
+        "sense": 1,
+        "takeout": 2,
+        "askloc": 3,
+        "open": 1
+      },
+      "action_sequence": [
+        "PutDown 13",
+        "Move 15",
+        "PickUp 15",
+        "Move 20",
+        "Sense ",
+        "PutDown 15",
+        "Move 3",
+        "TakeOut 18 3",
+        "AskLoc 18",
+        "AskLoc 18",
+        "Open 3",
+        "AskLoc 3",
+        "TakeOut 18 3"
+      ],
+      "platform_seconds": 1.255,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/realcompetiton_2024/28.xml",
+    "case_sha256": "12db0b95bd2f1018ee14b26b9c2993720e3651eba764cda1bbb866fceb732daa",
+    "stage": 2,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 816,
+      "official": 820,
+      "goals": 24,
+      "constraints": 0,
+      "actions": {
+        "move": 23,
+        "pickup": 13,
+        "putdown": 13
+      },
+      "action_sequence": [
+        "Move 7",
+        "PickUp 10",
+        "PutDown 10",
+        "PickUp 11",
+        "PutDown 11",
+        "Move 15",
+        "PickUp 2",
+        "Move 7",
+        "PutDown 2",
+        "Move 14",
+        "PickUp 3",
+        "Move 7",
+        "PutDown 3",
+        "Move 13",
+        "PickUp 4",
+        "Move 7",
+        "PutDown 4",
+        "Move 12",
+        "PickUp 5",
+        "Move 7",
+        "PutDown 5",
+        "Move 11",
+        "PickUp 6",
+        "Move 7",
+        "PutDown 6",
+        "Move 10",
+        "PickUp 7",
+        "Move 7",
+        "PutDown 7",
+        "Move 9",
+        "PickUp 8",
+        "Move 7",
+        "PutDown 8",
+        "Move 8",
+        "PickUp 9",
+        "Move 7",
+        "PutDown 9",
+        "Move 8",
+        "PickUp 12",
+        "Move 7",
+        "PutDown 12",
+        "Move 9",
+        "PickUp 13",
+        "Move 7",
+        "PutDown 13",
+        "Move 10",
+        "PickUp 14",
+        "Move 7",
+        "PutDown 14"
+      ],
+      "platform_seconds": 4.776,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 816,
+      "official": 820,
+      "goals": 24,
+      "constraints": 0,
+      "actions": {
+        "move": 23,
+        "pickup": 13,
+        "putdown": 13
+      },
+      "action_sequence": [
+        "Move 7",
+        "PickUp 10",
+        "PutDown 10",
+        "PickUp 11",
+        "PutDown 11",
+        "Move 15",
+        "PickUp 2",
+        "Move 7",
+        "PutDown 2",
+        "Move 14",
+        "PickUp 3",
+        "Move 7",
+        "PutDown 3",
+        "Move 13",
+        "PickUp 4",
+        "Move 7",
+        "PutDown 4",
+        "Move 12",
+        "PickUp 5",
+        "Move 7",
+        "PutDown 5",
+        "Move 11",
+        "PickUp 6",
+        "Move 7",
+        "PutDown 6",
+        "Move 10",
+        "PickUp 7",
+        "Move 7",
+        "PutDown 7",
+        "Move 9",
+        "PickUp 8",
+        "Move 7",
+        "PutDown 8",
+        "Move 8",
+        "PickUp 9",
+        "Move 7",
+        "PutDown 9",
+        "Move 8",
+        "PickUp 12",
+        "Move 7",
+        "PutDown 12",
+        "Move 9",
+        "PickUp 13",
+        "Move 7",
+        "PutDown 13",
+        "Move 10",
+        "PickUp 14",
+        "Move 7",
+        "PutDown 14"
+      ],
+      "platform_seconds": 4.739,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/realcompetiton_2024/28.xml",
+    "case_sha256": "12db0b95bd2f1018ee14b26b9c2993720e3651eba764cda1bbb866fceb732daa",
+    "stage": 2,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 816,
+      "official": 820,
+      "goals": 24,
+      "constraints": 0,
+      "actions": {
+        "move": 23,
+        "pickup": 13,
+        "putdown": 13
+      },
+      "action_sequence": [
+        "Move 7",
+        "PickUp 10",
+        "PutDown 10",
+        "PickUp 11",
+        "PutDown 11",
+        "Move 15",
+        "PickUp 2",
+        "Move 7",
+        "PutDown 2",
+        "Move 14",
+        "PickUp 3",
+        "Move 7",
+        "PutDown 3",
+        "Move 13",
+        "PickUp 4",
+        "Move 7",
+        "PutDown 4",
+        "Move 12",
+        "PickUp 5",
+        "Move 7",
+        "PutDown 5",
+        "Move 11",
+        "PickUp 6",
+        "Move 7",
+        "PutDown 6",
+        "Move 10",
+        "PickUp 7",
+        "Move 7",
+        "PutDown 7",
+        "Move 9",
+        "PickUp 8",
+        "Move 7",
+        "PutDown 8",
+        "Move 8",
+        "PickUp 9",
+        "Move 7",
+        "PutDown 9",
+        "Move 8",
+        "PickUp 12",
+        "Move 7",
+        "PutDown 12",
+        "Move 9",
+        "PickUp 13",
+        "Move 7",
+        "PutDown 13",
+        "Move 10",
+        "PickUp 14",
+        "Move 7",
+        "PutDown 14"
+      ],
+      "platform_seconds": 4.742,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 816,
+      "official": 820,
+      "goals": 24,
+      "constraints": 0,
+      "actions": {
+        "move": 23,
+        "pickup": 13,
+        "putdown": 13
+      },
+      "action_sequence": [
+        "Move 7",
+        "PickUp 10",
+        "PutDown 10",
+        "PickUp 11",
+        "PutDown 11",
+        "Move 15",
+        "PickUp 2",
+        "Move 7",
+        "PutDown 2",
+        "Move 14",
+        "PickUp 3",
+        "Move 7",
+        "PutDown 3",
+        "Move 13",
+        "PickUp 4",
+        "Move 7",
+        "PutDown 4",
+        "Move 12",
+        "PickUp 5",
+        "Move 7",
+        "PutDown 5",
+        "Move 11",
+        "PickUp 6",
+        "Move 7",
+        "PutDown 6",
+        "Move 10",
+        "PickUp 7",
+        "Move 7",
+        "PutDown 7",
+        "Move 9",
+        "PickUp 8",
+        "Move 7",
+        "PutDown 8",
+        "Move 8",
+        "PickUp 9",
+        "Move 7",
+        "PutDown 9",
+        "Move 8",
+        "PickUp 12",
+        "Move 7",
+        "PutDown 12",
+        "Move 9",
+        "PickUp 13",
+        "Move 7",
+        "PutDown 13",
+        "Move 10",
+        "PickUp 14",
+        "Move 7",
+        "PutDown 14"
+      ],
+      "platform_seconds": 4.752,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/realcompetiton_2024/29.xml",
+    "case_sha256": "bf6f4b10ce147885ffd8d924d870d2e52c0295f65c23b6e3c93b99741ab9c836",
+    "stage": 2,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 856,
+      "official": 860,
+      "goals": 25,
+      "constraints": 0,
+      "actions": {
+        "move": 23,
+        "pickup": 13,
+        "putdown": 13
+      },
+      "action_sequence": [
+        "Move 7",
+        "PickUp 2",
+        "PutDown 2",
+        "PickUp 19",
+        "PutDown 19",
+        "Move 8",
+        "PickUp 3",
+        "Move 7",
+        "PutDown 3",
+        "Move 9",
+        "PickUp 4",
+        "Move 7",
+        "PutDown 4",
+        "Move 10",
+        "PickUp 5",
+        "Move 7",
+        "PutDown 5",
+        "Move 11",
+        "PickUp 6",
+        "Move 7",
+        "PutDown 6",
+        "Move 12",
+        "PickUp 7",
+        "Move 7",
+        "PutDown 7",
+        "Move 13",
+        "PickUp 8",
+        "Move 7",
+        "PutDown 8",
+        "Move 14",
+        "PickUp 9",
+        "Move 7",
+        "PutDown 9",
+        "Move 15",
+        "PickUp 10",
+        "Move 7",
+        "PutDown 10",
+        "Move 15",
+        "PickUp 11",
+        "Move 7",
+        "PutDown 11",
+        "Move 14",
+        "PickUp 12",
+        "Move 7",
+        "PutDown 12",
+        "Move 13",
+        "PickUp 13",
+        "Move 7",
+        "PutDown 13"
+      ],
+      "platform_seconds": 4.717,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 856,
+      "official": 860,
+      "goals": 25,
+      "constraints": 0,
+      "actions": {
+        "move": 23,
+        "pickup": 13,
+        "putdown": 13
+      },
+      "action_sequence": [
+        "Move 7",
+        "PickUp 2",
+        "PutDown 2",
+        "PickUp 19",
+        "PutDown 19",
+        "Move 8",
+        "PickUp 3",
+        "Move 7",
+        "PutDown 3",
+        "Move 9",
+        "PickUp 4",
+        "Move 7",
+        "PutDown 4",
+        "Move 10",
+        "PickUp 5",
+        "Move 7",
+        "PutDown 5",
+        "Move 11",
+        "PickUp 6",
+        "Move 7",
+        "PutDown 6",
+        "Move 12",
+        "PickUp 7",
+        "Move 7",
+        "PutDown 7",
+        "Move 13",
+        "PickUp 8",
+        "Move 7",
+        "PutDown 8",
+        "Move 14",
+        "PickUp 9",
+        "Move 7",
+        "PutDown 9",
+        "Move 15",
+        "PickUp 10",
+        "Move 7",
+        "PutDown 10",
+        "Move 15",
+        "PickUp 11",
+        "Move 7",
+        "PutDown 11",
+        "Move 14",
+        "PickUp 12",
+        "Move 7",
+        "PutDown 12",
+        "Move 13",
+        "PickUp 13",
+        "Move 7",
+        "PutDown 13"
+      ],
+      "platform_seconds": 4.763,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/realcompetiton_2024/29.xml",
+    "case_sha256": "bf6f4b10ce147885ffd8d924d870d2e52c0295f65c23b6e3c93b99741ab9c836",
+    "stage": 2,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 856,
+      "official": 860,
+      "goals": 25,
+      "constraints": 0,
+      "actions": {
+        "move": 23,
+        "pickup": 13,
+        "putdown": 13
+      },
+      "action_sequence": [
+        "Move 7",
+        "PickUp 2",
+        "PutDown 2",
+        "PickUp 19",
+        "PutDown 19",
+        "Move 8",
+        "PickUp 3",
+        "Move 7",
+        "PutDown 3",
+        "Move 9",
+        "PickUp 4",
+        "Move 7",
+        "PutDown 4",
+        "Move 10",
+        "PickUp 5",
+        "Move 7",
+        "PutDown 5",
+        "Move 11",
+        "PickUp 6",
+        "Move 7",
+        "PutDown 6",
+        "Move 12",
+        "PickUp 7",
+        "Move 7",
+        "PutDown 7",
+        "Move 13",
+        "PickUp 8",
+        "Move 7",
+        "PutDown 8",
+        "Move 14",
+        "PickUp 9",
+        "Move 7",
+        "PutDown 9",
+        "Move 15",
+        "PickUp 10",
+        "Move 7",
+        "PutDown 10",
+        "Move 15",
+        "PickUp 11",
+        "Move 7",
+        "PutDown 11",
+        "Move 14",
+        "PickUp 12",
+        "Move 7",
+        "PutDown 12",
+        "Move 13",
+        "PickUp 13",
+        "Move 7",
+        "PutDown 13"
+      ],
+      "platform_seconds": 4.799,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    },
+    "current": {
+      "status": "ok",
+      "base": 856,
+      "official": 860,
+      "goals": 25,
+      "constraints": 0,
+      "actions": {
+        "move": 23,
+        "pickup": 13,
+        "putdown": 13
+      },
+      "action_sequence": [
+        "Move 7",
+        "PickUp 2",
+        "PutDown 2",
+        "PickUp 19",
+        "PutDown 19",
+        "Move 8",
+        "PickUp 3",
+        "Move 7",
+        "PutDown 3",
+        "Move 9",
+        "PickUp 4",
+        "Move 7",
+        "PutDown 4",
+        "Move 10",
+        "PickUp 5",
+        "Move 7",
+        "PutDown 5",
+        "Move 11",
+        "PickUp 6",
+        "Move 7",
+        "PutDown 6",
+        "Move 12",
+        "PickUp 7",
+        "Move 7",
+        "PutDown 7",
+        "Move 13",
+        "PickUp 8",
+        "Move 7",
+        "PutDown 8",
+        "Move 14",
+        "PickUp 9",
+        "Move 7",
+        "PutDown 9",
+        "Move 15",
+        "PickUp 10",
+        "Move 7",
+        "PutDown 10",
+        "Move 15",
+        "PickUp 11",
+        "Move 7",
+        "PutDown 11",
+        "Move 14",
+        "PickUp 12",
+        "Move 7",
+        "PutDown 12",
+        "Move 13",
+        "PickUp 13",
+        "Move 7",
+        "PutDown 13"
+      ],
+      "platform_seconds": 4.763,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=legacy reason=unsupported_or_time"
+      ]
+    }
+  }
+]

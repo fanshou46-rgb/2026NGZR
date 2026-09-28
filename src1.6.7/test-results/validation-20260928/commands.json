@@ -1,0 +1,578 @@
+[
+  {
+    "name": "unit-config",
+    "command": [
+      "cmake",
+      "-H/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.7/tests",
+      "-B/tmp/rdfw-167-final-gate/unit",
+      "-DCMAKE_BUILD_TYPE=Release",
+      "-DOFFICIAL_SDK=/home/yifan/env-release-2026"
+    ],
+    "code": 0,
+    "seconds": 2.2507035732269287
+  },
+  {
+    "name": "unit-build",
+    "command": [
+      "cmake",
+      "--build",
+      "/tmp/rdfw-167-final-gate/unit",
+      "--",
+      "-j3"
+    ],
+    "code": 0,
+    "seconds": 16.771615028381348
+  },
+  {
+    "name": "asan-config",
+    "command": [
+      "cmake",
+      "-H/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.7/tests",
+      "-B/tmp/rdfw-167-final-gate/asan",
+      "-DCMAKE_BUILD_TYPE=Debug",
+      "-DCMAKE_CXX_FLAGS=-fsanitize=address,undefined -fno-omit-frame-pointer -fno-pie",
+      "-DCMAKE_EXE_LINKER_FLAGS=-fsanitize=address,undefined -no-pie"
+    ],
+    "code": 0,
+    "seconds": 2.5264806747436523
+  },
+  {
+    "name": "asan-build",
+    "command": [
+      "cmake",
+      "--build",
+      "/tmp/rdfw-167-final-gate/asan",
+      "--",
+      "-j3"
+    ],
+    "code": 0,
+    "seconds": 20.893192768096924
+  },
+  {
+    "name": "before-config",
+    "command": [
+      "cmake",
+      "-H/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.7/tests/hardening_baseline_probe",
+      "-B/tmp/rdfw-167-final-gate/before",
+      "-DCMAKE_BUILD_TYPE=Release"
+    ],
+    "code": 0,
+    "seconds": 2.1193604469299316
+  },
+  {
+    "name": "before-build",
+    "command": [
+      "cmake",
+      "--build",
+      "/tmp/rdfw-167-final-gate/before",
+      "--",
+      "-j3"
+    ],
+    "code": 0,
+    "seconds": 9.601956844329834
+  },
+  {
+    "name": "unit-ctest",
+    "command": [
+      "bash",
+      "-c",
+      "cd \"$1\" && ctest --output-on-failure",
+      "gate",
+      "/tmp/rdfw-167-final-gate/unit"
+    ],
+    "code": 0,
+    "seconds": 1.1781201362609863
+  },
+  {
+    "name": "asan-ctest",
+    "command": [
+      "bash",
+      "-c",
+      "cd \"$1\" && ctest --output-on-failure",
+      "gate",
+      "/tmp/rdfw-167-final-gate/asan"
+    ],
+    "code": 0,
+    "seconds": 10.996984958648682
+  },
+  {
+    "name": "before-deadline",
+    "command": [
+      "/tmp/rdfw-167-final-gate/before/deadline_sensitivity_tests",
+      "/tmp/rdfw-167-final-gate/before/words.txt"
+    ],
+    "code": 0,
+    "seconds": 0.0035605430603027344
+  },
+  {
+    "name": "unit-deadline",
+    "command": [
+      "/tmp/rdfw-167-final-gate/unit/deadline_sensitivity_tests",
+      "/tmp/rdfw-167-final-gate/unit/words.txt"
+    ],
+    "code": 0,
+    "seconds": 0.002800464630126953
+  },
+  {
+    "name": "profile-r0-8-baseline",
+    "command": [
+      "/tmp/rdfw-167-final-gate/before/state_profile",
+      "/tmp/rdfw-167-final-gate/before/words.txt",
+      "8"
+    ],
+    "code": 0,
+    "seconds": 0.024306058883666992
+  },
+  {
+    "name": "profile-r0-8-current",
+    "command": [
+      "/tmp/rdfw-167-final-gate/unit/state_profile",
+      "/tmp/rdfw-167-final-gate/unit/words.txt",
+      "8"
+    ],
+    "code": 0,
+    "seconds": 0.01773977279663086
+  },
+  {
+    "name": "profile-r0-64-baseline",
+    "command": [
+      "/tmp/rdfw-167-final-gate/before/state_profile",
+      "/tmp/rdfw-167-final-gate/before/words.txt",
+      "64"
+    ],
+    "code": 0,
+    "seconds": 0.150404691696167
+  },
+  {
+    "name": "profile-r0-64-current",
+    "command": [
+      "/tmp/rdfw-167-final-gate/unit/state_profile",
+      "/tmp/rdfw-167-final-gate/unit/words.txt",
+      "64"
+    ],
+    "code": 0,
+    "seconds": 0.0738823413848877
+  },
+  {
+    "name": "profile-r0-192-baseline",
+    "command": [
+      "/tmp/rdfw-167-final-gate/before/state_profile",
+      "/tmp/rdfw-167-final-gate/before/words.txt",
+      "192"
+    ],
+    "code": 0,
+    "seconds": 0.738760232925415
+  },
+  {
+    "name": "profile-r0-192-current",
+    "command": [
+      "/tmp/rdfw-167-final-gate/unit/state_profile",
+      "/tmp/rdfw-167-final-gate/unit/words.txt",
+      "192"
+    ],
+    "code": 0,
+    "seconds": 0.3157072067260742
+  },
+  {
+    "name": "profile-r1-8-current",
+    "command": [
+      "/tmp/rdfw-167-final-gate/unit/state_profile",
+      "/tmp/rdfw-167-final-gate/unit/words.txt",
+      "8"
+    ],
+    "code": 0,
+    "seconds": 0.017415761947631836
+  },
+  {
+    "name": "profile-r1-8-baseline",
+    "command": [
+      "/tmp/rdfw-167-final-gate/before/state_profile",
+      "/tmp/rdfw-167-final-gate/before/words.txt",
+      "8"
+    ],
+    "code": 0,
+    "seconds": 0.02446579933166504
+  },
+  {
+    "name": "profile-r1-64-current",
+    "command": [
+      "/tmp/rdfw-167-final-gate/unit/state_profile",
+      "/tmp/rdfw-167-final-gate/unit/words.txt",
+      "64"
+    ],
+    "code": 0,
+    "seconds": 0.0734715461730957
+  },
+  {
+    "name": "profile-r1-64-baseline",
+    "command": [
+      "/tmp/rdfw-167-final-gate/before/state_profile",
+      "/tmp/rdfw-167-final-gate/before/words.txt",
+      "64"
+    ],
+    "code": 0,
+    "seconds": 0.14850211143493652
+  },
+  {
+    "name": "profile-r1-192-current",
+    "command": [
+      "/tmp/rdfw-167-final-gate/unit/state_profile",
+      "/tmp/rdfw-167-final-gate/unit/words.txt",
+      "192"
+    ],
+    "code": 0,
+    "seconds": 0.32039880752563477
+  },
+  {
+    "name": "profile-r1-192-baseline",
+    "command": [
+      "/tmp/rdfw-167-final-gate/before/state_profile",
+      "/tmp/rdfw-167-final-gate/before/words.txt",
+      "192"
+    ],
+    "code": 0,
+    "seconds": 0.7382936477661133
+  },
+  {
+    "name": "profile-r2-8-baseline",
+    "command": [
+      "/tmp/rdfw-167-final-gate/before/state_profile",
+      "/tmp/rdfw-167-final-gate/before/words.txt",
+      "8"
+    ],
+    "code": 0,
+    "seconds": 0.02526068687438965
+  },
+  {
+    "name": "profile-r2-8-current",
+    "command": [
+      "/tmp/rdfw-167-final-gate/unit/state_profile",
+      "/tmp/rdfw-167-final-gate/unit/words.txt",
+      "8"
+    ],
+    "code": 0,
+    "seconds": 0.01758432388305664
+  },
+  {
+    "name": "profile-r2-64-baseline",
+    "command": [
+      "/tmp/rdfw-167-final-gate/before/state_profile",
+      "/tmp/rdfw-167-final-gate/before/words.txt",
+      "64"
+    ],
+    "code": 0,
+    "seconds": 0.14948058128356934
+  },
+  {
+    "name": "profile-r2-64-current",
+    "command": [
+      "/tmp/rdfw-167-final-gate/unit/state_profile",
+      "/tmp/rdfw-167-final-gate/unit/words.txt",
+      "64"
+    ],
+    "code": 0,
+    "seconds": 0.0732576847076416
+  },
+  {
+    "name": "profile-r2-192-baseline",
+    "command": [
+      "/tmp/rdfw-167-final-gate/before/state_profile",
+      "/tmp/rdfw-167-final-gate/before/words.txt",
+      "192"
+    ],
+    "code": 0,
+    "seconds": 0.7368059158325195
+  },
+  {
+    "name": "profile-r2-192-current",
+    "command": [
+      "/tmp/rdfw-167-final-gate/unit/state_profile",
+      "/tmp/rdfw-167-final-gate/unit/words.txt",
+      "192"
+    ],
+    "code": 0,
+    "seconds": 0.3175661563873291
+  },
+  {
+    "name": "profile-r3-8-current",
+    "command": [
+      "/tmp/rdfw-167-final-gate/unit/state_profile",
+      "/tmp/rdfw-167-final-gate/unit/words.txt",
+      "8"
+    ],
+    "code": 0,
+    "seconds": 0.01812887191772461
+  },
+  {
+    "name": "profile-r3-8-baseline",
+    "command": [
+      "/tmp/rdfw-167-final-gate/before/state_profile",
+      "/tmp/rdfw-167-final-gate/before/words.txt",
+      "8"
+    ],
+    "code": 0,
+    "seconds": 0.024626493453979492
+  },
+  {
+    "name": "profile-r3-64-current",
+    "command": [
+      "/tmp/rdfw-167-final-gate/unit/state_profile",
+      "/tmp/rdfw-167-final-gate/unit/words.txt",
+      "64"
+    ],
+    "code": 0,
+    "seconds": 0.0738525390625
+  },
+  {
+    "name": "profile-r3-64-baseline",
+    "command": [
+      "/tmp/rdfw-167-final-gate/before/state_profile",
+      "/tmp/rdfw-167-final-gate/before/words.txt",
+      "64"
+    ],
+    "code": 0,
+    "seconds": 0.15026211738586426
+  },
+  {
+    "name": "profile-r3-192-current",
+    "command": [
+      "/tmp/rdfw-167-final-gate/unit/state_profile",
+      "/tmp/rdfw-167-final-gate/unit/words.txt",
+      "192"
+    ],
+    "code": 0,
+    "seconds": 0.3183140754699707
+  },
+  {
+    "name": "profile-r3-192-baseline",
+    "command": [
+      "/tmp/rdfw-167-final-gate/before/state_profile",
+      "/tmp/rdfw-167-final-gate/before/words.txt",
+      "192"
+    ],
+    "code": 0,
+    "seconds": 0.7678952217102051
+  },
+  {
+    "name": "profile-r4-8-baseline",
+    "command": [
+      "/tmp/rdfw-167-final-gate/before/state_profile",
+      "/tmp/rdfw-167-final-gate/before/words.txt",
+      "8"
+    ],
+    "code": 0,
+    "seconds": 0.02489781379699707
+  },
+  {
+    "name": "profile-r4-8-current",
+    "command": [
+      "/tmp/rdfw-167-final-gate/unit/state_profile",
+      "/tmp/rdfw-167-final-gate/unit/words.txt",
+      "8"
+    ],
+    "code": 0,
+    "seconds": 0.017823219299316406
+  },
+  {
+    "name": "profile-r4-64-baseline",
+    "command": [
+      "/tmp/rdfw-167-final-gate/before/state_profile",
+      "/tmp/rdfw-167-final-gate/before/words.txt",
+      "64"
+    ],
+    "code": 0,
+    "seconds": 0.14791584014892578
+  },
+  {
+    "name": "profile-r4-64-current",
+    "command": [
+      "/tmp/rdfw-167-final-gate/unit/state_profile",
+      "/tmp/rdfw-167-final-gate/unit/words.txt",
+      "64"
+    ],
+    "code": 0,
+    "seconds": 0.07408976554870605
+  },
+  {
+    "name": "profile-r4-192-baseline",
+    "command": [
+      "/tmp/rdfw-167-final-gate/before/state_profile",
+      "/tmp/rdfw-167-final-gate/before/words.txt",
+      "192"
+    ],
+    "code": 0,
+    "seconds": 0.7399053573608398
+  },
+  {
+    "name": "profile-r4-192-current",
+    "command": [
+      "/tmp/rdfw-167-final-gate/unit/state_profile",
+      "/tmp/rdfw-167-final-gate/unit/words.txt",
+      "192"
+    ],
+    "code": 0,
+    "seconds": 0.31560540199279785
+  },
+  {
+    "name": "profile-r5-8-current",
+    "command": [
+      "/tmp/rdfw-167-final-gate/unit/state_profile",
+      "/tmp/rdfw-167-final-gate/unit/words.txt",
+      "8"
+    ],
+    "code": 0,
+    "seconds": 0.01815509796142578
+  },
+  {
+    "name": "profile-r5-8-baseline",
+    "command": [
+      "/tmp/rdfw-167-final-gate/before/state_profile",
+      "/tmp/rdfw-167-final-gate/before/words.txt",
+      "8"
+    ],
+    "code": 0,
+    "seconds": 0.026131868362426758
+  },
+  {
+    "name": "profile-r5-64-current",
+    "command": [
+      "/tmp/rdfw-167-final-gate/unit/state_profile",
+      "/tmp/rdfw-167-final-gate/unit/words.txt",
+      "64"
+    ],
+    "code": 0,
+    "seconds": 0.07512688636779785
+  },
+  {
+    "name": "profile-r5-64-baseline",
+    "command": [
+      "/tmp/rdfw-167-final-gate/before/state_profile",
+      "/tmp/rdfw-167-final-gate/before/words.txt",
+      "64"
+    ],
+    "code": 0,
+    "seconds": 0.1508946418762207
+  },
+  {
+    "name": "profile-r5-192-current",
+    "command": [
+      "/tmp/rdfw-167-final-gate/unit/state_profile",
+      "/tmp/rdfw-167-final-gate/unit/words.txt",
+      "192"
+    ],
+    "code": 0,
+    "seconds": 0.3171358108520508
+  },
+  {
+    "name": "profile-r5-192-baseline",
+    "command": [
+      "/tmp/rdfw-167-final-gate/before/state_profile",
+      "/tmp/rdfw-167-final-gate/before/words.txt",
+      "192"
+    ],
+    "code": 0,
+    "seconds": 0.7399356365203857
+  },
+  {
+    "name": "profile-r6-8-baseline",
+    "command": [
+      "/tmp/rdfw-167-final-gate/before/state_profile",
+      "/tmp/rdfw-167-final-gate/before/words.txt",
+      "8"
+    ],
+    "code": 0,
+    "seconds": 0.024230241775512695
+  },
+  {
+    "name": "profile-r6-8-current",
+    "command": [
+      "/tmp/rdfw-167-final-gate/unit/state_profile",
+      "/tmp/rdfw-167-final-gate/unit/words.txt",
+      "8"
+    ],
+    "code": 0,
+    "seconds": 0.017246246337890625
+  },
+  {
+    "name": "profile-r6-64-baseline",
+    "command": [
+      "/tmp/rdfw-167-final-gate/before/state_profile",
+      "/tmp/rdfw-167-final-gate/before/words.txt",
+      "64"
+    ],
+    "code": 0,
+    "seconds": 0.1494436264038086
+  },
+  {
+    "name": "profile-r6-64-current",
+    "command": [
+      "/tmp/rdfw-167-final-gate/unit/state_profile",
+      "/tmp/rdfw-167-final-gate/unit/words.txt",
+      "64"
+    ],
+    "code": 0,
+    "seconds": 0.07410621643066406
+  },
+  {
+    "name": "profile-r6-192-baseline",
+    "command": [
+      "/tmp/rdfw-167-final-gate/before/state_profile",
+      "/tmp/rdfw-167-final-gate/before/words.txt",
+      "192"
+    ],
+    "code": 0,
+    "seconds": 0.7365305423736572
+  },
+  {
+    "name": "profile-r6-192-current",
+    "command": [
+      "/tmp/rdfw-167-final-gate/unit/state_profile",
+      "/tmp/rdfw-167-final-gate/unit/words.txt",
+      "192"
+    ],
+    "code": 0,
+    "seconds": 0.3173806667327881
+  },
+  {
+    "name": "release-matrix",
+    "command": [
+      "/usr/bin/python3",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.7/tests/run_release_matrix.py",
+      "--output",
+      "/tmp/rdfw-167-final-gate/official",
+      "--baseline",
+      "/tmp/rdfw-166-final/build-release/example",
+      "--seed-library",
+      "/tmp/rdfw-165-official/seed_rng.so"
+    ],
+    "code": 0,
+    "seconds": 418.26988458633423
+  },
+  {
+    "name": "timing-controls",
+    "command": [
+      "/usr/bin/python3",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.7/tests/run_timing_controls.py",
+      "--runs",
+      "/tmp/rdfw-167-final-gate/official",
+      "--baseline",
+      "/tmp/rdfw-166-final/build-release/example",
+      "--current",
+      "/tmp/rdfw-167-final-gate/official/build-release/example",
+      "--seed-library",
+      "/tmp/rdfw-165-official/seed_rng.so"
+    ],
+    "code": 0,
+    "seconds": 252.90095448493958
+  },
+  {
+    "name": "archive",
+    "command": [
+      "/usr/bin/python3",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.7/tests/archive_closure_gate.py",
+      "/tmp/rdfw-167-final-gate"
+    ],
+    "code": 0,
+    "seconds": 6.376913785934448
+  }
+]

@@ -1,0 +1,806 @@
+[
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.4/tests/fixtures/decision/01-stop-before-conflicting-pickup.xml",
+    "case_sha256": "810a2e58cc04f90f768736e4327b962ff9fe9d9f375559c907ea2d063be93e3c",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 68,
+      "official": 160,
+      "goals": 2,
+      "constraints": 0,
+      "actions": {
+        "move": 2,
+        "pickup": 1,
+        "putdown": 1
+      },
+      "action_sequence": [
+        "Move 2",
+        "PickUp 2",
+        "Move 3",
+        "PutDown 2"
+      ],
+      "platform_seconds": 0.372,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    },
+    "current": {
+      "status": "ok",
+      "base": 68,
+      "official": 160,
+      "goals": 2,
+      "constraints": 0,
+      "actions": {
+        "move": 2,
+        "pickup": 1,
+        "putdown": 1
+      },
+      "action_sequence": [
+        "Move 2",
+        "PickUp 2",
+        "Move 3",
+        "PutDown 2"
+      ],
+      "platform_seconds": 0.372,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.4/tests/fixtures/decision/01-stop-before-conflicting-pickup.xml",
+    "case_sha256": "810a2e58cc04f90f768736e4327b962ff9fe9d9f375559c907ea2d063be93e3c",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 68,
+      "official": 160,
+      "goals": 2,
+      "constraints": 0,
+      "actions": {
+        "move": 2,
+        "pickup": 1,
+        "putdown": 1
+      },
+      "action_sequence": [
+        "Move 2",
+        "PickUp 2",
+        "Move 3",
+        "PutDown 2"
+      ],
+      "platform_seconds": 0.379,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    },
+    "current": {
+      "status": "ok",
+      "base": 68,
+      "official": 160,
+      "goals": 2,
+      "constraints": 0,
+      "actions": {
+        "move": 2,
+        "pickup": 1,
+        "putdown": 1
+      },
+      "action_sequence": [
+        "Move 2",
+        "PickUp 2",
+        "Move 3",
+        "PutDown 2"
+      ],
+      "platform_seconds": 0.368,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.4/tests/fixtures/decision/02-pickup-route-and-capacity.xml",
+    "case_sha256": "1dab588adfa702e3e0815faeeeae8cdf1f4b885c4227ca37d86f72d2a6730b6c",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 34,
+      "official": 130,
+      "goals": 1,
+      "constraints": 0,
+      "actions": {
+        "move": 1,
+        "pickup": 1
+      },
+      "action_sequence": [
+        "Move 2",
+        "PickUp 2"
+      ],
+      "platform_seconds": 0.189,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    },
+    "current": {
+      "status": "ok",
+      "base": 34,
+      "official": 130,
+      "goals": 1,
+      "constraints": 0,
+      "actions": {
+        "move": 1,
+        "pickup": 1
+      },
+      "action_sequence": [
+        "Move 2",
+        "PickUp 2"
+      ],
+      "platform_seconds": 0.183,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.4/tests/fixtures/decision/02-pickup-route-and-capacity.xml",
+    "case_sha256": "1dab588adfa702e3e0815faeeeae8cdf1f4b885c4227ca37d86f72d2a6730b6c",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 34,
+      "official": 130,
+      "goals": 1,
+      "constraints": 0,
+      "actions": {
+        "move": 1,
+        "pickup": 1
+      },
+      "action_sequence": [
+        "Move 2",
+        "PickUp 2"
+      ],
+      "platform_seconds": 0.183,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    },
+    "current": {
+      "status": "ok",
+      "base": 34,
+      "official": 130,
+      "goals": 1,
+      "constraints": 0,
+      "actions": {
+        "move": 1,
+        "pickup": 1
+      },
+      "action_sequence": [
+        "Move 2",
+        "PickUp 2"
+      ],
+      "platform_seconds": 0.19,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.4/tests/fixtures/decision/04-reorder-container-and-pickup.xml",
+    "case_sha256": "c8836194e63fee197ef171f606bfc386c0986524a8a998facdcab94314377a5c",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 102,
+      "official": 190,
+      "goals": 3,
+      "constraints": 0,
+      "actions": {
+        "move": 3,
+        "open": 1,
+        "close": 1,
+        "pickup": 1
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Move 3",
+        "Close 3",
+        "Move 2",
+        "PickUp 4"
+      ],
+      "platform_seconds": 0.569,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    },
+    "current": {
+      "status": "ok",
+      "base": 102,
+      "official": 190,
+      "goals": 3,
+      "constraints": 0,
+      "actions": {
+        "move": 3,
+        "open": 1,
+        "close": 1,
+        "pickup": 1
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Move 3",
+        "Close 3",
+        "Move 2",
+        "PickUp 4"
+      ],
+      "platform_seconds": 0.556,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.4/tests/fixtures/decision/04-reorder-container-and-pickup.xml",
+    "case_sha256": "c8836194e63fee197ef171f606bfc386c0986524a8a998facdcab94314377a5c",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 102,
+      "official": 190,
+      "goals": 3,
+      "constraints": 0,
+      "actions": {
+        "move": 3,
+        "open": 1,
+        "close": 1,
+        "pickup": 1
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Move 3",
+        "Close 3",
+        "Move 2",
+        "PickUp 4"
+      ],
+      "platform_seconds": 0.563,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    },
+    "current": {
+      "status": "ok",
+      "base": 102,
+      "official": 190,
+      "goals": 3,
+      "constraints": 0,
+      "actions": {
+        "move": 3,
+        "open": 1,
+        "close": 1,
+        "pickup": 1
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Move 3",
+        "Close 3",
+        "Move 2",
+        "PickUp 4"
+      ],
+      "platform_seconds": 0.559,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.4/tests/fixtures/combinatorial_gain/01-two-rooms-four-goals.xml",
+    "case_sha256": "0dd68dbbbb943a032ecbb97e752dbfb7ea0565b38e20b670d37c8fadb4be0340",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 136,
+      "official": 220,
+      "goals": 4,
+      "constraints": 0,
+      "actions": {
+        "move": 4,
+        "open": 2,
+        "close": 2
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Move 3",
+        "Close 3",
+        "Move 2",
+        "Close 4",
+        "Move 3",
+        "Open 5"
+      ],
+      "platform_seconds": 0.745,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    },
+    "current": {
+      "status": "ok",
+      "base": 136,
+      "official": 220,
+      "goals": 4,
+      "constraints": 0,
+      "actions": {
+        "move": 4,
+        "open": 2,
+        "close": 2
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Move 3",
+        "Close 3",
+        "Move 2",
+        "Close 4",
+        "Move 3",
+        "Open 5"
+      ],
+      "platform_seconds": 0.739,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.4/tests/fixtures/combinatorial_gain/01-two-rooms-four-goals.xml",
+    "case_sha256": "0dd68dbbbb943a032ecbb97e752dbfb7ea0565b38e20b670d37c8fadb4be0340",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 136,
+      "official": 220,
+      "goals": 4,
+      "constraints": 0,
+      "actions": {
+        "move": 4,
+        "open": 2,
+        "close": 2
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Move 3",
+        "Close 3",
+        "Move 2",
+        "Close 4",
+        "Move 3",
+        "Open 5"
+      ],
+      "platform_seconds": 0.749,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    },
+    "current": {
+      "status": "ok",
+      "base": 136,
+      "official": 220,
+      "goals": 4,
+      "constraints": 0,
+      "actions": {
+        "move": 4,
+        "open": 2,
+        "close": 2
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Move 3",
+        "Close 3",
+        "Move 2",
+        "Close 4",
+        "Move 3",
+        "Open 5"
+      ],
+      "platform_seconds": 0.748,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.4/tests/fixtures/combinatorial_gain/02-two-rooms-five-goals.xml",
+    "case_sha256": "18cf7a4d43e998eda26267fc1924ea29aebff92f4c471d812de1c2ed1fc740ac",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 170,
+      "official": 250,
+      "goals": 5,
+      "constraints": 0,
+      "actions": {
+        "move": 5,
+        "open": 3,
+        "close": 2
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Move 3",
+        "Close 3",
+        "Move 2",
+        "Open 4",
+        "Move 3",
+        "Close 5",
+        "Move 2",
+        "Open 6"
+      ],
+      "platform_seconds": 0.93,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    },
+    "current": {
+      "status": "ok",
+      "base": 170,
+      "official": 250,
+      "goals": 5,
+      "constraints": 0,
+      "actions": {
+        "move": 5,
+        "open": 3,
+        "close": 2
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Move 3",
+        "Close 3",
+        "Move 2",
+        "Open 4",
+        "Move 3",
+        "Close 5",
+        "Move 2",
+        "Open 6"
+      ],
+      "platform_seconds": 0.931,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.4/tests/fixtures/combinatorial_gain/02-two-rooms-five-goals.xml",
+    "case_sha256": "18cf7a4d43e998eda26267fc1924ea29aebff92f4c471d812de1c2ed1fc740ac",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 170,
+      "official": 250,
+      "goals": 5,
+      "constraints": 0,
+      "actions": {
+        "move": 5,
+        "open": 3,
+        "close": 2
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Move 3",
+        "Close 3",
+        "Move 2",
+        "Open 4",
+        "Move 3",
+        "Close 5",
+        "Move 2",
+        "Open 6"
+      ],
+      "platform_seconds": 0.934,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    },
+    "current": {
+      "status": "ok",
+      "base": 170,
+      "official": 250,
+      "goals": 5,
+      "constraints": 0,
+      "actions": {
+        "move": 5,
+        "open": 3,
+        "close": 2
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Move 3",
+        "Close 3",
+        "Move 2",
+        "Open 4",
+        "Move 3",
+        "Close 5",
+        "Move 2",
+        "Open 6"
+      ],
+      "platform_seconds": 0.935,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.4/tests/fixtures/combinatorial_gain/03-two-rooms-six-goals.xml",
+    "case_sha256": "5a947114458645296f71e5347b97b2b0b6c68b47db9989f12d034984c903f805",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 204,
+      "official": 280,
+      "goals": 6,
+      "constraints": 0,
+      "actions": {
+        "move": 6,
+        "open": 3,
+        "close": 3
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Move 3",
+        "Close 3",
+        "Move 2",
+        "Open 4",
+        "Move 3",
+        "Close 5",
+        "Move 2",
+        "Open 6",
+        "Move 3",
+        "Close 7"
+      ],
+      "platform_seconds": 1.122,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    },
+    "current": {
+      "status": "ok",
+      "base": 204,
+      "official": 280,
+      "goals": 6,
+      "constraints": 0,
+      "actions": {
+        "move": 6,
+        "open": 3,
+        "close": 3
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Move 3",
+        "Close 3",
+        "Move 2",
+        "Open 4",
+        "Move 3",
+        "Close 5",
+        "Move 2",
+        "Open 6",
+        "Move 3",
+        "Close 7"
+      ],
+      "platform_seconds": 1.134,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.4/tests/fixtures/combinatorial_gain/03-two-rooms-six-goals.xml",
+    "case_sha256": "5a947114458645296f71e5347b97b2b0b6c68b47db9989f12d034984c903f805",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 204,
+      "official": 280,
+      "goals": 6,
+      "constraints": 0,
+      "actions": {
+        "move": 6,
+        "open": 3,
+        "close": 3
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Move 3",
+        "Close 3",
+        "Move 2",
+        "Open 4",
+        "Move 3",
+        "Close 5",
+        "Move 2",
+        "Open 6",
+        "Move 3",
+        "Close 7"
+      ],
+      "platform_seconds": 1.119,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    },
+    "current": {
+      "status": "ok",
+      "base": 204,
+      "official": 280,
+      "goals": 6,
+      "constraints": 0,
+      "actions": {
+        "move": 6,
+        "open": 3,
+        "close": 3
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Move 3",
+        "Close 3",
+        "Move 2",
+        "Open 4",
+        "Move 3",
+        "Close 5",
+        "Move 2",
+        "Open 6",
+        "Move 3",
+        "Close 7"
+      ],
+      "platform_seconds": 1.138,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.4/tests/fixtures/combinatorial_gain/04-three-rooms-six-goals.xml",
+    "case_sha256": "72cf5257fd4db7f800c586275416ab2fdebebd88bc5a0c29389dc187aad352e2",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 204,
+      "official": 280,
+      "goals": 6,
+      "constraints": 0,
+      "actions": {
+        "move": 6,
+        "open": 3,
+        "close": 3
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Move 3",
+        "Close 3",
+        "Move 4",
+        "Open 4",
+        "Move 2",
+        "Close 5",
+        "Move 3",
+        "Open 6",
+        "Move 4",
+        "Close 7"
+      ],
+      "platform_seconds": 1.117,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    },
+    "current": {
+      "status": "ok",
+      "base": 204,
+      "official": 280,
+      "goals": 6,
+      "constraints": 0,
+      "actions": {
+        "move": 6,
+        "open": 3,
+        "close": 3
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Move 3",
+        "Close 3",
+        "Move 4",
+        "Open 4",
+        "Move 2",
+        "Close 5",
+        "Move 3",
+        "Open 6",
+        "Move 4",
+        "Close 7"
+      ],
+      "platform_seconds": 1.125,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    }
+  },
+  {
+    "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.4/tests/fixtures/combinatorial_gain/04-three-rooms-six-goals.xml",
+    "case_sha256": "72cf5257fd4db7f800c586275416ab2fdebebd88bc5a0c29389dc187aad352e2",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 204,
+      "official": 280,
+      "goals": 6,
+      "constraints": 0,
+      "actions": {
+        "move": 6,
+        "open": 3,
+        "close": 3
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Move 3",
+        "Close 3",
+        "Move 4",
+        "Open 4",
+        "Move 2",
+        "Close 5",
+        "Move 3",
+        "Open 6",
+        "Move 4",
+        "Close 7"
+      ],
+      "platform_seconds": 1.122,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    },
+    "current": {
+      "status": "ok",
+      "base": 204,
+      "official": 280,
+      "goals": 6,
+      "constraints": 0,
+      "actions": {
+        "move": 6,
+        "open": 3,
+        "close": 3
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Move 3",
+        "Close 3",
+        "Move 4",
+        "Open 4",
+        "Move 2",
+        "Close 5",
+        "Move 3",
+        "Open 6",
+        "Move 4",
+        "Close 7"
+      ],
+      "platform_seconds": 1.117,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    }
+  }
+]

@@ -1,0 +1,98 @@
+--- src1.6.5/tests/interval_gate_tests.cpp
++++ src1.6.6/tests/interval_gate_tests.cpp
+@@ -92,7 +92,7 @@
+     // A short remaining wall budget must not truncate a one-task projection
+     // into a misleading zero-duration plan. It still cannot authorize action.
+     w->stage = 1;
+-    std::dynamic_pointer_cast<Container>(w->objects[1])->isOpen = true;
++    w->ApplyStateValue(StateField::CONTAINER_STATE,1,1,true,EvidenceSource::SENSE);
+     ScoreSemanticsTestAccess::Budget(*w, 50);
+     auto full_plan = w->PreviewCandidatePlan(0);
+     assert(full_plan.dry_run_succeeded);
+--- src1.6.5/tests/recovery_evidence_tests.cpp
++++ src1.6.6/tests/recovery_evidence_tests.cpp
+@@ -111,7 +111,7 @@
+     changed->tasks.push_back(Unary("goto", changed->objects[2]));
+     changed->tasks[0].isEnable = false;
+     changed->tasks[0].risk = 5;
+-    changed->objects[2]->location = 4;
++    changed->ApplyStateValue(StateField::LOCATION,2,4,true,EvidenceSource::SENSE);
+     changed->score_locations[2] = 4; // fixture changes the authoritative at fact
+     CandidatePlan renewed = changed->PreviewCandidatePlan(0);
+     assert(changed->tasks[0].isEnable && changed->tasks[0].risk < 2);
+--- src1.6.5/tests/score_semantics_tests.cpp
++++ src1.6.6/tests/score_semantics_tests.cpp
+@@ -141,11 +141,10 @@
+     assert(w->ParseInstruction(close_goal + must_open));
+     ScoreSemanticsTestAccess::InitLedger(*w);
+     w->stage = 2;
+-    w->containerStateVerified[2] = false;
++    w->MarkUnresolved(StateField::CONTAINER_STATE,2);
+     ScoreSemanticsTestAccess::Update(*w);
+     assert(w->constraint_uncertain[0]);
+-    w->containerStateVerified[2] = true;
+-    std::dynamic_pointer_cast<Container>(w->objects[2])->isOpen = 1;
++    w->ApplyStateValue(StateField::CONTAINER_STATE,2,1,true,EvidenceSource::SENSE);
+     ScoreSemanticsTestAccess::Update(*w);
+     assert(w->constraint_uncertain[0]); // recovery cannot prove past truth
+     assert(w->GetTerminalSummary().credited_constraints == 0);
+@@ -154,8 +153,7 @@
+     assert(w->constraint_uncertain == saved);
+     w->constraint_eligible[0] = false;
+     w->constraint_uncertain[0] = false;
+-    w->containerStateSource[2] = EvidenceSource::CONSTRAINT_DERIVED;
+-    std::dynamic_pointer_cast<Container>(w->objects[2])->isOpen = 0;
++    w->ApplyStateValue(StateField::CONTAINER_STATE,2,0,true,EvidenceSource::CONSTRAINT_DERIVED);
+     assert(w->GetTerminalSummary().goals[0] == TerminalStatus::UNKNOWN);
+     std::cout << "score semantics tests passed\n";
+     return 0;
+--- src1.6.5/tests/state_invariant_tests.cpp
++++ src1.6.6/tests/state_invariant_tests.cpp
+@@ -158,7 +158,7 @@
+         assert(summary.constraints[0]==TerminalStatus::SATISFIED);
+         assert(!summary.constraint_eligible[0]);
+     } else if(test==13) {
+-        w->SetHold(s); w->objectInsideVerified[3]=true;
++        w->SetHold(s,EvidenceSource::INITIAL); w->SetInsideEvidence(3,true,EvidenceSource::SENSE);
+         w->tasks.push_back(Task("goto",s));
+         CandidatePlan p=ScoreSemanticsTestAccess::FinalMove(*w);
+         assert(w->location==1 && !w->IsLocationVerified(3));
+@@ -166,12 +166,12 @@
+         assert(w->GetTerminalSummary().goals==p.terminal_after.goals);
+     } else if(test==14) {
+         w->stage=1;
+-        w->objectInsideVerified[3]=true;
++        w->SetInsideEvidence(3,true,EvidenceSource::SENSE);
+         w->ParseInfo(Task("on",s,c));
+         assert(s->inside==2 && c->smallObjectsInside.size()==1);
+         w->ParseInfo(Task("near",s,c));
+         assert(s->inside==2 && w->IsInsideVerified(3));
+-        s->inside=UNKNOWN; w->objectInsideVerified[3]=false;
++        w->ApplyStateValue(StateField::INSIDE,3,UNKNOWN,false,EvidenceSource::UNKNOWN);
+         w->ParseInfo(Task("near",s,c));
+         assert(s->inside==UNKNOWN && !w->IsInsideVerified(3));
+     } else if(test==15) {
+--- src1.6.5/tests/three_a_tests.cpp
++++ src1.6.6/tests/three_a_tests.cpp
+@@ -64,10 +64,10 @@
+     assert(snapshot.deterministic_base_score == 71);
+ 
+     world->stage = 2;
+-    world->containerStateVerified[2] = false;
++    world->MarkUnresolved(StateField::CONTAINER_STATE,2);
+     assert(checker.evaluateTask(*world, world->tasks[0]) ==
+            TerminalStatus::UNKNOWN);
+-    world->containerStateVerified[2] = true;
++    world->ApplyStateValue(StateField::CONTAINER_STATE,2,0,true,EvidenceSource::SENSE);
+     assert(checker.evaluateTask(*world, world->tasks[0]) ==
+            TerminalStatus::SATISFIED);
+ 
+@@ -111,7 +111,7 @@
+     goto_goal.behave = "goto";
+     goto_goal.X.push_back(world->objects[2]);
+     world->tasks.push_back(goto_goal);
+-    world->location = 3;
++    world->ApplyStateValue(StateField::LOCATION,0,3,true,EvidenceSource::ACTION_SUCCESS);
+     world->objects[2]->is_keep = 2;
+     assert(world->CalculateTaskRisk(world->tasks[0]) < 2);
+     CandidatePlan goto_plan = world->PreviewCandidatePlan(0);

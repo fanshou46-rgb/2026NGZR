@@ -1,0 +1,1764 @@
+--- src1.6.5/CMakeLists.txt
++++ src1.6.6/CMakeLists.txt
+@@ -1,4 +1,4 @@
+-PROJECT(rdfw VERSION 1.6.5)
++PROJECT(rdfw VERSION 1.6.6)
+ # 设置指定的C++编译器版本是必须的，如果不设置，或者为OFF，则指定版本不可用时，会使用上一版本。
+ set(CMAKE_CXX_STANDARD_REQUIRED ON)
+ 
+@@ -15,7 +15,7 @@
+     candidate_plan.hpp
+     task_group_search.hpp
+     question_preflight.hpp
+-    rdfw.cpp
++    canonical_state.cpp rdfw.cpp
+     deadline_manager.cpp
+     terminal_checker.cpp
+     legacy_priority.cpp
+@@ -34,11 +34,11 @@
+ ADD_DEPENDENCIES(example frame utility)
+ TARGET_LINK_LIBRARIES(example frame utility ${Boost_LIBRARIES})
+ 
+-option(BUILD_INPUT_SAFETY_TESTS "Build src1.6.5 input safety unit tests" OFF)
++option(BUILD_INPUT_SAFETY_TESTS "Build src1.6.6 input safety unit tests" OFF)
+ if(BUILD_INPUT_SAFETY_TESTS)
+     ADD_EXECUTABLE(input_safety_tests
+         tests/input_safety_tests.cpp
+-        rdfw.cpp parser.cpp deadline_manager.cpp terminal_checker.cpp legacy_priority.cpp
++        canonical_state.cpp rdfw.cpp parser.cpp deadline_manager.cpp terminal_checker.cpp legacy_priority.cpp
+         score_evaluator.cpp candidate_plan.cpp task_group_search.cpp question_preflight.cpp)
+     TARGET_INCLUDE_DIRECTORIES(input_safety_tests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+     TARGET_LINK_LIBRARIES(input_safety_tests frame utility ${Boost_LIBRARIES})
+--- src1.6.5/candidate_plan.hpp
++++ src1.6.6/candidate_plan.hpp
+@@ -78,6 +78,7 @@
+     bool available_tasks_known = false;
+     std::vector<std::string> task_end_states;
+     std::vector<CandidateEvidence> evidence;
++    std::string debug_projected_state; // populated only when explicitly requested by tests
+     CandidatePrediction prediction;
+     std::size_t task_index;
+     std::string task_label;
+--- src1.6.5/canonical_state.cpp
++++ src1.6.6/canonical_state.cpp
+@@ -0,0 +1,157 @@
++#include "rdfw.hpp"
++#include <sstream>
++#include <algorithm>
++using namespace _home;
++
++int RDFW::FactValue(StateField field, unsigned int id) const {
++    const StateClaim claim = ResolvedState(field, id);
++    return claim.present ? claim.value : UNKNOWN;
++}
++
++int RDFW::ScoreFactLocation(unsigned int id) const {
++    // Official Stage 1 ASP at facts intentionally exclude inside propagation.
++    // This is the scoring representation of canonical location, not a planner read.
++    if (stage == 1 && id > 0)
++        return FactLocation(id)!=UNKNOWN && id < score_locations.size() ? score_locations[id] : UNKNOWN;
++    return FactLocation(id);
++}
++
++bool RDFW::IsStoredFact(unsigned int id) const {
++    return id > 0 && (FactValue(StateField::HOLD) == static_cast<int>(id) ||
++                      FactValue(StateField::PLATE) == static_cast<int>(id));
++}
++
++bool RDFW::IsNotStoredFact(unsigned int id) const {
++    if (!IsValidObjectId(id) || IsStoredFact(id)) return false;
++    const int hand = FactValue(StateField::HOLD), tray = FactValue(StateField::PLATE);
++    if (hand != UNKNOWN && tray != UNKNOWN)
++        return hand != static_cast<int>(id) && tray != static_cast<int>(id);
++    const auto inside = ResolvedState(StateField::INSIDE, id);
++    if (!inside.present) return false;
++    if (inside.value > 0) return true;
++    // A current direct observation of an outside item (or its successful
++    // placement) proves absence from storage even when initial empty slots are weak.
++    const auto loc = ResolvedState(StateField::LOCATION, id);
++    return loc.present && inside.value == NONE &&
++        (inside.source == EvidenceSource::SENSE || inside.source == EvidenceSource::ACTION_SUCCESS);
++}
++
++bool RDFW::TaskFactSatisfied(const std::string& behave, unsigned int x, unsigned int y) const {
++    if (!IsValidObjectId(x) || (y && !IsValidObjectId(y))) return false;
++    if (behave == "goto") return FactLocation(0) != UNKNOWN && FactLocation(0) == FactLocation(x);
++    if (behave == "pickup") return IsStoredFact(x);
++    if (behave == "putdown") return FactInside(x) != UNKNOWN && IsNotStoredFact(x);
++    if (behave == "open") return FactContainerState(x) == 1;
++    if (behave == "close") return FactContainerState(x) == 0;
++    if (behave == "putin") return FactInside(x) != UNKNOWN && FactInside(x) == static_cast<int>(y);
++    if (behave == "takeout") return FactInside(x) != UNKNOWN && FactInside(x) != static_cast<int>(y);
++    if (behave == "puton" || behave == "give")
++        return y && FactInside(x) == NONE && IsNotStoredFact(x) &&
++            FactLocation(x) != UNKNOWN && FactLocation(x) == FactLocation(y);
++    return false;
++}
++
++void RDFW::ApplyStateValue(StateField field, unsigned int id, int value,
++                           bool verified, EvidenceSource source) {
++    if (id >= objects.size() || !objects[id] || !EnsureEvidenceCapacity(id)) return;
++    if (field == StateField::LOCATION) {
++        objects[id]->location = value;
++        MarkDirectLocationEvidence(id, verified, source);
++    } else if (field == StateField::INSIDE) {
++        auto item = std::dynamic_pointer_cast<SmallObject>(objects[id]);
++        if (!item) return;
++        ClearContainerMembership(item);
++        item->inside = value;
++        if (value > 0) {
++            auto container = std::dynamic_pointer_cast<Container>(GetObject(value));
++            if (container) container->smallObjectsInside.push_back(item);
++        }
++        SetInsideEvidence(id, verified, source);
++    } else if (field == StateField::CONTAINER_STATE) {
++        auto container = std::dynamic_pointer_cast<Container>(objects[id]);
++        if (!container) return;
++        container->isOpen = value;
++        SetContainerEvidence(id, verified, source);
++    }
++}
++
++std::string RDFW::DebugStateSnapshot() const {
++    std::ostringstream out;
++    const auto record = [&](StateField field, unsigned int id) {
++        const auto& p = Provenance(field,id);
++        out << int(field) << ':' << id << ':' << p.resolved_value << ':'
++            << int(p.resolved_source) << ':' << p.resolved_verified << ':' << p.revision;
++        for (const auto* claim : {&p.received,&p.conflicting})
++            out << ':' << claim->present << ',' << claim->value << ',' << int(claim->source);
++        out << ':' << p.dependency_count;
++        for (unsigned int k=0; k<std::min(p.dependency_count,2u); ++k) {
++            const auto& d=p.dependencies[k];
++            out << ':' << int(d.field) << ',' << d.id << ',' << d.value << ',' << d.revision;
++        }
++        out << ':' << p.support_constraint_index << '[';
++        for (auto support : p.supporting_constraints) out << support << ',';
++        out << "];";
++    };
++    for (unsigned int id=0; id<objects.size(); ++id) {
++        record(StateField::LOCATION,id); record(StateField::INSIDE,id); record(StateField::CONTAINER_STATE,id);
++        const auto object=objects[id];
++        if (!object) { out << "null;"; continue; }
++        out << object->location << ':';
++        auto small=std::dynamic_pointer_cast<SmallObject>(object);
++        if (small) out << small->inside << ':' << small->on;
++        auto cont=std::dynamic_pointer_cast<Container>(object);
++        if (cont) { out << cont->isOpen << '['; for (auto item:cont->smallObjectsInside) out << item->id << ','; out << ']'; }
++        out << ':' << (id<objectLocationVerified.size() && objectLocationVerified[id])
++            << ':' << (id<objectInsideVerified.size() && objectInsideVerified[id])
++            << ':' << (id<containerStateVerified.size() && containerStateVerified[id])
++            << ':' << int(LocationSource(id)) << ':' << int(InsideSource(id)) << ':' << int(ContainerSource(id))
++            << ':' << (id<objectLocationInferredByMustNear.size() && objectLocationInferredByMustNear[id]) << ';';
++    }
++    record(StateField::HOLD,0); record(StateField::PLATE,0);
++    out << location << ':' << hold_id << ':' << plate_id << ':' << (hold?hold->id:0) << ':' << (plate?plate->id:0) << ';';
++    for (bool b:constraint_eligible) out << b;
++    out << ';'; for (bool b:constraint_uncertain) out << b;
++    out << ';'; for (int v:score_locations) out << v << ',';
++    return out.str();
++}
++
++std::vector<std::string> RDFW::DebugStateConsistency() const {
++    std::vector<std::string> errors;
++    const auto issue = [&](unsigned id, const char* message) { errors.push_back(std::to_string(id)+":"+message); };
++    const auto check = [&](StateField f, unsigned id, int legacy, bool verified, EvidenceSource source) {
++        const auto& p=Provenance(f,id); const auto fact=ResolvedState(f,id);
++        if (p.resolved_verified != verified || p.resolved_source != source) issue(id,"compatibility metadata");
++        if (p.resolved_verified && p.resolved_value != UNKNOWN && legacy != p.resolved_value) issue(id,"resolved/legacy value");
++        if (p.resolved_verified && p.resolved_value != UNKNOWN && !ResolutionEligible(f,id)) issue(id,"invalid resolution");
++        if (fact.present && (fact.value==UNKNOWN || !DependenciesCurrent(f,id))) issue(id,"invalid fact");
++        if (p.dependency_count>2) issue(id,"dependency bound");
++    };
++    for (unsigned id=0; id<objects.size(); ++id) {
++        if (!objects[id]) continue;
++        check(StateField::LOCATION,id,objects[id]->location,id<objectLocationVerified.size() && objectLocationVerified[id],LocationSource(id));
++        auto small=std::dynamic_pointer_cast<SmallObject>(objects[id]);
++        if (small) check(StateField::INSIDE,id,small->inside,id<objectInsideVerified.size() && objectInsideVerified[id],InsideSource(id));
++        auto cont=std::dynamic_pointer_cast<Container>(objects[id]);
++        if (cont) check(StateField::CONTAINER_STATE,id,cont->isOpen,id<containerStateVerified.size() && containerStateVerified[id],ContainerSource(id));
++        if (IsStoredFact(id)) {
++            if (!small || FactInside(id)!=NONE || FactLocation(id)!=FactLocation(0)) issue(id,"stored relation");
++        }
++        if (small && FactInside(id)>0) {
++            auto container=std::dynamic_pointer_cast<Container>(GetObject(FactInside(id)));
++            if (!container) issue(id,"inside target");
++            else if (FactLocation(id)!=UNKNOWN && FactLocation(container->id)!=UNKNOWN && FactLocation(id)!=FactLocation(container->id)) issue(id,"inside location");
++        }
++        if (cont) for (auto item:cont->smallObjectsInside)
++            if (!item || item->inside!=cont->id) issue(id,"membership cache");
++    }
++    for (StateField f:{StateField::HOLD,StateField::PLATE}) {
++        const int legacy=f==StateField::HOLD?hold_id:plate_id;
++        const auto ptr=f==StateField::HOLD?hold:plate;
++        if ((ptr?ptr->id:NONE)!=(legacy==UNKNOWN?NONE:legacy)) issue(0,"storage pointer");
++        const auto& p=Provenance(f,0);
++        check(f,0,legacy,p.resolved_verified,p.resolved_source);
++    }
++    if (holdProvenance.resolved_verified && plateProvenance.resolved_verified &&
++        holdProvenance.resolved_value>0 && holdProvenance.resolved_value==plateProvenance.resolved_value) issue(0,"exclusive storage");
++    return errors;
++}
+--- src1.6.5/legacy_priority.cpp
++++ src1.6.6/legacy_priority.cpp
+@@ -21,39 +21,31 @@
+     return TerminalStatus::SATISFIED;
+ }
+ 
+-bool isLocationKnown(const RDFW& world, const std::shared_ptr<Object>& object) {
+-    if (!object || object->location == _home::UNKNOWN) return false;
+-    if (object->id == 0) return world.location != _home::UNKNOWN;
+-    return world.stage == 1 || world.IsLocationVerified(object->id);
+-}
+-
+-bool isInsideKnown(const RDFW& world, const std::shared_ptr<SmallObject>& object) {
+-    return object && object->inside != _home::UNKNOWN &&
+-           (world.stage == 1 || world.IsInsideVerified(object->id));
+-}
+-
+-bool isContainerStateKnown(const RDFW& world,
+-                           const std::shared_ptr<Container>& container) {
+-    return container && (container->isOpen == 0 || container->isOpen == 1) &&
+-           (world.stage == 1 || world.IsContainerStateVerified(container->id));
+-}
+-
++bool isLocationKnown(const RDFW& w, const std::shared_ptr<Object>& o, bool h) {
++    return o && (h?o->location:w.FactLocation(o->id))!=UNKNOWN;
++}
++bool isInsideKnown(const RDFW& w, const std::shared_ptr<SmallObject>& o, bool h) {
++    return o && (h?o->inside:w.FactInside(o->id))!=UNKNOWN;
++}
++bool isContainerStateKnown(const RDFW& w, const std::shared_ptr<Container>& o, bool h) {
++    return o && (h?o->isOpen:w.FactContainerState(o->id))!=UNKNOWN;
++}
+ TerminalStatus boolStatus(bool value) {
+     return value ? TerminalStatus::SATISFIED : TerminalStatus::UNSATISFIED;
+ }
+ 
+ TerminalStatus evaluatePair(const RDFW& world, const std::string& behave,
+                             const std::shared_ptr<Object>& x,
+-                            const std::shared_ptr<Object>& y) {
++                            const std::shared_ptr<Object>& y, bool hypothesis) {
+     if (!x) return TerminalStatus::UNKNOWN;
+ 
+     if (behave == "goto" || behave == "move") {
+-        if (world.location != _home::UNKNOWN &&
+-            world.IsAbsentFromSensedLocation(x->id, world.location))
+-            return TerminalStatus::UNSATISFIED;
+-        if (!isLocationKnown(world, x) || world.location == _home::UNKNOWN)
+-            return TerminalStatus::UNKNOWN;
+-        return boolStatus(world.location == x->location);
++        if (!hypothesis && (hypothesis?world.location:world.FactLocation(0)) != _home::UNKNOWN &&
++            world.IsAbsentFromSensedLocation(x->id, (hypothesis?world.location:world.FactLocation(0))))
++            return TerminalStatus::UNSATISFIED;
++        if (!isLocationKnown(world, x, hypothesis) || (hypothesis?world.location:world.FactLocation(0)) == _home::UNKNOWN)
++            return TerminalStatus::UNKNOWN;
++        return boolStatus((hypothesis?world.location:world.FactLocation(0)) == (hypothesis?x->location:world.FactLocation(x->id)));
+     }
+ 
+     if (behave == "open" || behave == "opened" ||
+@@ -61,77 +53,80 @@
+         const std::shared_ptr<Object> target = y ? y : x;
+         const std::shared_ptr<Container> container =
+             std::dynamic_pointer_cast<Container>(target);
+-        if (!isContainerStateKnown(world, container)) return TerminalStatus::UNKNOWN;
++        if (!isContainerStateKnown(world, container, hypothesis)) return TerminalStatus::UNKNOWN;
+         const bool expect_open = behave == "open" || behave == "opened";
+-        return boolStatus(static_cast<bool>(container->isOpen) == expect_open);
++        return boolStatus(static_cast<bool>((hypothesis?container->isOpen:world.FactContainerState(container->id))) == expect_open);
+     }
+ 
+     if (behave == "pickup") {
+-        const bool stored = world.hold_id == x->id || world.plate_id == x->id;
+-        if (world.stage == 2 && !world.IsInsideVerified(x->id))
+-            return TerminalStatus::UNKNOWN;
++        const bool stored = (hypothesis?(world.hold_id==x->id || world.plate_id==x->id):world.IsStoredFact(x->id));
++        if (!hypothesis && world.stage == 2 && !world.IsInsideVerified(x->id))
++            return TerminalStatus::UNKNOWN;
++        if (!hypothesis && !stored && !world.IsNotStoredFact(x->id)) return TerminalStatus::UNKNOWN;
+         return boolStatus(stored);
+     }
+ 
+     if (behave == "putdown") {
+         const std::shared_ptr<SmallObject> small =
+             std::dynamic_pointer_cast<SmallObject>(x);
+-        if (!isInsideKnown(world, small)) return TerminalStatus::UNKNOWN;
+-        if (world.hold_id == x->id || world.plate_id == x->id)
+-            return TerminalStatus::UNSATISFIED;
+-        if (small->inside != _home::NONE) return TerminalStatus::UNSATISFIED;
+-        if (!isLocationKnown(world, x)) return TerminalStatus::UNKNOWN;
++        if (!isInsideKnown(world, small, hypothesis)) return TerminalStatus::UNKNOWN;
++        if ((hypothesis?(world.hold_id==x->id || world.plate_id==x->id):world.IsStoredFact(x->id)))
++            return TerminalStatus::UNSATISFIED;
++        if ((hypothesis?small->inside:world.FactInside(small->id)) != _home::NONE) return TerminalStatus::UNSATISFIED;
++        if (!isLocationKnown(world, x, hypothesis)) return TerminalStatus::UNKNOWN;
+         return TerminalStatus::SATISFIED;
+     }
+ 
+     if (behave == "putin" || behave == "inside" || behave == "in") {
+         const std::shared_ptr<SmallObject> small =
+             std::dynamic_pointer_cast<SmallObject>(x);
+-        if (!small || !y || !isInsideKnown(world, small)) return TerminalStatus::UNKNOWN;
+-        return boolStatus(small->inside == y->id);
++        if (!small || !y || !isInsideKnown(world, small, hypothesis)) return TerminalStatus::UNKNOWN;
++        return boolStatus((hypothesis?small->inside:world.FactInside(small->id)) == y->id);
+     }
+ 
+     if (behave == "takeout") {
+         const std::shared_ptr<SmallObject> small =
+             std::dynamic_pointer_cast<SmallObject>(x);
+-        if (!small || !y || !isInsideKnown(world, small)) return TerminalStatus::UNKNOWN;
+-        return boolStatus(small->inside != y->id);
++        if (!small || !y || !isInsideKnown(world, small, hypothesis)) return TerminalStatus::UNKNOWN;
++        return boolStatus((hypothesis?small->inside:world.FactInside(small->id)) != y->id);
+     }
+ 
+     if (behave == "puton" || behave == "on" || behave == "near" ||
+         behave == "nextto" || behave == "give") {
+         std::shared_ptr<Object> target = y;
+         if (behave == "give") target = world.human;
+-        if (target && isLocationKnown(world, x) &&
+-            world.IsAbsentFromSensedLocation(target->id, x->location))
+-            return TerminalStatus::UNSATISFIED;
+-        if (target && isLocationKnown(world, target) &&
+-            world.IsAbsentFromSensedLocation(x->id, target->location))
+-            return TerminalStatus::UNSATISFIED;
+-        if (!target || !isLocationKnown(world, x) || !isLocationKnown(world, target))
++        if (!hypothesis && target && isLocationKnown(world, x, hypothesis) &&
++            world.IsAbsentFromSensedLocation(target->id, (hypothesis?x->location:world.FactLocation(x->id))))
++            return TerminalStatus::UNSATISFIED;
++        if (!hypothesis && target && isLocationKnown(world, target, hypothesis) &&
++            world.IsAbsentFromSensedLocation(x->id, (hypothesis?target->location:world.FactLocation(target->id))))
++            return TerminalStatus::UNSATISFIED;
++        if (!target || !isLocationKnown(world, x, hypothesis) || !isLocationKnown(world, target, hypothesis))
+             return TerminalStatus::UNKNOWN;
+ 
+         if (behave == "puton" || behave == "on" || behave == "give") {
+             const std::shared_ptr<SmallObject> small =
+                 std::dynamic_pointer_cast<SmallObject>(x);
+-            if (!isInsideKnown(world, small)) return TerminalStatus::UNKNOWN;
+-            if (world.hold_id == x->id || world.plate_id == x->id)
++            if (!isInsideKnown(world, small, hypothesis)) return TerminalStatus::UNKNOWN;
++            if ((hypothesis?(world.hold_id==x->id || world.plate_id==x->id):world.IsStoredFact(x->id)))
+                 return TerminalStatus::UNSATISFIED;
+-            if (small->inside != _home::NONE) return TerminalStatus::UNSATISFIED;
++            if ((hypothesis?small->inside:world.FactInside(small->id)) != _home::NONE) return TerminalStatus::UNSATISFIED;
+         }
+-        return boolStatus(x->location == target->location);
++        return boolStatus((hypothesis?x->location:world.FactLocation(x->id)) == (hypothesis?target->location:world.FactLocation(target->id)));
+     }
+ 
+     if (behave == "plate") {
+-        if (world.stage == 2 && !world.IsInsideVerified(x->id))
+-            return TerminalStatus::UNKNOWN;
+-        return boolStatus(world.plate_id == x->id);
++        if (hypothesis) return boolStatus(world.plate_id==x->id);
++        if (!hypothesis && world.stage == 2 && !world.IsInsideVerified(x->id))
++            return TerminalStatus::UNKNOWN;
++        return (hypothesis?world.plate_id:world.FactValue(StateField::PLATE))==UNKNOWN && !world.IsNotStoredFact(x->id) ? TerminalStatus::UNKNOWN : boolStatus((hypothesis?world.plate_id:world.FactValue(StateField::PLATE)) == x->id);
+     }
+ 
+     if (behave == "hold") {
+-        if (world.stage == 2 && !world.IsInsideVerified(x->id))
+-            return TerminalStatus::UNKNOWN;
+-        return boolStatus(world.hold_id == x->id);
++        if (hypothesis) return boolStatus(world.hold_id==x->id);
++        if (!hypothesis && world.stage == 2 && !world.IsInsideVerified(x->id))
++            return TerminalStatus::UNKNOWN;
++        return (hypothesis?world.hold_id:world.FactValue(StateField::HOLD))==UNKNOWN && !world.IsNotStoredFact(x->id) ? TerminalStatus::UNKNOWN : boolStatus((hypothesis?world.hold_id:world.FactValue(StateField::HOLD)) == x->id);
+     }
+ 
+     return TerminalStatus::UNKNOWN;
+@@ -147,7 +142,7 @@
+ } // namespace
+ 
+ TerminalStatus LegacyPriorityChecker::evaluatePredicate(
+-    const RDFW& world, const Instruction& instruction) const {
++    const RDFW& world, const Instruction& instruction, bool hypothesis) const {
+     if (!instruction.IsUsable() || instruction.X.empty())
+         return TerminalStatus::UNKNOWN;
+ 
+@@ -156,13 +151,13 @@
+         if (instruction.Y.empty()) {
+             aggregate = combineStatus(
+                 aggregate,
+-                evaluatePair(world, instruction.behave, instruction.X[xi], nullptr));
++                evaluatePair(world, instruction.behave, instruction.X[xi], nullptr, hypothesis));
+         } else {
+             for (std::size_t yi = 0; yi < instruction.Y.size(); ++yi) {
+                 aggregate = combineStatus(
+                     aggregate,
+                     evaluatePair(world, instruction.behave,
+-                                 instruction.X[xi], instruction.Y[yi]));
++                                 instruction.X[xi], instruction.Y[yi], hypothesis));
+             }
+         }
+     }
+@@ -170,24 +165,24 @@
+ }
+ 
+ TerminalStatus LegacyPriorityChecker::evaluateTask(
+-    const RDFW& world, const Instruction& task) const {
+-    return evaluatePredicate(world, task);
++    const RDFW& world, const Instruction& task, bool hypothesis) const {
++    return evaluatePredicate(world, task, hypothesis);
+ }
+ 
+ TerminalStatus LegacyPriorityChecker::evaluateConstraint(
+-    const RDFW& world, const Instruction& constraint, ConstraintKind kind) const {
++    const RDFW& world, const Instruction& constraint, ConstraintKind kind, bool hypothesis) const {
+     // A prohibited action is a trajectory property.  A current World State cannot
+     // prove that it was never executed, so deterministic terminal evaluation is UNKNOWN.
+     if (kind == ConstraintKind::FORBIDDEN_TASK_STATE) return TerminalStatus::UNKNOWN;
+-    const TerminalStatus predicate = evaluatePredicate(world, constraint);
++    const TerminalStatus predicate = evaluatePredicate(world, constraint, hypothesis);
+     return kind == ConstraintKind::MUST_NOT_HOLD ? invertStatus(predicate) : predicate;
+ }
+ 
+-TerminalSummary LegacyPriorityChecker::evaluateAll(const RDFW& world) const {
++TerminalSummary LegacyPriorityChecker::evaluateAll(const RDFW& world, bool hypothesis) const {
+     TerminalSummary result;
+     result.goals.reserve(world.tasks.size());
+     for (std::size_t i = 0; i < world.tasks.size(); ++i) {
+-        const TerminalStatus status = evaluateTask(world, world.tasks[i]);
++        const TerminalStatus status = evaluateTask(world, world.tasks[i], hypothesis);
+         result.goals.push_back(status);
+         countStatus(status, result.satisfied_goals,
+                     result.unsatisfied_goals, result.unknown_goals);
+@@ -201,7 +196,7 @@
+         world.not_taskConstrains.size();
+     for (std::size_t i = 0; i < world.not_infoConstrains.size(); ++i) {
+         const TerminalStatus status = evaluateConstraint(
+-            world, world.not_infoConstrains[i], ConstraintKind::MUST_NOT_HOLD);
++            world, world.not_infoConstrains[i], ConstraintKind::MUST_NOT_HOLD, hypothesis);
+         result.constraints.push_back(status);
+         const bool eligible = !has_ledger || world.constraint_eligible[result.constraints.size()-1];
+         result.constraint_eligible.push_back(eligible);
+@@ -212,7 +207,7 @@
+     }
+     for (std::size_t i = 0; i < world.notnot_infoConstrains.size(); ++i) {
+         const TerminalStatus status = evaluateConstraint(
+-            world, world.notnot_infoConstrains[i], ConstraintKind::MUST_HOLD);
++            world, world.notnot_infoConstrains[i], ConstraintKind::MUST_HOLD, hypothesis);
+         result.constraints.push_back(status);
+         const bool eligible = !has_ledger || world.constraint_eligible[result.constraints.size()-1];
+         result.constraint_eligible.push_back(eligible);
+@@ -223,7 +218,7 @@
+     }
+     for (std::size_t i = 0; i < world.not_taskConstrains.size(); ++i) {
+         const TerminalStatus status = evaluateConstraint(
+-            world, world.not_taskConstrains[i], ConstraintKind::FORBIDDEN_TASK_STATE);
++            world, world.not_taskConstrains[i], ConstraintKind::FORBIDDEN_TASK_STATE, hypothesis);
+         result.constraints.push_back(status);
+         const bool eligible = !has_ledger || world.constraint_eligible[result.constraints.size()-1];
+         result.constraint_eligible.push_back(eligible);
+--- src1.6.5/legacy_priority.hpp
++++ src1.6.6/legacy_priority.hpp
+@@ -6,9 +6,9 @@
+ // It is neither an official score estimate nor a lower/upper bound.
+ class LegacyPriorityChecker {
+ public:
+-    TerminalStatus evaluatePredicate(const RDFW&, const Instruction&) const;
+-    TerminalStatus evaluateTask(const RDFW&, const Instruction&) const;
+-    TerminalStatus evaluateConstraint(const RDFW&, const Instruction&, ConstraintKind) const;
+-    TerminalSummary evaluateAll(const RDFW&) const;
++    TerminalStatus evaluatePredicate(const RDFW&, const Instruction&, bool hypothesis = false) const;
++    TerminalStatus evaluateTask(const RDFW&, const Instruction&, bool hypothesis = false) const;
++    TerminalStatus evaluateConstraint(const RDFW&, const Instruction&, ConstraintKind, bool hypothesis = false) const;
++    TerminalSummary evaluateAll(const RDFW&, bool hypothesis = false) const;
+ };
+ }
+--- src1.6.5/rdfw.cpp
++++ src1.6.6/rdfw.cpp
+@@ -272,33 +272,35 @@
+     std::vector<CandidateEvidence> evidence;
+     for (std::size_t i = 0; i < objects.size(); ++i) {
+         if (!objects[i]) continue;
+-        if (i < objectLocationSource.size() &&
+-            objectLocationSource[i] != EvidenceSource::UNKNOWN) {
++        if (Provenance(StateField::LOCATION,i).resolved_source != EvidenceSource::UNKNOWN) {
+             CandidateEvidence fact;
+             fact.object_id = i;
+             fact.fact = "location";
+-            fact.source = EvidenceName(objectLocationSource[i]);
++            fact.source = EvidenceName(Provenance(StateField::LOCATION,i).resolved_source);
+             fact.verified = IsLocationVerified(static_cast<unsigned int>(i));
+             evidence.push_back(fact);
+         }
+-        if (i < objectInsideSource.size() &&
+-            objectInsideSource[i] != EvidenceSource::UNKNOWN) {
++        if (Provenance(StateField::INSIDE,i).resolved_source != EvidenceSource::UNKNOWN) {
+             CandidateEvidence fact;
+             fact.object_id = i;
+             fact.fact = "inside";
+-            fact.source = EvidenceName(objectInsideSource[i]);
++            fact.source = EvidenceName(Provenance(StateField::INSIDE,i).resolved_source);
+             fact.verified = IsInsideVerified(static_cast<unsigned int>(i));
+             evidence.push_back(fact);
+         }
+-        if (i < containerStateSource.size() &&
+-            containerStateSource[i] != EvidenceSource::UNKNOWN) {
++        if (Provenance(StateField::CONTAINER_STATE,i).resolved_source != EvidenceSource::UNKNOWN) {
+             CandidateEvidence fact;
+             fact.object_id = i;
+             fact.fact = "container_state";
+-            fact.source = EvidenceName(containerStateSource[i]);
++            fact.source = EvidenceName(Provenance(StateField::CONTAINER_STATE,i).resolved_source);
+             fact.verified = IsContainerStateVerified(static_cast<unsigned int>(i));
+             evidence.push_back(fact);
+         }
++    }
++    for (StateField f : {StateField::HOLD,StateField::PLATE}) {
++        CandidateEvidence e; e.object_id=0; e.fact=f==StateField::HOLD?"hold":"plate";
++        e.source=EvidenceName(Provenance(f,0).resolved_source); e.verified=ResolvedState(f,0).present;
++        evidence.push_back(e);
+     }
+     return evidence;
+ }
+@@ -662,6 +664,7 @@
+     const int legacy_after_score = preserve_priority ? score_evaluator.snapshot(legacy_after).deterministic_base_score : 0;
+     const int projected_location = location;
+     const std::vector<CandidateEvidence> projected_evidence = CaptureCandidateEvidence();
++    const std::string debug_projected_state = debug_capture_projection ? DebugStateSnapshot() : std::string();
+     restore_state();
+     restore_guard.dismiss();
+ 
+@@ -677,6 +680,7 @@
+     plan.generated_ms = static_cast<std::size_t>(deadline_manager.elapsed().count());
+     plan.world_revision = world_revision;
+     plan.evidence = projected_evidence;
++    plan.debug_projected_state = debug_projected_state;
+     plan.task_indices = group;
+     plan.legacy_priority_known = preserve_priority;
+     plan.legacy_before = legacy_before;
+@@ -1028,10 +1032,7 @@
+     if (priority_known) {
+         legacy_current = score_evaluator.snapshot(LegacyPriorityChecker().evaluateAll(*this));
+         legacy_incumbent = legacy_current.deterministic_base_score;
+-        const int original_stage = stage;
+-        stage = 1;
+-        hypothesis = LegacyPriorityChecker().evaluateAll(*this);
+-        stage = original_stage;
++        hypothesis = LegacyPriorityChecker().evaluateAll(*this,true); // planning priority only
+     }
+     auto conservativeScore = [&](const CandidatePlan& plan) {
+         if (!plan.legacy_priority_known) return plan.score_after.deterministic_base_score;
+@@ -1256,6 +1257,7 @@
+ 
+ std::string RDFW::PlanStateSignature() const {
+     std::ostringstream out;
++    out << DebugStateSnapshot() << "|canonical|";
+     out << location << ',' << hold_id << ',' << plate_id << ','
+         << solved_task_num << ',' << isPass << ',' << isKeepConstrain << ','
+         << isMultiGotoMode << ',' << world_revision << ';';
+@@ -1729,7 +1731,7 @@
+ 
+ void RDFW::Plan() // 改
+ {
+-    LOG("[PlannerVersion] 1.6.5");
++    LOG("[PlannerVersion] 1.6.6");
+     deadline_manager.reset(deadline_manager.timeLimit());
+     StageTiming::get().reset();
+     ScopeExit timing_report([this]() { StageTiming::get().report(deadline_manager.elapsed().count(), deadline_manager.remaining().count()); });
+@@ -1939,9 +1941,7 @@
+         // Interpret the initial description as a hypothesis only.  A goal
+         // that looks complete there but is unverified can make stopping worth
+         // more than the pessimistic score suggests.
+-        stage = 1;
+-        const TerminalSummary initial_hypothesis = terminal_checker.evaluateAll(*this);
+-        stage = 2;
++        const TerminalSummary initial_hypothesis = terminal_checker.evaluatePlanningHypothesis(*this);
+         bool disputed_initial_reward = false;
+         for (std::size_t i = 0; i < verified.goals.size(); ++i)
+             if (verified.goals[i] == TerminalStatus::UNKNOWN &&
+@@ -3071,6 +3071,11 @@
+     Robot::SetHold(item);
+     const bool verified = stage == 1 || source == EvidenceSource::ACTION_SUCCESS;
+     UpdateProvenance(StateField::HOLD, 0, hold_id, verified, source);
++    if (item) {
++        ClearContainerMembership(item);
++        MarkDirectLocationEvidence(item->id, verified, source);
++        SetInsideEvidence(item->id, verified, source);
++    }
+     if (old_plate != plate_id)
+         UpdateProvenance(StateField::PLATE, 0, plate_id, verified, source);
+ }
+@@ -3082,6 +3087,11 @@
+     if (old_hold != hold_id)
+         UpdateProvenance(StateField::HOLD, 0, hold_id, verified, source);
+     UpdateProvenance(StateField::PLATE, 0, plate_id, verified, source);
++    if (item) {
++        ClearContainerMembership(item);
++        MarkDirectLocationEvidence(item->id, verified, source);
++        SetInsideEvidence(item->id, verified, source);
++    }
+ }
+ 
+ bool RDFW::HasContradictoryEvidence(StateField field, unsigned int id) const {
+@@ -3117,6 +3127,9 @@
+     p.dependency_count = 0;
+     p.support_constraint_index = UNKNOWN;
+     p.supporting_constraints.clear();
++    if (field == StateField::LOCATION) { objectLocationVerified[id]=false; objectLocationSource[id]=EvidenceSource::UNKNOWN; }
++    if (field == StateField::INSIDE) { objectInsideVerified[id]=false; objectInsideSource[id]=EvidenceSource::UNKNOWN; }
++    if (field == StateField::CONTAINER_STATE) { containerStateVerified[id]=false; containerStateSource[id]=EvidenceSource::UNKNOWN; }
+ }
+ 
+ void RDFW::UpdateProvenance(StateField field, unsigned int id, int value,
+@@ -3135,11 +3148,20 @@
+     p.dependency_count = 0;
+     p.support_constraint_index = UNKNOWN;
+     p.supporting_constraints.clear();
++    // Historical contradictions are retained; a strong new observation resolves
++    // the current state. Weak conflicting claims cannot independently resolve it.
++    if (!verified && stage == 2 && !derived && HasContradictoryEvidence(field,id)) {
++        value = UNKNOWN;
++    }
+     if (p.resolved_value != value || p.resolved_source != source ||
+         p.resolved_verified != verified || p.revision == 0) ++p.revision;
+     p.resolved_value = value;
+     p.resolved_source = source;
+-    p.resolved_verified = verified;
++    p.resolved_verified = verified && value != UNKNOWN && source != EvidenceSource::CONSTRAINT_HEURISTIC;
++    // Compatibility arrays mirror metadata; they never grant fact eligibility.
++    if (field == StateField::LOCATION) { objectLocationVerified[id]=p.resolved_verified; objectLocationSource[id]=source; }
++    if (field == StateField::INSIDE) { objectInsideVerified[id]=p.resolved_verified; objectInsideSource[id]=source; }
++    if (field == StateField::CONTAINER_STATE) { containerStateVerified[id]=p.resolved_verified; containerStateSource[id]=source; }
+ }
+ 
+ void RDFW::DependOn(StateField derived_field, unsigned int derived_id,
+@@ -3185,11 +3207,41 @@
+             p.supporting_constraints.push_back(not_infoConstrains.size() + i);
+ }
+ 
++bool RDFW::ResolutionEligible(StateField field, unsigned int id) const {
++    if (int(field)<int(StateField::LOCATION) || int(field)>int(StateField::PLATE)) return false;
++    if ((field == StateField::HOLD || field == StateField::PLATE) ? id != 0 :
++        (id >= objects.size() || !objects[id])) return false;
++    const StateProvenance& p = Provenance(field, id);
++    if (field == StateField::INSIDE && !dynamic_pointer_cast<SmallObject>(objects[id])) return false;
++    if (field == StateField::CONTAINER_STATE && !dynamic_pointer_cast<Container>(objects[id])) return false;
++    // Domain and local exclusivity checks are constant time. Corrupt or
++    // contradictory metadata cannot turn a non-state value into a fact.
++    if (field == StateField::LOCATION && (p.resolved_value < 0 || p.resolved_value > MAX_LOCATION_ID)) return false;
++    if (field == StateField::CONTAINER_STATE && p.resolved_value != 0 && p.resolved_value != 1) return false;
++    if (field == StateField::INSIDE && (p.resolved_value < 0 || p.resolved_value > int(MAX_OBJECT_ID))) return false;
++    if (field == StateField::INSIDE && p.resolved_value > 0 &&
++        (!IsValidObjectId(p.resolved_value) || !dynamic_pointer_cast<Container>(objects[p.resolved_value]))) return false;
++    if ((field == StateField::HOLD || field == StateField::PLATE) && (p.resolved_value < 0 || p.resolved_value > int(MAX_OBJECT_ID))) return false;
++    if ((field == StateField::HOLD || field == StateField::PLATE) && p.resolved_value > 0 &&
++        (!IsValidObjectId(p.resolved_value) || !dynamic_pointer_cast<SmallObject>(objects[p.resolved_value]))) return false;
++    if ((field == StateField::HOLD || field == StateField::PLATE) && p.resolved_value > 0) {
++        const auto& other = field == StateField::HOLD ? plateProvenance : holdProvenance;
++        if (other.resolved_verified && other.resolved_value == p.resolved_value) return false;
++    }
++    if (field == StateField::INSIDE && p.resolved_value > 0 &&
++        ((holdProvenance.resolved_verified && holdProvenance.resolved_value == int(id)) ||
++         (plateProvenance.resolved_verified && plateProvenance.resolved_value == int(id)))) return false;
++    if (p.resolved_source == EvidenceSource::UNKNOWN ||
++        p.resolved_source == EvidenceSource::CONSTRAINT_HEURISTIC) return false;
++    if (!p.resolved_verified || p.resolved_value == UNKNOWN) return false;
++    return true;
++}
++
+ StateClaim RDFW::ResolvedState(StateField field, unsigned int id) const {
+-    const StateProvenance& p = Provenance(field, id);
+-    if (!p.resolved_verified || p.resolved_value == UNKNOWN ||
+-        !DependenciesCurrent(field, id)) return StateClaim();
+-    return StateClaim(p.resolved_value, p.resolved_source, true);
++    StageTimer timer(StageTiming::CANONICAL_QUERY);
++    if (!ResolutionEligible(field,id) || !DependenciesCurrent(field,id)) return StateClaim();
++    const auto& p=Provenance(field,id);
++    return StateClaim(p.resolved_value,p.resolved_source,true);
+ }
+ 
+ bool RDFW::DependenciesCurrent(StateField field, unsigned int id) const {
+@@ -3200,12 +3252,16 @@
+                                     unsigned int depth) const {
+     if (depth > 8) return false;
+     const StateProvenance& p = Provenance(field, id);
++    if (p.dependency_count > 2) return false;
++    const std::size_t constraint_count = not_infoConstrains.size() + notnot_infoConstrains.size() + not_taskConstrains.size();
+     for (const std::size_t index : p.supporting_constraints) {
++        if (index >= constraint_count) return false;
+         if ((index < constraint_eligible.size() && !constraint_eligible[index]) ||
+             (index < constraint_uncertain.size() && constraint_uncertain[index])) return false;
+     }
+     if (p.support_constraint_index >= 0) {
+         const std::size_t index = static_cast<std::size_t>(p.support_constraint_index);
++        if (index >= constraint_count) return false;
+         if ((index < constraint_eligible.size() && !constraint_eligible[index]) ||
+             (index < constraint_uncertain.size() && constraint_uncertain[index]))
+             return false;
+@@ -3213,7 +3269,8 @@
+     for (unsigned int i = 0; i < p.dependency_count; ++i) {
+         const StateDependency& d = p.dependencies[i];
+         const StateProvenance& support = Provenance(d.field, d.id);
+-        if (support.revision != d.revision || support.resolved_value != d.value)
++        if (!ResolutionEligible(d.field,d.id) ||
++            support.revision != d.revision || support.resolved_value != d.value)
+             return false;
+         if (!DependenciesCurrentDepth(d.field, d.id, depth + 1)) return false;
+     }
+@@ -3273,18 +3330,15 @@
+ }
+ 
+ bool RDFW::IsLocationVerified(unsigned int id) const {
+-    return id < objectLocationVerified.size() && objectLocationVerified[id] &&
+-        DependenciesCurrent(StateField::LOCATION, id);
++    return ResolvedState(StateField::LOCATION, id).present;
+ }
+ 
+ bool RDFW::IsInsideVerified(unsigned int id) const {
+-    return id < objectInsideVerified.size() && objectInsideVerified[id] &&
+-        DependenciesCurrent(StateField::INSIDE, id);
++    return ResolvedState(StateField::INSIDE, id).present;
+ }
+ 
+ bool RDFW::IsContainerStateVerified(unsigned int id) const {
+-    return id < containerStateVerified.size() && containerStateVerified[id] &&
+-        DependenciesCurrent(StateField::CONTAINER_STATE, id);
++    return ResolvedState(StateField::CONTAINER_STATE, id).present;
+ }
+ 
+ bool RDFW::IsAbsentFromSensedLocation(unsigned int id, int loc) const {
+@@ -3424,7 +3478,7 @@
+         if (hold_id != NONE && !PutDown(hold_id)) return false;
+         return FromPlate(a);
+         }
+-       else if(hold_id==a) return true;
++       else if(FactValue(StateField::HOLD)==static_cast<int>(a)) return true;
+     if (hold_id != NONE && !PutDown(hold_id)) return false;
+     if(location!=target_small->location && !Move(target_small->location)) return false;
+     if(target_small->inside==NONE) return PickUp(a);
+@@ -3440,12 +3494,12 @@
+     }
+     //这是stage2的逻辑
+     if (hold_id == static_cast<int>(a)) {
+-        if (IsInsideVerified(a)) return true;
++        if (FactValue(StateField::HOLD) == static_cast<int>(a)) return true;
+         // 初始 hold 事实可能是错的。用一次可观察动作建立本地事实；失败则清除猜测。
+         if (PutDown(a)) return HoldSmallObject(a);
+         SetHold(nullptr, EvidenceSource::ACTION_FAILURE);
+     }
+-    if (plate_id == static_cast<int>(a) && !IsInsideVerified(a)) {
++    if (plate_id == static_cast<int>(a) && FactValue(StateField::PLATE) != static_cast<int>(a)) {
+         if (FromPlate(a)) return true;
+         SetPlate(nullptr, EvidenceSource::ACTION_FAILURE);
+     }
+@@ -3505,8 +3559,7 @@
+                      }
+                      else {
+                          if (plate_id == UNKNOWN && FromPlate(a)) return 1;
+-                         target_small->location = UNKNOWN;
+-                         MarkDirectLocationEvidence(a, false, EvidenceSource::ACTION_FAILURE);
++                         ApplyStateValue(StateField::LOCATION,a,UNKNOWN,false,EvidenceSource::ACTION_FAILURE);
+                          if (t >= 2) return 0;
+                          GetSmallObjectStatus(a);
+                          if (!IsKeepingGoing(task_index)) return 0;
+@@ -3561,7 +3614,7 @@
+ 
+         }
+     }
+-    return 1;
++    return FactValue(StateField::HOLD)==static_cast<int>(a);
+ }
+ 
+ // 从容器拿出物体的逻辑。显式结果类型避免数字返回码在调用处被误解。
+@@ -3573,7 +3626,7 @@
+     auto target_cont = dynamic_pointer_cast<Container>(objects[cont]);
+     if (!target_cont) return TakeOutResult::NeedContainerLocation;
+     auto verified_absent_from_open_container = [&]() -> bool {
+-        if (!target_cont->isOpen || !IsContainerStateVerified(cont)) return false;
++        if (FactContainerState(cont) != 1) return false;
+         SenseCurrentLocationOnly(true);
+         const bool absent = HasObjectAtLocation(location, cont) &&
+                             !HasObjectAtLocation(location, small);
+@@ -3637,13 +3690,13 @@
+     if (!IsValidObjectId(static_cast<int>(a)) ||
+         !dynamic_pointer_cast<SmallObject>(objects[a])) return false;
+     if(HasRequestedTask("putdown", a)){
+-        if(hold_id==a||plate_id==a) return true;
++        if(TaskFactSatisfied("pickup",a)) return true;
+         else {
+             cout<<"there is putdown task,no need to do this!"<<endl;
+             return false;
+         }
+     }
+-    if(hold_id==a ||plate_id==a) return true;
++    if(TaskFactSatisfied("pickup",a)) return true;
+     else return HoldSmallObject(a);
+ }
+ 
+@@ -3652,7 +3705,7 @@
+     if (!IsValidObjectId(static_cast<int>(a)) ||
+         !dynamic_pointer_cast<SmallObject>(objects[a])) return false;
+     if(HasRequestedTask("pickup", a)){
+-        if(hold_id!=a&&plate_id!=a) return true;
++        if(TaskFactSatisfied("putdown",a)) return true;
+         else {
+             cout<<"there is pickup task,no need to do this!"<<endl;
+             return false;
+@@ -3685,8 +3738,8 @@
+     else {
+         auto small = dynamic_pointer_cast<SmallObject>(objects[a]);
+         if (!small) return false;
+-        if (stage == 1 && small->inside == NONE) return true;
+-        if (stage == 2 && IsInsideVerified(a) && IsLocationVerified(a) && small->inside == NONE)
++        if (stage == 1 && TaskFactSatisfied("putdown",a)) return true;
++        if (stage == 2 && TaskFactSatisfied("putdown",a) && FactLocation(a) != UNKNOWN)
+             return true;
+         if (!HoldSmallObject(a)) return false;
+         if (location < 0) return false;
+@@ -3705,14 +3758,14 @@
+     if (!IsValidObjectId(static_cast<int>(a))) return false;
+     if(stage==1)
+     {
+-        if(location==objects[a]->location){
++        if(TaskFactSatisfied("goto",a)){
+         return true;
+     }
+     else return Move(objects[a]->location);
+     }
+ 
+     //stage2的情况
+-    if(location==objects[a]->location && IsLocationVerified(a)) return true;
++    if(TaskFactSatisfied("goto",a)) return true;
+     const bool is_small = dynamic_pointer_cast<SmallObject>(objects[a]) != nullptr;
+     if(objects[a]->location==UNKNOWN)
+     {
+@@ -3735,10 +3788,11 @@
+         SenseCurrentLocationOnly(true);
+         if (HasObjectAtLocation(location, a)) return true;
+         auto small = dynamic_pointer_cast<SmallObject>(objects[a]);
+-        if (small && small->inside > 0 && IsInsideVerified(a) &&
+-            HasObjectAtLocation(location, small->inside)) {
+-            small->location = location;
+-            MarkDirectLocationEvidence(a, true, EvidenceSource::SENSE);
++        if (small && FactInside(a) > 0 &&
++            HasObjectAtLocation(location, FactInside(a))) {
++            ApplyStateValue(StateField::LOCATION,a,location,true,EvidenceSource::RELATION_DERIVED);
++            DependOn(StateField::LOCATION,a,StateField::INSIDE,a);
++            DependOn(StateField::LOCATION,a,StateField::LOCATION,FactInside(a));
+             return true;
+         }
+         if (t >= 2) return false;
+@@ -3753,10 +3807,11 @@
+         SenseCurrentLocationOnly(true);
+         if (HasObjectAtLocation(location, a)) return true;
+         auto small = dynamic_pointer_cast<SmallObject>(objects[a]);
+-        if (small && small->inside > 0 && IsInsideVerified(a) &&
+-            HasObjectAtLocation(location, small->inside)) {
+-            small->location = location;
+-            MarkDirectLocationEvidence(a, true, EvidenceSource::SENSE);
++        if (small && FactInside(a) > 0 &&
++            HasObjectAtLocation(location, FactInside(a))) {
++            ApplyStateValue(StateField::LOCATION,a,location,true,EvidenceSource::RELATION_DERIVED);
++            DependOn(StateField::LOCATION,a,StateField::INSIDE,a);
++            DependOn(StateField::LOCATION,a,StateField::LOCATION,FactInside(a));
+             return true;
+         }
+         if(t>=2) return false;
+@@ -3773,13 +3828,13 @@
+         !dynamic_pointer_cast<Container>(objects[a])) return false;
+     auto cnt=dynamic_pointer_cast<Container>(objects[a]);
+     if(HasRequestedTask("close", a)){
+-        if(cnt->isOpen && (stage == 1 || IsContainerStateVerified(a))) return true;
++        if(TaskFactSatisfied("open",a)) return true;
+         else {
+             cout<<"there is close task,no need to do this!"<<endl;
+             return false;
+         }
+     }
+-    if(cnt->isOpen && (stage == 1 || IsContainerStateVerified(a))) return true;
++    if(TaskFactSatisfied("open",a)) return true;
+     if(hold_id!=NONE && !PutDown(hold_id)) return false;
+     if(stage==1)
+     {
+@@ -3830,13 +3885,13 @@
+     auto cnt=dynamic_pointer_cast<Container>(objects[a]);
+     if(HasRequestedTask("open", a))
+     {
+-        if(!cnt->isOpen && (stage == 1 || IsContainerStateVerified(a))) return true;
++        if(TaskFactSatisfied("close",a)) return true;
+         else {
+             cout<<"there is open task,no need to do this!"<<endl;
+             return false;
+         }
+     }
+-    if(!cnt->isOpen && (stage == 1 || IsContainerStateVerified(a))) return true;
++    if(TaskFactSatisfied("close",a)) return true;
+     if(hold_id!=NONE && !PutDown(hold_id)) return false;
+     if(stage==1)
+     {
+@@ -3891,7 +3946,7 @@
+         GetBigObjectStatus(human->id);
+         if(!IsKeepingGoing(task_index)) return 0;
+         }
+-            if(objects[a]->location==human->location && plate_id!=a && hold_id!=a) return true;
++            if(TaskFactSatisfied("give",a,human->id)) return true;
+             else return SolveTask_PutOn(a, human->id);
+             }
+         else
+@@ -3910,14 +3965,14 @@
+         !dynamic_pointer_cast<Container>(objects[b])) return false;
+     if(HasRequestedTask("takeout", a, b))
+     {
+-        if(Isinside(a,b) && (stage == 1 || IsInsideVerified(a))) return true;
++        if(TaskFactSatisfied("putin",a,b)) return true;
+                else
+                {
+             cout<<"there is takeout task,no need to do this!"<<endl;
+             return false;
+                }
+     }
+-    if(Isinside(a,b) && (stage == 1 || IsInsideVerified(a))) return true;
++    if(TaskFactSatisfied("putin",a,b)) return true;
+     auto target_cont = ObjectPtrCast<Container>(objects[b]);
+     if(stage==1)
+     {
+@@ -4040,7 +4095,7 @@
+         !dynamic_pointer_cast<SmallObject>(objects[a]) ||
+         !dynamic_pointer_cast<Container>(objects[b])) return false;
+     if(HasRequestedTask("putin", a, b)){
+-         if(Isinside(a,b)==0) return true;
++         if(TaskFactSatisfied("takeout",a,b)) return true;
+         else {
+             cout<<"there is putin task,no need to do this!"<<endl;
+             return false;
+@@ -4054,7 +4109,7 @@
+     // "at" reply therefore does not prove that the object is outside this
+     // container; verify by trying the target container instead. Stage 1 has
+     // reliable state and can keep the zero-cost shortcut.
+-    if (stage == 1 && small->inside != target_cont->id && small->inside != UNKNOWN)
++    if (stage == 1 && TaskFactSatisfied("takeout",a,b))
+     {
+          return true;
+     }
+@@ -4088,7 +4143,7 @@
+     else if(result == TakeOutResult::NeedObjectLocation) {
+         if (t >= 2) return false;
+         GetSmallObjectStatus(a);
+-        if (!Isinside(a,b) && IsInsideVerified(a)) return true;
++        if (TaskFactSatisfied("takeout",a,b)) return true;
+     }
+     else if(result == TakeOutResult::VerifyObjectRelation)
+     {
+@@ -4101,7 +4156,7 @@
+     }
+     else
+     {
+-    return true; //小物体不在容器里了
++    return TaskFactSatisfied("takeout",a,b); // 未验证的非 inside 不是完成事实
+     }
+     }
+     if(!IsKeepingGoing(task_index)) return false;continue;
+@@ -4117,9 +4172,7 @@
+         !dynamic_pointer_cast<SmallObject>(objects[a])) return false;
+     //10.27
+     auto small=dynamic_pointer_cast<SmallObject>(objects[a]);
+-    if(small && small->inside==NONE && small->location==objects[b]->location &&
+-       plate_id!=a && hold_id!=a &&
+-       (stage == 1 || (IsInsideVerified(a) && IsLocationVerified(a) && IsLocationVerified(b))))
++    if(TaskFactSatisfied("puton",a,b))
+         return true;
+     //
+     if(objects[b]->location==UNKNOWN)
+@@ -4142,7 +4195,7 @@
+             continue;
+             }
+         }
+-        if (stage == 2 && (!IsLocationVerified(b) || objects[b]->location != location)) {
++        if (stage == 2 && (FactLocation(b) == UNKNOWN || FactLocation(b) != FactLocation(0))) {
+             SenseCurrentLocationOnly(true);
+             if(!HasObjectAtLocation(location, b)) {
+                 if (t >= 3) return false;
+@@ -4894,7 +4947,7 @@
+     if (IsInsideVerified(a)) {
+         const int answer_inside = chosen_relation == "inside"
+             ? static_cast<int>(chosen_target) : NONE;
+-        if (small->inside != answer_inside) {
++        if (FactInside(a) != answer_inside) {
+             LOG(YELLOW "AskLoc(%u) conflicts with trusted inside fact; ignored\n" RESET, a);
+             return false;
+         }
+@@ -4902,7 +4955,7 @@
+     if (IsLocationVerified(a)) {
+         const int answer_location = chosen_relation == "inside"
+             ? objects[chosen_target]->location : static_cast<int>(chosen_target);
+-        if (objects[a]->location != answer_location) {
++        if (FactLocation(a) != answer_location) {
+             LOG(YELLOW "AskLoc(%u) conflicts with trusted location; ignored\n" RESET, a);
+             return false;
+         }
+@@ -4982,7 +5035,7 @@
+         return false;
+     }
+     if (IsLocationVerified(a)) {
+-        if (objects[a]->location != static_cast<int>(chosen_location)) {
++        if (FactLocation(a) != static_cast<int>(chosen_location)) {
+             LOG(YELLOW "AskLoc(%u) conflicts with trusted location; ignored\n" RESET, a);
+             return false;
+         }
+@@ -4999,8 +5052,7 @@
+                 // A human answer about the container cannot replace a direct
+                 // observation or successful action on an individual item.
+                 if (IsLocationVerified(item->id)) continue;
+-                item->location = cont->location;
+-                MarkDirectLocationEvidence(item->id, false, EvidenceSource::ASK_ANSWER);
++                ApplyStateValue(StateField::LOCATION,item->id,cont->location,false,EvidenceSource::ASK_ANSWER);
+             }
+         }
+     }
+@@ -5094,8 +5146,7 @@
+         if (id > 0 && id < objects.size() && objects[id] != nullptr) {
+             if (objects[id]->location != curr_loc)
+                 InvalidateSenseAtLocation(objects[id]->location);
+-            objects[id]->location = curr_loc;
+-            MarkDirectLocationEvidence(id, true, EvidenceSource::SENSE);
++            ApplyStateValue(StateField::LOCATION,id,curr_loc,true,EvidenceSource::SENSE);
+             if (objects[id]->unable_site == curr_loc) objects[id]->unable_site = UNKNOWN;
+ 
+             // 记录感知到的物体ID
+@@ -5128,7 +5179,7 @@
+             auto visible_container = dynamic_pointer_cast<Container>(objects[sensed_container_id]);
+             // UNKNOWN cannot prove that an observed item is outside the
+             // container: the container may be open and expose its contents.
+-            visible_container_is_open = visible_container && visible_container->isOpen != 0;
++            visible_container_is_open = visible_container && FactContainerState(sensed_container_id) != 0;
+         }
+ 
+         const bool relation_is_ambiguous =
+@@ -5142,8 +5193,7 @@
+             auto old_container = dynamic_pointer_cast<Container>(objects[small->inside]);
+             if (old_container) old_container->DeleteObjectInside(small);
+         }
+-        small->inside = NONE;
+-        SetInsideEvidence(id, true, EvidenceSource::SENSE);
++        ApplyStateValue(StateField::INSIDE,id,NONE,true,EvidenceSource::SENSE);
+     }
+ 
+     // 检查原本应该在这个位置但没被感知到的物体
+@@ -5160,7 +5210,7 @@
+     if (sensed_container_id > 0 && sensed_container_id < objects.size() && objects[sensed_container_id] != nullptr) {
+         auto cont = std::dynamic_pointer_cast<Container>(objects[sensed_container_id]);
+         if (cont) {
+-            container_is_open = cont->isOpen == 1;
++            container_is_open = FactContainerState(sensed_container_id) == 1;
+         }
+     }
+ 
+@@ -5177,8 +5227,7 @@
+     if(sensed_container_id == NONE || container_is_open == true){
+         for (auto id : ids_at_curr_loc) {
+             if (!sensed[id]) {
+-                objects[id]->location = UNKNOWN;
+-                MarkDirectLocationEvidence(id, false, EvidenceSource::SENSE);
++                ApplyStateValue(StateField::LOCATION,id,UNKNOWN,false,EvidenceSource::SENSE);
+                 objects[id]->unable_site = curr_loc;
+                 LOG(YELLOW "[SenseCurrentLocationOnly] Object id=%u expected at %d but not sensed, set location UNKNOWN\n" RESET, id, curr_loc);
+             }
+@@ -5194,8 +5243,7 @@
+             }
+ 
+             if (!sensed[id] && !in_container) {
+-                objects[id]->location = UNKNOWN;
+-                MarkDirectLocationEvidence(id, false, EvidenceSource::SENSE);
++                ApplyStateValue(StateField::LOCATION,id,UNKNOWN,false,EvidenceSource::SENSE);
+                 objects[id]->unable_site = curr_loc;
+                 LOG(YELLOW "[SenseCurrentLocationOnly] Object id=%u expected at %d but not sensed, set location UNKNOWN\n" RESET, id, curr_loc);
+             }
+@@ -5261,16 +5309,20 @@
+     for (auto id : A_) {
+         if (t == id) flagg = 1;
+         if (id < objects.size() && objects[id]) {
+-            if (objects[id]->location != location) {
++            const bool moved = objects[id]->location != location;
++            ApplyStateValue(StateField::LOCATION,id,location,true,EvidenceSource::SENSE);
++            if (moved) {
+                 objects[id]->location = location;
+                 if (auto cont = std::dynamic_pointer_cast<Container>(objects[id])) {
+                     for (auto &sp : cont->smallObjectsInside) {
+                         if (sp) {
+                             sp->location = location;
+-                            const bool entailed = IsInsideVerified(sp->id);
++                            const bool entailed = FactInside(sp->id) == static_cast<int>(id);
+                             MarkDirectLocationEvidence(sp->id, entailed,
+                                 entailed ? EvidenceSource::CONSTRAINT_DERIVED
+                                          : EvidenceSource::CONSTRAINT_HEURISTIC);
++                            DependOn(StateField::LOCATION,sp->id,StateField::INSIDE,sp->id);
++                            DependOn(StateField::LOCATION,sp->id,StateField::LOCATION,id);
+                         }
+                     }
+                 }
+@@ -5489,8 +5541,7 @@
+     if (container && container->location != UNKNOWN && small->location != UNKNOWN &&
+         container->location != small->location) {
+         ClearContainerMembership(small);
+-        small->inside = UNKNOWN;
+-        SetInsideEvidence(small->id, false, EvidenceSource::EXPLICIT_INFO);
++        ApplyStateValue(StateField::INSIDE,small->id,UNKNOWN,false,EvidenceSource::EXPLICIT_INFO);
+     }
+ }
+ 
+@@ -5504,10 +5555,10 @@
+     MarkDirectLocationEvidence(container->id, true);
+     for (const auto& item : container->smallObjectsInside) {
+         if (!item || item->inside != container->id) continue;
+-        if (IsLocationVerified(item->id) && !IsInsideVerified(item->id) &&
+-            item->location != location) continue;
++        if (FactLocation(item->id) != UNKNOWN && FactInside(item->id) == UNKNOWN &&
++            FactLocation(item->id) != location) continue;
+         item->location = location;
+-        const bool inside_verified = IsInsideVerified(item->id);
++        const bool inside_verified = FactInside(item->id) == container->id;
+         // The action verifies the container, not an inside relation that was
+         // inferred from a constraint. Preserve that dependency for terminal
+         // checking if the supporting constraint later loses eligibility.
+@@ -5821,16 +5872,22 @@
+     }
+ 
+     // 6) 成功后的状态更新（全部带边界/判空）
+-    location = a;
++    ApplyStateValue(StateField::LOCATION,0,a,true,EvidenceSource::ACTION_SUCCESS);
+     if (hold)  hold->location  = a;
+     if (plate) plate->location = a;
+     InvalidateSenseAtLocation(previous_location);
+     InvalidateSenseAtLocation(static_cast<int>(a));
+     if (hold_id > 0) {
+-        MarkDirectLocationEvidence(hold_id, true);
++        MarkDirectLocationEvidence(hold_id, FactValue(StateField::HOLD)==hold_id,
++            EvidenceSource::RELATION_DERIVED);
++        DependOn(StateField::LOCATION,hold_id,StateField::HOLD,0);
++        DependOn(StateField::LOCATION,hold_id,StateField::LOCATION,0);
+     }
+     if (plate_id > 0) {
+-        MarkDirectLocationEvidence(plate_id, true);
++        MarkDirectLocationEvidence(plate_id, FactValue(StateField::PLATE)==plate_id,
++            EvidenceSource::RELATION_DERIVED);
++        DependOn(StateField::LOCATION,plate_id,StateField::PLATE,0);
++        DependOn(StateField::LOCATION,plate_id,StateField::LOCATION,0);
+     }
+ 
+     /*
+@@ -6505,8 +6562,7 @@
+             containerPtr = make_shared<Container>(obj);
+             obj = containerPtr;
+         }
+-        containerPtr->isOpen = (firstToken == "opened");
+-        SetContainerEvidence(index, stage == 1, EvidenceSource::INITIAL);
++        ApplyStateValue(StateField::CONTAINER_STATE,index,(firstToken == "opened"),stage == 1,EvidenceSource::INITIAL);
+     } else if (firstToken == "at") {
+         int location_id = 0;
+         if (!ParseBoundedInt(tokenList[2], 0, MAX_LOCATION_ID, location_id) ||
+@@ -6516,8 +6572,7 @@
+         }
+         if (index > 0 && !ReceiveWeakClaim(StateField::LOCATION, index,
+                                            location_id, EvidenceSource::INITIAL)) {
+-            obj->location = UNKNOWN;
+-            MarkDirectLocationEvidence(index, false, EvidenceSource::UNKNOWN);
++            ApplyStateValue(StateField::LOCATION,index,UNKNOWN,false,EvidenceSource::UNKNOWN);
+             if (score_locations.size() <= static_cast<std::size_t>(index))
+                 score_locations.resize(index + 1, UNKNOWN);
+             score_locations[index] = UNKNOWN;
+@@ -6527,8 +6582,7 @@
+         if (score_locations.size() <= static_cast<std::size_t>(index))
+             score_locations.resize(index + 1, UNKNOWN);
+         score_locations[index] = location_id;
+-        if (index > 0)
+-            MarkDirectLocationEvidence(index, stage == 1, EvidenceSource::INITIAL);
++        MarkDirectLocationEvidence(index, index == 0 || stage == 1, EvidenceSource::INITIAL);
+         rightlocation[location_id] = true;
+     } else if (firstToken == "sort") {
+         if (tokenList[2].empty()) return false;
+@@ -6568,12 +6622,10 @@
+             }
+             if (!ReceiveWeakClaim(StateField::INSIDE, index,
+                                   container_id, EvidenceSource::INITIAL)) {
+-                small->inside = UNKNOWN;
+-                SetInsideEvidence(index, false, EvidenceSource::UNKNOWN);
++                ApplyStateValue(StateField::INSIDE,index,UNKNOWN,false,EvidenceSource::UNKNOWN);
+                 return true;
+             }
+-            small->inside = container_id;
+-            SetInsideEvidence(index, stage == 1, EvidenceSource::INITIAL);
++            ApplyStateValue(StateField::INSIDE,index,container_id,stage == 1,EvidenceSource::INITIAL);
+         }
+     } else if (firstToken == "type") {
+         if (tokenList[2] != "container" || dynamic_pointer_cast<SmallObject>(obj))
+@@ -6669,19 +6721,29 @@
+             auto p = dynamic_pointer_cast<Container>(GetObject(s->inside));
+             if (p != nullptr)
+             {
+-                p->smallObjectsInside.push_back(s);
+-                s->location = p->location;
++                bool listed=false;
++                for (auto item:p->smallObjectsInside) if(item && item->id==s->id) listed=true;
++                if (!listed) p->smallObjectsInside.push_back(s);
++                const int container_fact = FactLocation(p->id);
++                ApplyStateValue(StateField::LOCATION,s->id,container_fact!=UNKNOWN?container_fact:p->location,
++                    FactInside(s->id)==p->id && container_fact!=UNKNOWN,
++                    EvidenceSource::INITIAL);
++                DependOn(StateField::LOCATION,s->id,StateField::INSIDE,s->id);
++                DependOn(StateField::LOCATION,s->id,StateField::LOCATION,p->id);
+             }
+             else
+             {
+                 s->location = UNKNOWN;
+                 s->inside = UNKNOWN;
++                MarkDirectLocationEvidence(s->id,false,EvidenceSource::UNKNOWN);
++                SetInsideEvidence(s->id,false,EvidenceSource::UNKNOWN);
+             }
+         }
+         else if (s->location != UNKNOWN &&
+                  !HasContradictoryEvidence(StateField::INSIDE, s->id))
+             s->inside = NONE;
+-        if (s->inside != UNKNOWN && s != plate && s != hold)
++        if (s->inside != UNKNOWN && s != plate && s != hold &&
++            Provenance(StateField::INSIDE,s->id).resolved_value!=s->inside)
+             SetInsideEvidence(s->id, stage == 1, EvidenceSource::INITIAL);
+         if (s->location != UNKNOWN && LocationSource(s->id) == EvidenceSource::UNKNOWN)
+             MarkDirectLocationEvidence(s->id, stage == 1, EvidenceSource::INITIAL);
+@@ -6709,12 +6771,11 @@
+ 
+     if (behave == "on")
+     {
+-        int thelocation = info.Y[0]->location;
++        const int yFact = FactLocation(info.Y[0]->id);
++        int thelocation = yFact!=UNKNOWN ? yFact : info.Y[0]->location;
+         for (auto v : info.X)
+         {
+-            v->location = thelocation;
+-            MarkDirectLocationEvidence(v->id, stage == 1 && IsLocationVerified(info.Y[0]->id),
+-                                       EvidenceSource::EXPLICIT_INFO);
++            ApplyStateValue(StateField::LOCATION,v->id,thelocation,stage == 1 && IsLocationVerified(info.Y[0]->id),EvidenceSource::EXPLICIT_INFO);
+             DependOn(StateField::LOCATION, v->id, StateField::LOCATION, info.Y[0]->id);
+             auto small=dynamic_pointer_cast<SmallObject>(v);
+             if(small!=nullptr) {
+@@ -6726,16 +6787,16 @@
+     }
+     else if (behave == "near")
+     {
+-        int yLocation = info.Y[0]->location;
+-        int xLocation = info.X[0]->location;
++        const int yFact = FactLocation(info.Y[0]->id);
++        const int xFact = FactLocation(info.X[0]->id);
++        int yLocation = yFact!=UNKNOWN ? yFact : info.Y[0]->location;
++        int xLocation = xFact!=UNKNOWN ? xFact : info.X[0]->location;
+ 
+         if (yLocation != UNKNOWN)
+         {
+             for (auto v : info.X)
+             {
+-            v->location = yLocation;
+-            MarkDirectLocationEvidence(v->id, stage == 1 && IsLocationVerified(info.Y[0]->id),
+-                                       EvidenceSource::EXPLICIT_INFO);
++            ApplyStateValue(StateField::LOCATION,v->id,yLocation,stage == 1 && IsLocationVerified(info.Y[0]->id),EvidenceSource::EXPLICIT_INFO);
+             DependOn(StateField::LOCATION, v->id, StateField::LOCATION, info.Y[0]->id);
+             auto small=dynamic_pointer_cast<SmallObject>(v);
+             if(small!=nullptr) {
+@@ -6748,9 +6809,7 @@
+         {
+             for (auto v : info.Y)
+             {
+-            v->location = xLocation;
+-            MarkDirectLocationEvidence(v->id, stage == 1 && IsLocationVerified(info.X[0]->id),
+-                                       EvidenceSource::EXPLICIT_INFO);
++            ApplyStateValue(StateField::LOCATION,v->id,xLocation,stage == 1 && IsLocationVerified(info.X[0]->id),EvidenceSource::EXPLICIT_INFO);
+             DependOn(StateField::LOCATION, v->id, StateField::LOCATION, info.X[0]->id);
+             auto small=dynamic_pointer_cast<SmallObject>(v);
+             if(small!=nullptr) {
+@@ -6790,7 +6849,8 @@
+             if (plate_id == p->id) SetPlate(nullptr, EvidenceSource::EXPLICIT_INFO);
+             p->on = NONE;
+             p->inside = cId;
+-            p->location=c->location;
++            const int containerFact = FactLocation(cId);
++            p->location=containerFact!=UNKNOWN ? containerFact : c->location;
+             SetInsideEvidence(p->id, stage == 1, EvidenceSource::EXPLICIT_INFO);
+             MarkDirectLocationEvidence(p->id, stage == 1 && IsLocationVerified(cId),
+                                        EvidenceSource::EXPLICIT_INFO);
+@@ -6805,8 +6865,7 @@
+         {
+             auto p = dynamic_pointer_cast<Container>(v);
+             if (!p) continue;
+-            p->isOpen = true;
+-            SetContainerEvidence(p->id, stage == 1, EvidenceSource::EXPLICIT_INFO);
++            ApplyStateValue(StateField::CONTAINER_STATE,p->id,true,stage == 1,EvidenceSource::EXPLICIT_INFO);
+         }
+     }
+     else if (behave == "closed")
+@@ -6815,8 +6874,7 @@
+         {
+             auto p = dynamic_pointer_cast<Container>(v);
+             if (!p) continue;
+-            p->isOpen = false;
+-            SetContainerEvidence(p->id, stage == 1, EvidenceSource::EXPLICIT_INFO);
++            ApplyStateValue(StateField::CONTAINER_STATE,p->id,false,stage == 1,EvidenceSource::EXPLICIT_INFO);
+         }
+     }
+ }
+@@ -6935,6 +6993,7 @@
+ void RDFW::Fini()
+ {
+     preflight_report = QuestionPreflightReport();
++    holdProvenance=StateProvenance(); plateProvenance=StateProvenance();
+     cout << "#(RDFW): Fini - Comprehensive state cleanup for next test" << endl;
+ 
+     // ==================== 机器人状态重置 ====================
+@@ -7395,7 +7454,7 @@
+             EnsureEvidenceCapacity(id);
+             const int loc = objects[id]->location;
+             if (loc == UNKNOWN) continue;
+-            if (objectLocationVerified[id] && !objectLocationInferredByMustNear[id])
++            if (FactLocation(id) == loc && !objectLocationInferredByMustNear[id])
+                 ++direct_votes[loc];
+             if (!objectLocationInferredByMustNear[id]) ++candidate_votes[loc];
+         }
+@@ -7419,7 +7478,7 @@
+             for (unsigned int id : members) {
+                 if (objects[id]->location == chosen_location &&
+                     !objectLocationInferredByMustNear[id] &&
+-                    (direct_votes.empty() || objectLocationVerified[id])) {
++                    (direct_votes.empty() || FactLocation(id) == chosen_location)) {
+                     anchor_id = id;
+                     break;
+                 }
+@@ -7435,7 +7494,7 @@
+                     conflicts_with_evidence = true;
+                     break;
+                 }
+-                if (objectLocationVerified[id] && !objectLocationInferredByMustNear[id] &&
++                if (FactLocation(id) != UNKNOWN && !objectLocationInferredByMustNear[id] &&
+                     objects[id]->location != UNKNOWN && objects[id]->location != chosen_location) {
+                     conflicts_with_evidence = true;
+                     break;
+@@ -7450,8 +7509,7 @@
+             if (!objectLocationInferredByMustNear[id]) continue;
+             if (chosen_location == UNKNOWN || conflicts_with_evidence ||
+                 objects[id]->location != chosen_location) {
+-                objects[id]->location = UNKNOWN;
+-                MarkDirectLocationEvidence(id, false, EvidenceSource::UNKNOWN);
++                ApplyStateValue(StateField::LOCATION,id,UNKNOWN,false,EvidenceSource::UNKNOWN);
+             } else {
+                 const bool anchored = !direct_votes.empty();
+                 MarkDirectLocationEvidence(id, anchored,
+@@ -7467,7 +7525,7 @@
+             for (unsigned int id : members) {
+                 if (objects[id]->location == chosen_location &&
+                     !objectLocationInferredByMustNear[id] &&
+-                    (objectLocationVerified[id] || !anchored)) continue;
++                    (FactLocation(id) == chosen_location || !anchored)) continue;
+ 
+                 objects[id]->location = chosen_location;
+                 MarkDirectLocationEvidence(id, anchored,
+@@ -7483,7 +7541,7 @@
+                     for (const auto& item : container->smallObjectsInside) {
+                         if (!item || item->inside != container->id) continue;
+                         item->location = chosen_location;
+-                        const bool location_entailed = anchored && IsInsideVerified(item->id);
++                        const bool location_entailed = anchored && FactInside(item->id) == container->id;
+                         MarkDirectLocationEvidence(item->id, location_entailed,
+                             location_entailed ? EvidenceSource::CONSTRAINT_DERIVED
+                                              : EvidenceSource::CONSTRAINT_HEURISTIC);
+@@ -7568,8 +7626,7 @@
+                             }
+                         }
+                     }
+-                    sm->inside = y;
+-                    SetInsideEvidence(x, true, EvidenceSource::CONSTRAINT_DERIVED);
++                    ApplyStateValue(StateField::INSIDE,x,y,true,EvidenceSource::CONSTRAINT_DERIVED);
+                     SetConstraintSupport(StateField::INSIDE, x,
+                         static_cast<int>(not_infoConstrains.size() + constraint_index));
+                     // 添加到目标容器（避免重复）
+@@ -7587,10 +7644,11 @@
+             }
+             // 同步位置（取容器已知位置为准，否则不强制）
+             if (objects[x] && objects[y]) {
+-                int y_loc = objects[y]->location;
++                const int y_fact = FactLocation(y);
++                int y_loc = y_fact!=UNKNOWN ? y_fact : objects[y]->location;
+                 if (y_loc != UNKNOWN) {
+                     objects[x]->location = y_loc;
+-                    const bool location_entailed = IsLocationVerified(y);
++                    const bool location_entailed = y_fact!=UNKNOWN;
+                     MarkDirectLocationEvidence(x, location_entailed,
+                         location_entailed ? EvidenceSource::CONSTRAINT_DERIVED
+                                          : EvidenceSource::CONSTRAINT_HEURISTIC);
+@@ -7620,6 +7678,8 @@
+             smObj->inside = UNKNOWN;
+             int old_loc = smObj->location;
+             smObj->location = UNKNOWN;
++            SetInsideEvidence(x,false,EvidenceSource::UNKNOWN);
++            MarkDirectLocationEvidence(x,false,EvidenceSource::UNKNOWN);
+             // 同时尝试从container的smallObjectsInside中移除
+             auto cont = std::dynamic_pointer_cast<Container>(objects[y]);
+             if (cont) {
+--- src1.6.5/rdfw.hpp
++++ src1.6.6/rdfw.hpp
+@@ -40,8 +40,8 @@
+         CONSTRAINT_HEURISTIC, SENSE, ACTION_SUCCESS, ACTION_FAILURE, ASK_ANSWER
+     };
+ 
+-    // Evidence is a received claim; the Object fields remain the resolved
+-    // planning state. Keep only the newest claim and one conflicting claim.
++    // Evidence is a received claim. Object fields are planning hypotheses/cache;
++    // StateProvenance plus canonical queries alone qualify current facts.
+     enum class StateField { LOCATION, INSIDE, CONTAINER_STATE, HOLD, PLATE };
+     struct StateClaim {
+         int value = UNKNOWN;
+@@ -524,9 +524,8 @@
+         vector<string> errorlist;
+         vector<bool> posCorrectFlag;  // 位置物品正确性标识
+         vector<bool> posSensedFlag;   // 位置感知记录标识，避免重复感知
+-        // 每个当前事实的值保存在对象中，以下并行数组保存来源及其是否足以
+-        // 判定 Stage 2 终态。初始描述/AskLoc 为弱证据；可靠约束推导、
+-        // 直接观察和动作反馈按各自语义更新。每题初始化，dry-run 快照恢复。
++        // Compatibility metadata mirrors. Never combine these arrays with
++        // Object fields to answer truth; query ResolvedState/FactValue instead.
+         vector<bool> objectLocationVerified;
+         vector<bool> objectInsideVerified;
+         vector<bool> containerStateVerified;
+@@ -545,6 +544,25 @@
+                       StateField support_field, unsigned int support_id);
+         bool DependenciesCurrent(StateField field, unsigned int id) const;
+         StateClaim ResolvedState(StateField field, unsigned int id) const;
++        // Canonical truth only. UNKNOWN is distinct from NONE; never consult
++        // Source/Verified arrays or Object planning hypotheses for qualification.
++        int FactValue(StateField field, unsigned int id = 0) const;
++        int FactLocation(unsigned int id) const { return FactValue(StateField::LOCATION, id); }
++        int FactInside(unsigned int id) const { return FactValue(StateField::INSIDE, id); }
++        int FactContainerState(unsigned int id) const { return FactValue(StateField::CONTAINER_STATE, id); }
++        int ScoreFactLocation(unsigned int id) const;
++        bool IsStoredFact(unsigned int id) const;
++        bool IsNotStoredFact(unsigned int id) const;
++        // One value mutation entry point; received contradictions retain a
++        // planning candidate but lose resolution. Robot transitions use SetHold/Plate.
++        void ApplyStateValue(StateField field, unsigned int id, int value,
++                             bool verified, EvidenceSource source);
++        // Test/debug only: bounded full state serialization and consistency scan.
++        std::string DebugStateSnapshot() const;
++        std::vector<std::string> DebugStateConsistency() const;
++        bool debug_capture_projection = false;
++        bool TaskFactSatisfied(const std::string& behave, unsigned int x,
++                               unsigned int y = 0) const;
+         void SetConstraintSupport(StateField field, unsigned int id, int index);
+         bool ReceiveWeakClaim(StateField field, unsigned int id, int value,
+                               EvidenceSource source);
+@@ -729,7 +747,7 @@
+         bool IsZeroActionSatisfy(const Instruction& t) const;
+         bool ZeroActionPreCheck(Instruction& t);
+ 
+-        // Read-only evidence queries used by deterministic terminal evaluation.
++        // Compatibility names, delegated to canonical truth (not raw arrays).
+         bool IsLocationVerified(unsigned int id) const;
+         bool IsInsideVerified(unsigned int id) const;
+         bool IsContainerStateVerified(unsigned int id) const;
+@@ -839,6 +857,7 @@
+                               bool verified, EvidenceSource source);
+         bool DependenciesCurrentDepth(StateField field, unsigned int id,
+                                       unsigned int depth) const;
++        bool ResolutionEligible(StateField field, unsigned int id) const;
+         void RecordConstraintSupports(StateField field, unsigned int id);
+         void InvalidateSenseAtLocation(int loc);
+         //确保数组不越界
+--- src1.6.5/stage_timing.hpp
++++ src1.6.6/stage_timing.hpp
+@@ -7,7 +7,7 @@
+ // Fixed counters, no allocation or per-action output. Times are inclusive;
+ // nested phases must not be summed. Disabled paths never read the clock.
+ struct StageTiming {
+-    enum Phase { TERMINAL, BINDING, LEDGER, PROJECTION, CANDIDATES, TRADEOFF, GUARD, PLATFORM, TAIL, STATE_UPDATE, DERIVED, COUNT };
++    enum Phase { TERMINAL, BINDING, LEDGER, PROJECTION, CANDIDATES, TRADEOFF, GUARD, PLATFORM, TAIL, STATE_UPDATE, DERIVED, CANONICAL_QUERY, COUNT };
+     bool enabled = false;
+     unsigned long long calls[COUNT] = {};
+     long long nanos[COUNT] = {};
+@@ -20,7 +20,7 @@
+     }
+     void report(long long elapsed, long long remaining) const {
+         if (!enabled) return;
+-        const char* names[] = {"terminal", "binding", "ledger", "projection", "candidates", "tradeoff", "guarded", "platform", "tail", "state_update", "derived_invalidation"};
++        const char* names[] = {"terminal", "binding", "ledger", "projection", "candidates", "tradeoff", "guarded", "platform", "tail", "state_update", "derived_invalidation", "canonical_query"};
+         for (int i=0; i<COUNT; ++i)
+             std::printf("[StageTiming] phase=%s calls=%llu us=%lld max_us=%lld\n", names[i], calls[i], nanos[i]/1000, max_nanos[i]/1000);
+         std::printf("[StageTiming] phase=plan elapsed_ms=%lld remaining_ms=%lld inclusive=true\n", elapsed, remaining);
+--- src1.6.5/terminal_checker.cpp
++++ src1.6.6/terminal_checker.cpp
+@@ -22,54 +22,37 @@
+     return TerminalStatus::SATISFIED;
+ }
+ 
+-bool constraintEvidenceUsable(const RDFW& world, unsigned int id) {
+-    const std::size_t offset = world.not_infoConstrains.size();
+-    for (std::size_t i = 0; i < world.notnot_infoConstrains.size(); ++i) {
+-        const std::size_t index = offset + i;
+-        if (index >= world.constraint_eligible.size()) continue;
+-        if (world.constraint_eligible[index] &&
+-            (index >= world.constraint_uncertain.size() || !world.constraint_uncertain[index])) continue;
+-        const Instruction& c = world.notnot_infoConstrains[i];
+-        for (const auto& x : c.X) if (x && x->id == id) return false;
+-        for (const auto& y : c.Y) if (y && y->id == id) return false;
+-        if (id < world.objects.size() && world.objects[id] &&
+-            (c.conditionX.IsObjectSatisfy(world.objects[id]) ||
+-             (c.isUseY && c.conditionY.IsObjectSatisfy(world.objects[id])))) return false;
+-    }
+-    return true;
+-}
+-
+-bool isLocationKnown(const RDFW& world, const std::shared_ptr<Object>& object) {
+-    if (!object || object->location == _home::UNKNOWN) return false;
+-    if (object->id == 0) return world.location != _home::UNKNOWN;
+-    return world.stage == 1 || (world.IsLocationVerified(object->id) &&
+-        (world.LocationSource(object->id) != EvidenceSource::CONSTRAINT_DERIVED ||
+-         constraintEvidenceUsable(world, object->id)));
+-}
+-
+-int scoreLocation(const RDFW& world, const std::shared_ptr<Object>& object) {
+-    if (!object) return _home::UNKNOWN;
+-    if (object->id == 0) return world.location;
+-    if (world.stage == 1 && object->id < world.score_locations.size())
+-        return world.score_locations[object->id];
+-    return object->location;
+-}
+-
+-bool isInsideKnown(const RDFW& world, const std::shared_ptr<SmallObject>& object) {
+-    return object && object->inside != _home::UNKNOWN &&
+-           (world.stage == 1 || (world.IsInsideVerified(object->id) &&
+-            (world.InsideSource(object->id) != EvidenceSource::CONSTRAINT_DERIVED ||
+-             constraintEvidenceUsable(world, object->id))));
+-}
+-
+-bool isContainerStateKnown(const RDFW& world,
+-                           const std::shared_ptr<Container>& container) {
+-    return container && (container->isOpen == 0 || container->isOpen == 1) &&
+-           (world.stage == 1 || (world.IsContainerStateVerified(container->id) &&
+-            (world.ContainerSource(container->id) != EvidenceSource::CONSTRAINT_DERIVED ||
+-             constraintEvidenceUsable(world, container->id))));
+-}
+-
++// The optional hypothesis view is only used by evaluatePlanningHypothesis.
++// All terminal, constraint and score callers use canonical values.
++int locationValue(const RDFW& w, const std::shared_ptr<Object>& o, bool hypothesis=false) {
++    if (!o) return UNKNOWN;
++    return hypothesis ? o->location : w.FactLocation(o->id);
++}
++int insideValue(const RDFW& w, const std::shared_ptr<SmallObject>& o, bool hypothesis=false) {
++    if (!o) return UNKNOWN;
++    return hypothesis ? o->inside : w.FactInside(o->id);
++}
++int containerValue(const RDFW& w, const std::shared_ptr<Container>& o, bool hypothesis=false) {
++    if (!o) return UNKNOWN;
++    return hypothesis ? o->isOpen : w.FactContainerState(o->id);
++}
++bool isLocationKnown(const RDFW& w, const std::shared_ptr<Object>& o, bool h=false) {
++    return locationValue(w,o,h)!=UNKNOWN;
++}
++int scoreLocation(const RDFW& w, const std::shared_ptr<Object>& o, bool h=false) {
++    if (!o) return UNKNOWN;
++    if (h) {
++        if (o->id==0) return w.location;
++        return o->id < w.score_locations.size() ? w.score_locations[o->id] : o->location;
++    }
++    return w.ScoreFactLocation(o->id);
++}
++bool isInsideKnown(const RDFW& w, const std::shared_ptr<SmallObject>& o, bool h=false) {
++    return insideValue(w,o,h)!=UNKNOWN;
++}
++bool isContainerStateKnown(const RDFW& w, const std::shared_ptr<Container>& o, bool h=false) {
++    const int state=containerValue(w,o,h); return state==0 || state==1;
++}
+ TerminalStatus boolStatus(bool value) {
+     return value ? TerminalStatus::SATISFIED : TerminalStatus::UNSATISFIED;
+ }
+@@ -90,19 +73,24 @@
+ 
+ TerminalStatus evaluatePair(const RDFW& world, const std::string& behave,
+                             const std::shared_ptr<Object>& x,
+-                            const std::shared_ptr<Object>& y) {
++                            const std::shared_ptr<Object>& y, bool hypothesis=false) {
+     if (!x) return TerminalStatus::UNKNOWN;
++    const int robot_location=hypothesis?world.location:world.FactLocation(0);
++    const int hand=hypothesis?world.hold_id:world.FactValue(StateField::HOLD);
++    const int tray=hypothesis?world.plate_id:world.FactValue(StateField::PLATE);
++    const bool stored=hand==x->id || tray==x->id;
++    const bool not_stored=hypothesis?(hand!=x->id && tray!=x->id):world.IsNotStoredFact(x->id);
+ 
+     if (behave == "goto" || behave == "move") {
+-        if (world.stage == 1)
+-            return boolStatus(scoreLocation(world, x) != _home::UNKNOWN &&
+-                              world.location == scoreLocation(world, x));
+-        if (world.location != _home::UNKNOWN &&
+-            world.IsAbsentFromSensedLocation(x->id, world.location))
+-            return TerminalStatus::UNSATISFIED;
+-        if (!isLocationKnown(world, x) || world.location == _home::UNKNOWN)
+-            return TerminalStatus::UNKNOWN;
+-        return boolStatus(world.location == x->location);
++        if (world.stage == 1 || hypothesis)
++            return boolStatus(scoreLocation(world, x, hypothesis) != _home::UNKNOWN &&
++                              robot_location == scoreLocation(world, x, hypothesis));
++        if (!hypothesis && robot_location != _home::UNKNOWN &&
++            world.IsAbsentFromSensedLocation(x->id, robot_location))
++            return TerminalStatus::UNSATISFIED;
++        if (!isLocationKnown(world, x, hypothesis) || robot_location == _home::UNKNOWN)
++            return TerminalStatus::UNKNOWN;
++        return boolStatus(robot_location == locationValue(world,x,hypothesis));
+     }
+ 
+     if (behave == "open" || behave == "opened" ||
+@@ -110,15 +98,15 @@
+         const std::shared_ptr<Object> target = y ? y : x;
+         const std::shared_ptr<Container> container =
+             std::dynamic_pointer_cast<Container>(target);
+-        if (!isContainerStateKnown(world, container)) return TerminalStatus::UNKNOWN;
++        if (!isContainerStateKnown(world, container, hypothesis)) return TerminalStatus::UNKNOWN;
+         const bool expect_open = behave == "open" || behave == "opened";
+-        return boolStatus(static_cast<bool>(container->isOpen) == expect_open);
++        return boolStatus(static_cast<bool>(containerValue(world,container,hypothesis)) == expect_open);
+     }
+ 
+     if (behave == "pickup") {
+-        const bool stored = world.hold_id == x->id || world.plate_id == x->id;
+-        if (world.stage == 2 && !world.IsInsideVerified(x->id))
+-            return TerminalStatus::UNKNOWN;
++        if (!hypothesis && world.stage == 2 && !world.IsInsideVerified(x->id))
++            return TerminalStatus::UNKNOWN;
++        if (!stored && !not_stored) return TerminalStatus::UNKNOWN;
+         return boolStatus(stored);
+     }
+ 
+@@ -126,64 +114,66 @@
+         const std::shared_ptr<SmallObject> small =
+             std::dynamic_pointer_cast<SmallObject>(x);
+         if (!small) return TerminalStatus::UNKNOWN;
+-        if (world.stage == 2 && !world.IsInsideVerified(x->id))
+-            return TerminalStatus::UNKNOWN;
+-        if (world.hold_id == x->id || world.plate_id == x->id)
+-            return TerminalStatus::UNSATISFIED;
+-        return TerminalStatus::SATISFIED;
++        if (!hypothesis && world.stage == 2 && !world.IsInsideVerified(x->id))
++            return TerminalStatus::UNKNOWN;
++        if (stored)
++            return TerminalStatus::UNSATISFIED;
++        return not_stored ? TerminalStatus::SATISFIED : TerminalStatus::UNKNOWN;
+     }
+ 
+     if (behave == "putin" || behave == "inside" || behave == "in") {
+         const std::shared_ptr<SmallObject> small =
+             std::dynamic_pointer_cast<SmallObject>(x);
+-        if (!small || !y || !isInsideKnown(world, small)) return TerminalStatus::UNKNOWN;
+-        return boolStatus(small->inside == y->id);
++        if (!small || !y || !isInsideKnown(world, small, hypothesis)) return TerminalStatus::UNKNOWN;
++        return boolStatus(insideValue(world,small,hypothesis) == y->id);
+     }
+ 
+     if (behave == "takeout") {
+         const std::shared_ptr<SmallObject> small =
+             std::dynamic_pointer_cast<SmallObject>(x);
+-        if (!small || !y || !isInsideKnown(world, small)) return TerminalStatus::UNKNOWN;
+-        return boolStatus(small->inside != y->id);
++        if (!small || !y || !isInsideKnown(world, small, hypothesis)) return TerminalStatus::UNKNOWN;
++        return boolStatus(insideValue(world,small,hypothesis) != y->id);
+     }
+ 
+     if (behave == "puton" || behave == "on" || behave == "near" ||
+         behave == "nextto" || behave == "give") {
+         std::shared_ptr<Object> target = y;
+         if (behave == "give") target = world.human;
+-        if (world.stage == 1 && target &&
+-            (scoreLocation(world, x) == _home::UNKNOWN ||
+-             scoreLocation(world, target) == _home::UNKNOWN))
+-            return TerminalStatus::UNSATISFIED;
+-        if (target && isLocationKnown(world, x) &&
+-            world.IsAbsentFromSensedLocation(target->id, x->location))
+-            return TerminalStatus::UNSATISFIED;
+-        if (target && isLocationKnown(world, target) &&
+-            world.IsAbsentFromSensedLocation(x->id, target->location))
+-            return TerminalStatus::UNSATISFIED;
+-        if (!target || !isLocationKnown(world, x) || !isLocationKnown(world, target))
++        if ((world.stage == 1 || hypothesis) && target &&
++            (scoreLocation(world, x, hypothesis) == _home::UNKNOWN ||
++             scoreLocation(world, target, hypothesis) == _home::UNKNOWN))
++            return TerminalStatus::UNSATISFIED;
++        if (!hypothesis && target && isLocationKnown(world, x, hypothesis) &&
++            world.IsAbsentFromSensedLocation(target->id, locationValue(world,x,hypothesis)))
++            return TerminalStatus::UNSATISFIED;
++        if (!hypothesis && target && isLocationKnown(world, target, hypothesis) &&
++            world.IsAbsentFromSensedLocation(x->id, locationValue(world,target,hypothesis)))
++            return TerminalStatus::UNSATISFIED;
++        if (!target || !isLocationKnown(world, x, hypothesis) || !isLocationKnown(world, target, hypothesis))
+             return TerminalStatus::UNKNOWN;
+ 
+         if (behave == "puton" || behave == "give") {
+             const std::shared_ptr<SmallObject> small =
+                 std::dynamic_pointer_cast<SmallObject>(x);
+-            if (!isInsideKnown(world, small)) return TerminalStatus::UNKNOWN;
+-            if (world.hold_id == x->id || world.plate_id == x->id)
+-                return TerminalStatus::UNSATISFIED;
++            if (!isInsideKnown(world, small, hypothesis)) return TerminalStatus::UNKNOWN;
++            if (stored) return TerminalStatus::UNSATISFIED;
++            if (!not_stored) return TerminalStatus::UNKNOWN;
+         }
+-        return boolStatus(scoreLocation(world, x) == scoreLocation(world, target));
++        return boolStatus(scoreLocation(world, x, hypothesis) == scoreLocation(world, target, hypothesis));
+     }
+ 
+     if (behave == "plate") {
+-        if (world.stage == 2 && !world.IsInsideVerified(x->id))
+-            return TerminalStatus::UNKNOWN;
+-        return boolStatus(world.plate_id == x->id);
++        if (!hypothesis && world.stage == 2 && !world.IsInsideVerified(x->id))
++            return TerminalStatus::UNKNOWN;
++        if (tray==UNKNOWN && !not_stored) return TerminalStatus::UNKNOWN;
++        return boolStatus(tray == x->id);
+     }
+ 
+     if (behave == "hold") {
+-        if (world.stage == 2 && !world.IsInsideVerified(x->id))
+-            return TerminalStatus::UNKNOWN;
+-        return boolStatus(world.hold_id == x->id);
++        if (!hypothesis && world.stage == 2 && !world.IsInsideVerified(x->id))
++            return TerminalStatus::UNKNOWN;
++        if (hand==UNKNOWN && !not_stored) return TerminalStatus::UNKNOWN;
++        return boolStatus(hand == x->id);
+     }
+ 
+     return TerminalStatus::UNKNOWN;
+@@ -255,6 +245,26 @@
+             if (kind != ConstraintKind::MUST_HOLD) next = invertStatus(next);
+             result = combineStatus(result, next);
+         }
++    }
++    return result;
++}
++
++TerminalSummary TerminalChecker::evaluatePlanningHypothesis(const RDFW& world) const {
++    TerminalSummary result;
++    for (const auto& task:world.tasks) {
++        TerminalStatus status=TerminalStatus::UNKNOWN;
++        bool first=true;
++        bool mixed=false;
++        if (task.IsUsable()) for (auto x:scoreBindings(world,task.conditionX,task.X)) {
++            const auto ys=scoreBindings(world,task.conditionY,task.Y);
++            for (std::size_t i=0; i<(ys.empty()?1:ys.size()); ++i) {
++                const auto next=evaluatePair(world,task.behave,x,ys.empty()?nullptr:ys[i],true);
++                if (!first && status!=next) { status=TerminalStatus::UNKNOWN; mixed=true; break; }
++                status=next; first=false;
++            }
++            if (mixed) break;
++        }
++        result.goals.push_back(status);
+     }
+     return result;
+ }
+--- src1.6.5/terminal_checker.hpp
++++ src1.6.6/terminal_checker.hpp
+@@ -45,6 +45,9 @@
+ // credits read the separate irreversible trajectory ledger.
+ class TerminalChecker {
+ public:
++    // Explicit planning-only view for the existing initial reward probe.
++    // Its result never supplies current world truth or score snapshots.
++    TerminalSummary evaluatePlanningHypothesis(const RDFW& world) const;
+     TerminalStatus evaluateTask(const RDFW& world, const Instruction& task) const;
+     TerminalStatus evaluateConstraint(const RDFW& world,
+                                       const Instruction& constraint,

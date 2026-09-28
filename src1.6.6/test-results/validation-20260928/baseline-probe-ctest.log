@@ -1,0 +1,154 @@
+Test project /tmp/rdfw-166-baseline-probe
+      Start  1: baseline_canonical_0
+ 1/14 Test  #1: baseline_canonical_0 .............***Exception: Child aborted  0.01 sec
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+canonical_baseline_probe: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.6/tests/canonical_baseline_probe.cpp:24: int main(int, char**): Assertion `!w->IsLocationVerified(2)' failed.
+
+      Start  2: baseline_canonical_1
+ 2/14 Test  #2: baseline_canonical_1 .............***Exception: Child aborted  0.01 sec
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+canonical_baseline_probe: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.6/tests/canonical_baseline_probe.cpp:27: int main(int, char**): Assertion `TerminalChecker().evaluateTask(*w,T("goto",c))!=TerminalStatus::SATISFIED' failed.
+
+      Start  3: baseline_canonical_2
+ 3/14 Test  #3: baseline_canonical_2 .............***Exception: Child aborted  0.01 sec
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+canonical_baseline_probe: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.6/tests/canonical_baseline_probe.cpp:30: int main(int, char**): Assertion `!w->SolveTask_Give(3)' failed.
+
+      Start  4: baseline_canonical_3
+ 4/14 Test  #4: baseline_canonical_3 .............***Exception: Child aborted  0.01 sec
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+canonical_baseline_probe: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.6/tests/canonical_baseline_probe.cpp:32: int main(int, char**): Assertion `!w->SolveTask_TakeOut(3,2)' failed.
+
+      Start  5: baseline_canonical_4
+ 5/14 Test  #5: baseline_canonical_4 .............***Exception: Child aborted  0.01 sec
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+canonical_baseline_probe: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.6/tests/canonical_baseline_probe.cpp:34: int main(int, char**): Assertion `w->ResolvedState(StateField::INSIDE,3).present' failed.
+
+      Start  6: baseline_canonical_5
+ 6/14 Test  #6: baseline_canonical_5 .............***Exception: Child aborted  0.01 sec
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+x: 3 y: 2
+obj_to_cont[x]: 2
+sm->inside: 0
+[LOG]:[32m[MustIn] (direct) set obj 3 @ 5 (in 2)
+[0m
+[LOG]:[32m[MustIn] correction done.
+[0m
+x: 3 y: 2
+obj_to_cont[x]: 2
+sm->inside: 2
+canonical_baseline_probe: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.6/tests/canonical_baseline_probe.cpp:39: int main(int, char**): Assertion `!w->IsInsideVerified(3)' failed.
+
+      Start  7: baseline_canonical_6
+ 7/14 Test  #7: baseline_canonical_6 .............***Exception: Child aborted  0.01 sec
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+x: 3 y: 2
+obj_to_cont[x]: 2
+sm->inside: 0
+canonical_baseline_probe: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.6/tests/canonical_baseline_probe.cpp:44: int main(int, char**): Assertion `!w->ResolvedState(StateField::LOCATION,3).present' failed.
+
+      Start  8: baseline_canonical_7
+ 8/14 Test  #8: baseline_canonical_7 .............***Exception: Child aborted  0.01 sec
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test
+canonical_baseline_probe: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.6/tests/canonical_baseline_probe.cpp:46: int main(int, char**): Assertion `!w->ResolvedState(StateField::HOLD,0).present' failed.
+
+      Start  9: baseline_canonical_8
+ 9/14 Test  #9: baseline_canonical_8 .............***Exception: Child aborted  0.01 sec
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+canonical_baseline_probe: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.6/tests/canonical_baseline_probe.cpp:49: int main(int, char**): Assertion `!w->ResolvedState(StateField::LOCATION,3).present' failed.
+
+      Start 10: baseline_canonical_9
+10/14 Test #10: baseline_canonical_9 .............***Exception: Child aborted  0.01 sec
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+canonical_baseline_probe: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.6/tests/canonical_baseline_probe.cpp:52: int main(int, char**): Assertion `!w->ResolvedState(StateField::LOCATION,2).present' failed.
+
+      Start 11: baseline_canonical_10
+11/14 Test #11: baseline_canonical_10 ............***Exception: Child aborted  0.02 sec
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+x: 3 y: 2
+obj_to_cont[x]: 2
+sm->inside: 0
+canonical_baseline_probe: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.6/tests/canonical_baseline_probe.cpp:56: int main(int, char**): Assertion `w->ResolvedState(StateField::LOCATION,3).value==5' failed.
+
+      Start 12: baseline_canonical_11
+12/14 Test #12: baseline_canonical_11 ............***Exception: Child aborted  0.01 sec
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+canonical_baseline_probe: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.6/tests/canonical_baseline_probe.cpp:59: int main(int, char**): Assertion `w->ResolvedState(StateField::LOCATION,3).value==5' failed.
+
+      Start 13: baseline_canonical_12
+13/14 Test #13: baseline_canonical_12 ............***Exception: Child aborted  0.01 sec
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+canonical_baseline_probe: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.6/tests/canonical_baseline_probe.cpp:64: int main(int, char**): Assertion `!w->ResolvedState(StateField::LOCATION,3).present' failed.
+
+      Start 14: baseline_canonical_13
+14/14 Test #14: baseline_canonical_13 ............***Exception: Child aborted  0.01 sec
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+canonical_baseline_probe: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.6/tests/canonical_baseline_probe.cpp:67: int main(int, char**): Assertion `!w->ResolvedState(StateField::INSIDE,3).present' failed.
+
+
+0% tests passed, 14 tests failed out of 14
+
+Total Test time (real) =   0.20 sec
+
+The following tests FAILED:
+	  1 - baseline_canonical_0 (Child aborted)
+	  2 - baseline_canonical_1 (Child aborted)
+	  3 - baseline_canonical_2 (Child aborted)
+	  4 - baseline_canonical_3 (Child aborted)
+	  5 - baseline_canonical_4 (Child aborted)
+	  6 - baseline_canonical_5 (Child aborted)
+	  7 - baseline_canonical_6 (Child aborted)
+	  8 - baseline_canonical_7 (Child aborted)
+	  9 - baseline_canonical_8 (Child aborted)
+	 10 - baseline_canonical_9 (Child aborted)
+	 11 - baseline_canonical_10 (Child aborted)
+	 12 - baseline_canonical_11 (Child aborted)
+	 13 - baseline_canonical_12 (Child aborted)
+	 14 - baseline_canonical_13 (Child aborted)
+Errors while running CTest

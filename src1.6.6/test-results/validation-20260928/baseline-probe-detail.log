@@ -1,0 +1,303 @@
+Start testing: Sep 28 18:35 CST
+----------------------------------------------------------
+1/14 Testing: baseline_canonical_0
+1/14 Test: baseline_canonical_0
+Command: "/tmp/rdfw-166-baseline-probe/canonical_baseline_probe" "/tmp/rdfw-166-baseline-probe/words.txt" "0"
+Directory: /tmp/rdfw-166-baseline-probe
+"baseline_canonical_0" start time: Sep 28 18:35 CST
+Output:
+----------------------------------------------------------
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+canonical_baseline_probe: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.6/tests/canonical_baseline_probe.cpp:24: int main(int, char**): Assertion `!w->IsLocationVerified(2)' failed.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Failed.
+"baseline_canonical_0" end time: Sep 28 18:35 CST
+"baseline_canonical_0" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/14 Testing: baseline_canonical_1
+2/14 Test: baseline_canonical_1
+Command: "/tmp/rdfw-166-baseline-probe/canonical_baseline_probe" "/tmp/rdfw-166-baseline-probe/words.txt" "1"
+Directory: /tmp/rdfw-166-baseline-probe
+"baseline_canonical_1" start time: Sep 28 18:35 CST
+Output:
+----------------------------------------------------------
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+canonical_baseline_probe: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.6/tests/canonical_baseline_probe.cpp:27: int main(int, char**): Assertion `TerminalChecker().evaluateTask(*w,T("goto",c))!=TerminalStatus::SATISFIED' failed.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Failed.
+"baseline_canonical_1" end time: Sep 28 18:35 CST
+"baseline_canonical_1" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/14 Testing: baseline_canonical_2
+3/14 Test: baseline_canonical_2
+Command: "/tmp/rdfw-166-baseline-probe/canonical_baseline_probe" "/tmp/rdfw-166-baseline-probe/words.txt" "2"
+Directory: /tmp/rdfw-166-baseline-probe
+"baseline_canonical_2" start time: Sep 28 18:35 CST
+Output:
+----------------------------------------------------------
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+canonical_baseline_probe: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.6/tests/canonical_baseline_probe.cpp:30: int main(int, char**): Assertion `!w->SolveTask_Give(3)' failed.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Failed.
+"baseline_canonical_2" end time: Sep 28 18:35 CST
+"baseline_canonical_2" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/14 Testing: baseline_canonical_3
+4/14 Test: baseline_canonical_3
+Command: "/tmp/rdfw-166-baseline-probe/canonical_baseline_probe" "/tmp/rdfw-166-baseline-probe/words.txt" "3"
+Directory: /tmp/rdfw-166-baseline-probe
+"baseline_canonical_3" start time: Sep 28 18:35 CST
+Output:
+----------------------------------------------------------
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+canonical_baseline_probe: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.6/tests/canonical_baseline_probe.cpp:32: int main(int, char**): Assertion `!w->SolveTask_TakeOut(3,2)' failed.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Failed.
+"baseline_canonical_3" end time: Sep 28 18:35 CST
+"baseline_canonical_3" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/14 Testing: baseline_canonical_4
+5/14 Test: baseline_canonical_4
+Command: "/tmp/rdfw-166-baseline-probe/canonical_baseline_probe" "/tmp/rdfw-166-baseline-probe/words.txt" "4"
+Directory: /tmp/rdfw-166-baseline-probe
+"baseline_canonical_4" start time: Sep 28 18:35 CST
+Output:
+----------------------------------------------------------
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+canonical_baseline_probe: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.6/tests/canonical_baseline_probe.cpp:34: int main(int, char**): Assertion `w->ResolvedState(StateField::INSIDE,3).present' failed.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Failed.
+"baseline_canonical_4" end time: Sep 28 18:35 CST
+"baseline_canonical_4" time elapsed: 00:00:00
+----------------------------------------------------------
+
+6/14 Testing: baseline_canonical_5
+6/14 Test: baseline_canonical_5
+Command: "/tmp/rdfw-166-baseline-probe/canonical_baseline_probe" "/tmp/rdfw-166-baseline-probe/words.txt" "5"
+Directory: /tmp/rdfw-166-baseline-probe
+"baseline_canonical_5" start time: Sep 28 18:35 CST
+Output:
+----------------------------------------------------------
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+x: 3 y: 2
+obj_to_cont[x]: 2
+sm->inside: 0
+[LOG]:[32m[MustIn] (direct) set obj 3 @ 5 (in 2)
+[0m
+[LOG]:[32m[MustIn] correction done.
+[0m
+x: 3 y: 2
+obj_to_cont[x]: 2
+sm->inside: 2
+canonical_baseline_probe: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.6/tests/canonical_baseline_probe.cpp:39: int main(int, char**): Assertion `!w->IsInsideVerified(3)' failed.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Failed.
+"baseline_canonical_5" end time: Sep 28 18:35 CST
+"baseline_canonical_5" time elapsed: 00:00:00
+----------------------------------------------------------
+
+7/14 Testing: baseline_canonical_6
+7/14 Test: baseline_canonical_6
+Command: "/tmp/rdfw-166-baseline-probe/canonical_baseline_probe" "/tmp/rdfw-166-baseline-probe/words.txt" "6"
+Directory: /tmp/rdfw-166-baseline-probe
+"baseline_canonical_6" start time: Sep 28 18:35 CST
+Output:
+----------------------------------------------------------
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+x: 3 y: 2
+obj_to_cont[x]: 2
+sm->inside: 0
+canonical_baseline_probe: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.6/tests/canonical_baseline_probe.cpp:44: int main(int, char**): Assertion `!w->ResolvedState(StateField::LOCATION,3).present' failed.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Failed.
+"baseline_canonical_6" end time: Sep 28 18:35 CST
+"baseline_canonical_6" time elapsed: 00:00:00
+----------------------------------------------------------
+
+8/14 Testing: baseline_canonical_7
+8/14 Test: baseline_canonical_7
+Command: "/tmp/rdfw-166-baseline-probe/canonical_baseline_probe" "/tmp/rdfw-166-baseline-probe/words.txt" "7"
+Directory: /tmp/rdfw-166-baseline-probe
+"baseline_canonical_7" start time: Sep 28 18:35 CST
+Output:
+----------------------------------------------------------
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test
+canonical_baseline_probe: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.6/tests/canonical_baseline_probe.cpp:46: int main(int, char**): Assertion `!w->ResolvedState(StateField::HOLD,0).present' failed.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Failed.
+"baseline_canonical_7" end time: Sep 28 18:35 CST
+"baseline_canonical_7" time elapsed: 00:00:00
+----------------------------------------------------------
+
+9/14 Testing: baseline_canonical_8
+9/14 Test: baseline_canonical_8
+Command: "/tmp/rdfw-166-baseline-probe/canonical_baseline_probe" "/tmp/rdfw-166-baseline-probe/words.txt" "8"
+Directory: /tmp/rdfw-166-baseline-probe
+"baseline_canonical_8" start time: Sep 28 18:35 CST
+Output:
+----------------------------------------------------------
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+canonical_baseline_probe: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.6/tests/canonical_baseline_probe.cpp:49: int main(int, char**): Assertion `!w->ResolvedState(StateField::LOCATION,3).present' failed.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Failed.
+"baseline_canonical_8" end time: Sep 28 18:35 CST
+"baseline_canonical_8" time elapsed: 00:00:00
+----------------------------------------------------------
+
+10/14 Testing: baseline_canonical_9
+10/14 Test: baseline_canonical_9
+Command: "/tmp/rdfw-166-baseline-probe/canonical_baseline_probe" "/tmp/rdfw-166-baseline-probe/words.txt" "9"
+Directory: /tmp/rdfw-166-baseline-probe
+"baseline_canonical_9" start time: Sep 28 18:35 CST
+Output:
+----------------------------------------------------------
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+canonical_baseline_probe: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.6/tests/canonical_baseline_probe.cpp:52: int main(int, char**): Assertion `!w->ResolvedState(StateField::LOCATION,2).present' failed.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Failed.
+"baseline_canonical_9" end time: Sep 28 18:35 CST
+"baseline_canonical_9" time elapsed: 00:00:00
+----------------------------------------------------------
+
+11/14 Testing: baseline_canonical_10
+11/14 Test: baseline_canonical_10
+Command: "/tmp/rdfw-166-baseline-probe/canonical_baseline_probe" "/tmp/rdfw-166-baseline-probe/words.txt" "10"
+Directory: /tmp/rdfw-166-baseline-probe
+"baseline_canonical_10" start time: Sep 28 18:35 CST
+Output:
+----------------------------------------------------------
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+x: 3 y: 2
+obj_to_cont[x]: 2
+sm->inside: 0
+canonical_baseline_probe: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.6/tests/canonical_baseline_probe.cpp:56: int main(int, char**): Assertion `w->ResolvedState(StateField::LOCATION,3).value==5' failed.
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Failed.
+"baseline_canonical_10" end time: Sep 28 18:35 CST
+"baseline_canonical_10" time elapsed: 00:00:00
+----------------------------------------------------------
+
+12/14 Testing: baseline_canonical_11
+12/14 Test: baseline_canonical_11
+Command: "/tmp/rdfw-166-baseline-probe/canonical_baseline_probe" "/tmp/rdfw-166-baseline-probe/words.txt" "11"
+Directory: /tmp/rdfw-166-baseline-probe
+"baseline_canonical_11" start time: Sep 28 18:35 CST
+Output:
+----------------------------------------------------------
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+canonical_baseline_probe: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.6/tests/canonical_baseline_probe.cpp:59: int main(int, char**): Assertion `w->ResolvedState(StateField::LOCATION,3).value==5' failed.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Failed.
+"baseline_canonical_11" end time: Sep 28 18:35 CST
+"baseline_canonical_11" time elapsed: 00:00:00
+----------------------------------------------------------
+
+13/14 Testing: baseline_canonical_12
+13/14 Test: baseline_canonical_12
+Command: "/tmp/rdfw-166-baseline-probe/canonical_baseline_probe" "/tmp/rdfw-166-baseline-probe/words.txt" "12"
+Directory: /tmp/rdfw-166-baseline-probe
+"baseline_canonical_12" start time: Sep 28 18:35 CST
+Output:
+----------------------------------------------------------
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+canonical_baseline_probe: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.6/tests/canonical_baseline_probe.cpp:64: int main(int, char**): Assertion `!w->ResolvedState(StateField::LOCATION,3).present' failed.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Failed.
+"baseline_canonical_12" end time: Sep 28 18:35 CST
+"baseline_canonical_12" time elapsed: 00:00:00
+----------------------------------------------------------
+
+14/14 Testing: baseline_canonical_13
+14/14 Test: baseline_canonical_13
+Command: "/tmp/rdfw-166-baseline-probe/canonical_baseline_probe" "/tmp/rdfw-166-baseline-probe/words.txt" "13"
+Directory: /tmp/rdfw-166-baseline-probe
+"baseline_canonical_13" start time: Sep 28 18:35 CST
+Output:
+----------------------------------------------------------
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+canonical_baseline_probe: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.6/tests/canonical_baseline_probe.cpp:67: int main(int, char**): Assertion `!w->ResolvedState(StateField::INSIDE,3).present' failed.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Failed.
+"baseline_canonical_13" end time: Sep 28 18:35 CST
+"baseline_canonical_13" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Sep 28 18:35 CST

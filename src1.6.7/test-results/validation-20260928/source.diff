@@ -1,0 +1,1623 @@
+--- src1.6.6/CMakeLists.txt
++++ src1.6.7/CMakeLists.txt
+@@ -1,4 +1,4 @@
+-PROJECT(rdfw VERSION 1.6.6)
++PROJECT(rdfw VERSION 1.6.7)
+ # 设置指定的C++编译器版本是必须的，如果不设置，或者为OFF，则指定版本不可用时，会使用上一版本。
+ set(CMAKE_CXX_STANDARD_REQUIRED ON)
+ 
+@@ -15,7 +15,7 @@
+     candidate_plan.hpp
+     task_group_search.hpp
+     question_preflight.hpp
+-    canonical_state.cpp rdfw.cpp
++    state_mutation.cpp canonical_state.cpp rdfw.cpp
+     deadline_manager.cpp
+     terminal_checker.cpp
+     legacy_priority.cpp
+@@ -38,7 +38,7 @@
+ if(BUILD_INPUT_SAFETY_TESTS)
+     ADD_EXECUTABLE(input_safety_tests
+         tests/input_safety_tests.cpp
+-        canonical_state.cpp rdfw.cpp parser.cpp deadline_manager.cpp terminal_checker.cpp legacy_priority.cpp
++        state_mutation.cpp canonical_state.cpp rdfw.cpp parser.cpp deadline_manager.cpp terminal_checker.cpp legacy_priority.cpp
+         score_evaluator.cpp candidate_plan.cpp task_group_search.cpp question_preflight.cpp)
+     TARGET_INCLUDE_DIRECTORIES(input_safety_tests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+     TARGET_LINK_LIBRARIES(input_safety_tests frame utility ${Boost_LIBRARIES})
+--- src1.6.6/canonical_state.cpp
++++ src1.6.7/canonical_state.cpp
+@@ -53,30 +53,37 @@
+ 
+ void RDFW::ApplyStateValue(StateField field, unsigned int id, int value,
+                            bool verified, EvidenceSource source) {
++    StateMutation mutation(*this);
+     if (id >= objects.size() || !objects[id] || !EnsureEvidenceCapacity(id)) return;
++    active_mutation->touch(id);
+     if (field == StateField::LOCATION) {
+-        objects[id]->location = value;
++        StageStateValue(field,id,value);
+         MarkDirectLocationEvidence(id, verified, source);
+     } else if (field == StateField::INSIDE) {
+         auto item = std::dynamic_pointer_cast<SmallObject>(objects[id]);
+         if (!item) return;
+         ClearContainerMembership(item);
+-        item->inside = value;
++        StageStateValue(field,id,value);
+         if (value > 0) {
+             auto container = std::dynamic_pointer_cast<Container>(GetObject(value));
+-            if (container) container->smallObjectsInside.push_back(item);
++            if (container) AddContainerMembership(container,item);
+         }
+         SetInsideEvidence(id, verified, source);
+     } else if (field == StateField::CONTAINER_STATE) {
+         auto container = std::dynamic_pointer_cast<Container>(objects[id]);
+         if (!container) return;
+-        container->isOpen = value;
++        StageStateValue(field,id,value);
+         SetContainerEvidence(id, verified, source);
+     }
+ }
+ 
+ std::string RDFW::DebugStateSnapshot() const {
+     std::ostringstream out;
++    AppendStateSnapshot(out);
++    return out.str();
++}
++
++void RDFW::AppendStateSnapshot(std::ostream& out) const {
+     const auto record = [&](StateField field, unsigned int id) {
+         const auto& p = Provenance(field,id);
+         out << int(field) << ':' << id << ':' << p.resolved_value << ':'
+@@ -112,7 +119,6 @@
+     for (bool b:constraint_eligible) out << b;
+     out << ';'; for (bool b:constraint_uncertain) out << b;
+     out << ';'; for (int v:score_locations) out << v << ',';
+-    return out.str();
+ }
+ 
+ std::vector<std::string> RDFW::DebugStateConsistency() const {
+--- src1.6.6/rdfw.cpp
++++ src1.6.7/rdfw.cpp
+@@ -333,9 +333,8 @@
+     for (std::size_t index : group)
+         if (index >= tasks.size()) return CandidatePlan();
+     const std::vector<bool> original_constraint_eligible = constraint_eligible;
+-    const std::vector<bool> saved_constraint_uncertain = constraint_uncertain;
+-    const std::vector<int> saved_score_locations = score_locations;
+-    InitializeConstraintLedger();
++    std::vector<bool> saved_constraint_uncertain = constraint_uncertain;
++    std::vector<int> saved_score_locations = score_locations;
+ 
+     struct ObjectState {
+         int location;
+@@ -346,7 +345,7 @@
+         int on;
+         bool is_container;
+         int is_open;
+-        std::vector<int> contents;
++        std::vector<shared_ptr<SmallObject>> contents;
+     };
+ 
+     const bool preserve_priority = stage == 2 && tasks.size() <= 24;
+@@ -356,7 +355,7 @@
+     std::vector<ObjectState> object_states(objects.size());
+     for (std::size_t i = 0; i < objects.size(); ++i) {
+         ObjectState state = {UNKNOWN, 0, UNKNOWN, false, UNKNOWN, UNKNOWN,
+-                             false, 0, std::vector<int>()};
++                             false, 0, std::vector<shared_ptr<SmallObject>>()};
+         if (objects[i]) {
+             state.location = objects[i]->location;
+             state.is_keep = objects[i]->is_keep;
+@@ -373,15 +372,13 @@
+             if (container) {
+                 state.is_container = true;
+                 state.is_open = container->isOpen;
+-                for (std::size_t j = 0; j < container->smallObjectsInside.size(); ++j)
+-                    if (container->smallObjectsInside[j])
+-                        state.contents.push_back(container->smallObjectsInside[j]->id);
+-            }
+-        }
+-        object_states[i] = state;
+-    }
+-
+-    const std::vector<Instruction> saved_tasks = tasks;
++                state.contents = container->smallObjectsInside;
++            }
++        }
++        object_states[i] = std::move(state);
++    }
++
++    std::vector<Instruction> saved_tasks = tasks;
+     const int saved_location = location;
+     const int saved_hold_id = hold_id;
+     const int saved_plate_id = plate_id;
+@@ -397,39 +394,39 @@
+     const bool saved_auto_constrain = isAutoConstrain;
+     const bool saved_ask_twice = isAskTwice;
+     const bool saved_error_correction = isErrorCorrection;
+-    const std::vector<int> saved_goto_cons = goto_cons;
+-    const std::vector<std::vector<int> > saved_putin_cons = putin_cons;
+-    const std::vector<std::vector<int> > saved_takeout_cons = takeout_cons;
+-    const std::vector<std::vector<int> > saved_putdown_cons = putdown_cons;
+-    const std::vector<int> saved_putdown1_cons = putdown1_cons;
+-    const std::vector<std::vector<int> > saved_move_cons = move_cons;
+-    const std::vector<int> saved_open_cons = open_cons;
+-    const std::vector<int> saved_close_cons = close_cons;
+-    const std::vector<int> saved_pickup_cons = pickup_cons;
+-    const std::vector<int> saved_givehuman_cons = givehuman_cons;
+-    const std::vector<int> saved_fromplate_cons = fromplate_cons;
+-    const std::vector<int> saved_toplate_cons = toplate_cons;
+-    const std::vector<std::vector<int> > saved_mustnear_cons = mustnear_cons;
+-    const std::vector<bool> saved_rightlocation = rightlocation;
+-    const std::vector<bool> saved_lock_by_mustnear = lock_by_mustnear;
+-    const std::vector<int> saved_mustnear_component = mustNearComponent;
+-    const std::vector<bool> saved_inferred = objectLocationInferredByMustNear;
+-    const std::vector<bool> saved_pos_correct = posCorrectFlag;
+-    const std::vector<bool> saved_pos_sensed = posSensedFlag;
+-    const std::vector<bool> saved_location_verified = objectLocationVerified;
+-    const std::vector<bool> saved_inside_verified = objectInsideVerified;
+-    const std::vector<bool> saved_container_verified = containerStateVerified;
+-    const std::vector<EvidenceSource> saved_location_source = objectLocationSource;
+-    const std::vector<EvidenceSource> saved_inside_source = objectInsideSource;
+-    const std::vector<EvidenceSource> saved_container_source = containerStateSource;
+-    const std::vector<StateProvenance> saved_location_provenance = locationProvenance;
+-    const std::vector<StateProvenance> saved_inside_provenance = insideProvenance;
+-    const std::vector<StateProvenance> saved_container_provenance = containerProvenance;
+-    const StateProvenance saved_hold_provenance = holdProvenance;
+-    const StateProvenance saved_plate_provenance = plateProvenance;
++    std::vector<int> saved_goto_cons = goto_cons;
++    std::vector<std::vector<int> > saved_putin_cons = putin_cons;
++    std::vector<std::vector<int> > saved_takeout_cons = takeout_cons;
++    std::vector<std::vector<int> > saved_putdown_cons = putdown_cons;
++    std::vector<int> saved_putdown1_cons = putdown1_cons;
++    std::vector<std::vector<int> > saved_move_cons = move_cons;
++    std::vector<int> saved_open_cons = open_cons;
++    std::vector<int> saved_close_cons = close_cons;
++    std::vector<int> saved_pickup_cons = pickup_cons;
++    std::vector<int> saved_givehuman_cons = givehuman_cons;
++    std::vector<int> saved_fromplate_cons = fromplate_cons;
++    std::vector<int> saved_toplate_cons = toplate_cons;
++    std::vector<std::vector<int> > saved_mustnear_cons = mustnear_cons;
++    std::vector<bool> saved_rightlocation = rightlocation;
++    std::vector<bool> saved_lock_by_mustnear = lock_by_mustnear;
++    std::vector<int> saved_mustnear_component = mustNearComponent;
++    std::vector<bool> saved_inferred = objectLocationInferredByMustNear;
++    std::vector<bool> saved_pos_correct = posCorrectFlag;
++    std::vector<bool> saved_pos_sensed = posSensedFlag;
++    std::vector<bool> saved_location_verified = objectLocationVerified;
++    std::vector<bool> saved_inside_verified = objectInsideVerified;
++    std::vector<bool> saved_container_verified = containerStateVerified;
++    std::vector<EvidenceSource> saved_location_source = objectLocationSource;
++    std::vector<EvidenceSource> saved_inside_source = objectInsideSource;
++    std::vector<EvidenceSource> saved_container_source = containerStateSource;
++    std::vector<StateProvenance> saved_location_provenance = locationProvenance;
++    std::vector<StateProvenance> saved_inside_provenance = insideProvenance;
++    std::vector<StateProvenance> saved_container_provenance = containerProvenance;
++    StateProvenance saved_hold_provenance = holdProvenance;
++    StateProvenance saved_plate_provenance = plateProvenance;
+     const std::size_t saved_world_revision = world_revision;
+-    const std::vector<std::size_t> saved_failed_revision = failed_task_revision;
+-    const std::vector<LocationSensedInfo> saved_sensed_objects = locationSensedObjects;
++    std::vector<std::size_t> saved_failed_revision = failed_task_revision;
++    std::vector<LocationSensedInfo> saved_sensed_objects = locationSensedObjects;
+     int saved_uf_parent[256];
+     int saved_uf_size[256];
+     int saved_uf_group_loc[256];
+@@ -437,25 +434,25 @@
+     std::memcpy(saved_uf_size, uf_size, sizeof(uf_size));
+     std::memcpy(saved_uf_group_loc, uf_groupLoc, sizeof(uf_groupLoc));
+     const ScoreEvaluator saved_score_evaluator = score_evaluator;
+-    const std::vector<bool> saved_constraint_eligible = original_constraint_eligible;
++    std::vector<bool> saved_constraint_eligible = original_constraint_eligible;
+     const bool saved_shadow_dry_run = shadow_dry_run;
+     std::vector<CandidateAction>* const saved_shadow_sink = shadow_action_sink;
+     const std::chrono::milliseconds saved_projected_duration = shadow_projected_duration;
+     const bool saved_guarded_attempted = guarded_attempted;
+     const bool saved_guarded_stop = guarded_stop_requested;
+     const bool saved_guarded_actions_active = guarded_actions_active;
+-    const std::vector<CandidateAction> saved_guarded_expected_actions = guarded_expected_actions;
++    std::vector<CandidateAction> saved_guarded_expected_actions = guarded_expected_actions;
+     const std::size_t saved_guarded_next_action = guarded_next_action;
+-    const std::vector<std::size_t> saved_guarded_allowed_losses = guarded_allowed_losses;
++    std::vector<std::size_t> saved_guarded_allowed_losses = guarded_allowed_losses;
+     const bool saved_has_active_candidate = has_active_candidate;
+-    const CandidatePlan saved_active_candidate = active_candidate;
+-    const TerminalSummary saved_active_terminal_before = active_terminal_before;
++    CandidatePlan saved_active_candidate = active_candidate;
++    TerminalSummary saved_active_terminal_before = active_terminal_before;
+     const ScoreSnapshot saved_active_score_before = active_score_before;
+-    const std::vector<CandidateExecutionRecord> saved_feedback = decision_feedback;
++    std::vector<CandidateExecutionRecord> saved_feedback = decision_feedback;
+     const std::size_t saved_next_candidate_id = next_candidate_id;
+     const bool saved_active_action_failed = active_action_failed;
+     const std::size_t saved_active_actual_actions = active_actual_actions;
+-    const std::vector<std::string> saved_active_failure_reasons = active_failure_reasons;
++    std::vector<std::string> saved_active_failure_reasons = active_failure_reasons;
+     const std::size_t saved_stop_rescan_count = stop_rescan_count;
+     const std::chrono::steady_clock::duration saved_search_used = task_group_search_used;
+     const bool saved_log_suppression = DebugLogSuppressed();
+@@ -464,40 +461,40 @@
+     const auto restore_state = [&]() {
+         DebugLogSuppressed() = saved_log_suppression;
+         std::cout.clear(saved_cout_state);
+-        tasks = saved_tasks;
+-        goto_cons = saved_goto_cons;
+-        putin_cons = saved_putin_cons;
+-        takeout_cons = saved_takeout_cons;
+-        putdown_cons = saved_putdown_cons;
+-        putdown1_cons = saved_putdown1_cons;
+-        move_cons = saved_move_cons;
+-        open_cons = saved_open_cons;
+-        close_cons = saved_close_cons;
+-        pickup_cons = saved_pickup_cons;
+-        givehuman_cons = saved_givehuman_cons;
+-        fromplate_cons = saved_fromplate_cons;
+-        toplate_cons = saved_toplate_cons;
+-        mustnear_cons = saved_mustnear_cons;
+-        rightlocation = saved_rightlocation;
+-        lock_by_mustnear = saved_lock_by_mustnear;
+-        mustNearComponent = saved_mustnear_component;
+-        objectLocationInferredByMustNear = saved_inferred;
+-        posCorrectFlag = saved_pos_correct;
+-        posSensedFlag = saved_pos_sensed;
+-        objectLocationVerified = saved_location_verified;
+-        objectInsideVerified = saved_inside_verified;
+-        containerStateVerified = saved_container_verified;
+-        objectLocationSource = saved_location_source;
+-        objectInsideSource = saved_inside_source;
+-        containerStateSource = saved_container_source;
+-        locationProvenance = saved_location_provenance;
+-        insideProvenance = saved_inside_provenance;
+-        containerProvenance = saved_container_provenance;
+-        holdProvenance = saved_hold_provenance;
+-        plateProvenance = saved_plate_provenance;
+-        world_revision = saved_world_revision;
+-        failed_task_revision = saved_failed_revision;
+-        locationSensedObjects = saved_sensed_objects;
++        tasks = std::move(saved_tasks);
++        goto_cons = std::move(saved_goto_cons);
++        putin_cons = std::move(saved_putin_cons);
++        takeout_cons = std::move(saved_takeout_cons);
++        putdown_cons = std::move(saved_putdown_cons);
++        putdown1_cons = std::move(saved_putdown1_cons);
++        move_cons = std::move(saved_move_cons);
++        open_cons = std::move(saved_open_cons);
++        close_cons = std::move(saved_close_cons);
++        pickup_cons = std::move(saved_pickup_cons);
++        givehuman_cons = std::move(saved_givehuman_cons);
++        fromplate_cons = std::move(saved_fromplate_cons);
++        toplate_cons = std::move(saved_toplate_cons);
++        mustnear_cons = std::move(saved_mustnear_cons);
++        rightlocation = std::move(saved_rightlocation);
++        lock_by_mustnear = std::move(saved_lock_by_mustnear);
++        mustNearComponent = std::move(saved_mustnear_component);
++        objectLocationInferredByMustNear = std::move(saved_inferred);
++        posCorrectFlag = std::move(saved_pos_correct);
++        posSensedFlag = std::move(saved_pos_sensed);
++        objectLocationVerified = std::move(saved_location_verified);
++        objectInsideVerified = std::move(saved_inside_verified);
++        containerStateVerified = std::move(saved_container_verified);
++        objectLocationSource = std::move(saved_location_source);
++        objectInsideSource = std::move(saved_inside_source);
++        containerStateSource = std::move(saved_container_source);
++        locationProvenance = std::move(saved_location_provenance);
++        insideProvenance = std::move(saved_inside_provenance);
++        containerProvenance = std::move(saved_container_provenance);
++        holdProvenance = std::move(saved_hold_provenance);
++        plateProvenance = std::move(saved_plate_provenance);
++        world_revision = std::move(saved_world_revision);
++        failed_task_revision = std::move(saved_failed_revision);
++        locationSensedObjects = std::move(saved_sensed_objects);
+         std::memcpy(uf_parent, saved_uf_parent, sizeof(uf_parent));
+         std::memcpy(uf_size, saved_uf_size, sizeof(uf_size));
+         std::memcpy(uf_groupLoc, saved_uf_group_loc, sizeof(uf_groupLoc));
+@@ -523,62 +520,55 @@
+                 std::dynamic_pointer_cast<Container>(objects[i]);
+             if (!container) continue;
+             container->isOpen = object_states[i].is_open;
+-            container->smallObjectsInside.clear();
+-            for (std::size_t j = 0; j < object_states[i].contents.size(); ++j) {
+-                const int id = object_states[i].contents[j];
+-                if (id > 0 && static_cast<std::size_t>(id) < objects.size()) {
+-                    const std::shared_ptr<SmallObject> small =
+-                        std::dynamic_pointer_cast<SmallObject>(objects[id]);
+-                    if (small) container->smallObjectsInside.push_back(small);
+-                }
+-            }
+-        }
+-
+-        location = saved_location;
+-        hold_id = saved_hold_id;
+-        plate_id = saved_plate_id;
++            container->smallObjectsInside.swap(object_states[i].contents);
++        }
++
++        location = std::move(saved_location);
++        hold_id = std::move(saved_hold_id);
++        plate_id = std::move(saved_plate_id);
+         hold = saved_hold_id > 0 && static_cast<std::size_t>(saved_hold_id) < objects.size()
+             ? std::dynamic_pointer_cast<SmallObject>(objects[saved_hold_id]) : nullptr;
+         plate = saved_plate_id > 0 && static_cast<std::size_t>(saved_plate_id) < objects.size()
+             ? std::dynamic_pointer_cast<SmallObject>(objects[saved_plate_id]) : nullptr;
+-        task_index = saved_task_index;
+-        err_times = saved_err_times;
+-        solved_task_num = saved_solved_task_num;
+-        isPass = saved_is_pass;
+-        isKeepConstrain = saved_is_keep;
+-        isMultiGotoMode = saved_is_multi_goto;
+-        hold_mustnear = saved_hold_mustnear;
+-        plate_mustnear = saved_plate_mustnear;
+-        normal_stop_requested = saved_normal_stop;
+-        isAutoConstrain = saved_auto_constrain;
+-        isAskTwice = saved_ask_twice;
+-        isErrorCorrection = saved_error_correction;
+-        score_evaluator = saved_score_evaluator;
+-        constraint_eligible = saved_constraint_eligible;
+-        constraint_uncertain = saved_constraint_uncertain;
+-        score_locations = saved_score_locations;
+-        shadow_dry_run = saved_shadow_dry_run;
+-        shadow_action_sink = saved_shadow_sink;
+-        shadow_projected_duration = saved_projected_duration;
+-        guarded_attempted = saved_guarded_attempted;
+-        guarded_stop_requested = saved_guarded_stop;
+-        guarded_actions_active = saved_guarded_actions_active;
+-        guarded_expected_actions = saved_guarded_expected_actions;
+-        guarded_next_action = saved_guarded_next_action;
+-        guarded_allowed_losses = saved_guarded_allowed_losses;
+-        has_active_candidate = saved_has_active_candidate;
+-        active_candidate = saved_active_candidate;
+-        active_terminal_before = saved_active_terminal_before;
+-        active_score_before = saved_active_score_before;
+-        decision_feedback = saved_feedback;
+-        next_candidate_id = saved_next_candidate_id;
+-        active_action_failed = saved_active_action_failed;
+-        active_actual_actions = saved_active_actual_actions;
+-        active_failure_reasons = saved_active_failure_reasons;
+-        stop_rescan_count = saved_stop_rescan_count;
+-        task_group_search_used = saved_search_used;
++        task_index = std::move(saved_task_index);
++        err_times = std::move(saved_err_times);
++        solved_task_num = std::move(saved_solved_task_num);
++        isPass = std::move(saved_is_pass);
++        isKeepConstrain = std::move(saved_is_keep);
++        isMultiGotoMode = std::move(saved_is_multi_goto);
++        hold_mustnear = std::move(saved_hold_mustnear);
++        plate_mustnear = std::move(saved_plate_mustnear);
++        normal_stop_requested = std::move(saved_normal_stop);
++        isAutoConstrain = std::move(saved_auto_constrain);
++        isAskTwice = std::move(saved_ask_twice);
++        isErrorCorrection = std::move(saved_error_correction);
++        score_evaluator = std::move(saved_score_evaluator);
++        constraint_eligible = std::move(saved_constraint_eligible);
++        constraint_uncertain = std::move(saved_constraint_uncertain);
++        score_locations = std::move(saved_score_locations);
++        shadow_dry_run = std::move(saved_shadow_dry_run);
++        shadow_action_sink = std::move(saved_shadow_sink);
++        shadow_projected_duration = std::move(saved_projected_duration);
++        guarded_attempted = std::move(saved_guarded_attempted);
++        guarded_stop_requested = std::move(saved_guarded_stop);
++        guarded_actions_active = std::move(saved_guarded_actions_active);
++        guarded_expected_actions = std::move(saved_guarded_expected_actions);
++        guarded_next_action = std::move(saved_guarded_next_action);
++        guarded_allowed_losses = std::move(saved_guarded_allowed_losses);
++        has_active_candidate = std::move(saved_has_active_candidate);
++        active_candidate = std::move(saved_active_candidate);
++        active_terminal_before = std::move(saved_active_terminal_before);
++        active_score_before = std::move(saved_active_score_before);
++        decision_feedback = std::move(saved_feedback);
++        next_candidate_id = std::move(saved_next_candidate_id);
++        active_action_failed = std::move(saved_active_action_failed);
++        active_actual_actions = std::move(saved_active_actual_actions);
++        active_failure_reasons = std::move(saved_active_failure_reasons);
++        stop_rescan_count = std::move(saved_stop_rescan_count);
++        task_group_search_used = std::move(saved_search_used);
+     };
+     ScopeExit restore_guard(restore_state);
++    InitializeConstraintLedger();
+ 
+     std::vector<CandidateAction> actions;
+     shadow_dry_run = true;
+@@ -1257,7 +1247,8 @@
+ 
+ std::string RDFW::PlanStateSignature() const {
+     std::ostringstream out;
+-    out << DebugStateSnapshot() << "|canonical|";
++    AppendStateSnapshot(out);
++    out << "|canonical|";
+     out << location << ',' << hold_id << ',' << plate_id << ','
+         << solved_task_num << ',' << isPass << ',' << isKeepConstrain << ','
+         << isMultiGotoMode << ',' << world_revision << ';';
+@@ -1369,13 +1360,15 @@
+         notnot_infoConstrains.size() + not_taskConstrains.size();
+     if (constraint_eligible.size() == count && constraint_uncertain.size() == count) return;
+     // No initial-state constraint pass exists in the SDK.
+-    constraint_eligible.assign(count, true);
+-    constraint_uncertain.assign(count, false);
++    std::vector<bool> e(count,true), u(count,false);
++    constraint_eligible.swap(e); constraint_uncertain.swap(u);
+ }
+ 
+ void RDFW::UpdateConstraintLedger(
+     const char* action, const std::vector<unsigned int>& arguments) {
++    StateMutation mutation(*this);
+     StageTimer phase_timer(StageTiming::LEDGER);
++    active_mutation->ledger();
+     InitializeConstraintLedger();
+     const std::vector<bool> eligibility_before = constraint_eligible;
+     // AskLoc and Sense run ASP but do not call asp_to_state in the SDK.
+@@ -3028,6 +3021,16 @@
+ bool RDFW::EnsureEvidenceCapacity(unsigned int id) {
+     if (id > MAX_OBJECT_ID) return false;
+     const size_t required = static_cast<size_t>(id) + 1;
++    if (objectLocationVerified.capacity()<required) objectLocationVerified.reserve(required);
++    if (objectLocationInferredByMustNear.capacity()<required) objectLocationInferredByMustNear.reserve(required);
++    if (objectInsideVerified.capacity()<required) objectInsideVerified.reserve(required);
++    if (containerStateVerified.capacity()<required) containerStateVerified.reserve(required);
++    if (objectLocationSource.capacity()<required) objectLocationSource.reserve(required);
++    if (objectInsideSource.capacity()<required) objectInsideSource.reserve(required);
++    if (containerStateSource.capacity()<required) containerStateSource.reserve(required);
++    if (locationProvenance.capacity()<required) locationProvenance.reserve(required);
++    if (insideProvenance.capacity()<required) insideProvenance.reserve(required);
++    if (containerProvenance.capacity()<required) containerProvenance.reserve(required);
+     if (objectLocationVerified.size() < required)
+         objectLocationVerified.resize(required, false);
+     if (objectLocationInferredByMustNear.size() < required)
+@@ -3049,6 +3052,10 @@
+ }
+ 
+ StateProvenance& RDFW::MutableProvenance(StateField field, unsigned int id) {
++    if (active_mutation) {
++        if (field==StateField::HOLD || field==StateField::PLATE) active_mutation->storage();
++        else active_mutation->touch(id);
++    }
+     if (field == StateField::HOLD) return holdProvenance;
+     if (field == StateField::PLATE) return plateProvenance;
+     if (field == StateField::LOCATION) return locationProvenance[id];
+@@ -3067,7 +3074,11 @@
+ }
+ 
+ void RDFW::SetHold(const shared_ptr<SmallObject>& item, EvidenceSource source) {
++    StateMutation mutation(*this);
+     const int old_plate = plate_id;
++    if (item && (!IsValidObjectId(item->id) || objects[item->id]!=item)) return;
++    active_mutation->storage();
++    if (item) active_mutation->touch(item->id);
+     Robot::SetHold(item);
+     const bool verified = stage == 1 || source == EvidenceSource::ACTION_SUCCESS;
+     UpdateProvenance(StateField::HOLD, 0, hold_id, verified, source);
+@@ -3081,7 +3092,11 @@
+ }
+ 
+ void RDFW::SetPlate(const shared_ptr<SmallObject>& item, EvidenceSource source) {
++    StateMutation mutation(*this);
+     const int old_hold = hold_id;
++    if (item && (!IsValidObjectId(item->id) || objects[item->id]!=item)) return;
++    active_mutation->storage();
++    if (item) active_mutation->touch(item->id);
+     Robot::SetPlate(item);
+     const bool verified = stage == 1 || source == EvidenceSource::ACTION_SUCCESS;
+     if (old_hold != hold_id)
+@@ -3102,6 +3117,7 @@
+ 
+ bool RDFW::ReceiveWeakClaim(StateField field, unsigned int id, int value,
+                             EvidenceSource source) {
++    StateMutation mutation(*this);
+     if (!EnsureEvidenceCapacity(id)) return false;
+     StateProvenance& p = MutableProvenance(field, id);
+     const bool previous_weak = p.received.present &&
+@@ -3117,6 +3133,7 @@
+ }
+ 
+ void RDFW::MarkUnresolved(StateField field, unsigned int id) {
++    StateMutation mutation(*this);
+     if (!EnsureEvidenceCapacity(id)) return;
+     StateProvenance& p = MutableProvenance(field, id);
+     if (p.resolved_value != UNKNOWN || p.resolved_source != EvidenceSource::UNKNOWN)
+@@ -3166,6 +3183,7 @@
+ 
+ void RDFW::DependOn(StateField derived_field, unsigned int derived_id,
+                     StateField support_field, unsigned int support_id) {
++    StateMutation mutation(*this);
+     if (!EnsureEvidenceCapacity(derived_id) || !EnsureEvidenceCapacity(support_id)) return;
+     StateProvenance& p = MutableProvenance(derived_field, derived_id);
+     if (p.dependency_count >= 2) return;
+@@ -3175,6 +3193,7 @@
+ }
+ 
+ void RDFW::SetConstraintSupport(StateField field, unsigned int id, int index) {
++    StateMutation mutation(*this);
+     if (!EnsureEvidenceCapacity(id)) return;
+     MutableProvenance(field, id).support_constraint_index = index;
+ }
+@@ -3212,18 +3231,18 @@
+     if ((field == StateField::HOLD || field == StateField::PLATE) ? id != 0 :
+         (id >= objects.size() || !objects[id])) return false;
+     const StateProvenance& p = Provenance(field, id);
+-    if (field == StateField::INSIDE && !dynamic_pointer_cast<SmallObject>(objects[id])) return false;
+-    if (field == StateField::CONTAINER_STATE && !dynamic_pointer_cast<Container>(objects[id])) return false;
++    if (field == StateField::INSIDE && !dynamic_cast<SmallObject*>(objects[id].get())) return false;
++    if (field == StateField::CONTAINER_STATE && !dynamic_cast<Container*>(objects[id].get())) return false;
+     // Domain and local exclusivity checks are constant time. Corrupt or
+     // contradictory metadata cannot turn a non-state value into a fact.
+     if (field == StateField::LOCATION && (p.resolved_value < 0 || p.resolved_value > MAX_LOCATION_ID)) return false;
+     if (field == StateField::CONTAINER_STATE && p.resolved_value != 0 && p.resolved_value != 1) return false;
+     if (field == StateField::INSIDE && (p.resolved_value < 0 || p.resolved_value > int(MAX_OBJECT_ID))) return false;
+     if (field == StateField::INSIDE && p.resolved_value > 0 &&
+-        (!IsValidObjectId(p.resolved_value) || !dynamic_pointer_cast<Container>(objects[p.resolved_value]))) return false;
++        (!IsValidObjectId(p.resolved_value) || !dynamic_cast<Container*>(objects[p.resolved_value].get()))) return false;
+     if ((field == StateField::HOLD || field == StateField::PLATE) && (p.resolved_value < 0 || p.resolved_value > int(MAX_OBJECT_ID))) return false;
+     if ((field == StateField::HOLD || field == StateField::PLATE) && p.resolved_value > 0 &&
+-        (!IsValidObjectId(p.resolved_value) || !dynamic_pointer_cast<SmallObject>(objects[p.resolved_value]))) return false;
++        (!IsValidObjectId(p.resolved_value) || !dynamic_cast<SmallObject*>(objects[p.resolved_value].get()))) return false;
+     if ((field == StateField::HOLD || field == StateField::PLATE) && p.resolved_value > 0) {
+         const auto& other = field == StateField::HOLD ? plateProvenance : holdProvenance;
+         if (other.resolved_verified && other.resolved_value == p.resolved_value) return false;
+@@ -3253,6 +3272,7 @@
+     if (depth > 8) return false;
+     const StateProvenance& p = Provenance(field, id);
+     if (p.dependency_count > 2) return false;
++    if (!p.dependency_count && p.supporting_constraints.empty() && p.support_constraint_index<0) return true;
+     const std::size_t constraint_count = not_infoConstrains.size() + notnot_infoConstrains.size() + not_taskConstrains.size();
+     for (const std::size_t index : p.supporting_constraints) {
+         if (index >= constraint_count) return false;
+@@ -3279,9 +3299,8 @@
+ 
+ void RDFW::MarkDirectLocationEvidence(unsigned int id, bool verified,
+                                       EvidenceSource source) {
++    StateMutation mutation(*this);
+     if (!EnsureEvidenceCapacity(id)) return;
+-    objectLocationVerified[id] = verified;
+-    objectLocationSource[id] = source;
+     const int value = id < objects.size() && objects[id] ? objects[id]->location : UNKNOWN;
+     UpdateProvenance(StateField::LOCATION, id, value, verified, source);
+     if (source == EvidenceSource::CONSTRAINT_DERIVED || source == EvidenceSource::CONSTRAINT_HEURISTIC)
+@@ -3292,17 +3311,15 @@
+ }
+ 
+ void RDFW::SetInsideEvidence(unsigned int id, bool verified, EvidenceSource source) {
++    StateMutation mutation(*this);
+     if (!EnsureEvidenceCapacity(id)) return;
+-    objectInsideVerified[id] = verified;
+-    objectInsideSource[id] = source;
+     const auto small = id < objects.size() ? dynamic_pointer_cast<SmallObject>(objects[id]) : nullptr;
+     UpdateProvenance(StateField::INSIDE, id, small ? small->inside : UNKNOWN, verified, source);
+ }
+ 
+ void RDFW::SetContainerEvidence(unsigned int id, bool verified, EvidenceSource source) {
++    StateMutation mutation(*this);
+     if (!EnsureEvidenceCapacity(id)) return;
+-    containerStateVerified[id] = verified;
+-    containerStateSource[id] = source;
+     const auto container = id < objects.size() ? dynamic_pointer_cast<Container>(objects[id]) : nullptr;
+     UpdateProvenance(StateField::CONTAINER_STATE, id,
+                      container ? container->isOpen : UNKNOWN, verified, source);
+@@ -3321,8 +3338,10 @@
+ }
+ 
+ void RDFW::InvalidateSenseAtLocation(int loc) {
++    StateMutation mutation(*this);
+     if (loc < 0) return;
+     if (!EnsureLocationCapacity(loc)) return;
++    active_mutation->sensed(loc);
+     posSensedFlag[loc] = false;
+     locationSensedObjects[loc].object_ids.clear();
+     locationSensedObjects[loc].container_id = NONE;
+@@ -3575,7 +3594,7 @@
+                     int initial_cont_id=target_small->inside;
+                     if (!IsValidObjectId(initial_cont_id) ||
+                         !dynamic_pointer_cast<Container>(objects[initial_cont_id])) {
+-                        target_small->inside = UNKNOWN;
++                        ApplyStateValue(StateField::INSIDE,target_small->id,UNKNOWN,false,EvidenceSource::UNKNOWN);
+                         continue;
+                     }
+                     TakeOutResult result = TakeOutLogic(a,target_small->inside);
+@@ -3633,10 +3652,7 @@
+         if (absent && small < objects.size()) {
+             auto small_object = dynamic_pointer_cast<SmallObject>(objects[small]);
+             if (small_object && small_object->inside == static_cast<int>(cont)) {
+-                target_cont->DeleteObjectInside(small_object);
+-                small_object->inside = UNKNOWN;
+-                EnsureEvidenceCapacity(small);
+-                SetInsideEvidence(small, false, EvidenceSource::SENSE);
++                ApplyStateValue(StateField::INSIDE,small,UNKNOWN,false,EvidenceSource::SENSE);
+             }
+         }
+         return absent;
+@@ -3656,9 +3672,7 @@
+     {
+       if(sense(cont))
+       {
+-        target_cont->isOpen = true;
+-        EnsureEvidenceCapacity(cont);
+-        SetContainerEvidence(cont, true, EvidenceSource::ACTION_FAILURE);
++        ApplyStateValue(StateField::CONTAINER_STATE,cont,true,true,EvidenceSource::ACTION_FAILURE);
+         if(!TakeOut(small,cont)) {
+             if (verified_absent_from_open_container()) return TakeOutResult::Success;
+             return TakeOutResult::NeedObjectLocation;
+@@ -3862,9 +3876,7 @@
+     if(!Open(a))
+     {
+        if (sense(a)) {
+-            cnt->isOpen = true;
+-            EnsureEvidenceCapacity(a);
+-            SetContainerEvidence(a, true, EvidenceSource::ACTION_FAILURE);
++            ApplyStateValue(StateField::CONTAINER_STATE,a,true,true,EvidenceSource::ACTION_FAILURE);
+             MarkDirectLocationEvidence(a, true, EvidenceSource::SENSE);
+             return true;
+        }
+@@ -3920,9 +3932,7 @@
+     if(!Close(a))
+     {
+        if (sense(a)) {
+-            cnt->isOpen = false;
+-            EnsureEvidenceCapacity(a);
+-            SetContainerEvidence(a, true, EvidenceSource::ACTION_FAILURE);
++            ApplyStateValue(StateField::CONTAINER_STATE,a,false,true,EvidenceSource::ACTION_FAILURE);
+             MarkDirectLocationEvidence(a, true, EvidenceSource::SENSE);
+             return true;
+        }
+@@ -4032,9 +4042,7 @@
+         else
+         {
+             if(sense(b)) {
+-                target_cont->isOpen = true;
+-                EnsureEvidenceCapacity(b);
+-                SetContainerEvidence(b, true, EvidenceSource::ACTION_FAILURE);
++                ApplyStateValue(StateField::CONTAINER_STATE,b,true,true,EvidenceSource::ACTION_FAILURE);
+                 if (!PickUp(a)) return false;
+                 return PutIn(a,b);
+             }
+@@ -4913,6 +4921,7 @@
+ // 格式正确的回答即可继续；最多额外重试一次 not_known/非法回答。
+ bool RDFW::GetSmallObjectStatus(unsigned int a)
+ {
++    StateMutation mutation(*this);
+     if (isPass || a == 0 || a >= objects.size() || !objects[a]) return false;
+     auto small = dynamic_pointer_cast<SmallObject>(objects[a]);
+     if (!small) return false;
+@@ -4976,24 +4985,24 @@
+ 
+     if (small->inside > 0 && static_cast<size_t>(small->inside) < objects.size()) {
+         auto old_cont = dynamic_pointer_cast<Container>(objects[small->inside]);
+-        if (old_cont) old_cont->DeleteObjectInside(small);
++        if (old_cont) { active_mutation->touch(old_cont->id); old_cont->DeleteObjectInside(small); }
+     }
+ 
+     if (chosen_relation == "inside") {
+         auto cont = dynamic_pointer_cast<Container>(objects[chosen_target]);
+         if (!cont) return false;
+         if (cont->location == UNKNOWN) GetBigObjectStatus(cont->id);
+-        small->location = cont->location;
+-        small->inside = cont->id;
++        StageStateValue(StateField::LOCATION,small->id,cont->location);
++        StageStateValue(StateField::INSIDE,small->id,cont->id);
+         bool already_listed = false;
+         for (const auto& item : cont->smallObjectsInside) {
+             if (item && item->id == small->id) { already_listed = true; break; }
+         }
+-        if (!already_listed) cont->smallObjectsInside.push_back(small);
++        if (!already_listed) AddContainerMembership(cont,small);
+     } else {
+         if (!EnsureLocationCapacity(static_cast<int>(chosen_target))) return false;
+-        small->location = static_cast<int>(chosen_target);
+-        small->inside = NONE;
++        StageStateValue(StateField::LOCATION,small->id,static_cast<int>(chosen_target));
++        StageStateValue(StateField::INSIDE,small->id,NONE);
+     }
+ 
+     if (!IsLocationVerified(a))
+@@ -5014,6 +5023,7 @@
+ // 获取大物体状态。只接受格式正确且对象 ID 匹配的 at 回答。
+ bool RDFW::GetBigObjectStatus(unsigned int a)
+ {
++    StateMutation mutation(*this);
+     if (isPass || a == 0 || a >= objects.size() || !objects[a]) return false;
+     const int max_attempts = 2;
+     unsigned int chosen_location = 0;
+@@ -5045,7 +5055,7 @@
+     if (!EnsureLocationCapacity(static_cast<int>(chosen_location))) return false;
+     const bool unresolved = !ReceiveWeakClaim(StateField::LOCATION, a,
+         static_cast<int>(chosen_location), EvidenceSource::ASK_ANSWER);
+-    objects[a]->location = static_cast<int>(chosen_location);
++    StageStateValue(StateField::LOCATION,a,static_cast<int>(chosen_location));
+     if (auto cont = dynamic_pointer_cast<Container>(objects[a])) {
+         for (const auto& item : cont->smallObjectsInside) {
+             if (item) {
+@@ -5104,6 +5114,7 @@
+ // 只感知当前位置的物体，并更新其感知位置
+ void RDFW::SenseCurrentLocationOnly(bool force)
+ {
++    StateMutation mutation(*this);
+     unsigned int sensed_container_id = NONE;
+     // 获取当前位置
+     int curr_loc = location;
+@@ -5132,6 +5143,7 @@
+         posSensedFlag.resize(curr_loc + 1, false);
+         locationSensedObjects.resize(curr_loc + 1);  // 同时扩展物体记录数组
+     }
++    active_mutation->sensed(curr_loc);
+     posSensedFlag[curr_loc] = true;
+ 
+     // 清空当前位置的感知记录，准备记录新的感知结果
+@@ -5191,7 +5203,7 @@
+ 
+         if (small->inside > 0 && static_cast<size_t>(small->inside) < objects.size()) {
+             auto old_container = dynamic_pointer_cast<Container>(objects[small->inside]);
+-            if (old_container) old_container->DeleteObjectInside(small);
++            if (old_container) { active_mutation->touch(old_container->id); old_container->DeleteObjectInside(small); }
+         }
+         ApplyStateValue(StateField::INSIDE,id,NONE,true,EvidenceSource::SENSE);
+     }
+@@ -5296,6 +5308,7 @@
+ //感知大物体是否在当前位置
+ bool RDFW::sense(unsigned int t) //返回值表示t对应的大物体是否在当前位置
+ {
++    StateMutation mutation(*this);
+ 
+     vector<unsigned int> A_;
+ 
+@@ -5312,11 +5325,11 @@
+             const bool moved = objects[id]->location != location;
+             ApplyStateValue(StateField::LOCATION,id,location,true,EvidenceSource::SENSE);
+             if (moved) {
+-                objects[id]->location = location;
++                StageStateValue(StateField::LOCATION,id,location);
+                 if (auto cont = std::dynamic_pointer_cast<Container>(objects[id])) {
+                     for (auto &sp : cont->smallObjectsInside) {
+                         if (sp) {
+-                            sp->location = location;
++                            StageStateValue(StateField::LOCATION,sp->id,location);
+                             const bool entailed = FactInside(sp->id) == static_cast<int>(id);
+                             MarkDirectLocationEvidence(sp->id, entailed,
+                                 entailed ? EvidenceSource::CONSTRAINT_DERIVED
+@@ -5523,11 +5536,15 @@
+ 
+ /**====================== 原子动作 =========================== */
+ void RDFW::ClearContainerMembership(const shared_ptr<SmallObject>& small) {
++    StateMutation mutation(*this);
+     if (!small) return;
++    active_mutation->touch(small->id);
+     for (const auto& object : objects) {
+         auto container = dynamic_pointer_cast<Container>(object);
+         if (!container) continue;
+         auto& items = container->smallObjectsInside;
++        if (std::any_of(items.begin(),items.end(),[&](const shared_ptr<SmallObject>& p){return p && p->id==small->id;}))
++            active_mutation->touch(container->id);
+         items.erase(std::remove_if(items.begin(), items.end(),
+             [&](const shared_ptr<SmallObject>& item) {
+                 return item && item->id == small->id;
+@@ -5536,6 +5553,7 @@
+ }
+ 
+ void RDFW::ReconcileLocationRelation(const shared_ptr<SmallObject>& small) {
++    StateMutation mutation(*this);
+     if (!small || small->inside <= 0) return;
+     auto container = dynamic_pointer_cast<Container>(GetObject(small->inside));
+     if (container && container->location != UNKNOWN && small->location != UNKNOWN &&
+@@ -5549,15 +5567,16 @@
+ // location was misleading. Its contents inherit that location only with the
+ // strength of their own inside evidence.
+ void RDFW::ConfirmContainerLocation(const shared_ptr<Container>& container) {
++    StateMutation mutation(*this);
+     if (container->location != location)
+         InvalidateSenseAtLocation(container->location);
+-    container->location = location;
++    StageStateValue(StateField::LOCATION,container->id,location);
+     MarkDirectLocationEvidence(container->id, true);
+     for (const auto& item : container->smallObjectsInside) {
+         if (!item || item->inside != container->id) continue;
+         if (FactLocation(item->id) != UNKNOWN && FactInside(item->id) == UNKNOWN &&
+             FactLocation(item->id) != location) continue;
+-        item->location = location;
++        StageStateValue(StateField::LOCATION,item->id,location);
+         const bool inside_verified = FactInside(item->id) == container->id;
+         // The action verifies the container, not an inside relation that was
+         // inferred from a constraint. Preserve that dependency for terminal
+@@ -5582,16 +5601,21 @@
+     auto cont = ObjectPtrCast<Container>(objects[b]);
+     LOG("TakeOut(%d,%s)(%d,%s)", a, small->sort.c_str(), b, cont->sort.c_str());
+     const std::vector<unsigned int> arguments{a, b};
++    StateMutation mutation(*this);
++    PrepareActionState(arguments,false);
+     RecordAction(ActionCategory::PHYSICAL, "TakeOut", arguments);
++    if (!shadow_dry_run) mutation.platformSucceeded();
+     const bool action_succeeded = shadow_dry_run ? DryRunActionSucceeds("TakeOut", arguments) : TimedPlatformCall([&]() { return Plug::TakeOut(a, b); });
++    if (!action_succeeded) mutation.platformFailed();
+     RecordActionOutcome("TakeOut", action_succeeded);
+     if (action_succeeded)
+     {
+         ClearContainerMembership(small);
+-        small->inside = NONE;
+-        small->location = location;
++        StageStateValue(StateField::INSIDE,small->id,NONE);
++        StageStateValue(StateField::LOCATION,small->id,location);
++        if (active_mutation) active_mutation->touch(cont->id);
+         cont->DeleteObjectInside(small);
+-        cont->isOpen=1;
++        StageStateValue(StateField::CONTAINER_STATE,cont->id,1);
+         SetHold(small);
+         EnsureEvidenceCapacity(a);
+         EnsureEvidenceCapacity(b);
+@@ -5620,22 +5644,26 @@
+     if (!cont || !small) return 0; // 直接早退，避免 LOG 解引用空指针
+     LOG("PutIn(%d,%s)(%d,%s)", a,small->sort.c_str() , b, cont->sort.c_str());
+     const std::vector<unsigned int> arguments{a, b};
++    StateMutation mutation(*this);
++    PrepareActionState(arguments,false);
+     RecordAction(ActionCategory::PHYSICAL, "PutIn", arguments);
++    if (!shadow_dry_run) mutation.platformSucceeded();
+     const bool action_succeeded = shadow_dry_run ? DryRunActionSucceeds("PutIn", arguments) : TimedPlatformCall([&]() { return Plug::PutIn(a, b); });
++    if (!action_succeeded) mutation.platformFailed();
+     RecordActionOutcome("PutIn", action_succeeded);
+     if (action_succeeded)
+     {
+         ClearContainerMembership(small);
+-        small->inside = b;
++        StageStateValue(StateField::INSIDE,small->id,b);
+         small->on = NONE;
+-        small->location = location;
++        StageStateValue(StateField::LOCATION,small->id,location);
+         SetHold(nullptr);
+         bool already_listed = false;
+         for (const auto& item : cont->smallObjectsInside) {
+             if (item && item->id == small->id) { already_listed = true; break; }
+         }
+-        if (!already_listed) cont->smallObjectsInside.push_back(small);
+-        cont->isOpen=1;
++        if (!already_listed) AddContainerMembership(cont,small);
++        StageStateValue(StateField::CONTAINER_STATE,cont->id,1);
+         EnsureEvidenceCapacity(a);
+         EnsureEvidenceCapacity(b);
+         MarkDirectLocationEvidence(a, true);
+@@ -5660,12 +5688,16 @@
+     if (!container) return 0;
+     LOG("(%d,%s) has closed", a, container->sort.c_str());
+     const std::vector<unsigned int> arguments{a};
++    StateMutation mutation(*this);
++    PrepareActionState(arguments,false);
+     RecordAction(ActionCategory::PHYSICAL, "Close", arguments);
++    if (!shadow_dry_run) mutation.platformSucceeded();
+     const bool action_succeeded = shadow_dry_run ? DryRunActionSucceeds("Close", arguments) : TimedPlatformCall([&]() { return Plug::Close(a); });
++    if (!action_succeeded) mutation.platformFailed();
+     RecordActionOutcome("Close", action_succeeded);
+     if (action_succeeded)
+     {
+-        container->isOpen = false;
++        StageStateValue(StateField::CONTAINER_STATE,container->id,false);
+         ConfirmContainerLocation(container);
+         SetContainerEvidence(a, true, EvidenceSource::ACTION_SUCCESS);
+         InvalidateSenseAtLocation(location);
+@@ -5686,12 +5718,16 @@
+     if (!container) return 0;
+     LOG("Open(%d,%s)", a, container->sort.c_str());
+     const std::vector<unsigned int> arguments{a};
++    StateMutation mutation(*this);
++    PrepareActionState(arguments,false);
+     RecordAction(ActionCategory::PHYSICAL, "Open", arguments);
++    if (!shadow_dry_run) mutation.platformSucceeded();
+     const bool action_succeeded = shadow_dry_run ? DryRunActionSucceeds("Open", arguments) : TimedPlatformCall([&]() { return Plug::Open(a); });
++    if (!action_succeeded) mutation.platformFailed();
+     RecordActionOutcome("Open", action_succeeded);
+     if (action_succeeded)
+     {
+-        container->isOpen = true;
++        StageStateValue(StateField::CONTAINER_STATE,container->id,true);
+         ConfirmContainerLocation(container);
+         SetContainerEvidence(a, true, EvidenceSource::ACTION_SUCCESS);
+         InvalidateSenseAtLocation(location);
+@@ -5710,8 +5746,12 @@
+         !dynamic_pointer_cast<SmallObject>(objects[a])) return false;
+     LOG("FromPlate(%d,%s)", a, objects[a]->sort.c_str());
+     const std::vector<unsigned int> arguments{a};
++    StateMutation mutation(*this);
++    PrepareActionState(arguments,false);
+     RecordAction(ActionCategory::PHYSICAL, "FromPlate", arguments);
++    if (!shadow_dry_run) mutation.platformSucceeded();
+     const bool action_succeeded = shadow_dry_run ? DryRunActionSucceeds("FromPlate", arguments) : TimedPlatformCall([&]() { return Plug::FromPlate(a); });
++    if (!action_succeeded) mutation.platformFailed();
+     RecordActionOutcome("FromPlate", action_succeeded);
+     if (action_succeeded)
+     {
+@@ -5735,8 +5775,12 @@
+         !dynamic_pointer_cast<SmallObject>(objects[a])) return false;
+     LOG("ToPlate(%d,%s)", a, objects[a]->sort.c_str());
+     const std::vector<unsigned int> arguments{a};
++    StateMutation mutation(*this);
++    PrepareActionState(arguments,false);
+     RecordAction(ActionCategory::PHYSICAL, "ToPlate", arguments);
++    if (!shadow_dry_run) mutation.platformSucceeded();
+     const bool action_succeeded = shadow_dry_run ? DryRunActionSucceeds("ToPlate", arguments) : TimedPlatformCall([&]() { return Plug::ToPlate(a); });
++    if (!action_succeeded) mutation.platformFailed();
+     RecordActionOutcome("ToPlate", action_succeeded);
+     if (action_succeeded)
+     {
+@@ -5761,8 +5805,12 @@
+         !dynamic_pointer_cast<SmallObject>(objects[a])) return false;
+     LOG("PutDown(%d,%s)", a, objects[a]->sort.c_str());
+     const std::vector<unsigned int> arguments{a};
++    StateMutation mutation(*this);
++    PrepareActionState(arguments,false);
+     RecordAction(ActionCategory::PHYSICAL, "PutDown", arguments);
++    if (!shadow_dry_run) mutation.platformSucceeded();
+     const bool action_succeeded = shadow_dry_run ? DryRunActionSucceeds("PutDown", arguments) : TimedPlatformCall([&]() { return Plug::PutDown(a); });
++    if (!action_succeeded) mutation.platformFailed();
+     RecordActionOutcome("PutDown", action_succeeded);
+     if (action_succeeded)
+     {
+@@ -5770,8 +5818,8 @@
+         auto small = dynamic_pointer_cast<SmallObject>(objects[a]);
+         if (small) {
+             ClearContainerMembership(small);
+-            small->location = location;
+-            small->inside = NONE;
++            StageStateValue(StateField::LOCATION,small->id,location);
++            StageStateValue(StateField::INSIDE,small->id,NONE);
+             small->on = NONE;
+         }
+         MarkDirectLocationEvidence(a, true);
+@@ -5795,15 +5843,19 @@
+     if (!small) return 0;
+     LOG("PickUp(%d,%s)", small->id, small->sort.c_str());
+     const std::vector<unsigned int> arguments{a};
++    StateMutation mutation(*this);
++    PrepareActionState(arguments,false);
+     RecordAction(ActionCategory::PHYSICAL, "PickUp", arguments);
++    if (!shadow_dry_run) mutation.platformSucceeded();
+     const bool action_succeeded = shadow_dry_run ? DryRunActionSucceeds("PickUp", arguments) : TimedPlatformCall([&]() { return Plug::PickUp(a); });
++    if (!action_succeeded) mutation.platformFailed();
+     RecordActionOutcome("PickUp", action_succeeded);
+     if (action_succeeded)
+     {
+         ClearContainerMembership(small);
+         SetHold(small);
+-        small->location = location;
+-        small->inside = NONE;
++        StageStateValue(StateField::LOCATION,small->id,location);
++        StageStateValue(StateField::INSIDE,small->id,NONE);
+         MarkDirectLocationEvidence(a, true);
+         SetInsideEvidence(a, true, EvidenceSource::ACTION_SUCCESS);
+         InvalidateSenseAtLocation(location);
+@@ -5862,9 +5914,13 @@
+     // 5) 真正移动
+     const int previous_location = location;
+     const std::vector<unsigned int> arguments{a};
++    StateMutation mutation(*this);
++    PrepareActionState(arguments,true);
+     RecordAction(ActionCategory::MOVE, "Move", arguments);
++    if (!shadow_dry_run) mutation.platformSucceeded();
+     const bool move_succeeded = shadow_dry_run
+         ? DryRunActionSucceeds("Move", arguments) : TimedPlatformCall([&]() { return Plug::Move(a); });
++    if (!move_succeeded) mutation.platformFailed();
+     RecordActionOutcome("Move", move_succeeded);
+     if (!move_succeeded) {
+         LOG(RED "Move: TimedPlatformCall([&]() { return Plug::Move(%d); }) failed\n" RESET, (int)a);
+@@ -5873,8 +5929,8 @@
+ 
+     // 6) 成功后的状态更新（全部带边界/判空）
+     ApplyStateValue(StateField::LOCATION,0,a,true,EvidenceSource::ACTION_SUCCESS);
+-    if (hold)  hold->location  = a;
+-    if (plate) plate->location = a;
++    if (hold)  StageStateValue(StateField::LOCATION,hold->id,a);
++    if (plate) StageStateValue(StateField::LOCATION,plate->id,a);
+     InvalidateSenseAtLocation(previous_location);
+     InvalidateSenseAtLocation(static_cast<int>(a));
+     if (hold_id > 0) {
+@@ -6760,6 +6816,7 @@
+ 
+ void RDFW::ParseInfo(const Instruction &info) // 改
+ {
++    StateMutation mutation(*this);
+     // 跳过包含不存在物体的info
+     if (!info.IsUsable() || info.X.empty() || !info.X[0] ||
+         (info.isUseY && (info.Y.empty() || !info.Y[0]))) {
+@@ -6848,15 +6905,15 @@
+             if (hold_id == p->id) SetHold(nullptr, EvidenceSource::EXPLICIT_INFO);
+             if (plate_id == p->id) SetPlate(nullptr, EvidenceSource::EXPLICIT_INFO);
+             p->on = NONE;
+-            p->inside = cId;
++            StageStateValue(StateField::INSIDE,p->id,cId);
+             const int containerFact = FactLocation(cId);
+-            p->location=containerFact!=UNKNOWN ? containerFact : c->location;
++            StageStateValue(StateField::LOCATION,p->id,containerFact!=UNKNOWN ? containerFact : c->location);
+             SetInsideEvidence(p->id, stage == 1, EvidenceSource::EXPLICIT_INFO);
+             MarkDirectLocationEvidence(p->id, stage == 1 && IsLocationVerified(cId),
+                                        EvidenceSource::EXPLICIT_INFO);
+             DependOn(StateField::LOCATION, p->id, StateField::INSIDE, p->id);
+             DependOn(StateField::LOCATION, p->id, StateField::LOCATION, cId);
+-            c->smallObjectsInside.push_back(p);
++            AddContainerMembership(c,p);
+         }
+     }
+     else if (behave == "opened")
+@@ -7434,6 +7491,7 @@
+ }
+ 
+ void RDFW::RefreshMustNearConstraintState(bool propagate_evidence) {
++    StateMutation mutation(*this);
+     StageTimer timer(StageTiming::DERIVED);
+     const size_t object_count = objects.size();
+     if (mustNearComponent.size() != object_count) return;
+@@ -7527,7 +7585,7 @@
+                     !objectLocationInferredByMustNear[id] &&
+                     (FactLocation(id) == chosen_location || !anchored)) continue;
+ 
+-                objects[id]->location = chosen_location;
++                StageStateValue(StateField::LOCATION,id,chosen_location);
+                 MarkDirectLocationEvidence(id, anchored,
+                     anchored ? EvidenceSource::CONSTRAINT_DERIVED
+                              : EvidenceSource::CONSTRAINT_HEURISTIC);
+@@ -7540,7 +7598,7 @@
+                 if (container) {
+                     for (const auto& item : container->smallObjectsInside) {
+                         if (!item || item->inside != container->id) continue;
+-                        item->location = chosen_location;
++                        StageStateValue(StateField::LOCATION,item->id,chosen_location);
+                         const bool location_entailed = anchored && FactInside(item->id) == container->id;
+                         MarkDirectLocationEvidence(item->id, location_entailed,
+                             location_entailed ? EvidenceSource::CONSTRAINT_DERIVED
+@@ -7590,6 +7648,7 @@
+ 
+ 
+ void RDFW::ApplyMustInConstraintCorrection() {
++    StateMutation mutation(*this);
+     const int numObjs = static_cast<int>(objects.size());
+     if (numObjs <= 0) return;
+ 
+@@ -7618,6 +7677,7 @@
+                     if (sm->inside != UNKNOWN && sm->inside != y) {
+                         if (sm->inside >= 0 && sm->inside < numObjs) {
+                             if (auto old_cont = std::dynamic_pointer_cast<Container>(objects[sm->inside])) {
++                                active_mutation->touch(old_cont->id);
+                                 auto& vec = old_cont->smallObjectsInside;
+                                 vec.erase(std::remove_if(vec.begin(), vec.end(),
+                                     [&](const std::shared_ptr<SmallObject>& ptr) {
+@@ -7637,7 +7697,7 @@
+                                 if (v && v->id == sm->id) { exists = true; break; }
+                             }
+                             if (!exists)
+-                                cont->smallObjectsInside.push_back(sm);
++                                AddContainerMembership(cont,sm);
+                         }
+                     }
+                 }
+@@ -7647,7 +7707,7 @@
+                 const int y_fact = FactLocation(y);
+                 int y_loc = y_fact!=UNKNOWN ? y_fact : objects[y]->location;
+                 if (y_loc != UNKNOWN) {
+-                    objects[x]->location = y_loc;
++                    StageStateValue(StateField::LOCATION,x,y_loc);
+                     const bool location_entailed = y_fact!=UNKNOWN;
+                     MarkDirectLocationEvidence(x, location_entailed,
+                         location_entailed ? EvidenceSource::CONSTRAINT_DERIVED
+@@ -7675,14 +7735,15 @@
+         // 如果x当前就在y里，需要移除
+         if (smObj->inside == y) {
+             // 修改smallObject的inside信息
+-            smObj->inside = UNKNOWN;
++            StageStateValue(StateField::INSIDE,smObj->id,UNKNOWN);
+             int old_loc = smObj->location;
+-            smObj->location = UNKNOWN;
++            StageStateValue(StateField::LOCATION,smObj->id,UNKNOWN);
+             SetInsideEvidence(x,false,EvidenceSource::UNKNOWN);
+             MarkDirectLocationEvidence(x,false,EvidenceSource::UNKNOWN);
+             // 同时尝试从container的smallObjectsInside中移除
+             auto cont = std::dynamic_pointer_cast<Container>(objects[y]);
+             if (cont) {
++                active_mutation->touch(cont->id);
+                 auto& vec = cont->smallObjectsInside;
+                 vec.erase(std::remove_if(vec.begin(), vec.end(),
+                     [&](const std::shared_ptr<SmallObject>& ptr){
+@@ -7700,6 +7761,7 @@
+ // open和close的纠正和补全，只处理not_infoConstrains和notnot_infoConstrains
+ 
+ void RDFW::ApplyOpenCloseCorrection() {
++    StateMutation mutation(*this);
+     // 遍历所有容器，对opened/closed的约束进行处理
+     for (const auto& obj : objects) {
+         if (!obj) continue;
+@@ -7731,35 +7793,35 @@
+         // 如果必须open且不能closed
+         if (must_open && !cons_not_open && !must_closed) {
+             if (cont->isOpen != 1) {
+-                cont->isOpen = true;
++                StageStateValue(StateField::CONTAINER_STATE,cont->id,true);
+                 LOG(GREEN "[AutoOpenClose] set container %d open (by notnot)\n" RESET, cont->id);
+             }
+         }
+         // 如果必须closed且不能open
+         else if (must_closed && !cons_not_closed && !must_open) {
+             if (cont->isOpen) {
+-                cont->isOpen = false;
++                StageStateValue(StateField::CONTAINER_STATE,cont->id,false);
+                 LOG(GREEN "[AutoOpenClose] set container %d closed (by notnot)\n" RESET, cont->id);
+             }
+         }
+         // 如果not要求not opened，则要关闭
+         else if (cons_not_open && !must_open) {
+             if (cont->isOpen) {
+-                cont->isOpen = false;
++                StageStateValue(StateField::CONTAINER_STATE,cont->id,false);
+                 LOG(GREEN "[AutoOpenClose] set container %d closed (by not constraint)\n" RESET, cont->id);
+             }
+         }
+         // 如果not要求not closed，则要打开
+         else if (cons_not_closed && !must_closed) {
+             if (cont->isOpen != 1) {
+-                cont->isOpen = true;
++                StageStateValue(StateField::CONTAINER_STATE,cont->id,true);
+                 LOG(GREEN "[AutoOpenClose] set container %d open (by not constraint)\n" RESET, cont->id);
+             }
+         }
+         // 冲突：有not和notnot都要求open/closed
+         else if ((must_open && cons_not_open) || (must_closed && cons_not_closed) || (must_open && must_closed)) {
+             // 默认优先closed
+-            cont->isOpen = false;
++            StageStateValue(StateField::CONTAINER_STATE,cont->id,false);
+             LOG(YELLOW "[AutoOpenClose] conflict: container %d open/close constraints conflict, set to closed\n" RESET, cont->id);
+         }
+         // 无约束不处理
+--- src1.6.6/rdfw.hpp
++++ src1.6.7/rdfw.hpp
+@@ -851,6 +851,50 @@
+ 
+         bool GetSmallObjectStatus(unsigned int a);
+         bool GetBigObjectStatus(unsigned int a);
++        // Local exception journal, shared by nested mutation APIs. No world scan.
++        // Compatibility staging is private and must finish inside this scope.
++        class StateMutation {
++            struct Row {
++                unsigned id;
++                int location, inside, on, open;
++                StateProvenance loc, in, cont;
++                bool lv, iv, cv, inferred;
++                EvidenceSource ls, is, cs;
++                std::vector<shared_ptr<SmallObject>> members;
++            };
++            struct SensedRow { int loc; bool sensed; LocationSensedInfo info; };
++            RDFW& w;
++            StateMutation* root;
++            bool touched[MAX_OBJECT_ID+1] = {};
++            std::vector<Row> rows;
++            std::vector<SensedRow> sensed_rows;
++            bool storage_saved=false, ledger_saved=false, aborted=false, physical_confirmed=false;
++            int hand_id=NONE, tray_id=NONE;
++            shared_ptr<SmallObject> hand, tray;
++            StateProvenance hp, pp;
++            std::vector<bool> eligible, uncertain;
++            std::vector<int> score;
++            std::size_t revision=0;
++            void rollback() noexcept;
++        public:
++            explicit StateMutation(RDFW& world);
++            ~StateMutation() noexcept;
++            void touch(unsigned id);
++            void storage();
++            void sensed(int loc);
++            void ledger();
++            void platformSucceeded() noexcept { root->physical_confirmed=true; }
++            void platformFailed() noexcept { root->physical_confirmed=false; }
++            void cancel() noexcept { root->aborted=true; }
++            StateMutation(const StateMutation&)=delete;
++            StateMutation& operator=(const StateMutation&)=delete;
++        };
++        StateMutation* active_mutation=nullptr;
++        void StageStateValue(StateField field, unsigned id, int value);
++        void AppendStateSnapshot(std::ostream& out) const;
++        void PrepareActionState(const std::vector<unsigned int>& arguments, bool moving);
++        void AddContainerMembership(const shared_ptr<Container>& container,
++                                    const shared_ptr<SmallObject>& item);
+         bool EnsureEvidenceCapacity(unsigned int id);
+         StateProvenance& MutableProvenance(StateField field, unsigned int id);
+         void UpdateProvenance(StateField field, unsigned int id, int value,
+--- src1.6.6/state_mutation.cpp
++++ src1.6.7/state_mutation.cpp
+@@ -0,0 +1,153 @@
++#include "rdfw.hpp"
++#include <exception>
++#include <algorithm>
++#include <stdexcept>
++#include <type_traits>
++using namespace _home;
++static_assert(std::is_nothrow_move_constructible<StateProvenance>::value &&
++              std::is_nothrow_move_assignable<StateProvenance>::value,
++              "journal rollback must not allocate or throw");
++
++RDFW::StateMutation::StateMutation(RDFW& world) : w(world), root(world.active_mutation) {
++    if (!root) { root=this; w.active_mutation=this; }
++}
++RDFW::StateMutation::~StateMutation() noexcept {
++    if (root!=this) return;
++    if (aborted || std::uncaught_exception()) rollback();
++    w.active_mutation=nullptr;
++}
++void RDFW::StateMutation::touch(unsigned id) {
++    if (root!=this) { root->touch(id); return; }
++    if (id>MAX_OBJECT_ID || id>=w.objects.size() || !w.objects[id] || touched[id]) return;
++    if (!w.EnsureEvidenceCapacity(id)) return;
++    const auto small=dynamic_pointer_cast<SmallObject>(w.objects[id]);
++    const auto container=dynamic_pointer_cast<Container>(w.objects[id]);
++    Row row;
++    row.id=id; row.location=w.objects[id]->location;
++    row.inside=small?small->inside:UNKNOWN; row.on=small?small->on:UNKNOWN;
++    row.open=container?container->isOpen:UNKNOWN;
++    row.loc=w.Provenance(StateField::LOCATION,id);
++    row.in=w.Provenance(StateField::INSIDE,id);
++    row.cont=w.Provenance(StateField::CONTAINER_STATE,id);
++    row.lv=w.objectLocationVerified[id]; row.iv=w.objectInsideVerified[id];
++    row.cv=w.containerStateVerified[id]; row.inferred=w.objectLocationInferredByMustNear[id];
++    row.ls=w.objectLocationSource[id]; row.is=w.objectInsideSource[id]; row.cs=w.containerStateSource[id];
++    if (container) row.members=container->smallObjectsInside;
++    rows.push_back(std::move(row)); // all allocation precedes the first write
++    touched[id]=true;
++}
++void RDFW::StateMutation::storage() {
++    if (root!=this) { root->storage(); return; }
++    if (storage_saved) return;
++    StateProvenance h=w.holdProvenance, p=w.plateProvenance;
++    hp=std::move(h); pp=std::move(p);
++    hand=w.hold; tray=w.plate; hand_id=w.hold_id; tray_id=w.plate_id;
++    storage_saved=true;
++}
++void RDFW::StateMutation::sensed(int loc) {
++    if (root!=this) { root->sensed(loc); return; }
++    if (loc<0 || std::size_t(loc)>=w.locationSensedObjects.size()) return;
++    for (const auto& row:sensed_rows) if (row.loc==loc) return;
++    SensedRow row{loc,w.posSensedFlag[loc],w.locationSensedObjects[loc]};
++    sensed_rows.push_back(std::move(row));
++}
++void RDFW::StateMutation::ledger() {
++    if (root!=this) { root->ledger(); return; }
++    if (ledger_saved) return;
++    auto e=w.constraint_eligible, u=w.constraint_uncertain;
++    auto s=w.score_locations;
++    eligible.swap(e); uncertain.swap(u); score.swap(s);
++    revision=w.world_revision; ledger_saved=true;
++}
++void RDFW::StateMutation::rollback() noexcept {
++    // Default allocators, scalar and shared_ptr assignment: restoration allocates
++    // nothing, even while the process-wide allocator is still failing.
++    for (auto& r:rows) {
++        const auto object=w.objects[r.id];
++        object->location=r.location;
++        if (auto small=dynamic_pointer_cast<SmallObject>(object)) { small->inside=r.inside; small->on=r.on; }
++        if (auto container=dynamic_pointer_cast<Container>(object)) {
++            container->isOpen=r.open; container->smallObjectsInside.swap(r.members);
++        }
++        std::swap(w.locationProvenance[r.id],r.loc);
++        std::swap(w.insideProvenance[r.id],r.in);
++        std::swap(w.containerProvenance[r.id],r.cont);
++        w.objectLocationVerified[r.id]=r.lv; w.objectInsideVerified[r.id]=r.iv;
++        w.containerStateVerified[r.id]=r.cv; w.objectLocationInferredByMustNear[r.id]=r.inferred;
++        w.objectLocationSource[r.id]=r.ls; w.objectInsideSource[r.id]=r.is; w.containerStateSource[r.id]=r.cs;
++    }
++    if (storage_saved) {
++        w.hold=hand; w.plate=tray; w.hold_id=hand_id; w.plate_id=tray_id;
++        std::swap(w.holdProvenance,hp); std::swap(w.plateProvenance,pp);
++    }
++    for (auto& row:sensed_rows) {
++        w.posSensedFlag[row.loc]=row.sensed;
++        std::swap(w.locationSensedObjects[row.loc],row.info);
++    }
++    if (ledger_saved) {
++        w.constraint_eligible.swap(eligible); w.constraint_uncertain.swap(uncertain);
++        w.score_locations.swap(score); w.world_revision=revision;
++    }
++    if (physical_confirmed) {
++        // A committed external action cannot be rolled back. Restore coherent
++        // candidate structure, then withdraw stale pre-action fact confidence.
++        // Only touched records/slots are invalidated; no scan or allocation.
++        const auto withdraw=[](StateProvenance& p) {
++            ++p.revision;p.resolved_value=UNKNOWN;p.resolved_source=EvidenceSource::UNKNOWN;
++            p.resolved_verified=false;p.dependency_count=0;p.support_constraint_index=UNKNOWN;
++            p.supporting_constraints.clear();
++        };
++        for (const auto& r:rows) {
++            withdraw(w.locationProvenance[r.id]);withdraw(w.insideProvenance[r.id]);withdraw(w.containerProvenance[r.id]);
++            w.objectLocationVerified[r.id]=w.objectInsideVerified[r.id]=w.containerStateVerified[r.id]=false;
++            w.objectLocationSource[r.id]=w.objectInsideSource[r.id]=w.containerStateSource[r.id]=EvidenceSource::UNKNOWN;
++            w.objectLocationInferredByMustNear[r.id]=false;
++        }
++        withdraw(w.holdProvenance);withdraw(w.plateProvenance);
++        for (const auto& r:sensed_rows) {
++            w.posSensedFlag[r.loc]=false;
++            w.locationSensedObjects[r.loc].object_ids.clear();
++            w.locationSensedObjects[r.loc].has_container=false;
++            w.locationSensedObjects[r.loc].container_id=NONE;
++        }
++        // Recovery only: a committed action with unknown completion of the
++        // ledger update cannot preserve certain constraint score credit.
++        const std::size_t count=w.not_infoConstrains.size()+w.notnot_infoConstrains.size()+w.not_taskConstrains.size();
++        if(w.constraint_eligible.size()!=count && eligible.size()==count) w.constraint_eligible.swap(eligible);
++        if(w.constraint_uncertain.size()!=count && uncertain.size()==count) w.constraint_uncertain.swap(uncertain);
++        std::fill(w.constraint_uncertain.begin(),w.constraint_uncertain.end(),true);
++        ++w.world_revision;
++    }
++}
++void RDFW::PrepareActionState(const std::vector<unsigned int>& arguments,bool moving) {
++    active_mutation->storage();active_mutation->ledger();InitializeConstraintLedger();
++    active_mutation->touch(0);active_mutation->sensed(location);
++    if (moving) {
++        if(hold) active_mutation->touch(hold->id);
++        if(plate) active_mutation->touch(plate->id);
++        if(!arguments.empty()) active_mutation->sensed(arguments[0]);
++    } else for(unsigned id:arguments) {
++        active_mutation->touch(id);
++        if(id>=objects.size() || !objects[id]) continue;
++        active_mutation->sensed(objects[id]->location);
++        if(auto c=dynamic_pointer_cast<Container>(objects[id]))
++            for(const auto& item:c->smallObjectsInside) if(item) active_mutation->touch(item->id);
++    }
++}
++void RDFW::StageStateValue(StateField field,unsigned id,int value) {
++    if (!active_mutation) throw std::logic_error("state staging without mutation scope");
++    if (id>=objects.size() || !objects[id] || !EnsureEvidenceCapacity(id)) return;
++    active_mutation->touch(id);
++    if (field==StateField::LOCATION) objects[id]->location=value;
++    else if (field==StateField::INSIDE) {
++        if (auto s=dynamic_pointer_cast<SmallObject>(objects[id])) s->inside=value;
++    } else if (field==StateField::CONTAINER_STATE) {
++        if (auto c=dynamic_pointer_cast<Container>(objects[id])) c->isOpen=value;
++    }
++}
++void RDFW::AddContainerMembership(const shared_ptr<Container>& container,const shared_ptr<SmallObject>& item) {
++    StateMutation mutation(*this);
++    if (!container || !item) return;
++    active_mutation->touch(container->id);
++    container->smallObjectsInside.push_back(item);
++}
+--- src1.6.6/terminal_checker.cpp
++++ src1.6.7/terminal_checker.cpp
+@@ -22,37 +22,26 @@
+     return TerminalStatus::SATISFIED;
+ }
+ 
+-// The optional hypothesis view is only used by evaluatePlanningHypothesis.
+-// All terminal, constraint and score callers use canonical values.
+-int locationValue(const RDFW& w, const std::shared_ptr<Object>& o, bool hypothesis=false) {
+-    if (!o) return UNKNOWN;
+-    return hypothesis ? o->location : w.FactLocation(o->id);
+-}
+-int insideValue(const RDFW& w, const std::shared_ptr<SmallObject>& o, bool hypothesis=false) {
+-    if (!o) return UNKNOWN;
+-    return hypothesis ? o->inside : w.FactInside(o->id);
+-}
+-int containerValue(const RDFW& w, const std::shared_ptr<Container>& o, bool hypothesis=false) {
+-    if (!o) return UNKNOWN;
+-    return hypothesis ? o->isOpen : w.FactContainerState(o->id);
+-}
+-bool isLocationKnown(const RDFW& w, const std::shared_ptr<Object>& o, bool h=false) {
+-    return locationValue(w,o,h)!=UNKNOWN;
+-}
+-int scoreLocation(const RDFW& w, const std::shared_ptr<Object>& o, bool h=false) {
+-    if (!o) return UNKNOWN;
+-    if (h) {
+-        if (o->id==0) return w.location;
+-        return o->id < w.score_locations.size() ? w.score_locations[o->id] : o->location;
+-    }
+-    return w.ScoreFactLocation(o->id);
+-}
+-bool isInsideKnown(const RDFW& w, const std::shared_ptr<SmallObject>& o, bool h=false) {
+-    return insideValue(w,o,h)!=UNKNOWN;
+-}
+-bool isContainerStateKnown(const RDFW& w, const std::shared_ptr<Container>& o, bool h=false) {
+-    const int state=containerValue(w,o,h); return state==0 || state==1;
+-}
++// Cache lasts for one predicate evaluation. No mutation, persistent cache,
++// revision shortcut, or change to recursive qualification is involved.
++struct PairFacts {
++    const RDFW& world;
++    unsigned ids[4] = {};
++    unsigned used=0;
++    StateClaim values[4][5];
++    bool seen[4][5] = {};
++    explicit PairFacts(const RDFW& w):world(w) {}
++    StateClaim get(StateField field,unsigned id) {
++        unsigned row=0;
++        while(row<used && ids[row]!=id) ++row;
++        if(row==4) return world.ResolvedState(field,id);
++        if(row==used) ids[used++]=id;
++        const unsigned f=unsigned(field);
++        if(!seen[row][f]) { values[row][f]=world.ResolvedState(field,id); seen[row][f]=true; }
++        return values[row][f];
++    }
++    int value(StateField field,unsigned id) { const auto c=get(field,id); return c.present?c.value:UNKNOWN; }
++};
+ TerminalStatus boolStatus(bool value) {
+     return value ? TerminalStatus::SATISFIED : TerminalStatus::UNSATISFIED;
+ }
+@@ -65,6 +54,7 @@
+         condition.declared_type.empty() && !condition.has_explicit_id)
+         return planner_bindings;
+     std::vector<std::shared_ptr<Object>> result;
++    result.reserve(world.objects.size());
+     for (const auto& object : world.objects)
+         if (object && object->id > 0 && condition.IsObjectSatisfy(object))
+             result.push_back(object);
+@@ -75,22 +65,44 @@
+                             const std::shared_ptr<Object>& x,
+                             const std::shared_ptr<Object>& y, bool hypothesis=false) {
+     if (!x) return TerminalStatus::UNKNOWN;
+-    const int robot_location=hypothesis?world.location:world.FactLocation(0);
+-    const int hand=hypothesis?world.hold_id:world.FactValue(StateField::HOLD);
+-    const int tray=hypothesis?world.plate_id:world.FactValue(StateField::PLATE);
+-    const bool stored=hand==x->id || tray==x->id;
+-    const bool not_stored=hypothesis?(hand!=x->id && tray!=x->id):world.IsNotStoredFact(x->id);
++    PairFacts facts(world);
++    const auto robot_location = [&]() { return hypothesis?world.location:facts.value(StateField::LOCATION,0); };
++    const auto hand = [&]() { return hypothesis?world.hold_id:facts.value(StateField::HOLD,0); };
++    const auto tray = [&]() { return hypothesis?world.plate_id:facts.value(StateField::PLATE,0); };
++    const auto stored = [&]() { return hand()==x->id || tray()==x->id; };
++    const auto not_stored = [&]() {
++        if(hypothesis) return hand()!=x->id && tray()!=x->id;
++        if(!world.IsValidObjectId(x->id) || stored()) return false;
++        const int h=hand(), t=tray();
++        if(h!=UNKNOWN && t!=UNKNOWN) return h!=x->id && t!=x->id;
++        const auto in=facts.get(StateField::INSIDE,x->id);
++        if(!in.present) return false;
++        if(in.value>0) return true;
++        return facts.get(StateField::LOCATION,x->id).present && in.value==NONE &&
++            (in.source==EvidenceSource::SENSE || in.source==EvidenceSource::ACTION_SUCCESS);
++    };
++    const auto locationValue = [&](const std::shared_ptr<Object>& o) { return !o?UNKNOWN:hypothesis?o->location:facts.value(StateField::LOCATION,o->id); };
++    const auto insideValue = [&](const std::shared_ptr<SmallObject>& o) { return !o?UNKNOWN:hypothesis?o->inside:facts.value(StateField::INSIDE,o->id); };
++    const auto containerValue = [&](const std::shared_ptr<Container>& o) { return !o?UNKNOWN:hypothesis?o->isOpen:facts.value(StateField::CONTAINER_STATE,o->id); };
++    const auto scoreLocation = [&](const std::shared_ptr<Object>& o) {
++        if(!o) return UNKNOWN;
++        if(hypothesis) { if(o->id==0) return world.location;
++            return o->id<world.score_locations.size()?world.score_locations[o->id]:o->location; }
++        const int loc=locationValue(o);
++        if(world.stage==1 && o->id>0) return loc!=UNKNOWN && o->id<world.score_locations.size()?world.score_locations[o->id]:UNKNOWN;
++        return loc;
++    };
+ 
+     if (behave == "goto" || behave == "move") {
+         if (world.stage == 1 || hypothesis)
+-            return boolStatus(scoreLocation(world, x, hypothesis) != _home::UNKNOWN &&
+-                              robot_location == scoreLocation(world, x, hypothesis));
+-        if (!hypothesis && robot_location != _home::UNKNOWN &&
+-            world.IsAbsentFromSensedLocation(x->id, robot_location))
+-            return TerminalStatus::UNSATISFIED;
+-        if (!isLocationKnown(world, x, hypothesis) || robot_location == _home::UNKNOWN)
+-            return TerminalStatus::UNKNOWN;
+-        return boolStatus(robot_location == locationValue(world,x,hypothesis));
++            return boolStatus(scoreLocation(x) != _home::UNKNOWN &&
++                              robot_location() == scoreLocation(x));
++        if (!hypothesis && robot_location() != _home::UNKNOWN &&
++            world.IsAbsentFromSensedLocation(x->id, robot_location()))
++            return TerminalStatus::UNSATISFIED;
++        if (!(locationValue(x)!=UNKNOWN) || robot_location() == _home::UNKNOWN)
++            return TerminalStatus::UNKNOWN;
++        return boolStatus(robot_location() == locationValue(x));
+     }
+ 
+     if (behave == "open" || behave == "opened" ||
+@@ -98,41 +110,41 @@
+         const std::shared_ptr<Object> target = y ? y : x;
+         const std::shared_ptr<Container> container =
+             std::dynamic_pointer_cast<Container>(target);
+-        if (!isContainerStateKnown(world, container, hypothesis)) return TerminalStatus::UNKNOWN;
++        if (!(containerValue(container)==0 || containerValue(container)==1)) return TerminalStatus::UNKNOWN;
+         const bool expect_open = behave == "open" || behave == "opened";
+-        return boolStatus(static_cast<bool>(containerValue(world,container,hypothesis)) == expect_open);
++        return boolStatus(static_cast<bool>(containerValue(container)) == expect_open);
+     }
+ 
+     if (behave == "pickup") {
+-        if (!hypothesis && world.stage == 2 && !world.IsInsideVerified(x->id))
+-            return TerminalStatus::UNKNOWN;
+-        if (!stored && !not_stored) return TerminalStatus::UNKNOWN;
+-        return boolStatus(stored);
++        if (!hypothesis && world.stage == 2 && !facts.get(StateField::INSIDE,x->id).present)
++            return TerminalStatus::UNKNOWN;
++        if (!stored() && !not_stored()) return TerminalStatus::UNKNOWN;
++        return boolStatus(stored());
+     }
+ 
+     if (behave == "putdown") {
+         const std::shared_ptr<SmallObject> small =
+             std::dynamic_pointer_cast<SmallObject>(x);
+         if (!small) return TerminalStatus::UNKNOWN;
+-        if (!hypothesis && world.stage == 2 && !world.IsInsideVerified(x->id))
+-            return TerminalStatus::UNKNOWN;
+-        if (stored)
+-            return TerminalStatus::UNSATISFIED;
+-        return not_stored ? TerminalStatus::SATISFIED : TerminalStatus::UNKNOWN;
++        if (!hypothesis && world.stage == 2 && !facts.get(StateField::INSIDE,x->id).present)
++            return TerminalStatus::UNKNOWN;
++        if (stored())
++            return TerminalStatus::UNSATISFIED;
++        return not_stored() ? TerminalStatus::SATISFIED : TerminalStatus::UNKNOWN;
+     }
+ 
+     if (behave == "putin" || behave == "inside" || behave == "in") {
+         const std::shared_ptr<SmallObject> small =
+             std::dynamic_pointer_cast<SmallObject>(x);
+-        if (!small || !y || !isInsideKnown(world, small, hypothesis)) return TerminalStatus::UNKNOWN;
+-        return boolStatus(insideValue(world,small,hypothesis) == y->id);
++        if (!small || !y || !(insideValue(small)!=UNKNOWN)) return TerminalStatus::UNKNOWN;
++        return boolStatus(insideValue(small) == y->id);
+     }
+ 
+     if (behave == "takeout") {
+         const std::shared_ptr<SmallObject> small =
+             std::dynamic_pointer_cast<SmallObject>(x);
+-        if (!small || !y || !isInsideKnown(world, small, hypothesis)) return TerminalStatus::UNKNOWN;
+-        return boolStatus(insideValue(world,small,hypothesis) != y->id);
++        if (!small || !y || !(insideValue(small)!=UNKNOWN)) return TerminalStatus::UNKNOWN;
++        return boolStatus(insideValue(small) != y->id);
+     }
+ 
+     if (behave == "puton" || behave == "on" || behave == "near" ||
+@@ -140,40 +152,40 @@
+         std::shared_ptr<Object> target = y;
+         if (behave == "give") target = world.human;
+         if ((world.stage == 1 || hypothesis) && target &&
+-            (scoreLocation(world, x, hypothesis) == _home::UNKNOWN ||
+-             scoreLocation(world, target, hypothesis) == _home::UNKNOWN))
+-            return TerminalStatus::UNSATISFIED;
+-        if (!hypothesis && target && isLocationKnown(world, x, hypothesis) &&
+-            world.IsAbsentFromSensedLocation(target->id, locationValue(world,x,hypothesis)))
+-            return TerminalStatus::UNSATISFIED;
+-        if (!hypothesis && target && isLocationKnown(world, target, hypothesis) &&
+-            world.IsAbsentFromSensedLocation(x->id, locationValue(world,target,hypothesis)))
+-            return TerminalStatus::UNSATISFIED;
+-        if (!target || !isLocationKnown(world, x, hypothesis) || !isLocationKnown(world, target, hypothesis))
++            (scoreLocation(x) == _home::UNKNOWN ||
++             scoreLocation(target) == _home::UNKNOWN))
++            return TerminalStatus::UNSATISFIED;
++        if (!hypothesis && target && (locationValue(x)!=UNKNOWN) &&
++            world.IsAbsentFromSensedLocation(target->id, locationValue(x)))
++            return TerminalStatus::UNSATISFIED;
++        if (!hypothesis && target && (locationValue(target)!=UNKNOWN) &&
++            world.IsAbsentFromSensedLocation(x->id, locationValue(target)))
++            return TerminalStatus::UNSATISFIED;
++        if (!target || !(locationValue(x)!=UNKNOWN) || !(locationValue(target)!=UNKNOWN))
+             return TerminalStatus::UNKNOWN;
+ 
+         if (behave == "puton" || behave == "give") {
+             const std::shared_ptr<SmallObject> small =
+                 std::dynamic_pointer_cast<SmallObject>(x);
+-            if (!isInsideKnown(world, small, hypothesis)) return TerminalStatus::UNKNOWN;
+-            if (stored) return TerminalStatus::UNSATISFIED;
+-            if (!not_stored) return TerminalStatus::UNKNOWN;
++            if (!(insideValue(small)!=UNKNOWN)) return TerminalStatus::UNKNOWN;
++            if (stored()) return TerminalStatus::UNSATISFIED;
++            if (!not_stored()) return TerminalStatus::UNKNOWN;
+         }
+-        return boolStatus(scoreLocation(world, x, hypothesis) == scoreLocation(world, target, hypothesis));
++        return boolStatus(scoreLocation(x) == scoreLocation(target));
+     }
+ 
+     if (behave == "plate") {
+-        if (!hypothesis && world.stage == 2 && !world.IsInsideVerified(x->id))
+-            return TerminalStatus::UNKNOWN;
+-        if (tray==UNKNOWN && !not_stored) return TerminalStatus::UNKNOWN;
+-        return boolStatus(tray == x->id);
++        if (!hypothesis && world.stage == 2 && !facts.get(StateField::INSIDE,x->id).present)
++            return TerminalStatus::UNKNOWN;
++        if (tray()==UNKNOWN && !not_stored()) return TerminalStatus::UNKNOWN;
++        return boolStatus(tray() == x->id);
+     }
+ 
+     if (behave == "hold") {
+-        if (!hypothesis && world.stage == 2 && !world.IsInsideVerified(x->id))
+-            return TerminalStatus::UNKNOWN;
+-        if (hand==UNKNOWN && !not_stored) return TerminalStatus::UNKNOWN;
+-        return boolStatus(hand == x->id);
++        if (!hypothesis && world.stage == 2 && !facts.get(StateField::INSIDE,x->id).present)
++            return TerminalStatus::UNKNOWN;
++        if (hand()==UNKNOWN && !not_stored()) return TerminalStatus::UNKNOWN;
++        return boolStatus(hand() == x->id);
+     }
+ 
+     return TerminalStatus::UNKNOWN;
+@@ -285,6 +297,9 @@
+ 
+ TerminalSummary TerminalChecker::evaluateConstraints(const RDFW& world) const {
+     TerminalSummary result;
++    const std::size_t constraint_count=world.not_infoConstrains.size()+world.notnot_infoConstrains.size()+world.not_taskConstrains.size();
++    result.constraint_eligible.reserve(constraint_count);
++    result.constraint_credited.reserve(constraint_count);
+     result.constraints.reserve(world.not_infoConstrains.size() +
+                                world.notnot_infoConstrains.size() +
+                                world.not_taskConstrains.size());
