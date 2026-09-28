@@ -1,0 +1,29 @@
+<configuration info>
+TeamName: RDFW
+Mode: IT
+Timeout: 5000
+TestDir: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/comprehensive-200-1.6-vs-1.6.4-20260928/runs-v2/A01-04-s2/it/1.6/runtime/tests/
+TestSize: 1
+Single test: case.xml
+Grader path: /home/yifan/env-release-2026/lib/libasp
+
+<case.xml>
+# Environment Description:
+(:domain (hold 0) (plate 0) (at 0 4) (sort 1 human) (size 1 big) (at 1 1) (sort 2 table) (size 2 big) (at 2 4) (sort 3 desk) (size 3 big) (at 3 3) (sort 4 cupboard) (size 4 big) (type 4 container) (closed 4) (sort 5 closet) (size 5 big) (at 5 8) (type 5 container) (closed 5) (sort 6 microwave) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 7 refrigerator) (size 7 big) (at 7 7) (type 7 container) (closed 7) (sort 8 sofa) (size 8 big) (at 8 2) (sort 9 can) (size 9 small) (color 9 black) (at 9 4) (sort 10 cup) (size 10 small) (color 10 yellow) (at 10 4) (sort 11 book) (size 11 small) (color 11 yellow) (inside 11 4) (sort 12 bottle) (size 12 small) (color 12 blue) (sort 13 can) (size 13 small) (color 13 red) (sort 14 bottle) (size 14 small) (color 14 green) (inside 14 4)  (at 12 7))
+# Task Description:
+(:ins (:task (give human X) (:cond (sort X book)(color X yellow))) (:task (putin X Y) (:cond (sort X bottle)(color X blue)(sort Y closet)(type Y container))) (:task (close X) (:cond (sort X cupboard)(type X container))) (:task (close X) (:cond (sort X closet)(type X container))) (:task (takeout X Y) (:cond (sort X bottle)(color X green)(sort Y cupboard)(type Y container))) (:task (pickup X) (:cond (sort X can)(color X red))) (:task (goto X) (:cond (sort X desk))) (:cons_notnot (:info (closed X) (:cond (sort X microwave)))) (:cons_notnot (:info (near X Y) (:cond (sort X can)(color X black)(sort Y table)))) (:cons_not (:info (plate X) (:cond (sort X can)(color X red)))) (:cons_not (:info (plate X) (:cond (sort X book)(color X yellow)))) (:cons_not (:info (plate X) (:cond (sort X bottle)(color X blue)))) (:cons_not (:info (plate X) (:cond (sort X bottle)(color X green)))) (:cons_not (:info (inside X Y) (:cond (sort X bottle)(color X blue)(sort Y cupboard)))) (:cons_not (:info (near X Y) (:cond (sort X bottle)(color X blue)(sort Y human)))) (:cons_not (:info (inside X Y) (:cond (sort X can)(color X red)(sort Y cupboard)))) (:cons_not (:info (near X Y) (:cond (sort X can)(color X red)(sort Y human)))) (:cons_not (:info (near X Y) (:cond (sort X bottle)(color X green)(sort Y human)))) (:cons_not (:info (inside X Y) (:cond (sort X book)(color X yellow)(sort Y closet)))) (:cons_not (:info (near X Y) (:cond (sort X book)(color X yellow)(sort Y table)))) (:cons_not (:info (inside X Y) (:cond (sort X can)(color X red)(sort Y closet)))) (:cons_not (:info (near X Y) (:cond (sort X can)(color X red)(sort Y table)))) (:cons_not (:info (inside X Y) (:cond (sort X bottle)(color X green)(sort Y closet)))) (:cons_not (:info (near X Y) (:cond (sort X bottle)(color X green)(sort Y table)))) (:cons_not (:info (inside X Y) (:cond (sort X book)(color X yellow)(sort Y microwave)))) (:cons_not (:info (near X Y) (:cond (sort X book)(color X yellow)(sort Y desk)))) (:cons_not (:info (inside X Y) (:cond (sort X bottle)(color X blue)(sort Y microwave)))) (:cons_not (:info (near X Y) (:cond (sort X bottle)(color X blue)(sort Y desk)))) (:cons_not (:info (inside X Y) (:cond (sort X can)(color X red)(sort Y microwave)))) (:cons_not (:info (inside X Y) (:cond (sort X bottle)(color X green)(sort Y microwave)))) (:cons_not (:info (near X Y) (:cond (sort X bottle)(color X green)(sort Y desk)))) (:cons_not (:info (inside X Y) (:cond (sort X book)(color X yellow)(sort Y refrigerator)))) (:cons_not (:info (inside X Y) (:cond (sort X bottle)(color X blue)(sort Y refrigerator)))) (:cons_not (:info (near X Y) (:cond (sort X bottle)(color X blue)(sort Y cupboard)))) (:cons_not (:info (inside X Y) (:cond (sort X can)(color X red)(sort Y refrigerator)))) (:cons_not (:info (near X Y) (:cond (sort X can)(color X red)(sort Y cupboard)))) (:cons_not (:info (inside X Y) (:cond (sort X bottle)(color X green)(sort Y refrigerator)))) (:cons_not (:info (near X Y) (:cond (sort X book)(color X yellow)(sort Y closet)))) )
+# Results:
+	[Sense | 2 9 10 12]
+	[PickUp 12|true]
+	[Move 8|true]
+	[PutDown 12|true]
+	[Open 5|true]
+	[PickUp 12|true]
+	[PutIn 12 5|true]
+	[Close 5|true]
+	[Move 3|true]
+	[Sense | 3]
+
+# Time: 1.291
+# Score: 832
+

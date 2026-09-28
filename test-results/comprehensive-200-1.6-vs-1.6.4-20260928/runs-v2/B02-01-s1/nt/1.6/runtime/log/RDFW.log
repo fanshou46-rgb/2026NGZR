@@ -1,0 +1,36 @@
+<configuration info>
+TeamName: RDFW
+Mode: NT
+Timeout: 5000
+TestDir: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/comprehensive-200-1.6-vs-1.6.4-20260928/runs-v2/B02-01-s1/nt/1.6/runtime/tests/
+TestSize: 1
+Single test: case.xml
+Grader path: /home/yifan/env-release-2026/lib/libasp
+
+<case.xml>
+# Environment Description:
+(:domain (hold 12) (plate 9) (at 0 3) (sort 1 human) (size 1 big) (at 1 1) (sort 2 table) (size 2 big) (at 2 4) (sort 3 desk) (size 3 big) (at 3 3) (sort 4 cupboard) (size 4 big) (at 4 2) (type 4 container) (closed 4) (sort 5 closet) (size 5 big) (at 5 7) (type 5 container) (closed 5) (sort 6 microwave) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 7 refrigerator) (size 7 big) (at 7 5) (type 7 container) (closed 7) (sort 8 sofa) (size 8 big) (at 8 8) (sort 9 can) (size 9 small) (color 9 red) (sort 10 cup) (size 10 small) (color 10 white) (at 10 3) (sort 11 book) (size 11 small) (color 11 white) (inside 11 4) (sort 12 bottle) (size 12 small) (color 12 green) (sort 13 can) (size 13 small) (color 13 black) (at 13 8) (sort 14 bottle) (size 14 small) (color 14 blue) (at 14 8)  )
+# Task Description:
+Give the white book to the human. Put the green bottle down. Close the cupboard. Close the closet. Give the red can to the human. Pick up the black can. Go to the table. The microwave must be closed. The black can must not be on the plate. The white book must not be on the plate. The green bottle must not be on the plate. The red can must not be in the cupboard. The green bottle must not be in the cupboard. The green bottle must not be near the human. The black can must not be in the cupboard. The black can must not be near the human. The red can must not be in the closet. The white book must not be in the closet. The white book must not be near the table. The green bottle must not be in the closet. The black can must not be in the closet. The red can must not be in the microwave. The white book must not be in the microwave. The white book must not be near the desk. The green bottle must not be in the microwave. The black can must not be in the microwave. The black can must not be near the desk. The red can must not be in the refrigerator. The red can must not be near the cupboard. The white book must not be in the refrigerator. The green bottle must not be in the refrigerator. The green bottle must not be near the cupboard. The black can must not be in the refrigerator. The black can must not be near the cupboard. The red can must not be near the closet. The white book must not be near the closet. The green bottle must not be near the closet. The black can must not be near the closet.
+# Results:
+	[PutDown 12|true]
+	[FromPlate 9|true]
+	[PutDown 9|true]
+	[Move 2|true]
+	[Open 4|true]
+	[TakeOut 11 4|true]
+	[Move 1|true]
+	[PutDown 11|true]
+	[Move 3|true]
+	[PickUp 9|true]
+	[Move 1|true]
+	[PutDown 9|true]
+	[Move 2|true]
+	[Close 4|true]
+	[Move 8|true]
+	[PickUp 13|true]
+	[Move 4|true]
+
+# Time: 2.058
+# Score: 910
+

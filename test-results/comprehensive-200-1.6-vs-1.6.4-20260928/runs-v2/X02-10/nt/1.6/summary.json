@@ -1,0 +1,61 @@
+{
+  "raw_score": 862,
+  "official_score": 862,
+  "platform_seconds": 2.331,
+  "platform_timed_out": false,
+  "actions": {
+    "move": 7,
+    "open": 3,
+    "takeout": 1,
+    "putdown": 2,
+    "pickup": 3,
+    "putin": 1,
+    "close": 1
+  },
+  "action_count": 18,
+  "client_metrics": null,
+  "final_goals": 6,
+  "credited_constraints": 31,
+  "platform_error": false,
+  "case": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/2026_comprehensive_200/invalid/X02-10.xml",
+  "case_sha256": "9ca70c2f415bfebf9f46d10544739847ca88d0b64ef34cf795ed7e4cef7ffdb6",
+  "stage": 1,
+  "mode": "nt",
+  "wall_seconds": 2.902198915000099,
+  "external_timeout": false,
+  "client_exit": 0,
+  "server_exit": -15,
+  "commands": [
+    [
+      "/home/yifan/env-release-2026/bin/cserver",
+      "-td",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/comprehensive-200-1.6-vs-1.6.4-20260928/runs-v2/X02-10/nt/1.6/runtime/tests",
+      "-eval",
+      "/home/yifan/env-release-2026/lib/libasp",
+      "-log",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/comprehensive-200-1.6-vs-1.6.4-20260928/runs-v2/X02-10/nt/1.6/runtime/log",
+      "-mode",
+      "nt",
+      "-test",
+      "1",
+      "-to",
+      "5000"
+    ],
+    [
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/comprehensive-200-1.6-vs-1.6.4-20260928/build-1.6/example",
+      "-stage",
+      "1",
+      "-nlp",
+      "1",
+      "-err",
+      "0",
+      "-ask_2",
+      "0",
+      "-path",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/test-results/comprehensive-200-1.6-vs-1.6.4-20260928/assets-v2/words.txt"
+    ]
+  ],
+  "limit_ms": 5000,
+  "budget_ms": null,
+  "status": "ok"
+}

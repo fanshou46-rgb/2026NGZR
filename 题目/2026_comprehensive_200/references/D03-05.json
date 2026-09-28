@@ -1,0 +1,733 @@
+{
+  "category": "D03",
+  "title": "聚集交付与最终携带联合收尾",
+  "scene": 5,
+  "nominal_gross": 900,
+  "roles": {
+    "left": 9,
+    "right": 10,
+    "book": 11,
+    "bottle": 12,
+    "carry": 13,
+    "blue": 14
+  },
+  "focus": {
+    "core_constraint_ids": [
+      8,
+      9,
+      10,
+      11
+    ],
+    "pair_destination": 2,
+    "final_slots": [
+      13,
+      10
+    ]
+  },
+  "proof": {
+    "kind": "constructive",
+    "statement": "主参考动作逐步合法，完成全部七个目标，并从初态起保持全部约束。"
+  },
+  "plans": [
+    {
+      "name": "primary",
+      "role": "primary",
+      "actions": [
+        [
+          "move",
+          3
+        ],
+        [
+          "open",
+          4
+        ],
+        [
+          "takeout",
+          11,
+          4
+        ],
+        [
+          "move",
+          1
+        ],
+        [
+          "putdown",
+          11
+        ],
+        [
+          "move",
+          7
+        ],
+        [
+          "open",
+          5
+        ],
+        [
+          "move",
+          2
+        ],
+        [
+          "pickup",
+          12
+        ],
+        [
+          "move",
+          7
+        ],
+        [
+          "putin",
+          12,
+          5
+        ],
+        [
+          "move",
+          3
+        ],
+        [
+          "close",
+          4
+        ],
+        [
+          "move",
+          7
+        ],
+        [
+          "close",
+          5
+        ],
+        [
+          "move",
+          2
+        ],
+        [
+          "pickup",
+          10
+        ],
+        [
+          "toplate",
+          10
+        ],
+        [
+          "move",
+          5
+        ],
+        [
+          "pickup",
+          13
+        ],
+        [
+          "move",
+          6
+        ]
+      ],
+      "expected_completed_goals": 7,
+      "expected_violated_constraints": 0,
+      "completed_goal_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "violated_constraint_ids": []
+    },
+    {
+      "name": "wrong_slot",
+      "role": "counterexample",
+      "actions": [
+        [
+          "move",
+          3
+        ],
+        [
+          "open",
+          4
+        ],
+        [
+          "takeout",
+          11,
+          4
+        ],
+        [
+          "move",
+          1
+        ],
+        [
+          "putdown",
+          11
+        ],
+        [
+          "move",
+          7
+        ],
+        [
+          "open",
+          5
+        ],
+        [
+          "move",
+          2
+        ],
+        [
+          "pickup",
+          12
+        ],
+        [
+          "move",
+          7
+        ],
+        [
+          "putin",
+          12,
+          5
+        ],
+        [
+          "move",
+          3
+        ],
+        [
+          "close",
+          4
+        ],
+        [
+          "move",
+          7
+        ],
+        [
+          "close",
+          5
+        ],
+        [
+          "move",
+          5
+        ],
+        [
+          "pickup",
+          13
+        ],
+        [
+          "toplate",
+          13
+        ],
+        [
+          "move",
+          2
+        ],
+        [
+          "pickup",
+          10
+        ],
+        [
+          "move",
+          6
+        ]
+      ],
+      "expected_completed_goals": 7,
+      "expected_violated_constraints": 1,
+      "completed_goal_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "violated_constraint_ids": [
+        9
+      ]
+    }
+  ],
+  "platform_executed": false,
+  "scores_measured": false,
+  "validation_scope": "offline truth-informed witness, not autonomous Stage 2 policy",
+  "clauses": [
+    {
+      "id": 1,
+      "kind": "task",
+      "pred": "give",
+      "args": [
+        1,
+        11
+      ],
+      "positive": true,
+      "inner": "info",
+      "english": "Give the blue book to the human.",
+      "purpose": "最终状态目标"
+    },
+    {
+      "id": 2,
+      "kind": "task",
+      "pred": "putin",
+      "args": [
+        12,
+        5
+      ],
+      "positive": true,
+      "inner": "info",
+      "english": "Put the red bottle in the closet.",
+      "purpose": "最终状态目标"
+    },
+    {
+      "id": 3,
+      "kind": "task",
+      "pred": "close",
+      "args": [
+        4
+      ],
+      "positive": true,
+      "inner": "info",
+      "english": "Close the cupboard.",
+      "purpose": "最终状态目标"
+    },
+    {
+      "id": 4,
+      "kind": "task",
+      "pred": "close",
+      "args": [
+        5
+      ],
+      "positive": true,
+      "inner": "info",
+      "english": "Close the closet.",
+      "purpose": "最终状态目标"
+    },
+    {
+      "id": 5,
+      "kind": "task",
+      "pred": "pickup",
+      "args": [
+        10
+      ],
+      "positive": true,
+      "inner": "info",
+      "english": "Pick up the blue cup.",
+      "purpose": "最终状态目标"
+    },
+    {
+      "id": 6,
+      "kind": "task",
+      "pred": "pickup",
+      "args": [
+        13
+      ],
+      "positive": true,
+      "inner": "info",
+      "english": "Pick up the white can.",
+      "purpose": "最终状态目标"
+    },
+    {
+      "id": 7,
+      "kind": "task",
+      "pred": "goto",
+      "args": [
+        2
+      ],
+      "positive": true,
+      "inner": "info",
+      "english": "Go to the table.",
+      "purpose": "最终状态目标"
+    },
+    {
+      "id": 8,
+      "kind": "constraint",
+      "pred": "closed",
+      "args": [
+        6
+      ],
+      "positive": true,
+      "inner": "info",
+      "english": "The microwave must be closed.",
+      "purpose": "门状态保护：The microwave must be closed."
+    },
+    {
+      "id": 9,
+      "kind": "constraint",
+      "pred": "plate",
+      "args": [
+        13
+      ],
+      "positive": false,
+      "inner": "info",
+      "english": "The white can must not be on the plate.",
+      "purpose": "限制携带资源分配：the white can 不可借托盘腾手。"
+    },
+    {
+      "id": 10,
+      "kind": "constraint",
+      "pred": "plate",
+      "args": [
+        11
+      ],
+      "positive": false,
+      "inner": "info",
+      "english": "The blue book must not be on the plate.",
+      "purpose": "限制携带资源分配：the blue book 不可借托盘腾手。"
+    },
+    {
+      "id": 11,
+      "kind": "constraint",
+      "pred": "plate",
+      "args": [
+        12
+      ],
+      "positive": false,
+      "inner": "info",
+      "english": "The red bottle must not be on the plate.",
+      "purpose": "限制携带资源分配：the red bottle 不可借托盘腾手。"
+    },
+    {
+      "id": 12,
+      "kind": "constraint",
+      "pred": "inside",
+      "args": [
+        10,
+        4
+      ],
+      "positive": false,
+      "inner": "info",
+      "english": "The blue cup must not be in the cupboard.",
+      "purpose": "限制容器缓冲：the blue cup 不能暂放入 the cupboard。"
+    },
+    {
+      "id": 13,
+      "kind": "constraint",
+      "pred": "near",
+      "args": [
+        10,
+        1
+      ],
+      "positive": false,
+      "inner": "info",
+      "english": "The blue cup must not be near the human.",
+      "purpose": "限制运输路线或暂存地点：the blue cup 到达 the human 的位置会触发违约。"
+    },
+    {
+      "id": 14,
+      "kind": "constraint",
+      "pred": "inside",
+      "args": [
+        12,
+        4
+      ],
+      "positive": false,
+      "inner": "info",
+      "english": "The red bottle must not be in the cupboard.",
+      "purpose": "限制容器缓冲：the red bottle 不能暂放入 the cupboard。"
+    },
+    {
+      "id": 15,
+      "kind": "constraint",
+      "pred": "near",
+      "args": [
+        12,
+        1
+      ],
+      "positive": false,
+      "inner": "info",
+      "english": "The red bottle must not be near the human.",
+      "purpose": "限制运输路线或暂存地点：the red bottle 到达 the human 的位置会触发违约。"
+    },
+    {
+      "id": 16,
+      "kind": "constraint",
+      "pred": "inside",
+      "args": [
+        13,
+        4
+      ],
+      "positive": false,
+      "inner": "info",
+      "english": "The white can must not be in the cupboard.",
+      "purpose": "限制容器缓冲：the white can 不能暂放入 the cupboard。"
+    },
+    {
+      "id": 17,
+      "kind": "constraint",
+      "pred": "near",
+      "args": [
+        13,
+        1
+      ],
+      "positive": false,
+      "inner": "info",
+      "english": "The white can must not be near the human.",
+      "purpose": "限制运输路线或暂存地点：the white can 到达 the human 的位置会触发违约。"
+    },
+    {
+      "id": 18,
+      "kind": "constraint",
+      "pred": "inside",
+      "args": [
+        10,
+        5
+      ],
+      "positive": false,
+      "inner": "info",
+      "english": "The blue cup must not be in the closet.",
+      "purpose": "限制容器缓冲：the blue cup 不能暂放入 the closet。"
+    },
+    {
+      "id": 19,
+      "kind": "constraint",
+      "pred": "inside",
+      "args": [
+        11,
+        5
+      ],
+      "positive": false,
+      "inner": "info",
+      "english": "The blue book must not be in the closet.",
+      "purpose": "限制容器缓冲：the blue book 不能暂放入 the closet。"
+    },
+    {
+      "id": 20,
+      "kind": "constraint",
+      "pred": "near",
+      "args": [
+        11,
+        2
+      ],
+      "positive": false,
+      "inner": "info",
+      "english": "The blue book must not be near the table.",
+      "purpose": "限制运输路线或暂存地点：the blue book 到达 the table 的位置会触发违约。"
+    },
+    {
+      "id": 21,
+      "kind": "constraint",
+      "pred": "near",
+      "args": [
+        12,
+        2
+      ],
+      "positive": false,
+      "inner": "info",
+      "english": "The red bottle must not be near the table.",
+      "purpose": "限制运输路线或暂存地点：the red bottle 到达 the table 的位置会触发违约。"
+    },
+    {
+      "id": 22,
+      "kind": "constraint",
+      "pred": "inside",
+      "args": [
+        13,
+        5
+      ],
+      "positive": false,
+      "inner": "info",
+      "english": "The white can must not be in the closet.",
+      "purpose": "限制容器缓冲：the white can 不能暂放入 the closet。"
+    },
+    {
+      "id": 23,
+      "kind": "constraint",
+      "pred": "inside",
+      "args": [
+        10,
+        6
+      ],
+      "positive": false,
+      "inner": "info",
+      "english": "The blue cup must not be in the microwave.",
+      "purpose": "限制容器缓冲：the blue cup 不能暂放入 the microwave。"
+    },
+    {
+      "id": 24,
+      "kind": "constraint",
+      "pred": "inside",
+      "args": [
+        11,
+        6
+      ],
+      "positive": false,
+      "inner": "info",
+      "english": "The blue book must not be in the microwave.",
+      "purpose": "限制容器缓冲：the blue book 不能暂放入 the microwave。"
+    },
+    {
+      "id": 25,
+      "kind": "constraint",
+      "pred": "near",
+      "args": [
+        11,
+        3
+      ],
+      "positive": false,
+      "inner": "info",
+      "english": "The blue book must not be near the desk.",
+      "purpose": "限制运输路线或暂存地点：the blue book 到达 the desk 的位置会触发违约。"
+    },
+    {
+      "id": 26,
+      "kind": "constraint",
+      "pred": "inside",
+      "args": [
+        12,
+        6
+      ],
+      "positive": false,
+      "inner": "info",
+      "english": "The red bottle must not be in the microwave.",
+      "purpose": "限制容器缓冲：the red bottle 不能暂放入 the microwave。"
+    },
+    {
+      "id": 27,
+      "kind": "constraint",
+      "pred": "inside",
+      "args": [
+        13,
+        6
+      ],
+      "positive": false,
+      "inner": "info",
+      "english": "The white can must not be in the microwave.",
+      "purpose": "限制容器缓冲：the white can 不能暂放入 the microwave。"
+    },
+    {
+      "id": 28,
+      "kind": "constraint",
+      "pred": "inside",
+      "args": [
+        10,
+        7
+      ],
+      "positive": false,
+      "inner": "info",
+      "english": "The blue cup must not be in the refrigerator.",
+      "purpose": "限制容器缓冲：the blue cup 不能暂放入 the refrigerator。"
+    },
+    {
+      "id": 29,
+      "kind": "constraint",
+      "pred": "near",
+      "args": [
+        10,
+        4
+      ],
+      "positive": false,
+      "inner": "info",
+      "english": "The blue cup must not be near the cupboard.",
+      "purpose": "限制运输路线或暂存地点：the blue cup 到达 the cupboard 的位置会触发违约。"
+    },
+    {
+      "id": 30,
+      "kind": "constraint",
+      "pred": "inside",
+      "args": [
+        11,
+        7
+      ],
+      "positive": false,
+      "inner": "info",
+      "english": "The blue book must not be in the refrigerator.",
+      "purpose": "限制容器缓冲：the blue book 不能暂放入 the refrigerator。"
+    },
+    {
+      "id": 31,
+      "kind": "constraint",
+      "pred": "inside",
+      "args": [
+        12,
+        7
+      ],
+      "positive": false,
+      "inner": "info",
+      "english": "The red bottle must not be in the refrigerator.",
+      "purpose": "限制容器缓冲：the red bottle 不能暂放入 the refrigerator。"
+    },
+    {
+      "id": 32,
+      "kind": "constraint",
+      "pred": "near",
+      "args": [
+        12,
+        4
+      ],
+      "positive": false,
+      "inner": "info",
+      "english": "The red bottle must not be near the cupboard.",
+      "purpose": "限制运输路线或暂存地点：the red bottle 到达 the cupboard 的位置会触发违约。"
+    },
+    {
+      "id": 33,
+      "kind": "constraint",
+      "pred": "inside",
+      "args": [
+        13,
+        7
+      ],
+      "positive": false,
+      "inner": "info",
+      "english": "The white can must not be in the refrigerator.",
+      "purpose": "限制容器缓冲：the white can 不能暂放入 the refrigerator。"
+    },
+    {
+      "id": 34,
+      "kind": "constraint",
+      "pred": "near",
+      "args": [
+        13,
+        4
+      ],
+      "positive": false,
+      "inner": "info",
+      "english": "The white can must not be near the cupboard.",
+      "purpose": "限制运输路线或暂存地点：the white can 到达 the cupboard 的位置会触发违约。"
+    },
+    {
+      "id": 35,
+      "kind": "constraint",
+      "pred": "near",
+      "args": [
+        10,
+        5
+      ],
+      "positive": false,
+      "inner": "info",
+      "english": "The blue cup must not be near the closet.",
+      "purpose": "限制运输路线或暂存地点：the blue cup 到达 the closet 的位置会触发违约。"
+    },
+    {
+      "id": 36,
+      "kind": "constraint",
+      "pred": "near",
+      "args": [
+        11,
+        5
+      ],
+      "positive": false,
+      "inner": "info",
+      "english": "The blue book must not be near the closet.",
+      "purpose": "限制运输路线或暂存地点：the blue book 到达 the closet 的位置会触发违约。"
+    },
+    {
+      "id": 37,
+      "kind": "constraint",
+      "pred": "near",
+      "args": [
+        13,
+        5
+      ],
+      "positive": false,
+      "inner": "info",
+      "english": "The white can must not be near the closet.",
+      "purpose": "限制运输路线或暂存地点：the white can 到达 the closet 的位置会触发违约。"
+    },
+    {
+      "id": 38,
+      "kind": "constraint",
+      "pred": "near",
+      "args": [
+        10,
+        6
+      ],
+      "positive": false,
+      "inner": "info",
+      "english": "The blue cup must not be near the microwave.",
+      "purpose": "限制运输路线或暂存地点：the blue cup 到达 the microwave 的位置会触发违约。"
+    }
+  ]
+}

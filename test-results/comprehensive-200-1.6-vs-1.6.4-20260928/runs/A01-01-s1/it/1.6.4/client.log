@@ -1,0 +1,492 @@
+[LOG]:-stage
+[LOG]:-nlp
+[LOG]:-err
+[LOG]:-ask_2
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+#(Plug): Timeout=5000
+[LOG]:[PlannerVersion] 1.6.4
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32mcase.xml
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+[LOG]:[Preflight] task raw=7 unique=7 duplicate=0 rejected=0; constraint raw=30 unique=30 duplicate=0 rejected=0; world_errors=0
+Pos  0:(T):
+Pos  1:(T):[33m(1 human)[0m
+Pos  2:(T):[33m(6 microwave inside:[] Closed)[0m
+Pos  3:(T):[33m(5 closet inside:[] Closed)[0m
+Pos  4:(T):[33m(8 sofa)[0m(13 can)
+Pos  5:(T):[33m(7 refrigerator inside:[] Closed)[0m
+Pos  6:(T):[32m(robot hold:0 plate:0)[0m[33m(3 desk)[0m(9 can)(10 cup)(12 bottle)
+Pos  7:(T):[33m(2 table)[0m
+Pos  8:(T):[33m(4 cupboard inside:[11,14] Closed)[0m(11 book)(14 bottle)
+UnknownPos:
+
+Task:
+Behave:[35mgive[0m
+ConditionX:[35m(Sort:book,Color:white)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mputin[0m
+ConditionX:[35m(Sort:bottle,Color:green)[0m
+ConditionY:[35m(Sort:closet,Color:)[0m
+Behave:[35mclose[0m
+ConditionX:[35m(Sort:cupboard,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mclose[0m
+ConditionX:[35m(Sort:closet,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mtakeout[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:cupboard,Color:)[0m
+Behave:[35mpickup[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:table,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+
+Info:
+
+Not_Info:
+Behave:[35mplate[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mplate[0m
+ConditionX:[35m(Sort:book,Color:white)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mplate[0m
+ConditionX:[35m(Sort:bottle,Color:green)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mplate[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35minside[0m
+ConditionX:[35m(Sort:bottle,Color:green)[0m
+ConditionY:[35m(Sort:cupboard,Color:)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:green)[0m
+ConditionY:[35m(Sort:human,Color:)[0m
+Behave:[35minside[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:cupboard,Color:)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:human,Color:)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:human,Color:)[0m
+Behave:[35minside[0m
+ConditionX:[35m(Sort:book,Color:white)[0m
+ConditionY:[35m(Sort:closet,Color:)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:book,Color:white)[0m
+ConditionY:[35m(Sort:table,Color:)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:green)[0m
+ConditionY:[35m(Sort:table,Color:)[0m
+Behave:[35minside[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:closet,Color:)[0m
+Behave:[35minside[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:closet,Color:)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:table,Color:)[0m
+Behave:[35minside[0m
+ConditionX:[35m(Sort:book,Color:white)[0m
+ConditionY:[35m(Sort:microwave,Color:)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:book,Color:white)[0m
+ConditionY:[35m(Sort:desk,Color:)[0m
+Behave:[35minside[0m
+ConditionX:[35m(Sort:bottle,Color:green)[0m
+ConditionY:[35m(Sort:microwave,Color:)[0m
+Behave:[35minside[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:microwave,Color:)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:desk,Color:)[0m
+Behave:[35minside[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:microwave,Color:)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:desk,Color:)[0m
+Behave:[35minside[0m
+ConditionX:[35m(Sort:book,Color:white)[0m
+ConditionY:[35m(Sort:refrigerator,Color:)[0m
+Behave:[35minside[0m
+ConditionX:[35m(Sort:bottle,Color:green)[0m
+ConditionY:[35m(Sort:refrigerator,Color:)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:green)[0m
+ConditionY:[35m(Sort:cupboard,Color:)[0m
+Behave:[35minside[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:refrigerator,Color:)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:cupboard,Color:)[0m
+Behave:[35minside[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:refrigerator,Color:)[0m
+
+Not_Task:
+
+NotNot_Info:
+Behave:[35mclosed[0m
+ConditionX:[35m(Sort:microwave,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:red)[0m
+ConditionY:[35m(Sort:desk,Color:)[0m
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+7
+[DBG] goto risk@loc=7 bool=0
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":6,"phase":"guarded","task_index":6,"task_label":"goto","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":3,"maintained_constraints":30,"action_count":1,"action_cost":4,"final_reward":716,"utility":36}}
+[LOG]:[36m[3B][Candidate] phase=guarded rank=1 task_index=6 behave=goto legacy_choice=false eligible=true complete=true actions=1 duration_ms=120 action_cost=4 score_before=680 score_after=716 marginal_score=36 utility=36 gained_goals=[6] lost_goals=[] broken_constraints=[] preserved_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":5,"phase":"guarded","task_index":5,"task_label":"pickup","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":3,"maintained_constraints":30,"action_count":2,"action_cost":6,"final_reward":714,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=guarded rank=2 task_index=5 behave=pickup legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=680 score_after=714 marginal_score=34 utility=34 gained_goals=[5] lost_goals=[] broken_constraints=[] preserved_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":4,"phase":"guarded","task_index":2,"task_label":"takeout","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":1,"constraint_gain":0,"constraint_loss":0,"completed_goals":2,"maintained_constraints":30,"action_count":3,"action_cost":8,"final_reward":672,"utility":-8}}
+[LOG]:[36m[3B][Candidate] phase=guarded rank=3 task_index=2 behave=takeout legacy_choice=false eligible=true complete=true actions=3 duration_ms=320 action_cost=8 score_before=680 score_after=672 marginal_score=-8 utility=-8 gained_goals=[2] lost_goals=[3] broken_constraints=[] preserved_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":2,"phase":"guarded","task_index":0,"task_label":"give","legacy_choice":true,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":1,"constraint_gain":0,"constraint_loss":0,"completed_goals":2,"maintained_constraints":30,"action_count":5,"action_cost":14,"final_reward":666,"utility":-14}}
+[LOG]:[36m[3B][Candidate] phase=guarded rank=4 task_index=0 behave=give legacy_choice=true eligible=true complete=true actions=5 duration_ms=540 action_cost=14 score_before=680 score_after=666 marginal_score=-14 utility=-14 gained_goals=[0] lost_goals=[3] broken_constraints=[] preserved_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":3,"phase":"guarded","task_index":1,"task_label":"putin","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":1,"constraint_gain":0,"constraint_loss":0,"completed_goals":2,"maintained_constraints":30,"action_count":6,"action_cost":14,"final_reward":666,"utility":-14}}
+[LOG]:[36m[3B][Candidate] phase=guarded rank=5 task_index=1 behave=putin legacy_choice=false eligible=true complete=true actions=6 duration_ms=620 action_cost=14 score_before=680 score_after=666 marginal_score=-14 utility=-14 gained_goals=[1] lost_goals=[4] broken_constraints=[] preserved_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[LOG]:[GuardedDecision] outcome=legacy reference=822 stop=680 safe_prefix=806 broken_prefix=-1
+
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":91,"phase":"main-loop","task_index":5,"task_label":"pickup","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":3,"maintained_constraints":30,"action_count":2,"action_cost":6,"final_reward":714,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=1 task_index=5 behave=pickup legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=680 score_after=714 marginal_score=34 utility=34 gained_goals=[5] lost_goals=[] broken_constraints=[] preserved_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":90,"phase":"main-loop","task_index":2,"task_label":"takeout","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":1,"constraint_gain":0,"constraint_loss":0,"completed_goals":2,"maintained_constraints":30,"action_count":3,"action_cost":8,"final_reward":672,"utility":-8}}
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=2 task_index=2 behave=takeout legacy_choice=false eligible=true complete=true actions=3 duration_ms=320 action_cost=8 score_before=680 score_after=672 marginal_score=-8 utility=-8 gained_goals=[2] lost_goals=[3] broken_constraints=[] preserved_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":88,"phase":"main-loop","task_index":0,"task_label":"give","legacy_choice":true,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":1,"constraint_gain":0,"constraint_loss":0,"completed_goals":2,"maintained_constraints":30,"action_count":5,"action_cost":14,"final_reward":666,"utility":-14}}
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=3 task_index=0 behave=give legacy_choice=true eligible=true complete=true actions=5 duration_ms=540 action_cost=14 score_before=680 score_after=666 marginal_score=-14 utility=-14 gained_goals=[0] lost_goals=[3] broken_constraints=[] preserved_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":89,"phase":"main-loop","task_index":1,"task_label":"putin","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":1,"constraint_gain":0,"constraint_loss":0,"completed_goals":2,"maintained_constraints":30,"action_count":6,"action_cost":14,"final_reward":666,"utility":-14}}
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=4 task_index=1 behave=putin legacy_choice=false eligible=true complete=true actions=6 duration_ms=620 action_cost=14 score_before=680 score_after=666 marginal_score=-14 utility=-14 gained_goals=[1] lost_goals=[4] broken_constraints=[] preserved_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[LOG]:[36m[3A][main-loop] goals=2/7 (unknown=0), constraints=30/30 (unknown=0), base_score=680, action_cost=0, elapsed=44ms, remaining=4956ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[3:close,4:close], satisfied_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[LOG]:[36m[3B][Deadline] phase=main-loop task_index=0 behave=give can_finish=true remaining_plan_ms=540 safety_ms=300 budget_remaining_ms=4956
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_selected","candidate_id":88,"task_index":0,"tasks":[0],"task_label":"give","generated_ms":43,"world_revision":0,"selection_reason":"legacy_main_loop_task_order","prediction":{"goal_gain":1,"goal_loss":1,"constraint_gain":0,"constraint_loss":0,"completed_goals":2,"maintained_constraints":30,"action_count":5,"action_cost":14,"final_reward":666,"utility":-14},"expected_reward":666,"evidence":[{"object_id":1,"fact":"location","source":"initial","verified":true},{"object_id":2,"fact":"location","source":"initial","verified":true},{"object_id":3,"fact":"location","source":"initial","verified":true},{"object_id":4,"fact":"location","source":"initial","verified":true},{"object_id":4,"fact":"container_state","source":"initial","verified":true},{"object_id":5,"fact":"location","source":"initial","verified":true},{"object_id":5,"fact":"container_state","source":"initial","verified":true},{"object_id":6,"fact":"location","source":"initial","verified":true},{"object_id":6,"fact":"container_state","source":"initial","verified":true},{"object_id":7,"fact":"location","source":"initial","verified":true},{"object_id":7,"fact":"container_state","source":"initial","verified":true},{"object_id":8,"fact":"location","source":"initial","verified":true},{"object_id":9,"fact":"location","source":"initial","verified":true},{"object_id":9,"fact":"inside","source":"initial","verified":true},{"object_id":10,"fact":"location","source":"initial","verified":true},{"object_id":10,"fact":"inside","source":"initial","verified":true},{"object_id":11,"fact":"location","source":"initial","verified":true},{"object_id":11,"fact":"inside","source":"initial","verified":true},{"object_id":12,"fact":"location","source":"initial","verified":true},{"object_id":12,"fact":"inside","source":"initial","verified":true},{"object_id":13,"fact":"location","source":"initial","verified":true},{"object_id":13,"fact":"inside","source":"initial","verified":true},{"object_id":14,"fact":"location","source":"initial","verified":true},{"object_id":14,"fact":"inside","source":"initial","verified":true}]}
+[LOG]:[36m[3B][Remaining] event=begin task_index=0 behave=give executed=0 total=5 remaining_utility=-14 remaining_duration_ms=540
+[0m
+give book的风险系数是：0
+[LOG]:Move(8)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=Move executed=1 total=5 remaining_utility=-10 remaining_duration_ms=420 can_finish=true
+[0m
+[LOG]:Open(4,cupboard)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=Open executed=2 total=5 remaining_utility=-8 remaining_duration_ms=320 can_finish=true
+[0m
+[LOG]:TakeOut(11,book)(4,cupboard)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=TakeOut executed=3 total=5 remaining_utility=34 remaining_duration_ms=220 can_finish=true
+[0m
+[LOG]:Move(1)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=Move executed=4 total=5 remaining_utility=38 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:PutDown(11,book)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=PutDown executed=5 total=5 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[32mTask done
+ Behave:[35mgive[0m
+ConditionX:[35m(Sort:book,Color:white)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_result","candidate_id":88,"prediction":{"goal_gain":1,"goal_loss":1,"constraint_gain":0,"constraint_loss":0,"completed_goals":2,"maintained_constraints":30,"action_count":5,"action_cost":14,"final_reward":666,"utility":-14},"actual":{"goal_gain":1,"goal_loss":1,"constraint_gain":0,"constraint_loss":0,"completed_goals":2,"maintained_constraints":30,"action_count":5,"action_cost":14,"final_reward":666,"utility":-14},"succeeded":true,"failed_action":false,"failure_reasons":[],"error":{"goal_gain":0,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"action_cost":0,"utility":0}}
+[LOG]:[36m[3B][Remaining] event=end task_index=0 behave=give succeeded=true executed=5 total=5 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":93,"phase":"main-loop","task_index":2,"task_label":"takeout","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":3,"maintained_constraints":30,"action_count":2,"action_cost":6,"final_reward":700,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=1 task_index=2 behave=takeout legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=666 score_after=700 marginal_score=34 utility=34 gained_goals=[2] lost_goals=[] broken_constraints=[] preserved_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":94,"phase":"main-loop","task_index":3,"task_label":"close","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":3,"maintained_constraints":30,"action_count":2,"action_cost":6,"final_reward":700,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=2 task_index=3 behave=close legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=666 score_after=700 marginal_score=34 utility=34 gained_goals=[3] lost_goals=[] broken_constraints=[] preserved_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":95,"phase":"main-loop","task_index":5,"task_label":"pickup","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":3,"maintained_constraints":30,"action_count":2,"action_cost":6,"final_reward":700,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=3 task_index=5 behave=pickup legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=666 score_after=700 marginal_score=34 utility=34 gained_goals=[5] lost_goals=[] broken_constraints=[] preserved_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":92,"phase":"main-loop","task_index":1,"task_label":"putin","legacy_choice":true,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":1,"constraint_gain":0,"constraint_loss":0,"completed_goals":2,"maintained_constraints":30,"action_count":7,"action_cost":18,"final_reward":648,"utility":-18}}
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=4 task_index=1 behave=putin legacy_choice=true eligible=true complete=true actions=7 duration_ms=740 action_cost=18 score_before=666 score_after=648 marginal_score=-18 utility=-18 gained_goals=[1] lost_goals=[4] broken_constraints=[] preserved_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[LOG]:[36m[3A][main-loop] goals=2/7 (unknown=0), constraints=30/30 (unknown=0), base_score=666, action_cost=14, elapsed=628ms, remaining=4372ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:give,4:close], satisfied_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[LOG]:[36m[3B][Deadline] phase=main-loop task_index=1 behave=putin can_finish=true remaining_plan_ms=740 safety_ms=300 budget_remaining_ms=4372
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_selected","candidate_id":92,"task_index":1,"tasks":[1],"task_label":"putin","generated_ms":628,"world_revision":5,"selection_reason":"legacy_main_loop_task_order","prediction":{"goal_gain":1,"goal_loss":1,"constraint_gain":0,"constraint_loss":0,"completed_goals":2,"maintained_constraints":30,"action_count":7,"action_cost":18,"final_reward":648,"utility":-18},"expected_reward":648,"evidence":[{"object_id":1,"fact":"location","source":"initial","verified":true},{"object_id":2,"fact":"location","source":"initial","verified":true},{"object_id":3,"fact":"location","source":"initial","verified":true},{"object_id":4,"fact":"location","source":"action_success","verified":true},{"object_id":4,"fact":"container_state","source":"action_success","verified":true},{"object_id":5,"fact":"location","source":"initial","verified":true},{"object_id":5,"fact":"container_state","source":"initial","verified":true},{"object_id":6,"fact":"location","source":"initial","verified":true},{"object_id":6,"fact":"container_state","source":"initial","verified":true},{"object_id":7,"fact":"location","source":"initial","verified":true},{"object_id":7,"fact":"container_state","source":"initial","verified":true},{"object_id":8,"fact":"location","source":"initial","verified":true},{"object_id":9,"fact":"location","source":"initial","verified":true},{"object_id":9,"fact":"inside","source":"initial","verified":true},{"object_id":10,"fact":"location","source":"initial","verified":true},{"object_id":10,"fact":"inside","source":"initial","verified":true},{"object_id":11,"fact":"location","source":"action_success","verified":true},{"object_id":11,"fact":"inside","source":"action_success","verified":true},{"object_id":12,"fact":"location","source":"initial","verified":true},{"object_id":12,"fact":"inside","source":"initial","verified":true},{"object_id":13,"fact":"location","source":"initial","verified":true},{"object_id":13,"fact":"inside","source":"initial","verified":true},{"object_id":14,"fact":"location","source":"action_success","verified":true},{"object_id":14,"fact":"inside","source":"initial","verified":true}]}
+[LOG]:[36m[3B][Remaining] event=begin task_index=1 behave=putin executed=0 total=7 remaining_utility=-18 remaining_duration_ms=740
+[0m
+putin bottle的风险系数是：0
+[LOG]:Move(6)
+[LOG]:[36m[3B][Remaining] event=action task_index=1 action=Move executed=1 total=7 remaining_utility=-14 remaining_duration_ms=620 can_finish=true
+[0m
+[LOG]:PickUp(12,bottle)
+[LOG]:[36m[3B][Remaining] event=action task_index=1 action=PickUp executed=2 total=7 remaining_utility=-12 remaining_duration_ms=520 can_finish=true
+[0m
+[LOG]:Move(3)
+[LOG]:[36m[3B][Remaining] event=action task_index=1 action=Move executed=3 total=7 remaining_utility=-8 remaining_duration_ms=400 can_finish=true
+[0m
+[LOG]:PutDown(12,bottle)
+[LOG]:[36m[3B][Remaining] event=action task_index=1 action=PutDown executed=4 total=7 remaining_utility=-6 remaining_duration_ms=300 can_finish=true
+[0m
+[LOG]:Open(5,closet)
+[LOG]:[36m[3B][Remaining] event=action task_index=1 action=Open executed=5 total=7 remaining_utility=-4 remaining_duration_ms=200 can_finish=true
+[0m
+[LOG]:PickUp(12,bottle)
+[LOG]:[36m[3B][Remaining] event=action task_index=1 action=PickUp executed=6 total=7 remaining_utility=38 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:PutIn(12,bottle)(5,closet)
+[LOG]:[36m[3B][Remaining] event=action task_index=1 action=PutIn executed=7 total=7 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[32mTask done
+ Behave:[35mputin[0m
+ConditionX:[35m(Sort:bottle,Color:green)[0m
+ConditionY:[35m(Sort:closet,Color:)[0m
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_result","candidate_id":92,"prediction":{"goal_gain":1,"goal_loss":1,"constraint_gain":0,"constraint_loss":0,"completed_goals":2,"maintained_constraints":30,"action_count":7,"action_cost":18,"final_reward":648,"utility":-18},"actual":{"goal_gain":1,"goal_loss":1,"constraint_gain":0,"constraint_loss":0,"completed_goals":2,"maintained_constraints":30,"action_count":7,"action_cost":18,"final_reward":648,"utility":-18},"succeeded":true,"failed_action":false,"failure_reasons":[],"error":{"goal_gain":0,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"action_cost":0,"utility":0}}
+[LOG]:[36m[3B][Remaining] event=end task_index=1 behave=putin succeeded=true executed=7 total=7 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":98,"phase":"main-loop","task_index":4,"task_label":"close","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":3,"maintained_constraints":30,"action_count":1,"action_cost":2,"final_reward":686,"utility":38}}
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=1 task_index=4 behave=close legacy_choice=false eligible=true complete=true actions=1 duration_ms=100 action_cost=2 score_before=648 score_after=686 marginal_score=38 utility=38 gained_goals=[4] lost_goals=[] broken_constraints=[] preserved_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":96,"phase":"main-loop","task_index":2,"task_label":"takeout","legacy_choice":true,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":3,"maintained_constraints":30,"action_count":2,"action_cost":6,"final_reward":682,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=2 task_index=2 behave=takeout legacy_choice=true eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=648 score_after=682 marginal_score=34 utility=34 gained_goals=[2] lost_goals=[] broken_constraints=[] preserved_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":97,"phase":"main-loop","task_index":3,"task_label":"close","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":3,"maintained_constraints":30,"action_count":2,"action_cost":6,"final_reward":682,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=3 task_index=3 behave=close legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=648 score_after=682 marginal_score=34 utility=34 gained_goals=[3] lost_goals=[] broken_constraints=[] preserved_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":99,"phase":"main-loop","task_index":5,"task_label":"pickup","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":3,"maintained_constraints":30,"action_count":2,"action_cost":6,"final_reward":682,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=4 task_index=5 behave=pickup legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=648 score_after=682 marginal_score=34 utility=34 gained_goals=[5] lost_goals=[] broken_constraints=[] preserved_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[LOG]:[36m[3A][main-loop] goals=2/7 (unknown=0), constraints=30/30 (unknown=0), base_score=648, action_cost=32, elapsed=1480ms, remaining=3520ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:give,1:putin], satisfied_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[LOG]:[36m[3B][Deadline] phase=main-loop task_index=2 behave=takeout can_finish=true remaining_plan_ms=220 safety_ms=300 budget_remaining_ms=3520
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_selected","candidate_id":96,"task_index":2,"tasks":[2],"task_label":"takeout","generated_ms":1480,"world_revision":12,"selection_reason":"legacy_main_loop_task_order","prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":3,"maintained_constraints":30,"action_count":2,"action_cost":6,"final_reward":682,"utility":34},"expected_reward":682,"evidence":[{"object_id":1,"fact":"location","source":"initial","verified":true},{"object_id":2,"fact":"location","source":"initial","verified":true},{"object_id":3,"fact":"location","source":"initial","verified":true},{"object_id":4,"fact":"location","source":"action_success","verified":true},{"object_id":4,"fact":"container_state","source":"action_success","verified":true},{"object_id":5,"fact":"location","source":"action_success","verified":true},{"object_id":5,"fact":"container_state","source":"action_success","verified":true},{"object_id":6,"fact":"location","source":"initial","verified":true},{"object_id":6,"fact":"container_state","source":"initial","verified":true},{"object_id":7,"fact":"location","source":"initial","verified":true},{"object_id":7,"fact":"container_state","source":"initial","verified":true},{"object_id":8,"fact":"location","source":"initial","verified":true},{"object_id":9,"fact":"location","source":"initial","verified":true},{"object_id":9,"fact":"inside","source":"initial","verified":true},{"object_id":10,"fact":"location","source":"initial","verified":true},{"object_id":10,"fact":"inside","source":"initial","verified":true},{"object_id":11,"fact":"location","source":"action_success","verified":true},{"object_id":11,"fact":"inside","source":"action_success","verified":true},{"object_id":12,"fact":"location","source":"action_success","verified":true},{"object_id":12,"fact":"inside","source":"action_success","verified":true},{"object_id":13,"fact":"location","source":"initial","verified":true},{"object_id":13,"fact":"inside","source":"initial","verified":true},{"object_id":14,"fact":"location","source":"action_success","verified":true},{"object_id":14,"fact":"inside","source":"initial","verified":true}]}
+[LOG]:[36m[3B][Remaining] event=begin task_index=2 behave=takeout executed=0 total=2 remaining_utility=34 remaining_duration_ms=220
+[0m
+takeout bottle的风险系数是：0
+[LOG]:Move(8)
+[LOG]:[36m[3B][Remaining] event=action task_index=2 action=Move executed=1 total=2 remaining_utility=38 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:TakeOut(14,bottle)(4,cupboard)
+[LOG]:[36m[3B][Remaining] event=action task_index=2 action=TakeOut executed=2 total=2 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[32mTask done
+ Behave:[35mtakeout[0m
+ConditionX:[35m(Sort:bottle,Color:blue)[0m
+ConditionY:[35m(Sort:cupboard,Color:)[0m
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_result","candidate_id":96,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":3,"maintained_constraints":30,"action_count":2,"action_cost":6,"final_reward":682,"utility":34},"actual":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":3,"maintained_constraints":30,"action_count":2,"action_cost":6,"final_reward":682,"utility":34},"succeeded":true,"failed_action":false,"failure_reasons":[],"error":{"goal_gain":0,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"action_cost":0,"utility":0}}
+[LOG]:[36m[3B][Remaining] event=end task_index=2 behave=takeout succeeded=true executed=2 total=2 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":100,"phase":"main-loop","task_index":3,"task_label":"close","legacy_choice":true,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":4,"maintained_constraints":30,"action_count":2,"action_cost":4,"final_reward":718,"utility":36}}
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=1 task_index=3 behave=close legacy_choice=true eligible=true complete=true actions=2 duration_ms=200 action_cost=4 score_before=682 score_after=718 marginal_score=36 utility=36 gained_goals=[3] lost_goals=[] broken_constraints=[] preserved_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":101,"phase":"main-loop","task_index":4,"task_label":"close","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":4,"maintained_constraints":30,"action_count":3,"action_cost":8,"final_reward":714,"utility":32}}
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=2 task_index=4 behave=close legacy_choice=false eligible=true complete=true actions=3 duration_ms=320 action_cost=8 score_before=682 score_after=714 marginal_score=32 utility=32 gained_goals=[4] lost_goals=[] broken_constraints=[] preserved_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":102,"phase":"main-loop","task_index":5,"task_label":"pickup","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":4,"maintained_constraints":30,"action_count":3,"action_cost":8,"final_reward":714,"utility":32}}
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=3 task_index=5 behave=pickup legacy_choice=false eligible=true complete=true actions=3 duration_ms=320 action_cost=8 score_before=682 score_after=714 marginal_score=32 utility=32 gained_goals=[5] lost_goals=[] broken_constraints=[] preserved_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[LOG]:[36m[3A][main-loop] goals=3/7 (unknown=0), constraints=30/30 (unknown=0), base_score=682, action_cost=38, elapsed=1716ms, remaining=3284ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:give,1:putin,2:takeout], satisfied_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[LOG]:[36m[3B][Deadline] phase=main-loop task_index=3 behave=close can_finish=true remaining_plan_ms=200 safety_ms=300 budget_remaining_ms=3284
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_selected","candidate_id":100,"task_index":3,"tasks":[3],"task_label":"close","generated_ms":1716,"world_revision":14,"selection_reason":"legacy_main_loop_task_order","prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":4,"maintained_constraints":30,"action_count":2,"action_cost":4,"final_reward":718,"utility":36},"expected_reward":718,"evidence":[{"object_id":1,"fact":"location","source":"initial","verified":true},{"object_id":2,"fact":"location","source":"initial","verified":true},{"object_id":3,"fact":"location","source":"initial","verified":true},{"object_id":4,"fact":"location","source":"action_success","verified":true},{"object_id":4,"fact":"container_state","source":"action_success","verified":true},{"object_id":5,"fact":"location","source":"action_success","verified":true},{"object_id":5,"fact":"container_state","source":"action_success","verified":true},{"object_id":6,"fact":"location","source":"initial","verified":true},{"object_id":6,"fact":"container_state","source":"initial","verified":true},{"object_id":7,"fact":"location","source":"initial","verified":true},{"object_id":7,"fact":"container_state","source":"initial","verified":true},{"object_id":8,"fact":"location","source":"initial","verified":true},{"object_id":9,"fact":"location","source":"initial","verified":true},{"object_id":9,"fact":"inside","source":"initial","verified":true},{"object_id":10,"fact":"location","source":"initial","verified":true},{"object_id":10,"fact":"inside","source":"initial","verified":true},{"object_id":11,"fact":"location","source":"action_success","verified":true},{"object_id":11,"fact":"inside","source":"action_success","verified":true},{"object_id":12,"fact":"location","source":"action_success","verified":true},{"object_id":12,"fact":"inside","source":"action_success","verified":true},{"object_id":13,"fact":"location","source":"initial","verified":true},{"object_id":13,"fact":"inside","source":"initial","verified":true},{"object_id":14,"fact":"location","source":"action_success","verified":true},{"object_id":14,"fact":"inside","source":"action_success","verified":true}]}
+[LOG]:[36m[3B][Remaining] event=begin task_index=3 behave=close executed=0 total=2 remaining_utility=36 remaining_duration_ms=200
+[0m
+close cupboard的风险系数是：0
+[LOG]:PutDown(14,bottle)
+[LOG]:[36m[3B][Remaining] event=action task_index=3 action=PutDown executed=1 total=2 remaining_utility=38 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:(4,cupboard) has closed
+[LOG]:[36m[3B][Remaining] event=action task_index=3 action=Close executed=2 total=2 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[32mTask done
+ Behave:[35mclose[0m
+ConditionX:[35m(Sort:cupboard,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_result","candidate_id":100,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":4,"maintained_constraints":30,"action_count":2,"action_cost":4,"final_reward":718,"utility":36},"actual":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":4,"maintained_constraints":30,"action_count":2,"action_cost":4,"final_reward":718,"utility":36},"succeeded":true,"failed_action":false,"failure_reasons":[],"error":{"goal_gain":0,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"action_cost":0,"utility":0}}
+[LOG]:[36m[3B][Remaining] event=end task_index=3 behave=close succeeded=true executed=2 total=2 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":103,"phase":"main-loop","task_index":4,"task_label":"close","legacy_choice":true,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":5,"maintained_constraints":30,"action_count":2,"action_cost":6,"final_reward":752,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=1 task_index=4 behave=close legacy_choice=true eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=718 score_after=752 marginal_score=34 utility=34 gained_goals=[4] lost_goals=[] broken_constraints=[] preserved_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":104,"phase":"main-loop","task_index":5,"task_label":"pickup","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":5,"maintained_constraints":30,"action_count":2,"action_cost":6,"final_reward":752,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=2 task_index=5 behave=pickup legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=718 score_after=752 marginal_score=34 utility=34 gained_goals=[5] lost_goals=[] broken_constraints=[] preserved_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[LOG]:[36m[3A][main-loop] goals=4/7 (unknown=0), constraints=30/30 (unknown=0), base_score=718, action_cost=42, elapsed=1964ms, remaining=3036ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:give,1:putin,2:takeout,3:close], satisfied_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[LOG]:[36m[3B][Deadline] phase=main-loop task_index=4 behave=close can_finish=true remaining_plan_ms=220 safety_ms=300 budget_remaining_ms=3036
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_selected","candidate_id":103,"task_index":4,"tasks":[4],"task_label":"close","generated_ms":1964,"world_revision":16,"selection_reason":"legacy_main_loop_task_order","prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":5,"maintained_constraints":30,"action_count":2,"action_cost":6,"final_reward":752,"utility":34},"expected_reward":752,"evidence":[{"object_id":1,"fact":"location","source":"initial","verified":true},{"object_id":2,"fact":"location","source":"initial","verified":true},{"object_id":3,"fact":"location","source":"initial","verified":true},{"object_id":4,"fact":"location","source":"action_success","verified":true},{"object_id":4,"fact":"container_state","source":"action_success","verified":true},{"object_id":5,"fact":"location","source":"action_success","verified":true},{"object_id":5,"fact":"container_state","source":"action_success","verified":true},{"object_id":6,"fact":"location","source":"initial","verified":true},{"object_id":6,"fact":"container_state","source":"initial","verified":true},{"object_id":7,"fact":"location","source":"initial","verified":true},{"object_id":7,"fact":"container_state","source":"initial","verified":true},{"object_id":8,"fact":"location","source":"initial","verified":true},{"object_id":9,"fact":"location","source":"initial","verified":true},{"object_id":9,"fact":"inside","source":"initial","verified":true},{"object_id":10,"fact":"location","source":"initial","verified":true},{"object_id":10,"fact":"inside","source":"initial","verified":true},{"object_id":11,"fact":"location","source":"action_success","verified":true},{"object_id":11,"fact":"inside","source":"action_success","verified":true},{"object_id":12,"fact":"location","source":"action_success","verified":true},{"object_id":12,"fact":"inside","source":"action_success","verified":true},{"object_id":13,"fact":"location","source":"initial","verified":true},{"object_id":13,"fact":"inside","source":"initial","verified":true},{"object_id":14,"fact":"location","source":"action_success","verified":true},{"object_id":14,"fact":"inside","source":"action_success","verified":true}]}
+[LOG]:[36m[3B][Remaining] event=begin task_index=4 behave=close executed=0 total=2 remaining_utility=34 remaining_duration_ms=220
+[0m
+close closet的风险系数是：0
+[LOG]:Move(3)
+[LOG]:[36m[3B][Remaining] event=action task_index=4 action=Move executed=1 total=2 remaining_utility=38 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:(5,closet) has closed
+[LOG]:[36m[3B][Remaining] event=action task_index=4 action=Close executed=2 total=2 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[32mTask done
+ Behave:[35mclose[0m
+ConditionX:[35m(Sort:closet,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_result","candidate_id":103,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":5,"maintained_constraints":30,"action_count":2,"action_cost":6,"final_reward":752,"utility":34},"actual":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":5,"maintained_constraints":30,"action_count":2,"action_cost":6,"final_reward":752,"utility":34},"succeeded":true,"failed_action":false,"failure_reasons":[],"error":{"goal_gain":0,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"action_cost":0,"utility":0}}
+[LOG]:[36m[3B][Remaining] event=end task_index=4 behave=close succeeded=true executed=2 total=2 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":105,"phase":"main-loop","task_index":5,"task_label":"pickup","legacy_choice":true,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":6,"maintained_constraints":30,"action_count":2,"action_cost":6,"final_reward":786,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=1 task_index=5 behave=pickup legacy_choice=true eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=752 score_after=786 marginal_score=34 utility=34 gained_goals=[5] lost_goals=[] broken_constraints=[] preserved_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[LOG]:[36m[3A][main-loop] goals=5/7 (unknown=0), constraints=30/30 (unknown=0), base_score=752, action_cost=48, elapsed=2228ms, remaining=2772ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:give,1:putin,2:takeout,3:close,4:close], satisfied_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[LOG]:[36m[3B][Deadline] phase=main-loop task_index=5 behave=pickup can_finish=true remaining_plan_ms=220 safety_ms=300 budget_remaining_ms=2772
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_selected","candidate_id":105,"task_index":5,"tasks":[5],"task_label":"pickup","generated_ms":2228,"world_revision":18,"selection_reason":"legacy_main_loop_task_order","prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":6,"maintained_constraints":30,"action_count":2,"action_cost":6,"final_reward":786,"utility":34},"expected_reward":786,"evidence":[{"object_id":1,"fact":"location","source":"initial","verified":true},{"object_id":2,"fact":"location","source":"initial","verified":true},{"object_id":3,"fact":"location","source":"initial","verified":true},{"object_id":4,"fact":"location","source":"action_success","verified":true},{"object_id":4,"fact":"container_state","source":"action_success","verified":true},{"object_id":5,"fact":"location","source":"action_success","verified":true},{"object_id":5,"fact":"container_state","source":"action_success","verified":true},{"object_id":6,"fact":"location","source":"initial","verified":true},{"object_id":6,"fact":"container_state","source":"initial","verified":true},{"object_id":7,"fact":"location","source":"initial","verified":true},{"object_id":7,"fact":"container_state","source":"initial","verified":true},{"object_id":8,"fact":"location","source":"initial","verified":true},{"object_id":9,"fact":"location","source":"initial","verified":true},{"object_id":9,"fact":"inside","source":"initial","verified":true},{"object_id":10,"fact":"location","source":"initial","verified":true},{"object_id":10,"fact":"inside","source":"initial","verified":true},{"object_id":11,"fact":"location","source":"action_success","verified":true},{"object_id":11,"fact":"inside","source":"action_success","verified":true},{"object_id":12,"fact":"location","source":"action_success","verified":true},{"object_id":12,"fact":"inside","source":"action_success","verified":true},{"object_id":13,"fact":"location","source":"initial","verified":true},{"object_id":13,"fact":"inside","source":"initial","verified":true},{"object_id":14,"fact":"location","source":"action_success","verified":true},{"object_id":14,"fact":"inside","source":"action_success","verified":true}]}
+[LOG]:[36m[3B][Remaining] event=begin task_index=5 behave=pickup executed=0 total=2 remaining_utility=34 remaining_duration_ms=220
+[0m
+pickup can的风险系数是：0
+[LOG]:Move(4)
+[LOG]:[36m[3B][Remaining] event=action task_index=5 action=Move executed=1 total=2 remaining_utility=38 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:PickUp(13,can)
+[LOG]:[36m[3B][Remaining] event=action task_index=5 action=PickUp executed=2 total=2 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[32mTask done
+ Behave:[35mpickup[0m
+ConditionX:[35m(Sort:can,Color:black)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_result","candidate_id":105,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":6,"maintained_constraints":30,"action_count":2,"action_cost":6,"final_reward":786,"utility":34},"actual":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":6,"maintained_constraints":30,"action_count":2,"action_cost":6,"final_reward":786,"utility":34},"succeeded":true,"failed_action":false,"failure_reasons":[],"error":{"goal_gain":0,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"action_cost":0,"utility":0}}
+[LOG]:[36m[3B][Remaining] event=end task_index=5 behave=pickup succeeded=true executed=2 total=2 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[36m[3A][main-loop] goals=6/7 (unknown=0), constraints=30/30 (unknown=0), base_score=786, action_cost=54, elapsed=2479ms, remaining=2521ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:give,1:putin,2:takeout,3:close,4:close,5:pickup], satisfied_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[DBG] goto risk@loc=7 bool=0
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":106,"phase":"stop-rescan","task_index":6,"task_label":"goto","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":7,"maintained_constraints":30,"action_count":1,"action_cost":4,"final_reward":822,"utility":36}}
+[LOG]:[36m[3B][Candidate] phase=stop-rescan rank=1 task_index=6 behave=goto legacy_choice=false eligible=true complete=true actions=1 duration_ms=120 action_cost=4 score_before=786 score_after=822 marginal_score=36 utility=36 gained_goals=[6] lost_goals=[] broken_constraints=[] preserved_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[LOG]:[33m[3B][StopGate] no complete candidate plan fits before main-loop; candidate_count=0 fresh_positive=true include_goto=false
+[0m
+-----check check check-----
+[DBG] goto risk@loc=7 bool=0
+[LOG]:[36m[3A][check-phase] goals=6/7 (unknown=0), constraints=30/30 (unknown=0), base_score=786, action_cost=54, elapsed=2481ms, remaining=2519ms
+[0m
+[LOG]:[36m[3A][check-phase] completed_goals=[0:give,1:putin,2:takeout,3:close,4:close,5:pickup], satisfied_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[DBG] goto risk@loc=7 bool=0
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":107,"phase":"stop-rescan","task_index":6,"task_label":"goto","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":7,"maintained_constraints":30,"action_count":1,"action_cost":4,"final_reward":822,"utility":36}}
+[LOG]:[36m[3B][Candidate] phase=stop-rescan rank=1 task_index=6 behave=goto legacy_choice=false eligible=true complete=true actions=1 duration_ms=120 action_cost=4 score_before=786 score_after=822 marginal_score=36 utility=36 gained_goals=[6] lost_goals=[] broken_constraints=[] preserved_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[LOG]:[33m[3B][StopGate] no complete candidate plan fits before check-phase; candidate_count=0 fresh_positive=true include_goto=false
+[0m
+Pos  0:(T):
+Pos  1:(T):[33m(1 human)[0m(11 book)
+Pos  2:(T):[33m(6 microwave inside:[] Closed)[0m
+Pos  3:(T):[33m(5 closet inside:[12] Closed)[0m(12 bottle)
+Pos  4:(T):[32m(robot hold:13 plate:0)[0m[33m(8 sofa)[0m(13 can)
+Pos  5:(T):[33m(7 refrigerator inside:[] Closed)[0m
+Pos  6:(T):[33m(3 desk)[0m(9 can)(10 cup)
+Pos  7:(T):[33m(2 table)[0m
+Pos  8:(T):[33m(4 cupboard inside:[] Closed)[0m(14 bottle)
+UnknownPos:
+
+[DBG] goto risk@loc=7 bool=0
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":108,"phase":"multi-goto","task_index":6,"task_label":"goto","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":7,"maintained_constraints":30,"action_count":1,"action_cost":4,"final_reward":822,"utility":36}}
+[LOG]:[36m[3B][Candidate] phase=multi-goto rank=1 task_index=6 behave=goto legacy_choice=false eligible=true complete=true actions=1 duration_ms=120 action_cost=4 score_before=786 score_after=822 marginal_score=36 utility=36 gained_goals=[6] lost_goals=[] broken_constraints=[] preserved_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[LOG]:[36m[3A][multi-goto] goals=6/7 (unknown=0), constraints=30/30 (unknown=0), base_score=786, action_cost=54, elapsed=2489ms, remaining=2511ms
+[0m
+[LOG]:[36m[3A][multi-goto] completed_goals=[0:give,1:putin,2:takeout,3:close,4:close,5:pickup], satisfied_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+[LOG]:[32m[MultiGoto] Executing multi-goto aggregation - skipping Sense operations
+[0m
+[LOG]:[32m[MultiGoto] BigObject[2]: goto_risk=0
+[0m
+[LOG]:[32m[MultiGoto] small_cand_id_disable: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] small_cand_ids: 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] big_cand_ids: 
+[LOG]:[32m2 
+[LOG]:[32m
+[0m
+[LOG]:[32m[MultiGoto] small_cand_ids.size()=0, big_cand_ids.size()=1
+[0m
+[LOG]:[32m[MultiGoto] small_lowrisk_ids.size()=0
+[0m
+[LOG]:[32m[MultiGoto] Entering main aggregation logic
+[0m
+[LOG]:[32m[MultiGoto] Performance optimization: Only checking 1 occupied locations instead of 100 total locations
+[0m
+[LOG]:[33m[MultiGoto] smallobj_loc is not found: -1
+[0m
+[LOG]:[32mFinal-GOTO: choose hub=7
+[0m
+[LOG]:[32m[MultiGoto] hub location=7 representative_object=2
+[0m
+[LOG]:[3B][Deadline] phase=multi-goto-final-move task_index=18446744073709551615 can_finish=true remaining_plan_ms=120 tail_reserve_ms=100 platform_remaining_ms=2511 complete=true
+
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_selected","candidate_id":109,"task_index":18446744073709551615,"tasks":[],"task_label":"multi-goto-final-move","generated_ms":2489,"world_revision":20,"selection_reason":"multi_goto_hub_final_move","prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":7,"maintained_constraints":30,"action_count":1,"action_cost":4,"final_reward":822,"utility":36},"expected_reward":822,"evidence":[{"object_id":1,"fact":"location","source":"initial","verified":true},{"object_id":2,"fact":"location","source":"initial","verified":true},{"object_id":3,"fact":"location","source":"initial","verified":true},{"object_id":4,"fact":"location","source":"action_success","verified":true},{"object_id":4,"fact":"container_state","source":"action_success","verified":true},{"object_id":5,"fact":"location","source":"action_success","verified":true},{"object_id":5,"fact":"container_state","source":"action_success","verified":true},{"object_id":6,"fact":"location","source":"initial","verified":true},{"object_id":6,"fact":"container_state","source":"initial","verified":true},{"object_id":7,"fact":"location","source":"initial","verified":true},{"object_id":7,"fact":"container_state","source":"initial","verified":true},{"object_id":8,"fact":"location","source":"initial","verified":true},{"object_id":9,"fact":"location","source":"initial","verified":true},{"object_id":9,"fact":"inside","source":"initial","verified":true},{"object_id":10,"fact":"location","source":"initial","verified":true},{"object_id":10,"fact":"inside","source":"initial","verified":true},{"object_id":11,"fact":"location","source":"action_success","verified":true},{"object_id":11,"fact":"inside","source":"action_success","verified":true},{"object_id":12,"fact":"location","source":"action_success","verified":true},{"object_id":12,"fact":"inside","source":"action_success","verified":true},{"object_id":13,"fact":"location","source":"action_success","verified":true},{"object_id":13,"fact":"inside","source":"action_success","verified":true},{"object_id":14,"fact":"location","source":"action_success","verified":true},{"object_id":14,"fact":"inside","source":"action_success","verified":true}]}
+[LOG]:[36m[3B][Remaining] event=begin task_index=18446744073709551615 behave=multi-goto-final-move executed=0 total=1 remaining_utility=36 remaining_duration_ms=120
+[0m
+[LOG]:Move(7)
+[LOG]:[36m[3B][Remaining] event=action task_index=18446744073709551615 action=Move executed=1 total=1 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_result","candidate_id":109,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":7,"maintained_constraints":30,"action_count":1,"action_cost":4,"final_reward":822,"utility":36},"actual":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":7,"maintained_constraints":30,"action_count":1,"action_cost":4,"final_reward":822,"utility":36},"succeeded":true,"failed_action":false,"failure_reasons":[],"error":{"goal_gain":0,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"action_cost":0,"utility":0}}
+[LOG]:[36m[3B][Remaining] event=end task_index=18446744073709551615 behave=multi-goto-final-move succeeded=true executed=1 total=1 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[32m[MultiGoto] ExecuteMultiGotoAggregation finished
+[0m
+
+Sovled Task Num:6    Expect Num:7
+[LOG]:[36m[3A][final] goals=7/7 (unknown=0), constraints=30/30 (unknown=0), base_score=822, action_cost=58, elapsed=2621ms, remaining=2379ms
+[0m
+[LOG]:[36m[3A][final] completed_goals=[0:give,1:putin,2:takeout,3:close,4:close,5:pickup,6:goto], satisfied_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+[0m
+#(Plug): Elapsed time=2.621s
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test
