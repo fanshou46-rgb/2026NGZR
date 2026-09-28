@@ -1,0 +1,58 @@
+[
+  {
+    "name": "unit-config",
+    "command": [
+      "cmake",
+      "-H/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.7-200ms/tests",
+      "-B/tmp/rdfw-167-200ms-ab-20260928/unit",
+      "-DCMAKE_BUILD_TYPE=Release",
+      "-DOFFICIAL_SDK=/home/yifan/env-release-2026"
+    ],
+    "exit_code": 0,
+    "seconds": 2.0952796936035156
+  },
+  {
+    "name": "unit-build",
+    "command": [
+      "cmake",
+      "--build",
+      "/tmp/rdfw-167-200ms-ab-20260928/unit",
+      "--",
+      "-j3"
+    ],
+    "exit_code": 0,
+    "seconds": 15.893488645553589
+  },
+  {
+    "name": "unit-ctest",
+    "command": [
+      "ctest",
+      "--output-on-failure"
+    ],
+    "exit_code": 0,
+    "seconds": 1.1619830131530762
+  },
+  {
+    "name": "unit-deadline",
+    "command": [
+      "/tmp/rdfw-167-200ms-ab-20260928/unit/deadline_sensitivity_tests",
+      "/tmp/rdfw-167-200ms-ab-20260928/unit/words.txt"
+    ],
+    "exit_code": 0,
+    "seconds": 0.002660989761352539
+  },
+  {
+    "name": "seed-build",
+    "command": [
+      "g++",
+      "-shared",
+      "-fPIC",
+      "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.6.7/tests/seed_rng.cpp",
+      "-ldl",
+      "-o",
+      "/tmp/rdfw-167-200ms-ab-20260928/seed_rng.so"
+    ],
+    "exit_code": 0,
+    "seconds": 0.24794936180114746
+  }
+]
