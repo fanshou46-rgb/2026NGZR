@@ -1,0 +1,977 @@
+--- src1.6.2/candidate_plan.hpp
++++ src1.6.3/candidate_plan.hpp
+@@ -67,6 +67,9 @@
+ // A complete action sequence emitted by the existing planner for a task group.
+ // The constraint trade-off gate uses these score predictions before execution.
+ struct CandidatePlan {
++    bool legacy_priority_known = false;
++    TerminalSummary legacy_before, legacy_after;
++    int legacy_after_score = 0;
+     std::size_t candidate_id;
+     std::size_t generated_ms;
+     std::size_t world_revision;
+--- src1.6.2/deadline_manager.hpp
++++ src1.6.3/deadline_manager.hpp
+@@ -9,7 +9,7 @@
+     typedef std::chrono::steady_clock Clock;
+     typedef std::chrono::milliseconds Duration;
+ 
+-    explicit DeadlineManager(Duration time_limit = Duration(4700));
++    explicit DeadlineManager(Duration time_limit = Duration(5000));
+ 
+     void start();
+     void reset(Duration time_limit);
+--- src1.6.2/legacy_priority.cpp
++++ src1.6.3/legacy_priority.cpp
+@@ -0,0 +1,239 @@
++#include "legacy_priority.hpp"
++#include "rdfw.hpp"
++
++#include <memory>
++#include <string>
++
++namespace _home {
++namespace {
++
++TerminalStatus invertStatus(TerminalStatus status) {
++    if (status == TerminalStatus::SATISFIED) return TerminalStatus::UNSATISFIED;
++    if (status == TerminalStatus::UNSATISFIED) return TerminalStatus::SATISFIED;
++    return TerminalStatus::UNKNOWN;
++}
++
++TerminalStatus combineStatus(TerminalStatus aggregate, TerminalStatus next) {
++    if (aggregate == TerminalStatus::UNSATISFIED || next == TerminalStatus::UNSATISFIED)
++        return TerminalStatus::UNSATISFIED;
++    if (aggregate == TerminalStatus::UNKNOWN || next == TerminalStatus::UNKNOWN)
++        return TerminalStatus::UNKNOWN;
++    return TerminalStatus::SATISFIED;
++}
++
++bool isLocationKnown(const RDFW& world, const std::shared_ptr<Object>& object) {
++    if (!object || object->location == _home::UNKNOWN) return false;
++    if (object->id == 0) return world.location != _home::UNKNOWN;
++    return world.stage == 1 || world.IsLocationVerified(object->id);
++}
++
++bool isInsideKnown(const RDFW& world, const std::shared_ptr<SmallObject>& object) {
++    return object && object->inside != _home::UNKNOWN &&
++           (world.stage == 1 || world.IsInsideVerified(object->id));
++}
++
++bool isContainerStateKnown(const RDFW& world,
++                           const std::shared_ptr<Container>& container) {
++    return container && (container->isOpen == 0 || container->isOpen == 1) &&
++           (world.stage == 1 || world.IsContainerStateVerified(container->id));
++}
++
++TerminalStatus boolStatus(bool value) {
++    return value ? TerminalStatus::SATISFIED : TerminalStatus::UNSATISFIED;
++}
++
++TerminalStatus evaluatePair(const RDFW& world, const std::string& behave,
++                            const std::shared_ptr<Object>& x,
++                            const std::shared_ptr<Object>& y) {
++    if (!x) return TerminalStatus::UNKNOWN;
++
++    if (behave == "goto" || behave == "move") {
++        if (world.location != _home::UNKNOWN &&
++            world.IsAbsentFromSensedLocation(x->id, world.location))
++            return TerminalStatus::UNSATISFIED;
++        if (!isLocationKnown(world, x) || world.location == _home::UNKNOWN)
++            return TerminalStatus::UNKNOWN;
++        return boolStatus(world.location == x->location);
++    }
++
++    if (behave == "open" || behave == "opened" ||
++        behave == "close" || behave == "closed") {
++        const std::shared_ptr<Object> target = y ? y : x;
++        const std::shared_ptr<Container> container =
++            std::dynamic_pointer_cast<Container>(target);
++        if (!isContainerStateKnown(world, container)) return TerminalStatus::UNKNOWN;
++        const bool expect_open = behave == "open" || behave == "opened";
++        return boolStatus(static_cast<bool>(container->isOpen) == expect_open);
++    }
++
++    if (behave == "pickup") {
++        const bool stored = world.hold_id == x->id || world.plate_id == x->id;
++        if (world.stage == 2 && !world.IsInsideVerified(x->id))
++            return TerminalStatus::UNKNOWN;
++        return boolStatus(stored);
++    }
++
++    if (behave == "putdown") {
++        const std::shared_ptr<SmallObject> small =
++            std::dynamic_pointer_cast<SmallObject>(x);
++        if (!isInsideKnown(world, small)) return TerminalStatus::UNKNOWN;
++        if (world.hold_id == x->id || world.plate_id == x->id)
++            return TerminalStatus::UNSATISFIED;
++        if (small->inside != _home::NONE) return TerminalStatus::UNSATISFIED;
++        if (!isLocationKnown(world, x)) return TerminalStatus::UNKNOWN;
++        return TerminalStatus::SATISFIED;
++    }
++
++    if (behave == "putin" || behave == "inside" || behave == "in") {
++        const std::shared_ptr<SmallObject> small =
++            std::dynamic_pointer_cast<SmallObject>(x);
++        if (!small || !y || !isInsideKnown(world, small)) return TerminalStatus::UNKNOWN;
++        return boolStatus(small->inside == y->id);
++    }
++
++    if (behave == "takeout") {
++        const std::shared_ptr<SmallObject> small =
++            std::dynamic_pointer_cast<SmallObject>(x);
++        if (!small || !y || !isInsideKnown(world, small)) return TerminalStatus::UNKNOWN;
++        return boolStatus(small->inside != y->id);
++    }
++
++    if (behave == "puton" || behave == "on" || behave == "near" ||
++        behave == "nextto" || behave == "give") {
++        std::shared_ptr<Object> target = y;
++        if (behave == "give") target = world.human;
++        if (target && isLocationKnown(world, x) &&
++            world.IsAbsentFromSensedLocation(target->id, x->location))
++            return TerminalStatus::UNSATISFIED;
++        if (target && isLocationKnown(world, target) &&
++            world.IsAbsentFromSensedLocation(x->id, target->location))
++            return TerminalStatus::UNSATISFIED;
++        if (!target || !isLocationKnown(world, x) || !isLocationKnown(world, target))
++            return TerminalStatus::UNKNOWN;
++
++        if (behave == "puton" || behave == "on" || behave == "give") {
++            const std::shared_ptr<SmallObject> small =
++                std::dynamic_pointer_cast<SmallObject>(x);
++            if (!isInsideKnown(world, small)) return TerminalStatus::UNKNOWN;
++            if (world.hold_id == x->id || world.plate_id == x->id)
++                return TerminalStatus::UNSATISFIED;
++            if (small->inside != _home::NONE) return TerminalStatus::UNSATISFIED;
++        }
++        return boolStatus(x->location == target->location);
++    }
++
++    if (behave == "plate") {
++        if (world.stage == 2 && !world.IsInsideVerified(x->id))
++            return TerminalStatus::UNKNOWN;
++        return boolStatus(world.plate_id == x->id);
++    }
++
++    if (behave == "hold") {
++        if (world.stage == 2 && !world.IsInsideVerified(x->id))
++            return TerminalStatus::UNKNOWN;
++        return boolStatus(world.hold_id == x->id);
++    }
++
++    return TerminalStatus::UNKNOWN;
++}
++
++void countStatus(TerminalStatus status, std::size_t& satisfied,
++                 std::size_t& unsatisfied, std::size_t& unknown) {
++    if (status == TerminalStatus::SATISFIED) ++satisfied;
++    else if (status == TerminalStatus::UNSATISFIED) ++unsatisfied;
++    else ++unknown;
++}
++
++} // namespace
++
++TerminalStatus LegacyPriorityChecker::evaluatePredicate(
++    const RDFW& world, const Instruction& instruction) const {
++    if (!instruction.IsUsable() || instruction.X.empty())
++        return TerminalStatus::UNKNOWN;
++
++    TerminalStatus aggregate = TerminalStatus::SATISFIED;
++    for (std::size_t xi = 0; xi < instruction.X.size(); ++xi) {
++        if (instruction.Y.empty()) {
++            aggregate = combineStatus(
++                aggregate,
++                evaluatePair(world, instruction.behave, instruction.X[xi], nullptr));
++        } else {
++            for (std::size_t yi = 0; yi < instruction.Y.size(); ++yi) {
++                aggregate = combineStatus(
++                    aggregate,
++                    evaluatePair(world, instruction.behave,
++                                 instruction.X[xi], instruction.Y[yi]));
++            }
++        }
++    }
++    return aggregate;
++}
++
++TerminalStatus LegacyPriorityChecker::evaluateTask(
++    const RDFW& world, const Instruction& task) const {
++    return evaluatePredicate(world, task);
++}
++
++TerminalStatus LegacyPriorityChecker::evaluateConstraint(
++    const RDFW& world, const Instruction& constraint, ConstraintKind kind) const {
++    // A prohibited action is a trajectory property.  A current World State cannot
++    // prove that it was never executed, so deterministic terminal evaluation is UNKNOWN.
++    if (kind == ConstraintKind::FORBIDDEN_TASK_STATE) return TerminalStatus::UNKNOWN;
++    const TerminalStatus predicate = evaluatePredicate(world, constraint);
++    return kind == ConstraintKind::MUST_NOT_HOLD ? invertStatus(predicate) : predicate;
++}
++
++TerminalSummary LegacyPriorityChecker::evaluateAll(const RDFW& world) const {
++    TerminalSummary result;
++    result.goals.reserve(world.tasks.size());
++    for (std::size_t i = 0; i < world.tasks.size(); ++i) {
++        const TerminalStatus status = evaluateTask(world, world.tasks[i]);
++        result.goals.push_back(status);
++        countStatus(status, result.satisfied_goals,
++                    result.unsatisfied_goals, result.unknown_goals);
++    }
++
++    result.constraints.reserve(world.not_infoConstrains.size() +
++                               world.notnot_infoConstrains.size() +
++                               world.not_taskConstrains.size());
++    const bool has_ledger = world.constraint_eligible.size() ==
++        world.not_infoConstrains.size() + world.notnot_infoConstrains.size() +
++        world.not_taskConstrains.size();
++    for (std::size_t i = 0; i < world.not_infoConstrains.size(); ++i) {
++        const TerminalStatus status = evaluateConstraint(
++            world, world.not_infoConstrains[i], ConstraintKind::MUST_NOT_HOLD);
++        result.constraints.push_back(status);
++        const bool eligible = !has_ledger || world.constraint_eligible[result.constraints.size()-1];
++        result.constraint_eligible.push_back(eligible);
++        result.constraint_credited.push_back(eligible && status == TerminalStatus::SATISFIED);
++        if (eligible && status == TerminalStatus::SATISFIED) ++result.credited_constraints;
++        countStatus(status, result.satisfied_constraints,
++                    result.unsatisfied_constraints, result.unknown_constraints);
++    }
++    for (std::size_t i = 0; i < world.notnot_infoConstrains.size(); ++i) {
++        const TerminalStatus status = evaluateConstraint(
++            world, world.notnot_infoConstrains[i], ConstraintKind::MUST_HOLD);
++        result.constraints.push_back(status);
++        const bool eligible = !has_ledger || world.constraint_eligible[result.constraints.size()-1];
++        result.constraint_eligible.push_back(eligible);
++        result.constraint_credited.push_back(eligible && status == TerminalStatus::SATISFIED);
++        if (eligible && status == TerminalStatus::SATISFIED) ++result.credited_constraints;
++        countStatus(status, result.satisfied_constraints,
++                    result.unsatisfied_constraints, result.unknown_constraints);
++    }
++    for (std::size_t i = 0; i < world.not_taskConstrains.size(); ++i) {
++        const TerminalStatus status = evaluateConstraint(
++            world, world.not_taskConstrains[i], ConstraintKind::FORBIDDEN_TASK_STATE);
++        result.constraints.push_back(status);
++        const bool eligible = !has_ledger || world.constraint_eligible[result.constraints.size()-1];
++        result.constraint_eligible.push_back(eligible);
++        result.constraint_credited.push_back(eligible);
++        // A prohibited action remains eligible until that action occurs.
++        if (eligible) ++result.credited_constraints;
++        countStatus(status, result.satisfied_constraints,
++                    result.unsatisfied_constraints, result.unknown_constraints);
++    }
++    return result;
++}
++
++} // namespace _home
+--- src1.6.2/legacy_priority.hpp
++++ src1.6.3/legacy_priority.hpp
+@@ -0,0 +1,14 @@
++#pragma once
++#include "terminal_checker.hpp"
++
++namespace _home {
++// Frozen 1.6.1 predicate heuristic, used only to preserve decision priority.
++// It is neither an official score estimate nor a lower/upper bound.
++class LegacyPriorityChecker {
++public:
++    TerminalStatus evaluatePredicate(const RDFW&, const Instruction&) const;
++    TerminalStatus evaluateTask(const RDFW&, const Instruction&) const;
++    TerminalStatus evaluateConstraint(const RDFW&, const Instruction&, ConstraintKind) const;
++    TerminalSummary evaluateAll(const RDFW&) const;
++};
++}
+--- src1.6.2/rdfw.cpp
++++ src1.6.3/rdfw.cpp
+@@ -1,3 +1,5 @@
++#include "legacy_priority.hpp"
++#include "stage_timing.hpp"
+ /*
+  * File: rdfw.cpp
+  * Author : ShiQiao Chen(陈世侨)
+@@ -313,6 +315,12 @@
+                                        bool continue_legacy,
+                                        std::size_t legacy_cursor,
+                                        bool defer_multi_goto) {
++    StageTimer phase_timer(StageTiming::PROJECTION);
++    const bool previous_complete_single_plan = shadow_complete_single_plan;
++    shadow_complete_single_plan = group.size() == 1 && !continue_legacy;
++    ScopeExit complete_single_guard([this, previous_complete_single_plan]() {
++        shadow_complete_single_plan = previous_complete_single_plan;
++    });
+     if (group.empty() && !continue_legacy) return CandidatePlan();
+     if (tasks.empty()) return CandidatePlan();
+     const std::size_t candidate_task_index = group.empty() ?
+@@ -337,8 +345,10 @@
+         std::vector<int> contents;
+     };
+ 
++    const bool preserve_priority = stage == 2 && tasks.size() <= 24;
++    const TerminalSummary legacy_before = preserve_priority ? LegacyPriorityChecker().evaluateAll(*this) : TerminalSummary();
+     const TerminalSummary terminal_before = terminal_checker.evaluateAll(*this);
+-    const ScoreSnapshot score_before = score_evaluator.snapshot(*this, terminal_checker);
++    const ScoreSnapshot score_before = score_evaluator.snapshot(terminal_before);
+     std::vector<ObjectState> object_states(objects.size());
+     for (std::size_t i = 0; i < objects.size(); ++i) {
+         ObjectState state = {UNKNOWN, 0, UNKNOWN, false, UNKNOWN, UNKNOWN,
+@@ -625,7 +635,9 @@
+                 available_tasks.push_back(i);
+     }
+     const TerminalSummary terminal_after = terminal_checker.evaluateAll(*this);
+-    const ScoreSnapshot score_after = score_evaluator.snapshot(*this, terminal_checker);
++    const ScoreSnapshot score_after = score_evaluator.snapshot(terminal_after);
++    const TerminalSummary legacy_after = preserve_priority ? LegacyPriorityChecker().evaluateAll(*this) : TerminalSummary();
++    const int legacy_after_score = preserve_priority ? score_evaluator.snapshot(legacy_after).deterministic_base_score : 0;
+     const int projected_location = location;
+     restore_state();
+     restore_guard.dismiss();
+@@ -643,6 +655,10 @@
+     plan.world_revision = world_revision;
+     plan.evidence = CaptureCandidateEvidence();
+     plan.task_indices = group;
++    plan.legacy_priority_known = preserve_priority;
++    plan.legacy_before = legacy_before;
++    plan.legacy_after = legacy_after;
++    plan.legacy_after_score = legacy_after_score;
+     plan.task_end_states = task_end_states;
+     plan.available_tasks = available_tasks;
+     plan.available_tasks_known = !continue_legacy;
+@@ -715,7 +731,7 @@
+     const std::vector<int> old_score_locations = score_locations;
+     InitializeConstraintLedger();
+     const TerminalSummary before = terminal_checker.evaluateAll(*this);
+-    const ScoreSnapshot score_before = score_evaluator.snapshot(*this, terminal_checker);
++    const ScoreSnapshot score_before = score_evaluator.snapshot(before);
+     const int old_location = location;
+     const int old_hold_location = hold ? hold->location : UNKNOWN;
+     const int old_plate_location = plate ? plate->location : UNKNOWN;
+@@ -728,7 +744,7 @@
+     score_evaluator.recordAction(ActionCategory::MOVE);
+     UpdateConstraintLedger("Move", std::vector<unsigned int>{destination});
+     const TerminalSummary after = terminal_checker.evaluateAll(*this);
+-    const ScoreSnapshot score_after = score_evaluator.snapshot(*this, terminal_checker);
++    const ScoreSnapshot score_after = score_evaluator.snapshot(after);
+ 
+     location = old_location;
+     if (hold) hold->location = old_hold_location;
+@@ -753,6 +769,7 @@
+ 
+ std::vector<CandidatePlan> RDFW::EvaluateShadowCandidates(
+     const char* phase, bool include_goto, std::size_t legacy_choice) {
++    StageTimer phase_timer(StageTiming::CANDIDATES);
+     const auto candidate_start = std::chrono::steady_clock::now();
+     RefreshTaskStates();
+     const TerminalSummary current = terminal_checker.evaluateAll(*this);
+@@ -890,8 +907,8 @@
+ 
+ void RDFW::LogProgressSnapshot(const char* phase) const
+ {
+-    const ScoreSnapshot score = score_evaluator.snapshot(*this, terminal_checker);
+     const TerminalSummary terminal = terminal_checker.evaluateAll(*this);
++    const ScoreSnapshot score = score_evaluator.snapshot(terminal);
+     std::ostringstream completed_goal_ids;
+     std::ostringstream satisfied_constraint_ids;
+     bool first_goal = true;
+@@ -958,7 +975,28 @@
+ 
+ bool RDFW::CanStartPlan(const CandidatePlan& candidate, const char* phase) const
+ {
++    if (!candidate.dry_run_succeeded) {
++        LOG("[3B][Deadline] phase=%s task_index=%zu can_finish=false reason=incomplete_projection actions=%zu\n",
++            phase, candidate.task_index, candidate.actions.size());
++        return false;
++    }
+     const std::chrono::milliseconds remaining_plan = candidate.remainingDuration();
++    // All phases share the platform deadline. A tail plan has a single
++    // 100 ms output reserve; it never relies on a truncated/empty preview.
++    // Search width/depth/CPU budgets and generated actions remain unchanged.
++    if (std::string(phase) == "multi-goto-relocation" ||
++        std::string(phase) == "multi-goto-final-move") {
++        const auto tail_reserve = std::chrono::milliseconds(100);
++        const auto platform_limit = deadline_manager.timeLimit();
++        const auto available = platform_limit - deadline_manager.elapsed();
++        const bool fits = remaining_plan + tail_reserve <= available;
++        LOG("[3B][Deadline] phase=%s task_index=%zu can_finish=%s remaining_plan_ms=%lld tail_reserve_ms=%lld platform_remaining_ms=%lld complete=true\n",
++            phase, candidate.task_index, BoolString(fits),
++            static_cast<long long>(remaining_plan.count()),
++            static_cast<long long>(tail_reserve.count()),
++            static_cast<long long>(available.count()));
++        return fits;
++    }
+     if (deadline_manager.canFinish(remaining_plan, plan_safety_margin)) {
+         LOG(CYAN_BLUE "[3B][Deadline] phase=%s task_index=%zu behave=%s "
+                       "can_finish=true remaining_plan_ms=%lld safety_ms=%lld "
+@@ -983,82 +1021,77 @@
+     const CandidatePlan& candidate,
+     const std::vector<CandidatePlan>& alternatives,
+     const char* phase) {
+-    const bool bounded_uncertainty = stage == 2 && tasks.size() <= 24;
+-    if (candidate.broken_constraints.empty() && !bounded_uncertainty) return true;
++    StageTimer phase_timer(StageTiming::TRADEOFF);
+     if (!candidate.dry_run_succeeded) return false;
+-
+-    // With many correlated/duplicate goals, one observation can resolve dozens
+-    // of UNKNOWN entries at once.  Their individual upper bounds are not
+-    // independent; retain the established planner for this regime.
+-    TerminalSummary initial_hypothesis;
+-    if (bounded_uncertainty) {
++    if (candidate.broken_constraints.empty() && !(stage == 2 && tasks.size() <= 24)) return true;
++    const ScoreSnapshot current = score_evaluator.snapshot(*this, terminal_checker);
++    int certain_incumbent = current.deterministic_base_score;
++    const bool priority_known = candidate.legacy_priority_known;
++    TerminalSummary hypothesis;
++    int legacy_incumbent = current.deterministic_base_score;
++    ScoreSnapshot legacy_current = current;
++    if (priority_known) {
++        legacy_current = score_evaluator.snapshot(LegacyPriorityChecker().evaluateAll(*this));
++        legacy_incumbent = legacy_current.deterministic_base_score;
+         const int original_stage = stage;
+         stage = 1;
+-        initial_hypothesis = terminal_checker.evaluateAll(*this);
++        hypothesis = LegacyPriorityChecker().evaluateAll(*this);
+         stage = original_stage;
+     }
+     auto conservativeScore = [&](const CandidatePlan& plan) {
+-        if (!bounded_uncertainty)
+-            return plan.score_after.deterministic_base_score;
+-        int score = plan.score_after.deterministic_base_score;
+-        const std::size_t goals = std::min(plan.terminal_before.goals.size(),
+-                                           plan.terminal_after.goals.size());
+-        for (std::size_t i = 0; i < goals; ++i)
+-            if (plan.terminal_before.goals[i] == TerminalStatus::UNKNOWN &&
+-                plan.terminal_after.goals[i] != TerminalStatus::UNKNOWN &&
+-                i < initial_hypothesis.goals.size() &&
+-                initial_hypothesis.goals[i] == TerminalStatus::SATISFIED)
+-                score -= 40;
+-        const std::size_t constraints = std::min(
+-            plan.terminal_before.constraints.size(),
+-            plan.terminal_after.constraints.size());
+-        for (std::size_t i = 0; i < constraints; ++i)
+-            if (plan.terminal_before.constraint_eligible[i] &&
+-                plan.terminal_before.constraints[i] == TerminalStatus::UNKNOWN &&
+-                plan.terminal_after.constraints[i] != TerminalStatus::UNKNOWN &&
+-                i < initial_hypothesis.constraints.size() &&
+-                initial_hypothesis.constraints[i] == TerminalStatus::SATISFIED)
+-                score -= 20;
+-        return score;
++        if (!plan.legacy_priority_known) return plan.score_after.deterministic_base_score;
++        int value = plan.legacy_after_score;
++        for (std::size_t i=0; i<plan.legacy_before.goals.size() && i<plan.legacy_after.goals.size() && i<hypothesis.goals.size(); ++i)
++            if (plan.legacy_before.goals[i] == TerminalStatus::UNKNOWN &&
++                plan.legacy_after.goals[i] != TerminalStatus::UNKNOWN &&
++                hypothesis.goals[i] == TerminalStatus::SATISFIED) value -= 40;
++        for (std::size_t i=0; i<plan.legacy_before.constraints.size() && i<plan.legacy_after.constraints.size() && i<hypothesis.constraints.size(); ++i)
++            if (plan.legacy_before.constraint_eligible[i] &&
++                plan.legacy_before.constraints[i] == TerminalStatus::UNKNOWN &&
++                plan.legacy_after.constraints[i] != TerminalStatus::UNKNOWN &&
++                hypothesis.constraints[i] == TerminalStatus::SATISFIED) value -= 20;
++        return value;
+     };
+-
+-    const ScoreSnapshot current = score_evaluator.snapshot(*this, terminal_checker);
+-    if (candidate.broken_constraints.empty()) {
+-        if (!bounded_uncertainty || candidate.actions.empty()) return true;
+-        // An initially satisfied task may still be UNKNOWN until sensed.  A
+-        // physical plan must beat the possible no-action reward in this case.
+-        const TerminalStatus before = candidate.task_index < candidate.terminal_before.goals.size()
+-            ? candidate.terminal_before.goals[candidate.task_index] : TerminalStatus::UNKNOWN;
+-        if (before == TerminalStatus::UNKNOWN &&
+-            candidate.score_after.deterministic_base_score <= current.possible_base_score &&
+-            conservativeScore(candidate) <= current.deterministic_base_score) {
+-            LOG("[TradeoffDecision] phase=%s task=%zu decision=skip uncertain_no_action\n",
+-                phase, candidate.task_index);
+-            return false;
+-        }
+-        return true;
+-    }
+-
+-    // A valid incumbent is always available: stop now.  Include every
+-    // currently executable one-task plan that preserves the constraint.
+-    int incumbent = current.deterministic_base_score;
+     for (const CandidatePlan& other : alternatives) {
+         if (other.task_index == candidate.task_index || !other.eligible ||
+             !other.dry_run_succeeded || !other.broken_constraints.empty() ||
+-            !deadline_manager.canFinish(other.remainingDuration(), plan_safety_margin))
+-            continue;
+-        incumbent = std::max(incumbent, conservativeScore(other));
+-    }
+-
++            !deadline_manager.canFinish(other.remainingDuration(), plan_safety_margin)) continue;
++        certain_incumbent = std::max(certain_incumbent, other.score_after.deterministic_base_score);
++        legacy_incumbent = std::max(legacy_incumbent, conservativeScore(other));
++    }
++    if (candidate.broken_constraints.empty()) {
++        if (StrictlyScoreDominates(current, candidate.score_after)) {
++            LOG("[TradeoffDecision] phase=%s task=%zu decision=skip reason=strict_interval_dominance lower=%d upper=%d incumbent_lower=%d\n",
++                phase, candidate.task_index, candidate.score_after.deterministic_base_score,
++                candidate.score_after.possible_base_score, current.deterministic_base_score);
++            return false;
++        }
++        // Retain the 1.6.1 uncertain no-action priority without treating the
++        // heuristic as proof, or marking the deferred task ineligible/done.
++        const bool defer = priority_known && !candidate.actions.empty() &&
++            candidate.task_index < candidate.legacy_before.goals.size() &&
++            candidate.legacy_before.goals[candidate.task_index] == TerminalStatus::UNKNOWN &&
++            candidate.legacy_after_score <= legacy_current.possible_base_score &&
++            conservativeScore(candidate) <= legacy_current.deterministic_base_score;
++        LOG("[TradeoffDecision] phase=%s task=%zu decision=%s reason=legacy_priority lower=%d upper=%d\n",
++            phase, candidate.task_index, defer ? "defer" : "execute",
++            candidate.score_after.deterministic_base_score, candidate.score_after.possible_base_score);
++        return !defer;
++    }
++    const int incumbent = legacy_incumbent;
+     auto profitable = [&](const CandidatePlan& plan) {
+         return plan.dry_run_succeeded &&
+-            conservativeScore(plan) > incumbent &&
++            plan.score_after.possible_base_score >= certain_incumbent &&
++            (priority_known ? conservativeScore(plan) > incumbent :
++                (plan.score_after.possible_base_score == plan.score_after.deterministic_base_score ?
++                    plan.score_after.deterministic_base_score > incumbent :
++                    plan.score_after.possible_base_score >= incumbent)) &&
+             deadline_manager.canFinish(plan.remainingDuration(), plan_safety_margin);
+     };
+     if (profitable(candidate)) {
+-        LOG("[TradeoffDecision] phase=%s task=%zu decision=execute "
+-            "score=%d incumbent=%d group=1\n", phase, candidate.task_index,
+-            conservativeScore(candidate), incumbent);
++        LOG("[TradeoffDecision] phase=%s task=%zu decision=execute priority=%d incumbent_priority=%d lower=%d upper=%d group=1\n",
++            phase, candidate.task_index, conservativeScore(candidate), incumbent,
++            candidate.score_after.deterministic_base_score, candidate.score_after.possible_base_score);
+         return true;
+     }
+ 
+@@ -1081,6 +1114,7 @@
+     const std::chrono::milliseconds search_limit(25);
+     std::vector<std::size_t> group(1, candidate.task_index);
+     int best_score = conservativeScore(candidate);
++    int best_possible_score = candidate.score_after.possible_base_score;
+     for (std::size_t prefix = 0; prefix <= related.size() && group.size() <= 4;
+          ++prefix) {
+         if (std::chrono::steady_clock::now() - search_start >= search_limit ||
+@@ -1088,6 +1122,7 @@
+             break;
+         CandidatePlan projected = prefix == 0 ? candidate : BuildTaskGroupPlan(group);
+         if (projected.dry_run_succeeded) {
++            best_possible_score = std::max(best_possible_score, projected.score_after.possible_base_score);
+             best_score = std::max(best_score,
+                 conservativeScore(projected));
+             if (profitable(projected)) {
+@@ -1107,6 +1142,7 @@
+                 std::chrono::steady_clock::now() - search_start < search_limit) {
+                 CandidatePlan restored = BuildTaskGroupPlan(with_restoration);
+                 if (restored.dry_run_succeeded) {
++                    best_possible_score = std::max(best_possible_score, restored.score_after.possible_base_score);
+                     best_score = std::max(best_score,
+                         conservativeScore(restored));
+                     if (profitable(restored)) {
+@@ -1123,8 +1159,11 @@
+         if (prefix == related.size() || group.size() == 4) break;
+         group.push_back(related[prefix]);
+     }
+-    LOG("[TradeoffDecision] phase=%s task=%zu decision=skip best=%d "
+-        "incumbent=%d search_ms=%lld\n", phase, candidate.task_index,
++    const bool strictly_dominated = best_possible_score < certain_incumbent;
++    LOG("[TradeoffDecision] phase=%s task=%zu decision=%s reason=%s best_priority=%d "
++        "incumbent_priority=%d search_ms=%lld\n", phase, candidate.task_index,
++        strictly_dominated ? "skip" : "defer",
++        strictly_dominated ? "strict_interval_dominance" : "legacy_priority",
+         best_score, incumbent,
+         static_cast<long long>(std::chrono::duration_cast<std::chrono::milliseconds>(
+             std::chrono::steady_clock::now() - search_start).count()));
+@@ -1147,7 +1186,7 @@
+     active_actual_actions = 0;
+     active_failure_reasons.clear();
+     active_terminal_before = terminal_checker.evaluateAll(*this);
+-    active_score_before = score_evaluator.snapshot(*this, terminal_checker);
++    active_score_before = score_evaluator.snapshot(active_terminal_before);
+     std::ostringstream selected;
+     selected << "{\"schema\":\"decision_feedback.v1\",\"event\":\"candidate_selected\""
+         << ",\"candidate_id\":" << active_candidate.candidate_id
+@@ -1176,8 +1215,8 @@
+ 
+ void RDFW::EndCandidateExecution(bool succeeded) {
+     if (!has_active_candidate) return;
+-    const ScoreSnapshot current = score_evaluator.snapshot(*this, terminal_checker);
+     const TerminalSummary terminal = terminal_checker.evaluateAll(*this);
++    const ScoreSnapshot current = score_evaluator.snapshot(terminal);
+     CandidateExecutionRecord record;
+     record.candidate = active_candidate;
+     record.actual.values = MakeCandidatePrediction(
+@@ -1302,7 +1341,8 @@
+         ++guarded_next_action;
+     }
+     if (shadow_dry_run) {
+-        if (shadow_projected_duration + action.estimated_duration +
++        if (!shadow_complete_single_plan &&
++            shadow_projected_duration + action.estimated_duration +
+                 plan_safety_margin > deadline_manager.remaining())
+             throw std::runtime_error("projected actions exceed remaining time");
+         shadow_projected_duration += action.estimated_duration;
+@@ -1338,6 +1378,7 @@
+ 
+ void RDFW::UpdateConstraintLedger(
+     const char* action, const std::vector<unsigned int>& arguments) {
++    StageTimer phase_timer(StageTiming::LEDGER);
+     InitializeConstraintLedger();
+     const std::vector<bool> eligibility_before = constraint_eligible;
+     // AskLoc and Sense run ASP but do not call asp_to_state in the SDK.
+@@ -1356,7 +1397,7 @@
+         }
+     }
+     if (performed != "Sense" && performed != "AskLoc") {
+-        const TerminalSummary current = terminal_checker.evaluateAll(*this);
++        const TerminalSummary current = terminal_checker.evaluateConstraints(*this);
+         for (std::size_t i = 0; i < current.constraints.size(); ++i) {
+             if (current.constraints[i] == TerminalStatus::UNSATISFIED) {
+                 constraint_eligible[i] = false;
+@@ -1685,8 +1726,10 @@
+ 
+ void RDFW::Plan() // 改
+ {
+-    LOG("[PlannerVersion] 1.6.2");
++    LOG("[PlannerVersion] 1.6.3");
+     deadline_manager.reset(deadline_manager.timeLimit());
++    StageTiming::get().reset();
++    ScopeExit timing_report([this]() { StageTiming::get().report(deadline_manager.elapsed().count(), deadline_manager.remaining().count()); });
+     score_evaluator.reset();
+     constraint_eligible.clear();
+     constraint_uncertain.clear();
+@@ -1965,6 +2008,7 @@
+ 
+ RDFW::GuardedDecisionOutcome RDFW::TryGuardedDecision(
+     bool defer_multi_goto, std::size_t main_cursor) {
++    StageTimer phase_timer(StageTiming::GUARD);
+     const char* mode = std::getenv("RDFW_TASK_GROUP_MODE");
+     if (!mode || std::string(mode) != "guarded") {
+         guarded_attempted = true;
+@@ -2022,8 +2066,8 @@
+     CandidatePlan best_prefix;
+     CandidatePlan best_complete;
+     bool best_stops_after_group = false;
+-    int best_score = std::max(stop_score.deterministic_base_score,
+-                              legacy.score_after.deterministic_base_score);
++    int best_score = std::max(stop_score.possible_base_score,
++                              legacy.score_after.possible_base_score);
+     const CandidatePlan* finalists[] = {
+         search.has_safe ? &search.best_safe : nullptr,
+         search.has_broken ? &search.best_broken : nullptr
+@@ -2038,7 +2082,7 @@
+         if (prefix->estimated_duration + plan_safety_margin <=
+                 deadline_manager.remaining() &&
+             prefix->score_after.deterministic_base_score > best_score) {
+-            best_score = prefix->score_after.deterministic_base_score;
++            best_score = prefix->score_after.possible_base_score;
+             best_prefix = *prefix;
+             best_complete = *prefix;
+             best_stops_after_group = true;
+@@ -2053,7 +2097,7 @@
+             complete.estimated_duration + plan_safety_margin >
+                 deadline_manager.remaining()) continue;
+         if (complete.score_after.deterministic_base_score > best_score) {
+-            best_score = complete.score_after.deterministic_base_score;
++            best_score = complete.score_after.possible_base_score;
+             best_prefix = *prefix;
+             best_complete = complete;
+             best_stops_after_group = false;
+@@ -2085,6 +2129,7 @@
+             authorized.terminal_after.goals != best_prefix.terminal_after.goals ||
+             authorized.terminal_after.constraint_credited != best_prefix.terminal_after.constraint_credited ||
+             authorized.score_after.deterministic_base_score != best_prefix.score_after.deterministic_base_score ||
++            authorized.score_after.possible_base_score != best_prefix.score_after.possible_base_score ||
+             action_losses != authorized.broken_constraints ||
+             authorized.broken_constraints != best_prefix.broken_constraints ||
+             shadow_cpu_budget_exhausted ||
+@@ -2113,8 +2158,7 @@
+         }
+         return GuardedDecisionOutcome::EXECUTED;
+     }
+-    if (stop_score.deterministic_base_score >
+-            legacy.score_after.deterministic_base_score &&
++    if (StrictlyScoreDominates(stop_score, legacy.score_after) &&
+         std::chrono::steady_clock::now() < deadline) {
+         guarded_stop_requested = true;
+         normal_stop_requested = true;
+@@ -2189,7 +2233,7 @@
+     }
+     if (guarded_next_action != guarded_expected_actions.size()) complete = false;
+     const TerminalSummary actual_terminal = terminal_checker.evaluateAll(*this);
+-    const ScoreSnapshot actual_score = score_evaluator.snapshot(*this, terminal_checker);
++    const ScoreSnapshot actual_score = score_evaluator.snapshot(actual_terminal);
+     if (actual_terminal.goals != group.terminal_after.goals ||
+         actual_terminal.constraints != group.terminal_after.constraints ||
+         actual_terminal.constraint_eligible !=
+@@ -4056,6 +4100,7 @@
+ //执行多goto任务
+ void RDFW::ExecuteMultiGotoAggregation()
+ {
++    StageTimer tail_timer(StageTiming::TAIL);
+     // =========================
+     // [FINAL] Multi-GOTO 聚合（低风险 hub + 候选筛选 + 上限 10 + 最终停留）
+     // =========================
+@@ -4765,7 +4810,7 @@
+             str = "at(" + std::to_string(a) + "," +
+                   std::to_string(objects[a]->location) + ")";
+     } else {
+-        str = Plug::AskLoc(a);
++        str = TimedPlatformCall([&]() { return Plug::AskLoc(a); });
+     }
+     RecordActionOutcome("AskLoc", !str.empty());
+     if (task_index >= 0 && static_cast<size_t>(task_index) < tasks.size())
+@@ -4809,7 +4854,7 @@
+     RecordAction(ActionCategory::OBSERVATION, "Sense",
+                  std::vector<unsigned int>());
+     if (shadow_dry_run) DryRunSenseIds(sensed_ids);
+-    else Plug::Sense(sensed_ids);
++    else TimedPlatformCall([&]() { return Plug::Sense(sensed_ids); });
+ 
+     // 标记当前位置已感知
+     if (curr_loc >= posSensedFlag.size()) {
+@@ -4986,7 +5031,7 @@
+     RecordAction(ActionCategory::OBSERVATION, "Sense",
+                  std::vector<unsigned int>());
+     if (shadow_dry_run) DryRunSenseIds(A_);
+-    else Plug::Sense(A_);
++    else TimedPlatformCall([&]() { return Plug::Sense(A_); });
+     LOG("Sense");
+     int flagg = 0;
+     // 用“感知到的对象 id”安全地更新
+@@ -5213,7 +5258,7 @@
+     LOG("TakeOut(%d,%s)(%d,%s)", a, small->sort.c_str(), b, cont->sort.c_str());
+     const std::vector<unsigned int> arguments{a, b};
+     RecordAction(ActionCategory::PHYSICAL, "TakeOut", arguments);
+-    const bool action_succeeded = shadow_dry_run ? DryRunActionSucceeds("TakeOut", arguments) : Plug::TakeOut(a, b);
++    const bool action_succeeded = shadow_dry_run ? DryRunActionSucceeds("TakeOut", arguments) : TimedPlatformCall([&]() { return Plug::TakeOut(a, b); });
+     RecordActionOutcome("TakeOut", action_succeeded);
+     if (action_succeeded)
+     {
+@@ -5250,7 +5295,7 @@
+     LOG("PutIn(%d,%s)(%d,%s)", a,small->sort.c_str() , b, cont->sort.c_str());
+     const std::vector<unsigned int> arguments{a, b};
+     RecordAction(ActionCategory::PHYSICAL, "PutIn", arguments);
+-    const bool action_succeeded = shadow_dry_run ? DryRunActionSucceeds("PutIn", arguments) : Plug::PutIn(a, b);
++    const bool action_succeeded = shadow_dry_run ? DryRunActionSucceeds("PutIn", arguments) : TimedPlatformCall([&]() { return Plug::PutIn(a, b); });
+     RecordActionOutcome("PutIn", action_succeeded);
+     if (action_succeeded)
+     {
+@@ -5289,7 +5334,7 @@
+     LOG("(%d,%s) has closed", a, container->sort.c_str());
+     const std::vector<unsigned int> arguments{a};
+     RecordAction(ActionCategory::PHYSICAL, "Close", arguments);
+-    const bool action_succeeded = shadow_dry_run ? DryRunActionSucceeds("Close", arguments) : Plug::Close(a);
++    const bool action_succeeded = shadow_dry_run ? DryRunActionSucceeds("Close", arguments) : TimedPlatformCall([&]() { return Plug::Close(a); });
+     RecordActionOutcome("Close", action_succeeded);
+     if (action_succeeded)
+     {
+@@ -5315,7 +5360,7 @@
+     LOG("Open(%d,%s)", a, container->sort.c_str());
+     const std::vector<unsigned int> arguments{a};
+     RecordAction(ActionCategory::PHYSICAL, "Open", arguments);
+-    const bool action_succeeded = shadow_dry_run ? DryRunActionSucceeds("Open", arguments) : Plug::Open(a);
++    const bool action_succeeded = shadow_dry_run ? DryRunActionSucceeds("Open", arguments) : TimedPlatformCall([&]() { return Plug::Open(a); });
+     RecordActionOutcome("Open", action_succeeded);
+     if (action_succeeded)
+     {
+@@ -5339,7 +5384,7 @@
+     LOG("FromPlate(%d,%s)", a, objects[a]->sort.c_str());
+     const std::vector<unsigned int> arguments{a};
+     RecordAction(ActionCategory::PHYSICAL, "FromPlate", arguments);
+-    const bool action_succeeded = shadow_dry_run ? DryRunActionSucceeds("FromPlate", arguments) : Plug::FromPlate(a);
++    const bool action_succeeded = shadow_dry_run ? DryRunActionSucceeds("FromPlate", arguments) : TimedPlatformCall([&]() { return Plug::FromPlate(a); });
+     RecordActionOutcome("FromPlate", action_succeeded);
+     if (action_succeeded)
+     {
+@@ -5362,7 +5407,7 @@
+     LOG("ToPlate(%d,%s)", a, objects[a]->sort.c_str());
+     const std::vector<unsigned int> arguments{a};
+     RecordAction(ActionCategory::PHYSICAL, "ToPlate", arguments);
+-    const bool action_succeeded = shadow_dry_run ? DryRunActionSucceeds("ToPlate", arguments) : Plug::ToPlate(a);
++    const bool action_succeeded = shadow_dry_run ? DryRunActionSucceeds("ToPlate", arguments) : TimedPlatformCall([&]() { return Plug::ToPlate(a); });
+     RecordActionOutcome("ToPlate", action_succeeded);
+     if (action_succeeded)
+     {
+@@ -5386,7 +5431,7 @@
+     LOG("PutDown(%d,%s)", a, objects[a]->sort.c_str());
+     const std::vector<unsigned int> arguments{a};
+     RecordAction(ActionCategory::PHYSICAL, "PutDown", arguments);
+-    const bool action_succeeded = shadow_dry_run ? DryRunActionSucceeds("PutDown", arguments) : Plug::PutDown(a);
++    const bool action_succeeded = shadow_dry_run ? DryRunActionSucceeds("PutDown", arguments) : TimedPlatformCall([&]() { return Plug::PutDown(a); });
+     RecordActionOutcome("PutDown", action_succeeded);
+     if (action_succeeded)
+     {
+@@ -5418,7 +5463,7 @@
+     LOG("PickUp(%d,%s)", small->id, small->sort.c_str());
+     const std::vector<unsigned int> arguments{a};
+     RecordAction(ActionCategory::PHYSICAL, "PickUp", arguments);
+-    const bool action_succeeded = shadow_dry_run ? DryRunActionSucceeds("PickUp", arguments) : Plug::PickUp(a);
++    const bool action_succeeded = shadow_dry_run ? DryRunActionSucceeds("PickUp", arguments) : TimedPlatformCall([&]() { return Plug::PickUp(a); });
+     RecordActionOutcome("PickUp", action_succeeded);
+     if (action_succeeded)
+     {
+@@ -5485,10 +5530,10 @@
+     const std::vector<unsigned int> arguments{a};
+     RecordAction(ActionCategory::MOVE, "Move", arguments);
+     const bool move_succeeded = shadow_dry_run
+-        ? DryRunActionSucceeds("Move", arguments) : Plug::Move(a);
++        ? DryRunActionSucceeds("Move", arguments) : TimedPlatformCall([&]() { return Plug::Move(a); });
+     RecordActionOutcome("Move", move_succeeded);
+     if (!move_succeeded) {
+-        LOG(RED "Move: Plug::Move(%d) failed\n" RESET, (int)a);
++        LOG(RED "Move: TimedPlatformCall([&]() { return Plug::Move(%d); }) failed\n" RESET, (int)a);
+         return 0;
+     }
+ 
+--- src1.6.2/rdfw.hpp
++++ src1.6.3/rdfw.hpp
+@@ -682,6 +682,7 @@
+         friend struct ScoreSemanticsTestAccess;
+ 
+         friend class TerminalChecker;
++        friend class LegacyPriorityChecker;
+ 
+         DeadlineManager deadline_manager;
+         TerminalChecker terminal_checker;
+@@ -689,6 +690,7 @@
+         std::chrono::milliseconds plan_safety_margin{300};
+         bool normal_stop_requested = false;
+         bool shadow_dry_run = false;
++        bool shadow_complete_single_plan = false;
+         std::vector<CandidateAction>* shadow_action_sink = nullptr;
+         std::chrono::milliseconds shadow_projected_duration{0};
+         bool shadow_cpu_budget_exhausted = false;
+--- src1.6.2/score_evaluator.cpp
++++ src1.6.3/score_evaluator.cpp
+@@ -40,6 +40,10 @@
+ ScoreSnapshot ScoreEvaluator::snapshot(const RDFW& world,
+                                        const TerminalChecker& checker) const {
+     const TerminalSummary terminal = checker.evaluateAll(world);
++    return snapshot(terminal);
++}
++
++ScoreSnapshot ScoreEvaluator::snapshot(const TerminalSummary& terminal) const {
+     ScoreSnapshot result;
+     result.completed_goals = terminal.satisfied_goals;
+     result.total_goals = terminal.goals.size();
+--- src1.6.2/score_evaluator.hpp
++++ src1.6.3/score_evaluator.hpp
+@@ -29,6 +29,13 @@
+     ScoreSnapshot();
+ };
+ 
++// Only disjoint intervals prove a strict score ordering. Touching/overlapping
++// intervals retain the established planner's priority, including exact ties.
++inline bool StrictlyScoreDominates(const ScoreSnapshot& winner,
++                                  const ScoreSnapshot& loser) {
++    return loser.possible_base_score < winner.deterministic_base_score;
++}
++
+ class ScoreEvaluator {
+ public:
+     ScoreEvaluator();
+@@ -38,6 +45,7 @@
+     void recordAction(ActionCategory category);
+     int accumulatedActionCost() const;
+     ScoreSnapshot snapshot(const RDFW& world, const TerminalChecker& checker) const;
++    ScoreSnapshot snapshot(const TerminalSummary& terminal) const;
+ 
+ private:
+     int action_cost_;
+--- src1.6.2/stage_timing.hpp
++++ src1.6.3/stage_timing.hpp
+@@ -0,0 +1,51 @@
++#pragma once
++#include <chrono>
++#include <cstdio>
++#include <cstdlib>
++
++namespace _home {
++// Fixed counters, no allocation or per-action output. Times are inclusive;
++// nested phases must not be summed. Disabled paths never read the clock.
++struct StageTiming {
++    enum Phase { TERMINAL, BINDING, LEDGER, PROJECTION, CANDIDATES, TRADEOFF, GUARD, PLATFORM, TAIL, COUNT };
++    bool enabled = false;
++    unsigned long long calls[COUNT] = {};
++    long long nanos[COUNT] = {};
++    long long max_nanos[COUNT] = {};
++    static StageTiming& get() { static thread_local StageTiming value; return value; }
++    void reset() {
++        enabled = std::getenv("RDFW_STAGE_TIMING") &&
++            std::getenv("RDFW_STAGE_TIMING")[0] == '1';
++        for (int i=0; i<COUNT; ++i) { calls[i]=0; nanos[i]=0; max_nanos[i]=0; }
++    }
++    void report(long long elapsed, long long remaining) const {
++        if (!enabled) return;
++        const char* names[] = {"terminal", "binding", "ledger", "projection", "candidates", "tradeoff", "guarded", "platform", "tail"};
++        for (int i=0; i<COUNT; ++i)
++            std::printf("[StageTiming] phase=%s calls=%llu us=%lld max_us=%lld\n", names[i], calls[i], nanos[i]/1000, max_nanos[i]/1000);
++        std::printf("[StageTiming] phase=plan elapsed_ms=%lld remaining_ms=%lld inclusive=true\n", elapsed, remaining);
++    }
++};
++class StageTimer {
++    StageTiming::Phase phase_;
++    bool enabled_;
++    std::chrono::steady_clock::time_point start_;
++public:
++    explicit StageTimer(StageTiming::Phase phase) : phase_(phase), enabled_(StageTiming::get().enabled) {
++        if (enabled_) start_ = std::chrono::steady_clock::now();
++    }
++    ~StageTimer() {
++        if (!enabled_) return;
++        auto& value = StageTiming::get();
++        ++value.calls[phase_];
++        const auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(
++            std::chrono::steady_clock::now()-start_).count();
++        value.nanos[phase_] += elapsed;
++        if (elapsed > value.max_nanos[phase_]) value.max_nanos[phase_] = elapsed;
++    }
++};
++template<class F> auto TimedPlatformCall(F call) -> decltype(call()) {
++    StageTimer timer(StageTiming::PLATFORM);
++    return call();
++}
++}
+--- src1.6.2/terminal_checker.cpp
++++ src1.6.3/terminal_checker.cpp
+@@ -1,3 +1,4 @@
++#include "stage_timing.hpp"
+ #include "terminal_checker.hpp"
+ #include "rdfw.hpp"
+ 
+@@ -76,6 +77,7 @@
+ std::vector<std::shared_ptr<Object>> scoreBindings(
+     const RDFW& world, const Condition& condition,
+     const std::vector<std::shared_ptr<Object>>& planner_bindings) {
++    StageTimer timer(StageTiming::BINDING);
+     if (condition.sort.empty() && condition.color.empty() &&
+         condition.declared_type.empty() && !condition.has_explicit_id)
+         return planner_bindings;
+@@ -258,7 +260,8 @@
+ }
+ 
+ TerminalSummary TerminalChecker::evaluateAll(const RDFW& world) const {
+-    TerminalSummary result;
++    StageTimer timer(StageTiming::TERMINAL);
++    TerminalSummary result = evaluateConstraints(world);
+     result.goals.reserve(world.tasks.size());
+     for (std::size_t i = 0; i < world.tasks.size(); ++i) {
+         const TerminalStatus status = evaluateTask(world, world.tasks[i]);
+@@ -267,6 +270,11 @@
+                     result.unsatisfied_goals, result.unknown_goals);
+     }
+ 
++    return result;
++}
++
++TerminalSummary TerminalChecker::evaluateConstraints(const RDFW& world) const {
++    TerminalSummary result;
+     result.constraints.reserve(world.not_infoConstrains.size() +
+                                world.notnot_infoConstrains.size() +
+                                world.not_taskConstrains.size());
+--- src1.6.2/terminal_checker.hpp
++++ src1.6.3/terminal_checker.hpp
+@@ -50,6 +50,7 @@
+                                       const Instruction& constraint,
+                                       ConstraintKind kind) const;
+     TerminalSummary evaluateAll(const RDFW& world) const;
++    TerminalSummary evaluateConstraints(const RDFW& world) const;
+ 
+ };
+ 

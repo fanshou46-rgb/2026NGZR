@@ -1,0 +1,500 @@
+[
+  {
+    "case": "/mnt/c/Users/20723/Desktop/2026robocup/stage2-location-recovery-v16-pr/src1.6.1/tests/fixtures/combinatorial_gain/01-two-rooms-four-goals.xml",
+    "case_sha256": "b51a8a7dc852143eedeb9861e6018c4e30c37410955b866a4b1735f7fbf0ecab",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 136,
+      "official": 198,
+      "goals": 4,
+      "constraints": 0,
+      "actions": {
+        "move": 4,
+        "open": 2,
+        "close": 2
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Move 3",
+        "Close 3",
+        "Move 2",
+        "Close 4",
+        "Move 3",
+        "Open 5"
+      ],
+      "platform_seconds": 1.851,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    },
+    "current": {
+      "status": "ok",
+      "base": 144,
+      "official": 212,
+      "goals": 4,
+      "constraints": 0,
+      "actions": {
+        "move": 2,
+        "open": 2,
+        "close": 2
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Close 4",
+        "Move 3",
+        "Close 3",
+        "Open 5"
+      ],
+      "platform_seconds": 1.555,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=group group=[0,2,1,3] reference=136 stop=0 predicted=144 continuation_actions=6 terminal=after_group"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/c/Users/20723/Desktop/2026robocup/stage2-location-recovery-v16-pr/src1.6.1/tests/fixtures/combinatorial_gain/01-two-rooms-four-goals.xml",
+    "case_sha256": "b51a8a7dc852143eedeb9861e6018c4e30c37410955b866a4b1735f7fbf0ecab",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 136,
+      "official": 202,
+      "goals": 4,
+      "constraints": 0,
+      "actions": {
+        "move": 4,
+        "open": 2,
+        "close": 2
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Move 3",
+        "Close 3",
+        "Move 2",
+        "Close 4",
+        "Move 3",
+        "Open 5"
+      ],
+      "platform_seconds": 1.673,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    },
+    "current": {
+      "status": "ok",
+      "base": 144,
+      "official": 212,
+      "goals": 4,
+      "constraints": 0,
+      "actions": {
+        "move": 2,
+        "open": 2,
+        "close": 2
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Close 4",
+        "Move 3",
+        "Close 3",
+        "Open 5"
+      ],
+      "platform_seconds": 1.595,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=group group=[0,2,1,3] reference=136 stop=0 predicted=144 continuation_actions=6 terminal=after_group"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/c/Users/20723/Desktop/2026robocup/stage2-location-recovery-v16-pr/src1.6.1/tests/fixtures/combinatorial_gain/02-two-rooms-five-goals.xml",
+    "case_sha256": "afc9b680d112d54a1b6dddc909fd585e0178140918abf94e36b64946134fe1b7",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 170,
+      "official": 214,
+      "goals": 5,
+      "constraints": 0,
+      "actions": {
+        "move": 5,
+        "open": 3,
+        "close": 2
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Move 3",
+        "Close 3",
+        "Move 2",
+        "Open 4",
+        "Move 3",
+        "Close 5",
+        "Move 2",
+        "Open 6"
+      ],
+      "platform_seconds": 2.704,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    },
+    "current": {
+      "status": "ok",
+      "base": 178,
+      "official": 232,
+      "goals": 5,
+      "constraints": 0,
+      "actions": {
+        "move": 3,
+        "open": 3,
+        "close": 2
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Open 4",
+        "Move 3",
+        "Close 3",
+        "Close 5",
+        "Move 2",
+        "Open 6"
+      ],
+      "platform_seconds": 2.234,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=group group=[0,2,1,3] reference=170 stop=0 predicted=178 continuation_actions=8 terminal=legacy_tail"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/c/Users/20723/Desktop/2026robocup/stage2-location-recovery-v16-pr/src1.6.1/tests/fixtures/combinatorial_gain/02-two-rooms-five-goals.xml",
+    "case_sha256": "afc9b680d112d54a1b6dddc909fd585e0178140918abf94e36b64946134fe1b7",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 170,
+      "official": 216,
+      "goals": 5,
+      "constraints": 0,
+      "actions": {
+        "move": 5,
+        "open": 3,
+        "close": 2
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Move 3",
+        "Close 3",
+        "Move 2",
+        "Open 4",
+        "Move 3",
+        "Close 5",
+        "Move 2",
+        "Open 6"
+      ],
+      "platform_seconds": 2.643,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    },
+    "current": {
+      "status": "ok",
+      "base": 178,
+      "official": 236,
+      "goals": 5,
+      "constraints": 0,
+      "actions": {
+        "move": 3,
+        "open": 3,
+        "close": 2
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Open 4",
+        "Move 3",
+        "Close 3",
+        "Close 5",
+        "Move 2",
+        "Open 6"
+      ],
+      "platform_seconds": 2.097,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=group group=[0,2,1,3] reference=170 stop=0 predicted=178 continuation_actions=8 terminal=legacy_tail"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/c/Users/20723/Desktop/2026robocup/stage2-location-recovery-v16-pr/src1.6.1/tests/fixtures/combinatorial_gain/03-two-rooms-six-goals.xml",
+    "case_sha256": "7b5c912ea3cc8a8444f99de7b05daf512016d2807c67e0aebbc5bc78c969b407",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 204,
+      "official": 234,
+      "goals": 6,
+      "constraints": 0,
+      "actions": {
+        "move": 6,
+        "open": 3,
+        "close": 3
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Move 3",
+        "Close 3",
+        "Move 2",
+        "Open 4",
+        "Move 3",
+        "Close 5",
+        "Move 2",
+        "Open 6",
+        "Move 3",
+        "Close 7"
+      ],
+      "platform_seconds": 3.458,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    },
+    "current": {
+      "status": "ok",
+      "base": 220,
+      "official": 272,
+      "goals": 6,
+      "constraints": 0,
+      "actions": {
+        "move": 2,
+        "open": 3,
+        "close": 3
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Open 4",
+        "Open 6",
+        "Move 3",
+        "Close 3",
+        "Close 5",
+        "Close 7"
+      ],
+      "platform_seconds": 2.363,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=group group=[0,2,4,1] reference=204 stop=0 predicted=220 continuation_actions=8 terminal=legacy_tail"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/c/Users/20723/Desktop/2026robocup/stage2-location-recovery-v16-pr/src1.6.1/tests/fixtures/combinatorial_gain/03-two-rooms-six-goals.xml",
+    "case_sha256": "7b5c912ea3cc8a8444f99de7b05daf512016d2807c67e0aebbc5bc78c969b407",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 204,
+      "official": 226,
+      "goals": 6,
+      "constraints": 0,
+      "actions": {
+        "move": 6,
+        "open": 3,
+        "close": 3
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Move 3",
+        "Close 3",
+        "Move 2",
+        "Open 4",
+        "Move 3",
+        "Close 5",
+        "Move 2",
+        "Open 6",
+        "Move 3",
+        "Close 7"
+      ],
+      "platform_seconds": 3.83,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    },
+    "current": {
+      "status": "ok",
+      "base": 220,
+      "official": 270,
+      "goals": 6,
+      "constraints": 0,
+      "actions": {
+        "move": 2,
+        "open": 3,
+        "close": 3
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Open 4",
+        "Open 6",
+        "Move 3",
+        "Close 3",
+        "Close 5",
+        "Close 7"
+      ],
+      "platform_seconds": 2.411,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=group group=[0,2,4,1] reference=204 stop=0 predicted=220 continuation_actions=8 terminal=legacy_tail"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/c/Users/20723/Desktop/2026robocup/stage2-location-recovery-v16-pr/src1.6.1/tests/fixtures/combinatorial_gain/04-three-rooms-six-goals.xml",
+    "case_sha256": "3f362ee9741c8301b7177079ce7b22cc4b6df49f17d5788a9313b56a01bb638c",
+    "stage": 1,
+    "mode": "it",
+    "baseline": {
+      "status": "ok",
+      "base": 204,
+      "official": 242,
+      "goals": 6,
+      "constraints": 0,
+      "actions": {
+        "move": 6,
+        "open": 3,
+        "close": 3
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Move 3",
+        "Close 3",
+        "Move 4",
+        "Open 4",
+        "Move 2",
+        "Close 5",
+        "Move 3",
+        "Open 6",
+        "Move 4",
+        "Close 7"
+      ],
+      "platform_seconds": 3.023,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    },
+    "current": {
+      "status": "ok",
+      "base": 216,
+      "official": 264,
+      "goals": 6,
+      "constraints": 0,
+      "actions": {
+        "move": 3,
+        "open": 3,
+        "close": 3
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Close 5",
+        "Move 3",
+        "Close 3",
+        "Open 6",
+        "Move 4",
+        "Open 4",
+        "Close 7"
+      ],
+      "platform_seconds": 2.505,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=group group=[0,3,1,4] reference=204 stop=0 predicted=216 continuation_actions=9 terminal=legacy_tail"
+      ]
+    }
+  },
+  {
+    "case": "/mnt/c/Users/20723/Desktop/2026robocup/stage2-location-recovery-v16-pr/src1.6.1/tests/fixtures/combinatorial_gain/04-three-rooms-six-goals.xml",
+    "case_sha256": "3f362ee9741c8301b7177079ce7b22cc4b6df49f17d5788a9313b56a01bb638c",
+    "stage": 1,
+    "mode": "nt",
+    "baseline": {
+      "status": "ok",
+      "base": 204,
+      "official": 240,
+      "goals": 6,
+      "constraints": 0,
+      "actions": {
+        "move": 6,
+        "open": 3,
+        "close": 3
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Move 3",
+        "Close 3",
+        "Move 4",
+        "Open 4",
+        "Move 2",
+        "Close 5",
+        "Move 3",
+        "Open 6",
+        "Move 4",
+        "Close 7"
+      ],
+      "platform_seconds": 3.111,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": []
+    },
+    "current": {
+      "status": "ok",
+      "base": 216,
+      "official": 266,
+      "goals": 6,
+      "constraints": 0,
+      "actions": {
+        "move": 3,
+        "open": 3,
+        "close": 3
+      },
+      "action_sequence": [
+        "Move 2",
+        "Open 2",
+        "Close 5",
+        "Move 3",
+        "Close 3",
+        "Open 6",
+        "Move 4",
+        "Open 4",
+        "Close 7"
+      ],
+      "platform_seconds": 2.421,
+      "timed_out": false,
+      "seed_confirmed": true,
+      "guarded_log": [
+        "[GuardedDecision] outcome=group group=[0,3,1,4] reference=204 stop=0 predicted=216 continuation_actions=9 terminal=legacy_tail"
+      ]
+    }
+  }
+]

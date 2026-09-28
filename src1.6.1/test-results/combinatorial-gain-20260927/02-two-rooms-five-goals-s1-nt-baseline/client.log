@@ -1,0 +1,289 @@
+[LOG]:-stage
+[LOG]:-nlp
+[LOG]:-err
+[LOG]:-ask_2
+[LOG]:-path
+[LOG]:nlp 1, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+#(Plug): Timeout=5000
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32mcase.xml
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+[LOG]:[32mOpen the cupboard.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:open>
+    <NP:>
+      <ART:the>
+      <N:cupboard>
+
+[LOG]:[32mClose the closet.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:close>
+    <NP:>
+      <ART:the>
+      <N:closet>
+
+[LOG]:[32mOpen the refrigerator.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:open>
+    <NP:>
+      <ART:the>
+      <N:refrigerator>
+
+[LOG]:[32mClose the microwave.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:close>
+    <NP:>
+      <ART:the>
+      <N:microwave>
+
+[LOG]:[32mOpen the door.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:open>
+    <NP:>
+      <ART:the>
+      <N:door>
+
+[LOG]:[Preflight][WorldWarning] multiple big objects at Stage 1 location 2
+[LOG]:[Preflight][WorldWarning] multiple big objects at Stage 1 location 3
+[LOG]:[Preflight][WorldWarning] multiple big objects at Stage 1 location 2
+[LOG]:[Preflight] task raw=5 unique=5 duplicate=0 rejected=0; constraint raw=0 unique=0 duplicate=0 rejected=0; world_errors=0
+Pos  0:(T):
+Pos  1:(T):[32m(robot hold:0 plate:0)[0m[33m(1 human)[0m
+Pos  2:(T):[33m(2 cupboard inside:[] Closed)[0m[33m(4 refrigerator inside:[] Closed)[0m[33m(6 door inside:[] Closed)[0m
+Pos  3:(T):[33m(3 closet inside:[] Open)[0m[33m(5 microwave inside:[] Open)[0m
+UnknownPos:
+
+Task:
+Behave:[35mopen[0m
+ConditionX:[35m(Sort:cupboard,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mclose[0m
+ConditionX:[35m(Sort:closet,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mopen[0m
+ConditionX:[35m(Sort:refrigerator,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mclose[0m
+ConditionX:[35m(Sort:microwave,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mopen[0m
+ConditionX:[35m(Sort:door,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+
+Info:
+
+Not_Info:
+
+Not_Task:
+
+NotNot_Info:
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+5
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":1,"phase":"main-loop","task_index":0,"task_label":"open","legacy_choice":true,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":34,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=1 task_index=0 behave=open legacy_choice=true eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=0 score_after=34 marginal_score=34 utility=34 gained_goals=[0] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":2,"phase":"main-loop","task_index":1,"task_label":"close","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":34,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=2 task_index=1 behave=close legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=0 score_after=34 marginal_score=34 utility=34 gained_goals=[1] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":3,"phase":"main-loop","task_index":2,"task_label":"open","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":34,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=3 task_index=2 behave=open legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=0 score_after=34 marginal_score=34 utility=34 gained_goals=[2] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":4,"phase":"main-loop","task_index":3,"task_label":"close","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":34,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=4 task_index=3 behave=close legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=0 score_after=34 marginal_score=34 utility=34 gained_goals=[3] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":5,"phase":"main-loop","task_index":4,"task_label":"open","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":34,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=5 task_index=4 behave=open legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=0 score_after=34 marginal_score=34 utility=34 gained_goals=[4] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3A][main-loop] goals=0/5 (unknown=0), constraints=0/0 (unknown=0), base_score=0, action_cost=0, elapsed=39ms, remaining=4661ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[], satisfied_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=main-loop task_index=0 behave=open can_finish=true remaining_plan_ms=220 safety_ms=300 budget_remaining_ms=4661
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_selected","candidate_id":1,"task_index":0,"tasks":[0],"task_label":"open","generated_ms":39,"world_revision":0,"selection_reason":"legacy_main_loop_task_order","prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":34,"utility":34},"expected_reward":34,"evidence":[{"object_id":1,"fact":"location","source":"initial","verified":true},{"object_id":2,"fact":"location","source":"initial","verified":true},{"object_id":2,"fact":"container_state","source":"initial","verified":true},{"object_id":3,"fact":"location","source":"initial","verified":true},{"object_id":3,"fact":"container_state","source":"initial","verified":true},{"object_id":4,"fact":"location","source":"initial","verified":true},{"object_id":4,"fact":"container_state","source":"initial","verified":true},{"object_id":5,"fact":"location","source":"initial","verified":true},{"object_id":5,"fact":"container_state","source":"initial","verified":true},{"object_id":6,"fact":"location","source":"initial","verified":true},{"object_id":6,"fact":"container_state","source":"initial","verified":true}]}
+[LOG]:[36m[3B][Remaining] event=begin task_index=0 behave=open executed=0 total=2 remaining_utility=34 remaining_duration_ms=220
+[0m
+open cupboard的风险系数是：0
+[LOG]:Move(2)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=Move executed=1 total=2 remaining_utility=38 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:Open(2,cupboard)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=Open executed=2 total=2 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[32mTask done
+ Behave:[35mopen[0m
+ConditionX:[35m(Sort:cupboard,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_result","candidate_id":1,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":34,"utility":34},"actual":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":34,"utility":34},"succeeded":true,"failed_action":false,"failure_reasons":[],"error":{"goal_gain":0,"constraint_gain":0,"constraint_loss":0,"action_cost":0,"utility":0}}
+[LOG]:[36m[3B][Remaining] event=end task_index=0 behave=open succeeded=true executed=2 total=2 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":7,"phase":"main-loop","task_index":2,"task_label":"open","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":2,"maintained_constraints":0,"action_count":1,"action_cost":2,"final_reward":72,"utility":38}}
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=1 task_index=2 behave=open legacy_choice=false eligible=true complete=true actions=1 duration_ms=100 action_cost=2 score_before=34 score_after=72 marginal_score=38 utility=38 gained_goals=[2] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":9,"phase":"main-loop","task_index":4,"task_label":"open","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":2,"maintained_constraints":0,"action_count":1,"action_cost":2,"final_reward":72,"utility":38}}
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=2 task_index=4 behave=open legacy_choice=false eligible=true complete=true actions=1 duration_ms=100 action_cost=2 score_before=34 score_after=72 marginal_score=38 utility=38 gained_goals=[4] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":6,"phase":"main-loop","task_index":1,"task_label":"close","legacy_choice":true,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":2,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":68,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=3 task_index=1 behave=close legacy_choice=true eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=34 score_after=68 marginal_score=34 utility=34 gained_goals=[1] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":8,"phase":"main-loop","task_index":3,"task_label":"close","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":2,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":68,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=4 task_index=3 behave=close legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=34 score_after=68 marginal_score=34 utility=34 gained_goals=[3] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3A][main-loop] goals=1/5 (unknown=0), constraints=0/0 (unknown=0), base_score=34, action_cost=6, elapsed=469ms, remaining=4231ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:open], satisfied_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=main-loop task_index=1 behave=close can_finish=true remaining_plan_ms=220 safety_ms=300 budget_remaining_ms=4231
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_selected","candidate_id":6,"task_index":1,"tasks":[1],"task_label":"close","generated_ms":469,"world_revision":2,"selection_reason":"legacy_main_loop_task_order","prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":2,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":68,"utility":34},"expected_reward":68,"evidence":[{"object_id":1,"fact":"location","source":"initial","verified":true},{"object_id":2,"fact":"location","source":"action_success","verified":true},{"object_id":2,"fact":"container_state","source":"action_success","verified":true},{"object_id":3,"fact":"location","source":"initial","verified":true},{"object_id":3,"fact":"container_state","source":"initial","verified":true},{"object_id":4,"fact":"location","source":"initial","verified":true},{"object_id":4,"fact":"container_state","source":"initial","verified":true},{"object_id":5,"fact":"location","source":"initial","verified":true},{"object_id":5,"fact":"container_state","source":"initial","verified":true},{"object_id":6,"fact":"location","source":"initial","verified":true},{"object_id":6,"fact":"container_state","source":"initial","verified":true}]}
+[LOG]:[36m[3B][Remaining] event=begin task_index=1 behave=close executed=0 total=2 remaining_utility=34 remaining_duration_ms=220
+[0m
+close closet的风险系数是：0
+[LOG]:Move(3)
+[LOG]:[36m[3B][Remaining] event=action task_index=1 action=Move executed=1 total=2 remaining_utility=38 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:(3,closet) has closed
+[LOG]:[36m[3B][Remaining] event=action task_index=1 action=Close executed=2 total=2 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[32mTask done
+ Behave:[35mclose[0m
+ConditionX:[35m(Sort:closet,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_result","candidate_id":6,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":2,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":68,"utility":34},"actual":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":2,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":68,"utility":34},"succeeded":true,"failed_action":false,"failure_reasons":[],"error":{"goal_gain":0,"constraint_gain":0,"constraint_loss":0,"action_cost":0,"utility":0}}
+[LOG]:[36m[3B][Remaining] event=end task_index=1 behave=close succeeded=true executed=2 total=2 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":11,"phase":"main-loop","task_index":3,"task_label":"close","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":3,"maintained_constraints":0,"action_count":1,"action_cost":2,"final_reward":106,"utility":38}}
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=1 task_index=3 behave=close legacy_choice=false eligible=true complete=true actions=1 duration_ms=100 action_cost=2 score_before=68 score_after=106 marginal_score=38 utility=38 gained_goals=[3] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":10,"phase":"main-loop","task_index":2,"task_label":"open","legacy_choice":true,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":3,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":102,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=2 task_index=2 behave=open legacy_choice=true eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=68 score_after=102 marginal_score=34 utility=34 gained_goals=[2] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":12,"phase":"main-loop","task_index":4,"task_label":"open","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":3,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":102,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=3 task_index=4 behave=open legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=68 score_after=102 marginal_score=34 utility=34 gained_goals=[4] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3A][main-loop] goals=2/5 (unknown=0), constraints=0/0 (unknown=0), base_score=68, action_cost=12, elapsed=894ms, remaining=3806ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:open,1:close], satisfied_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=main-loop task_index=2 behave=open can_finish=true remaining_plan_ms=220 safety_ms=300 budget_remaining_ms=3806
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_selected","candidate_id":10,"task_index":2,"tasks":[2],"task_label":"open","generated_ms":893,"world_revision":4,"selection_reason":"legacy_main_loop_task_order","prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":3,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":102,"utility":34},"expected_reward":102,"evidence":[{"object_id":1,"fact":"location","source":"initial","verified":true},{"object_id":2,"fact":"location","source":"action_success","verified":true},{"object_id":2,"fact":"container_state","source":"action_success","verified":true},{"object_id":3,"fact":"location","source":"action_success","verified":true},{"object_id":3,"fact":"container_state","source":"action_success","verified":true},{"object_id":4,"fact":"location","source":"initial","verified":true},{"object_id":4,"fact":"container_state","source":"initial","verified":true},{"object_id":5,"fact":"location","source":"initial","verified":true},{"object_id":5,"fact":"container_state","source":"initial","verified":true},{"object_id":6,"fact":"location","source":"initial","verified":true},{"object_id":6,"fact":"container_state","source":"initial","verified":true}]}
+[LOG]:[36m[3B][Remaining] event=begin task_index=2 behave=open executed=0 total=2 remaining_utility=34 remaining_duration_ms=220
+[0m
+open refrigerator的风险系数是：0
+[LOG]:Move(2)
+[LOG]:[36m[3B][Remaining] event=action task_index=2 action=Move executed=1 total=2 remaining_utility=38 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:Open(4,refrigerator)
+[LOG]:[36m[3B][Remaining] event=action task_index=2 action=Open executed=2 total=2 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[32mTask done
+ Behave:[35mopen[0m
+ConditionX:[35m(Sort:refrigerator,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_result","candidate_id":10,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":3,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":102,"utility":34},"actual":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":3,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":102,"utility":34},"succeeded":true,"failed_action":false,"failure_reasons":[],"error":{"goal_gain":0,"constraint_gain":0,"constraint_loss":0,"action_cost":0,"utility":0}}
+[LOG]:[36m[3B][Remaining] event=end task_index=2 behave=open succeeded=true executed=2 total=2 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":14,"phase":"main-loop","task_index":4,"task_label":"open","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":4,"maintained_constraints":0,"action_count":1,"action_cost":2,"final_reward":140,"utility":38}}
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=1 task_index=4 behave=open legacy_choice=false eligible=true complete=true actions=1 duration_ms=100 action_cost=2 score_before=102 score_after=140 marginal_score=38 utility=38 gained_goals=[4] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":13,"phase":"main-loop","task_index":3,"task_label":"close","legacy_choice":true,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":4,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":136,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=2 task_index=3 behave=close legacy_choice=true eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=102 score_after=136 marginal_score=34 utility=34 gained_goals=[3] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3A][main-loop] goals=3/5 (unknown=0), constraints=0/0 (unknown=0), base_score=102, action_cost=18, elapsed=1537ms, remaining=3163ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:open,1:close,2:open], satisfied_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=main-loop task_index=3 behave=close can_finish=true remaining_plan_ms=220 safety_ms=300 budget_remaining_ms=3163
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_selected","candidate_id":13,"task_index":3,"tasks":[3],"task_label":"close","generated_ms":1537,"world_revision":6,"selection_reason":"legacy_main_loop_task_order","prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":4,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":136,"utility":34},"expected_reward":136,"evidence":[{"object_id":1,"fact":"location","source":"initial","verified":true},{"object_id":2,"fact":"location","source":"action_success","verified":true},{"object_id":2,"fact":"container_state","source":"action_success","verified":true},{"object_id":3,"fact":"location","source":"action_success","verified":true},{"object_id":3,"fact":"container_state","source":"action_success","verified":true},{"object_id":4,"fact":"location","source":"action_success","verified":true},{"object_id":4,"fact":"container_state","source":"action_success","verified":true},{"object_id":5,"fact":"location","source":"initial","verified":true},{"object_id":5,"fact":"container_state","source":"initial","verified":true},{"object_id":6,"fact":"location","source":"initial","verified":true},{"object_id":6,"fact":"container_state","source":"initial","verified":true}]}
+[LOG]:[36m[3B][Remaining] event=begin task_index=3 behave=close executed=0 total=2 remaining_utility=34 remaining_duration_ms=220
+[0m
+close microwave的风险系数是：0
+[LOG]:Move(3)
+[LOG]:[36m[3B][Remaining] event=action task_index=3 action=Move executed=1 total=2 remaining_utility=38 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:(5,microwave) has closed
+[LOG]:[36m[3B][Remaining] event=action task_index=3 action=Close executed=2 total=2 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[32mTask done
+ Behave:[35mclose[0m
+ConditionX:[35m(Sort:microwave,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_result","candidate_id":13,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":4,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":136,"utility":34},"actual":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":4,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":136,"utility":34},"succeeded":true,"failed_action":false,"failure_reasons":[],"error":{"goal_gain":0,"constraint_gain":0,"constraint_loss":0,"action_cost":0,"utility":0}}
+[LOG]:[36m[3B][Remaining] event=end task_index=3 behave=close succeeded=true executed=2 total=2 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":15,"phase":"main-loop","task_index":4,"task_label":"open","legacy_choice":true,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":5,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":170,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=main-loop rank=1 task_index=4 behave=open legacy_choice=true eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=136 score_after=170 marginal_score=34 utility=34 gained_goals=[4] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3A][main-loop] goals=4/5 (unknown=0), constraints=0/0 (unknown=0), base_score=136, action_cost=24, elapsed=2009ms, remaining=2691ms
+[0m
+[LOG]:[36m[3A][main-loop] completed_goals=[0:open,1:close,2:open,3:close], satisfied_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=main-loop task_index=4 behave=open can_finish=true remaining_plan_ms=220 safety_ms=300 budget_remaining_ms=2691
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_selected","candidate_id":15,"task_index":4,"tasks":[4],"task_label":"open","generated_ms":2009,"world_revision":8,"selection_reason":"legacy_main_loop_task_order","prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":5,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":170,"utility":34},"expected_reward":170,"evidence":[{"object_id":1,"fact":"location","source":"initial","verified":true},{"object_id":2,"fact":"location","source":"action_success","verified":true},{"object_id":2,"fact":"container_state","source":"action_success","verified":true},{"object_id":3,"fact":"location","source":"action_success","verified":true},{"object_id":3,"fact":"container_state","source":"action_success","verified":true},{"object_id":4,"fact":"location","source":"action_success","verified":true},{"object_id":4,"fact":"container_state","source":"action_success","verified":true},{"object_id":5,"fact":"location","source":"action_success","verified":true},{"object_id":5,"fact":"container_state","source":"action_success","verified":true},{"object_id":6,"fact":"location","source":"initial","verified":true},{"object_id":6,"fact":"container_state","source":"initial","verified":true}]}
+[LOG]:[36m[3B][Remaining] event=begin task_index=4 behave=open executed=0 total=2 remaining_utility=34 remaining_duration_ms=220
+[0m
+open door的风险系数是：0
+[LOG]:Move(2)
+[LOG]:[36m[3B][Remaining] event=action task_index=4 action=Move executed=1 total=2 remaining_utility=38 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:Open(6,door)
+[LOG]:[36m[3B][Remaining] event=action task_index=4 action=Open executed=2 total=2 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[32mTask done
+ Behave:[35mopen[0m
+ConditionX:[35m(Sort:door,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_result","candidate_id":15,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":5,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":170,"utility":34},"actual":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":5,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":170,"utility":34},"succeeded":true,"failed_action":false,"failure_reasons":[],"error":{"goal_gain":0,"constraint_gain":0,"constraint_loss":0,"action_cost":0,"utility":0}}
+[LOG]:[36m[3B][Remaining] event=end task_index=4 behave=open succeeded=true executed=2 total=2 remaining_utility=0 remaining_duration_ms=0
+[0m
+-----check check check-----
+Pos  0:(T):
+Pos  1:(T):[33m(1 human)[0m
+Pos  2:(T):[32m(robot hold:0 plate:0)[0m[33m(2 cupboard inside:[] Open)[0m[33m(4 refrigerator inside:[] Open)[0m[33m(6 door inside:[] Open)[0m
+Pos  3:(T):[33m(3 closet inside:[] Closed)[0m[33m(5 microwave inside:[] Closed)[0m
+UnknownPos:
+
+[LOG]:[36m[3A][multi-goto] goals=5/5 (unknown=0), constraints=0/0 (unknown=0), base_score=170, action_cost=30, elapsed=2641ms, remaining=2059ms
+[0m
+[LOG]:[36m[3A][multi-goto] completed_goals=[0:open,1:close,2:open,3:close,4:open], satisfied_constraints=[]
+[0m
+[LOG]:[32m[3A][StopGate] all goals are SATISFIED; normal stop before multi-goto
+[0m
+
+Sovled Task Num:5    Expect Num:5
+[LOG]:[36m[3A][final] goals=5/5 (unknown=0), constraints=0/0 (unknown=0), base_score=170, action_cost=30, elapsed=2643ms, remaining=2057ms
+[0m
+[LOG]:[36m[3A][final] completed_goals=[0:open,1:close,2:open,3:close,4:open], satisfied_constraints=[]
+[0m
+#(Plug): Elapsed time=2.643s
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

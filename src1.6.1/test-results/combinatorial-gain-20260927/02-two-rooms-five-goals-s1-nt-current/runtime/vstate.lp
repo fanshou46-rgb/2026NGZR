@@ -1,0 +1,14 @@
+h(opened(6),0).
+h(at(0,2),0).
+h(at(1,1),0).
+h(at(2,2),0).
+h(at(3,3),0).
+h(at(4,2),0).
+h(at(5,3),0).
+h(at(6,2),0).
+h(hold(0),0).
+h(plate(0),0).
+h(opened(2),0).
+h(opened(4),0).
+h(closed(5),0).
+h(closed(3),0).

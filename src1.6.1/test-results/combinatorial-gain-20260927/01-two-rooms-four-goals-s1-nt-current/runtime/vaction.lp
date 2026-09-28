@@ -1,0 +1,1 @@
+occurs(open(5), 1).
