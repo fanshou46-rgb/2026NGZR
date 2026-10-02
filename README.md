@@ -19,7 +19,12 @@
 └── src1.6/                # src 1.6：约束收益决策与 Stage 2 未知事实校验
 ```
 
-最新策略实验：`src1.6.7-200ms/` 基于 `src1.6.7/`，仅将普通计划的
+最新开发版本：`src1.7/`，正常启动使用 greedy + 内部 guarded 的统一决策流程，
+不需要策略模式配置。实现说明见 `src1.7/docs/UNIFIED_SCHEDULER.md`，
+验证与完整退化记录见 `src1.7/test-results/validation-20261002/REPORT.md`。
+该版本保留用于开发回归；是否用于比赛应先阅读报告中的 Stage 2 退化结论。
+
+此前策略实验：`src1.6.7-200ms/` 基于 `src1.6.7/`，仅将普通计划的
 deadline 安全余量从 300 ms 调整为 200 ms；配对重复测试见
 `src1.6.7-200ms/test-results/deadline-ab-20260928/REPORT.md`。
 
