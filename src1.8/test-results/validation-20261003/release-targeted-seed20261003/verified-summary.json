@@ -1,0 +1,111 @@
+{
+  "pairs": 22,
+  "common_scored_pairs": 22,
+  "note": "Comparable totals require scores on both arms; all missing results remain in scores.csv and raw evidence.",
+  "scopes": {
+    "all": {
+      "pairs": 22,
+      "baseline": {
+        "base": 6016,
+        "official_score": 6728,
+        "final_goals": 157,
+        "credited_constraints": 26,
+        "action_cost": 784,
+        "platform_seconds": 73.998
+      },
+      "current": {
+        "base": 8709,
+        "official_score": 8889,
+        "final_goals": 238,
+        "credited_constraints": 14,
+        "action_cost": 1091,
+        "platform_seconds": 100.808
+      },
+      "same_actions": 9,
+      "base_improved": 10,
+      "base_equal": 9,
+      "base_worsened": 3
+    },
+    "stage1": {
+      "pairs": 2,
+      "baseline": {
+        "base": 296,
+        "official_score": 436,
+        "final_goals": 8,
+        "credited_constraints": 0,
+        "action_cost": 24,
+        "platform_seconds": 2.933
+      },
+      "current": {
+        "base": 296,
+        "official_score": 436,
+        "final_goals": 8,
+        "credited_constraints": 0,
+        "action_cost": 24,
+        "platform_seconds": 2.97
+      },
+      "same_actions": 2,
+      "base_improved": 0,
+      "base_equal": 2,
+      "base_worsened": 0
+    },
+    "stage2": {
+      "pairs": 20,
+      "baseline": {
+        "base": 5720,
+        "official_score": 6292,
+        "final_goals": 149,
+        "credited_constraints": 26,
+        "action_cost": 760,
+        "platform_seconds": 71.065
+      },
+      "current": {
+        "base": 8413,
+        "official_score": 8453,
+        "final_goals": 230,
+        "credited_constraints": 14,
+        "action_cost": 1067,
+        "platform_seconds": 97.838
+      },
+      "same_actions": 7,
+      "base_improved": 10,
+      "base_equal": 7,
+      "base_worsened": 3
+    }
+  },
+  "errors": {
+    "baseline": {
+      "timeouts": 10,
+      "crashes": 2,
+      "unscored": 0
+    },
+    "current": {
+      "timeouts": 14,
+      "crashes": 0,
+      "unscored": 0
+    }
+  },
+  "goal_regressions": [
+    {
+      "id": "c003",
+      "file": "06.xml",
+      "mode": "nt",
+      "baseline": 4,
+      "current": 3
+    },
+    {
+      "id": "c032",
+      "file": "35.xml",
+      "mode": "nt",
+      "baseline": 18,
+      "current": 17
+    },
+    {
+      "id": "c033",
+      "file": "36.xml",
+      "mode": "it",
+      "baseline": 19,
+      "current": 13
+    }
+  ]
+}

@@ -1,0 +1,474 @@
+{
+  "release-legacy-seed20260924": {
+    "pairs": 142,
+    "common_scored_pairs": 142,
+    "note": "Comparable totals require scores on both arms; all missing results remain in scores.csv and raw evidence.",
+    "scopes": {
+      "all": {
+        "pairs": 142,
+        "baseline": {
+          "base": 35592,
+          "official_score": 43810,
+          "final_goals": 704,
+          "credited_constraints": 505,
+          "action_cost": 2668,
+          "platform_seconds": 268.208
+        },
+        "current": {
+          "base": 37941,
+          "official_score": 45691,
+          "final_goals": 777,
+          "credited_constraints": 493,
+          "action_cost": 2999,
+          "platform_seconds": 300.384
+        },
+        "same_actions": 102,
+        "base_improved": 18,
+        "base_equal": 102,
+        "base_worsened": 22
+      },
+      "stage1": {
+        "pairs": 60,
+        "baseline": {
+          "base": 7308,
+          "official_score": 12266,
+          "final_goals": 178,
+          "credited_constraints": 34,
+          "action_cost": 492,
+          "platform_seconds": 48.874
+        },
+        "current": {
+          "base": 7308,
+          "official_score": 12270,
+          "final_goals": 178,
+          "credited_constraints": 34,
+          "action_cost": 492,
+          "platform_seconds": 48.608
+        },
+        "same_actions": 60,
+        "base_improved": 0,
+        "base_equal": 60,
+        "base_worsened": 0
+      },
+      "stage2": {
+        "pairs": 82,
+        "baseline": {
+          "base": 28284,
+          "official_score": 31544,
+          "final_goals": 526,
+          "credited_constraints": 471,
+          "action_cost": 2176,
+          "platform_seconds": 219.334
+        },
+        "current": {
+          "base": 30633,
+          "official_score": 33421,
+          "final_goals": 599,
+          "credited_constraints": 459,
+          "action_cost": 2507,
+          "platform_seconds": 251.776
+        },
+        "same_actions": 42,
+        "base_improved": 18,
+        "base_equal": 42,
+        "base_worsened": 22
+      }
+    },
+    "errors": {
+      "baseline": {
+        "timeouts": 13,
+        "crashes": 1,
+        "unscored": 0
+      },
+      "current": {
+        "timeouts": 13,
+        "crashes": 0,
+        "unscored": 0
+      }
+    },
+    "goal_regressions": [
+      {
+        "id": "c001",
+        "file": "01.xml",
+        "mode": "nt",
+        "baseline": 6,
+        "current": 5
+      },
+      {
+        "id": "c016",
+        "file": "19.xml",
+        "mode": "nt",
+        "baseline": 11,
+        "current": 9
+      },
+      {
+        "id": "c025",
+        "file": "28.xml",
+        "mode": "it",
+        "baseline": 11,
+        "current": 9
+      }
+    ]
+  },
+  "release-old-baseline-seed20260924": {
+    "pairs": 12,
+    "common_scored_pairs": 11,
+    "note": "Comparable totals require scores on both arms; all missing results remain in scores.csv and raw evidence.",
+    "scopes": {
+      "all": {
+        "pairs": 11,
+        "baseline": {
+          "base": 6669,
+          "official_score": 6807,
+          "final_goals": 180,
+          "credited_constraints": 0,
+          "action_cost": 531,
+          "platform_seconds": 47.732
+        },
+        "current": {
+          "base": 5109,
+          "official_score": 5359,
+          "final_goals": 138,
+          "credited_constraints": 2,
+          "action_cost": 451,
+          "platform_seconds": 41.951
+        },
+        "same_actions": 0,
+        "base_improved": 3,
+        "base_equal": 0,
+        "base_worsened": 8
+      },
+      "stage1": {
+        "pairs": 0,
+        "baseline": {
+          "base": 0,
+          "official_score": 0,
+          "final_goals": 0,
+          "credited_constraints": 0,
+          "action_cost": 0,
+          "platform_seconds": 0
+        },
+        "current": {
+          "base": 0,
+          "official_score": 0,
+          "final_goals": 0,
+          "credited_constraints": 0,
+          "action_cost": 0,
+          "platform_seconds": 0
+        },
+        "same_actions": 0,
+        "base_improved": 0,
+        "base_equal": 0,
+        "base_worsened": 0
+      },
+      "stage2": {
+        "pairs": 11,
+        "baseline": {
+          "base": 6669,
+          "official_score": 6807,
+          "final_goals": 180,
+          "credited_constraints": 0,
+          "action_cost": 531,
+          "platform_seconds": 47.732
+        },
+        "current": {
+          "base": 5109,
+          "official_score": 5359,
+          "final_goals": 138,
+          "credited_constraints": 2,
+          "action_cost": 451,
+          "platform_seconds": 41.951
+        },
+        "same_actions": 0,
+        "base_improved": 3,
+        "base_equal": 0,
+        "base_worsened": 8
+      }
+    },
+    "errors": {
+      "baseline": {
+        "timeouts": 4,
+        "crashes": 1,
+        "unscored": 1
+      },
+      "current": {
+        "timeouts": 3,
+        "crashes": 0,
+        "unscored": 0
+      }
+    },
+    "goal_regressions": [
+      {
+        "id": "c019",
+        "file": "22.xml",
+        "mode": "it",
+        "baseline": 20,
+        "current": 10
+      },
+      {
+        "id": "c020",
+        "file": "23.xml",
+        "mode": "it",
+        "baseline": 21,
+        "current": 6
+      },
+      {
+        "id": "c020",
+        "file": "23.xml",
+        "mode": "nt",
+        "baseline": 20,
+        "current": 11
+      },
+      {
+        "id": "c021",
+        "file": "24.xml",
+        "mode": "it",
+        "baseline": 20,
+        "current": 15
+      },
+      {
+        "id": "c021",
+        "file": "24.xml",
+        "mode": "nt",
+        "baseline": 20,
+        "current": 15
+      },
+      {
+        "id": "c033",
+        "file": "36.xml",
+        "mode": "it",
+        "baseline": 23,
+        "current": 19
+      },
+      {
+        "id": "c069",
+        "file": "P09.xml",
+        "mode": "it",
+        "baseline": 4,
+        "current": 2
+      },
+      {
+        "id": "c069",
+        "file": "P09.xml",
+        "mode": "nt",
+        "baseline": 4,
+        "current": 2
+      }
+    ]
+  },
+  "release-targeted-seed20260925": {
+    "pairs": 22,
+    "common_scored_pairs": 22,
+    "note": "Comparable totals require scores on both arms; all missing results remain in scores.csv and raw evidence.",
+    "scopes": {
+      "all": {
+        "pairs": 22,
+        "baseline": {
+          "base": 5542,
+          "official_score": 6252,
+          "final_goals": 145,
+          "credited_constraints": 26,
+          "action_cost": 778,
+          "platform_seconds": 73.743
+        },
+        "current": {
+          "base": 8432,
+          "official_score": 8620,
+          "final_goals": 231,
+          "credited_constraints": 14,
+          "action_cost": 1088,
+          "platform_seconds": 100.113
+        },
+        "same_actions": 9,
+        "base_improved": 11,
+        "base_equal": 9,
+        "base_worsened": 2
+      },
+      "stage1": {
+        "pairs": 2,
+        "baseline": {
+          "base": 296,
+          "official_score": 438,
+          "final_goals": 8,
+          "credited_constraints": 0,
+          "action_cost": 24,
+          "platform_seconds": 2.756
+        },
+        "current": {
+          "base": 296,
+          "official_score": 438,
+          "final_goals": 8,
+          "credited_constraints": 0,
+          "action_cost": 24,
+          "platform_seconds": 2.839
+        },
+        "same_actions": 2,
+        "base_improved": 0,
+        "base_equal": 2,
+        "base_worsened": 0
+      },
+      "stage2": {
+        "pairs": 20,
+        "baseline": {
+          "base": 5246,
+          "official_score": 5814,
+          "final_goals": 137,
+          "credited_constraints": 26,
+          "action_cost": 754,
+          "platform_seconds": 70.987
+        },
+        "current": {
+          "base": 8136,
+          "official_score": 8182,
+          "final_goals": 223,
+          "credited_constraints": 14,
+          "action_cost": 1064,
+          "platform_seconds": 97.274
+        },
+        "same_actions": 7,
+        "base_improved": 11,
+        "base_equal": 7,
+        "base_worsened": 2
+      }
+    },
+    "errors": {
+      "baseline": {
+        "timeouts": 8,
+        "crashes": 0,
+        "unscored": 0
+      },
+      "current": {
+        "timeouts": 11,
+        "crashes": 0,
+        "unscored": 0
+      }
+    },
+    "goal_regressions": [
+      {
+        "id": "c032",
+        "file": "35.xml",
+        "mode": "it",
+        "baseline": 18,
+        "current": 17
+      },
+      {
+        "id": "c032",
+        "file": "35.xml",
+        "mode": "nt",
+        "baseline": 18,
+        "current": 17
+      }
+    ]
+  },
+  "release-targeted-seed20261003": {
+    "pairs": 22,
+    "common_scored_pairs": 22,
+    "note": "Comparable totals require scores on both arms; all missing results remain in scores.csv and raw evidence.",
+    "scopes": {
+      "all": {
+        "pairs": 22,
+        "baseline": {
+          "base": 6016,
+          "official_score": 6728,
+          "final_goals": 157,
+          "credited_constraints": 26,
+          "action_cost": 784,
+          "platform_seconds": 73.998
+        },
+        "current": {
+          "base": 8709,
+          "official_score": 8889,
+          "final_goals": 238,
+          "credited_constraints": 14,
+          "action_cost": 1091,
+          "platform_seconds": 100.808
+        },
+        "same_actions": 9,
+        "base_improved": 10,
+        "base_equal": 9,
+        "base_worsened": 3
+      },
+      "stage1": {
+        "pairs": 2,
+        "baseline": {
+          "base": 296,
+          "official_score": 436,
+          "final_goals": 8,
+          "credited_constraints": 0,
+          "action_cost": 24,
+          "platform_seconds": 2.933
+        },
+        "current": {
+          "base": 296,
+          "official_score": 436,
+          "final_goals": 8,
+          "credited_constraints": 0,
+          "action_cost": 24,
+          "platform_seconds": 2.97
+        },
+        "same_actions": 2,
+        "base_improved": 0,
+        "base_equal": 2,
+        "base_worsened": 0
+      },
+      "stage2": {
+        "pairs": 20,
+        "baseline": {
+          "base": 5720,
+          "official_score": 6292,
+          "final_goals": 149,
+          "credited_constraints": 26,
+          "action_cost": 760,
+          "platform_seconds": 71.065
+        },
+        "current": {
+          "base": 8413,
+          "official_score": 8453,
+          "final_goals": 230,
+          "credited_constraints": 14,
+          "action_cost": 1067,
+          "platform_seconds": 97.838
+        },
+        "same_actions": 7,
+        "base_improved": 10,
+        "base_equal": 7,
+        "base_worsened": 3
+      }
+    },
+    "errors": {
+      "baseline": {
+        "timeouts": 10,
+        "crashes": 2,
+        "unscored": 0
+      },
+      "current": {
+        "timeouts": 14,
+        "crashes": 0,
+        "unscored": 0
+      }
+    },
+    "goal_regressions": [
+      {
+        "id": "c003",
+        "file": "06.xml",
+        "mode": "nt",
+        "baseline": 4,
+        "current": 3
+      },
+      {
+        "id": "c032",
+        "file": "35.xml",
+        "mode": "nt",
+        "baseline": 18,
+        "current": 17
+      },
+      {
+        "id": "c033",
+        "file": "36.xml",
+        "mode": "it",
+        "baseline": 19,
+        "current": 13
+      }
+    ]
+  }
+}

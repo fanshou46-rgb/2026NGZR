@@ -1,0 +1,146 @@
+{
+  "pairs": 12,
+  "common_scored_pairs": 11,
+  "note": "Comparable totals require scores on both arms; all missing results remain in scores.csv and raw evidence.",
+  "scopes": {
+    "all": {
+      "pairs": 11,
+      "baseline": {
+        "base": 6669,
+        "official_score": 6807,
+        "final_goals": 180,
+        "credited_constraints": 0,
+        "action_cost": 531,
+        "platform_seconds": 47.732
+      },
+      "current": {
+        "base": 5109,
+        "official_score": 5359,
+        "final_goals": 138,
+        "credited_constraints": 2,
+        "action_cost": 451,
+        "platform_seconds": 41.951
+      },
+      "same_actions": 0,
+      "base_improved": 3,
+      "base_equal": 0,
+      "base_worsened": 8
+    },
+    "stage1": {
+      "pairs": 0,
+      "baseline": {
+        "base": 0,
+        "official_score": 0,
+        "final_goals": 0,
+        "credited_constraints": 0,
+        "action_cost": 0,
+        "platform_seconds": 0
+      },
+      "current": {
+        "base": 0,
+        "official_score": 0,
+        "final_goals": 0,
+        "credited_constraints": 0,
+        "action_cost": 0,
+        "platform_seconds": 0
+      },
+      "same_actions": 0,
+      "base_improved": 0,
+      "base_equal": 0,
+      "base_worsened": 0
+    },
+    "stage2": {
+      "pairs": 11,
+      "baseline": {
+        "base": 6669,
+        "official_score": 6807,
+        "final_goals": 180,
+        "credited_constraints": 0,
+        "action_cost": 531,
+        "platform_seconds": 47.732
+      },
+      "current": {
+        "base": 5109,
+        "official_score": 5359,
+        "final_goals": 138,
+        "credited_constraints": 2,
+        "action_cost": 451,
+        "platform_seconds": 41.951
+      },
+      "same_actions": 0,
+      "base_improved": 3,
+      "base_equal": 0,
+      "base_worsened": 8
+    }
+  },
+  "errors": {
+    "baseline": {
+      "timeouts": 4,
+      "crashes": 1,
+      "unscored": 1
+    },
+    "current": {
+      "timeouts": 3,
+      "crashes": 0,
+      "unscored": 0
+    }
+  },
+  "goal_regressions": [
+    {
+      "id": "c019",
+      "file": "22.xml",
+      "mode": "it",
+      "baseline": 20,
+      "current": 10
+    },
+    {
+      "id": "c020",
+      "file": "23.xml",
+      "mode": "it",
+      "baseline": 21,
+      "current": 6
+    },
+    {
+      "id": "c020",
+      "file": "23.xml",
+      "mode": "nt",
+      "baseline": 20,
+      "current": 11
+    },
+    {
+      "id": "c021",
+      "file": "24.xml",
+      "mode": "it",
+      "baseline": 20,
+      "current": 15
+    },
+    {
+      "id": "c021",
+      "file": "24.xml",
+      "mode": "nt",
+      "baseline": 20,
+      "current": 15
+    },
+    {
+      "id": "c033",
+      "file": "36.xml",
+      "mode": "it",
+      "baseline": 23,
+      "current": 19
+    },
+    {
+      "id": "c069",
+      "file": "P09.xml",
+      "mode": "it",
+      "baseline": 4,
+      "current": 2
+    },
+    {
+      "id": "c069",
+      "file": "P09.xml",
+      "mode": "nt",
+      "baseline": 4,
+      "current": 2
+    }
+  ]
+}

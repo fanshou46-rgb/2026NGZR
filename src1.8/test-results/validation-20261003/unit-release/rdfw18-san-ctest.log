@@ -1,0 +1,810 @@
+Test project /tmp/rdfw18-sanitizer-release
+        Start   1: probe_layer_0
+  1/200 Test   #1: probe_layer_0 ....................   Passed    0.05 sec
+        Start   2: probe_layer_1
+  2/200 Test   #2: probe_layer_1 ....................   Passed    0.05 sec
+        Start   3: probe_layer_2
+  3/200 Test   #3: probe_layer_2 ....................   Passed    0.04 sec
+        Start   4: probe_layer_3
+  4/200 Test   #4: probe_layer_3 ....................   Passed    0.04 sec
+        Start   5: probe_layer_4
+  5/200 Test   #5: probe_layer_4 ....................   Passed    0.04 sec
+        Start   6: probe_layer_5
+  6/200 Test   #6: probe_layer_5 ....................   Passed    0.03 sec
+        Start   7: probe_layer_6
+  7/200 Test   #7: probe_layer_6 ....................   Passed    0.05 sec
+        Start   8: probe_layer_7
+  8/200 Test   #8: probe_layer_7 ....................   Passed    0.06 sec
+        Start   9: probe_layer_8
+  9/200 Test   #9: probe_layer_8 ....................   Passed    0.05 sec
+        Start  10: probe_layer_9
+ 10/200 Test  #10: probe_layer_9 ....................   Passed    0.05 sec
+        Start  11: probe_layer_10
+ 11/200 Test  #11: probe_layer_10 ...................   Passed    0.04 sec
+        Start  12: probe_layer_11
+ 12/200 Test  #12: probe_layer_11 ...................   Passed    0.05 sec
+        Start  13: probe_layer_12
+ 13/200 Test  #13: probe_layer_12 ...................   Passed    0.05 sec
+        Start  14: probe_layer_13
+ 14/200 Test  #14: probe_layer_13 ...................   Passed    0.05 sec
+        Start  15: probe_layer_14
+ 15/200 Test  #15: probe_layer_14 ...................   Passed    0.04 sec
+        Start  16: probe_layer_15
+ 16/200 Test  #16: probe_layer_15 ...................   Passed    0.04 sec
+        Start  17: probe_layer_16
+ 17/200 Test  #17: probe_layer_16 ...................   Passed    0.05 sec
+        Start  18: probe_layer_17
+ 18/200 Test  #18: probe_layer_17 ...................   Passed    0.04 sec
+        Start  19: probe_layer_18
+ 19/200 Test  #19: probe_layer_18 ...................   Passed    0.05 sec
+        Start  20: probe_layer_19
+ 20/200 Test  #20: probe_layer_19 ...................   Passed    0.04 sec
+        Start  21: probe_layer_20
+ 21/200 Test  #21: probe_layer_20 ...................   Passed    0.06 sec
+        Start  22: probe_layer_21
+ 22/200 Test  #22: probe_layer_21 ...................   Passed    0.04 sec
+        Start  23: probe_layer_22
+ 23/200 Test  #23: probe_layer_22 ...................   Passed    0.05 sec
+        Start  24: probe_layer_23
+ 24/200 Test  #24: probe_layer_23 ...................   Passed    0.03 sec
+        Start  25: probe_layer_24
+ 25/200 Test  #25: probe_layer_24 ...................   Passed    0.04 sec
+        Start  26: probe_layer_25
+ 26/200 Test  #26: probe_layer_25 ...................   Passed    0.03 sec
+        Start  27: probe_layer_26
+ 27/200 Test  #27: probe_layer_26 ...................   Passed    0.04 sec
+        Start  28: probe_layer_27
+ 28/200 Test  #28: probe_layer_27 ...................   Passed    0.03 sec
+        Start  29: probe_layer_28
+ 29/200 Test  #29: probe_layer_28 ...................   Passed    0.03 sec
+        Start  30: probe_layer_29
+ 30/200 Test  #30: probe_layer_29 ...................   Passed    0.04 sec
+        Start  31: probe_layer_30
+ 31/200 Test  #31: probe_layer_30 ...................   Passed    0.03 sec
+        Start  32: probe_layer_31
+ 32/200 Test  #32: probe_layer_31 ...................   Passed    0.05 sec
+        Start  33: probe_layer_32
+ 33/200 Test  #33: probe_layer_32 ...................   Passed    0.03 sec
+        Start  34: probe_layer_33
+ 34/200 Test  #34: probe_layer_33 ...................   Passed    0.03 sec
+        Start  35: probe_layer_34
+ 35/200 Test  #35: probe_layer_34 ...................   Passed    0.03 sec
+        Start  36: probe_layer_35
+ 36/200 Test  #36: probe_layer_35 ...................   Passed    0.04 sec
+        Start  37: probe_layer_36
+ 37/200 Test  #37: probe_layer_36 ...................   Passed    0.07 sec
+        Start  38: unified_scheduler_0
+ 38/200 Test  #38: unified_scheduler_0 ..............   Passed    0.05 sec
+        Start  39: unified_scheduler_1
+ 39/200 Test  #39: unified_scheduler_1 ..............   Passed    0.04 sec
+        Start  40: unified_scheduler_2
+ 40/200 Test  #40: unified_scheduler_2 ..............   Passed    0.06 sec
+        Start  41: unified_scheduler_3
+ 41/200 Test  #41: unified_scheduler_3 ..............   Passed    0.04 sec
+        Start  42: unified_scheduler_4
+ 42/200 Test  #42: unified_scheduler_4 ..............***Exception: Child aborted  1.99 sec
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":2,"phase":"unit","task_index":0,"task_label":"open","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":34,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=unit rank=1 task_index=0 behave=open legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=0 score_after=34 marginal_score=34 utility=34 gained_goals=[0] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":3,"phase":"unit","task_index":1,"task_label":"close","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":34,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=unit rank=2 task_index=1 behave=close legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=0 score_after=34 marginal_score=34 utility=34 gained_goals=[1] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":4,"phase":"unit","task_index":2,"task_label":"pickup","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":34,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=unit rank=3 task_index=2 behave=pickup legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=0 score_after=34 marginal_score=34 utility=34 gained_goals=[2] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+unified_scheduler_tests: /mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/src1.8/tests/unified_scheduler_tests.cpp:124: int main(int, char**): Assertion `A::Guard(*w)' failed.
+
+        Start  43: unified_scheduler_5
+ 43/200 Test  #43: unified_scheduler_5 ..............   Passed    0.04 sec
+        Start  44: unified_scheduler_6
+ 44/200 Test  #44: unified_scheduler_6 ..............   Passed    0.05 sec
+        Start  45: unified_scheduler_7
+ 45/200 Test  #45: unified_scheduler_7 ..............   Passed    0.05 sec
+        Start  46: unified_scheduler_8
+ 46/200 Test  #46: unified_scheduler_8 ..............***Exception: Child aborted  1.91 sec
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":1,"phase":"unit","task_index":0,"task_label":"open","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":34,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=unit rank=1 task_index=0 behave=open legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=0 score_after=34 marginal_score=34 utility=34 gained_goals=[0] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":2,"phase":"unit","task_index":1,"task_label":"close","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":34,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=unit rank=2 task_index=1 behave=close legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=0 score_after=34 marginal_score=34 utility=34 gained_goals=[1] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":3,"phase":"unit","task_index":2,"task_label":"pickup","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":34,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=unit rank=3 task_index=2 behave=pickup legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=0 score_after=34 marginal_score=34 utility=34 gained_goals=[2] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+unified_scheduler_tests: /mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/src1.8/tests/unified_scheduler_tests.cpp:144: int main(int, char**): Assertion `A::Guard(*w)' failed.
+
+        Start  47: unified_scheduler_9
+ 47/200 Test  #47: unified_scheduler_9 ..............   Passed    0.04 sec
+        Start  48: unified_scheduler_10
+ 48/200 Test  #48: unified_scheduler_10 .............   Passed    0.05 sec
+        Start  49: unified_scheduler_11
+ 49/200 Test  #49: unified_scheduler_11 .............   Passed    0.05 sec
+        Start  50: unified_scheduler_12
+ 50/200 Test  #50: unified_scheduler_12 .............   Passed    0.03 sec
+        Start  51: unified_scheduler_13
+ 51/200 Test  #51: unified_scheduler_13 .............   Passed    0.04 sec
+        Start  52: unified_scheduler_14
+ 52/200 Test  #52: unified_scheduler_14 .............   Passed    0.05 sec
+        Start  53: unified_scheduler_15
+ 53/200 Test  #53: unified_scheduler_15 .............   Passed    0.04 sec
+        Start  54: unified_scheduler_16
+ 54/200 Test  #54: unified_scheduler_16 .............   Passed    0.07 sec
+        Start  55: unified_scheduler_17
+ 55/200 Test  #55: unified_scheduler_17 .............   Passed    0.02 sec
+        Start  56: unified_scheduler_18
+ 56/200 Test  #56: unified_scheduler_18 .............   Passed    0.08 sec
+        Start  57: unified_scheduler_19
+ 57/200 Test  #57: unified_scheduler_19 .............   Passed    0.05 sec
+        Start  58: input_safety_tests
+ 58/200 Test  #58: input_safety_tests ...............   Passed    0.04 sec
+        Start  59: three_a_tests
+ 59/200 Test  #59: three_a_tests ....................   Passed    0.05 sec
+        Start  60: question_preflight_tests
+ 60/200 Test  #60: question_preflight_tests .........   Passed    0.12 sec
+        Start  61: legal_preservation_tests
+ 61/200 Test  #61: legal_preservation_tests .........   Passed    0.05 sec
+        Start  62: recovery_evidence_tests
+ 62/200 Test  #62: recovery_evidence_tests ..........   Passed    0.05 sec
+        Start  63: task_group_search_tests
+ 63/200 Test  #63: task_group_search_tests ..........   Passed    0.03 sec
+        Start  64: task_group_projection_tests
+ 64/200 Test  #64: task_group_projection_tests ......   Passed    0.06 sec
+        Start  65: guarded_decision_tests
+ 65/200 Test  #65: guarded_decision_tests ...........***Exception: Child aborted  2.25 sec
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+[LOG]:[PlannerVersion] 1.8 default=greedy+guarded+belief-probe
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32m
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+[LOG]:[Preflight] task raw=1 unique=1 duplicate=0 rejected=0; constraint raw=0 unique=0 duplicate=0 rejected=0; world_errors=0
+Pos  0:(T):
+Pos  1:(T):[32m(robot hold:0 plate:0)[0m[33m(1 human)[0m
+Pos  2:(T):[33m(2 table)[0m
+UnknownPos:
+
+Task:
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:table,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+
+Info:
+
+Not_Info:
+
+Not_Task:
+
+NotNot_Info:
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+[DBG] goto risk@loc=2 bool=0
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":1,"phase":"greedy-round","task_index":0,"task_label":"goto","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":1,"action_cost":4,"final_reward":36,"utility":36}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=1 task_index=0 behave=goto legacy_choice=false eligible=true complete=true actions=1 duration_ms=120 action_cost=4 score_before=0 score_after=36 marginal_score=36 utility=36 gained_goals=[0] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=0 behave=goto can_finish=true remaining_plan_ms=120 safety_ms=200 budget_remaining_ms=4995
+[0m
+[LOG]:[Scheduler] greedy task=0 marginal=36 remaining_ms=4995 group_attempt=true
+
+[LOG]:[GuardedDecision] compare greedy=36..36 stop=0..0 group_stop_safe=36 group_stop_broken=-1 winner=36 nodes=1
+
+[LOG]:[GuardedDecision] outcome=greedy reason=no_proven_strict_improvement cumulative_ms=6
+
+[LOG]:[36m[3B][Deadline] phase=greedy-execution task_index=0 behave=goto can_finish=true remaining_plan_ms=120 safety_ms=200 budget_remaining_ms=4988
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_selected","candidate_id":1,"task_index":0,"tasks":[0],"task_label":"goto","generated_ms":4,"world_revision":0,"selection_reason":"greedy_highest_qualified_marginal_score","prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":1,"action_cost":4,"final_reward":36,"utility":36},"expected_reward":36,"evidence":[{"object_id":0,"fact":"location","source":"action_success","verified":true},{"object_id":1,"fact":"location","source":"initial","verified":true},{"object_id":2,"fact":"location","source":"initial","verified":true},{"object_id":0,"fact":"hold","source":"initial","verified":true},{"object_id":0,"fact":"plate","source":"initial","verified":true}]}
+[LOG]:[36m[3B][Remaining] event=begin task_index=0 behave=goto executed=0 total=1 remaining_utility=36 remaining_duration_ms=120
+[0m
+goto table的风险系数是：0
+[LOG]:Move(2)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=Move executed=1 total=1 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_result","candidate_id":1,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":1,"action_cost":4,"final_reward":36,"utility":36},"actual":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":1,"action_cost":4,"final_reward":36,"utility":36},"succeeded":true,"failed_action":false,"failure_reasons":[],"error":{"goal_gain":0,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"action_cost":0,"utility":0}}
+[LOG]:[36m[3B][Remaining] event=end task_index=0 behave=goto succeeded=true executed=1 total=1 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[Scheduler] result task=0 stable_id=0 success=true revision=1 attempts=1
+
+[LOG]:[Scheduler] stop reason=goals_complete_or_deadline
+
+
+Sovled Task Num:1    Expect Num:1
+[LOG]:[36m[3A][final] goals=1/1 (unknown=0), constraints=0/0 (unknown=0), base_score=36, action_cost=4, elapsed=13ms, remaining=4987ms
+[0m
+[LOG]:[36m[3A][final] completed_goals=[0:goto], satisfied_constraints=[]
+[0m
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+[LOG]:[PlannerVersion] 1.8 default=greedy+guarded+belief-probe
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32m
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+[LOG]:[Preflight] task raw=1 unique=1 duplicate=0 rejected=0; constraint raw=0 unique=0 duplicate=0 rejected=0; world_errors=0
+Pos  0:(T):
+Pos  1:(T):[32m(robot hold:0 plate:0)[0m[33m(1 human)[0m
+Pos  2:(T):[33m(2 table)[0m
+UnknownPos:
+
+Task:
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:table,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+
+Info:
+
+Not_Info:
+
+Not_Task:
+
+NotNot_Info:
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+[DBG] goto risk@loc=2 bool=0
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":1,"phase":"greedy-round","task_index":0,"task_label":"goto","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":1,"action_cost":4,"final_reward":36,"utility":36}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=1 task_index=0 behave=goto legacy_choice=false eligible=true complete=true actions=1 duration_ms=120 action_cost=4 score_before=0 score_after=36 marginal_score=36 utility=36 gained_goals=[0] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=0 behave=goto can_finish=true remaining_plan_ms=120 safety_ms=200 budget_remaining_ms=4997
+[0m
+[LOG]:[Scheduler] greedy task=0 marginal=36 remaining_ms=4997 group_attempt=true
+
+[LOG]:[GuardedDecision] compare greedy=36..36 stop=0..0 group_stop_safe=36 group_stop_broken=-1 winner=36 nodes=1
+
+[LOG]:[GuardedDecision] outcome=greedy reason=no_proven_strict_improvement cumulative_ms=5
+
+[LOG]:[36m[3B][Deadline] phase=greedy-execution task_index=0 behave=goto can_finish=true remaining_plan_ms=120 safety_ms=200 budget_remaining_ms=4991
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_selected","candidate_id":1,"task_index":0,"tasks":[0],"task_label":"goto","generated_ms":3,"world_revision":0,"selection_reason":"greedy_highest_qualified_marginal_score","prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":1,"action_cost":4,"final_reward":36,"utility":36},"expected_reward":36,"evidence":[{"object_id":0,"fact":"location","source":"action_success","verified":true},{"object_id":1,"fact":"location","source":"initial","verified":true},{"object_id":2,"fact":"location","source":"initial","verified":true},{"object_id":0,"fact":"hold","source":"initial","verified":true},{"object_id":0,"fact":"plate","source":"initial","verified":true}]}
+[LOG]:[36m[3B][Remaining] event=begin task_index=0 behave=goto executed=0 total=1 remaining_utility=36 remaining_duration_ms=120
+[0m
+goto table的风险系数是：0
+[LOG]:Move(2)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=Move executed=1 total=1 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_result","candidate_id":1,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":1,"action_cost":4,"final_reward":36,"utility":36},"actual":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":1,"action_cost":4,"final_reward":36,"utility":36},"succeeded":true,"failed_action":false,"failure_reasons":[],"error":{"goal_gain":0,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"action_cost":0,"utility":0}}
+[LOG]:[36m[3B][Remaining] event=end task_index=0 behave=goto succeeded=true executed=1 total=1 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[Scheduler] result task=0 stable_id=0 success=true revision=1 attempts=1
+
+[LOG]:[Scheduler] stop reason=goals_complete_or_deadline
+
+
+Sovled Task Num:1    Expect Num:1
+[LOG]:[36m[3A][final] goals=1/1 (unknown=0), constraints=0/0 (unknown=0), base_score=36, action_cost=4, elapsed=10ms, remaining=4990ms
+[0m
+[LOG]:[36m[3A][final] completed_goals=[0:goto], satisfied_constraints=[]
+[0m
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+[LOG]:[PlannerVersion] 1.8 default=greedy+guarded+belief-probe
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32m
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+[LOG]:[Preflight] task raw=3 unique=3 duplicate=0 rejected=0; constraint raw=0 unique=0 duplicate=0 rejected=0; world_errors=0
+Pos  0:(T):
+Pos  1:(T):[32m(robot hold:0 plate:0)[0m[33m(1 human)[0m
+Pos  2:(T):[33m(2 cupboard inside:[] Closed)[0m(4 cup)
+Pos  3:(T):[33m(3 closet inside:[] Open)[0m
+UnknownPos:
+
+Task:
+Behave:[35mopen[0m
+ConditionX:[35m(Sort:cupboard,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mclose[0m
+ConditionX:[35m(Sort:closet,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mpickup[0m
+ConditionX:[35m(Sort:cup,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+
+Info:
+
+Not_Info:
+
+Not_Task:
+
+NotNot_Info:
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":1,"phase":"greedy-round","task_index":0,"task_label":"open","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":34,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=1 task_index=0 behave=open legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=0 score_after=34 marginal_score=34 utility=34 gained_goals=[0] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":2,"phase":"greedy-round","task_index":1,"task_label":"close","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":34,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=2 task_index=1 behave=close legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=0 score_after=34 marginal_score=34 utility=34 gained_goals=[1] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":3,"phase":"greedy-round","task_index":2,"task_label":"pickup","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":34,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=3 task_index=2 behave=pickup legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=0 score_after=34 marginal_score=34 utility=34 gained_goals=[2] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=0 behave=open can_finish=true remaining_plan_ms=220 safety_ms=200 budget_remaining_ms=4995
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=1 behave=close can_finish=true remaining_plan_ms=220 safety_ms=200 budget_remaining_ms=4995
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=2 behave=pickup can_finish=true remaining_plan_ms=220 safety_ms=200 budget_remaining_ms=4994
+[0m
+[LOG]:[Scheduler] greedy task=0 marginal=34 remaining_ms=4994 group_attempt=true
+
+[LOG]:[GuardedDecision] compare greedy=72..72 stop=0..0 group_stop_safe=106 group_stop_broken=-1 winner=106 nodes=15
+
+[LOG]:[36m[3B][Deadline] phase=guarded-execution task_index=1 behave=close can_finish=true remaining_plan_ms=540 safety_ms=200 budget_remaining_ms=4970
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_selected","candidate_id":18,"task_index":1,"tasks":[1,0,2],"task_label":"close","generated_ms":30,"world_revision":0,"selection_reason":"guarded_task_group","prediction":{"goal_gain":3,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":3,"maintained_constraints":0,"action_count":5,"action_cost":14,"final_reward":106,"utility":106},"expected_reward":106,"evidence":[{"object_id":0,"fact":"location","source":"action_success","verified":true},{"object_id":1,"fact":"location","source":"initial","verified":true},{"object_id":2,"fact":"location","source":"action_success","verified":true},{"object_id":2,"fact":"container_state","source":"action_success","verified":true},{"object_id":3,"fact":"location","source":"action_success","verified":true},{"object_id":3,"fact":"container_state","source":"action_success","verified":true},{"object_id":4,"fact":"location","source":"action_success","verified":true},{"object_id":4,"fact":"inside","source":"action_success","verified":true},{"object_id":0,"fact":"hold","source":"action_success","verified":true},{"object_id":0,"fact":"plate","source":"initial","verified":true}]}
+[LOG]:[36m[3B][Remaining] event=begin task_index=1 behave=close executed=0 total=5 remaining_utility=106 remaining_duration_ms=540
+[0m
+close closet的风险系数是：0
+[LOG]:Move(3)
+[LOG]:[36m[3B][Remaining] event=action task_index=1 action=Move executed=1 total=5 remaining_utility=110 remaining_duration_ms=420 can_finish=true
+[0m
+[LOG]:(3,closet) has closed
+[LOG]:[36m[3B][Remaining] event=action task_index=1 action=Close executed=2 total=5 remaining_utility=112 remaining_duration_ms=320 can_finish=true
+[0m
+open cupboard的风险系数是：0
+[LOG]:Move(2)
+[LOG]:[36m[3B][Remaining] event=action task_index=1 action=Move executed=3 total=5 remaining_utility=76 remaining_duration_ms=200 can_finish=true
+[0m
+[LOG]:Open(2,cupboard)
+[LOG]:[36m[3B][Remaining] event=action task_index=1 action=Open executed=4 total=5 remaining_utility=78 remaining_duration_ms=100 can_finish=true
+[0m
+pickup cup的风险系数是：0
+[LOG]:PickUp(4,cup)
+[LOG]:[36m[3B][Remaining] event=action task_index=1 action=PickUp executed=5 total=5 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_result","candidate_id":18,"prediction":{"goal_gain":3,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":3,"maintained_constraints":0,"action_count":5,"action_cost":14,"final_reward":106,"utility":106},"actual":{"goal_gain":3,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":3,"maintained_constraints":0,"action_count":5,"action_cost":14,"final_reward":106,"utility":106},"succeeded":true,"failed_action":false,"failure_reasons":[],"error":{"goal_gain":0,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"action_cost":0,"utility":0}}
+[LOG]:[36m[3B][Remaining] event=end task_index=1 behave=close succeeded=true executed=5 total=5 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[GuardedDecision] outcome=group_then_stop group=[1,0,2] reference_upper=72 predicted_lower=106 tail=stop
+
+
+Sovled Task Num:3    Expect Num:3
+[LOG]:[36m[3A][final] goals=3/3 (unknown=0), constraints=0/0 (unknown=0), base_score=106, action_cost=14, elapsed=31ms, remaining=4969ms
+[0m
+[LOG]:[36m[3A][final] completed_goals=[0:open,1:close,2:pickup], satisfied_constraints=[]
+[0m
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+[LOG]:[PlannerVersion] 1.8 default=greedy+guarded+belief-probe
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32m
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+[LOG]:[Preflight] task raw=3 unique=3 duplicate=0 rejected=0; constraint raw=0 unique=0 duplicate=0 rejected=0; world_errors=0
+Pos  0:(T):
+Pos  1:(T):[32m(robot hold:0 plate:0)[0m[33m(1 human)[0m
+Pos  2:(T):[33m(2 cupboard inside:[] Closed)[0m(4 cup)
+Pos  3:(T):[33m(3 closet inside:[] Open)[0m
+UnknownPos:
+
+Task:
+Behave:[35mopen[0m
+ConditionX:[35m(Sort:cupboard,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mclose[0m
+ConditionX:[35m(Sort:closet,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mpickup[0m
+ConditionX:[35m(Sort:cup,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+
+Info:
+
+Not_Info:
+
+Not_Task:
+
+NotNot_Info:
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":1,"phase":"greedy-round","task_index":0,"task_label":"open","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":34,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=1 task_index=0 behave=open legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=0 score_after=34 marginal_score=34 utility=34 gained_goals=[0] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":2,"phase":"greedy-round","task_index":1,"task_label":"close","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":34,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=2 task_index=1 behave=close legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=0 score_after=34 marginal_score=34 utility=34 gained_goals=[1] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":3,"phase":"greedy-round","task_index":2,"task_label":"pickup","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":34,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=3 task_index=2 behave=pickup legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=0 score_after=34 marginal_score=34 utility=34 gained_goals=[2] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=0 behave=open can_finish=true remaining_plan_ms=220 safety_ms=200 budget_remaining_ms=4997
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=1 behave=close can_finish=true remaining_plan_ms=220 safety_ms=200 budget_remaining_ms=4997
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=2 behave=pickup can_finish=true remaining_plan_ms=220 safety_ms=200 budget_remaining_ms=4997
+[0m
+[LOG]:[Scheduler] greedy task=0 marginal=34 remaining_ms=4997 group_attempt=true
+
+[LOG]:[GuardedDecision] outcome=greedy reason=search_incomplete_or_timeout cumulative_ms=25
+
+[LOG]:[36m[3B][Deadline] phase=greedy-execution task_index=0 behave=open can_finish=true remaining_plan_ms=220 safety_ms=200 budget_remaining_ms=4971
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_selected","candidate_id":1,"task_index":0,"tasks":[0],"task_label":"open","generated_ms":2,"world_revision":0,"selection_reason":"greedy_highest_qualified_marginal_score","prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":34,"utility":34},"expected_reward":34,"evidence":[{"object_id":0,"fact":"location","source":"action_success","verified":true},{"object_id":1,"fact":"location","source":"initial","verified":true},{"object_id":2,"fact":"location","source":"action_success","verified":true},{"object_id":2,"fact":"container_state","source":"action_success","verified":true},{"object_id":3,"fact":"location","source":"initial","verified":true},{"object_id":3,"fact":"container_state","source":"initial","verified":true},{"object_id":4,"fact":"location","source":"initial","verified":true},{"object_id":4,"fact":"inside","source":"initial","verified":true},{"object_id":0,"fact":"hold","source":"initial","verified":true},{"object_id":0,"fact":"plate","source":"initial","verified":true}]}
+[LOG]:[36m[3B][Remaining] event=begin task_index=0 behave=open executed=0 total=2 remaining_utility=34 remaining_duration_ms=220
+[0m
+open cupboard的风险系数是：0
+[LOG]:Move(2)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=Move executed=1 total=2 remaining_utility=38 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:Open(2,cupboard)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=Open executed=2 total=2 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_result","candidate_id":1,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":34,"utility":34},"actual":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":34,"utility":34},"succeeded":true,"failed_action":false,"failure_reasons":[],"error":{"goal_gain":0,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"action_cost":0,"utility":0}}
+[LOG]:[36m[3B][Remaining] event=end task_index=0 behave=open succeeded=true executed=2 total=2 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[Scheduler] result task=0 stable_id=0 success=true revision=2 attempts=1
+
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":17,"phase":"greedy-round","task_index":2,"task_label":"pickup","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":2,"maintained_constraints":0,"action_count":1,"action_cost":2,"final_reward":72,"utility":38}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=1 task_index=2 behave=pickup legacy_choice=false eligible=true complete=true actions=1 duration_ms=100 action_cost=2 score_before=34 score_after=72 marginal_score=38 utility=38 gained_goals=[2] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":16,"phase":"greedy-round","task_index":1,"task_label":"close","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":2,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":68,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=2 task_index=1 behave=close legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=34 score_after=68 marginal_score=34 utility=34 gained_goals=[1] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=2 behave=pickup can_finish=true remaining_plan_ms=100 safety_ms=200 budget_remaining_ms=4969
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=1 behave=close can_finish=true remaining_plan_ms=220 safety_ms=200 budget_remaining_ms=4969
+[0m
+[LOG]:[Scheduler] greedy task=2 marginal=38 remaining_ms=4969 group_attempt=true
+
+[LOG]:[GuardedDecision] compare greedy=72..72 stop=34..34 group_stop_safe=102 group_stop_broken=-1 winner=102 nodes=4
+
+[LOG]:[36m[3B][Deadline] phase=guarded-execution task_index=1 behave=close can_finish=true remaining_plan_ms=440 safety_ms=200 budget_remaining_ms=4961
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_selected","candidate_id":22,"task_index":1,"tasks":[1,2],"task_label":"close","generated_ms":39,"world_revision":2,"selection_reason":"guarded_task_group","prediction":{"goal_gain":2,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":3,"maintained_constraints":0,"action_count":4,"action_cost":12,"final_reward":102,"utility":68},"expected_reward":102,"evidence":[{"object_id":0,"fact":"location","source":"action_success","verified":true},{"object_id":1,"fact":"location","source":"initial","verified":true},{"object_id":2,"fact":"location","source":"action_success","verified":true},{"object_id":2,"fact":"container_state","source":"action_success","verified":true},{"object_id":3,"fact":"location","source":"action_success","verified":true},{"object_id":3,"fact":"container_state","source":"action_success","verified":true},{"object_id":4,"fact":"location","source":"action_success","verified":true},{"object_id":4,"fact":"inside","source":"action_success","verified":true},{"object_id":0,"fact":"hold","source":"action_success","verified":true},{"object_id":0,"fact":"plate","source":"initial","verified":true}]}
+[LOG]:[36m[3B][Remaining] event=begin task_index=1 behave=close executed=0 total=4 remaining_utility=68 remaining_duration_ms=440
+[0m
+close closet的风险系数是：0
+[LOG]:Move(3)
+[LOG]:[36m[3B][Remaining] event=action task_index=1 action=Move executed=1 total=4 remaining_utility=72 remaining_duration_ms=320 can_finish=true
+[0m
+[LOG]:(3,closet) has closed
+[LOG]:[36m[3B][Remaining] event=action task_index=1 action=Close executed=2 total=4 remaining_utility=74 remaining_duration_ms=220 can_finish=true
+[0m
+pickup cup的风险系数是：0
+[LOG]:Move(2)
+[LOG]:[36m[3B][Remaining] event=action task_index=1 action=Move executed=3 total=4 remaining_utility=38 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:PickUp(4,cup)
+[LOG]:[36m[3B][Remaining] event=action task_index=1 action=PickUp executed=4 total=4 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_result","candidate_id":22,"prediction":{"goal_gain":2,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":3,"maintained_constraints":0,"action_count":4,"action_cost":12,"final_reward":102,"utility":68},"actual":{"goal_gain":2,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":3,"maintained_constraints":0,"action_count":4,"action_cost":12,"final_reward":102,"utility":68},"succeeded":true,"failed_action":false,"failure_reasons":[],"error":{"goal_gain":0,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"action_cost":0,"utility":0}}
+[LOG]:[36m[3B][Remaining] event=end task_index=1 behave=close succeeded=true executed=4 total=4 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[GuardedDecision] outcome=group_then_stop group=[1,2] reference_upper=72 predicted_lower=102 tail=stop
+
+
+Sovled Task Num:3    Expect Num:3
+guarded_decision_tests: /mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/src1.8/tests/guarded_decision_tests.cpp:67: int main(int, char**): Assertion `new_route->GetScoreSnapshot().deterministic_base_score == 106' failed.
+
+        Start  66: score_semantics_tests
+ 66/200 Test  #66: score_semantics_tests ............   Passed    0.10 sec
+        Start  67: interval_gate_tests
+ 67/200 Test  #67: interval_gate_tests ..............   Passed    0.04 sec
+        Start  68: mutation_failure_0
+ 68/200 Test  #68: mutation_failure_0 ...............   Passed    0.33 sec
+        Start  69: mutation_failure_1
+ 69/200 Test  #69: mutation_failure_1 ...............   Passed    0.28 sec
+        Start  70: mutation_failure_2
+ 70/200 Test  #70: mutation_failure_2 ...............   Passed    0.28 sec
+        Start  71: mutation_failure_3
+ 71/200 Test  #71: mutation_failure_3 ...............   Passed    0.03 sec
+        Start  72: mutation_failure_4
+ 72/200 Test  #72: mutation_failure_4 ...............   Passed    3.95 sec
+        Start  73: mutation_failure_5
+ 73/200 Test  #73: mutation_failure_5 ...............   Passed    0.04 sec
+        Start  74: mutation_failure_6
+ 74/200 Test  #74: mutation_failure_6 ...............   Passed    0.03 sec
+        Start  75: mutation_failure_7
+ 75/200 Test  #75: mutation_failure_7 ...............   Passed    0.04 sec
+        Start  76: mutation_failure_8
+ 76/200 Test  #76: mutation_failure_8 ...............   Passed    0.03 sec
+        Start  77: mutation_failure_9
+ 77/200 Test  #77: mutation_failure_9 ...............   Passed    0.03 sec
+        Start  78: mutation_failure_10
+ 78/200 Test  #78: mutation_failure_10 ..............   Passed    0.04 sec
+        Start  79: mutation_failure_11
+ 79/200 Test  #79: mutation_failure_11 ..............   Passed    0.04 sec
+        Start  80: mutation_failure_12
+ 80/200 Test  #80: mutation_failure_12 ..............   Passed    0.04 sec
+        Start  81: mutation_failure_13
+ 81/200 Test  #81: mutation_failure_13 ..............   Passed    0.04 sec
+        Start  82: mutation_failure_14
+ 82/200 Test  #82: mutation_failure_14 ..............   Passed    2.93 sec
+        Start  83: mutation_failure_15
+ 83/200 Test  #83: mutation_failure_15 ..............   Passed    0.29 sec
+        Start  84: mutation_failure_16
+ 84/200 Test  #84: mutation_failure_16 ..............   Passed    0.37 sec
+        Start  85: mutation_failure_17
+ 85/200 Test  #85: mutation_failure_17 ..............   Passed    0.25 sec
+        Start  86: mutation_failure_18
+ 86/200 Test  #86: mutation_failure_18 ..............   Passed    0.28 sec
+        Start  87: mutation_failure_19
+ 87/200 Test  #87: mutation_failure_19 ..............   Passed    1.16 sec
+        Start  88: mutation_failure_20
+ 88/200 Test  #88: mutation_failure_20 ..............   Passed    0.97 sec
+        Start  89: mutation_failure_21
+ 89/200 Test  #89: mutation_failure_21 ..............   Passed    1.10 sec
+        Start  90: mutation_failure_22
+ 90/200 Test  #90: mutation_failure_22 ..............   Passed    0.95 sec
+        Start  91: mutation_failure_23
+ 91/200 Test  #91: mutation_failure_23 ..............   Passed    1.17 sec
+        Start  92: mutation_failure_24
+ 92/200 Test  #92: mutation_failure_24 ..............   Passed    1.09 sec
+        Start  93: mutation_failure_25
+ 93/200 Test  #93: mutation_failure_25 ..............   Passed    1.11 sec
+        Start  94: mutation_failure_26
+ 94/200 Test  #94: mutation_failure_26 ..............   Passed    1.10 sec
+        Start  95: mutation_failure_27
+ 95/200 Test  #95: mutation_failure_27 ..............   Passed    0.92 sec
+        Start  96: deadline_sensitivity
+ 96/200 Test  #96: deadline_sensitivity .............   Passed    0.04 sec
+        Start  97: state_invariant_0
+ 97/200 Test  #97: state_invariant_0 ................   Passed    0.02 sec
+        Start  98: state_invariant_1
+ 98/200 Test  #98: state_invariant_1 ................   Passed    0.02 sec
+        Start  99: state_invariant_2
+ 99/200 Test  #99: state_invariant_2 ................   Passed    0.02 sec
+        Start 100: state_invariant_3
+100/200 Test #100: state_invariant_3 ................   Passed    0.02 sec
+        Start 101: state_invariant_4
+101/200 Test #101: state_invariant_4 ................   Passed    0.02 sec
+        Start 102: state_invariant_5
+102/200 Test #102: state_invariant_5 ................   Passed    0.02 sec
+        Start 103: state_invariant_6
+103/200 Test #103: state_invariant_6 ................   Passed    0.03 sec
+        Start 104: state_invariant_7
+104/200 Test #104: state_invariant_7 ................   Passed    0.02 sec
+        Start 105: state_invariant_8
+105/200 Test #105: state_invariant_8 ................   Passed    0.02 sec
+        Start 106: state_invariant_9
+106/200 Test #106: state_invariant_9 ................   Passed    0.03 sec
+        Start 107: state_invariant_10
+107/200 Test #107: state_invariant_10 ...............   Passed    0.02 sec
+        Start 108: state_invariant_11
+108/200 Test #108: state_invariant_11 ...............   Passed    0.02 sec
+        Start 109: state_invariant_12
+109/200 Test #109: state_invariant_12 ...............   Passed    0.02 sec
+        Start 110: state_invariant_13
+110/200 Test #110: state_invariant_13 ...............   Passed    0.03 sec
+        Start 111: state_invariant_14
+111/200 Test #111: state_invariant_14 ...............   Passed    0.02 sec
+        Start 112: state_invariant_15
+112/200 Test #112: state_invariant_15 ...............   Passed    0.02 sec
+        Start 113: state_invariant_16
+113/200 Test #113: state_invariant_16 ...............   Passed    0.02 sec
+        Start 114: state_invariant_17
+114/200 Test #114: state_invariant_17 ...............   Passed    0.02 sec
+        Start 115: state_invariant_18
+115/200 Test #115: state_invariant_18 ...............   Passed    0.02 sec
+        Start 116: state_invariant_19
+116/200 Test #116: state_invariant_19 ...............   Passed    0.02 sec
+        Start 117: state_layer_0
+117/200 Test #117: state_layer_0 ....................   Passed    0.03 sec
+        Start 118: state_layer_1
+118/200 Test #118: state_layer_1 ....................   Passed    0.02 sec
+        Start 119: state_layer_2
+119/200 Test #119: state_layer_2 ....................   Passed    0.02 sec
+        Start 120: state_layer_3
+120/200 Test #120: state_layer_3 ....................   Passed    0.02 sec
+        Start 121: state_layer_4
+121/200 Test #121: state_layer_4 ....................   Passed    0.02 sec
+        Start 122: state_layer_5
+122/200 Test #122: state_layer_5 ....................   Passed    0.02 sec
+        Start 123: state_layer_6
+123/200 Test #123: state_layer_6 ....................   Passed    0.02 sec
+        Start 124: state_layer_7
+124/200 Test #124: state_layer_7 ....................   Passed    0.02 sec
+        Start 125: state_layer_8
+125/200 Test #125: state_layer_8 ....................   Passed    0.02 sec
+        Start 126: state_layer_9
+126/200 Test #126: state_layer_9 ....................   Passed    0.02 sec
+        Start 127: state_layer_10
+127/200 Test #127: state_layer_10 ...................   Passed    0.02 sec
+        Start 128: state_layer_11
+128/200 Test #128: state_layer_11 ...................   Passed    0.02 sec
+        Start 129: state_layer_12
+129/200 Test #129: state_layer_12 ...................   Passed    0.03 sec
+        Start 130: state_layer_13
+130/200 Test #130: state_layer_13 ...................   Passed    0.02 sec
+        Start 131: state_layer_14
+131/200 Test #131: state_layer_14 ...................   Passed    0.02 sec
+        Start 132: state_layer_15
+132/200 Test #132: state_layer_15 ...................   Passed    0.03 sec
+        Start 133: state_layer_16
+133/200 Test #133: state_layer_16 ...................   Passed    0.02 sec
+        Start 134: state_layer_17
+134/200 Test #134: state_layer_17 ...................   Passed    0.02 sec
+        Start 135: state_layer_18
+135/200 Test #135: state_layer_18 ...................   Passed    0.02 sec
+        Start 136: canonical_state_0
+136/200 Test #136: canonical_state_0 ................   Passed    0.02 sec
+        Start 137: canonical_state_1
+137/200 Test #137: canonical_state_1 ................   Passed    0.02 sec
+        Start 138: canonical_state_2
+138/200 Test #138: canonical_state_2 ................   Passed    0.02 sec
+        Start 139: canonical_state_3
+139/200 Test #139: canonical_state_3 ................   Passed    0.02 sec
+        Start 140: canonical_state_4
+140/200 Test #140: canonical_state_4 ................   Passed    0.02 sec
+        Start 141: canonical_state_5
+141/200 Test #141: canonical_state_5 ................   Passed    0.02 sec
+        Start 142: canonical_state_6
+142/200 Test #142: canonical_state_6 ................   Passed    0.02 sec
+        Start 143: canonical_state_7
+143/200 Test #143: canonical_state_7 ................   Passed    0.03 sec
+        Start 144: canonical_state_8
+144/200 Test #144: canonical_state_8 ................   Passed    0.02 sec
+        Start 145: canonical_state_9
+145/200 Test #145: canonical_state_9 ................   Passed    0.03 sec
+        Start 146: canonical_state_10
+146/200 Test #146: canonical_state_10 ...............   Passed    0.03 sec
+        Start 147: canonical_state_11
+147/200 Test #147: canonical_state_11 ...............   Passed    0.02 sec
+        Start 148: canonical_state_12
+148/200 Test #148: canonical_state_12 ...............   Passed    0.03 sec
+        Start 149: canonical_state_13
+149/200 Test #149: canonical_state_13 ...............   Passed    0.03 sec
+        Start 150: canonical_state_14
+150/200 Test #150: canonical_state_14 ...............   Passed    0.02 sec
+        Start 151: canonical_state_15
+151/200 Test #151: canonical_state_15 ...............   Passed    0.04 sec
+        Start 152: canonical_state_16
+152/200 Test #152: canonical_state_16 ...............   Passed    0.03 sec
+        Start 153: canonical_state_17
+153/200 Test #153: canonical_state_17 ...............   Passed    0.02 sec
+        Start 154: canonical_state_18
+154/200 Test #154: canonical_state_18 ...............   Passed    0.03 sec
+        Start 155: canonical_state_19
+155/200 Test #155: canonical_state_19 ...............   Passed    0.03 sec
+        Start 156: canonical_state_20
+156/200 Test #156: canonical_state_20 ...............   Passed    0.02 sec
+        Start 157: canonical_state_21
+157/200 Test #157: canonical_state_21 ...............   Passed    0.02 sec
+        Start 158: canonical_state_22
+158/200 Test #158: canonical_state_22 ...............   Passed    0.04 sec
+        Start 159: canonical_state_23
+159/200 Test #159: canonical_state_23 ...............   Passed    0.03 sec
+        Start 160: canonical_state_24
+160/200 Test #160: canonical_state_24 ...............   Passed    0.03 sec
+        Start 161: canonical_state_25
+161/200 Test #161: canonical_state_25 ...............   Passed    0.04 sec
+        Start 162: canonical_state_26
+162/200 Test #162: canonical_state_26 ...............   Passed    0.03 sec
+        Start 163: canonical_state_27
+163/200 Test #163: canonical_state_27 ...............   Passed    0.04 sec
+        Start 164: canonical_state_28
+164/200 Test #164: canonical_state_28 ...............   Passed    0.04 sec
+        Start 165: canonical_state_29
+165/200 Test #165: canonical_state_29 ...............   Passed    0.04 sec
+        Start 166: canonical_state_30
+166/200 Test #166: canonical_state_30 ...............   Passed    0.04 sec
+        Start 167: canonical_state_31
+167/200 Test #167: canonical_state_31 ...............   Passed    0.04 sec
+        Start 168: canonical_state_32
+168/200 Test #168: canonical_state_32 ...............   Passed    0.04 sec
+        Start 169: canonical_regression_0
+169/200 Test #169: canonical_regression_0 ...........   Passed    0.04 sec
+        Start 170: canonical_regression_1
+170/200 Test #170: canonical_regression_1 ...........   Passed    0.04 sec
+        Start 171: canonical_regression_2
+171/200 Test #171: canonical_regression_2 ...........   Passed    0.04 sec
+        Start 172: canonical_regression_3
+172/200 Test #172: canonical_regression_3 ...........   Passed    0.04 sec
+        Start 173: canonical_regression_4
+173/200 Test #173: canonical_regression_4 ...........   Passed    0.03 sec
+        Start 174: canonical_regression_5
+174/200 Test #174: canonical_regression_5 ...........   Passed    0.04 sec
+        Start 175: canonical_regression_6
+175/200 Test #175: canonical_regression_6 ...........   Passed    0.03 sec
+        Start 176: canonical_regression_7
+176/200 Test #176: canonical_regression_7 ...........   Passed    0.04 sec
+        Start 177: canonical_regression_8
+177/200 Test #177: canonical_regression_8 ...........   Passed    0.04 sec
+        Start 178: canonical_regression_9
+178/200 Test #178: canonical_regression_9 ...........   Passed    0.04 sec
+        Start 179: canonical_regression_10
+179/200 Test #179: canonical_regression_10 ..........   Passed    0.03 sec
+        Start 180: canonical_regression_11
+180/200 Test #180: canonical_regression_11 ..........   Passed    0.02 sec
+        Start 181: canonical_regression_12
+181/200 Test #181: canonical_regression_12 ..........   Passed    0.02 sec
+        Start 182: canonical_regression_13
+182/200 Test #182: canonical_regression_13 ..........   Passed    0.03 sec
+        Start 183: belief_probe_0
+183/200 Test #183: belief_probe_0 ...................   Passed    0.03 sec
+        Start 184: belief_probe_1
+184/200 Test #184: belief_probe_1 ...................   Passed    0.07 sec
+        Start 185: belief_probe_2
+185/200 Test #185: belief_probe_2 ...................   Passed    0.05 sec
+        Start 186: belief_probe_3
+186/200 Test #186: belief_probe_3 ...................   Passed    0.05 sec
+        Start 187: belief_probe_4
+187/200 Test #187: belief_probe_4 ...................   Passed    0.06 sec
+        Start 188: belief_probe_5
+188/200 Test #188: belief_probe_5 ...................   Passed    0.07 sec
+        Start 189: belief_probe_6
+189/200 Test #189: belief_probe_6 ...................   Passed    0.05 sec
+        Start 190: belief_probe_7
+190/200 Test #190: belief_probe_7 ...................   Passed    0.07 sec
+        Start 191: belief_probe_8
+191/200 Test #191: belief_probe_8 ...................   Passed    0.04 sec
+        Start 192: belief_probe_9
+192/200 Test #192: belief_probe_9 ...................   Passed    0.04 sec
+        Start 193: belief_probe_10
+193/200 Test #193: belief_probe_10 ..................   Passed    0.03 sec
+        Start 194: belief_probe_11
+194/200 Test #194: belief_probe_11 ..................   Passed    0.04 sec
+        Start 195: belief_probe_12
+195/200 Test #195: belief_probe_12 ..................   Passed    0.04 sec
+        Start 196: belief_probe_13
+196/200 Test #196: belief_probe_13 ..................   Passed    0.06 sec
+        Start 197: belief_probe_14
+197/200 Test #197: belief_probe_14 ..................   Passed    0.04 sec
+        Start 198: belief_probe_15
+198/200 Test #198: belief_probe_15 ..................   Passed    0.06 sec
+        Start 199: belief_probe_16
+199/200 Test #199: belief_probe_16 ..................   Passed    0.05 sec
+        Start 200: belief_probe_17
+200/200 Test #200: belief_probe_17 ..................   Passed    0.08 sec
+
+99% tests passed, 3 tests failed out of 200
+
+Total Test time (real) =  31.34 sec
+
+The following tests FAILED:
+	 42 - unified_scheduler_4 (Child aborted)
+	 46 - unified_scheduler_8 (Child aborted)
+	 65 - guarded_decision_tests (Child aborted)
+Errors while running CTest

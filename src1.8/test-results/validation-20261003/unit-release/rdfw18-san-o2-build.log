@@ -1,0 +1,96 @@
+Scanning dependencies of target rdfw_test_core
+[  1%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/src1.8/state_mutation.cpp.o
+[  3%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/src1.8/canonical_state.cpp.o
+[  5%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/src1.8/rdfw.cpp.o
+[  7%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/src1.8/probe_layer.cpp.o
+[  9%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/src1.8/belief_state.cpp.o
+[ 11%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/src1.8/parser.cpp.o
+[ 12%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/src1.8/deadline_manager.cpp.o
+[ 14%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/src1.8/terminal_checker.cpp.o
+[ 16%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/src1.8/legacy_priority.cpp.o
+[ 18%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/src1.8/score_evaluator.cpp.o
+[ 20%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/src1.8/candidate_plan.cpp.o
+[ 22%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/src1.8/task_group_search.cpp.o
+[ 24%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/src1.8/question_preflight.cpp.o
+[ 25%] Linking CXX static library librdfw_test_core.a
+[ 25%] Built target rdfw_test_core
+Scanning dependencies of target three_a_tests
+Scanning dependencies of target state_invariant_tests
+Scanning dependencies of target belief_probe_tests
+Scanning dependencies of target state_layer_tests
+[ 27%] Building CXX object CMakeFiles/state_invariant_tests.dir/state_invariant_tests.cpp.o
+[ 29%] Building CXX object CMakeFiles/three_a_tests.dir/three_a_tests.cpp.o
+[ 31%] Building CXX object CMakeFiles/belief_probe_tests.dir/belief_probe_tests.cpp.o
+[ 33%] Building CXX object CMakeFiles/state_layer_tests.dir/state_layer_tests.cpp.o
+[ 35%] Linking CXX executable three_a_tests
+[ 35%] Built target three_a_tests
+Scanning dependencies of target unified_scheduler_tests
+[ 37%] Building CXX object CMakeFiles/unified_scheduler_tests.dir/unified_scheduler_tests.cpp.o
+[ 38%] Linking CXX executable state_layer_tests
+[ 38%] Built target state_layer_tests
+Scanning dependencies of target recovery_evidence_tests
+[ 40%] Building CXX object CMakeFiles/recovery_evidence_tests.dir/recovery_evidence_tests.cpp.o
+[ 42%] Linking CXX executable belief_probe_tests
+[ 42%] Built target belief_probe_tests
+Scanning dependencies of target canonical_baseline_probe
+[ 44%] Building CXX object CMakeFiles/canonical_baseline_probe.dir/canonical_baseline_probe.cpp.o
+[ 46%] Linking CXX executable state_invariant_tests
+[ 46%] Built target state_invariant_tests
+Scanning dependencies of target deadline_sensitivity_tests
+[ 48%] Building CXX object CMakeFiles/deadline_sensitivity_tests.dir/deadline_sensitivity_tests.cpp.o
+[ 50%] Linking CXX executable deadline_sensitivity_tests
+[ 51%] Linking CXX executable canonical_baseline_probe
+[ 51%] Built target deadline_sensitivity_tests
+Scanning dependencies of target canonical_state_tests
+[ 53%] Building CXX object CMakeFiles/canonical_state_tests.dir/canonical_state_tests.cpp.o
+[ 53%] Built target canonical_baseline_probe
+Scanning dependencies of target probe_layer_tests
+[ 55%] Building CXX object CMakeFiles/probe_layer_tests.dir/probe_layer_tests.cpp.o
+[ 57%] Linking CXX executable unified_scheduler_tests
+[ 59%] Linking CXX executable recovery_evidence_tests
+[ 59%] Built target unified_scheduler_tests
+Scanning dependencies of target legal_preservation_tests
+[ 61%] Building CXX object CMakeFiles/legal_preservation_tests.dir/legal_preservation_tests.cpp.o
+[ 61%] Built target recovery_evidence_tests
+Scanning dependencies of target task_group_search_tests
+[ 62%] Building CXX object CMakeFiles/task_group_search_tests.dir/task_group_search_tests.cpp.o
+[ 64%] Linking CXX executable legal_preservation_tests
+[ 64%] Built target legal_preservation_tests
+Scanning dependencies of target question_preflight_tests
+[ 66%] Building CXX object CMakeFiles/question_preflight_tests.dir/question_preflight_tests.cpp.o
+[ 68%] Linking CXX executable canonical_state_tests
+[ 68%] Built target canonical_state_tests
+Scanning dependencies of target task_group_projection_tests
+[ 70%] Building CXX object CMakeFiles/task_group_projection_tests.dir/task_group_projection_tests.cpp.o
+[ 72%] Linking CXX executable probe_layer_tests
+[ 74%] Linking CXX executable question_preflight_tests
+[ 74%] Built target probe_layer_tests
+Scanning dependencies of target guarded_decision_tests
+[ 75%] Building CXX object CMakeFiles/guarded_decision_tests.dir/guarded_decision_tests.cpp.o
+[ 75%] Built target question_preflight_tests
+Scanning dependencies of target score_semantics_tests
+[ 77%] Building CXX object CMakeFiles/score_semantics_tests.dir/score_semantics_tests.cpp.o
+[ 79%] Linking CXX executable guarded_decision_tests
+[ 79%] Built target guarded_decision_tests
+[ 81%] Linking CXX executable task_group_projection_tests
+Scanning dependencies of target interval_gate_tests
+[ 83%] Building CXX object CMakeFiles/interval_gate_tests.dir/interval_gate_tests.cpp.o
+[ 85%] Linking CXX executable score_semantics_tests
+[ 85%] Built target task_group_projection_tests
+Scanning dependencies of target input_safety_tests
+[ 87%] Building CXX object CMakeFiles/input_safety_tests.dir/input_safety_tests.cpp.o
+[ 87%] Built target score_semantics_tests
+Scanning dependencies of target mutation_failure_tests
+[ 88%] Building CXX object CMakeFiles/mutation_failure_tests.dir/mutation_failure_tests.cpp.o
+[ 90%] Linking CXX executable input_safety_tests
+[ 90%] Built target input_safety_tests
+Scanning dependencies of target state_profile
+[ 92%] Building CXX object CMakeFiles/state_profile.dir/state_profile.cpp.o
+[ 94%] Linking CXX executable interval_gate_tests
+[ 96%] Linking CXX executable mutation_failure_tests
+[ 96%] Built target interval_gate_tests
+[ 96%] Built target mutation_failure_tests
+[ 98%] Linking CXX executable task_group_search_tests
+[ 98%] Built target task_group_search_tests
+[100%] Linking CXX executable state_profile
+[100%] Built target state_profile
