@@ -1,0 +1,26 @@
+{
+  "pairs": 284,
+  "runs": 568,
+  "inputs": 71,
+  "full_grid": true,
+  "official_goal_and_constraint_recount": true,
+  "action_cost_and_base_recount": true,
+  "component_reconciliation": true,
+  "category_sum_goal_loss": 492,
+  "category_sum_base_loss": 17332,
+  "goal_rows": 492,
+  "unexpected_gap_ids": [],
+  "repeat_differences": [],
+  "freeze": {
+    "products_unchanged": true,
+    "inputs_unchanged": true,
+    "pairs": 284,
+    "binaries": {
+      "baseline": "61461ebb41c2dc65787f6b50c7b4016c154173cdb834eec05cb35bd29c3ffb6f",
+      "current": "156a56467c31b6bee40c2aa73806b6b5c96f5f61ef846ad43a4694011c0e8ab2"
+    },
+    "violations": []
+  },
+  "safety_definition": "Observed old-only goals achieved with real positive action feedback / final official truth; every official constraint credited in baseline. A proposed new policy counterfactual was not executed.",
+  "causal_scope": "Trace-supported mechanism under one seed; repeated rounds are not independent random samples. First action divergence alone is not sufficient to identify the loss mechanism."
+}

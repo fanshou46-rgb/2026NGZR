@@ -1,0 +1,78 @@
+{
+  "c003": {
+    "primary": "constraint-gate-strict",
+    "secondary": ["ordering-cascade", "group-search-gap", "terminal/score-disagreement"],
+    "safety": "successful-constraint-trade",
+    "mechanism": "首次实动作分叉在共同完成白杯后：旧版先 PickUp 17，新版先 PickUp 13；两版最后均完成六个杯子目标。目标损失发生在后续书本任务：旧版在 check-phase 允许组合收益放行，进入地点3并完成四个书本目标；新版 requires_verified_group 过滤这些任务，Stage 2 guarded 不支持，Probe 的移动又被 constraint_safety_unknown 拒绝，在有余时停止。",
+    "safety_note": "旧版官方约束3/5，新版5/5；进入书桌和白瓶所在地3使两个约束失去信用。四个书本目标实际成功，但这不是全约束安全的恢复。错误椅子地点8触发的书本发现发生在共同前缀，随后已得到 Sense，不能把旧版独有的四个目标归为 legacy-lucky。",
+    "old_markers": ["phase=check-phase task=1 decision=execute", "[3A][final]"],
+    "new_markers": ["reason=requires_verified_group", "constraint_safety_unknown", "constraint_rejected", "[GuardedDecision]", "[3A][final]"]
+  },
+  "c007": {
+    "primary": "ordering-cascade",
+    "secondary": ["group-search-gap", "qualification-too-strict", "terminal/score-disagreement"],
+    "safety": "recoverable-safe-observed",
+    "mechanism": "旧版先完成白书 puton 再依次放物，最后 pickup 红罐18；新版第一轮选择边际34的 pickup18，随后放物需要暂时放下18，gain=1/loss=1，单任务边际为负且部分资格变为 false。五次 Probe 增加信息，仍无法消除该目标交换结构；Stage 2 没有任务组执行，最终只保留 pickup18。",
+    "safety_note": "旧版五目标全部由官方评分确认，禁止开冰箱的约束1/1仍有信用，获胜放物动作反馈均 true。旧版目标没有依赖本题错误的白杯/遥控器信息。安全恢复路径已在旧版观察到，但未测试新版的修改方案。",
+    "old_markers": ["phase=main-loop task=0 decision=execute", "[3A][final]"],
+    "new_markers": ["[Scheduler] greedy task=4", "lost_goals=[4]", "[GuardedDecision]", "[3A][final]"]
+  },
+  "c011": {
+    "primary": "retry-bound",
+    "secondary": ["ordering-cascade"],
+    "safety": "recoverable-safe-observed",
+    "mechanism": "第一动作旧版 Move14、新版 Move10。新版先执行 GOTO couch10，探索离开后反复重做；GOTO task4 三次均 success=true、attempts=1/2/3。随后 pickup16 与最后到地点1的 Probe 使 GOTO 不满足；任务尝试上限使其不再进入候选，最终比旧版少官方 goal5。旧版最后 Move10+Sense 保留 GOTO。",
+    "safety_note": "无约束；旧版独有 goal5 是末尾有意 Move10 达成，实际成功且可定位。旧版 AskLoc19 得到 inside(19,5) 与 XML 的 inside(19,12) 不符，TakeOut19 5/PutDown19 都失败；这个错误分支没有产生旧版独有目标。白杯21缺位置线索影响双方未完成的 give，而不是本次净损失。",
+    "old_markers": ["phase=terminal-recovery task=4 decision=execute", "[3A][final]"],
+    "new_markers": ["[Scheduler] result task=4", "task=4,stable_id=4,filter=task_retry_bound", "[3A][final]"]
+  },
+  "c015": {
+    "primary": "group-search-gap",
+    "secondary": ["ordering-cascade", "constraint-gate-strict", "terminal/score-disagreement"],
+    "safety": "recoverable-safe-observed",
+    "mechanism": "共同 PutDown10 后，旧版 Move45/PickUp29/Move44/PutDown29，再末尾 GOTO12；新版先 GOTO12，随后黑书 puton 将暂时失去 GOTO，单任务净边际非正。Stage 2 guarded 不支持，Probe 无法证明移动安全或投影含额外物理动作；新版放弃黑书。这里需要绑定 puton29 后返回12的组合才能保留两目标。",
+    "safety_note": "旧版官方20/20约束都有信用，黑书地点45与书桌44均来自正确原始信息，PickUp29/PutDown29均 true。丢失 goal4 属于安全可恢复路径；内部约束0/20 unknown=19 与官方信用20/20的差异单列。",
+    "old_markers": ["phase=main-loop task=2 decision=execute", "phase=terminal-recovery task=3 decision=execute", "[3A][final]"],
+    "new_markers": ["[Scheduler] greedy task=3", "nonpositive_single", "extra_physical_actions", "constraint_safety_unknown", "[3A][final]"]
+  },
+  "c019": {
+    "primary": "qualification-too-strict",
+    "secondary": ["constraint-gate-strict", "group-search-gap", "terminal/score-disagreement"],
+    "safety": "successful-constraint-trade",
+    "mechanism": "旧版初始 MustChooseOne 绕过 eligible=false，先 Move4/PickUp11，AskLoc5 经两次 not_known 后得到真实 at(5,6)，随后 Move6+Sense 确认沙发并逐物完成重复目标。新版先 GOTO桌子3；其他 puton 因资格不通过，Probe 的地点4被未知约束安全拒绝，在约4.8秒余量时停止。",
+    "safety_note": "旧版34个独有目标由实际放物和官方评分确认；原错误沙发位置4已被 AskLoc/Sense 纠正后才送达6。旧版官方0/2约束，新版2/2；这是执行约束交换后的实际高收益，不属于全约束安全 recoverable，也不是错误目标信息碰巧得分的 legacy-lucky。重复34项集中于7个对象放物，不等于34次独立物理成功。",
+    "old_markers": ["legacy_choice=true eligible=false", "phase=must-choose-one", "[3A][final]"],
+    "new_markers": ["reason=ineligible", "filter=risk_eligibility", "constraint_safety_unknown", "[3A][final]"]
+  },
+  "c020": {"same_review_as": "c019"},
+  "c021": {"same_review_as": "c019"},
+  "c031": {
+    "primary": "ordering-cascade",
+    "secondary": ["group-search-gap", "qualification-too-strict"],
+    "safety": "recoverable-safe-observed",
+    "mechanism": "旧版先 Move6 尝试黄色罐17，纠错后取黄色杯15；新版先 Move8/PickUp18。后续旧版在手空时 PickUp10/PutIn10 6，保留红杯目标28；新版优先完成其他重复 puton 和 pickup蓝杯11。末尾虽 Probe 到8看到红杯10，持有11使 putin10 6暂时失去pickup目标，非正单任务过滤且Stage 2无任务组执行。",
+    "safety_note": "无约束。独有goal28由正确的 at(10,8) 及 PickUp10/PutIn10 6 true 证实，未依赖本题关于罐17的错误 outside 信息。旧版罐17的失败与 AskLoc not_known 不构成 lucky 目标成功。",
+    "old_markers": ["behave=putin legacy_choice=true", "[3A][final]"],
+    "new_markers": ["task_label\":\"putin", "nonpositive_single", "[GuardedDecision]", "[3A][final]"]
+  },
+  "c032": {"same_review_as": "c031"},
+  "c033": {
+    "primary": "probe-coverage-gap",
+    "secondary": ["ordering-cascade", "group-search-gap", "qualification-too-strict"],
+    "safety": "recoverable-safe-observed",
+    "mechanism": "旧版先黑罐17的 puton，新版先绿色杯12的 puton。旧版在错误 outside14@6 上 PickUp14 失败后 AskLoc14 得到真实 inside(14,6)，随后 TakeOut14 6/PutDown14 成功，满足六个重复黑杯目标。新版 Probe 只 Move+Sense，看到地点6没有14形成冲突，无法发现 inside；重复相关上下文拒绝后停止。另一个红杯 putin29 因 pickup11已完成而出现 gain1/loss1的排序后果。",
+    "safety_note": "无约束；黑杯恢复在得到真实 inside反馈后执行，失败触发的纠错不是依赖错误信息碰巧达成目标。六重复目标由一次实际取出并放到沙发完成。红杯goal29的旧版成功由正确初始位置8与 PutIn10 6 true确认。",
+    "goal_override": {"29": "ordering-cascade"},
+    "old_markers": ["[3A][final]"],
+    "new_markers": ["LOCATION:14,reason=conflict", "duplicate_related_revision", "[GuardedDecision]", "[3A][final]"]
+  },
+  "c069": {
+    "primary": "group-search-gap",
+    "secondary": ["constraint-gate-strict"],
+    "safety": "successful-constraint-trade",
+    "mechanism": "旧版首先 PickUp5，经 putdown/open/putin 连续执行两物放入任务，最后 Close2；gate 日志明确用 group=2放行首任务。新版两物 putin 都 requires_verified_group，Stage 2 guarded不支持；一次 Sense后信息已完整，仍无可执行单任务，保留初始close与goto目标，少goal2/3。",
+    "safety_note": "旧版 putin2/3实际成功，基础分144超过新版99，但官方约束信用0/1对1/1；Open2导致历史约束损失，末尾Close2不恢复信用。应归为高收益约束交换，不是全约束安全recoverable。",
+    "old_markers": ["decision=execute score=68 incumbent=60 group=2", "[3A][final]"],
+    "new_markers": ["reason=requires_verified_group", "[GuardedDecision]", "[3A][final]"]
+  }
+}

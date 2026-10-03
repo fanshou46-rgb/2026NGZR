@@ -1,0 +1,98 @@
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+==11==poisoning: 0x7ffe3cb04070 188
+==11==poisoning: 0x7ffe3cb04230 188
+==11==poisoning: 0x7ffe3cb043f0 188
+#(RDFW): Dynamic arrays initialization completed
+==11==poisoning: 0x7ffe3cb04070 188
+==11==poisoning: 0x7ffe3cb04230 188
+==11==poisoning: 0x7ffe3cb043f0 188
+==11==unpoisoning: 0x7ffe3cb03ae0 518
+==11==unpoisoning: 0x7ffe3cb01c70 400
+==11==unpoisoning: 0x7ffe3cb02090 400
+==11==unpoisoning: 0x7ffe3cb024b0 400
+==11==unpoisoning: 0x7ffe3cb028d0 518
+==11==unpoisoning: 0x7ffe3cb01650 2a8
+==11==unpoisoning: 0x7ffe3cafea10 2e0
+==11==unpoisoning: 0x7ffe3cafea10 2e0
+==11==unpoisoning: 0x7ffe3cb02e10 518
+==11==poisoning: 0x7ffe3cb03ae0 518
+==11==unpoisoning: 0x7ffe3cb03940 178
+==11==poisoning: 0x7ffe3cb03940 178
+==11==unpoisoning: 0x7ffe3cb020a0 518
+==11==unpoisoning: 0x7ffe3caffbf0 400
+==11==unpoisoning: 0x7ffe3cb00010 400
+==11==unpoisoning: 0x7ffe3cb00430 400
+==11==unpoisoning: 0x7ffe3cb00850 518
+==11==unpoisoning: 0x7ffe3caff5d0 2a8
+==11==unpoisoning: 0x7ffe3cafc680 518
+==11==unpoisoning: 0x7ffe3cafa810 400
+==11==unpoisoning: 0x7ffe3cafac30 400
+==11==unpoisoning: 0x7ffe3cafb050 400
+==11==unpoisoning: 0x7ffe3cafb470 518
+==11==unpoisoning: 0x7ffe3cafa1f0 2a8
+==11==unpoisoning: 0x7ffe3caf75b0 2e0
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":1,"phase":"greedy-round","task_index":0,"task_label":"pickup","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":34,"utility":34}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=1 task_index=0 behave=pickup legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=6 score_before=0 score_after=34 marginal_score=34 utility=34 gained_goals=[0] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=0 behave=pickup can_finish=true remaining_plan_ms=220 safety_ms=200 budget_remaining_ms=5000
+[0m
+[LOG]:[Scheduler] greedy task=0 marginal=34 remaining_ms=5000 group_attempt=true
+
+==11==unpoisoning: 0x7ffe3caf75b0 2e0
+==11==unpoisoning: 0x7ffe3cafb9b0 518
+==11==poisoning: 0x7ffe3cafc680 518
+==11==unpoisoning: 0x7ffe3cafc4e0 178
+==11==poisoning: 0x7ffe3cafc4e0 178
+==11==unpoisoning: 0x7ffe3cafca20 178
+==11==unpoisoning: 0x7ffe3cafc1c0 2e0
+==11==unpoisoning: 0x7ffe3cafc1c0 2e0
+==11==unpoisoning: 0x7ffe3cafc460 178
+==11==unpoisoning: 0x7ffe3cb00d90 518
+==11==unpoisoning: 0x7ffe3cb035a0 a50
+==11==unpoisoning: 0x7ffe3cb00910 520
+==11==poisoning: 0x7ffe3cb00910 520
+==11==unpoisoning: 0x7ffe3cb025e0 518
+==11==unpoisoning: 0x7ffe3cb02b20 518
+==11==unpoisoning: 0x7ffe3caffcc0 400
+==11==unpoisoning: 0x7ffe3cb000e0 400
+==11==unpoisoning: 0x7ffe3cb00500 400
+==11==unpoisoning: 0x7ffe3cb00920 518
+==11==unpoisoning: 0x7ffe3caff6a0 2a8
+==11==unpoisoning: 0x7ffe3cafca60 2e0
+==11==unpoisoning: 0x7ffe3cafca60 2e0
+==11==unpoisoning: 0x7ffe3cb00e60 518
+==11==poisoning: 0x7ffe3cb02b20 518
+==11==poisoning: 0x7ffe3cb02b20 518
+==11==unpoisoning: 0x7ffe3cb03e80 178
+==11==unpoisoning: 0x7ffe3cb03620 2e0
+[LOG]:[GuardedDecision] compare greedy=34..34 stop=0..0 group_stop_safe=34 group_stop_broken=-1 winner=34 nodes=1
+
+[LOG]:[GuardedDecision] outcome=greedy reason=no_proven_strict_improvement cumulative_ms=5
+
+[LOG]:[36m[3B][Deadline] phase=greedy-execution task_index=0 behave=pickup can_finish=true remaining_plan_ms=220 safety_ms=200 budget_remaining_ms=5000
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_selected","candidate_id":1,"task_index":0,"tasks":[0],"task_label":"pickup","generated_ms":0,"world_revision":0,"selection_reason":"greedy_highest_qualified_marginal_score","prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":34,"utility":34},"expected_reward":34,"evidence":[{"object_id":0,"fact":"location","source":"action_success","verified":true},{"object_id":1,"fact":"location","source":"initial","verified":true},{"object_id":2,"fact":"location","source":"initial","verified":true},{"object_id":2,"fact":"container_state","source":"initial","verified":true},{"object_id":3,"fact":"location","source":"action_success","verified":true},{"object_id":3,"fact":"inside","source":"action_success","verified":true},{"object_id":4,"fact":"location","source":"initial","verified":true},{"object_id":4,"fact":"inside","source":"initial","verified":true},{"object_id":0,"fact":"hold","source":"action_success","verified":true},{"object_id":0,"fact":"plate","source":"initial","verified":true}]}
+[LOG]:[36m[3B][Remaining] event=begin task_index=0 behave=pickup executed=0 total=2 remaining_utility=34 remaining_duration_ms=220
+[0m
+pickup book的风险系数是：0
+==11==unpoisoning: 0x7ffe3cb03620 2e0
+==11==unpoisoning: 0x7ffe3cb038c0 178
+[LOG]:Move(2)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=Move executed=1 total=2 remaining_utility=38 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:PickUp(3,book)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=PickUp executed=2 total=2 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_result","candidate_id":1,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":34,"utility":34},"actual":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":2,"action_cost":6,"final_reward":34,"utility":34},"succeeded":true,"failed_action":false,"failure_reasons":[],"error":{"goal_gain":0,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"action_cost":0,"utility":0}}
+[LOG]:[36m[3B][Remaining] event=end task_index=0 behave=pickup succeeded=true executed=2 total=2 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[Scheduler] result task=0 stable_id=0 success=true revision=2 attempts=1
+
+[LOG]:[Scheduler] stop reason=goals_complete_or_deadline
+

@@ -1,0 +1,844 @@
+[LOG]:-stage
+[LOG]:-nlp
+[LOG]:-err
+[LOG]:-ask_2
+[LOG]:-path
+[LOG]:nlp 1, err 1
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+#(Plug): Timeout=5000
+[LOG]:[PlannerVersion] 1.7.1 default=greedy+guarded+bounded-probe
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32mcase.xml
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+[LOG]:[32mGo to the microwave.[0m
+[LOG]:<S:>
+  <VP:>
+    <VP:>
+      <V:go>
+      <PREP:to>
+    <NP:>
+      <ART:the>
+      <N:microwave>
+
+[LOG]:[32mPut the book which is white on the plant.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:put>
+    <NP:>
+      <NP:>
+        <ART:the>
+        <N:book>
+      <WHICH:which>
+      <VP:>
+        <BE:is>
+        <ADJ:white>
+    <PREP:on>
+    <NP:>
+      <ART:the>
+      <N:plant>
+
+[LOG]:[32mPut the cup which is black on the plant.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:put>
+    <NP:>
+      <NP:>
+        <ART:the>
+        <N:cup>
+      <WHICH:which>
+      <VP:>
+        <BE:is>
+        <ADJ:black>
+    <PREP:on>
+    <NP:>
+      <ART:the>
+      <N:plant>
+
+[LOG]:[32mPut the book which is black on the desk.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:put>
+    <NP:>
+      <NP:>
+        <ART:the>
+        <N:book>
+      <WHICH:which>
+      <VP:>
+        <BE:is>
+        <ADJ:black>
+    <PREP:on>
+    <NP:>
+      <ART:the>
+      <N:desk>
+
+[LOG]:[32mThe cup which is green must be near the chair.[0m
+[LOG]:<S:>
+  <NP:>
+    <NP:>
+      <ART:the>
+      <N:cup>
+    <WHICH:which>
+    <VP:>
+      <BE:is>
+      <ADJ:green>
+  <VP:>
+    <MUST:must>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <N:chair>
+
+[LOG]:[32mThe cup which is green must be near the blue remotecontrol.[0m
+[LOG]:<S:>
+  <NP:>
+    <NP:>
+      <ART:the>
+      <N:cup>
+    <WHICH:which>
+    <VP:>
+      <BE:is>
+      <ADJ:green>
+  <VP:>
+    <MUST:must>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <ADJ:blue>
+        <N:remotecontrol>
+
+[LOG]:[32mThe cup which is green must be near the white bottle.[0m
+[LOG]:<S:>
+  <NP:>
+    <NP:>
+      <ART:the>
+      <N:cup>
+    <WHICH:which>
+    <VP:>
+      <BE:is>
+      <ADJ:green>
+  <VP:>
+    <MUST:must>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <ADJ:white>
+        <N:bottle>
+
+[LOG]:[32mThe cup which is green must be near the red bottle.[0m
+[LOG]:<S:>
+  <NP:>
+    <NP:>
+      <ART:the>
+      <N:cup>
+    <WHICH:which>
+    <VP:>
+      <BE:is>
+      <ADJ:green>
+  <VP:>
+    <MUST:must>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <ADJ:red>
+        <N:bottle>
+
+[LOG]:[32mThe cup which is green must be near the green bottle.[0m
+[LOG]:<S:>
+  <NP:>
+    <NP:>
+      <ART:the>
+      <N:cup>
+    <WHICH:which>
+    <VP:>
+      <BE:is>
+      <ADJ:green>
+  <VP:>
+    <MUST:must>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <ADJ:green>
+        <N:bottle>
+
+[LOG]:[32mThe cup which is green must be near the black bottle.[0m
+[LOG]:<S:>
+  <NP:>
+    <NP:>
+      <ART:the>
+      <N:cup>
+    <WHICH:which>
+    <VP:>
+      <BE:is>
+      <ADJ:green>
+  <VP:>
+    <MUST:must>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <ADJ:black>
+        <N:bottle>
+
+[LOG]:[32mThe cup which is green must be near the white can.[0m
+[LOG]:<S:>
+  <NP:>
+    <NP:>
+      <ART:the>
+      <N:cup>
+    <WHICH:which>
+    <VP:>
+      <BE:is>
+      <ADJ:green>
+  <VP:>
+    <MUST:must>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <ADJ:white>
+        <N:can>
+
+[LOG]:[32mThe cup which is green must be near the white remotecontrol.[0m
+[LOG]:<S:>
+  <NP:>
+    <NP:>
+      <ART:the>
+      <N:cup>
+    <WHICH:which>
+    <VP:>
+      <BE:is>
+      <ADJ:green>
+  <VP:>
+    <MUST:must>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <ADJ:white>
+        <N:remotecontrol>
+
+[LOG]:[32mThe cup which is black must not be near the plant.[0m
+[LOG]:<S:>
+  <NP:>
+    <NP:>
+      <ART:the>
+      <N:cup>
+    <WHICH:which>
+    <VP:>
+      <BE:is>
+      <ADJ:black>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <N:plant>
+
+[LOG]:[32mThe cup which is black must not be near the red remotecontrol.[0m
+[LOG]:<S:>
+  <NP:>
+    <NP:>
+      <ART:the>
+      <N:cup>
+    <WHICH:which>
+    <VP:>
+      <BE:is>
+      <ADJ:black>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <ADJ:red>
+        <N:remotecontrol>
+
+[LOG]:[32mThe cup which is black must not be near the white cup.[0m
+[LOG]:<S:>
+  <NP:>
+    <NP:>
+      <ART:the>
+      <N:cup>
+    <WHICH:which>
+    <VP:>
+      <BE:is>
+      <ADJ:black>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <ADJ:white>
+        <N:cup>
+
+[LOG]:[32mThe cup which is black must not be near the blue cup.[0m
+[LOG]:<S:>
+  <NP:>
+    <NP:>
+      <ART:the>
+      <N:cup>
+    <WHICH:which>
+    <VP:>
+      <BE:is>
+      <ADJ:black>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <ADJ:blue>
+        <N:cup>
+
+[LOG]:[32mThe cup which is black must not be near the red cup.[0m
+[LOG]:<S:>
+  <NP:>
+    <NP:>
+      <ART:the>
+      <N:cup>
+    <WHICH:which>
+    <VP:>
+      <BE:is>
+      <ADJ:black>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <ADJ:red>
+        <N:cup>
+
+[LOG]:[32mThe cup which is black must not be near the yellow cup.[0m
+[LOG]:<S:>
+  <NP:>
+    <NP:>
+      <ART:the>
+      <N:cup>
+    <WHICH:which>
+    <VP:>
+      <BE:is>
+      <ADJ:black>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <ADJ:yellow>
+        <N:cup>
+
+[LOG]:[32mThe cup which is black must not be near the red can.[0m
+[LOG]:<S:>
+  <NP:>
+    <NP:>
+      <ART:the>
+      <N:cup>
+    <WHICH:which>
+    <VP:>
+      <BE:is>
+      <ADJ:black>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <ADJ:red>
+        <N:can>
+
+[LOG]:[32mThe cup which is black must not be near the blue cup.[0m
+[LOG]:<S:>
+  <NP:>
+    <NP:>
+      <ART:the>
+      <N:cup>
+    <WHICH:which>
+    <VP:>
+      <BE:is>
+      <ADJ:black>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <ADJ:blue>
+        <N:cup>
+
+[LOG]:[32mThe cup which is black must not be near the red cup.[0m
+[LOG]:<S:>
+  <NP:>
+    <NP:>
+      <ART:the>
+      <N:cup>
+    <WHICH:which>
+    <VP:>
+      <BE:is>
+      <ADJ:black>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <ADJ:red>
+        <N:cup>
+
+[LOG]:[32mThe cup which is black must not be near the yellow cup.[0m
+[LOG]:<S:>
+  <NP:>
+    <NP:>
+      <ART:the>
+      <N:cup>
+    <WHICH:which>
+    <VP:>
+      <BE:is>
+      <ADJ:black>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <ADJ:yellow>
+        <N:cup>
+
+[LOG]:[32mThe cup which is black must not be near the red can.[0m
+[LOG]:<S:>
+  <NP:>
+    <NP:>
+      <ART:the>
+      <N:cup>
+    <WHICH:which>
+    <VP:>
+      <BE:is>
+      <ADJ:black>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <ADJ:red>
+        <N:can>
+
+[LOG]:[32mThe cup which is green must be near the blue can.[0m
+[LOG]:<S:>
+  <NP:>
+    <NP:>
+      <ART:the>
+      <N:cup>
+    <WHICH:which>
+    <VP:>
+      <BE:is>
+      <ADJ:green>
+  <VP:>
+    <MUST:must>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <ADJ:blue>
+        <N:can>
+
+[LOG]:[Preflight] task raw=4 unique=4 duplicate=0 rejected=0; constraint raw=20 unique=16 duplicate=4 rejected=0; world_errors=0
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m
+Pos  2:(T):[33m(2 plant)[0m(3 remotecontrol)(7 cup)(8 cup)(9 cup)(12 cup)(22 can)(24 can)
+Pos  3:(T):[32m(robot hold:10 plate:11)[0m[33m(4 chair)[0m(10 cup)(11 cup)(16 bottle)(17 bottle)(19 can)(20 can)(27 book)(30 book)
+Pos  4:(T):
+Pos  5:(T):
+Pos  6:(T):(18 bottle)
+Pos  7:(T):
+Pos  8:(T):
+Pos  9:(T):(23 can)
+Pos 10:(T):
+Pos 11:(T):
+Pos 12:(T):(5 remotecontrol)(6 remotecontrol)(14 bottle)(15 bottle)[33m(28 microwave inside:[] Open)[0m
+Pos 13:(T):
+Pos 14:(T):
+Pos 15:(T):
+Pos 16:(T):
+Pos 17:(T):
+Pos 18:(T):
+Pos 19:(T):
+Pos 20:(T):
+Pos 21:(T):
+Pos 22:(T):
+Pos 23:(T):
+Pos 24:(T):
+Pos 25:(T):
+Pos 26:(T):
+Pos 27:(T):
+Pos 28:(T):
+Pos 29:(T):
+Pos 30:(T):
+Pos 31:(T):
+Pos 32:(T):
+Pos 33:(T):
+Pos 34:(T):
+Pos 35:(T):
+Pos 36:(T):
+Pos 37:(T):
+Pos 38:(T):
+Pos 39:(T):
+Pos 40:(T):
+Pos 41:(T):
+Pos 42:(T):
+Pos 43:(T):
+Pos 44:(T):[33m(31 desk)[0m
+Pos 45:(T):(29 book)
+UnknownPos:
+[34m(13 bottle)[0m [34m(21 can)[0m [34m(25 book)[0m [34m(26 book)[0m 
+[LOG]:[32m[MustIn] correction done.
+[0m
+[LOG]:[32m[MustNear] relation obj 10 <-> obj 4
+[0m
+[LOG]:[32m[MustNear] relation obj 10 <-> obj 5
+[0m
+[LOG]:[32m[MustNear] relation obj 10 <-> obj 14
+[0m
+[LOG]:[32m[MustNear] relation obj 10 <-> obj 15
+[0m
+[LOG]:[32m[MustNear] relation obj 10 <-> obj 16
+[0m
+[LOG]:[32m[MustNear] relation obj 10 <-> obj 17
+[0m
+[LOG]:[32m[MustNear] relation obj 10 <-> obj 20
+[0m
+[LOG]:[32m[MustNear] relation obj 10 <-> obj 6
+[0m
+[LOG]:[32m[MustNear] relation obj 10 <-> obj 19
+[0m
+[LOG]:[32m[MustNear] inferred obj 5 at location 3
+[0m
+[LOG]:[32m[MustNear] inferred obj 6 at location 3
+[0m
+[LOG]:[32m[MustNear] inferred obj 14 at location 3
+[0m
+[LOG]:[32m[MustNear] inferred obj 15 at location 3
+[0m
+[LOG]:[32m[MustNear] correction done.
+[0m
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m
+Pos  2:(T):[33m(2 plant)[0m(3 remotecontrol)(7 cup)(8 cup)(9 cup)(12 cup)(22 can)(24 can)
+Pos  3:(T):[32m(robot hold:10 plate:11)[0m[33m(4 chair)[0m(5 remotecontrol)(6 remotecontrol)(10 cup)(11 cup)(14 bottle)(15 bottle)(16 bottle)(17 bottle)(19 can)(20 can)(27 book)(30 book)
+Pos  4:(T):
+Pos  5:(T):
+Pos  6:(T):(18 bottle)
+Pos  7:(T):
+Pos  8:(T):
+Pos  9:(T):(23 can)
+Pos 10:(T):
+Pos 11:(T):
+Pos 12:(T):[33m(28 microwave inside:[] Open)[0m
+Pos 13:(T):
+Pos 14:(T):
+Pos 15:(T):
+Pos 16:(T):
+Pos 17:(T):
+Pos 18:(T):
+Pos 19:(T):
+Pos 20:(T):
+Pos 21:(T):
+Pos 22:(T):
+Pos 23:(T):
+Pos 24:(T):
+Pos 25:(T):
+Pos 26:(T):
+Pos 27:(T):
+Pos 28:(T):
+Pos 29:(T):
+Pos 30:(T):
+Pos 31:(T):
+Pos 32:(T):
+Pos 33:(T):
+Pos 34:(T):
+Pos 35:(T):
+Pos 36:(T):
+Pos 37:(T):
+Pos 38:(T):
+Pos 39:(T):
+Pos 40:(T):
+Pos 41:(T):
+Pos 42:(T):
+Pos 43:(T):
+Pos 44:(T):[33m(31 desk)[0m
+Pos 45:(T):(29 book)
+UnknownPos:
+[34m(13 bottle)[0m [34m(21 can)[0m [34m(25 book)[0m [34m(26 book)[0m 
+Task:
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:microwave,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:book,Color:white)[0m
+ConditionY:[35m(Sort:plant,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:plant,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:book,Color:black)[0m
+ConditionY:[35m(Sort:desk,Color:)[0m
+
+Info:
+
+Not_Info:
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:plant,Color:)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:remotecontrol,Color:red)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:cup,Color:white)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:cup,Color:blue)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:cup,Color:red)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:cup,Color:yellow)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:can,Color:red)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:cup,Color:blue)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:cup,Color:red)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:cup,Color:yellow)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:cup,Color:black)[0m
+ConditionY:[35m(Sort:can,Color:red)[0m
+
+Not_Task:
+
+NotNot_Info:
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:cup,Color:green)[0m
+ConditionY:[35m(Sort:chair,Color:)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:cup,Color:green)[0m
+ConditionY:[35m(Sort:remotecontrol,Color:blue)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:cup,Color:green)[0m
+ConditionY:[35m(Sort:bottle,Color:white)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:cup,Color:green)[0m
+ConditionY:[35m(Sort:bottle,Color:red)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:cup,Color:green)[0m
+ConditionY:[35m(Sort:bottle,Color:green)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:cup,Color:green)[0m
+ConditionY:[35m(Sort:bottle,Color:black)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:cup,Color:green)[0m
+ConditionY:[35m(Sort:can,Color:white)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:cup,Color:green)[0m
+ConditionY:[35m(Sort:remotecontrol,Color:white)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:cup,Color:green)[0m
+ConditionY:[35m(Sort:can,Color:blue)[0m
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+the hold object must putdown here!
+[LOG]:PutDown(10,cup)
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+[LOG]:[32m[MultiPuton] Big object 2 (sort: plant) appears in 2 puton tasks[0m
+[LOG]:[33m[MultiPuton] Marked task 0 as multi-puton for object 2[0m
+[LOG]:[33m[MultiPuton] Marked task 1 as multi-puton for object 2[0m
+[DBG] goto risk@loc=12 bool=0
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":4,"phase":"greedy-round","task_index":3,"task_label":"goto","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":4,"completed_goals":1,"maintained_constraints":0,"action_count":2,"action_cost":5,"final_reward":33,"utility":35}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=1 task_index=3 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=-2 score_after=33 marginal_score=35 utility=35 gained_goals=[3] lost_goals=[] broken_constraints=[] preserved_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":2,"phase":"greedy-round","task_index":1,"task_label":"puton","legacy_choice":false,"eligible":false,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":4,"completed_goals":1,"maintained_constraints":0,"action_count":4,"action_cost":9,"final_reward":29,"utility":31}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=2 task_index=1 behave=puton legacy_choice=false eligible=false complete=true actions=4 duration_ms=420 action_cost=9 score_before=-2 score_after=29 marginal_score=31 utility=31 gained_goals=[1] lost_goals=[] broken_constraints=[0,1,2,3,4,5,7,8,9] preserved_constraints=[6,10,11,12,13,14,15,16,17,18,19]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":3,"phase":"greedy-round","task_index":2,"task_label":"puton","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":4,"completed_goals":1,"maintained_constraints":0,"action_count":5,"action_cost":13,"final_reward":25,"utility":27}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=3 task_index=2 behave=puton legacy_choice=false eligible=true complete=true actions=5 duration_ms=540 action_cost=13 score_before=-2 score_after=25 marginal_score=27 utility=27 gained_goals=[2] lost_goals=[] broken_constraints=[] preserved_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":1,"phase":"greedy-round","task_index":0,"task_label":"puton","legacy_choice":false,"eligible":true,"dry_run_succeeded":false,"prediction":{"goal_gain":0,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":0,"maintained_constraints":4,"action_count":2,"action_cost":4,"final_reward":-6,"utility":-4}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=4 task_index=0 behave=puton legacy_choice=false eligible=true complete=false actions=2 duration_ms=200 action_cost=4 score_before=-2 score_after=-6 marginal_score=-4 utility=-4 gained_goals=[] lost_goals=[] broken_constraints=[] preserved_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=3 behave=goto can_finish=true remaining_plan_ms=220 safety_ms=200 budget_remaining_ms=4905
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=2 behave=puton can_finish=true remaining_plan_ms=540 safety_ms=200 budget_remaining_ms=4905
+[0m
+[LOG]:[TradeoffDecision] phase=greedy-filter task=3 decision=execute reason=legacy_priority lower=33 upper=553
+
+[LOG]:[Scheduler] filtered task=1 stable_id=2 marginal=31 reason=ineligible
+
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=2 behave=puton can_finish=true remaining_plan_ms=540 safety_ms=200 budget_remaining_ms=4905
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=3 behave=goto can_finish=true remaining_plan_ms=220 safety_ms=200 budget_remaining_ms=4905
+[0m
+[LOG]:[TradeoffDecision] phase=greedy-filter task=2 decision=execute reason=legacy_priority lower=25 upper=545
+
+[LOG]:[Scheduler] filtered task=0 stable_id=1 marginal=-4 reason=incomplete_projection
+
+[LOG]:[Scheduler] greedy task=3 marginal=35 remaining_ms=4905 group_attempt=true
+
+[LOG]:[GuardedDecision] outcome=greedy reason=unsupported_or_time stage=2 deferred_goto=false
+
+[LOG]:[36m[3B][Deadline] phase=greedy-execution task_index=3 behave=goto can_finish=true remaining_plan_ms=220 safety_ms=200 budget_remaining_ms=4905
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_selected","candidate_id":4,"task_index":3,"tasks":[3],"task_label":"goto","generated_ms":95,"world_revision":1,"selection_reason":"greedy_highest_qualified_marginal_score","prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":4,"completed_goals":1,"maintained_constraints":0,"action_count":2,"action_cost":5,"final_reward":33,"utility":35},"expected_reward":33,"evidence":[{"object_id":0,"fact":"location","source":"action_success","verified":true},{"object_id":1,"fact":"location","source":"initial","verified":false},{"object_id":2,"fact":"location","source":"initial","verified":false},{"object_id":3,"fact":"location","source":"initial","verified":false},{"object_id":3,"fact":"inside","source":"initial","verified":false},{"object_id":4,"fact":"location","source":"constraint_derived","verified":false},{"object_id":5,"fact":"location","source":"constraint_derived","verified":false},{"object_id":5,"fact":"inside","source":"initial","verified":false},{"object_id":6,"fact":"location","source":"constraint_derived","verified":false},{"object_id":6,"fact":"inside","source":"initial","verified":false},{"object_id":7,"fact":"location","source":"initial","verified":false},{"object_id":7,"fact":"inside","source":"initial","verified":false},{"object_id":8,"fact":"location","source":"initial","verified":false},{"object_id":8,"fact":"inside","source":"initial","verified":false},{"object_id":9,"fact":"location","source":"initial","verified":false},{"object_id":9,"fact":"inside","source":"initial","verified":false},{"object_id":10,"fact":"location","source":"action_success","verified":true},{"object_id":10,"fact":"inside","source":"action_success","verified":true},{"object_id":11,"fact":"location","source":"relation_derived","verified":false},{"object_id":11,"fact":"inside","source":"initial","verified":false},{"object_id":12,"fact":"location","source":"initial","verified":false},{"object_id":12,"fact":"inside","source":"initial","verified":false},{"object_id":14,"fact":"location","source":"constraint_derived","verified":false},{"object_id":14,"fact":"inside","source":"initial","verified":false},{"object_id":15,"fact":"location","source":"constraint_derived","verified":false},{"object_id":15,"fact":"inside","source":"initial","verified":false},{"object_id":16,"fact":"location","source":"constraint_derived","verified":false},{"object_id":16,"fact":"inside","source":"initial","verified":false},{"object_id":17,"fact":"location","source":"constraint_derived","verified":false},{"object_id":17,"fact":"inside","source":"initial","verified":false},{"object_id":18,"fact":"location","source":"initial","verified":false},{"object_id":18,"fact":"inside","source":"initial","verified":false},{"object_id":19,"fact":"location","source":"constraint_derived","verified":false},{"object_id":19,"fact":"inside","source":"initial","verified":false},{"object_id":20,"fact":"location","source":"constraint_derived","verified":false},{"object_id":20,"fact":"inside","source":"initial","verified":false},{"object_id":22,"fact":"location","source":"initial","verified":false},{"object_id":22,"fact":"inside","source":"initial","verified":false},{"object_id":23,"fact":"location","source":"initial","verified":false},{"object_id":23,"fact":"inside","source":"initial","verified":false},{"object_id":24,"fact":"location","source":"initial","verified":false},{"object_id":24,"fact":"inside","source":"initial","verified":false},{"object_id":27,"fact":"location","source":"initial","verified":false},{"object_id":27,"fact":"inside","source":"initial","verified":false},{"object_id":28,"fact":"location","source":"sense","verified":true},{"object_id":28,"fact":"container_state","source":"initial","verified":false},{"object_id":29,"fact":"location","source":"initial","verified":false},{"object_id":29,"fact":"inside","source":"initial","verified":false},{"object_id":30,"fact":"location","source":"initial","verified":false},{"object_id":30,"fact":"inside","source":"initial","verified":false},{"object_id":31,"fact":"location","source":"initial","verified":false},{"object_id":0,"fact":"hold","source":"action_success","verified":true},{"object_id":0,"fact":"plate","source":"initial","verified":false}]}
+[LOG]:[36m[3B][Remaining] event=begin task_index=3 behave=goto executed=0 total=2 remaining_utility=35 remaining_duration_ms=220
+[0m
+goto microwave的风险系数是：0
+[LOG]:Move(12)
+[LOG]:[36m[3B][Remaining] event=action task_index=3 action=Move executed=1 total=2 remaining_utility=39 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:[36m[3B][Remaining] event=action task_index=3 action=Sense executed=2 total=2 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[32m[SenseCurrentLocationOnly] Location 12 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Container 28 detected at location 12
+[LOG]:[SenseCurrentLocationOnly] Object 11 detected at location 12
+[LOG]:[32m[MustNear] inferred obj 4 at location 3
+[0m
+[LOG]:[32m[MustNear] inferred obj 5 at location 3
+[0m
+[LOG]:[32m[MustNear] inferred obj 6 at location 3
+[0m
+[LOG]:[32m[MustNear] inferred obj 14 at location 3
+[0m
+[LOG]:[32m[MustNear] inferred obj 15 at location 3
+[0m
+[LOG]:[32m[MustNear] inferred obj 16 at location 3
+[0m
+[LOG]:[32m[MustNear] inferred obj 17 at location 3
+[0m
+[LOG]:[32m[MustNear] inferred obj 19 at location 3
+[0m
+[LOG]:[32m[MustNear] inferred obj 20 at location 3
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_result","candidate_id":4,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":4,"completed_goals":1,"maintained_constraints":0,"action_count":2,"action_cost":5,"final_reward":33,"utility":35},"actual":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":4,"completed_goals":1,"maintained_constraints":0,"action_count":2,"action_cost":5,"final_reward":33,"utility":35},"succeeded":true,"failed_action":false,"failure_reasons":[],"error":{"goal_gain":0,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"action_cost":0,"utility":0}}
+[LOG]:[36m[3B][Remaining] event=end task_index=3 behave=goto succeeded=true executed=2 total=2 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[Scheduler] result task=3 stable_id=0 success=true revision=3 attempts=1
+
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":5,"phase":"greedy-round","task_index":0,"task_label":"puton","legacy_choice":false,"eligible":true,"dry_run_succeeded":false,"prediction":{"goal_gain":0,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":2,"action_cost":4,"final_reward":29,"utility":-4}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=1 task_index=0 behave=puton legacy_choice=false eligible=true complete=false actions=2 duration_ms=200 action_cost=4 score_before=33 score_after=29 marginal_score=-4 utility=-4 gained_goals=[] lost_goals=[] broken_constraints=[] preserved_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":6,"phase":"greedy-round","task_index":1,"task_label":"puton","legacy_choice":false,"eligible":false,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":1,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":4,"action_cost":9,"final_reward":24,"utility":-9}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=2 task_index=1 behave=puton legacy_choice=false eligible=false complete=true actions=4 duration_ms=420 action_cost=9 score_before=33 score_after=24 marginal_score=-9 utility=-9 gained_goals=[1] lost_goals=[3] broken_constraints=[0,1,2,3,4,5,7,8,9] preserved_constraints=[6,10,11,12,13,14,15,16,17,18,19]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":7,"phase":"greedy-round","task_index":2,"task_label":"puton","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":1,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":5,"action_cost":13,"final_reward":20,"utility":-13}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=3 task_index=2 behave=puton legacy_choice=false eligible=true complete=true actions=5 duration_ms=540 action_cost=13 score_before=33 score_after=20 marginal_score=-13 utility=-13 gained_goals=[2] lost_goals=[3] broken_constraints=[] preserved_constraints=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
+[0m
+[LOG]:[Scheduler] filtered task=0 stable_id=1 marginal=-4 reason=incomplete_projection
+
+[LOG]:[Scheduler] filtered task=1 stable_id=2 marginal=-9 reason=ineligible
+
+[LOG]:[Scheduler] filtered task=2 stable_id=3 marginal=-13 reason=nonpositive_single
+
+[LOG]:[Scheduler] greedy task=18446744073709551615 marginal=0 remaining_ms=4706 group_attempt=true
+
+[LOG]:[GuardedDecision] outcome=greedy reason=unsupported_or_time stage=2 deferred_goto=false
+
+[LOG]:[Probe] {"schema":"probe.v1","event":"legacy_proposal","world_revision":3,"total_probes":0,"consecutive_no_progress":0,"policy":[8,2,2],"reason":"0","closed_reason":""}
+
+[LOG]:[Probe] {"schema":"probe.v1","event":"blocked_task","world_revision":3,"total_probes":0,"consecutive_no_progress":0,"policy":[8,2,2],"reason":"task=0,stable_id=1,filter=incomplete_projection","closed_reason":""}
+
+[LOG]:[Probe] {"schema":"probe.v1","event":"blocking_fact","world_revision":3,"total_probes":0,"consecutive_no_progress":0,"policy":[8,2,2],"reason":"task=0,stable_id=1,filter=incomplete_projection,fact=LOCATION:26,reason=unknown","closed_reason":""}
+
+[LOG]:[Probe] {"schema":"probe.v1","event":"blocking_fact","world_revision":3,"total_probes":0,"consecutive_no_progress":0,"policy":[8,2,2],"reason":"task=0,stable_id=1,filter=incomplete_projection,fact=INSIDE:26,reason=unknown","closed_reason":""}
+
+[LOG]:[Probe] {"schema":"probe.v1","event":"blocking_fact","world_revision":3,"total_probes":0,"consecutive_no_progress":0,"policy":[8,2,2],"reason":"task=0,stable_id=1,filter=incomplete_projection,fact=LOCATION:2,reason=unverified","closed_reason":""}
+
+[LOG]:[Probe] {"schema":"probe.v1","event":"blocked_task","world_revision":3,"total_probes":0,"consecutive_no_progress":0,"policy":[8,2,2],"reason":"task=1,stable_id=2,filter=risk_eligibility","closed_reason":""}
+
+[LOG]:[Probe] {"schema":"probe.v1","event":"blocking_fact","world_revision":3,"total_probes":0,"consecutive_no_progress":0,"policy":[8,2,2],"reason":"task=1,stable_id=2,filter=risk_eligibility,fact=INSIDE:11,reason=unverified","closed_reason":""}
+
+[LOG]:[Probe] {"schema":"probe.v1","event":"blocking_fact","world_revision":3,"total_probes":0,"consecutive_no_progress":0,"policy":[8,2,2],"reason":"task=1,stable_id=2,filter=risk_eligibility,fact=LOCATION:2,reason=unverified","closed_reason":""}
+
+[LOG]:[Probe] {"schema":"probe.v1","event":"blocked_task","world_revision":3,"total_probes":0,"consecutive_no_progress":0,"policy":[8,2,2],"reason":"task=2,stable_id=3,filter=nonpositive_single","closed_reason":""}
+
+[LOG]:[Probe] {"schema":"probe.v1","event":"blocking_fact","world_revision":3,"total_probes":0,"consecutive_no_progress":0,"policy":[8,2,2],"reason":"task=2,stable_id=3,filter=nonpositive_single,fact=LOCATION:29,reason=unverified","closed_reason":""}
+
+[LOG]:[Probe] {"schema":"probe.v1","event":"blocking_fact","world_revision":3,"total_probes":0,"consecutive_no_progress":0,"policy":[8,2,2],"reason":"task=2,stable_id=3,filter=nonpositive_single,fact=INSIDE:29,reason=unverified","closed_reason":""}
+
+[LOG]:[Probe] {"schema":"probe.v1","event":"blocking_fact","world_revision":3,"total_probes":0,"consecutive_no_progress":0,"policy":[8,2,2],"reason":"task=2,stable_id=3,filter=nonpositive_single,fact=LOCATION:31,reason=unverified","closed_reason":""}
+
+[LOG]:[Probe] {"schema":"probe.v1","event":"candidate","world_revision":3,"total_probes":0,"consecutive_no_progress":0,"policy":[8,2,2],"reason":"constraint_safety_unknown","closed_reason":"","signature":"sense_at:45","kind":"MoveSense","target_location":45,"eligible":false,"cost":5,"duration_ms":220,"fact_count":2,"potential_goal_value":40,"stable_id":3,"constraint_result":"constraint_safety_unknown","facts":[{"field":"LOCATION","id":29,"task":2,"stable_task_id":3,"reason":"unverified","location_hints":[{"location":45,"source":"object_location:claim_source=1"}]},{"field":"INSIDE","id":29,"task":2,"stable_task_id":3,"reason":"unverified","location_hints":[{"location":45,"source":"object_location:claim_source=1"}]}]}
+
+[LOG]:[Probe] {"schema":"probe.v1","event":"candidate","world_revision":3,"total_probes":0,"consecutive_no_progress":0,"policy":[8,2,2],"reason":"extra_physical_actions","closed_reason":"","signature":"sense_at:2","kind":"MoveSense","target_location":2,"eligible":false,"cost":5,"duration_ms":220,"fact_count":1,"potential_goal_value":80,"stable_id":1,"constraint_result":"constraint_safe","facts":[{"field":"LOCATION","id":2,"task":0,"stable_task_id":1,"reason":"unverified","location_hints":[{"location":2,"source":"object_location:claim_source=1"}]},{"field":"LOCATION","id":2,"task":1,"stable_task_id":2,"reason":"unverified","location_hints":[{"location":2,"source":"object_location:claim_source=1"}]}]}
+
+[LOG]:[Probe] {"schema":"probe.v1","event":"candidate","world_revision":3,"total_probes":0,"consecutive_no_progress":0,"policy":[8,2,2],"reason":"constraint_safety_unknown","closed_reason":"","signature":"sense_at:44","kind":"MoveSense","target_location":44,"eligible":false,"cost":5,"duration_ms":220,"fact_count":1,"potential_goal_value":40,"stable_id":3,"constraint_result":"constraint_safety_unknown","facts":[{"field":"LOCATION","id":31,"task":2,"stable_task_id":3,"reason":"unverified","location_hints":[{"location":44,"source":"object_location:claim_source=1"}]}]}
+
+[LOG]:[Probe] {"schema":"probe.v1","event":"stop","world_revision":3,"total_probes":0,"consecutive_no_progress":0,"policy":[8,2,2],"reason":"no_task_and_no_legal_probe","closed_reason":""}
+
+[LOG]:[Scheduler] stop reason=no_qualified_positive_single
+
+
+Sovled Task Num:1    Expect Num:4
+[LOG]:[36m[3A][final] goals=1/4 (unknown=2), constraints=0/20 (unknown=19), base_score=33, action_cost=7, elapsed=295ms, remaining=4705ms
+[0m
+[LOG]:[36m[3A][final] completed_goals=[3:goto], satisfied_constraints=[]
+[0m
+#(Plug): Elapsed time=0.295s
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

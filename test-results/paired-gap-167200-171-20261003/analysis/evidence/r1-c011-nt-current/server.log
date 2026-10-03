@@ -1,0 +1,33 @@
+[RDFW_TEST_SEED] 20260924
+=========================================
+= Simulation @Home Competition Platform =
+=========================================
+= Ready to accept a new team
+# Registration from 'RDFW'
+> Configurations:
+	Mode: NT
+	Timeout: 5000
+	TestDir: /tmp/rdfw-direct-167200-171-20261003/runs/r1-c011-nt-current/runtime/tests/
+	TestSize: 1
+	Single test: 1
+# Testing <case.xml>
+# Result:
+	[Move 10|true]
+	[Sense | 15 10 17]
+	[Move 5|true]
+	[Sense | 5 17 18]
+	[TakeOut 18 5|true]
+	[Move 10|true]
+	[Sense | 10 15 18 17]
+	[Move 14|true]
+	[Sense | 14 18 17]
+	[Move 10|true]
+	[Sense | 10 15 18 17]
+	[Move 3|true]
+	[Sense | 16 20 3 18 17]
+	[PutDown 18|true]
+	[PickUp 16|true]
+	[Move 1|true]
+	[Sense | 1 16 17]
+# Time: 1.612s
+# Score: 105
