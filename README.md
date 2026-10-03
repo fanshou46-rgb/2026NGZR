@@ -19,7 +19,15 @@
 └── src1.6/                # src 1.6：约束收益决策与 Stage 2 未知事实校验
 ```
 
-最新实验版本：`src1.8/`，在 `src1.7.1` 上加入独立位置 belief、带噪询问、
+最新开发版本：`src1.9/`，在独立观测模型中按回答更新概率、选择验证路线，
+并修正真实可见性过滤和未来绑定资格。流程见
+`src1.9/docs/ROBOT_FLOW_1.9.md`，模型与 GitHub 参考见
+`src1.9/docs/PROBABILITY_MODEL.md`；复核报告见
+`src1.9/test-results/validation-20261004/REPORT.md`。
+最终 56 对开发对照基础分合计 +323、目标 +8，仍有 14 对基础分下降，
+模型尚未覆盖完整联合隐藏状态及校准，不建议直接替换比赛版本。
+
+上一实验基线：`src1.8/`，在 `src1.7.1` 上加入独立位置 belief、带噪询问、
 受限开柜观察和有界记分约束交换，并扩展已验证输入下的 Stage 2 规划。
 询问只提供弱线索，真实事实仍由感知/动作证据确认。完整流程见
 `src1.8/docs/ROBOT_FLOW.md`，实现与 GitHub 参考见 `src1.8/docs/IMPLEMENTATION.md`
