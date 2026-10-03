@@ -1,0 +1,523 @@
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/rdfw171-unit-20261003
+Scanning dependencies of target rdfw_test_core
+[  3%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/d/FILES_for_Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/canonical_state.cpp.o
+[  3%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/d/FILES_for_Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/state_mutation.cpp.o
+[  5%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/d/FILES_for_Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/rdfw.cpp.o
+[  7%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/d/FILES_for_Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/probe_layer.cpp.o
+[  9%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/d/FILES_for_Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/parser.cpp.o
+[ 11%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/d/FILES_for_Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/terminal_checker.cpp.o
+[ 13%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/d/FILES_for_Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/legacy_priority.cpp.o
+[ 15%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/d/FILES_for_Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/score_evaluator.cpp.o
+[ 16%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/d/FILES_for_Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/question_preflight.cpp.o
+[ 18%] Linking CXX static library librdfw_test_core.a
+[ 24%] Built target rdfw_test_core
+Scanning dependencies of target state_invariant_tests
+Scanning dependencies of target state_layer_tests
+Scanning dependencies of target three_a_tests
+[ 28%] Building CXX object CMakeFiles/state_invariant_tests.dir/state_invariant_tests.cpp.o
+[ 28%] Building CXX object CMakeFiles/state_layer_tests.dir/state_layer_tests.cpp.o
+[ 30%] Building CXX object CMakeFiles/three_a_tests.dir/three_a_tests.cpp.o
+[ 32%] Linking CXX executable three_a_tests
+[ 33%] Linking CXX executable state_layer_tests
+[ 33%] Built target three_a_tests
+Scanning dependencies of target official_score_semantics_tests
+[ 35%] Building CXX object CMakeFiles/official_score_semantics_tests.dir/score_semantics_tests.cpp.o
+[ 37%] Linking CXX executable state_invariant_tests
+[ 37%] Built target state_layer_tests
+Scanning dependencies of target unified_scheduler_tests
+[ 39%] Building CXX object CMakeFiles/unified_scheduler_tests.dir/unified_scheduler_tests.cpp.o
+[ 39%] Built target state_invariant_tests
+Scanning dependencies of target recovery_evidence_tests
+[ 41%] Building CXX object CMakeFiles/recovery_evidence_tests.dir/recovery_evidence_tests.cpp.o
+[ 43%] Linking CXX executable official_score_semantics_tests
+[ 43%] Built target official_score_semantics_tests
+Scanning dependencies of target canonical_baseline_probe
+[ 45%] Building CXX object CMakeFiles/canonical_baseline_probe.dir/canonical_baseline_probe.cpp.o
+[ 47%] Linking CXX executable recovery_evidence_tests
+[ 49%] Linking CXX executable unified_scheduler_tests
+[ 49%] Built target recovery_evidence_tests
+Scanning dependencies of target deadline_sensitivity_tests
+[ 50%] Building CXX object CMakeFiles/deadline_sensitivity_tests.dir/deadline_sensitivity_tests.cpp.o
+[ 50%] Built target unified_scheduler_tests
+Scanning dependencies of target canonical_state_tests
+[ 52%] Building CXX object CMakeFiles/canonical_state_tests.dir/canonical_state_tests.cpp.o
+[ 54%] Linking CXX executable canonical_baseline_probe
+[ 56%] Linking CXX executable deadline_sensitivity_tests
+[ 56%] Built target canonical_baseline_probe
+Scanning dependencies of target probe_layer_tests
+[ 58%] Building CXX object CMakeFiles/probe_layer_tests.dir/probe_layer_tests.cpp.o
+[ 58%] Built target deadline_sensitivity_tests
+Scanning dependencies of target legal_preservation_tests
+[ 60%] Building CXX object CMakeFiles/legal_preservation_tests.dir/legal_preservation_tests.cpp.o
+[ 62%] Linking CXX executable canonical_state_tests
+[ 62%] Built target canonical_state_tests
+[ 64%] Linking CXX executable task_group_search_tests
+[ 66%] Linking CXX executable legal_preservation_tests
+[ 67%] Built target task_group_search_tests
+Scanning dependencies of target question_preflight_tests
+[ 67%] Built target legal_preservation_tests
+[ 69%] Building CXX object CMakeFiles/question_preflight_tests.dir/question_preflight_tests.cpp.o
+Scanning dependencies of target task_group_projection_tests
+[ 71%] Building CXX object CMakeFiles/task_group_projection_tests.dir/task_group_projection_tests.cpp.o
+[ 73%] Linking CXX executable probe_layer_tests
+[ 73%] Built target probe_layer_tests
+Scanning dependencies of target guarded_decision_tests
+[ 75%] Building CXX object CMakeFiles/guarded_decision_tests.dir/guarded_decision_tests.cpp.o
+[ 77%] Linking CXX executable task_group_projection_tests
+[ 79%] Linking CXX executable question_preflight_tests
+[ 79%] Built target task_group_projection_tests
+Scanning dependencies of target score_semantics_tests
+[ 81%] Building CXX object CMakeFiles/score_semantics_tests.dir/score_semantics_tests.cpp.o
+[ 81%] Built target question_preflight_tests
+Scanning dependencies of target interval_gate_tests
+[ 83%] Building CXX object CMakeFiles/interval_gate_tests.dir/interval_gate_tests.cpp.o
+[ 84%] Linking CXX executable guarded_decision_tests
+[ 84%] Built target guarded_decision_tests
+Scanning dependencies of target input_safety_tests
+[ 86%] Building CXX object CMakeFiles/input_safety_tests.dir/input_safety_tests.cpp.o
+[ 88%] Linking CXX executable score_semantics_tests
+[ 88%] Built target score_semantics_tests
+[ 90%] Linking CXX executable interval_gate_tests
+Scanning dependencies of target mutation_failure_tests
+[ 92%] Building CXX object CMakeFiles/mutation_failure_tests.dir/mutation_failure_tests.cpp.o
+[ 94%] Linking CXX executable input_safety_tests
+[ 94%] Built target interval_gate_tests
+Scanning dependencies of target state_profile
+[ 96%] Building CXX object CMakeFiles/state_profile.dir/state_profile.cpp.o
+[ 96%] Built target input_safety_tests
+[ 98%] Linking CXX executable mutation_failure_tests
+[100%] Linking CXX executable state_profile
+[100%] Built target mutation_failure_tests
+[100%] Built target state_profile
+Test project /tmp/rdfw171-unit-20261003
+        Start   1: probe_layer_0
+  1/176 Test   #1: probe_layer_0 ....................   Passed    0.00 sec
+        Start   2: probe_layer_1
+  2/176 Test   #2: probe_layer_1 ....................   Passed    0.00 sec
+        Start   3: probe_layer_2
+  3/176 Test   #3: probe_layer_2 ....................   Passed    0.00 sec
+        Start   4: probe_layer_3
+  4/176 Test   #4: probe_layer_3 ....................   Passed    0.00 sec
+        Start   5: probe_layer_4
+  5/176 Test   #5: probe_layer_4 ....................   Passed    0.00 sec
+        Start   6: probe_layer_5
+  6/176 Test   #6: probe_layer_5 ....................   Passed    0.00 sec
+        Start   7: probe_layer_6
+  7/176 Test   #7: probe_layer_6 ....................   Passed    0.00 sec
+        Start   8: probe_layer_7
+  8/176 Test   #8: probe_layer_7 ....................   Passed    0.00 sec
+        Start   9: probe_layer_8
+  9/176 Test   #9: probe_layer_8 ....................   Passed    0.00 sec
+        Start  10: probe_layer_9
+ 10/176 Test  #10: probe_layer_9 ....................   Passed    0.00 sec
+        Start  11: probe_layer_10
+ 11/176 Test  #11: probe_layer_10 ...................***Exception: Child aborted  0.02 sec
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+probe_layer_tests: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/tests/probe_layer_tests.cpp:97: int main(int, char**): Assertion `!p.eligible && p.constraint_result==(test==9 || test==12?"constraint_known_loss":"constraint_safety_unknown")' failed.
+
+        Start  12: probe_layer_11
+ 12/176 Test  #12: probe_layer_11 ...................   Passed    0.00 sec
+        Start  13: probe_layer_12
+ 13/176 Test  #13: probe_layer_12 ...................   Passed    0.00 sec
+        Start  14: probe_layer_13
+ 14/176 Test  #14: probe_layer_13 ...................***Exception: Child aborted  0.01 sec
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+probe_layer_tests: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/tests/probe_layer_tests.cpp:97: int main(int, char**): Assertion `!p.eligible && p.constraint_result==(test==9 || test==12?"constraint_known_loss":"constraint_safety_unknown")' failed.
+
+        Start  15: probe_layer_14
+ 15/176 Test  #15: probe_layer_14 ...................   Passed    0.00 sec
+        Start  16: probe_layer_15
+ 16/176 Test  #16: probe_layer_15 ...................   Passed    0.00 sec
+        Start  17: probe_layer_16
+ 17/176 Test  #17: probe_layer_16 ...................   Passed    0.00 sec
+        Start  18: probe_layer_17
+ 18/176 Test  #18: probe_layer_17 ...................   Passed    0.00 sec
+        Start  19: probe_layer_18
+ 19/176 Test  #19: probe_layer_18 ...................   Passed    0.00 sec
+        Start  20: probe_layer_19
+ 20/176 Test  #20: probe_layer_19 ...................   Passed    0.00 sec
+        Start  21: probe_layer_20
+ 21/176 Test  #21: probe_layer_20 ...................   Passed    0.00 sec
+        Start  22: probe_layer_21
+ 22/176 Test  #22: probe_layer_21 ...................***Exception: Child aborted  0.02 sec
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+[LOG]:[Probe] {"schema":"probe.v1","event":"execute","world_revision":0,"total_probes":1,"consecutive_no_progress":0,"policy":[8,2,2],"reason":"","closed_reason":"","signature":"sense_at:1","kind":"SenseCurrentLocationOnly","target_location":1,"eligible":true,"cost":1,"duration_ms":100,"fact_count":1,"potential_goal_value":0,"stable_id":0,"constraint_result":"constraint_safe","facts":[{"field":"LOCATION","id":4,"task":0,"stable_task_id":0,"reason":"","location_hints":[{"location":1,"source":"fixture_specific_hint"}]}],"revision_before":0,"revision_after":0,"issued_actions":0,"received_feedback":false,"sense_attempted":false,"move_failed":false,"related_new_evidence":false,"effective":false,"sense_evidence_changes":0,"action_success_evidence_changes":0,"action_failure_evidence_changes":0,"failure":"","restored_tasks":[],"completed_tasks":[]}
+
+[LOG]:[32m[SenseCurrentLocationOnly] Location 1 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Container 2 detected at location 1
+[LOG]:[33m[SenseCurrentLocationOnly] Object id=1 expected at 1 but not sensed, set location UNKNOWN
+[0m
+[LOG]:[Probe] {"schema":"probe.v1","event":"feedback","world_revision":1,"total_probes":1,"consecutive_no_progress":0,"policy":[8,2,2],"reason":"","closed_reason":"","signature":"sense_at:1","kind":"SenseCurrentLocationOnly","target_location":1,"eligible":true,"cost":1,"duration_ms":100,"fact_count":1,"potential_goal_value":0,"stable_id":0,"constraint_result":"constraint_safe","facts":[{"field":"LOCATION","id":4,"task":0,"stable_task_id":0,"reason":"","location_hints":[{"location":1,"source":"fixture_specific_hint"}]}],"revision_before":0,"revision_after":1,"issued_actions":1,"received_feedback":true,"sense_attempted":true,"move_failed":false,"related_new_evidence":false,"effective":false,"sense_evidence_changes":1,"action_success_evidence_changes":0,"action_failure_evidence_changes":0,"failure":"","restored_tasks":[],"completed_tasks":[]}
+
+[LOG]:[Probe] {"schema":"probe.v1","event":"replan","world_revision":1,"total_probes":1,"consecutive_no_progress":1,"policy":[8,2,2],"reason":"","closed_reason":"","signature":"sense_at:1","kind":"SenseCurrentLocationOnly","target_location":1,"eligible":true,"cost":1,"duration_ms":100,"fact_count":1,"potential_goal_value":0,"stable_id":0,"constraint_result":"constraint_safe","facts":[{"field":"LOCATION","id":4,"task":0,"stable_task_id":0,"reason":"","location_hints":[{"location":1,"source":"fixture_specific_hint"}]}],"revision_before":0,"revision_after":1,"issued_actions":1,"received_feedback":true,"sense_attempted":true,"move_failed":false,"related_new_evidence":false,"effective":false,"sense_evidence_changes":1,"action_success_evidence_changes":0,"action_failure_evidence_changes":0,"failure":"","restored_tasks":[],"completed_tasks":[]}
+
+[LOG]:[Probe] {"schema":"probe.v1","event":"execute","world_revision":1,"total_probes":2,"consecutive_no_progress":1,"policy":[8,2,2],"reason":"","closed_reason":"","signature":"sense_at:4","kind":"SenseCurrentLocationOnly","target_location":4,"eligible":true,"cost":1,"duration_ms":100,"fact_count":1,"potential_goal_value":0,"stable_id":0,"constraint_result":"constraint_safe","facts":[{"field":"LOCATION","id":4,"task":0,"stable_task_id":0,"reason":"","location_hints":[{"location":4,"source":"fixture_specific_hint"}]}],"revision_before":1,"revision_after":0,"issued_actions":0,"received_feedback":false,"sense_attempted":false,"move_failed":false,"related_new_evidence":false,"effective":false,"sense_evidence_changes":0,"action_success_evidence_changes":0,"action_failure_evidence_changes":0,"failure":"","restored_tasks":[],"completed_tasks":[]}
+
+[LOG]:[32m[SenseCurrentLocationOnly] Location 4 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Container 2 detected at location 4
+[LOG]:[33m[SenseCurrentLocationOnly] Object id=4 expected at 4 but not sensed, set location UNKNOWN
+[0m
+[LOG]:[Probe] {"schema":"probe.v1","event":"feedback","world_revision":2,"total_probes":2,"consecutive_no_progress":1,"policy":[8,2,2],"reason":"","closed_reason":"","signature":"sense_at:4","kiprobe_layer_tests: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/tests/probe_layer_tests.cpp:126: int main(int, char**): Assertion `A::Closed(*w)=="probe_no_progress"' failed.
+
+        Start  23: probe_layer_22
+ 23/176 Test  #23: probe_layer_22 ...................***Exception: Child aborted  0.02 sec
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":1,"phase":"greedy-round","task_index":0,"task_label":"pickup","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":1,"action_cost":2,"final_reward":38,"utility":38}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=1 task_index=0 behave=pickup legacy_choice=false eligible=true complete=true actions=1 duration_ms=100 action_cost=2 score_before=0 score_after=38 marginal_score=38 utility=38 gained_goals=[0] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=0 behave=pickup can_finish=true remaining_plan_ms=100 safety_ms=200 budget_remaining_ms=300
+[0m
+[LOG]:[TradeoffDecision] phase=greedy-filter task=0 decision=execute reason=legacy_priority lower=38 upper=38
+
+[LOG]:[Scheduler] greedy task=0 marginal=38 remaining_ms=300 group_attempt=true
+
+[LOG]:[GuardedDecision] outcome=greedy reason=unsupported_or_time stage=2 deferred_goto=false
+
+[LOG]:[36m[3B][Deadline] phase=greedy-execution task_index=0 behave=pickup can_finish=true remaining_plan_ms=100 safety_ms=200 budget_remaining_ms=300
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_selected","candidate_id":1,"task_index":0,"tasks":[0],"task_label":"pickup","generated_ms":0,"world_revision":0,"selection_reason":"greedy_highest_qualified_marginal_score","prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":1,"action_cost":2,"final_reward":38,"utility":38},"expected_reward":38,"evidence":[{"object_id":0,"fact":"location","source":"initial","verified":true},{"object_id":1,"fact":"location","source":"initial","verified":false},{"object_id":2,"fact":"location","source":"initial","verified":false},{"object_id":2,"fact":"container_state","source":"initial","verified":false},{"object_id":3,"fact":"location","source":"action_success","verified":true},{"object_id":3,"fact":"inside","source":"action_success","verified":true},{"object_id":4,"fact":"location","source":"initial","verified":false},{"object_id":4,"fact":"inside","source":"initial","verified":false},{"object_id":0,"fact":"hold","source":"action_success","verified":true},{"object_id":0,"fact":"plate","source":"initial","verified":false}]}
+[LOG]:[36m[3B][Remaining] event=begin task_index=0 behave=pickup executed=0 total=1 remaining_utility=38 remaining_duration_ms=100
+[0m
+pickup book的风险系数是：0
+probe_layer_tests: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/tests/probe_layer_tests.cpp:61: int main(int, char**): Assertion `!w->ProbeFeedback().empty()' failed.
+
+        Start  24: probe_layer_23
+ 24/176 Test  #24: probe_layer_23 ...................   Passed    0.00 sec
+        Start  25: probe_layer_24
+ 25/176 Test  #25: probe_layer_24 ...................   Passed    0.00 sec
+        Start  26: probe_layer_25
+ 26/176 Test  #26: probe_layer_25 ...................   Passed    0.00 sec
+        Start  27: probe_layer_26
+ 27/176 Test  #27: probe_layer_26 ...................   Passed    0.00 sec
+        Start  28: probe_layer_27
+ 28/176 Test  #28: probe_layer_27 ...................***Exception: Child aborted  0.02 sec
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+probe_layer_tests: /mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/tests/probe_layer_tests.cpp:97: int main(int, char**): Assertion `!p.eligible && p.constraint_result==(test==9 || test==12?"constraint_known_loss":"constraint_safety_unknown")' failed.
+
+        Start  29: probe_layer_28
+ 29/176 Test  #29: probe_layer_28 ...................   Passed    0.00 sec
+        Start  30: probe_layer_29
+ 30/176 Test  #30: probe_layer_29 ...................   Passed    0.00 sec
+        Start  31: unified_scheduler_0
+ 31/176 Test  #31: unified_scheduler_0 ..............   Passed    0.00 sec
+        Start  32: unified_scheduler_1
+ 32/176 Test  #32: unified_scheduler_1 ..............   Passed    0.00 sec
+        Start  33: unified_scheduler_2
+ 33/176 Test  #33: unified_scheduler_2 ..............   Passed    0.00 sec
+        Start  34: unified_scheduler_3
+ 34/176 Test  #34: unified_scheduler_3 ..............   Passed    0.00 sec
+        Start  35: unified_scheduler_4
+ 35/176 Test  #35: unified_scheduler_4 ..............   Passed    0.00 sec
+        Start  36: unified_scheduler_5
+ 36/176 Test  #36: unified_scheduler_5 ..............   Passed    0.00 sec
+        Start  37: unified_scheduler_6
+ 37/176 Test  #37: unified_scheduler_6 ..............   Passed    0.00 sec
+        Start  38: unified_scheduler_7
+ 38/176 Test  #38: unified_scheduler_7 ..............   Passed    0.00 sec
+        Start  39: unified_scheduler_8
+ 39/176 Test  #39: unified_scheduler_8 ..............   Passed    0.00 sec
+        Start  40: unified_scheduler_9
+ 40/176 Test  #40: unified_scheduler_9 ..............   Passed    0.00 sec
+        Start  41: unified_scheduler_10
+ 41/176 Test  #41: unified_scheduler_10 .............   Passed    0.00 sec
+        Start  42: unified_scheduler_11
+ 42/176 Test  #42: unified_scheduler_11 .............   Passed    0.00 sec
+        Start  43: unified_scheduler_12
+ 43/176 Test  #43: unified_scheduler_12 .............   Passed    0.00 sec
+        Start  44: unified_scheduler_13
+ 44/176 Test  #44: unified_scheduler_13 .............   Passed    0.00 sec
+        Start  45: unified_scheduler_14
+ 45/176 Test  #45: unified_scheduler_14 .............   Passed    0.00 sec
+        Start  46: unified_scheduler_15
+ 46/176 Test  #46: unified_scheduler_15 .............   Passed    0.00 sec
+        Start  47: unified_scheduler_16
+ 47/176 Test  #47: unified_scheduler_16 .............   Passed    0.00 sec
+        Start  48: unified_scheduler_17
+ 48/176 Test  #48: unified_scheduler_17 .............   Passed    0.00 sec
+        Start  49: unified_scheduler_18
+ 49/176 Test  #49: unified_scheduler_18 .............   Passed    0.00 sec
+        Start  50: unified_scheduler_19
+ 50/176 Test  #50: unified_scheduler_19 .............   Passed    0.00 sec
+        Start  51: input_safety_tests
+ 51/176 Test  #51: input_safety_tests ...............   Passed    0.00 sec
+        Start  52: three_a_tests
+ 52/176 Test  #52: three_a_tests ....................   Passed    0.00 sec
+        Start  53: question_preflight_tests
+ 53/176 Test  #53: question_preflight_tests .........   Passed    0.01 sec
+        Start  54: legal_preservation_tests
+ 54/176 Test  #54: legal_preservation_tests .........   Passed    0.00 sec
+        Start  55: recovery_evidence_tests
+ 55/176 Test  #55: recovery_evidence_tests ..........   Passed    0.00 sec
+        Start  56: task_group_search_tests
+ 56/176 Test  #56: task_group_search_tests ..........   Passed    0.01 sec
+        Start  57: task_group_projection_tests
+ 57/176 Test  #57: task_group_projection_tests ......   Passed    0.00 sec
+        Start  58: guarded_decision_tests
+ 58/176 Test  #58: guarded_decision_tests ...........   Passed    0.01 sec
+        Start  59: score_semantics_tests
+ 59/176 Test  #59: score_semantics_tests ............   Passed    0.00 sec
+        Start  60: interval_gate_tests
+ 60/176 Test  #60: interval_gate_tests ..............   Passed    0.00 sec
+        Start  61: mutation_failure_0
+ 61/176 Test  #61: mutation_failure_0 ...............   Passed    0.01 sec
+        Start  62: mutation_failure_1
+ 62/176 Test  #62: mutation_failure_1 ...............   Passed    0.01 sec
+        Start  63: mutation_failure_2
+ 63/176 Test  #63: mutation_failure_2 ...............   Passed    0.01 sec
+        Start  64: mutation_failure_3
+ 64/176 Test  #64: mutation_failure_3 ...............   Passed    0.00 sec
+        Start  65: mutation_failure_4
+ 65/176 Test  #65: mutation_failure_4 ...............   Passed    0.18 sec
+        Start  66: mutation_failure_5
+ 66/176 Test  #66: mutation_failure_5 ...............   Passed    0.00 sec
+        Start  67: mutation_failure_6
+ 67/176 Test  #67: mutation_failure_6 ...............   Passed    0.00 sec
+        Start  68: mutation_failure_7
+ 68/176 Test  #68: mutation_failure_7 ...............   Passed    0.00 sec
+        Start  69: mutation_failure_8
+ 69/176 Test  #69: mutation_failure_8 ...............   Passed    0.00 sec
+        Start  70: mutation_failure_9
+ 70/176 Test  #70: mutation_failure_9 ...............   Passed    0.00 sec
+        Start  71: mutation_failure_10
+ 71/176 Test  #71: mutation_failure_10 ..............   Passed    0.00 sec
+        Start  72: mutation_failure_11
+ 72/176 Test  #72: mutation_failure_11 ..............   Passed    0.00 sec
+        Start  73: mutation_failure_12
+ 73/176 Test  #73: mutation_failure_12 ..............   Passed    0.00 sec
+        Start  74: mutation_failure_13
+ 74/176 Test  #74: mutation_failure_13 ..............   Passed    0.00 sec
+        Start  75: mutation_failure_14
+ 75/176 Test  #75: mutation_failure_14 ..............   Passed    0.13 sec
+        Start  76: mutation_failure_15
+ 76/176 Test  #76: mutation_failure_15 ..............   Passed    0.02 sec
+        Start  77: mutation_failure_16
+ 77/176 Test  #77: mutation_failure_16 ..............   Passed    0.02 sec
+        Start  78: mutation_failure_17
+ 78/176 Test  #78: mutation_failure_17 ..............   Passed    0.02 sec
+        Start  79: mutation_failure_18
+ 79/176 Test  #79: mutation_failure_18 ..............   Passed    0.01 sec
+        Start  80: mutation_failure_19
+ 80/176 Test  #80: mutation_failure_19 ..............   Passed    0.05 sec
+        Start  81: mutation_failure_20
+ 81/176 Test  #81: mutation_failure_20 ..............   Passed    0.05 sec
+        Start  82: mutation_failure_21
+ 82/176 Test  #82: mutation_failure_21 ..............   Passed    0.05 sec
+        Start  83: mutation_failure_22
+ 83/176 Test  #83: mutation_failure_22 ..............   Passed    0.05 sec
+        Start  84: mutation_failure_23
+ 84/176 Test  #84: mutation_failure_23 ..............   Passed    0.05 sec
+        Start  85: mutation_failure_24
+ 85/176 Test  #85: mutation_failure_24 ..............   Passed    0.05 sec
+        Start  86: mutation_failure_25
+ 86/176 Test  #86: mutation_failure_25 ..............   Passed    0.06 sec
+        Start  87: mutation_failure_26
+ 87/176 Test  #87: mutation_failure_26 ..............   Passed    0.05 sec
+        Start  88: mutation_failure_27
+ 88/176 Test  #88: mutation_failure_27 ..............   Passed    0.05 sec
+        Start  89: deadline_sensitivity
+ 89/176 Test  #89: deadline_sensitivity .............   Passed    0.01 sec
+        Start  90: state_invariant_0
+ 90/176 Test  #90: state_invariant_0 ................   Passed    0.00 sec
+        Start  91: state_invariant_1
+ 91/176 Test  #91: state_invariant_1 ................   Passed    0.00 sec
+        Start  92: state_invariant_2
+ 92/176 Test  #92: state_invariant_2 ................   Passed    0.00 sec
+        Start  93: state_invariant_3
+ 93/176 Test  #93: state_invariant_3 ................   Passed    0.00 sec
+        Start  94: state_invariant_4
+ 94/176 Test  #94: state_invariant_4 ................   Passed    0.00 sec
+        Start  95: state_invariant_5
+ 95/176 Test  #95: state_invariant_5 ................   Passed    0.00 sec
+        Start  96: state_invariant_6
+ 96/176 Test  #96: state_invariant_6 ................   Passed    0.00 sec
+        Start  97: state_invariant_7
+ 97/176 Test  #97: state_invariant_7 ................   Passed    0.00 sec
+        Start  98: state_invariant_8
+ 98/176 Test  #98: state_invariant_8 ................   Passed    0.00 sec
+        Start  99: state_invariant_9
+ 99/176 Test  #99: state_invariant_9 ................   Passed    0.00 sec
+        Start 100: state_invariant_10
+100/176 Test #100: state_invariant_10 ...............   Passed    0.00 sec
+        Start 101: state_invariant_11
+101/176 Test #101: state_invariant_11 ...............   Passed    0.00 sec
+        Start 102: state_invariant_12
+102/176 Test #102: state_invariant_12 ...............   Passed    0.00 sec
+        Start 103: state_invariant_13
+103/176 Test #103: state_invariant_13 ...............   Passed    0.00 sec
+        Start 104: state_invariant_14
+104/176 Test #104: state_invariant_14 ...............   Passed    0.00 sec
+        Start 105: state_invariant_15
+105/176 Test #105: state_invariant_15 ...............   Passed    0.00 sec
+        Start 106: state_invariant_16
+106/176 Test #106: state_invariant_16 ...............   Passed    0.00 sec
+        Start 107: state_invariant_17
+107/176 Test #107: state_invariant_17 ...............   Passed    0.00 sec
+        Start 108: state_invariant_18
+108/176 Test #108: state_invariant_18 ...............   Passed    0.00 sec
+        Start 109: state_invariant_19
+109/176 Test #109: state_invariant_19 ...............   Passed    0.00 sec
+        Start 110: state_layer_0
+110/176 Test #110: state_layer_0 ....................   Passed    0.00 sec
+        Start 111: state_layer_1
+111/176 Test #111: state_layer_1 ....................   Passed    0.00 sec
+        Start 112: state_layer_2
+112/176 Test #112: state_layer_2 ....................   Passed    0.00 sec
+        Start 113: state_layer_3
+113/176 Test #113: state_layer_3 ....................   Passed    0.00 sec
+        Start 114: state_layer_4
+114/176 Test #114: state_layer_4 ....................   Passed    0.00 sec
+        Start 115: state_layer_5
+115/176 Test #115: state_layer_5 ....................   Passed    0.00 sec
+        Start 116: state_layer_6
+116/176 Test #116: state_layer_6 ....................   Passed    0.00 sec
+        Start 117: state_layer_7
+117/176 Test #117: state_layer_7 ....................   Passed    0.00 sec
+        Start 118: state_layer_8
+118/176 Test #118: state_layer_8 ....................   Passed    0.00 sec
+        Start 119: state_layer_9
+119/176 Test #119: state_layer_9 ....................   Passed    0.00 sec
+        Start 120: state_layer_10
+120/176 Test #120: state_layer_10 ...................   Passed    0.00 sec
+        Start 121: state_layer_11
+121/176 Test #121: state_layer_11 ...................   Passed    0.00 sec
+        Start 122: state_layer_12
+122/176 Test #122: state_layer_12 ...................   Passed    0.00 sec
+        Start 123: state_layer_13
+123/176 Test #123: state_layer_13 ...................   Passed    0.00 sec
+        Start 124: state_layer_14
+124/176 Test #124: state_layer_14 ...................   Passed    0.00 sec
+        Start 125: state_layer_15
+125/176 Test #125: state_layer_15 ...................   Passed    0.00 sec
+        Start 126: state_layer_16
+126/176 Test #126: state_layer_16 ...................   Passed    0.00 sec
+        Start 127: state_layer_17
+127/176 Test #127: state_layer_17 ...................   Passed    0.00 sec
+        Start 128: state_layer_18
+128/176 Test #128: state_layer_18 ...................   Passed    0.00 sec
+        Start 129: official_score_semantics_tests
+129/176 Test #129: official_score_semantics_tests ...   Passed    0.15 sec
+        Start 130: canonical_state_0
+130/176 Test #130: canonical_state_0 ................   Passed    0.00 sec
+        Start 131: canonical_state_1
+131/176 Test #131: canonical_state_1 ................   Passed    0.00 sec
+        Start 132: canonical_state_2
+132/176 Test #132: canonical_state_2 ................   Passed    0.00 sec
+        Start 133: canonical_state_3
+133/176 Test #133: canonical_state_3 ................   Passed    0.00 sec
+        Start 134: canonical_state_4
+134/176 Test #134: canonical_state_4 ................   Passed    0.00 sec
+        Start 135: canonical_state_5
+135/176 Test #135: canonical_state_5 ................   Passed    0.00 sec
+        Start 136: canonical_state_6
+136/176 Test #136: canonical_state_6 ................   Passed    0.00 sec
+        Start 137: canonical_state_7
+137/176 Test #137: canonical_state_7 ................   Passed    0.00 sec
+        Start 138: canonical_state_8
+138/176 Test #138: canonical_state_8 ................   Passed    0.00 sec
+        Start 139: canonical_state_9
+139/176 Test #139: canonical_state_9 ................   Passed    0.00 sec
+        Start 140: canonical_state_10
+140/176 Test #140: canonical_state_10 ...............   Passed    0.00 sec
+        Start 141: canonical_state_11
+141/176 Test #141: canonical_state_11 ...............   Passed    0.00 sec
+        Start 142: canonical_state_12
+142/176 Test #142: canonical_state_12 ...............   Passed    0.00 sec
+        Start 143: canonical_state_13
+143/176 Test #143: canonical_state_13 ...............   Passed    0.00 sec
+        Start 144: canonical_state_14
+144/176 Test #144: canonical_state_14 ...............   Passed    0.00 sec
+        Start 145: canonical_state_15
+145/176 Test #145: canonical_state_15 ...............   Passed    0.00 sec
+        Start 146: canonical_state_16
+146/176 Test #146: canonical_state_16 ...............   Passed    0.00 sec
+        Start 147: canonical_state_17
+147/176 Test #147: canonical_state_17 ...............   Passed    0.00 sec
+        Start 148: canonical_state_18
+148/176 Test #148: canonical_state_18 ...............   Passed    0.00 sec
+        Start 149: canonical_state_19
+149/176 Test #149: canonical_state_19 ...............   Passed    0.00 sec
+        Start 150: canonical_state_20
+150/176 Test #150: canonical_state_20 ...............   Passed    0.00 sec
+        Start 151: canonical_state_21
+151/176 Test #151: canonical_state_21 ...............   Passed    0.00 sec
+        Start 152: canonical_state_22
+152/176 Test #152: canonical_state_22 ...............   Passed    0.00 sec
+        Start 153: canonical_state_23
+153/176 Test #153: canonical_state_23 ...............   Passed    0.00 sec
+        Start 154: canonical_state_24
+154/176 Test #154: canonical_state_24 ...............   Passed    0.00 sec
+        Start 155: canonical_state_25
+155/176 Test #155: canonical_state_25 ...............   Passed    0.00 sec
+        Start 156: canonical_state_26
+156/176 Test #156: canonical_state_26 ...............   Passed    0.00 sec
+        Start 157: canonical_state_27
+157/176 Test #157: canonical_state_27 ...............   Passed    0.00 sec
+        Start 158: canonical_state_28
+158/176 Test #158: canonical_state_28 ...............   Passed    0.00 sec
+        Start 159: canonical_state_29
+159/176 Test #159: canonical_state_29 ...............   Passed    0.00 sec
+        Start 160: canonical_state_30
+160/176 Test #160: canonical_state_30 ...............   Passed    0.00 sec
+        Start 161: canonical_state_31
+161/176 Test #161: canonical_state_31 ...............   Passed    0.00 sec
+        Start 162: canonical_state_32
+162/176 Test #162: canonical_state_32 ...............   Passed    0.00 sec
+        Start 163: canonical_regression_0
+163/176 Test #163: canonical_regression_0 ...........   Passed    0.00 sec
+        Start 164: canonical_regression_1
+164/176 Test #164: canonical_regression_1 ...........   Passed    0.00 sec
+        Start 165: canonical_regression_2
+165/176 Test #165: canonical_regression_2 ...........   Passed    0.00 sec
+        Start 166: canonical_regression_3
+166/176 Test #166: canonical_regression_3 ...........   Passed    0.00 sec
+        Start 167: canonical_regression_4
+167/176 Test #167: canonical_regression_4 ...........   Passed    0.00 sec
+        Start 168: canonical_regression_5
+168/176 Test #168: canonical_regression_5 ...........   Passed    0.00 sec
+        Start 169: canonical_regression_6
+169/176 Test #169: canonical_regression_6 ...........   Passed    0.00 sec
+        Start 170: canonical_regression_7
+170/176 Test #170: canonical_regression_7 ...........   Passed    0.00 sec
+        Start 171: canonical_regression_8
+171/176 Test #171: canonical_regression_8 ...........   Passed    0.00 sec
+        Start 172: canonical_regression_9
+172/176 Test #172: canonical_regression_9 ...........   Passed    0.00 sec
+        Start 173: canonical_regression_10
+173/176 Test #173: canonical_regression_10 ..........   Passed    0.00 sec
+        Start 174: canonical_regression_11
+174/176 Test #174: canonical_regression_11 ..........   Passed    0.00 sec
+        Start 175: canonical_regression_12
+175/176 Test #175: canonical_regression_12 ..........   Passed    0.00 sec
+        Start 176: canonical_regression_13
+176/176 Test #176: canonical_regression_13 ..........   Passed    0.00 sec
+
+97% tests passed, 5 tests failed out of 176
+
+Total Test time (real) =   1.53 sec
+
+The following tests FAILED:
+	 11 - probe_layer_10 (Child aborted)
+	 14 - probe_layer_13 (Child aborted)
+	 22 - probe_layer_21 (Child aborted)
+	 23 - probe_layer_22 (Child aborted)
+	 28 - probe_layer_27 (Child aborted)
+Errors while running CTest

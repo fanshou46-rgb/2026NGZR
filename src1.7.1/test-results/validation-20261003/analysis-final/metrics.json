@@ -1,0 +1,1337 @@
+{
+  "all": {
+    "pairs": 1084,
+    "scored_pairs": 1004,
+    "unique_inputs": 271,
+    "baseline": {
+      "official_score": {
+        "sum": 725080,
+        "count": 1004,
+        "missing": 0
+      },
+      "raw_score": {
+        "sum": 726246,
+        "count": 1004,
+        "missing": 0
+      },
+      "base": {
+        "sum": 644848,
+        "count": 1004,
+        "missing": 0
+      },
+      "final_goals": {
+        "sum": 5161,
+        "count": 1004,
+        "missing": 0
+      },
+      "credited_constraints": {
+        "sum": 23190,
+        "count": 1004,
+        "missing": 0
+      },
+      "action_cost": {
+        "sum": 25392,
+        "count": 1004,
+        "missing": 0
+      },
+      "platform_seconds": {
+        "sum": 912.1310000000001,
+        "count": 1004,
+        "missing": 0
+      },
+      "status": {
+        "ok": 1004
+      },
+      "timeouts": 0
+    },
+    "current": {
+      "official_score": {
+        "sum": 728146,
+        "count": 1004,
+        "missing": 0
+      },
+      "raw_score": {
+        "sum": 733550,
+        "count": 1004,
+        "missing": 0
+      },
+      "base": {
+        "sum": 653144,
+        "count": 1004,
+        "missing": 0
+      },
+      "final_goals": {
+        "sum": 5401,
+        "count": 1004,
+        "missing": 0
+      },
+      "credited_constraints": {
+        "sum": 23190,
+        "count": 1004,
+        "missing": 0
+      },
+      "action_cost": {
+        "sum": 26696,
+        "count": 1004,
+        "missing": 0
+      },
+      "platform_seconds": {
+        "sum": 960.4300000000003,
+        "count": 1004,
+        "missing": 0
+      },
+      "status": {
+        "ok": 1004
+      },
+      "timeouts": 0
+    },
+    "paired": {
+      "official_score": {
+        "increase": 31,
+        "equal": 913,
+        "decrease": 60,
+        "missing": 0,
+        "delta_sum": 3066
+      },
+      "base": {
+        "increase": 20,
+        "equal": 948,
+        "decrease": 36,
+        "missing": 0,
+        "delta_sum": 8296
+      },
+      "final_goals": {
+        "increase": 20,
+        "equal": 984,
+        "decrease": 0,
+        "missing": 0,
+        "delta_sum": 240
+      },
+      "credited_constraints": {
+        "increase": 0,
+        "equal": 1004,
+        "decrease": 0,
+        "missing": 0,
+        "delta_sum": 0
+      }
+    },
+    "probes": {
+      "total": 116,
+      "received_feedback": 116,
+      "related_new_information": 108,
+      "no_related_information": 8,
+      "effective_after_replan": 108,
+      "no_progress_after_replan": 8,
+      "candidate_restored_events": 56,
+      "restored_task_occurrences": 196,
+      "completed_restored_task_occurrences": 72,
+      "kind": {
+        "MoveSense": 92,
+        "SenseCurrentLocationOnly": 24
+      },
+      "max_per_run": 5,
+      "move_failure": 0,
+      "exception_or_execution_failure": 0,
+      "evidence_source_change_flags": {
+        "sense_evidence_changes": 112,
+        "action_success_evidence_changes": 100,
+        "action_failure_evidence_changes": 0
+      },
+      "candidate_rejections": {
+        "deadline": 37,
+        "constraint_safety_unknown": 1205,
+        "duplicate_related_revision": 48,
+        "extra_physical_actions": 480
+      },
+      "execution_rejections": {},
+      "stop_reasons": {
+        "qualified_goto_tail": 72,
+        "deadline": 29,
+        "constraint_rejected": 239,
+        "no_task_and_no_legal_probe": 256,
+        "duplicate_or_no_information": 20,
+        "same_probe_bound": 4
+      }
+    },
+    "early_stop_recovery": {
+      "pairs": 486,
+      "recovered_pairs": 36,
+      "input_ids": [
+        "A01-01-s2",
+        "A01-02-s2",
+        "A01-03-s2",
+        "A01-04-s2",
+        "A01-05-s2",
+        "A02-01-s2",
+        "A02-02-s2",
+        "A02-03-s2",
+        "A02-04-s2",
+        "A02-05-s2",
+        "A03-01-s2",
+        "A03-02-s2",
+        "A03-03-s2",
+        "A03-04-s2",
+        "A03-05-s2",
+        "A04-01-s2",
+        "A04-02-s2",
+        "A04-03-s2",
+        "A04-04-s2",
+        "A04-05-s2",
+        "A05-01-s2",
+        "A05-02-s2",
+        "A05-03-s2",
+        "A05-04-s2",
+        "A05-05-s2",
+        "B01-01-s2",
+        "B01-02-s2",
+        "B01-03-s2",
+        "B01-04-s2",
+        "B01-05-s2",
+        "B02-01-s2",
+        "B02-02-s2",
+        "B02-03-s2",
+        "B02-04-s2",
+        "B02-05-s2",
+        "B03-01-s2",
+        "B03-02-s2",
+        "B03-03-s2",
+        "B03-04-s2",
+        "B03-05-s2",
+        "B04-01-s2",
+        "B04-02-s2",
+        "B04-03-s2",
+        "B04-04-s2",
+        "B04-05-s2",
+        "B05-01-s2",
+        "B05-02-s2",
+        "B05-03-s2",
+        "B05-04-s2",
+        "B05-05-s2",
+        "C01-01-s2",
+        "C01-02-s2",
+        "C01-03-s2",
+        "C01-04-s2",
+        "C01-05-s2",
+        "C02-01-s2",
+        "C02-02-s2",
+        "C02-03-s2",
+        "C02-04-s2",
+        "C02-05-s2",
+        "C03-01-s2",
+        "C03-02-s2",
+        "C03-03-s2",
+        "C03-04-s2",
+        "C03-05-s2",
+        "C04-01-s2",
+        "C04-02-s2",
+        "C04-03-s2",
+        "C04-04-s2",
+        "C04-05-s2",
+        "C05-01-s2",
+        "C05-02-s2",
+        "C05-03-s2",
+        "C05-04-s2",
+        "C05-05-s2",
+        "D01-01-s2",
+        "D01-02-s2",
+        "D01-03-s2",
+        "D01-04-s2",
+        "D01-05-s2",
+        "D02-01-s2",
+        "D02-02-s2",
+        "D02-03-s2",
+        "D02-04-s2",
+        "D02-05-s2",
+        "D03-01-s2",
+        "D03-02-s2",
+        "D03-03-s2",
+        "D03-04-s2",
+        "D03-05-s2",
+        "c001",
+        "c003",
+        "c004",
+        "c005",
+        "c006",
+        "c007",
+        "c008",
+        "c010",
+        "c011",
+        "c012",
+        "c014",
+        "c015",
+        "c017",
+        "c019",
+        "c020",
+        "c021",
+        "c022",
+        "c023",
+        "c024",
+        "c028",
+        "c029",
+        "c030",
+        "c031",
+        "c032",
+        "c033",
+        "c049",
+        "c053",
+        "c056",
+        "c058",
+        "c059",
+        "c069",
+        "c070"
+      ],
+      "recovered_input_ids": [
+        "c005",
+        "c011",
+        "c012",
+        "c031",
+        "c032",
+        "c033",
+        "c056",
+        "c058",
+        "c070"
+      ],
+      "subsequently_completed_pairs": 32,
+      "official_goal_gain_pairs": 20
+    }
+  },
+  "stage1": {
+    "pairs": 480,
+    "scored_pairs": 480,
+    "unique_inputs": 120,
+    "baseline": {
+      "official_score": {
+        "sum": 343402,
+        "count": 480,
+        "missing": 0
+      },
+      "raw_score": {
+        "sum": 343402,
+        "count": 480,
+        "missing": 0
+      },
+      "base": {
+        "sum": 306816,
+        "count": 480,
+        "missing": 0
+      },
+      "final_goals": {
+        "sum": 2476,
+        "count": 480,
+        "missing": 0
+      },
+      "credited_constraints": {
+        "sum": 11172,
+        "count": 480,
+        "missing": 0
+      },
+      "action_cost": {
+        "sum": 15664,
+        "count": 480,
+        "missing": 0
+      },
+      "platform_seconds": {
+        "sum": 545.8349999999998,
+        "count": 480,
+        "missing": 0
+      },
+      "status": {
+        "ok": 480
+      },
+      "timeouts": 0
+    },
+    "current": {
+      "official_score": {
+        "sum": 343398,
+        "count": 480,
+        "missing": 0
+      },
+      "raw_score": {
+        "sum": 343398,
+        "count": 480,
+        "missing": 0
+      },
+      "base": {
+        "sum": 306816,
+        "count": 480,
+        "missing": 0
+      },
+      "final_goals": {
+        "sum": 2476,
+        "count": 480,
+        "missing": 0
+      },
+      "credited_constraints": {
+        "sum": 11172,
+        "count": 480,
+        "missing": 0
+      },
+      "action_cost": {
+        "sum": 15664,
+        "count": 480,
+        "missing": 0
+      },
+      "platform_seconds": {
+        "sum": 545.6970000000001,
+        "count": 480,
+        "missing": 0
+      },
+      "status": {
+        "ok": 480
+      },
+      "timeouts": 0
+    },
+    "paired": {
+      "official_score": {
+        "increase": 9,
+        "equal": 458,
+        "decrease": 13,
+        "missing": 0,
+        "delta_sum": -4
+      },
+      "base": {
+        "increase": 0,
+        "equal": 480,
+        "decrease": 0,
+        "missing": 0,
+        "delta_sum": 0
+      },
+      "final_goals": {
+        "increase": 0,
+        "equal": 480,
+        "decrease": 0,
+        "missing": 0,
+        "delta_sum": 0
+      },
+      "credited_constraints": {
+        "increase": 0,
+        "equal": 480,
+        "decrease": 0,
+        "missing": 0,
+        "delta_sum": 0
+      }
+    },
+    "probes": {
+      "total": 0,
+      "received_feedback": 0,
+      "related_new_information": 0,
+      "no_related_information": 0,
+      "effective_after_replan": 0,
+      "no_progress_after_replan": 0,
+      "candidate_restored_events": 0,
+      "restored_task_occurrences": 0,
+      "completed_restored_task_occurrences": 0,
+      "kind": {},
+      "max_per_run": 0,
+      "move_failure": 0,
+      "exception_or_execution_failure": 0,
+      "evidence_source_change_flags": {
+        "sense_evidence_changes": 0,
+        "action_success_evidence_changes": 0,
+        "action_failure_evidence_changes": 0
+      },
+      "candidate_rejections": {},
+      "execution_rejections": {},
+      "stop_reasons": {}
+    },
+    "early_stop_recovery": {
+      "pairs": 0,
+      "recovered_pairs": 0,
+      "input_ids": [],
+      "recovered_input_ids": [],
+      "subsequently_completed_pairs": 0,
+      "official_goal_gain_pairs": 0
+    }
+  },
+  "stage2": {
+    "pairs": 524,
+    "scored_pairs": 524,
+    "unique_inputs": 131,
+    "baseline": {
+      "official_score": {
+        "sum": 381678,
+        "count": 524,
+        "missing": 0
+      },
+      "raw_score": {
+        "sum": 382844,
+        "count": 524,
+        "missing": 0
+      },
+      "base": {
+        "sum": 338032,
+        "count": 524,
+        "missing": 0
+      },
+      "final_goals": {
+        "sum": 2685,
+        "count": 524,
+        "missing": 0
+      },
+      "credited_constraints": {
+        "sum": 12018,
+        "count": 524,
+        "missing": 0
+      },
+      "action_cost": {
+        "sum": 9728,
+        "count": 524,
+        "missing": 0
+      },
+      "platform_seconds": {
+        "sum": 366.2959999999997,
+        "count": 524,
+        "missing": 0
+      },
+      "status": {
+        "ok": 524
+      },
+      "timeouts": 0
+    },
+    "current": {
+      "official_score": {
+        "sum": 384748,
+        "count": 524,
+        "missing": 0
+      },
+      "raw_score": {
+        "sum": 390152,
+        "count": 524,
+        "missing": 0
+      },
+      "base": {
+        "sum": 346328,
+        "count": 524,
+        "missing": 0
+      },
+      "final_goals": {
+        "sum": 2925,
+        "count": 524,
+        "missing": 0
+      },
+      "credited_constraints": {
+        "sum": 12018,
+        "count": 524,
+        "missing": 0
+      },
+      "action_cost": {
+        "sum": 11032,
+        "count": 524,
+        "missing": 0
+      },
+      "platform_seconds": {
+        "sum": 414.7329999999998,
+        "count": 524,
+        "missing": 0
+      },
+      "status": {
+        "ok": 524
+      },
+      "timeouts": 0
+    },
+    "paired": {
+      "official_score": {
+        "increase": 22,
+        "equal": 455,
+        "decrease": 47,
+        "missing": 0,
+        "delta_sum": 3070
+      },
+      "base": {
+        "increase": 20,
+        "equal": 468,
+        "decrease": 36,
+        "missing": 0,
+        "delta_sum": 8296
+      },
+      "final_goals": {
+        "increase": 20,
+        "equal": 504,
+        "decrease": 0,
+        "missing": 0,
+        "delta_sum": 240
+      },
+      "credited_constraints": {
+        "increase": 0,
+        "equal": 524,
+        "decrease": 0,
+        "missing": 0,
+        "delta_sum": 0
+      }
+    },
+    "probes": {
+      "total": 116,
+      "received_feedback": 116,
+      "related_new_information": 108,
+      "no_related_information": 8,
+      "effective_after_replan": 108,
+      "no_progress_after_replan": 8,
+      "candidate_restored_events": 56,
+      "restored_task_occurrences": 196,
+      "completed_restored_task_occurrences": 72,
+      "kind": {
+        "MoveSense": 92,
+        "SenseCurrentLocationOnly": 24
+      },
+      "max_per_run": 5,
+      "move_failure": 0,
+      "exception_or_execution_failure": 0,
+      "evidence_source_change_flags": {
+        "sense_evidence_changes": 112,
+        "action_success_evidence_changes": 100,
+        "action_failure_evidence_changes": 0
+      },
+      "candidate_rejections": {
+        "deadline": 37,
+        "constraint_safety_unknown": 1205,
+        "duplicate_related_revision": 48,
+        "extra_physical_actions": 480
+      },
+      "execution_rejections": {},
+      "stop_reasons": {
+        "qualified_goto_tail": 72,
+        "deadline": 29,
+        "constraint_rejected": 239,
+        "no_task_and_no_legal_probe": 256,
+        "duplicate_or_no_information": 20,
+        "same_probe_bound": 4
+      }
+    },
+    "early_stop_recovery": {
+      "pairs": 486,
+      "recovered_pairs": 36,
+      "input_ids": [
+        "A01-01-s2",
+        "A01-02-s2",
+        "A01-03-s2",
+        "A01-04-s2",
+        "A01-05-s2",
+        "A02-01-s2",
+        "A02-02-s2",
+        "A02-03-s2",
+        "A02-04-s2",
+        "A02-05-s2",
+        "A03-01-s2",
+        "A03-02-s2",
+        "A03-03-s2",
+        "A03-04-s2",
+        "A03-05-s2",
+        "A04-01-s2",
+        "A04-02-s2",
+        "A04-03-s2",
+        "A04-04-s2",
+        "A04-05-s2",
+        "A05-01-s2",
+        "A05-02-s2",
+        "A05-03-s2",
+        "A05-04-s2",
+        "A05-05-s2",
+        "B01-01-s2",
+        "B01-02-s2",
+        "B01-03-s2",
+        "B01-04-s2",
+        "B01-05-s2",
+        "B02-01-s2",
+        "B02-02-s2",
+        "B02-03-s2",
+        "B02-04-s2",
+        "B02-05-s2",
+        "B03-01-s2",
+        "B03-02-s2",
+        "B03-03-s2",
+        "B03-04-s2",
+        "B03-05-s2",
+        "B04-01-s2",
+        "B04-02-s2",
+        "B04-03-s2",
+        "B04-04-s2",
+        "B04-05-s2",
+        "B05-01-s2",
+        "B05-02-s2",
+        "B05-03-s2",
+        "B05-04-s2",
+        "B05-05-s2",
+        "C01-01-s2",
+        "C01-02-s2",
+        "C01-03-s2",
+        "C01-04-s2",
+        "C01-05-s2",
+        "C02-01-s2",
+        "C02-02-s2",
+        "C02-03-s2",
+        "C02-04-s2",
+        "C02-05-s2",
+        "C03-01-s2",
+        "C03-02-s2",
+        "C03-03-s2",
+        "C03-04-s2",
+        "C03-05-s2",
+        "C04-01-s2",
+        "C04-02-s2",
+        "C04-03-s2",
+        "C04-04-s2",
+        "C04-05-s2",
+        "C05-01-s2",
+        "C05-02-s2",
+        "C05-03-s2",
+        "C05-04-s2",
+        "C05-05-s2",
+        "D01-01-s2",
+        "D01-02-s2",
+        "D01-03-s2",
+        "D01-04-s2",
+        "D01-05-s2",
+        "D02-01-s2",
+        "D02-02-s2",
+        "D02-03-s2",
+        "D02-04-s2",
+        "D02-05-s2",
+        "D03-01-s2",
+        "D03-02-s2",
+        "D03-03-s2",
+        "D03-04-s2",
+        "D03-05-s2",
+        "c001",
+        "c003",
+        "c004",
+        "c005",
+        "c006",
+        "c007",
+        "c008",
+        "c010",
+        "c011",
+        "c012",
+        "c014",
+        "c015",
+        "c017",
+        "c019",
+        "c020",
+        "c021",
+        "c022",
+        "c023",
+        "c024",
+        "c028",
+        "c029",
+        "c030",
+        "c031",
+        "c032",
+        "c033",
+        "c049",
+        "c053",
+        "c056",
+        "c058",
+        "c059",
+        "c069",
+        "c070"
+      ],
+      "recovered_input_ids": [
+        "c005",
+        "c011",
+        "c012",
+        "c031",
+        "c032",
+        "c033",
+        "c056",
+        "c058",
+        "c070"
+      ],
+      "subsequently_completed_pairs": 32,
+      "official_goal_gain_pairs": 20
+    }
+  },
+  "legacy": {
+    "pairs": 284,
+    "scored_pairs": 284,
+    "unique_inputs": 71,
+    "baseline": {
+      "official_score": {
+        "sum": 107500,
+        "count": 284,
+        "missing": 0
+      },
+      "raw_score": {
+        "sum": 108666,
+        "count": 284,
+        "missing": 0
+      },
+      "base": {
+        "sum": 85908,
+        "count": 284,
+        "missing": 0
+      },
+      "final_goals": {
+        "sum": 1841,
+        "count": 284,
+        "missing": 0
+      },
+      "credited_constraints": {
+        "sum": 1002,
+        "count": 284,
+        "missing": 0
+      },
+      "action_cost": {
+        "sum": 7772,
+        "count": 284,
+        "missing": 0
+      },
+      "platform_seconds": {
+        "sum": 273.86999999999983,
+        "count": 284,
+        "missing": 0
+      },
+      "status": {
+        "ok": 284
+      },
+      "timeouts": 0
+    },
+    "current": {
+      "official_score": {
+        "sum": 110576,
+        "count": 284,
+        "missing": 0
+      },
+      "raw_score": {
+        "sum": 115980,
+        "count": 284,
+        "missing": 0
+      },
+      "base": {
+        "sum": 94204,
+        "count": 284,
+        "missing": 0
+      },
+      "final_goals": {
+        "sum": 2081,
+        "count": 284,
+        "missing": 0
+      },
+      "credited_constraints": {
+        "sum": 1002,
+        "count": 284,
+        "missing": 0
+      },
+      "action_cost": {
+        "sum": 9076,
+        "count": 284,
+        "missing": 0
+      },
+      "platform_seconds": {
+        "sum": 322.04999999999995,
+        "count": 284,
+        "missing": 0
+      },
+      "status": {
+        "ok": 284
+      },
+      "timeouts": 0
+    },
+    "paired": {
+      "official_score": {
+        "increase": 25,
+        "equal": 209,
+        "decrease": 50,
+        "missing": 0,
+        "delta_sum": 3076
+      },
+      "base": {
+        "increase": 20,
+        "equal": 228,
+        "decrease": 36,
+        "missing": 0,
+        "delta_sum": 8296
+      },
+      "final_goals": {
+        "increase": 20,
+        "equal": 264,
+        "decrease": 0,
+        "missing": 0,
+        "delta_sum": 240
+      },
+      "credited_constraints": {
+        "increase": 0,
+        "equal": 284,
+        "decrease": 0,
+        "missing": 0,
+        "delta_sum": 0
+      }
+    },
+    "probes": {
+      "total": 116,
+      "received_feedback": 116,
+      "related_new_information": 108,
+      "no_related_information": 8,
+      "effective_after_replan": 108,
+      "no_progress_after_replan": 8,
+      "candidate_restored_events": 56,
+      "restored_task_occurrences": 196,
+      "completed_restored_task_occurrences": 72,
+      "kind": {
+        "MoveSense": 92,
+        "SenseCurrentLocationOnly": 24
+      },
+      "max_per_run": 5,
+      "move_failure": 0,
+      "exception_or_execution_failure": 0,
+      "evidence_source_change_flags": {
+        "sense_evidence_changes": 112,
+        "action_success_evidence_changes": 100,
+        "action_failure_evidence_changes": 0
+      },
+      "candidate_rejections": {
+        "deadline": 37,
+        "constraint_safety_unknown": 73,
+        "duplicate_related_revision": 48,
+        "extra_physical_actions": 32
+      },
+      "execution_rejections": {},
+      "stop_reasons": {
+        "qualified_goto_tail": 72,
+        "deadline": 29,
+        "constraint_rejected": 19,
+        "no_task_and_no_legal_probe": 76,
+        "duplicate_or_no_information": 20,
+        "same_probe_bound": 4
+      }
+    },
+    "early_stop_recovery": {
+      "pairs": 126,
+      "recovered_pairs": 36,
+      "input_ids": [
+        "c001",
+        "c003",
+        "c004",
+        "c005",
+        "c006",
+        "c007",
+        "c008",
+        "c010",
+        "c011",
+        "c012",
+        "c014",
+        "c015",
+        "c017",
+        "c019",
+        "c020",
+        "c021",
+        "c022",
+        "c023",
+        "c024",
+        "c028",
+        "c029",
+        "c030",
+        "c031",
+        "c032",
+        "c033",
+        "c049",
+        "c053",
+        "c056",
+        "c058",
+        "c059",
+        "c069",
+        "c070"
+      ],
+      "recovered_input_ids": [
+        "c005",
+        "c011",
+        "c012",
+        "c031",
+        "c032",
+        "c033",
+        "c056",
+        "c058",
+        "c070"
+      ],
+      "subsequently_completed_pairs": 32,
+      "official_goal_gain_pairs": 20
+    }
+  },
+  "normal_comprehensive": {
+    "pairs": 720,
+    "scored_pairs": 720,
+    "unique_inputs": 180,
+    "baseline": {
+      "official_score": {
+        "sum": 617580,
+        "count": 720,
+        "missing": 0
+      },
+      "raw_score": {
+        "sum": 617580,
+        "count": 720,
+        "missing": 0
+      },
+      "base": {
+        "sum": 558940,
+        "count": 720,
+        "missing": 0
+      },
+      "final_goals": {
+        "sum": 3320,
+        "count": 720,
+        "missing": 0
+      },
+      "credited_constraints": {
+        "sum": 22188,
+        "count": 720,
+        "missing": 0
+      },
+      "action_cost": {
+        "sum": 17620,
+        "count": 720,
+        "missing": 0
+      },
+      "platform_seconds": {
+        "sum": 638.2609999999997,
+        "count": 720,
+        "missing": 0
+      },
+      "status": {
+        "ok": 720
+      },
+      "timeouts": 0
+    },
+    "current": {
+      "official_score": {
+        "sum": 617570,
+        "count": 720,
+        "missing": 0
+      },
+      "raw_score": {
+        "sum": 617570,
+        "count": 720,
+        "missing": 0
+      },
+      "base": {
+        "sum": 558940,
+        "count": 720,
+        "missing": 0
+      },
+      "final_goals": {
+        "sum": 3320,
+        "count": 720,
+        "missing": 0
+      },
+      "credited_constraints": {
+        "sum": 22188,
+        "count": 720,
+        "missing": 0
+      },
+      "action_cost": {
+        "sum": 17620,
+        "count": 720,
+        "missing": 0
+      },
+      "platform_seconds": {
+        "sum": 638.3800000000006,
+        "count": 720,
+        "missing": 0
+      },
+      "status": {
+        "ok": 720
+      },
+      "timeouts": 0
+    },
+    "paired": {
+      "official_score": {
+        "increase": 6,
+        "equal": 704,
+        "decrease": 10,
+        "missing": 0,
+        "delta_sum": -10
+      },
+      "base": {
+        "increase": 0,
+        "equal": 720,
+        "decrease": 0,
+        "missing": 0,
+        "delta_sum": 0
+      },
+      "final_goals": {
+        "increase": 0,
+        "equal": 720,
+        "decrease": 0,
+        "missing": 0,
+        "delta_sum": 0
+      },
+      "credited_constraints": {
+        "increase": 0,
+        "equal": 720,
+        "decrease": 0,
+        "missing": 0,
+        "delta_sum": 0
+      }
+    },
+    "probes": {
+      "total": 0,
+      "received_feedback": 0,
+      "related_new_information": 0,
+      "no_related_information": 0,
+      "effective_after_replan": 0,
+      "no_progress_after_replan": 0,
+      "candidate_restored_events": 0,
+      "restored_task_occurrences": 0,
+      "completed_restored_task_occurrences": 0,
+      "kind": {},
+      "max_per_run": 0,
+      "move_failure": 0,
+      "exception_or_execution_failure": 0,
+      "evidence_source_change_flags": {
+        "sense_evidence_changes": 0,
+        "action_success_evidence_changes": 0,
+        "action_failure_evidence_changes": 0
+      },
+      "candidate_rejections": {
+        "constraint_safety_unknown": 1132,
+        "extra_physical_actions": 448
+      },
+      "execution_rejections": {},
+      "stop_reasons": {
+        "constraint_rejected": 220,
+        "no_task_and_no_legal_probe": 180
+      }
+    },
+    "early_stop_recovery": {
+      "pairs": 360,
+      "recovered_pairs": 0,
+      "input_ids": [
+        "A01-01-s2",
+        "A01-02-s2",
+        "A01-03-s2",
+        "A01-04-s2",
+        "A01-05-s2",
+        "A02-01-s2",
+        "A02-02-s2",
+        "A02-03-s2",
+        "A02-04-s2",
+        "A02-05-s2",
+        "A03-01-s2",
+        "A03-02-s2",
+        "A03-03-s2",
+        "A03-04-s2",
+        "A03-05-s2",
+        "A04-01-s2",
+        "A04-02-s2",
+        "A04-03-s2",
+        "A04-04-s2",
+        "A04-05-s2",
+        "A05-01-s2",
+        "A05-02-s2",
+        "A05-03-s2",
+        "A05-04-s2",
+        "A05-05-s2",
+        "B01-01-s2",
+        "B01-02-s2",
+        "B01-03-s2",
+        "B01-04-s2",
+        "B01-05-s2",
+        "B02-01-s2",
+        "B02-02-s2",
+        "B02-03-s2",
+        "B02-04-s2",
+        "B02-05-s2",
+        "B03-01-s2",
+        "B03-02-s2",
+        "B03-03-s2",
+        "B03-04-s2",
+        "B03-05-s2",
+        "B04-01-s2",
+        "B04-02-s2",
+        "B04-03-s2",
+        "B04-04-s2",
+        "B04-05-s2",
+        "B05-01-s2",
+        "B05-02-s2",
+        "B05-03-s2",
+        "B05-04-s2",
+        "B05-05-s2",
+        "C01-01-s2",
+        "C01-02-s2",
+        "C01-03-s2",
+        "C01-04-s2",
+        "C01-05-s2",
+        "C02-01-s2",
+        "C02-02-s2",
+        "C02-03-s2",
+        "C02-04-s2",
+        "C02-05-s2",
+        "C03-01-s2",
+        "C03-02-s2",
+        "C03-03-s2",
+        "C03-04-s2",
+        "C03-05-s2",
+        "C04-01-s2",
+        "C04-02-s2",
+        "C04-03-s2",
+        "C04-04-s2",
+        "C04-05-s2",
+        "C05-01-s2",
+        "C05-02-s2",
+        "C05-03-s2",
+        "C05-04-s2",
+        "C05-05-s2",
+        "D01-01-s2",
+        "D01-02-s2",
+        "D01-03-s2",
+        "D01-04-s2",
+        "D01-05-s2",
+        "D02-01-s2",
+        "D02-02-s2",
+        "D02-03-s2",
+        "D02-04-s2",
+        "D02-05-s2",
+        "D03-01-s2",
+        "D03-02-s2",
+        "D03-03-s2",
+        "D03-04-s2",
+        "D03-05-s2"
+      ],
+      "recovered_input_ids": [],
+      "subsequently_completed_pairs": 0,
+      "official_goal_gain_pairs": 0
+    }
+  },
+  "invalid": {
+    "pairs": 80,
+    "scored_pairs": 0,
+    "unique_inputs": 20,
+    "baseline": {
+      "official_score": {
+        "sum": 0,
+        "count": 0,
+        "missing": 0
+      },
+      "raw_score": {
+        "sum": 0,
+        "count": 0,
+        "missing": 0
+      },
+      "base": {
+        "sum": 0,
+        "count": 0,
+        "missing": 0
+      },
+      "final_goals": {
+        "sum": 0,
+        "count": 0,
+        "missing": 0
+      },
+      "credited_constraints": {
+        "sum": 0,
+        "count": 0,
+        "missing": 0
+      },
+      "action_cost": {
+        "sum": 0,
+        "count": 0,
+        "missing": 0
+      },
+      "platform_seconds": {
+        "sum": 0,
+        "count": 0,
+        "missing": 0
+      },
+      "status": {},
+      "timeouts": 0
+    },
+    "current": {
+      "official_score": {
+        "sum": 0,
+        "count": 0,
+        "missing": 0
+      },
+      "raw_score": {
+        "sum": 0,
+        "count": 0,
+        "missing": 0
+      },
+      "base": {
+        "sum": 0,
+        "count": 0,
+        "missing": 0
+      },
+      "final_goals": {
+        "sum": 0,
+        "count": 0,
+        "missing": 0
+      },
+      "credited_constraints": {
+        "sum": 0,
+        "count": 0,
+        "missing": 0
+      },
+      "action_cost": {
+        "sum": 0,
+        "count": 0,
+        "missing": 0
+      },
+      "platform_seconds": {
+        "sum": 0,
+        "count": 0,
+        "missing": 0
+      },
+      "status": {},
+      "timeouts": 0
+    },
+    "paired": {
+      "official_score": {
+        "increase": 0,
+        "equal": 0,
+        "decrease": 0,
+        "missing": 0,
+        "delta_sum": 0
+      },
+      "base": {
+        "increase": 0,
+        "equal": 0,
+        "decrease": 0,
+        "missing": 0,
+        "delta_sum": 0
+      },
+      "final_goals": {
+        "increase": 0,
+        "equal": 0,
+        "decrease": 0,
+        "missing": 0,
+        "delta_sum": 0
+      },
+      "credited_constraints": {
+        "increase": 0,
+        "equal": 0,
+        "decrease": 0,
+        "missing": 0,
+        "delta_sum": 0
+      }
+    },
+    "probes": {
+      "total": 0,
+      "received_feedback": 0,
+      "related_new_information": 0,
+      "no_related_information": 0,
+      "effective_after_replan": 0,
+      "no_progress_after_replan": 0,
+      "candidate_restored_events": 0,
+      "restored_task_occurrences": 0,
+      "completed_restored_task_occurrences": 0,
+      "kind": {},
+      "max_per_run": 0,
+      "move_failure": 0,
+      "exception_or_execution_failure": 0,
+      "evidence_source_change_flags": {
+        "sense_evidence_changes": 0,
+        "action_success_evidence_changes": 0,
+        "action_failure_evidence_changes": 0
+      },
+      "candidate_rejections": {},
+      "execution_rejections": {},
+      "stop_reasons": {}
+    },
+    "early_stop_recovery": {
+      "pairs": 0,
+      "recovered_pairs": 0,
+      "input_ids": [],
+      "recovered_input_ids": [],
+      "subsequently_completed_pairs": 0,
+      "official_goal_gain_pairs": 0
+    }
+  }
+}

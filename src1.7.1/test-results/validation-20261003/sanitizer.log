@@ -1,0 +1,555 @@
+-- The CXX compiler identification is GNU 7.5.0
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/rdfw171-sanitizer-20261003
+Scanning dependencies of target rdfw_test_core
+[  3%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/d/FILES_for_Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/state_mutation.cpp.o
+[  3%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/d/FILES_for_Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/canonical_state.cpp.o
+[  5%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/d/FILES_for_Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/rdfw.cpp.o
+[  7%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/d/FILES_for_Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/probe_layer.cpp.o
+[  9%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/d/FILES_for_Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/parser.cpp.o
+[ 11%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/d/FILES_for_Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/deadline_manager.cpp.o
+[ 13%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/d/FILES_for_Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/terminal_checker.cpp.o
+[ 15%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/d/FILES_for_Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/legacy_priority.cpp.o
+[ 17%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/d/FILES_for_Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/score_evaluator.cpp.o
+[ 19%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/d/FILES_for_Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/candidate_plan.cpp.o
+[ 21%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/d/FILES_for_Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/task_group_search.cpp.o
+[ 23%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/d/FILES_for_Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/question_preflight.cpp.o
+[ 25%] Linking CXX static library librdfw_test_core.a
+[ 25%] Built target rdfw_test_core
+Scanning dependencies of target three_a_tests
+Scanning dependencies of target state_layer_tests
+Scanning dependencies of target state_invariant_tests
+[ 27%] Building CXX object CMakeFiles/three_a_tests.dir/three_a_tests.cpp.o
+[ 29%] Building CXX object CMakeFiles/state_layer_tests.dir/state_layer_tests.cpp.o
+[ 31%] Building CXX object CMakeFiles/state_invariant_tests.dir/state_invariant_tests.cpp.o
+[ 33%] Linking CXX executable three_a_tests
+[ 35%] Linking CXX executable state_layer_tests
+[ 37%] Linking CXX executable state_invariant_tests
+[ 37%] Built target three_a_tests
+Scanning dependencies of target unified_scheduler_tests
+[ 39%] Building CXX object CMakeFiles/unified_scheduler_tests.dir/unified_scheduler_tests.cpp.o
+[ 39%] Built target state_layer_tests
+Scanning dependencies of target recovery_evidence_tests
+[ 41%] Building CXX object CMakeFiles/recovery_evidence_tests.dir/recovery_evidence_tests.cpp.o
+[ 41%] Built target state_invariant_tests
+Scanning dependencies of target canonical_baseline_probe
+[ 43%] Building CXX object CMakeFiles/canonical_baseline_probe.dir/canonical_baseline_probe.cpp.o
+[ 45%] Linking CXX executable recovery_evidence_tests
+[ 47%] Linking CXX executable unified_scheduler_tests
+[ 49%] Linking CXX executable canonical_baseline_probe
+[ 49%] Built target recovery_evidence_tests
+Scanning dependencies of target deadline_sensitivity_tests
+[ 50%] Building CXX object CMakeFiles/deadline_sensitivity_tests.dir/deadline_sensitivity_tests.cpp.o
+[ 50%] Built target unified_scheduler_tests
+Scanning dependencies of target canonical_state_tests
+[ 52%] Building CXX object CMakeFiles/canonical_state_tests.dir/canonical_state_tests.cpp.o
+[ 52%] Built target canonical_baseline_probe
+Scanning dependencies of target probe_layer_tests
+[ 54%] Building CXX object CMakeFiles/probe_layer_tests.dir/probe_layer_tests.cpp.o
+[ 56%] Linking CXX executable deadline_sensitivity_tests
+[ 58%] Linking CXX executable canonical_state_tests
+[ 58%] Built target deadline_sensitivity_tests
+Scanning dependencies of target legal_preservation_tests
+[ 60%] Building CXX object CMakeFiles/legal_preservation_tests.dir/legal_preservation_tests.cpp.o
+[ 62%] Linking CXX executable probe_layer_tests
+[ 62%] Built target canonical_state_tests
+Scanning dependencies of target task_group_search_tests
+[ 64%] Building CXX object CMakeFiles/task_group_search_tests.dir/task_group_search_tests.cpp.o
+[ 66%] Linking CXX executable legal_preservation_tests
+[ 66%] Built target probe_layer_tests
+Scanning dependencies of target question_preflight_tests
+[ 68%] Building CXX object CMakeFiles/question_preflight_tests.dir/question_preflight_tests.cpp.o
+[ 68%] Built target legal_preservation_tests
+Scanning dependencies of target task_group_projection_tests
+[ 70%] Building CXX object CMakeFiles/task_group_projection_tests.dir/task_group_projection_tests.cpp.o
+[ 72%] Linking CXX executable task_group_search_tests
+[ 74%] Linking CXX executable question_preflight_tests
+[ 76%] Linking CXX executable task_group_projection_tests
+[ 76%] Built target task_group_search_tests
+Scanning dependencies of target guarded_decision_tests
+[ 78%] Building CXX object CMakeFiles/guarded_decision_tests.dir/guarded_decision_tests.cpp.o
+[ 78%] Built target question_preflight_tests
+[ 78%] Built target task_group_projection_tests
+Scanning dependencies of target score_semantics_tests
+Scanning dependencies of target interval_gate_tests
+[ 80%] Building CXX object CMakeFiles/score_semantics_tests.dir/score_semantics_tests.cpp.o
+[ 82%] Building CXX object CMakeFiles/interval_gate_tests.dir/interval_gate_tests.cpp.o
+[ 84%] Linking CXX executable guarded_decision_tests
+[ 86%] Linking CXX executable score_semantics_tests
+[ 86%] Built target guarded_decision_tests
+Scanning dependencies of target input_safety_tests
+[ 88%] Building CXX object CMakeFiles/input_safety_tests.dir/input_safety_tests.cpp.o
+[ 90%] Linking CXX executable interval_gate_tests
+[ 90%] Built target score_semantics_tests
+Scanning dependencies of target mutation_failure_tests
+[ 92%] Building CXX object CMakeFiles/mutation_failure_tests.dir/mutation_failure_tests.cpp.o
+[ 92%] Built target interval_gate_tests
+Scanning dependencies of target state_profile
+[ 94%] Building CXX object CMakeFiles/state_profile.dir/state_profile.cpp.o
+[ 96%] Linking CXX executable input_safety_tests
+[ 96%] Built target input_safety_tests
+[ 98%] Linking CXX executable mutation_failure_tests
+[100%] Linking CXX executable state_profile
+[100%] Built target mutation_failure_tests
+[100%] Built target state_profile
+Test project /tmp/rdfw171-sanitizer-20261003
+        Start   1: probe_layer_0
+  1/178 Test   #1: probe_layer_0 ....................   Passed    0.02 sec
+        Start   2: probe_layer_1
+  2/178 Test   #2: probe_layer_1 ....................***Exception: SegFault  0.09 sec
+
+        Start   3: probe_layer_2
+  3/178 Test   #3: probe_layer_2 ....................   Passed    0.02 sec
+        Start   4: probe_layer_3
+  4/178 Test   #4: probe_layer_3 ....................   Passed    0.03 sec
+        Start   5: probe_layer_4
+  5/178 Test   #5: probe_layer_4 ....................***Exception: SegFault  0.08 sec
+
+        Start   6: probe_layer_5
+  6/178 Test   #6: probe_layer_5 ....................   Passed    0.03 sec
+        Start   7: probe_layer_6
+  7/178 Test   #7: probe_layer_6 ....................***Exception: SegFault  0.08 sec
+
+        Start   8: probe_layer_7
+  8/178 Test   #8: probe_layer_7 ....................   Passed    0.03 sec
+        Start   9: probe_layer_8
+  9/178 Test   #9: probe_layer_8 ....................   Passed    0.03 sec
+        Start  10: probe_layer_9
+ 10/178 Test  #10: probe_layer_9 ....................   Passed    0.03 sec
+        Start  11: probe_layer_10
+ 11/178 Test  #11: probe_layer_10 ...................   Passed    0.03 sec
+        Start  12: probe_layer_11
+ 12/178 Test  #12: probe_layer_11 ...................   Passed    0.03 sec
+        Start  13: probe_layer_12
+ 13/178 Test  #13: probe_layer_12 ...................   Passed    0.02 sec
+        Start  14: probe_layer_13
+ 14/178 Test  #14: probe_layer_13 ...................   Passed    0.02 sec
+        Start  15: probe_layer_14
+ 15/178 Test  #15: probe_layer_14 ...................   Passed    0.02 sec
+        Start  16: probe_layer_15
+ 16/178 Test  #16: probe_layer_15 ...................   Passed    0.02 sec
+        Start  17: probe_layer_16
+ 17/178 Test  #17: probe_layer_16 ...................   Passed    0.02 sec
+        Start  18: probe_layer_17
+ 18/178 Test  #18: probe_layer_17 ...................   Passed    0.03 sec
+        Start  19: probe_layer_18
+ 19/178 Test  #19: probe_layer_18 ...................   Passed    0.02 sec
+        Start  20: probe_layer_19
+ 20/178 Test  #20: probe_layer_19 ...................***Exception: SegFault  0.08 sec
+
+        Start  21: probe_layer_20
+ 21/178 Test  #21: probe_layer_20 ...................   Passed    0.03 sec
+        Start  22: probe_layer_21
+ 22/178 Test  #22: probe_layer_21 ...................***Exception: SegFault  0.09 sec
+
+        Start  23: probe_layer_22
+ 23/178 Test  #23: probe_layer_22 ...................   Passed    0.03 sec
+        Start  24: probe_layer_23
+ 24/178 Test  #24: probe_layer_23 ...................   Passed    0.03 sec
+        Start  25: probe_layer_24
+ 25/178 Test  #25: probe_layer_24 ...................   Passed    0.03 sec
+        Start  26: probe_layer_25
+ 26/178 Test  #26: probe_layer_25 ...................   Passed    0.03 sec
+        Start  27: probe_layer_26
+ 27/178 Test  #27: probe_layer_26 ...................***Exception: SegFault  0.08 sec
+
+        Start  28: probe_layer_27
+ 28/178 Test  #28: probe_layer_27 ...................   Passed    0.03 sec
+        Start  29: probe_layer_28
+ 29/178 Test  #29: probe_layer_28 ...................   Passed    0.03 sec
+        Start  30: probe_layer_29
+ 30/178 Test  #30: probe_layer_29 ...................***Exception: SegFault  0.08 sec
+
+        Start  31: probe_layer_30
+ 31/178 Test  #31: probe_layer_30 ...................***Exception: SegFault  0.09 sec
+
+        Start  32: probe_layer_31
+ 32/178 Test  #32: probe_layer_31 ...................***Exception: SegFault  0.09 sec
+
+        Start  33: probe_layer_32
+ 33/178 Test  #33: probe_layer_32 ...................***Exception: SegFault  0.09 sec
+
+        Start  34: unified_scheduler_0
+ 34/178 Test  #34: unified_scheduler_0 ..............***Exception: SegFault  0.09 sec
+
+        Start  35: unified_scheduler_1
+ 35/178 Test  #35: unified_scheduler_1 ..............***Exception: SegFault  0.10 sec
+
+        Start  36: unified_scheduler_2
+ 36/178 Test  #36: unified_scheduler_2 ..............   Passed    0.03 sec
+        Start  37: unified_scheduler_3
+ 37/178 Test  #37: unified_scheduler_3 ..............   Passed    0.03 sec
+        Start  38: unified_scheduler_4
+ 38/178 Test  #38: unified_scheduler_4 ..............   Passed    0.05 sec
+        Start  39: unified_scheduler_5
+ 39/178 Test  #39: unified_scheduler_5 ..............   Passed    0.03 sec
+        Start  40: unified_scheduler_6
+ 40/178 Test  #40: unified_scheduler_6 ..............   Passed    0.03 sec
+        Start  41: unified_scheduler_7
+ 41/178 Test  #41: unified_scheduler_7 ..............   Passed    0.03 sec
+        Start  42: unified_scheduler_8
+ 42/178 Test  #42: unified_scheduler_8 ..............   Passed    0.04 sec
+        Start  43: unified_scheduler_9
+ 43/178 Test  #43: unified_scheduler_9 ..............   Passed    0.02 sec
+        Start  44: unified_scheduler_10
+ 44/178 Test  #44: unified_scheduler_10 .............   Passed    0.03 sec
+        Start  45: unified_scheduler_11
+ 45/178 Test  #45: unified_scheduler_11 .............   Passed    0.03 sec
+        Start  46: unified_scheduler_12
+ 46/178 Test  #46: unified_scheduler_12 .............   Passed    0.02 sec
+        Start  47: unified_scheduler_13
+ 47/178 Test  #47: unified_scheduler_13 .............   Passed    0.03 sec
+        Start  48: unified_scheduler_14
+ 48/178 Test  #48: unified_scheduler_14 .............   Passed    0.03 sec
+        Start  49: unified_scheduler_15
+ 49/178 Test  #49: unified_scheduler_15 .............   Passed    0.02 sec
+        Start  50: unified_scheduler_16
+ 50/178 Test  #50: unified_scheduler_16 .............***Exception: SegFault  0.07 sec
+
+        Start  51: unified_scheduler_17
+ 51/178 Test  #51: unified_scheduler_17 .............   Passed    0.02 sec
+        Start  52: unified_scheduler_18
+ 52/178 Test  #52: unified_scheduler_18 .............   Passed    0.03 sec
+        Start  53: unified_scheduler_19
+ 53/178 Test  #53: unified_scheduler_19 .............   Passed    0.03 sec
+        Start  54: input_safety_tests
+ 54/178 Test  #54: input_safety_tests ...............   Passed    0.03 sec
+        Start  55: three_a_tests
+ 55/178 Test  #55: three_a_tests ....................   Passed    0.02 sec
+        Start  56: question_preflight_tests
+ 56/178 Test  #56: question_preflight_tests .........   Passed    0.07 sec
+        Start  57: legal_preservation_tests
+ 57/178 Test  #57: legal_preservation_tests .........   Passed    0.03 sec
+        Start  58: recovery_evidence_tests
+ 58/178 Test  #58: recovery_evidence_tests ..........   Passed    0.04 sec
+        Start  59: task_group_search_tests
+ 59/178 Test  #59: task_group_search_tests ..........   Passed    0.03 sec
+        Start  60: task_group_projection_tests
+ 60/178 Test  #60: task_group_projection_tests ......   Passed    0.03 sec
+        Start  61: guarded_decision_tests
+ 61/178 Test  #61: guarded_decision_tests ...........   Passed    0.14 sec
+        Start  62: score_semantics_tests
+ 62/178 Test  #62: score_semantics_tests ............   Passed    0.05 sec
+        Start  63: interval_gate_tests
+ 63/178 Test  #63: interval_gate_tests ..............   Passed    0.02 sec
+        Start  64: mutation_failure_0
+ 64/178 Test  #64: mutation_failure_0 ...............   Passed    0.14 sec
+        Start  65: mutation_failure_1
+ 65/178 Test  #65: mutation_failure_1 ...............   Passed    0.14 sec
+        Start  66: mutation_failure_2
+ 66/178 Test  #66: mutation_failure_2 ...............   Passed    0.14 sec
+        Start  67: mutation_failure_3
+ 67/178 Test  #67: mutation_failure_3 ...............   Passed    0.02 sec
+        Start  68: mutation_failure_4
+ 68/178 Test  #68: mutation_failure_4 ...............   Passed    1.74 sec
+        Start  69: mutation_failure_5
+ 69/178 Test  #69: mutation_failure_5 ...............***Exception: SegFault  0.09 sec
+
+        Start  70: mutation_failure_6
+ 70/178 Test  #70: mutation_failure_6 ...............   Passed    0.02 sec
+        Start  71: mutation_failure_7
+ 71/178 Test  #71: mutation_failure_7 ...............***Exception: SegFault  0.09 sec
+
+        Start  72: mutation_failure_8
+ 72/178 Test  #72: mutation_failure_8 ...............   Passed    0.02 sec
+        Start  73: mutation_failure_9
+ 73/178 Test  #73: mutation_failure_9 ...............   Passed    0.02 sec
+        Start  74: mutation_failure_10
+ 74/178 Test  #74: mutation_failure_10 ..............   Passed    0.02 sec
+        Start  75: mutation_failure_11
+ 75/178 Test  #75: mutation_failure_11 ..............   Passed    0.02 sec
+        Start  76: mutation_failure_12
+ 76/178 Test  #76: mutation_failure_12 ..............***Exception: SegFault  0.08 sec
+
+        Start  77: mutation_failure_13
+ 77/178 Test  #77: mutation_failure_13 ..............***Exception: SegFault  0.08 sec
+
+        Start  78: mutation_failure_14
+ 78/178 Test  #78: mutation_failure_14 ..............   Passed    1.31 sec
+        Start  79: mutation_failure_15
+ 79/178 Test  #79: mutation_failure_15 ..............***Exception: SegFault  0.07 sec
+
+        Start  80: mutation_failure_16
+ 80/178 Test  #80: mutation_failure_16 ..............   Passed    0.14 sec
+        Start  81: mutation_failure_17
+ 81/178 Test  #81: mutation_failure_17 ..............   Passed    0.15 sec
+        Start  82: mutation_failure_18
+ 82/178 Test  #82: mutation_failure_18 ..............   Passed    0.14 sec
+        Start  83: mutation_failure_19
+ 83/178 Test  #83: mutation_failure_19 ..............   Passed    0.53 sec
+        Start  84: mutation_failure_20
+ 84/178 Test  #84: mutation_failure_20 ..............   Passed    0.56 sec
+        Start  85: mutation_failure_21
+ 85/178 Test  #85: mutation_failure_21 ..............***Exception: SegFault  0.08 sec
+
+        Start  86: mutation_failure_22
+ 86/178 Test  #86: mutation_failure_22 ..............   Passed    0.54 sec
+        Start  87: mutation_failure_23
+ 87/178 Test  #87: mutation_failure_23 ..............   Passed    0.53 sec
+        Start  88: mutation_failure_24
+ 88/178 Test  #88: mutation_failure_24 ..............   Passed    0.52 sec
+        Start  89: mutation_failure_25
+ 89/178 Test  #89: mutation_failure_25 ..............***Exception: SegFault  0.09 sec
+
+        Start  90: mutation_failure_26
+ 90/178 Test  #90: mutation_failure_26 ..............***Exception: SegFault  0.09 sec
+
+        Start  91: mutation_failure_27
+ 91/178 Test  #91: mutation_failure_27 ..............   Passed    0.55 sec
+        Start  92: deadline_sensitivity
+ 92/178 Test  #92: deadline_sensitivity .............   Passed    0.03 sec
+        Start  93: state_invariant_0
+ 93/178 Test  #93: state_invariant_0 ................   Passed    0.02 sec
+        Start  94: state_invariant_1
+ 94/178 Test  #94: state_invariant_1 ................   Passed    0.02 sec
+        Start  95: state_invariant_2
+ 95/178 Test  #95: state_invariant_2 ................***Exception: SegFault  0.09 sec
+
+        Start  96: state_invariant_3
+ 96/178 Test  #96: state_invariant_3 ................   Passed    0.02 sec
+        Start  97: state_invariant_4
+ 97/178 Test  #97: state_invariant_4 ................   Passed    0.02 sec
+        Start  98: state_invariant_5
+ 98/178 Test  #98: state_invariant_5 ................***Exception: SegFault  0.08 sec
+
+        Start  99: state_invariant_6
+ 99/178 Test  #99: state_invariant_6 ................   Passed    0.02 sec
+        Start 100: state_invariant_7
+100/178 Test #100: state_invariant_7 ................   Passed    0.02 sec
+        Start 101: state_invariant_8
+101/178 Test #101: state_invariant_8 ................***Exception: SegFault  0.07 sec
+
+        Start 102: state_invariant_9
+102/178 Test #102: state_invariant_9 ................   Passed    0.03 sec
+        Start 103: state_invariant_10
+103/178 Test #103: state_invariant_10 ...............***Exception: SegFault  0.07 sec
+
+        Start 104: state_invariant_11
+104/178 Test #104: state_invariant_11 ...............***Exception: SegFault  0.08 sec
+
+        Start 105: state_invariant_12
+105/178 Test #105: state_invariant_12 ...............   Passed    0.02 sec
+        Start 106: state_invariant_13
+106/178 Test #106: state_invariant_13 ...............   Passed    0.02 sec
+        Start 107: state_invariant_14
+107/178 Test #107: state_invariant_14 ...............   Passed    0.02 sec
+        Start 108: state_invariant_15
+108/178 Test #108: state_invariant_15 ...............   Passed    0.02 sec
+        Start 109: state_invariant_16
+109/178 Test #109: state_invariant_16 ...............***Exception: SegFault  0.06 sec
+
+        Start 110: state_invariant_17
+110/178 Test #110: state_invariant_17 ...............   Passed    0.02 sec
+        Start 111: state_invariant_18
+111/178 Test #111: state_invariant_18 ...............   Passed    0.02 sec
+        Start 112: state_invariant_19
+112/178 Test #112: state_invariant_19 ...............***Exception: SegFault  0.06 sec
+
+        Start 113: state_layer_0
+113/178 Test #113: state_layer_0 ....................   Passed    0.02 sec
+        Start 114: state_layer_1
+114/178 Test #114: state_layer_1 ....................   Passed    0.02 sec
+        Start 115: state_layer_2
+115/178 Test #115: state_layer_2 ....................   Passed    0.02 sec
+        Start 116: state_layer_3
+116/178 Test #116: state_layer_3 ....................   Passed    0.02 sec
+        Start 117: state_layer_4
+117/178 Test #117: state_layer_4 ....................   Passed    0.02 sec
+        Start 118: state_layer_5
+118/178 Test #118: state_layer_5 ....................   Passed    0.02 sec
+        Start 119: state_layer_6
+119/178 Test #119: state_layer_6 ....................   Passed    0.02 sec
+        Start 120: state_layer_7
+120/178 Test #120: state_layer_7 ....................   Passed    0.02 sec
+        Start 121: state_layer_8
+121/178 Test #121: state_layer_8 ....................   Passed    0.02 sec
+        Start 122: state_layer_9
+122/178 Test #122: state_layer_9 ....................   Passed    0.02 sec
+        Start 123: state_layer_10
+123/178 Test #123: state_layer_10 ...................   Passed    0.02 sec
+        Start 124: state_layer_11
+124/178 Test #124: state_layer_11 ...................   Passed    0.02 sec
+        Start 125: state_layer_12
+125/178 Test #125: state_layer_12 ...................***Exception: SegFault  0.07 sec
+
+        Start 126: state_layer_13
+126/178 Test #126: state_layer_13 ...................***Exception: SegFault  0.08 sec
+
+        Start 127: state_layer_14
+127/178 Test #127: state_layer_14 ...................   Passed    0.02 sec
+        Start 128: state_layer_15
+128/178 Test #128: state_layer_15 ...................   Passed    0.02 sec
+        Start 129: state_layer_16
+129/178 Test #129: state_layer_16 ...................   Passed    0.02 sec
+        Start 130: state_layer_17
+130/178 Test #130: state_layer_17 ...................   Passed    0.02 sec
+        Start 131: state_layer_18
+131/178 Test #131: state_layer_18 ...................   Passed    0.02 sec
+        Start 132: canonical_state_0
+132/178 Test #132: canonical_state_0 ................   Passed    0.02 sec
+        Start 133: canonical_state_1
+133/178 Test #133: canonical_state_1 ................   Passed    0.02 sec
+        Start 134: canonical_state_2
+134/178 Test #134: canonical_state_2 ................***Exception: SegFault  0.07 sec
+
+        Start 135: canonical_state_3
+135/178 Test #135: canonical_state_3 ................   Passed    0.02 sec
+        Start 136: canonical_state_4
+136/178 Test #136: canonical_state_4 ................   Passed    0.02 sec
+        Start 137: canonical_state_5
+137/178 Test #137: canonical_state_5 ................   Passed    0.02 sec
+        Start 138: canonical_state_6
+138/178 Test #138: canonical_state_6 ................   Passed    0.02 sec
+        Start 139: canonical_state_7
+139/178 Test #139: canonical_state_7 ................   Passed    0.02 sec
+        Start 140: canonical_state_8
+140/178 Test #140: canonical_state_8 ................***Exception: SegFault  0.07 sec
+
+        Start 141: canonical_state_9
+141/178 Test #141: canonical_state_9 ................   Passed    0.03 sec
+        Start 142: canonical_state_10
+142/178 Test #142: canonical_state_10 ...............   Passed    0.02 sec
+        Start 143: canonical_state_11
+143/178 Test #143: canonical_state_11 ...............   Passed    0.02 sec
+        Start 144: canonical_state_12
+144/178 Test #144: canonical_state_12 ...............***Exception: SegFault  0.07 sec
+
+        Start 145: canonical_state_13
+145/178 Test #145: canonical_state_13 ...............***Exception: SegFault  0.07 sec
+
+        Start 146: canonical_state_14
+146/178 Test #146: canonical_state_14 ...............***Exception: SegFault  0.07 sec
+
+        Start 147: canonical_state_15
+147/178 Test #147: canonical_state_15 ...............***Exception: SegFault  0.07 sec
+
+        Start 148: canonical_state_16
+148/178 Test #148: canonical_state_16 ...............***Exception: SegFault  0.08 sec
+
+        Start 149: canonical_state_17
+149/178 Test #149: canonical_state_17 ...............   Passed    0.02 sec
+        Start 150: canonical_state_18
+150/178 Test #150: canonical_state_18 ...............   Passed    0.02 sec
+        Start 151: canonical_state_19
+151/178 Test #151: canonical_state_19 ...............   Passed    0.02 sec
+        Start 152: canonical_state_20
+152/178 Test #152: canonical_state_20 ...............   Passed    0.02 sec
+        Start 153: canonical_state_21
+153/178 Test #153: canonical_state_21 ...............   Passed    0.02 sec
+        Start 154: canonical_state_22
+154/178 Test #154: canonical_state_22 ...............   Passed    0.02 sec
+        Start 155: canonical_state_23
+155/178 Test #155: canonical_state_23 ...............   Passed    0.02 sec
+        Start 156: canonical_state_24
+156/178 Test #156: canonical_state_24 ...............   Passed    0.02 sec
+        Start 157: canonical_state_25
+157/178 Test #157: canonical_state_25 ...............***Exception: SegFault  0.07 sec
+
+        Start 158: canonical_state_26
+158/178 Test #158: canonical_state_26 ...............***Exception: SegFault  0.08 sec
+
+        Start 159: canonical_state_27
+159/178 Test #159: canonical_state_27 ...............***Exception: SegFault  0.07 sec
+
+        Start 160: canonical_state_28
+160/178 Test #160: canonical_state_28 ...............   Passed    0.02 sec
+        Start 161: canonical_state_29
+161/178 Test #161: canonical_state_29 ...............   Passed    0.02 sec
+        Start 162: canonical_state_30
+162/178 Test #162: canonical_state_30 ...............   Passed    0.02 sec
+        Start 163: canonical_state_31
+163/178 Test #163: canonical_state_31 ...............   Passed    0.02 sec
+        Start 164: canonical_state_32
+164/178 Test #164: canonical_state_32 ...............***Exception: SegFault  0.07 sec
+
+        Start 165: canonical_regression_0
+165/178 Test #165: canonical_regression_0 ...........   Passed    0.02 sec
+        Start 166: canonical_regression_1
+166/178 Test #166: canonical_regression_1 ...........   Passed    0.02 sec
+        Start 167: canonical_regression_2
+167/178 Test #167: canonical_regression_2 ...........   Passed    0.03 sec
+        Start 168: canonical_regression_3
+168/178 Test #168: canonical_regression_3 ...........***Exception: SegFault  0.06 sec
+
+        Start 169: canonical_regression_4
+169/178 Test #169: canonical_regression_4 ...........***Exception: SegFault  0.08 sec
+
+        Start 170: canonical_regression_5
+170/178 Test #170: canonical_regression_5 ...........   Passed    0.02 sec
+        Start 171: canonical_regression_6
+171/178 Test #171: canonical_regression_6 ...........   Passed    0.02 sec
+        Start 172: canonical_regression_7
+172/178 Test #172: canonical_regression_7 ...........   Passed    0.02 sec
+        Start 173: canonical_regression_8
+173/178 Test #173: canonical_regression_8 ...........   Passed    0.02 sec
+        Start 174: canonical_regression_9
+174/178 Test #174: canonical_regression_9 ...........   Passed    0.02 sec
+        Start 175: canonical_regression_10
+175/178 Test #175: canonical_regression_10 ..........   Passed    0.02 sec
+        Start 176: canonical_regression_11
+176/178 Test #176: canonical_regression_11 ..........   Passed    0.02 sec
+        Start 177: canonical_regression_12
+177/178 Test #177: canonical_regression_12 ..........***Exception: SegFault  0.07 sec
+
+        Start 178: canonical_regression_13
+178/178 Test #178: canonical_regression_13 ..........***Exception: SegFault  0.07 sec
+
+
+75% tests passed, 45 tests failed out of 178
+
+Total Test time (real) =  13.86 sec
+
+The following tests FAILED:
+	  2 - probe_layer_1 (SEGFAULT)
+	  5 - probe_layer_4 (SEGFAULT)
+	  7 - probe_layer_6 (SEGFAULT)
+	 20 - probe_layer_19 (SEGFAULT)
+	 22 - probe_layer_21 (SEGFAULT)
+	 27 - probe_layer_26 (SEGFAULT)
+	 30 - probe_layer_29 (SEGFAULT)
+	 31 - probe_layer_30 (SEGFAULT)
+	 32 - probe_layer_31 (SEGFAULT)
+	 33 - probe_layer_32 (SEGFAULT)
+	 34 - unified_scheduler_0 (SEGFAULT)
+	 35 - unified_scheduler_1 (SEGFAULT)
+	 50 - unified_scheduler_16 (SEGFAULT)
+	 69 - mutation_failure_5 (SEGFAULT)
+	 71 - mutation_failure_7 (SEGFAULT)
+	 76 - mutation_failure_12 (SEGFAULT)
+	 77 - mutation_failure_13 (SEGFAULT)
+	 79 - mutation_failure_15 (SEGFAULT)
+	 85 - mutation_failure_21 (SEGFAULT)
+	 89 - mutation_failure_25 (SEGFAULT)
+	 90 - mutation_failure_26 (SEGFAULT)
+	 95 - state_invariant_2 (SEGFAULT)
+	 98 - state_invariant_5 (SEGFAULT)
+	101 - state_invariant_8 (SEGFAULT)
+	103 - state_invariant_10 (SEGFAULT)
+	104 - state_invariant_11 (SEGFAULT)
+	109 - state_invariant_16 (SEGFAULT)
+	112 - state_invariant_19 (SEGFAULT)
+	125 - state_layer_12 (SEGFAULT)
+	126 - state_layer_13 (SEGFAULT)
+	134 - canonical_state_2 (SEGFAULT)
+	140 - canonical_state_8 (SEGFAULT)
+	144 - canonical_state_12 (SEGFAULT)
+	145 - canonical_state_13 (SEGFAULT)
+	146 - canonical_state_14 (SEGFAULT)
+	147 - canonical_state_15 (SEGFAULT)
+	148 - canonical_state_16 (SEGFAULT)
+	157 - canonical_state_25 (SEGFAULT)
+	158 - canonical_state_26 (SEGFAULT)
+	159 - canonical_state_27 (SEGFAULT)
+	164 - canonical_state_32 (SEGFAULT)
+	168 - canonical_regression_3 (SEGFAULT)
+	169 - canonical_regression_4 (SEGFAULT)
+	177 - canonical_regression_12 (SEGFAULT)
+	178 - canonical_regression_13 (SEGFAULT)
+Errors while running CTest

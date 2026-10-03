@@ -19,7 +19,12 @@
 └── src1.6/                # src 1.6：约束收益决策与 Stage 2 未知事实校验
 ```
 
-最新开发版本：`src1.7/`，正常启动使用 greedy + 内部 guarded 的统一决策流程，
+最新开发版本：`src1.7.1/`，在 `src1.7` 的真实 Stage 2 停滞分支加入有界 Probe，
+保留正常 greedy、Stage 1、canonical authority、约束交换、基础分及 deadline 参数。
+设计、构建与复跑入口见 `src1.7.1/docs/PROBE_LAYER.md`，本次验证见
+`src1.7.1/docs/RELEASE_1.7.1.md`；完整收益、退化和非法输入结果分别保留。
+
+基线版本：`src1.7/`，正常启动使用 greedy + 内部 guarded 的统一决策流程，
 不需要策略模式配置。实现说明见 `src1.7/docs/UNIFIED_SCHEDULER.md`，
 验证与完整退化记录见 `src1.7/test-results/validation-20261002/REPORT.md`。
 该版本保留用于开发回归；是否用于比赛应先阅读报告中的 Stage 2 退化结论。

@@ -1,0 +1,80 @@
+{
+  "command": [
+    "g++",
+    "-std=c++11",
+    "-O1",
+    "-g",
+    "-fsanitize=address,undefined",
+    "-fno-omit-frame-pointer",
+    "-fno-pie",
+    "-no-pie",
+    "-I/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1",
+    "-I/home/yifan/env-release-2026/include",
+    "-I/home/yifan/env-release-2026/src",
+    "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/candidate_plan.cpp",
+    "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/canonical_state.cpp",
+    "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/deadline_manager.cpp",
+    "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/legacy_priority.cpp",
+    "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/main.cpp",
+    "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/parser.cpp",
+    "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/probe_layer.cpp",
+    "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/question_preflight.cpp",
+    "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/rdfw.cpp",
+    "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/score_evaluator.cpp",
+    "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/state_mutation.cpp",
+    "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/task_group_search.cpp",
+    "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/terminal_checker.cpp",
+    "-L/home/yifan/env-release-2026/lib",
+    "-lframe",
+    "-lutility",
+    "-lboost_thread",
+    "-lboost_system",
+    "-lboost_chrono",
+    "-lboost_date_time",
+    "-lboost_regex",
+    "-lpthread",
+    "-ldl",
+    "-o",
+    "/tmp/rdfw171-sdk-sanitizer-tail-final-20261003/example"
+  ],
+  "binary_sha256": "d8a5bb3474770448dd2b4f21f102cbf7ad64161ef90b586b236ea19a9ce678f9",
+  "asan_library": "/usr/lib/gcc/x86_64-linux-gnu/7/libasan.so",
+  "seed": "/tmp/rdfw171-tail-final-20261003/seed.so",
+  "cases": [
+    {
+      "path": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/realcompetiton_2024/35.xml",
+      "stage": 2,
+      "suite": "legacy",
+      "id": "c032",
+      "sha256": "bcf61d12c7edc7465c58a980f2265a67fc318d86bac62a0e419feb0f9b3df2cd",
+      "kind": "scored"
+    },
+    {
+      "path": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/P09.xml",
+      "stage": 2,
+      "suite": "legacy",
+      "id": "c069",
+      "sha256": "438e1bfa779af0b1c6419f4e1e3517561f02c29f58bdad2f61f256aa4399989e",
+      "kind": "scored"
+    },
+    {
+      "path": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/OurTest/constraint_tradeoff_challenge_2026/P10.xml",
+      "stage": 2,
+      "suite": "legacy",
+      "id": "c070",
+      "sha256": "b79143d012c3ddf1d6ff842ea76888691de0a04a1fb4c996c9dfd4e79b65f8c8",
+      "kind": "scored"
+    },
+    {
+      "id": "A01-01-s1",
+      "path": "/mnt/d/FILES for Yvaine/WUT/Match/robocup/2026NGZR/题目/2026_comprehensive_200/cases/stage1/A01-01-s1.xml",
+      "sha256": "4bd60ef25aea5af2493d6df2d0cf7c863ef64530621ff156b8f5b862461cffe8",
+      "stage": 1,
+      "kind": "scored",
+      "expected_layer": null,
+      "mutation": null,
+      "suite": "comprehensive"
+    }
+  ],
+  "policy": "Client instrumented; SDK libraries are prebuilt. Not a performance comparison."
+}

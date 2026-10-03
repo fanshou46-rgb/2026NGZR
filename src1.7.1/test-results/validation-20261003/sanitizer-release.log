@@ -1,0 +1,456 @@
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/rdfw171-sanitizer-nopie-20261003
+Scanning dependencies of target rdfw_test_core
+[  1%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/d/FILES_for_Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/state_mutation.cpp.o
+[  3%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/d/FILES_for_Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/canonical_state.cpp.o
+[  5%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/d/FILES_for_Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/rdfw.cpp.o
+[  7%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/d/FILES_for_Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/probe_layer.cpp.o
+[  9%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/d/FILES_for_Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/parser.cpp.o
+[ 11%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/d/FILES_for_Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/terminal_checker.cpp.o
+[ 13%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/d/FILES_for_Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/legacy_priority.cpp.o
+[ 15%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/d/FILES_for_Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/score_evaluator.cpp.o
+[ 17%] Building CXX object CMakeFiles/rdfw_test_core.dir/mnt/d/FILES_for_Yvaine/WUT/Match/robocup/2026NGZR/src1.7.1/question_preflight.cpp.o
+[ 19%] Linking CXX static library librdfw_test_core.a
+[ 25%] Built target rdfw_test_core
+Scanning dependencies of target state_invariant_tests
+Scanning dependencies of target state_layer_tests
+Scanning dependencies of target three_a_tests
+[ 29%] Building CXX object CMakeFiles/state_layer_tests.dir/state_layer_tests.cpp.o
+[ 29%] Building CXX object CMakeFiles/state_invariant_tests.dir/state_invariant_tests.cpp.o
+[ 31%] Building CXX object CMakeFiles/three_a_tests.dir/three_a_tests.cpp.o
+[ 33%] Linking CXX executable three_a_tests
+[ 35%] Linking CXX executable state_layer_tests
+[ 37%] Linking CXX executable state_invariant_tests
+[ 37%] Built target three_a_tests
+Scanning dependencies of target unified_scheduler_tests
+[ 39%] Building CXX object CMakeFiles/unified_scheduler_tests.dir/unified_scheduler_tests.cpp.o
+[ 39%] Built target state_layer_tests
+Scanning dependencies of target recovery_evidence_tests
+[ 41%] Building CXX object CMakeFiles/recovery_evidence_tests.dir/recovery_evidence_tests.cpp.o
+[ 41%] Built target state_invariant_tests
+Scanning dependencies of target canonical_baseline_probe
+[ 43%] Building CXX object CMakeFiles/canonical_baseline_probe.dir/canonical_baseline_probe.cpp.o
+[ 45%] Linking CXX executable recovery_evidence_tests
+[ 47%] Linking CXX executable unified_scheduler_tests
+[ 49%] Linking CXX executable canonical_baseline_probe
+[ 49%] Built target recovery_evidence_tests
+Scanning dependencies of target deadline_sensitivity_tests
+[ 50%] Building CXX object CMakeFiles/deadline_sensitivity_tests.dir/deadline_sensitivity_tests.cpp.o
+[ 50%] Built target unified_scheduler_tests
+Scanning dependencies of target canonical_state_tests
+[ 52%] Building CXX object CMakeFiles/canonical_state_tests.dir/canonical_state_tests.cpp.o
+[ 52%] Built target canonical_baseline_probe
+Scanning dependencies of target probe_layer_tests
+[ 54%] Building CXX object CMakeFiles/probe_layer_tests.dir/probe_layer_tests.cpp.o
+[ 56%] Linking CXX executable deadline_sensitivity_tests
+[ 56%] Built target deadline_sensitivity_tests
+Scanning dependencies of target legal_preservation_tests
+[ 58%] Building CXX object CMakeFiles/legal_preservation_tests.dir/legal_preservation_tests.cpp.o
+[ 60%] Linking CXX executable canonical_state_tests
+[ 60%] Built target canonical_state_tests
+[ 62%] Linking CXX executable task_group_search_tests
+[ 64%] Linking CXX executable legal_preservation_tests
+[ 66%] Linking CXX executable probe_layer_tests
+[ 66%] Built target legal_preservation_tests
+[ 68%] Built target task_group_search_tests
+Scanning dependencies of target question_preflight_tests
+Scanning dependencies of target task_group_projection_tests
+[ 70%] Building CXX object CMakeFiles/question_preflight_tests.dir/question_preflight_tests.cpp.o
+[ 72%] Building CXX object CMakeFiles/task_group_projection_tests.dir/task_group_projection_tests.cpp.o
+[ 72%] Built target probe_layer_tests
+Scanning dependencies of target guarded_decision_tests
+[ 74%] Building CXX object CMakeFiles/guarded_decision_tests.dir/guarded_decision_tests.cpp.o
+[ 76%] Linking CXX executable task_group_projection_tests
+[ 78%] Linking CXX executable guarded_decision_tests
+[ 80%] Linking CXX executable question_preflight_tests
+[ 80%] Built target task_group_projection_tests
+[ 80%] Built target guarded_decision_tests
+Scanning dependencies of target score_semantics_tests
+Scanning dependencies of target interval_gate_tests
+[ 82%] Building CXX object CMakeFiles/score_semantics_tests.dir/score_semantics_tests.cpp.o
+[ 84%] Building CXX object CMakeFiles/interval_gate_tests.dir/interval_gate_tests.cpp.o
+[ 84%] Built target question_preflight_tests
+Scanning dependencies of target input_safety_tests
+[ 86%] Building CXX object CMakeFiles/input_safety_tests.dir/input_safety_tests.cpp.o
+[ 88%] Linking CXX executable score_semantics_tests
+[ 90%] Linking CXX executable interval_gate_tests
+[ 92%] Linking CXX executable input_safety_tests
+[ 92%] Built target score_semantics_tests
+Scanning dependencies of target mutation_failure_tests
+[ 94%] Building CXX object CMakeFiles/mutation_failure_tests.dir/mutation_failure_tests.cpp.o
+[ 94%] Built target interval_gate_tests
+Scanning dependencies of target state_profile
+[ 96%] Building CXX object CMakeFiles/state_profile.dir/state_profile.cpp.o
+[ 96%] Built target input_safety_tests
+[ 98%] Linking CXX executable mutation_failure_tests
+[100%] Linking CXX executable state_profile
+[100%] Built target mutation_failure_tests
+[100%] Built target state_profile
+Test project /tmp/rdfw171-sanitizer-nopie-20261003
+        Start   1: probe_layer_0
+  1/181 Test   #1: probe_layer_0 ....................   Passed    0.02 sec
+        Start   2: probe_layer_1
+  2/181 Test   #2: probe_layer_1 ....................   Passed    0.02 sec
+        Start   3: probe_layer_2
+  3/181 Test   #3: probe_layer_2 ....................   Passed    0.02 sec
+        Start   4: probe_layer_3
+  4/181 Test   #4: probe_layer_3 ....................   Passed    0.02 sec
+        Start   5: probe_layer_4
+  5/181 Test   #5: probe_layer_4 ....................   Passed    0.02 sec
+        Start   6: probe_layer_5
+  6/181 Test   #6: probe_layer_5 ....................   Passed    0.02 sec
+        Start   7: probe_layer_6
+  7/181 Test   #7: probe_layer_6 ....................   Passed    0.02 sec
+        Start   8: probe_layer_7
+  8/181 Test   #8: probe_layer_7 ....................   Passed    0.02 sec
+        Start   9: probe_layer_8
+  9/181 Test   #9: probe_layer_8 ....................   Passed    0.02 sec
+        Start  10: probe_layer_9
+ 10/181 Test  #10: probe_layer_9 ....................   Passed    0.02 sec
+        Start  11: probe_layer_10
+ 11/181 Test  #11: probe_layer_10 ...................   Passed    0.02 sec
+        Start  12: probe_layer_11
+ 12/181 Test  #12: probe_layer_11 ...................   Passed    0.02 sec
+        Start  13: probe_layer_12
+ 13/181 Test  #13: probe_layer_12 ...................   Passed    0.02 sec
+        Start  14: probe_layer_13
+ 14/181 Test  #14: probe_layer_13 ...................   Passed    0.02 sec
+        Start  15: probe_layer_14
+ 15/181 Test  #15: probe_layer_14 ...................   Passed    0.02 sec
+        Start  16: probe_layer_15
+ 16/181 Test  #16: probe_layer_15 ...................   Passed    0.02 sec
+        Start  17: probe_layer_16
+ 17/181 Test  #17: probe_layer_16 ...................   Passed    0.02 sec
+        Start  18: probe_layer_17
+ 18/181 Test  #18: probe_layer_17 ...................   Passed    0.02 sec
+        Start  19: probe_layer_18
+ 19/181 Test  #19: probe_layer_18 ...................   Passed    0.02 sec
+        Start  20: probe_layer_19
+ 20/181 Test  #20: probe_layer_19 ...................   Passed    0.02 sec
+        Start  21: probe_layer_20
+ 21/181 Test  #21: probe_layer_20 ...................   Passed    0.02 sec
+        Start  22: probe_layer_21
+ 22/181 Test  #22: probe_layer_21 ...................   Passed    0.02 sec
+        Start  23: probe_layer_22
+ 23/181 Test  #23: probe_layer_22 ...................   Passed    0.02 sec
+        Start  24: probe_layer_23
+ 24/181 Test  #24: probe_layer_23 ...................   Passed    0.02 sec
+        Start  25: probe_layer_24
+ 25/181 Test  #25: probe_layer_24 ...................   Passed    0.02 sec
+        Start  26: probe_layer_25
+ 26/181 Test  #26: probe_layer_25 ...................   Passed    0.02 sec
+        Start  27: probe_layer_26
+ 27/181 Test  #27: probe_layer_26 ...................   Passed    0.02 sec
+        Start  28: probe_layer_27
+ 28/181 Test  #28: probe_layer_27 ...................   Passed    0.02 sec
+        Start  29: probe_layer_28
+ 29/181 Test  #29: probe_layer_28 ...................   Passed    0.02 sec
+        Start  30: probe_layer_29
+ 30/181 Test  #30: probe_layer_29 ...................   Passed    0.02 sec
+        Start  31: probe_layer_30
+ 31/181 Test  #31: probe_layer_30 ...................   Passed    0.02 sec
+        Start  32: probe_layer_31
+ 32/181 Test  #32: probe_layer_31 ...................   Passed    0.02 sec
+        Start  33: probe_layer_32
+ 33/181 Test  #33: probe_layer_32 ...................   Passed    0.02 sec
+        Start  34: probe_layer_33
+ 34/181 Test  #34: probe_layer_33 ...................   Passed    0.02 sec
+        Start  35: probe_layer_34
+ 35/181 Test  #35: probe_layer_34 ...................   Passed    0.02 sec
+        Start  36: probe_layer_35
+ 36/181 Test  #36: probe_layer_35 ...................   Passed    0.02 sec
+        Start  37: unified_scheduler_0
+ 37/181 Test  #37: unified_scheduler_0 ..............   Passed    0.02 sec
+        Start  38: unified_scheduler_1
+ 38/181 Test  #38: unified_scheduler_1 ..............   Passed    0.02 sec
+        Start  39: unified_scheduler_2
+ 39/181 Test  #39: unified_scheduler_2 ..............   Passed    0.02 sec
+        Start  40: unified_scheduler_3
+ 40/181 Test  #40: unified_scheduler_3 ..............   Passed    0.02 sec
+        Start  41: unified_scheduler_4
+ 41/181 Test  #41: unified_scheduler_4 ..............   Passed    0.04 sec
+        Start  42: unified_scheduler_5
+ 42/181 Test  #42: unified_scheduler_5 ..............   Passed    0.02 sec
+        Start  43: unified_scheduler_6
+ 43/181 Test  #43: unified_scheduler_6 ..............   Passed    0.02 sec
+        Start  44: unified_scheduler_7
+ 44/181 Test  #44: unified_scheduler_7 ..............   Passed    0.02 sec
+        Start  45: unified_scheduler_8
+ 45/181 Test  #45: unified_scheduler_8 ..............   Passed    0.04 sec
+        Start  46: unified_scheduler_9
+ 46/181 Test  #46: unified_scheduler_9 ..............   Passed    0.02 sec
+        Start  47: unified_scheduler_10
+ 47/181 Test  #47: unified_scheduler_10 .............   Passed    0.02 sec
+        Start  48: unified_scheduler_11
+ 48/181 Test  #48: unified_scheduler_11 .............   Passed    0.02 sec
+        Start  49: unified_scheduler_12
+ 49/181 Test  #49: unified_scheduler_12 .............   Passed    0.02 sec
+        Start  50: unified_scheduler_13
+ 50/181 Test  #50: unified_scheduler_13 .............   Passed    0.02 sec
+        Start  51: unified_scheduler_14
+ 51/181 Test  #51: unified_scheduler_14 .............   Passed    0.02 sec
+        Start  52: unified_scheduler_15
+ 52/181 Test  #52: unified_scheduler_15 .............   Passed    0.02 sec
+        Start  53: unified_scheduler_16
+ 53/181 Test  #53: unified_scheduler_16 .............   Passed    0.04 sec
+        Start  54: unified_scheduler_17
+ 54/181 Test  #54: unified_scheduler_17 .............   Passed    0.02 sec
+        Start  55: unified_scheduler_18
+ 55/181 Test  #55: unified_scheduler_18 .............   Passed    0.02 sec
+        Start  56: unified_scheduler_19
+ 56/181 Test  #56: unified_scheduler_19 .............   Passed    0.02 sec
+        Start  57: input_safety_tests
+ 57/181 Test  #57: input_safety_tests ...............   Passed    0.02 sec
+        Start  58: three_a_tests
+ 58/181 Test  #58: three_a_tests ....................   Passed    0.02 sec
+        Start  59: question_preflight_tests
+ 59/181 Test  #59: question_preflight_tests .........   Passed    0.07 sec
+        Start  60: legal_preservation_tests
+ 60/181 Test  #60: legal_preservation_tests .........   Passed    0.02 sec
+        Start  61: recovery_evidence_tests
+ 61/181 Test  #61: recovery_evidence_tests ..........   Passed    0.03 sec
+        Start  62: task_group_search_tests
+ 62/181 Test  #62: task_group_search_tests ..........   Passed    0.02 sec
+        Start  63: task_group_projection_tests
+ 63/181 Test  #63: task_group_projection_tests ......   Passed    0.03 sec
+        Start  64: guarded_decision_tests
+ 64/181 Test  #64: guarded_decision_tests ...........   Passed    0.14 sec
+        Start  65: score_semantics_tests
+ 65/181 Test  #65: score_semantics_tests ............   Passed    0.04 sec
+        Start  66: interval_gate_tests
+ 66/181 Test  #66: interval_gate_tests ..............   Passed    0.02 sec
+        Start  67: mutation_failure_0
+ 67/181 Test  #67: mutation_failure_0 ...............   Passed    0.13 sec
+        Start  68: mutation_failure_1
+ 68/181 Test  #68: mutation_failure_1 ...............   Passed    0.13 sec
+        Start  69: mutation_failure_2
+ 69/181 Test  #69: mutation_failure_2 ...............   Passed    0.14 sec
+        Start  70: mutation_failure_3
+ 70/181 Test  #70: mutation_failure_3 ...............   Passed    0.02 sec
+        Start  71: mutation_failure_4
+ 71/181 Test  #71: mutation_failure_4 ...............   Passed    1.84 sec
+        Start  72: mutation_failure_5
+ 72/181 Test  #72: mutation_failure_5 ...............   Passed    0.02 sec
+        Start  73: mutation_failure_6
+ 73/181 Test  #73: mutation_failure_6 ...............   Passed    0.02 sec
+        Start  74: mutation_failure_7
+ 74/181 Test  #74: mutation_failure_7 ...............   Passed    0.02 sec
+        Start  75: mutation_failure_8
+ 75/181 Test  #75: mutation_failure_8 ...............   Passed    0.02 sec
+        Start  76: mutation_failure_9
+ 76/181 Test  #76: mutation_failure_9 ...............   Passed    0.02 sec
+        Start  77: mutation_failure_10
+ 77/181 Test  #77: mutation_failure_10 ..............   Passed    0.02 sec
+        Start  78: mutation_failure_11
+ 78/181 Test  #78: mutation_failure_11 ..............   Passed    0.02 sec
+        Start  79: mutation_failure_12
+ 79/181 Test  #79: mutation_failure_12 ..............   Passed    0.02 sec
+        Start  80: mutation_failure_13
+ 80/181 Test  #80: mutation_failure_13 ..............   Passed    0.02 sec
+        Start  81: mutation_failure_14
+ 81/181 Test  #81: mutation_failure_14 ..............   Passed    1.28 sec
+        Start  82: mutation_failure_15
+ 82/181 Test  #82: mutation_failure_15 ..............   Passed    0.14 sec
+        Start  83: mutation_failure_16
+ 83/181 Test  #83: mutation_failure_16 ..............   Passed    0.14 sec
+        Start  84: mutation_failure_17
+ 84/181 Test  #84: mutation_failure_17 ..............   Passed    0.14 sec
+        Start  85: mutation_failure_18
+ 85/181 Test  #85: mutation_failure_18 ..............   Passed    0.13 sec
+        Start  86: mutation_failure_19
+ 86/181 Test  #86: mutation_failure_19 ..............   Passed    0.53 sec
+        Start  87: mutation_failure_20
+ 87/181 Test  #87: mutation_failure_20 ..............   Passed    0.54 sec
+        Start  88: mutation_failure_21
+ 88/181 Test  #88: mutation_failure_21 ..............   Passed    0.51 sec
+        Start  89: mutation_failure_22
+ 89/181 Test  #89: mutation_failure_22 ..............   Passed    0.51 sec
+        Start  90: mutation_failure_23
+ 90/181 Test  #90: mutation_failure_23 ..............   Passed    0.52 sec
+        Start  91: mutation_failure_24
+ 91/181 Test  #91: mutation_failure_24 ..............   Passed    0.52 sec
+        Start  92: mutation_failure_25
+ 92/181 Test  #92: mutation_failure_25 ..............   Passed    0.52 sec
+        Start  93: mutation_failure_26
+ 93/181 Test  #93: mutation_failure_26 ..............   Passed    0.56 sec
+        Start  94: mutation_failure_27
+ 94/181 Test  #94: mutation_failure_27 ..............   Passed    0.58 sec
+        Start  95: deadline_sensitivity
+ 95/181 Test  #95: deadline_sensitivity .............   Passed    0.02 sec
+        Start  96: state_invariant_0
+ 96/181 Test  #96: state_invariant_0 ................   Passed    0.02 sec
+        Start  97: state_invariant_1
+ 97/181 Test  #97: state_invariant_1 ................   Passed    0.02 sec
+        Start  98: state_invariant_2
+ 98/181 Test  #98: state_invariant_2 ................   Passed    0.02 sec
+        Start  99: state_invariant_3
+ 99/181 Test  #99: state_invariant_3 ................   Passed    0.02 sec
+        Start 100: state_invariant_4
+100/181 Test #100: state_invariant_4 ................   Passed    0.02 sec
+        Start 101: state_invariant_5
+101/181 Test #101: state_invariant_5 ................   Passed    0.02 sec
+        Start 102: state_invariant_6
+102/181 Test #102: state_invariant_6 ................   Passed    0.02 sec
+        Start 103: state_invariant_7
+103/181 Test #103: state_invariant_7 ................   Passed    0.02 sec
+        Start 104: state_invariant_8
+104/181 Test #104: state_invariant_8 ................   Passed    0.02 sec
+        Start 105: state_invariant_9
+105/181 Test #105: state_invariant_9 ................   Passed    0.02 sec
+        Start 106: state_invariant_10
+106/181 Test #106: state_invariant_10 ...............   Passed    0.02 sec
+        Start 107: state_invariant_11
+107/181 Test #107: state_invariant_11 ...............   Passed    0.02 sec
+        Start 108: state_invariant_12
+108/181 Test #108: state_invariant_12 ...............   Passed    0.02 sec
+        Start 109: state_invariant_13
+109/181 Test #109: state_invariant_13 ...............   Passed    0.02 sec
+        Start 110: state_invariant_14
+110/181 Test #110: state_invariant_14 ...............   Passed    0.02 sec
+        Start 111: state_invariant_15
+111/181 Test #111: state_invariant_15 ...............   Passed    0.02 sec
+        Start 112: state_invariant_16
+112/181 Test #112: state_invariant_16 ...............   Passed    0.02 sec
+        Start 113: state_invariant_17
+113/181 Test #113: state_invariant_17 ...............   Passed    0.02 sec
+        Start 114: state_invariant_18
+114/181 Test #114: state_invariant_18 ...............   Passed    0.02 sec
+        Start 115: state_invariant_19
+115/181 Test #115: state_invariant_19 ...............   Passed    0.02 sec
+        Start 116: state_layer_0
+116/181 Test #116: state_layer_0 ....................   Passed    0.02 sec
+        Start 117: state_layer_1
+117/181 Test #117: state_layer_1 ....................   Passed    0.02 sec
+        Start 118: state_layer_2
+118/181 Test #118: state_layer_2 ....................   Passed    0.02 sec
+        Start 119: state_layer_3
+119/181 Test #119: state_layer_3 ....................   Passed    0.02 sec
+        Start 120: state_layer_4
+120/181 Test #120: state_layer_4 ....................   Passed    0.02 sec
+        Start 121: state_layer_5
+121/181 Test #121: state_layer_5 ....................   Passed    0.02 sec
+        Start 122: state_layer_6
+122/181 Test #122: state_layer_6 ....................   Passed    0.02 sec
+        Start 123: state_layer_7
+123/181 Test #123: state_layer_7 ....................   Passed    0.02 sec
+        Start 124: state_layer_8
+124/181 Test #124: state_layer_8 ....................   Passed    0.02 sec
+        Start 125: state_layer_9
+125/181 Test #125: state_layer_9 ....................   Passed    0.02 sec
+        Start 126: state_layer_10
+126/181 Test #126: state_layer_10 ...................   Passed    0.02 sec
+        Start 127: state_layer_11
+127/181 Test #127: state_layer_11 ...................   Passed    0.02 sec
+        Start 128: state_layer_12
+128/181 Test #128: state_layer_12 ...................   Passed    0.02 sec
+        Start 129: state_layer_13
+129/181 Test #129: state_layer_13 ...................   Passed    0.02 sec
+        Start 130: state_layer_14
+130/181 Test #130: state_layer_14 ...................   Passed    0.02 sec
+        Start 131: state_layer_15
+131/181 Test #131: state_layer_15 ...................   Passed    0.02 sec
+        Start 132: state_layer_16
+132/181 Test #132: state_layer_16 ...................   Passed    0.02 sec
+        Start 133: state_layer_17
+133/181 Test #133: state_layer_17 ...................   Passed    0.02 sec
+        Start 134: state_layer_18
+134/181 Test #134: state_layer_18 ...................   Passed    0.02 sec
+        Start 135: canonical_state_0
+135/181 Test #135: canonical_state_0 ................   Passed    0.02 sec
+        Start 136: canonical_state_1
+136/181 Test #136: canonical_state_1 ................   Passed    0.02 sec
+        Start 137: canonical_state_2
+137/181 Test #137: canonical_state_2 ................   Passed    0.02 sec
+        Start 138: canonical_state_3
+138/181 Test #138: canonical_state_3 ................   Passed    0.02 sec
+        Start 139: canonical_state_4
+139/181 Test #139: canonical_state_4 ................   Passed    0.02 sec
+        Start 140: canonical_state_5
+140/181 Test #140: canonical_state_5 ................   Passed    0.02 sec
+        Start 141: canonical_state_6
+141/181 Test #141: canonical_state_6 ................   Passed    0.02 sec
+        Start 142: canonical_state_7
+142/181 Test #142: canonical_state_7 ................   Passed    0.02 sec
+        Start 143: canonical_state_8
+143/181 Test #143: canonical_state_8 ................   Passed    0.02 sec
+        Start 144: canonical_state_9
+144/181 Test #144: canonical_state_9 ................   Passed    0.02 sec
+        Start 145: canonical_state_10
+145/181 Test #145: canonical_state_10 ...............   Passed    0.02 sec
+        Start 146: canonical_state_11
+146/181 Test #146: canonical_state_11 ...............   Passed    0.02 sec
+        Start 147: canonical_state_12
+147/181 Test #147: canonical_state_12 ...............   Passed    0.02 sec
+        Start 148: canonical_state_13
+148/181 Test #148: canonical_state_13 ...............   Passed    0.02 sec
+        Start 149: canonical_state_14
+149/181 Test #149: canonical_state_14 ...............   Passed    0.02 sec
+        Start 150: canonical_state_15
+150/181 Test #150: canonical_state_15 ...............   Passed    0.02 sec
+        Start 151: canonical_state_16
+151/181 Test #151: canonical_state_16 ...............   Passed    0.02 sec
+        Start 152: canonical_state_17
+152/181 Test #152: canonical_state_17 ...............   Passed    0.02 sec
+        Start 153: canonical_state_18
+153/181 Test #153: canonical_state_18 ...............   Passed    0.02 sec
+        Start 154: canonical_state_19
+154/181 Test #154: canonical_state_19 ...............   Passed    0.02 sec
+        Start 155: canonical_state_20
+155/181 Test #155: canonical_state_20 ...............   Passed    0.02 sec
+        Start 156: canonical_state_21
+156/181 Test #156: canonical_state_21 ...............   Passed    0.02 sec
+        Start 157: canonical_state_22
+157/181 Test #157: canonical_state_22 ...............   Passed    0.02 sec
+        Start 158: canonical_state_23
+158/181 Test #158: canonical_state_23 ...............   Passed    0.02 sec
+        Start 159: canonical_state_24
+159/181 Test #159: canonical_state_24 ...............   Passed    0.02 sec
+        Start 160: canonical_state_25
+160/181 Test #160: canonical_state_25 ...............   Passed    0.02 sec
+        Start 161: canonical_state_26
+161/181 Test #161: canonical_state_26 ...............   Passed    0.02 sec
+        Start 162: canonical_state_27
+162/181 Test #162: canonical_state_27 ...............   Passed    0.02 sec
+        Start 163: canonical_state_28
+163/181 Test #163: canonical_state_28 ...............   Passed    0.02 sec
+        Start 164: canonical_state_29
+164/181 Test #164: canonical_state_29 ...............   Passed    0.02 sec
+        Start 165: canonical_state_30
+165/181 Test #165: canonical_state_30 ...............   Passed    0.02 sec
+        Start 166: canonical_state_31
+166/181 Test #166: canonical_state_31 ...............   Passed    0.02 sec
+        Start 167: canonical_state_32
+167/181 Test #167: canonical_state_32 ...............   Passed    0.02 sec
+        Start 168: canonical_regression_0
+168/181 Test #168: canonical_regression_0 ...........   Passed    0.02 sec
+        Start 169: canonical_regression_1
+169/181 Test #169: canonical_regression_1 ...........   Passed    0.02 sec
+        Start 170: canonical_regression_2
+170/181 Test #170: canonical_regression_2 ...........   Passed    0.02 sec
+        Start 171: canonical_regression_3
+171/181 Test #171: canonical_regression_3 ...........   Passed    0.02 sec
+        Start 172: canonical_regression_4
+172/181 Test #172: canonical_regression_4 ...........   Passed    0.02 sec
+        Start 173: canonical_regression_5
+173/181 Test #173: canonical_regression_5 ...........   Passed    0.02 sec
+        Start 174: canonical_regression_6
+174/181 Test #174: canonical_regression_6 ...........   Passed    0.02 sec
+        Start 175: canonical_regression_7
+175/181 Test #175: canonical_regression_7 ...........   Passed    0.02 sec
+        Start 176: canonical_regression_8
+176/181 Test #176: canonical_regression_8 ...........   Passed    0.02 sec
+        Start 177: canonical_regression_9
+177/181 Test #177: canonical_regression_9 ...........   Passed    0.02 sec
+        Start 178: canonical_regression_10
+178/181 Test #178: canonical_regression_10 ..........   Passed    0.02 sec
+        Start 179: canonical_regression_11
+179/181 Test #179: canonical_regression_11 ..........   Passed    0.02 sec
+        Start 180: canonical_regression_12
+180/181 Test #180: canonical_regression_12 ..........   Passed    0.02 sec
+        Start 181: canonical_regression_13
+181/181 Test #181: canonical_regression_13 ..........   Passed    0.02 sec
+
+100% tests passed, 0 tests failed out of 181
+
+Total Test time (real) =  12.39 sec
