@@ -1,0 +1,87 @@
+{
+  "arms": {
+    "177": {
+      "events": {
+        "legacy_proposal": 1221,
+        "blocked_task": 8243,
+        "blocking_fact": 20900,
+        "unsupported_fact": 3013,
+        "candidate": 6469,
+        "stop": 930,
+        "execute": 479,
+        "feedback": 479,
+        "replan": 478,
+        "task_completed": 379
+      },
+      "rejections": {
+        "constraint_safety_unknown": 1997,
+        "nonpositive_answer_branch_value": 2362,
+        "extra_physical_actions": 176,
+        "nonpositive_expected_gain": 753,
+        "deadline": 79,
+        "duplicate_related_revision": 237,
+        "answer_requires_verification": 44,
+        "same_probe_bound": 2
+      }
+    },
+    "neutral": {
+      "events": {
+        "legacy_proposal": 456,
+        "blocked_task": 2448,
+        "blocking_fact": 6704,
+        "unsupported_fact": 1448,
+        "candidate": 3264,
+        "stop": 392,
+        "execute": 64,
+        "feedback": 64,
+        "replan": 64
+      },
+      "rejections": {
+        "constraint_safety_unknown": 1848,
+        "nonpositive_answer_branch_value": 1096,
+        "extra_physical_actions": 112,
+        "nonpositive_expected_gain": 144
+      }
+    },
+    "no_ask": {
+      "events": {
+        "legacy_proposal": 456,
+        "blocked_task": 2448,
+        "blocking_fact": 6704,
+        "unsupported_fact": 1448,
+        "candidate": 3264,
+        "stop": 392,
+        "execute": 64,
+        "feedback": 64,
+        "replan": 64
+      },
+      "rejections": {
+        "constraint_safety_unknown": 1848,
+        "nonpositive_answer_branch_value": 1096,
+        "extra_physical_actions": 112,
+        "nonpositive_expected_gain": 144
+      }
+    },
+    "legacy_visibility": {
+      "events": {
+        "legacy_proposal": 456,
+        "blocked_task": 2448,
+        "blocking_fact": 6704,
+        "unsupported_fact": 1448,
+        "candidate": 3264,
+        "stop": 392,
+        "execute": 64,
+        "feedback": 64,
+        "replan": 64
+      },
+      "rejections": {
+        "constraint_safety_unknown": 1848,
+        "nonpositive_answer_branch_value": 1096,
+        "extra_physical_actions": 112,
+        "nonpositive_expected_gain": 144
+      }
+    }
+  },
+  "violations": [],
+  "scope": "logged candidates are correlated; selected observations have selection bias; no claim of empirical probability calibration"
+}

@@ -1,0 +1,7 @@
+{
+  "frozen_analyzer_sha256": "86fadb136c82a4d63a73d9f1339dcec02ad6c4c1b5e11da73aa9149355a5eefa",
+  "executed_analyzer_sha256": "e4781d97ebc47b8a21a6ec5c17dc4877f731c7712bea9a827cf92ba23319ae4a",
+  "old": "category='goal_overcount' if g>value['final_goals'] else 'goal_undercount' if g<value['final_goals'] else 'other_difference' if (c!=value['credited_constraints'] or base!=value['base'] or cost!=value['action_cost']) else 'equal'",
+  "new": "category='sdk_terminal_missing' if value.get('final_goals') is None else 'goal_overcount' if g>value['final_goals'] else 'goal_undercount' if g<value['final_goals'] else 'other_difference' if (c!=value['credited_constraints'] or base!=value['base'] or cost!=value['action_cost']) else 'equal'",
+  "reason": "preserve missing SDK terminal labels when raw score is zero; no run data changed"
+}
