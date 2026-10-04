@@ -1,0 +1,690 @@
+{
+  "design_seed": 17641004,
+  "planner_seeds": [
+    2026100401,
+    2026100402
+  ],
+  "budget_ms": 5000,
+  "cases": [
+    {
+      "id": "j01a",
+      "path": "j01a.xml",
+      "family": "two_parents",
+      "stage": 2,
+      "stress": true,
+      "sha256": "9b684691df1ae7cfc65eaff150772998c01eb1b41e27625596e5d9f18ca5db82",
+      "reference_actions": [
+        [
+          "Open",
+          9
+        ],
+        [
+          "TakeOut",
+          2,
+          9
+        ],
+        [
+          "PutDown",
+          2
+        ],
+        [
+          "Open",
+          8
+        ],
+        [
+          "TakeOut",
+          2,
+          8
+        ],
+        [
+          "PutDown",
+          2
+        ],
+        [
+          "PickUp",
+          2
+        ],
+        [
+          "Move",
+          2
+        ],
+        [
+          "PutDown",
+          2
+        ],
+        [
+          "Move",
+          3
+        ],
+        [
+          "PickUp",
+          3
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PutDown",
+          3
+        ],
+        [
+          "Move",
+          3
+        ],
+        [
+          "PickUp",
+          7
+        ],
+        [
+          "PutDown",
+          7
+        ],
+        [
+          "Move",
+          2
+        ]
+      ],
+      "reference_goals": 6,
+      "reference_constraints": 0
+    },
+    {
+      "id": "j01b",
+      "path": "j01b.xml",
+      "family": "two_parents",
+      "stage": 2,
+      "stress": true,
+      "sha256": "a3cdfe24eb67751b335bef8f56653cb98173625bdb10ac853cc4e8a675f4a832",
+      "reference_actions": [
+        [
+          "Open",
+          4
+        ],
+        [
+          "TakeOut",
+          6,
+          4
+        ],
+        [
+          "PutDown",
+          6
+        ],
+        [
+          "Open",
+          1
+        ],
+        [
+          "TakeOut",
+          6,
+          1
+        ],
+        [
+          "PutDown",
+          6
+        ],
+        [
+          "PickUp",
+          6
+        ],
+        [
+          "Move",
+          3
+        ],
+        [
+          "PutDown",
+          6
+        ],
+        [
+          "Move",
+          1
+        ],
+        [
+          "PickUp",
+          8
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PutDown",
+          8
+        ],
+        [
+          "Move",
+          1
+        ],
+        [
+          "PickUp",
+          7
+        ],
+        [
+          "PutDown",
+          7
+        ],
+        [
+          "Move",
+          3
+        ]
+      ],
+      "reference_goals": 6,
+      "reference_constraints": 0
+    },
+    {
+      "id": "j02a",
+      "path": "j02a.xml",
+      "family": "tray_two_parents",
+      "stage": 2,
+      "stress": true,
+      "sha256": "0203d88912cc35977ed52a3cdf1403418e4d90366c65a438d4c18c668f565d3e",
+      "reference_actions": [
+        [
+          "Open",
+          5
+        ],
+        [
+          "TakeOut",
+          8,
+          5
+        ],
+        [
+          "PutDown",
+          8
+        ],
+        [
+          "Move",
+          3
+        ],
+        [
+          "Open",
+          9
+        ],
+        [
+          "TakeOut",
+          8,
+          9
+        ],
+        [
+          "PutDown",
+          8
+        ],
+        [
+          "FromPlate",
+          8
+        ],
+        [
+          "Move",
+          1
+        ],
+        [
+          "PutDown",
+          8
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PickUp",
+          4
+        ],
+        [
+          "Move",
+          2
+        ],
+        [
+          "PutDown",
+          4
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PickUp",
+          6
+        ],
+        [
+          "PutDown",
+          6
+        ],
+        [
+          "Move",
+          1
+        ]
+      ],
+      "reference_goals": 6,
+      "reference_constraints": 0
+    },
+    {
+      "id": "j02b",
+      "path": "j02b.xml",
+      "family": "tray_two_parents",
+      "stage": 2,
+      "stress": true,
+      "sha256": "578d39e592be0cc26054ca47131847e3a0bfd8e58d3f413b54ee826422279506",
+      "reference_actions": [
+        [
+          "Open",
+          6
+        ],
+        [
+          "TakeOut",
+          7,
+          6
+        ],
+        [
+          "PutDown",
+          7
+        ],
+        [
+          "Move",
+          3
+        ],
+        [
+          "Open",
+          2
+        ],
+        [
+          "TakeOut",
+          7,
+          2
+        ],
+        [
+          "PutDown",
+          7
+        ],
+        [
+          "FromPlate",
+          7
+        ],
+        [
+          "Move",
+          2
+        ],
+        [
+          "PutDown",
+          7
+        ],
+        [
+          "Move",
+          1
+        ],
+        [
+          "PickUp",
+          9
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PutDown",
+          9
+        ],
+        [
+          "Move",
+          1
+        ],
+        [
+          "PickUp",
+          3
+        ],
+        [
+          "PutDown",
+          3
+        ],
+        [
+          "Move",
+          2
+        ]
+      ],
+      "reference_goals": 6,
+      "reference_constraints": 0
+    },
+    {
+      "id": "j03a",
+      "path": "j03a.xml",
+      "family": "hidden_door_two_parents",
+      "stage": 2,
+      "stress": true,
+      "sha256": "7a5bdfe916810657e1067ca9bc32beb17f0ad2ed452ce203218d3e4587e2aeb4",
+      "reference_actions": [
+        [
+          "Open",
+          1
+        ],
+        [
+          "TakeOut",
+          2,
+          1
+        ],
+        [
+          "PutDown",
+          2
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "Open",
+          8
+        ],
+        [
+          "TakeOut",
+          2,
+          8
+        ],
+        [
+          "PutDown",
+          2
+        ],
+        [
+          "PickUp",
+          2
+        ],
+        [
+          "Move",
+          3
+        ],
+        [
+          "PutDown",
+          2
+        ],
+        [
+          "Move",
+          1
+        ],
+        [
+          "PickUp",
+          9
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PutDown",
+          9
+        ],
+        [
+          "Move",
+          1
+        ],
+        [
+          "PickUp",
+          3
+        ],
+        [
+          "PutDown",
+          3
+        ],
+        [
+          "Move",
+          3
+        ]
+      ],
+      "reference_goals": 6,
+      "reference_constraints": 0
+    },
+    {
+      "id": "j03b",
+      "path": "j03b.xml",
+      "family": "hidden_door_two_parents",
+      "stage": 2,
+      "stress": true,
+      "sha256": "8996da4542ad7053590fe2bafbf0c936e389cd4c1a30715606b60cb7985b0f70",
+      "reference_actions": [
+        [
+          "Open",
+          5
+        ],
+        [
+          "TakeOut",
+          6,
+          5
+        ],
+        [
+          "PutDown",
+          6
+        ],
+        [
+          "Move",
+          1
+        ],
+        [
+          "Open",
+          8
+        ],
+        [
+          "TakeOut",
+          6,
+          8
+        ],
+        [
+          "PutDown",
+          6
+        ],
+        [
+          "PickUp",
+          6
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PutDown",
+          6
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PickUp",
+          3
+        ],
+        [
+          "Move",
+          3
+        ],
+        [
+          "PutDown",
+          3
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PickUp",
+          7
+        ],
+        [
+          "PutDown",
+          7
+        ],
+        [
+          "Move",
+          5
+        ]
+      ],
+      "reference_goals": 6,
+      "reference_constraints": 0
+    },
+    {
+      "id": "j04a",
+      "path": "j04a.xml",
+      "family": "other_tray_split_delivery",
+      "stage": 2,
+      "stress": true,
+      "sha256": "d59805aaf772c3827754ac1f994c0e372cfbd14ce961917bb142ef4322a07a96",
+      "reference_actions": [
+        [
+          "Open",
+          5
+        ],
+        [
+          "TakeOut",
+          7,
+          5
+        ],
+        [
+          "PutDown",
+          7
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "Open",
+          8
+        ],
+        [
+          "TakeOut",
+          7,
+          8
+        ],
+        [
+          "PutDown",
+          7
+        ],
+        [
+          "PickUp",
+          7
+        ],
+        [
+          "Move",
+          2
+        ],
+        [
+          "PutDown",
+          7
+        ],
+        [
+          "Move",
+          1
+        ],
+        [
+          "PickUp",
+          1
+        ],
+        [
+          "Move",
+          3
+        ],
+        [
+          "PutDown",
+          1
+        ],
+        [
+          "Move",
+          1
+        ],
+        [
+          "PickUp",
+          4
+        ],
+        [
+          "PutDown",
+          4
+        ],
+        [
+          "Move",
+          2
+        ]
+      ],
+      "reference_goals": 6,
+      "reference_constraints": 0
+    },
+    {
+      "id": "j04b",
+      "path": "j04b.xml",
+      "family": "other_tray_split_delivery",
+      "stage": 2,
+      "stress": true,
+      "sha256": "dc9d91a5eba24f0de6e37ab6798e9d276373916f150aca3038a1684f0fe3fa9f",
+      "reference_actions": [
+        [
+          "Open",
+          2
+        ],
+        [
+          "TakeOut",
+          7,
+          2
+        ],
+        [
+          "PutDown",
+          7
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "Open",
+          4
+        ],
+        [
+          "TakeOut",
+          7,
+          4
+        ],
+        [
+          "PutDown",
+          7
+        ],
+        [
+          "PickUp",
+          7
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PutDown",
+          7
+        ],
+        [
+          "Move",
+          3
+        ],
+        [
+          "PickUp",
+          6
+        ],
+        [
+          "Move",
+          2
+        ],
+        [
+          "PutDown",
+          6
+        ],
+        [
+          "Move",
+          3
+        ],
+        [
+          "PickUp",
+          9
+        ],
+        [
+          "PutDown",
+          9
+        ],
+        [
+          "Move",
+          5
+        ]
+      ],
+      "reference_goals": 6,
+      "reference_constraints": 0
+    }
+  ]
+}

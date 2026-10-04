@@ -1,0 +1,40 @@
+{
+  "archive_sha256": "4a6f8d3639029faa0a6fda340f9d3522b2ad26122d1b95eb55fa980f78d72ae9",
+  "entries": {
+    "raw/goto-sdk-oracle/evaluate.lp": "ee8ca34affe9c40ffc7629319d0f287fefc378160c4a19e9b4d3ec18e09c61e4",
+    "raw/goto-sdk-oracle/evaluelog.txt": "fa0bfc93c7be6024cd1ec89a1562d4c5e9ebb04aa14f79b6e2106082b6d81eb7",
+    "raw/goto-sdk-oracle/forcons.lp": "25a658d971584f002f65b032bfa60c98359754b4c327a5ba2057ce7ed4a8c2cb",
+    "raw/goto-sdk-oracle/fortask.lp": "59b3cee204930d7ce0e6a88a1a2efc55baacf421fefcc08956dea4d90cfca3a3",
+    "raw/goto-sdk-oracle/iclingo": "580100510b1e8b89121e11fb7dbfb8f85ff1b624918e4ac06b08246248a18100",
+    "raw/goto-sdk-oracle/show.lp": "d896dc7330e54f5b274424dbbbee57adfa2d53d11df3f484113a6e29ef988921",
+    "raw/goto-sdk-oracle/vaction.lp": "07d3c16000b3bbca43f525e78ca104cc6f3eacced90e5800679c943142c6c0d7",
+    "raw/goto-sdk-oracle/vanswer.txt": "c3a5f900e9a428561a614917606eedbae7fa05326b8e53588fa0ce2cb247af37",
+    "raw/goto-sdk-oracle/vas_error.txt": "b9dab50e12b94e5e442dd95cbdd1f4c1c37bfb0b5b3ad53e8c26f02b66d0d7fe",
+    "raw/goto-sdk-oracle/vbase.lp": "519251d84b8c677eb19b974dfb2dc46a4d402d27fef7399344c72c929aabf66c",
+    "raw/goto-sdk-oracle/vcons.lp": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/goto-sdk-oracle/vrunact.sh": "cfc8ca441b387bef1c27a053545ff2ea483cbf5b036b714670df7d41137a5f48",
+    "raw/goto-sdk-oracle/vruntask.sh": "3e53c4c2c38a0c984e82dc4d64891824ecc1000fa4f4b6d912b44c1612c22834",
+    "raw/goto-sdk-oracle/vstate.lp": "63ae0fe1433553a5aeebd5392a3d45b7ec45332ff2e99e0f2f6445fe22f1bdec",
+    "raw/goto-sdk-oracle/vtask.lp": "1bcfa5f0c9da93ad7fb58ddcaad44be30c4f6f0171eb94fd4a112b823c9adde0",
+    "checks/goto_projection_counterexample.cpp": "686b52843ca1ee9642432e790c956e59af58d5938077aaeb01169f0f348f9453",
+    "checks/goto_sdk_oracle.cpp": "29b664a7089d248519dbe81a6d06661aecb6174a768fa75aa626778ffd21b260",
+    "checks/goto-projection.txt": "9e55422ccd843a243e6457156de8aa1c209334ed71083db08ae0898c0f607dc1",
+    "checks/goto-sdk-oracle.txt": "9654666c3eb877a01704a099dd8089a3ef83cc07d121830fb35c28f3ca3878d2"
+  },
+  "scope": "Separate remaining-defect reproduction and SDK oracle; not part of 304 CTest correctness checks",
+  "builds": {
+    "projection": {
+      "compiler": "g++ -std=c++11 -O2 -UNDEBUG -Isrc1.7.6 -Isrc1.7.6/tests/stubs checks/goto_projection_counterexample.cpp /tmp/rdfw176-tests/librdfw_test_core.a -lpthread",
+      "binary_sha256": "705eaa1eae7fde4259a14cccba95dd2630609c9727aaf0e60a97a5b414660561",
+      "core_library_sha256": "1589610f156ac90c8cb2dc054c6e54c0b190181a06cb27f5038ce56284e938a5",
+      "arguments": [
+        "/tmp/rdfw176-tests/words.txt"
+      ]
+    },
+    "sdk": {
+      "compiler": "g++ -std=c++11 -O2 -UNDEBUG -I/tmp/env-release-2026-search/src checks/goto_sdk_oracle.cpp -L/tmp/env-release-2026-search/lib -Wl,-rpath,/tmp/env-release-2026-search/lib -lasp",
+      "binary_sha256": "7a201e3e5446ad3152fd1f4dbd616f7a6286e369e5dc420d15b1c7ecbde0920f",
+      "working_directory": "raw/goto-sdk-oracle"
+    }
+  }
+}

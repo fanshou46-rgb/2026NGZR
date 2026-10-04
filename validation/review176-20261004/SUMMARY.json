@@ -1,0 +1,248 @@
+{
+  "suites": {
+    "competition": {
+      "src1.7.5": {
+        "base": 11333,
+        "raw_score": 11951,
+        "official_score": 11951,
+        "goals": 210,
+        "constraints": 196,
+        "cost": 987,
+        "seconds": 88.497,
+        "runs": 24,
+        "scored": 24,
+        "sdk_timeouts": 8,
+        "external_timeouts": 0,
+        "status_failures": 8,
+        "canonical": {
+          "no_final_claim": 4,
+          "equal": 7,
+          "goal_undercount": 7,
+          "other_difference": 6
+        }
+      },
+      "src1.7.6": {
+        "base": 11500,
+        "raw_score": 12126,
+        "official_score": 12126,
+        "goals": 214,
+        "constraints": 196,
+        "cost": 980,
+        "seconds": 87.749,
+        "runs": 24,
+        "scored": 24,
+        "sdk_timeouts": 4,
+        "external_timeouts": 0,
+        "status_failures": 4,
+        "canonical": {
+          "equal": 7,
+          "goal_undercount": 8,
+          "no_final_claim": 2,
+          "other_difference": 7
+        }
+      },
+      "delta": {
+        "base": 167,
+        "raw_score": 175,
+        "official_score": 175,
+        "goals": 4,
+        "constraints": 0,
+        "cost": -7,
+        "seconds": -0.7480000000000047
+      }
+    },
+    "holdout176": {
+      "src1.7.5": {
+        "base": 2224,
+        "raw_score": 3546,
+        "official_score": 3546,
+        "goals": 80,
+        "constraints": 0,
+        "cost": 976,
+        "seconds": 92.277,
+        "runs": 32,
+        "scored": 32,
+        "sdk_timeouts": 0,
+        "external_timeouts": 0,
+        "status_failures": 0,
+        "canonical": {
+          "goal_undercount": 16,
+          "goal_overcount": 16
+        }
+      },
+      "src1.7.6": {
+        "base": 4436,
+        "raw_score": 5344,
+        "official_score": 5344,
+        "goals": 140,
+        "constraints": 0,
+        "cost": 1164,
+        "seconds": 113.13999999999999,
+        "runs": 32,
+        "scored": 32,
+        "sdk_timeouts": 0,
+        "external_timeouts": 0,
+        "status_failures": 0,
+        "canonical": {
+          "goal_undercount": 24,
+          "equal": 8
+        }
+      },
+      "delta": {
+        "base": 2212,
+        "raw_score": 1798,
+        "official_score": 1798,
+        "goals": 60,
+        "constraints": 0,
+        "cost": 188,
+        "seconds": 20.862999999999985
+      }
+    },
+    "old": {
+      "src1.7.5": {
+        "base": 11388,
+        "raw_score": 14464,
+        "official_score": 14464,
+        "goals": 380,
+        "constraints": 0,
+        "cost": 3812,
+        "seconds": 321.6220000000002,
+        "runs": 96,
+        "scored": 96,
+        "sdk_timeouts": 0,
+        "external_timeouts": 0,
+        "status_failures": 0,
+        "canonical": {
+          "equal": 94,
+          "goal_undercount": 2
+        }
+      },
+      "src1.7.6": {
+        "base": 11484,
+        "raw_score": 14790,
+        "official_score": 14790,
+        "goals": 380,
+        "constraints": 0,
+        "cost": 3716,
+        "seconds": 309.9040000000001,
+        "runs": 96,
+        "scored": 96,
+        "sdk_timeouts": 0,
+        "external_timeouts": 0,
+        "status_failures": 0,
+        "canonical": {
+          "equal": 96
+        }
+      },
+      "delta": {
+        "base": 96,
+        "raw_score": 326,
+        "official_score": 326,
+        "goals": 0,
+        "constraints": 0,
+        "cost": -96,
+        "seconds": -11.718000000000075
+      }
+    },
+    "seen175": {
+      "src1.7.5": {
+        "base": 6908,
+        "raw_score": 7598,
+        "official_score": 7598,
+        "goals": 232,
+        "constraints": 0,
+        "cost": 2372,
+        "seconds": 203.26500000000001,
+        "runs": 48,
+        "scored": 48,
+        "sdk_timeouts": 2,
+        "external_timeouts": 0,
+        "status_failures": 2,
+        "canonical": {
+          "equal": 32,
+          "goal_undercount": 4,
+          "goal_overcount": 12
+        }
+      },
+      "src1.7.6": {
+        "base": 6987,
+        "raw_score": 7387,
+        "official_score": 7387,
+        "goals": 240,
+        "constraints": 0,
+        "cost": 2613,
+        "seconds": 217.61999999999995,
+        "runs": 48,
+        "scored": 48,
+        "sdk_timeouts": 1,
+        "external_timeouts": 0,
+        "status_failures": 1,
+        "canonical": {
+          "goal_undercount": 16,
+          "equal": 32
+        }
+      },
+      "delta": {
+        "base": 79,
+        "raw_score": -211,
+        "official_score": -211,
+        "goals": 8,
+        "constraints": 0,
+        "cost": 241,
+        "seconds": 14.354999999999933
+      }
+    },
+    "stage1_control": {
+      "src1.7.5": {
+        "base": 1204,
+        "raw_score": 1614,
+        "official_score": 1614,
+        "goals": 36,
+        "constraints": 0,
+        "cost": 236,
+        "seconds": 18.988000000000003,
+        "runs": 8,
+        "scored": 8,
+        "sdk_timeouts": 0,
+        "external_timeouts": 0,
+        "status_failures": 0,
+        "canonical": {
+          "equal": 2,
+          "goal_overcount": 6
+        }
+      },
+      "src1.7.6": {
+        "base": 1352,
+        "raw_score": 1718,
+        "official_score": 1718,
+        "goals": 40,
+        "constraints": 0,
+        "cost": 248,
+        "seconds": 21.427,
+        "runs": 8,
+        "scored": 8,
+        "sdk_timeouts": 0,
+        "external_timeouts": 0,
+        "status_failures": 0,
+        "canonical": {
+          "equal": 8
+        }
+      },
+      "delta": {
+        "base": 148,
+        "raw_score": 104,
+        "official_score": 104,
+        "goals": 4,
+        "constraints": 0,
+        "cost": 12,
+        "seconds": 2.4389999999999965
+      }
+    }
+  },
+  "pairs": 208,
+  "regression_or_cost_time_increase_pairs": 132,
+  "reference_runs": 16,
+  "reference_sdk_timeouts": 0,
+  "server_raw_score_verified": 416,
+  "policy": "SDK grades authoritative; per-question min(raw,1000); costs count every attempted action; all scored timeouts retained"
+}

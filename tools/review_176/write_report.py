@@ -1,0 +1,45 @@
+"""Reports are generated from the complete immutable SDK result matrix."""
+import json
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'validation/review176-20261004'
+def main():
+    summary=json.loads((OUT/'SUMMARY.json').read_text(encoding='utf8'));suites=summary['suites']
+    lines=['# 1.7.6 生产关系修复与失败反馈验证','','本轮独立复制 1.7.5 为 1.7.6，保留全部旧版本。比较对象是本轮实际重新运行的 1.7.5 与 1.7.6；没有用历史分数替换新格。关系正确性和实际性能分别核对。','',
+    '## 分数下降的原因与本版修改','','1. 1.7.4 收紧手/托盘的证据门槛，却没有补齐送达验证，合法目标失去完整收益估计。1.7.5 补确认动作后恢复部分目标，但额外成本和耗时抵消得分；前轮比赛样本正式分相对 1.7.4 下降 249。',
+    '2. 继承代码把单个 inside 当作排他的物理位置。FromPlate/PickUp/PutDown/槽位赋值清空所有容器，内部取出目标报完成而 SDK 仍保留关系。前轮 retained_tray 族每版 12 格高报完成数，h03a 内部 G6/base194、SDK G5/base154，结束尚有时间。',
+    '3. 1.7.6 新增按物品—容器保存的正/负关系表，取出只删目标边、放入只添目标边，拿起/放下/托盘转移保留关系。终态与绑定查指定容器的关系；一个父容器为真不推断另一个父容器为假。旧 scalar 字段仍是路线代表，完整联合概率先验尚未接入。',
+    '4. 已确认空手时，FromPlate(A)=false 只证明托盘不是 A；其它物占托盘与空托盘均保留可能性。成功则 FromPlate→PutDown。失败仍实际收费、记录失败；未知空手时不学习托盘排除。相比 1.7.5 的先 PickUp 路线，每次必要确认少一次动作/2 分、最长预算由 300ms 改为 200ms 加安全余量。',
+    '5. 关系表参与已有投影保存/恢复、事务异常回滚、状态快照及探索缓存。禁止初始槽位及显式 plate 信息清除独立关系，保留前向声明的多条缓存边。询问投影不再把模拟 Sense 升级为柜外证明；柜内物品地点同步只给未确认路线提示，不覆盖显式初始 at。',
+    '', '## 冻结协议','','24 道旧回归、12 道上轮已见题、8 道新结构留出、六道提前固定比赛样本 01/09/19/24/31/36；IT/NT × 两种子 × 两版本 = 400 次。另有四道 Stage 1 控制 × IT/NT × 两版 = 16 次，共 416 次生产运行。每题 5 秒官方预算，串行轮换顺序。固定随机种子不冻结墙钟搜索截止，历史成绩不能直接混入。',
+    '新题四族：双父容器、托盘与双父关系、未知柜门、另一物占托盘/显式 at 与双父关系及分散送达。生成器不读取规划器得分；在生产矩阵前用官方 SDK 跑全部 16 个 IT/NT 作者参考路径，均实际 G6/C0、约定动作数/成本。参考动作不输入机器人。参考路径证明可解性，不证明最优；本轮后新题转为已见回归题。',
+    '运行中未修改参与的核心源码、输入、工具、SDK 或二进制，也未并行构建。前后哈希核对、原始记录、缺失评分、硬截止、内部高报/低报全部保留，不重跑有利格替换。',
+    '', '## 本轮正式 SDK 结果','','每组数字均为该组全部运行之和，时间也为合计。SDK 原始分另含时间奖励；正式分沿仓库 2026 规则逐题 min(raw,1000)，SDK 本身不自动封顶。基础分使用真实终态 40G+20C−K，G=0 时无约束分。',
+    '', '| 题集 | 版本 | 评分/运行 | 基础分 | SDK原始分 | 正式分 | G | C | K | 平台秒数 | 硬截止 |', '|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|']
+    names={'old':'旧回归24题','seen175':'已见175题12道','holdout176':'新增176题8道','competition':'六道比赛样本','stage1_control':'四道Stage1控制'}
+    for suite in ('old','seen175','holdout176','competition','stage1_control'):
+        for v in ('src1.7.5','src1.7.6'):
+            r=suites[suite][v]
+            lines.append('| {} | {} | {}/{} | {} | {} | {} | {} | {} | {} | {:.3f} | {} |'.format(names[suite],v,r['scored'],r['runs'],r['base'],r['raw_score'],r['official_score'],r['goals'],r['constraints'],r['cost'],r['seconds'],r['sdk_timeouts']))
+    lines+=['', '| 1.7.5→1.7.6 | 基础分变化 | 正式分变化 | G变化 | C变化 | K变化 | 秒数变化 |','|---|---:|---:|---:|---:|---:|---:|']
+    for suite in ('old','seen175','holdout176','competition','stage1_control'):
+        d=suites[suite]['delta'];lines.append('| {} | {:+d} | {:+d} | {:+d} | {:+d} | {:+d} | {:+.3f} |'.format(names[suite],d['base'],d['official_score'],d['goals'],d['constraints'],d['cost'],d['seconds']))
+    lines+=['', '## 仍然下降的题与逐动作原因','',
+    '已见 175 题正式分合计 7598→7387（−211）：真实 G 232→240，但动作成本 2372→2613（+241）、平台时间增加 14.355 秒，新增目标收益被成本及时间奖励损失抵消。其它题集的改善不能掩盖这一组退化。',
+    'retained_tray 的 Stage 2 共 12 对，其中 11 对 G5→G4、K46→K51。h03a IT/seed2026100401 的 1.7.5 送完四件物品后留在桌边，SDK G5；错误清 inside 使内部高报 G6。1.7.6 保留真实柜内关系，送达后仍有取出目标，额外 Sense→Move(1)→Sense，既没有 Open/TakeOut，也没有回桌边，SDK 与内部均 G4/base109；余下 484ms，goto 被 nonpositive_single 拒绝、柜门被 unsupported_fact 拒绝。并非本条轨迹执行 TakeOut 后破坏送达，而是探索移动丢掉已完成的 goto。',
+    '该轨迹的 MoveSense 启发式 expected_gain=11.8，只扣探索及估计继续成本，没有完整覆盖已完成 goto 的 −40 与恢复动作/时间。最后一次移动发生在 remaining_ms=933；反馈后只剩 491ms。未知柜门又缺少完整反馈路线，取出无法兑现。对应所有动作和未选择候选均保存于原始 client.log；h03c IT/第一种子没有离开桌边，G5/K46 维持，亦完整保留。',
+    '返回投影还有一个可复现错误：goto 预测 gained_goals=[5]、lost_goals=[1]、utility=−5，误把返回看作会丢掉杯子送达。DryRunSenseIds 只检查旧代表 inside 与柜门，忽略 explicit at 与 inside 可以共存，虚拟 Sense 删除已送达杯子的地点。独立 goto_projection_counterexample.cpp 使用本轮已检查静态库，复现 Move→Sense、gain1/loss1/utility−5；该反例是剩余缺陷复现，不计正确性通过。相同初态直接调用真实 SDK，返回后的 Sense 仍看到杯子，实际 G2/K5/base75；goto_sdk_oracle.cpp 与结果、完整 ASP 原文另存 checks/goto-diagnostics.zip，不计入 304 项 CTest。下一版本需一起修可见性模拟、终态损失、恢复预算和完整路线，不能只调大探索价值。',
+    '', '本轮 1.7.6 的 208 格没有 goal_overcount；仍有 goal_undercount、other_difference、no_final_claim，故不表示所有内部事实/记分已经一致。',
+    '', '## 内部终态与真实评分','','| 题集 | 版本 | 分歧分类 |','|---|---|---|']
+    for suite in ('old','seen175','holdout176','competition','stage1_control'):
+        for v in ('src1.7.5','src1.7.6'):lines.append('| {} | {} | {} |'.format(names[suite],v,json.dumps(suites[suite][v]['canonical'],ensure_ascii=False)))
+    lines+=['','equal 是实际 G/C/K/base 一致；goal_overcount / goal_undercount 是内部高报/低报；other_difference 为其它分歧，no_final_claim 为没有最终自报。不能把保守低报与高报混成正确性通过。评分与服务器原文逐格核对；所有退化或成本/时间增加见 [REGRESSIONS.csv](REGRESSIONS.csv)，逐动作与原始记录路径见 [RUNS.csv](RUNS.csv)。',
+    '', '## 检查与实际边界','','普通和直接 SDK 检查 304/304，其中 29 项直接 SDK。新增六项逐动作比较包含双父关系、单边增删、前向声明、投影恢复、托盘同物/另一物、失败前提未知与重复反馈。旧错误语义断言按 SDK 改写，不能通过恢复错误关系假设补分。初轮 262/271、第二轮 298/300 及所有诊断日志保留；第三轮 300/300 后又补前向缓存/询问缓存保留，第四轮 300/300。另发现弱回答撤销已确认关系，独立反例先失败后通过；修正回答与强事实边界，新增四项关系证据检查，最终第五轮 304/304。暂停的第一版矩阵 142 条记录及一条中断运行单列保留，不混入最终成绩。',
+    '内存检查结果见 checks/sanitizer-summary.json，普通检查见 checks/unit-summary.json；ASan/UBSan/泄漏检查不包含 SDK 子进程测试。证据 ZIP 的 CRC 和每项 SHA 验证，源码/输入/工具/二进制前后固定，manifest 记录生成二进制和完全相同 SDK 资源的排除哈希。',
+    '发布字节核对共 170 个文件：138 个 Git 字节与实际执行字节完全一致，包括本版全部 77 个检查相关文件；32 个未改动的历史题/目录索引/工具在 Git 中为 LF、本机实际运行是 CRLF，差异仅换行。这些历史文件不重写，全部 59 个冻结输入与运行工具的实际字节另存 checks/executed-input-tooling.zip，并逐项 SHA/CRC 通过。精确复跑可在独立副本使用该归档的原始字节；words.txt 与本版源码始终核对原始字节，不进行换行等价替代。完整清单与 Git 审计见 checks/staged-publication-audit.json。',
+    '', '## 继续完善的方向','','生产仍有“可见地点”和“独立 SDK at”混用、单代表容器路线、未知柜门完整投影缺失、单物互斥位置概率无法表达共存，以及联合先验/residual/完整奖励/执行授权/概率与时间校准尚未闭合。不能称为完整联合模型验收，也不因局部改善宣称全面恢复至 1.7.3。',
+    '后续按 [概率规划路线](../../src1.7.6/docs/PROBABILITY_ROADMAP.md) 实施：先补探索损失与恢复路线，再扩完整事实与公开先验，让同一反馈树比较直接任务、观察和失败反馈；把真实成本、约束损失、耗时和封顶评分都算入，并用下一批独立留出题评价。持续概率模型目标尚未完成。','']
+    (OUT/'REPORT.md').write_text('\n'.join(lines),encoding='utf8')
+    release='# 1.7.6 生产关系与公开失败反馈\n\n从 1.7.5 独立复制，旧版本保留。新增逐容器关系事实，物品拿起、放下及托盘转移不再清除 inside；TakeOut/PutIn 只改目标边，终态按指定容器查证。已确认空手下用 FromPlate 的成功/失败取得指定物品的托盘排除证据，必要确认少一次动作。\n\n304/304 普通及直接 SDK 检查通过，全部 416 次生产对照、逐题退化和内存检查见 [本轮报告](../../validation/review176-20261004/REPORT.md)。局部语义修正不等于全面提分或联合模型已接入。未来概率层与开源依据见 [后续路线](PROBABILITY_ROADMAP.md)。复制的旧文档仅记录各自历史实验，以本说明为当前入口。\n'
+    (ROOT/'src1.7.6/docs/RELEASE_1.7.6.md').write_text(release,encoding='utf8')
+    (ROOT/'src1.7.6/README.md').write_text('# src1.7.6 生产关系修复检查点\n\n柜内关系改为按物品—容器逐条保存；槽位转移不删除 inside；取出终态只查指定边。用确认空手下 FromPlate 的公开失败减少放置验证动作。\n\n本轮 [版本说明](docs/RELEASE_1.7.6.md)、[416 次真实 SDK 对照与所有退化](../validation/review176-20261004/REPORT.md)、[概率规划后续路线](docs/PROBABILITY_ROADMAP.md)。联合先验与完整反馈策略仍需接入，复制的其它文档属于原版本历史记录。\n',encoding='utf8')
+if __name__=='__main__':main()
