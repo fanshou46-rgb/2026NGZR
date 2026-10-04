@@ -1,0 +1,1570 @@
+{
+  "design_seed": 714203,
+  "planner_seeds": [
+    2026100401,
+    2026100402
+  ],
+  "policy": "Freeze before any planner run. No parameter/code changes after exposure. All runs retained.",
+  "cases": [
+    {
+      "id": "g01a",
+      "family": "known_delivery",
+      "variant": 0,
+      "stage": 1,
+      "split": "development_audit",
+      "stress": false,
+      "path": "g01a.xml",
+      "sha256": "355888847740cf157e483c814cb360d9b7d8676c0707beb74d7ce41e60852335",
+      "reference_actions": [
+        [
+          "Move",
+          3
+        ],
+        [
+          "PickUp",
+          5
+        ],
+        [
+          "Move",
+          6
+        ],
+        [
+          "PutDown",
+          5
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PickUp",
+          8
+        ],
+        [
+          "Move",
+          6
+        ],
+        [
+          "PutDown",
+          8
+        ],
+        [
+          "Move",
+          1
+        ],
+        [
+          "PickUp",
+          7
+        ],
+        [
+          "Move",
+          6
+        ],
+        [
+          "PutDown",
+          7
+        ]
+      ],
+      "reference_goals": 4,
+      "reference_constraints": 0,
+      "requested_goals": 4,
+      "reference_optimality": "feasible witness only; not an optimality oracle"
+    },
+    {
+      "id": "g01b",
+      "family": "known_delivery",
+      "variant": 1,
+      "stage": 1,
+      "split": "development_audit",
+      "stress": false,
+      "path": "g01b.xml",
+      "sha256": "d6095a638916c38cbb626c4e49625b4299a91afb416b9ad0f4f68a988b0826be",
+      "reference_actions": [
+        [
+          "Move",
+          3
+        ],
+        [
+          "PickUp",
+          2
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PutDown",
+          2
+        ],
+        [
+          "Move",
+          1
+        ],
+        [
+          "PickUp",
+          7
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PutDown",
+          7
+        ],
+        [
+          "Move",
+          2
+        ],
+        [
+          "PickUp",
+          9
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PutDown",
+          9
+        ]
+      ],
+      "reference_goals": 4,
+      "reference_constraints": 0,
+      "requested_goals": 4,
+      "reference_optimality": "feasible witness only; not an optimality oracle"
+    },
+    {
+      "id": "g02a",
+      "family": "missing_floor",
+      "variant": 0,
+      "stage": 2,
+      "split": "development_audit",
+      "stress": false,
+      "path": "g02a.xml",
+      "sha256": "88e797873935056869a4b937693fd8dc5475d33d7a5888d041f335913b562aff",
+      "reference_actions": [
+        [
+          "Move",
+          4
+        ],
+        [
+          "PickUp",
+          5
+        ],
+        [
+          "Move",
+          1
+        ],
+        [
+          "PutDown",
+          5
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PickUp",
+          8
+        ],
+        [
+          "Move",
+          1
+        ],
+        [
+          "PutDown",
+          8
+        ],
+        [
+          "Move",
+          2
+        ],
+        [
+          "PickUp",
+          10
+        ],
+        [
+          "Move",
+          1
+        ],
+        [
+          "PutDown",
+          10
+        ]
+      ],
+      "reference_goals": 4,
+      "reference_constraints": 0,
+      "requested_goals": 4,
+      "reference_optimality": "feasible witness only; not an optimality oracle"
+    },
+    {
+      "id": "g02b",
+      "family": "missing_floor",
+      "variant": 1,
+      "stage": 2,
+      "split": "development_audit",
+      "stress": false,
+      "path": "g02b.xml",
+      "sha256": "08c318e576f9cc09ad080576267218911b4c890443a13b1ca7954fd50fb88f76",
+      "reference_actions": [
+        [
+          "Move",
+          3
+        ],
+        [
+          "PickUp",
+          2
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PutDown",
+          2
+        ],
+        [
+          "Move",
+          6
+        ],
+        [
+          "PickUp",
+          7
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PutDown",
+          7
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PickUp",
+          1
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PutDown",
+          1
+        ]
+      ],
+      "reference_goals": 4,
+      "reference_constraints": 0,
+      "requested_goals": 4,
+      "reference_optimality": "feasible witness only; not an optimality oracle"
+    },
+    {
+      "id": "g03a",
+      "family": "wrong_floor",
+      "variant": 0,
+      "stage": 2,
+      "split": "development_audit",
+      "stress": false,
+      "path": "g03a.xml",
+      "sha256": "d28f5c51aea8146b8b3fbb8a3c819b4dc727c5f574de06103ee37fda33beb8ca",
+      "reference_actions": [
+        [
+          "Move",
+          3
+        ],
+        [
+          "PickUp",
+          8
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PutDown",
+          8
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PickUp",
+          6
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PutDown",
+          6
+        ],
+        [
+          "Move",
+          6
+        ],
+        [
+          "PickUp",
+          1
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PutDown",
+          1
+        ]
+      ],
+      "reference_goals": 4,
+      "reference_constraints": 0,
+      "requested_goals": 4,
+      "reference_optimality": "feasible witness only; not an optimality oracle"
+    },
+    {
+      "id": "g03b",
+      "family": "wrong_floor",
+      "variant": 1,
+      "stage": 2,
+      "split": "development_audit",
+      "stress": false,
+      "path": "g03b.xml",
+      "sha256": "60956fb0edb9f48b417ea94fbb352a302c9d331588af9234f9ca86933d82fe65",
+      "reference_actions": [
+        [
+          "Move",
+          1
+        ],
+        [
+          "PickUp",
+          2
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PutDown",
+          2
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PickUp",
+          7
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PutDown",
+          7
+        ],
+        [
+          "Move",
+          6
+        ],
+        [
+          "PickUp",
+          5
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PutDown",
+          5
+        ]
+      ],
+      "reference_goals": 4,
+      "reference_constraints": 0,
+      "requested_goals": 4,
+      "reference_optimality": "feasible witness only; not an optimality oracle"
+    },
+    {
+      "id": "g04a",
+      "family": "hidden_closed",
+      "variant": 0,
+      "stage": 2,
+      "split": "development_audit",
+      "stress": false,
+      "path": "g04a.xml",
+      "sha256": "69b5a4149677cb53c933ccfad3f3f3ecd4f3a159c48a5920eeffe763dbbcb8cc",
+      "reference_actions": [
+        [
+          "Move",
+          4
+        ],
+        [
+          "Open",
+          10
+        ],
+        [
+          "TakeOut",
+          9,
+          10
+        ],
+        [
+          "Move",
+          6
+        ],
+        [
+          "PutDown",
+          9
+        ],
+        [
+          "Move",
+          1
+        ],
+        [
+          "PickUp",
+          6
+        ],
+        [
+          "Move",
+          6
+        ],
+        [
+          "PutDown",
+          6
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PickUp",
+          3
+        ],
+        [
+          "Move",
+          6
+        ],
+        [
+          "PutDown",
+          3
+        ]
+      ],
+      "reference_goals": 4,
+      "reference_constraints": 0,
+      "requested_goals": 4,
+      "reference_optimality": "feasible witness only; not an optimality oracle"
+    },
+    {
+      "id": "g04b",
+      "family": "hidden_closed",
+      "variant": 1,
+      "stage": 2,
+      "split": "development_audit",
+      "stress": false,
+      "path": "g04b.xml",
+      "sha256": "9878107a2fba153e533492a82b8adcd9c9f8ae23fb1f8df708ec71b937679d00",
+      "reference_actions": [
+        [
+          "Move",
+          6
+        ],
+        [
+          "Open",
+          6
+        ],
+        [
+          "TakeOut",
+          7,
+          6
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PutDown",
+          7
+        ],
+        [
+          "Move",
+          2
+        ],
+        [
+          "PickUp",
+          4
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PutDown",
+          4
+        ],
+        [
+          "Move",
+          3
+        ],
+        [
+          "PickUp",
+          3
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PutDown",
+          3
+        ]
+      ],
+      "reference_goals": 4,
+      "reference_constraints": 0,
+      "requested_goals": 4,
+      "reference_optimality": "feasible witness only; not an optimality oracle"
+    },
+    {
+      "id": "g05a",
+      "family": "wrong_container",
+      "variant": 0,
+      "stage": 2,
+      "split": "development_audit",
+      "stress": false,
+      "path": "g05a.xml",
+      "sha256": "ce888979933a3df426dd2fa353d746a7b86f42e33fce04a189856b0a42af90fb",
+      "reference_actions": [
+        [
+          "Move",
+          1
+        ],
+        [
+          "Open",
+          6
+        ],
+        [
+          "TakeOut",
+          4,
+          6
+        ],
+        [
+          "Move",
+          2
+        ],
+        [
+          "PutDown",
+          4
+        ],
+        [
+          "Move",
+          3
+        ],
+        [
+          "PickUp",
+          7
+        ],
+        [
+          "Move",
+          2
+        ],
+        [
+          "PutDown",
+          7
+        ],
+        [
+          "Move",
+          6
+        ],
+        [
+          "PickUp",
+          10
+        ],
+        [
+          "Move",
+          2
+        ],
+        [
+          "PutDown",
+          10
+        ]
+      ],
+      "reference_goals": 4,
+      "reference_constraints": 0,
+      "requested_goals": 4,
+      "reference_optimality": "feasible witness only; not an optimality oracle"
+    },
+    {
+      "id": "g05b",
+      "family": "wrong_container",
+      "variant": 1,
+      "stage": 2,
+      "split": "development_audit",
+      "stress": false,
+      "path": "g05b.xml",
+      "sha256": "c65114239aa244501272c08d3f25f6b6feea923aced2c007db88756e8e7e247e",
+      "reference_actions": [
+        [
+          "Move",
+          6
+        ],
+        [
+          "Open",
+          1
+        ],
+        [
+          "TakeOut",
+          6,
+          1
+        ],
+        [
+          "Move",
+          1
+        ],
+        [
+          "PutDown",
+          6
+        ],
+        [
+          "Move",
+          2
+        ],
+        [
+          "PickUp",
+          7
+        ],
+        [
+          "Move",
+          1
+        ],
+        [
+          "PutDown",
+          7
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PickUp",
+          4
+        ],
+        [
+          "Move",
+          1
+        ],
+        [
+          "PutDown",
+          4
+        ]
+      ],
+      "reference_goals": 4,
+      "reference_constraints": 0,
+      "requested_goals": 4,
+      "reference_optimality": "feasible witness only; not an optimality oracle"
+    },
+    {
+      "id": "g06a",
+      "family": "occupied_tray",
+      "variant": 0,
+      "stage": 2,
+      "split": "development_audit",
+      "stress": false,
+      "path": "g06a.xml",
+      "sha256": "4c55e6eb59a223f27d38c0c329e4ef1f9264631f20cd902052246682d3726ea7",
+      "reference_actions": [
+        [
+          "FromPlate",
+          10
+        ],
+        [
+          "Move",
+          1
+        ],
+        [
+          "PutDown",
+          10
+        ],
+        [
+          "Move",
+          6
+        ],
+        [
+          "PickUp",
+          4
+        ],
+        [
+          "Move",
+          1
+        ],
+        [
+          "PutDown",
+          4
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PickUp",
+          6
+        ],
+        [
+          "Move",
+          1
+        ],
+        [
+          "PutDown",
+          6
+        ]
+      ],
+      "reference_goals": 4,
+      "reference_constraints": 0,
+      "requested_goals": 4,
+      "reference_optimality": "feasible witness only; not an optimality oracle"
+    },
+    {
+      "id": "g06b",
+      "family": "occupied_tray",
+      "variant": 1,
+      "stage": 2,
+      "split": "development_audit",
+      "stress": false,
+      "path": "g06b.xml",
+      "sha256": "c69f144d2aa563f004463ba1b75dee9da883e7021ac3e84b2b2c954377acd0b8",
+      "reference_actions": [
+        [
+          "FromPlate",
+          6
+        ],
+        [
+          "Move",
+          2
+        ],
+        [
+          "PutDown",
+          6
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PickUp",
+          1
+        ],
+        [
+          "Move",
+          2
+        ],
+        [
+          "PutDown",
+          1
+        ],
+        [
+          "Move",
+          1
+        ],
+        [
+          "PickUp",
+          7
+        ],
+        [
+          "Move",
+          2
+        ],
+        [
+          "PutDown",
+          7
+        ]
+      ],
+      "reference_goals": 4,
+      "reference_constraints": 0,
+      "requested_goals": 4,
+      "reference_optimality": "feasible witness only; not an optimality oracle"
+    },
+    {
+      "id": "g07a",
+      "family": "occupied_hand",
+      "variant": 0,
+      "stage": 2,
+      "split": "development_audit",
+      "stress": false,
+      "path": "g07a.xml",
+      "sha256": "519a95bdac77517fdc495eda22d2f663f5153206b19c75120940c2d8c84568dd",
+      "reference_actions": [
+        [
+          "Move",
+          3
+        ],
+        [
+          "PutDown",
+          10
+        ],
+        [
+          "Move",
+          2
+        ],
+        [
+          "PickUp",
+          8
+        ],
+        [
+          "Move",
+          3
+        ],
+        [
+          "PutDown",
+          8
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PickUp",
+          7
+        ],
+        [
+          "Move",
+          3
+        ],
+        [
+          "PutDown",
+          7
+        ]
+      ],
+      "reference_goals": 4,
+      "reference_constraints": 0,
+      "requested_goals": 4,
+      "reference_optimality": "feasible witness only; not an optimality oracle"
+    },
+    {
+      "id": "g07b",
+      "family": "occupied_hand",
+      "variant": 1,
+      "stage": 2,
+      "split": "development_audit",
+      "stress": false,
+      "path": "g07b.xml",
+      "sha256": "24d20f80519d8102289a2d4b2518db9a93469d3eb6db8c5b1155c701c21868ce",
+      "reference_actions": [
+        [
+          "Move",
+          5
+        ],
+        [
+          "PutDown",
+          7
+        ],
+        [
+          "Move",
+          1
+        ],
+        [
+          "PickUp",
+          2
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PutDown",
+          2
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PickUp",
+          8
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PutDown",
+          8
+        ]
+      ],
+      "reference_goals": 4,
+      "reference_constraints": 0,
+      "requested_goals": 4,
+      "reference_optimality": "feasible witness only; not an optimality oracle"
+    },
+    {
+      "id": "g08a",
+      "family": "closed_constraint",
+      "variant": 0,
+      "stage": 2,
+      "split": "development_audit",
+      "stress": false,
+      "path": "g08a.xml",
+      "sha256": "14e79a567f0977e9133316a341b066982278b1f1dd1b4554f2884c1ac971a50b",
+      "reference_actions": [
+        [
+          "Move",
+          1
+        ],
+        [
+          "Open",
+          6
+        ],
+        [
+          "TakeOut",
+          10,
+          6
+        ],
+        [
+          "Move",
+          2
+        ],
+        [
+          "PutDown",
+          10
+        ],
+        [
+          "Move",
+          1
+        ],
+        [
+          "TakeOut",
+          9,
+          6
+        ],
+        [
+          "Move",
+          2
+        ],
+        [
+          "PutDown",
+          9
+        ],
+        [
+          "Move",
+          1
+        ],
+        [
+          "TakeOut",
+          4,
+          6
+        ],
+        [
+          "Move",
+          2
+        ],
+        [
+          "PutDown",
+          4
+        ]
+      ],
+      "reference_goals": 4,
+      "reference_constraints": 0,
+      "requested_goals": 4,
+      "reference_optimality": "feasible witness only; not an optimality oracle"
+    },
+    {
+      "id": "g08b",
+      "family": "closed_constraint",
+      "variant": 1,
+      "stage": 2,
+      "split": "development_audit",
+      "stress": false,
+      "path": "g08b.xml",
+      "sha256": "598d92cb5d379d8969dc1864e3e69950f037d0218be87bf9fa7039eab52f1143",
+      "reference_actions": [
+        [
+          "Move",
+          2
+        ],
+        [
+          "Open",
+          1
+        ],
+        [
+          "TakeOut",
+          7,
+          1
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PutDown",
+          7
+        ],
+        [
+          "Move",
+          2
+        ],
+        [
+          "TakeOut",
+          10,
+          1
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PutDown",
+          10
+        ],
+        [
+          "Move",
+          2
+        ],
+        [
+          "TakeOut",
+          2,
+          1
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PutDown",
+          2
+        ]
+      ],
+      "reference_goals": 4,
+      "reference_constraints": 0,
+      "requested_goals": 4,
+      "reference_optimality": "feasible witness only; not an optimality oracle"
+    },
+    {
+      "id": "g09a",
+      "family": "colocated_containers",
+      "variant": 0,
+      "stage": 2,
+      "split": "structural_holdout",
+      "stress": true,
+      "path": "g09a.xml",
+      "sha256": "e593197d16f6aac2e85b93bab26918e4a9038c90d63def3ed200d57d34b26182",
+      "reference_actions": [
+        [
+          "Move",
+          4
+        ],
+        [
+          "TakeOut",
+          6,
+          9
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PutDown",
+          6
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "TakeOut",
+          8,
+          3
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PutDown",
+          8
+        ],
+        [
+          "Move",
+          6
+        ],
+        [
+          "PickUp",
+          4
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PutDown",
+          4
+        ]
+      ],
+      "reference_goals": 4,
+      "reference_constraints": 0,
+      "requested_goals": 4,
+      "reference_optimality": "feasible witness only; not an optimality oracle"
+    },
+    {
+      "id": "g09b",
+      "family": "colocated_containers",
+      "variant": 1,
+      "stage": 2,
+      "split": "structural_holdout",
+      "stress": true,
+      "path": "g09b.xml",
+      "sha256": "42bac4343e9c3e35cba8e2d729f83407c08b995f3997a1a8ac78d7ef45fed5ee",
+      "reference_actions": [
+        [
+          "Move",
+          3
+        ],
+        [
+          "TakeOut",
+          5,
+          4
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PutDown",
+          5
+        ],
+        [
+          "Move",
+          3
+        ],
+        [
+          "TakeOut",
+          10,
+          3
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PutDown",
+          10
+        ],
+        [
+          "Move",
+          6
+        ],
+        [
+          "PickUp",
+          9
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PutDown",
+          9
+        ]
+      ],
+      "reference_goals": 4,
+      "reference_constraints": 0,
+      "requested_goals": 4,
+      "reference_optimality": "feasible witness only; not an optimality oracle"
+    },
+    {
+      "id": "g10a",
+      "family": "independent_at_inside",
+      "variant": 0,
+      "stage": 2,
+      "split": "structural_holdout",
+      "stress": true,
+      "path": "g10a.xml",
+      "sha256": "cffe7df6391f69dd7512beef9a5304774b461dd0a3bd920b066e3d5bc6c1f907",
+      "reference_actions": [
+        [
+          "Move",
+          6
+        ],
+        [
+          "Open",
+          3
+        ],
+        [
+          "TakeOut",
+          7,
+          3
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PutDown",
+          7
+        ],
+        [
+          "Move",
+          2
+        ],
+        [
+          "PickUp",
+          2
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PutDown",
+          2
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PickUp",
+          4
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PutDown",
+          4
+        ]
+      ],
+      "reference_goals": 5,
+      "reference_constraints": 0,
+      "requested_goals": 5,
+      "reference_optimality": "feasible witness only; not an optimality oracle"
+    },
+    {
+      "id": "g10b",
+      "family": "independent_at_inside",
+      "variant": 1,
+      "stage": 2,
+      "split": "structural_holdout",
+      "stress": true,
+      "path": "g10b.xml",
+      "sha256": "72975427da14a44692ac297b6eac6899424b0ef2d6753cbc3a4336fc750c3a9b",
+      "reference_actions": [
+        [
+          "Move",
+          2
+        ],
+        [
+          "Open",
+          4
+        ],
+        [
+          "TakeOut",
+          5,
+          4
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PutDown",
+          5
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PickUp",
+          2
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PutDown",
+          2
+        ],
+        [
+          "Move",
+          6
+        ],
+        [
+          "PickUp",
+          9
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PutDown",
+          9
+        ]
+      ],
+      "reference_goals": 5,
+      "reference_constraints": 0,
+      "requested_goals": 5,
+      "reference_optimality": "feasible witness only; not an optimality oracle"
+    },
+    {
+      "id": "g11a",
+      "family": "shared_sort",
+      "variant": 0,
+      "stage": 2,
+      "split": "structural_holdout",
+      "stress": false,
+      "path": "g11a.xml",
+      "sha256": "57e91bf2cdf91c18010816afffa289ef824890239779d6e0afcddef4d9b12ee9",
+      "reference_actions": [
+        [
+          "Move",
+          5
+        ],
+        [
+          "PickUp",
+          5
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PutDown",
+          5
+        ],
+        [
+          "Move",
+          3
+        ],
+        [
+          "PickUp",
+          4
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PutDown",
+          4
+        ],
+        [
+          "Move",
+          1
+        ],
+        [
+          "PickUp",
+          2
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PutDown",
+          2
+        ]
+      ],
+      "reference_goals": 4,
+      "reference_constraints": 0,
+      "requested_goals": 4,
+      "reference_optimality": "feasible witness only; not an optimality oracle"
+    },
+    {
+      "id": "g11b",
+      "family": "shared_sort",
+      "variant": 1,
+      "stage": 2,
+      "split": "structural_holdout",
+      "stress": false,
+      "path": "g11b.xml",
+      "sha256": "49f83312c3151671a7bca8b2ba61ef7327c455fbea3fd6f6692fe2ee1af5a7b7",
+      "reference_actions": [
+        [
+          "Move",
+          3
+        ],
+        [
+          "PickUp",
+          3
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PutDown",
+          3
+        ],
+        [
+          "Move",
+          1
+        ],
+        [
+          "PickUp",
+          1
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PutDown",
+          1
+        ],
+        [
+          "Move",
+          6
+        ],
+        [
+          "PickUp",
+          7
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PutDown",
+          7
+        ]
+      ],
+      "reference_goals": 4,
+      "reference_constraints": 0,
+      "requested_goals": 4,
+      "reference_optimality": "feasible witness only; not an optimality oracle"
+    },
+    {
+      "id": "g12a",
+      "family": "terminal_conflict",
+      "variant": 0,
+      "stage": 2,
+      "split": "structural_holdout",
+      "stress": false,
+      "path": "g12a.xml",
+      "sha256": "06b9ed4b8333dd77ca40a98ff826b8236892e78942f070cc4efafc9e156336bc",
+      "reference_actions": [
+        [
+          "Move",
+          2
+        ],
+        [
+          "PickUp",
+          6
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PutDown",
+          6
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PickUp",
+          10
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PutDown",
+          10
+        ],
+        [
+          "Move",
+          3
+        ],
+        [
+          "PickUp",
+          3
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PutDown",
+          3
+        ]
+      ],
+      "reference_goals": 4,
+      "reference_constraints": 0,
+      "requested_goals": 5,
+      "reference_optimality": "feasible witness only; not an optimality oracle"
+    },
+    {
+      "id": "g12b",
+      "family": "terminal_conflict",
+      "variant": 1,
+      "stage": 2,
+      "split": "structural_holdout",
+      "stress": false,
+      "path": "g12b.xml",
+      "sha256": "f50ede29ec85fe1bf446529a0f7ad3f19b8f6161e97be7e2f6ae4f6222b81173",
+      "reference_actions": [
+        [
+          "Move",
+          1
+        ],
+        [
+          "PickUp",
+          8
+        ],
+        [
+          "Move",
+          2
+        ],
+        [
+          "PutDown",
+          8
+        ],
+        [
+          "Move",
+          3
+        ],
+        [
+          "PickUp",
+          3
+        ],
+        [
+          "Move",
+          2
+        ],
+        [
+          "PutDown",
+          3
+        ],
+        [
+          "Move",
+          6
+        ],
+        [
+          "PickUp",
+          10
+        ],
+        [
+          "Move",
+          2
+        ],
+        [
+          "PutDown",
+          10
+        ]
+      ],
+      "reference_goals": 4,
+      "reference_constraints": 0,
+      "requested_goals": 5,
+      "reference_optimality": "feasible witness only; not an optimality oracle"
+    }
+  ]
+}

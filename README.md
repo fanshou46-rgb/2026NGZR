@@ -19,28 +19,35 @@
 └── src1.6/                # src 1.6：约束收益决策与 Stage 2 未知事实校验
 ```
 
-最新开发版本：`src1.10/`，新增联合隐藏状态、公开反馈分支与有界策略树内核，
+版本编号已统一为 **1.7.2、1.7.3、1.7.4**，分别对应历史 1.8、1.9、1.10。
+逐版新增内容、独立新题、已复现错误和后续路线见
+[本轮复核](docs/AUDIT_1.7.2_1.7.4.md)，新题见
+[24 道泛化与语义题](题目/generalization_20261004/README.md)。
+本轮直接 SDK 反例发现生产柜内关系判断和实验联合模型仍有缺口，
+此前单元测试通过不能解释为所有官方语义均已正确。
+
+最新开发版本：`src1.7.4/`，新增联合隐藏状态、公开反馈分支与有界策略树内核，
 修正生产询问的初始随机回答频率，以及把 Sense 当成物体离开手持/托盘证据的误判。
 内核尚未接入真实探测选择；机器人每一步流程见
-`src1.10/docs/ROBOT_FLOW_1.10.md`，接入边界与 GitHub 参考见
-`src1.10/docs/JOINT_MODEL.md`，验证与退化见
-`src1.10/test-results/validation-20261004/REPORT.md`。
+`src1.7.4/docs/ROBOT_FLOW_1.7.4.md`，接入边界与 GitHub 参考见
+`src1.7.4/docs/JOINT_MODEL.md`，验证与退化见
+`src1.7.4/test-results/validation-20261004/REPORT.md`。
 普通与官方 SDK 测试 287/287、内存检查 269/269 通过，属于开发验证。
 
-上一开发版本：`src1.9/`，在独立观测模型中按回答更新概率、选择验证路线，
+上一开发版本：`src1.7.3/`，在独立观测模型中按回答更新概率、选择验证路线，
 并修正真实可见性过滤和未来绑定资格。流程见
-`src1.9/docs/ROBOT_FLOW_1.9.md`，模型与 GitHub 参考见
-`src1.9/docs/PROBABILITY_MODEL.md`；复核报告见
-`src1.9/test-results/validation-20261004/REPORT.md`。
+`src1.7.3/docs/ROBOT_FLOW_1.7.3.md`，模型与 GitHub 参考见
+`src1.7.3/docs/PROBABILITY_MODEL.md`；复核报告见
+`src1.7.3/test-results/validation-20261004/REPORT.md`。
 最终 56 对开发对照基础分合计 +323、目标 +8，仍有 14 对基础分下降，
 模型尚未覆盖完整联合隐藏状态及校准，不建议直接替换比赛版本。
 
-上一实验基线：`src1.8/`，在 `src1.7.1` 上加入独立位置 belief、带噪询问、
+上一实验基线：`src1.7.2/`，在 `src1.7.1` 上加入独立位置 belief、带噪询问、
 受限开柜观察和有界记分约束交换，并扩展已验证输入下的 Stage 2 规划。
 询问只提供弱线索，真实事实仍由感知/动作证据确认。完整流程见
-`src1.8/docs/ROBOT_FLOW.md`，实现与 GitHub 参考见 `src1.8/docs/IMPLEMENTATION.md`
-和 `src1.8/docs/GITHUB_INSPIRATION.md`；实测收益、退化、超时与范围见
-`src1.8/docs/RELEASE_1.8.md`。概率参数尚未校准，本版本用于可复跑的开发对照。
+`src1.7.2/docs/ROBOT_FLOW.md`，实现与 GitHub 参考见 `src1.7.2/docs/IMPLEMENTATION.md`
+和 `src1.7.2/docs/GITHUB_INSPIRATION.md`；实测收益、退化、超时与范围见
+`src1.7.2/docs/RELEASE_1.7.2.md`。概率参数尚未校准，本版本用于可复跑的开发对照。
 
 Probe 基线版本：`src1.7.1/`，在 `src1.7` 的真实 Stage 2 停滞分支加入有界 Probe，
 保留正常 greedy、Stage 1、canonical authority、约束交换、基础分及 deadline 参数。

@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<test><env mis="on" err="on" ans="on"><info>
+(hold 0) (plate 0) (at 0 3)
+(sort 1 human) (size 1 big)
+(at 1 1)
+(sort 10 table) (size 10 big)
+(at 10 4)
+(sort 8 desk) (size 8 big)
+(at 8 3)
+(sort 6 cupboard) (size 6 big)
+(at 6 2)
+(type 6 container) (closed 6)
+(sort 9 refrigerator) (size 9 big)
+(at 9 6)
+(type 9 container) (closed 9)
+(sort 3 couch) (size 3 big)
+(at 3 5)
+(sort 5 cup) (size 5 small)
+(color 5 blue)
+(sort 4 cup) (size 4 small)
+(color 4 red)
+(sort 2 cup) (size 2 small)
+(color 2 green)
+(sort 7 can) (size 7 small)
+(color 7 white)
+(at 5 5)
+(at 4 3)
+(at 2 1)
+(at 7 4)
+</info><mis /><err><r /><w /></err><extra /></env><instr>(:ins
+(:task (goto X) (:cond (sort X table)))
+(:task (puton X Y) (:cond (sort X cup) (color X red) (sort Y table)))
+(:task (puton X Y) (:cond (sort X cup) (color X blue) (sort Y table)))
+(:task (puton X Y) (:cond (sort X cup) (color X green) (sort Y table)))
+)</instr><nl>Go to the table.
+Put the red cup on the table.
+Put the blue cup on the table.
+Put the green cup on the table.</nl></test>
