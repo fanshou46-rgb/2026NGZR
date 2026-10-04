@@ -1,0 +1,55 @@
+{
+  "policy": "SDK raw grades authoritative; official min(raw,1000) per repository competition rule; diagnostic categories are not passing assertions",
+  "server_score_checks": 504,
+  "server_score_checks_passed": true,
+  "summary": {
+    "competition_sample": {
+      "src1.7.3": {
+        "equal": 11,
+        "no_final_claim": 1,
+        "goal_undercount": 4,
+        "other_difference": 8
+      },
+      "src1.7.4": {
+        "equal": 14,
+        "goal_undercount": 4,
+        "other_difference": 6
+      },
+      "src1.7.5": {
+        "equal": 11,
+        "goal_undercount": 5,
+        "other_difference": 7,
+        "no_final_claim": 1
+      }
+    },
+    "new": {
+      "src1.7.3": {
+        "equal": 36,
+        "goal_overcount": 12
+      },
+      "src1.7.4": {
+        "equal": 24,
+        "goal_undercount": 12,
+        "goal_overcount": 12
+      },
+      "src1.7.5": {
+        "equal": 29,
+        "goal_undercount": 7,
+        "goal_overcount": 12
+      }
+    },
+    "old": {
+      "src1.7.3": {
+        "equal": 96
+      },
+      "src1.7.4": {
+        "equal": 78,
+        "goal_undercount": 18
+      },
+      "src1.7.5": {
+        "equal": 91,
+        "goal_undercount": 5
+      }
+    }
+  }
+}

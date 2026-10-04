@@ -1,0 +1,93 @@
+{
+  "selection": "01/09/19/24/31/36; 24 runs per version; not full competition suite",
+  "totals": {
+    "src1.7.3": {
+      "runs": 24,
+      "scored": 24,
+      "missing": 0,
+      "base": 14765,
+      "raw_score": 15487,
+      "official_score": 15033,
+      "final_goals": 302,
+      "credited_constraints": 196,
+      "action_cost": 1235,
+      "platform_seconds": 83.046,
+      "sdk_timeouts": 2,
+      "external_timeouts": 0,
+      "crashes": 0,
+      "harness_errors": 0,
+      "platform_errors": 0,
+      "status_failed": 2
+    },
+    "src1.7.4": {
+      "runs": 24,
+      "scored": 24,
+      "missing": 0,
+      "base": 13403,
+      "raw_score": 14169,
+      "official_score": 14169,
+      "final_goals": 268,
+      "credited_constraints": 194,
+      "action_cost": 1197,
+      "platform_seconds": 80.623,
+      "sdk_timeouts": 3,
+      "external_timeouts": 0,
+      "crashes": 0,
+      "harness_errors": 0,
+      "platform_errors": 0,
+      "status_failed": 3
+    },
+    "src1.7.5": {
+      "runs": 24,
+      "scored": 24,
+      "missing": 0,
+      "base": 13436,
+      "raw_score": 14104,
+      "official_score": 13920,
+      "final_goals": 268,
+      "credited_constraints": 195,
+      "action_cost": 1184,
+      "platform_seconds": 85.605,
+      "sdk_timeouts": 2,
+      "external_timeouts": 0,
+      "crashes": 0,
+      "harness_errors": 0,
+      "platform_errors": 0,
+      "status_failed": 2
+    }
+  },
+  "comparisons": {
+    "src1.7.3 -> src1.7.5": {
+      "paired": 24,
+      "excluded_missing": 0,
+      "delta": {
+        "base": -1329,
+        "raw_score": -1383,
+        "official_score": -1113,
+        "final_goals": -34,
+        "credited_constraints": -1,
+        "action_cost": -51,
+        "platform_seconds": 2.559
+      },
+      "base_improved": 3,
+      "base_worsened": 11,
+      "goals_worsened": 8
+    },
+    "src1.7.4 -> src1.7.5": {
+      "paired": 24,
+      "excluded_missing": 0,
+      "delta": {
+        "base": 33,
+        "raw_score": -65,
+        "official_score": -249,
+        "final_goals": 0,
+        "credited_constraints": 1,
+        "action_cost": -13,
+        "platform_seconds": 4.982
+      },
+      "base_improved": 6,
+      "base_worsened": 7,
+      "goals_worsened": 7
+    }
+  }
+}

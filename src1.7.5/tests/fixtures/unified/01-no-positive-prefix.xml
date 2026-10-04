@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test>
+<env mis="off" err="off" ans="off">
+<info>
+(hold 4) (plate 0) (at 0 1)
+(sort 1 human) (size 1 big) (at 1 1)
+(sort 2 cupboard) (size 2 big) (type 2 container) (closed 2) (at 2 1)
+(sort 3 table) (size 3 big) (at 3 2)
+(sort 4 cup) (size 4 small) (at 4 1)
+</info>
+<mis></mis><err><r></r><w></w></err><extra></extra>
+</env>
+<instr>
+(:ins
+(:task (pickup X) (:cond (sort X cup)))
+(:task (puton X Y) (:cond (sort X cup) (sort Y table)))
+(:task (open X) (:cond (sort X cupboard)))
+)
+</instr>
+<nl>
+Pick up the cup.
+Put the cup on the table.
+Open the cupboard.
+</nl>
+</test>
