@@ -1,0 +1,92 @@
+{
+  "counts": {
+    "legacy_proposal": 170,
+    "blocked_task": 984,
+    "blocking_fact": 2589,
+    "candidate": 602,
+    "execute": 93,
+    "feedback": 93,
+    "replan": 93,
+    "task_completed": 63,
+    "unsupported_fact": 472,
+    "physical_candidate_records": 389,
+    "physical_records_with_residual": 352,
+    "physical_records_with_goal_loss": 344,
+    "physical_unknown_0_to_1_records": 8,
+    "stop": 93
+  },
+  "candidate_rejections": {
+    "nonpositive_expected_gain": 260,
+    "nonpositive_answer_branch_value": 165,
+    "duplicate_related_revision": 24,
+    "extra_physical_actions": 8,
+    "constraint_safety_unknown": 8,
+    "answer_requires_verification": 4,
+    "deadline": 12
+  },
+  "violations": [],
+  "examples": {
+    "residual": {
+      "id": "g05a",
+      "suite": "old",
+      "event": {
+        "schema": "probe.v2",
+        "event": "candidate",
+        "world_revision": 12,
+        "total_probes": 0,
+        "probe_cost_spent": 0,
+        "max_same_ask": 3,
+        "authorized_constraint_risk_count": 0,
+        "consecutive_no_progress": 0,
+        "policy": [
+          8,
+          2,
+          32
+        ],
+        "reason": "nonpositive_expected_gain",
+        "closed_reason": "",
+        "signature": "sense_at:5",
+        "kind": "MoveSense",
+        "target_location": 5,
+        "eligible": false,
+        "information_estimate": 0,
+        "expected_gain": -45,
+        "probability_upper": 0.601562,
+        "residual_mass": 0.601562,
+        "terminal_goal_loss": 40,
+        "answer_branches_evaluated": false,
+        "answer_cache_hit": false,
+        "answer_direct_value": 0,
+        "answer_after_value": 0,
+        "answer_net_value": 0,
+        "answer_branch_count": 0,
+        "continuation_cost": 8,
+        "constraint_risk_count": 0,
+        "cost": 5,
+        "duration_ms": 220,
+        "fact_count": 1,
+        "potential_goal_value": 40,
+        "stable_id": 2,
+        "constraint_result": "constraint_safe",
+        "facts": [
+          {
+            "field": "LOCATION",
+            "id": 4,
+            "task": 2,
+            "stable_task_id": 2,
+            "reason": "conflict",
+            "location_hints": [
+              {
+                "location": 5,
+                "source": "object_location:claim_source=1"
+              }
+            ]
+          }
+        ],
+        "answer_branches": [],
+        "verification_routes": []
+      }
+    }
+  },
+  "scope": "Logged records, not independent samples. Ranges are relative to declared prior, not empirically calibrated; [0,1] does not uniquely identify support failure. residual field is maximum per-target residual, not union residual. An executed observation need not complete a task."
+}

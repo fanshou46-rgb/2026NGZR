@@ -1,0 +1,461 @@
+{
+  "design_seed": 17741004,
+  "cases": [
+    {
+      "id": "k01a",
+      "path": "k01a.xml",
+      "family": "explicit_at_with_remote_closed_parent",
+      "stage": 2,
+      "sha256": "3aabcf68449b8c1ff7d3030f9ff422bd8077720031edbc77148d22b120bd471e",
+      "reference_actions": [
+        [
+          "Open",
+          5
+        ],
+        [
+          "TakeOut",
+          9,
+          5
+        ],
+        [
+          "Move",
+          2
+        ],
+        [
+          "PutDown",
+          9
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PickUp",
+          6
+        ],
+        [
+          "PutDown",
+          6
+        ],
+        [
+          "PickUp",
+          7
+        ],
+        [
+          "Move",
+          2
+        ],
+        [
+          "PutDown",
+          7
+        ]
+      ],
+      "reference_goals": 6,
+      "reference_constraints": 0
+    },
+    {
+      "id": "k01b",
+      "path": "k01b.xml",
+      "family": "explicit_at_with_remote_closed_parent",
+      "stage": 2,
+      "sha256": "c316f91d170d10ec0e4eb3b4a9d5b6df1f2da49d19517647a319a591ca1926fa",
+      "reference_actions": [
+        [
+          "Open",
+          3
+        ],
+        [
+          "TakeOut",
+          4,
+          3
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PutDown",
+          4
+        ],
+        [
+          "Move",
+          2
+        ],
+        [
+          "PickUp",
+          5
+        ],
+        [
+          "PutDown",
+          5
+        ],
+        [
+          "PickUp",
+          1
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PutDown",
+          1
+        ]
+      ],
+      "reference_goals": 6,
+      "reference_constraints": 0
+    },
+    {
+      "id": "k02a",
+      "path": "k02a.xml",
+      "family": "two_deliveries_sharing_parent",
+      "stage": 2,
+      "sha256": "043c5c50e3882514fce2e4df738280b6f24c950e093fb20f0e537ce5b8e74be3",
+      "reference_actions": [
+        [
+          "Open",
+          7
+        ],
+        [
+          "TakeOut",
+          8,
+          7
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PutDown",
+          8
+        ],
+        [
+          "Move",
+          2
+        ],
+        [
+          "PickUp",
+          9
+        ],
+        [
+          "PutDown",
+          9
+        ],
+        [
+          "PickUp",
+          6
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PutDown",
+          6
+        ]
+      ],
+      "reference_goals": 6,
+      "reference_constraints": 0
+    },
+    {
+      "id": "k02b",
+      "path": "k02b.xml",
+      "family": "two_deliveries_sharing_parent",
+      "stage": 2,
+      "sha256": "f9e41903c67ee5c9d44b23770b8c1cc5725693fe6631301bf4fca8dda3677151",
+      "reference_actions": [
+        [
+          "Open",
+          4
+        ],
+        [
+          "TakeOut",
+          3,
+          4
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PutDown",
+          3
+        ],
+        [
+          "Move",
+          1
+        ],
+        [
+          "PickUp",
+          1
+        ],
+        [
+          "PutDown",
+          1
+        ],
+        [
+          "PickUp",
+          7
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PutDown",
+          7
+        ]
+      ],
+      "reference_goals": 6,
+      "reference_constraints": 0
+    },
+    {
+      "id": "k03a",
+      "path": "k03a.xml",
+      "family": "two_parents_after_slot_transfer",
+      "stage": 2,
+      "sha256": "2ab88b55059c271b1dd3f20c347506f690b655c2470357fbb9666e5c5f7be5e8",
+      "reference_actions": [
+        [
+          "FromPlate",
+          7
+        ],
+        [
+          "PutDown",
+          7
+        ],
+        [
+          "Open",
+          8
+        ],
+        [
+          "TakeOut",
+          7,
+          8
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PutDown",
+          7
+        ],
+        [
+          "Move",
+          3
+        ],
+        [
+          "PickUp",
+          5
+        ],
+        [
+          "PutDown",
+          5
+        ],
+        [
+          "PickUp",
+          9
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PutDown",
+          9
+        ]
+      ],
+      "reference_goals": 6,
+      "reference_constraints": 0
+    },
+    {
+      "id": "k03b",
+      "path": "k03b.xml",
+      "family": "two_parents_after_slot_transfer",
+      "stage": 2,
+      "sha256": "a068e2728cf4e450a48727610d86ec26db5ed82cbbe1340a72b1762552d2eb46",
+      "reference_actions": [
+        [
+          "FromPlate",
+          7
+        ],
+        [
+          "PutDown",
+          7
+        ],
+        [
+          "Open",
+          3
+        ],
+        [
+          "TakeOut",
+          7,
+          3
+        ],
+        [
+          "Move",
+          3
+        ],
+        [
+          "PutDown",
+          7
+        ],
+        [
+          "Move",
+          1
+        ],
+        [
+          "PickUp",
+          1
+        ],
+        [
+          "PutDown",
+          1
+        ],
+        [
+          "PickUp",
+          9
+        ],
+        [
+          "Move",
+          3
+        ],
+        [
+          "PutDown",
+          9
+        ]
+      ],
+      "reference_goals": 6,
+      "reference_constraints": 0
+    },
+    {
+      "id": "k04a",
+      "path": "k04a.xml",
+      "family": "same_object_both_slots",
+      "stage": 2,
+      "sha256": "c1c75a38a78a0e30c1f2eff5264d708394c2e6524eb7e03c61d389232d02f902",
+      "reference_actions": [
+        [
+          "PutDown",
+          6
+        ],
+        [
+          "FromPlate",
+          6
+        ],
+        [
+          "PutDown",
+          6
+        ],
+        [
+          "Open",
+          7
+        ],
+        [
+          "TakeOut",
+          6,
+          7
+        ],
+        [
+          "Move",
+          1
+        ],
+        [
+          "PutDown",
+          6
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PickUp",
+          5
+        ],
+        [
+          "PutDown",
+          5
+        ],
+        [
+          "PickUp",
+          8
+        ],
+        [
+          "Move",
+          1
+        ],
+        [
+          "PutDown",
+          8
+        ]
+      ],
+      "reference_goals": 6,
+      "reference_constraints": 0
+    },
+    {
+      "id": "k04b",
+      "path": "k04b.xml",
+      "family": "same_object_both_slots",
+      "stage": 2,
+      "sha256": "71806d3afd11c50919d24889980b31b3c42de3e74ceda3b34af00ce6f44da75a",
+      "reference_actions": [
+        [
+          "PutDown",
+          7
+        ],
+        [
+          "FromPlate",
+          7
+        ],
+        [
+          "PutDown",
+          7
+        ],
+        [
+          "Open",
+          4
+        ],
+        [
+          "TakeOut",
+          7,
+          4
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PutDown",
+          7
+        ],
+        [
+          "Move",
+          5
+        ],
+        [
+          "PickUp",
+          8
+        ],
+        [
+          "PutDown",
+          8
+        ],
+        [
+          "PickUp",
+          1
+        ],
+        [
+          "Move",
+          4
+        ],
+        [
+          "PutDown",
+          1
+        ]
+      ],
+      "reference_goals": 6,
+      "reference_constraints": 0
+    }
+  ]
+}

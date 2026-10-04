@@ -1,0 +1,170 @@
+#include "rdfw.hpp"
+#include <sstream>
+#include <algorithm>
+using namespace _home;
+
+int RDFW::FactValue(StateField field, unsigned int id) const {
+    const StateClaim claim = ResolvedState(field, id);
+    return claim.present ? claim.value : UNKNOWN;
+}
+
+int RDFW::ExplicitAt(unsigned int id) const {
+    if(!IsValidObjectId(id))return UNKNOWN;
+    if(!dynamic_cast<SmallObject*>(objects[id].get()))return FactLocation(id);
+    return Provenance(StateField::LOCATION,id).explicit_at;
+}
+
+int RDFW::ScoreFactLocation(unsigned int id) const {
+    // Official Stage 1 ASP at facts intentionally exclude inside propagation.
+    // This is the scoring representation of canonical location, not a planner read.
+    if (stage == 1 && id > 0)
+        return FactLocation(id)!=UNKNOWN && id < score_locations.size() ? score_locations[id] : UNKNOWN;
+    if(stage==2 && id>0 && IsValidObjectId(id) && dynamic_cast<SmallObject*>(objects[id].get())) {
+        const int at=ExplicitAt(id);
+        if(IsStoredFact(id))return FactLocation(0);
+        if(at!=UNKNOWN)return at>=0?at:UNKNOWN;
+    }
+    return FactLocation(id);
+}
+
+bool RDFW::IsStoredFact(unsigned int id) const {
+    return id > 0 && (FactValue(StateField::HOLD) == static_cast<int>(id) ||
+                      FactValue(StateField::PLATE) == static_cast<int>(id));
+}
+
+bool RDFW::IsNotStoredFact(unsigned int id) const {
+    if (!IsValidObjectId(id) || IsStoredFact(id)) return false;
+    const int hand = FactValue(StateField::HOLD), tray = FactValue(StateField::PLATE);
+    const unsigned int exclusions = Provenance(StateField::INSIDE,id).storage_exclusion;
+    // Sense returns IDs of held/tray items too. Containment is an independent
+    // SDK relation and cannot prove either slot empty. Require each exclusion.
+    return (hand != UNKNOWN ? hand != static_cast<int>(id) : bool(exclusions & 1u)) &&
+           (tray != UNKNOWN ? tray != static_cast<int>(id) : bool(exclusions & 2u));
+}
+
+bool RDFW::TaskFactSatisfied(const std::string& behave, unsigned int x, unsigned int y) const {
+    if (!IsValidObjectId(x) || (y && !IsValidObjectId(y))) return false;
+    if (behave == "goto") return FactLocation(0) != UNKNOWN && FactLocation(0) == ScoreFactLocation(x);
+    if (behave == "pickup") return IsStoredFact(x);
+    if (behave == "putdown") return IsNotStoredFact(x);
+    if (behave == "open") return FactContainerState(x) == 1;
+    if (behave == "close") return FactContainerState(x) == 0;
+    if (behave == "putin") return InsideRelation(x,y)==1;
+    if (behave == "takeout") return InsideRelation(x,y)==0;
+    if (behave == "puton" || behave == "give")
+        return y && IsNotStoredFact(x) &&
+            ScoreFactLocation(x) != UNKNOWN && ScoreFactLocation(x) == ScoreFactLocation(y);
+    return false;
+}
+
+void RDFW::ApplyStateValue(StateField field, unsigned int id, int value,
+                           bool verified, EvidenceSource source) {
+    StateMutation mutation(*this);
+    if (id >= objects.size() || !objects[id] || !EnsureEvidenceCapacity(id)) return;
+    active_mutation->touch(id);
+    if (field == StateField::LOCATION) {
+        StageStateValue(field,id,value);
+        MarkDirectLocationEvidence(id, verified, source);
+    } else if (field == StateField::INSIDE) {
+        auto item = std::dynamic_pointer_cast<SmallObject>(objects[id]);
+        if (!item) return;
+        if (value>0) {
+            SetInsideRelation(id,value,1,verified,source);
+            return;
+        }
+        ClearContainerMembership(item);
+        StageStateValue(field,id,value);
+        if (value > 0) {
+            auto container = std::dynamic_pointer_cast<Container>(GetObject(value));
+            if (container) AddContainerMembership(container,item);
+        }
+        SetInsideEvidence(id, verified, source);
+    } else if (field == StateField::CONTAINER_STATE) {
+        auto container = std::dynamic_pointer_cast<Container>(objects[id]);
+        if (!container) return;
+        StageStateValue(field,id,value);
+        SetContainerEvidence(id, verified, source);
+    }
+}
+
+std::string RDFW::DebugStateSnapshot() const {
+    std::ostringstream out;
+    AppendStateSnapshot(out);
+    return out.str();
+}
+
+void RDFW::AppendStateSnapshot(std::ostream& out) const {
+    const auto record = [&](StateField field, unsigned int id) {
+        const auto& p = Provenance(field,id);
+        out << int(field) << ':' << id << ':' << p.resolved_value << ':'
+            << int(p.resolved_source) << ':' << p.resolved_verified << ':' << p.revision
+            << ':' << p.storage_exclusion;
+        for (const auto* claim : {&p.received,&p.conflicting})
+            out << ':' << claim->present << ',' << claim->value << ',' << int(claim->source);
+        out << ':' << p.dependency_count;
+        for (unsigned int k=0; k<std::min(p.dependency_count,2u); ++k) {
+            const auto& d=p.dependencies[k];
+            out << ':' << int(d.field) << ',' << d.id << ',' << d.value << ',' << d.revision;
+        }
+        out << ':' << p.support_constraint_index << '[';
+        for (auto support : p.supporting_constraints) out << support << ',';
+        out << "];" << p.explicit_at << ":" << p.inside_complete << '{';
+        for(const auto& edge:p.inside_edges)
+            out << edge.first << ':' << edge.second.value << ':' << edge.second.verified
+                << ':' << int(edge.second.source) << ',';
+        out << "};";
+    };
+    for (unsigned int id=0; id<objects.size(); ++id) {
+        record(StateField::LOCATION,id); record(StateField::INSIDE,id); record(StateField::CONTAINER_STATE,id);
+        const auto object=objects[id];
+        if (!object) { out << "null;"; continue; }
+        out << object->location << ':';
+        auto small=std::dynamic_pointer_cast<SmallObject>(object);
+        if (small) out << small->inside << ':' << small->on;
+        auto cont=std::dynamic_pointer_cast<Container>(object);
+        if (cont) { out << cont->isOpen << '['; for (auto item:cont->smallObjectsInside) out << item->id << ','; out << ']'; }
+        out << ':' << (id<objectLocationVerified.size() && objectLocationVerified[id])
+            << ':' << (id<objectInsideVerified.size() && objectInsideVerified[id])
+            << ':' << (id<containerStateVerified.size() && containerStateVerified[id])
+            << ':' << int(LocationSource(id)) << ':' << int(InsideSource(id)) << ':' << int(ContainerSource(id))
+            << ':' << (id<objectLocationInferredByMustNear.size() && objectLocationInferredByMustNear[id]) << ';';
+    }
+    record(StateField::HOLD,0); record(StateField::PLATE,0);
+    out << location << ':' << hold_id << ':' << plate_id << ':' << (hold?hold->id:0) << ':' << (plate?plate->id:0) << ';';
+    for (bool b:constraint_eligible) out << b;
+    out << ';'; for (bool b:constraint_uncertain) out << b;
+    out << ';'; for (int v:score_locations) out << v << ',';
+}
+
+std::vector<std::string> RDFW::DebugStateConsistency() const {
+    std::vector<std::string> errors;
+    const auto issue = [&](unsigned id, const char* message) { errors.push_back(std::to_string(id)+":"+message); };
+    const auto check = [&](StateField f, unsigned id, int legacy, bool verified, EvidenceSource source) {
+        const auto& p=Provenance(f,id); const auto fact=ResolvedState(f,id);
+        if (p.resolved_verified != verified || p.resolved_source != source) issue(id,"compatibility metadata");
+        if (p.resolved_verified && p.resolved_value != UNKNOWN && legacy != p.resolved_value) issue(id,"resolved/legacy value");
+        if (p.resolved_verified && p.resolved_value != UNKNOWN && !ResolutionEligible(f,id)) issue(id,"invalid resolution");
+        if (fact.present && (fact.value==UNKNOWN || !DependenciesCurrent(f,id))) issue(id,"invalid fact");
+        if (p.dependency_count>2) issue(id,"dependency bound");
+    };
+    for (unsigned id=0; id<objects.size(); ++id) {
+        if (!objects[id]) continue;
+        check(StateField::LOCATION,id,objects[id]->location,id<objectLocationVerified.size() && objectLocationVerified[id],LocationSource(id));
+        auto small=std::dynamic_pointer_cast<SmallObject>(objects[id]);
+        if (small) check(StateField::INSIDE,id,small->inside,id<objectInsideVerified.size() && objectInsideVerified[id],InsideSource(id));
+        auto cont=std::dynamic_pointer_cast<Container>(objects[id]);
+        if (cont) check(StateField::CONTAINER_STATE,id,cont->isOpen,id<containerStateVerified.size() && containerStateVerified[id],ContainerSource(id));
+        if (IsStoredFact(id) && (!small || FactLocation(id)!=FactLocation(0)))
+            issue(id,"stored location");
+        if (cont) for (auto item:cont->smallObjectsInside)
+            if (!item || InsideRelation(item->id,cont->id,true)!=1) issue(id,"membership cache");
+    }
+    for (StateField f:{StateField::HOLD,StateField::PLATE}) {
+        const int legacy=f==StateField::HOLD?hold_id:plate_id;
+        const auto ptr=f==StateField::HOLD?hold:plate;
+        if ((ptr?ptr->id:NONE)!=(legacy==UNKNOWN?NONE:legacy)) issue(0,"storage pointer");
+        const auto& p=Provenance(f,0);
+        check(f,0,legacy,p.resolved_verified,p.resolved_source);
+    }
+    return errors;
+}
