@@ -155,6 +155,13 @@ def verify_policy_interruptions(text,receipts):
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('checkpoint');parser.add_argument('--suite',default='smoke');a=parser.parse_args()
     records=[json.loads(s) for s in (LAB/(a.checkpoint+'-'+a.suite+'.jsonl')).read_text().splitlines() if s]
+    frozen_controller=LAB/'builds'/a.checkpoint/'source/full_controller.cpp'
+    requires_model_ledger=False
+    if frozen_controller.exists():
+        frozen_bytes=frozen_controller.read_bytes()
+        build_receipt=json.loads((LAB/'builds'/a.checkpoint/'build.json').read_text())
+        assert hashlib.sha256(frozen_bytes).hexdigest()==build_receipt['sources']['full_controller.cpp'],'frozen controller source changed'
+        requires_model_ledger=b'[FullModelTimeSpan]' in frozen_bytes
     totals=collections.Counter();rows=[]
     failures=[]
     for row in records:
@@ -242,6 +249,8 @@ def main():
                     decisions[decision_id]=fields;totals['decision_values_checked']+=1
                 from latency_evidence import verify_latency_evidence
                 for key,value in verify_latency_evidence(text,decisions,catalogues).items():totals['modeled_'+key+'_checked']+=value
+                from model_time_evidence import verify_model_time_evidence
+                for key,value in verify_model_time_evidence(text,finalized,requires_model_ledger).items():totals['model_time_'+key+'_checked']+=value
                 schedules=verify_coverage_schedule(text,decisions,finalized)
                 totals['actual_policy_interruptions_checked']+=len(verify_policy_interruptions(text,finalized))
                 totals['deferred_coverage_predecessors_checked']+=sum(f['trigger']=='ordinary_finite_candidate_stop' for f in schedules.values())

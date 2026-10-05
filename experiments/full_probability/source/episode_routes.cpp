@@ -47,10 +47,14 @@ struct RouteSearch {
     std::shared_ptr<PrefixNode> physicalNode(const std::shared_ptr<PrefixNode>& n) {
         if(!physical_reuse)return n;
         if(!n->physical_ready) {
-            const auto view=PhysicalRouteView::make(n->belief);
-            view_inputs+=view.original_worlds;view_worlds+=view.physical_worlds;
-            if(view.physical_worlds<view.original_worlds)
-                n->physical_view=std::make_shared<PrefixNode>(view.belief);
+            if(physicalReuseWorthwhile(n->belief)) {
+                const auto view=PhysicalRouteView::make(n->belief);
+                view_inputs+=view.original_worlds;view_worlds+=view.physical_worlds;
+                if(view.physical_worlds<view.original_worlds)
+                    n->physical_view=std::make_shared<PrefixNode>(view.belief);
+            } else {
+                view_inputs+=n->belief.support().size();view_worlds+=n->belief.support().size();
+            }
             n->physical_ready=true;
         }
         return n->physical_view?n->physical_view:n;

@@ -1,27 +1,46 @@
 #pragma once
 #include "sdk_episode.hpp"
-#include <sstream>
+#include <algorithm>
 #include <stdexcept>
 namespace _home {
 // No execution rights. This signature intentionally excludes ASK selectors
 // and random frequencies. Only physical/Sense simulation may use it.
+inline void appendPhysicalNumber(std::string& key,std::uint64_t value) {
+    for(unsigned byte=0;byte<8;++byte)key.push_back(static_cast<char>((value>>(8*byte))&255));
+}
 inline std::string physicalRouteSignature(const JointWorld& world) {
-    std::ostringstream s;s<<world.robot<<','<<world.hand<<','<<world.plate<<';';
-    for(int location:world.locations)s<<location<<',';
-    s<<';';
+    // Fixed-width, length-delimited little-endian values: exact key equality,
+    // no digest collisions or locale/stream formatting overhead.
+    std::string s;
+    appendPhysicalNumber(s,world.robot);appendPhysicalNumber(s,world.hand);appendPhysicalNumber(s,world.plate);
+    appendPhysicalNumber(s,world.locations.size());
+    for(int location:world.locations)appendPhysicalNumber(s,location);
+    appendPhysicalNumber(s,world.objects.size());
     for(const auto& item:world.objects) {
-        const auto& o=item.second;s<<item.first<<':'<<o.small<<','<<o.container<<','<<o.at<<','<<o.opened<<':';
-        for(unsigned parent:o.inside)s<<parent<<',';
-        s<<';';
+        const auto& o=item.second;appendPhysicalNumber(s,item.first);
+        s.push_back(o.small);s.push_back(o.container);appendPhysicalNumber(s,o.at);s.push_back(o.opened);
+        appendPhysicalNumber(s,o.inside.size());
+        for(unsigned parent:o.inside)appendPhysicalNumber(s,parent);
     }
-    s<<'|'<<world.initial_reply_counts.empty()<<':';
-    for(const auto& entry:world.initial_reply_counts)if(entry.first.first=='a')s<<entry.first.second<<',';
-    return s.str();
+    s.push_back(world.initial_reply_counts.empty());std::size_t locations=0;
+    for(const auto& entry:world.initial_reply_counts)locations+=entry.first.first=='a';
+    appendPhysicalNumber(s,locations);
+    for(const auto& entry:world.initial_reply_counts)if(entry.first.first=='a')appendPhysicalNumber(s,entry.first.second);
+    return s;
 }
 inline std::string physicalEpisodeSignature(const SdkEpisode& episode) {
-    std::ostringstream s;s<<physicalRouteSignature(episode.world)<<'|'<<episode.paid<<'|'<<episode.credits.size()<<':';
-    for(bool credit:episode.credits)s<<credit;
-    return s.str();
+    auto s=physicalRouteSignature(episode.world);appendPhysicalNumber(s,episode.paid);appendPhysicalNumber(s,episode.credits.size());
+    for(bool credit:episode.credits)s.push_back(credit);
+    return s;
+}
+inline bool physicalReuseWorthwhile(const EpisodeBelief& belief) {
+    // A deterministic fixed first-eight check only chooses between two exact
+    // evaluation representations. It never changes posterior weights or facts.
+    const auto inspected=std::min(std::size_t(8),belief.support().size());
+    if(inspected<2)return false;
+    std::set<std::string> keys;
+    for(std::size_t i=0;i<inspected;++i)keys.insert(physicalEpisodeSignature(belief.support()[i].episode));
+    return keys.size()*2<=inspected;
 }
 struct PhysicalRouteView {
     EpisodeBelief belief;

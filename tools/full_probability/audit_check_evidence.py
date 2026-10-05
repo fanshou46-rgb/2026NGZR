@@ -2,6 +2,7 @@
 from pathlib import Path
 import argparse,hashlib,json,re
 from latency_evidence import verify_latency_evidence
+from model_time_evidence import verify_model_time_evidence
 from verify_receipts import ANSI,verify_coverage_schedule,verify_policy_interruptions
 ROOT=Path(__file__).resolve().parents[2];LAB=ROOT/'experiments/full_probability'
 
@@ -9,6 +10,7 @@ def main():
     parser=argparse.ArgumentParser();parser.add_argument('checkpoint');args=parser.parse_args();cp=args.checkpoint
     assert cp.replace('_','').isalnum()
     log=LAB/'checks'/cp/'Testing/Temporary/LastTest.log';raw=log.read_bytes();rows=[]
+    requires_model_ledger=b'[FullModelTimeSpan]' in (LAB/'builds'/cp/'source/full_controller.cpp').read_bytes()
     for section in re.split(r'\n\d+/\d+ Testing: ',ANSI.sub('',raw.decode('utf8',errors='replace')))[1:]:
         if not any(k in section for k in ('[FullPhysicalEvaluation]','[FullCoverageSchedule]','[FullCoverageRefutation]','[FullPolicyInterruption]')):continue
         decisions={};catalogues={};receipts=[]
@@ -23,7 +25,8 @@ def main():
         timed=verify_latency_evidence(section,decisions,catalogues)
         scheduled=verify_coverage_schedule(section,decisions,receipts)
         interruptions=verify_policy_interruptions(section,receipts)
-        rows.append(dict(test=section.splitlines()[0],time=timed,coverage_markers=len(scheduled),interruptions=len(interruptions),receipts=len(receipts)))
+        clock=verify_model_time_evidence(section,receipts,requires_model_ledger)
+        rows.append(dict(test=section.splitlines()[0],time=timed,model_time=clock,coverage_markers=len(scheduled),interruptions=len(interruptions),receipts=len(receipts)))
     assert rows,'No SDK fixture evidence found'
     target=LAB/(cp+'-check-evidence.json');assert not target.exists(),'Prior evidence is immutable'
     value=dict(checkpoint=cp,all_build_checks_passed=(LAB/'builds'/cp/'checks-passed.json').exists(),

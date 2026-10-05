@@ -53,6 +53,7 @@ int main() {
     }
     const EpisodeBelief belief(copies);const auto before=bytes(belief);
     assert(PhysicalRouteView::make(belief).physical_worlds==1);
+    assert(physicalReuseWorthwhile(belief) && !physicalReuseWorthwhile(EpisodeBelief({{initial,1}})));
     for(unsigned repeat=0;repeat<50;++repeat) {
         auto plan=compare(belief,model,{delivery},{},ask);
         assert(plan.transitions==4 && plan.value.lower==31 && plan.physical_view_inputs==64 && plan.physical_view_worlds==1);
@@ -72,12 +73,14 @@ int main() {
     e=initial;e.world.objects[6]=JointObject(true,false,1);add(e);e=initial;e.world.objects[3].small=false;add(e);
     e=initial;e.paid=1;add(e);
     assert(PhysicalRouteView::make(EpisodeBelief(variants)).physical_worlds==variants.size());
+    assert(!physicalReuseWorthwhile(EpisodeBelief(variants))); // low reuse skips full key grouping/copy
     compare(EpisodeBelief(variants),model,{delivery},{},ask);
     SdkEpisodeModel ledger=model;ledger.constraints={{SdkPredicate{"inside",{{3,2}}},false}};
     auto untouched=initial;untouched.credits={true};untouched.world.objects[3].inside={2};untouched.world.objects[2].opened=true;
     auto lost=untouched;lost.credits={false};
     EpisodeBelief histories({{untouched,.5},{lost,.5}});
     assert(PhysicalRouteView::make(histories).physical_worlds==2);
+    assert(!physicalReuseWorthwhile(histories)); // different permanent credits are never grouped
     // Initially forbidden inside may be removed by the first physical action.
     const EpisodeRoute remove={{JointActionKind::TAKEOUT,3,2},{JointActionKind::MOVE,2},{JointActionKind::SENSE},{JointActionKind::PUTDOWN,3}};
     auto restoration=compare(histories,ledger,{delivery,remove},{},ask);
