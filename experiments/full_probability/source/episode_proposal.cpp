@@ -51,16 +51,24 @@ bool contexts(JointWorld world,const std::vector<EpisodeEvidence>& history,std::
 }
 bool explains(unsigned id,JointObject item,const std::vector<EpisodeEvidence>& history,
     const std::vector<Context>& states,std::size_t& work,std::size_t cap,
-    std::chrono::steady_clock::time_point end,ConditionedProposal& result) {
+    std::chrono::steady_clock::time_point end,ConditionedProposal& result,bool& latest_matches) {
+    latest_matches=false;
     for(std::size_t i=0;i<history.size();++i) {
         if(work>=cap || std::chrono::steady_clock::now()>=end) {
             result.complete=false;result.work_cut=work>=cap;result.wall_cut=std::chrono::steady_clock::now()>=end;return false;
         }
-        ++work;const auto& e=history[i];const auto& c=states[i];const auto& a=e.action;
+        ++work;const auto& e=history[i];const auto& c=states[i];const auto& a=e.action;const auto& o=e.observation;
         const bool at=item.at==c.robot || c.hand==id || c.plate==id;
         if(a.kind==JointActionKind::SENSE) {
             bool visible=at;for(unsigned parent:item.inside)visible|=bool(c.open_here.count(parent));
             if(visible!=bool(e.observation.ids.count(id)))return false;
+        } else if(a.kind==JointActionKind::ASK && a.a==id) {
+            // This is a proposal hint, never a likelihood or a hard truth.
+            // The complete replay still checks noisy/random/blank answers,
+            // the actual initial reply pool and the persistent answer order.
+            latest_matches=o.reply.first=='a'?item.at==o.reply.second ||
+                ((c.hand==id || c.plate==id) && c.robot==o.reply.second):
+                o.reply.first=='i' && item.inside.count(unsigned(o.reply.second));
         } else if(e.observation.kind==JointObservation::Kind::FEEDBACK && a.a==id && a.kind!=JointActionKind::MOVE) {
             bool ok=false;
             switch(a.kind) {
@@ -107,7 +115,8 @@ ConditionedProposal EpisodeProposal::generate(const JointWorld& base,const std::
     ConditionedProposal result;result.scope="public feedback conditional block importance approximation; no certified finite-domain coverage";
     const auto end=std::chrono::steady_clock::now()+wall;
     const std::size_t repeats=std::max(std::size_t(1),particles/shared.scenes.size());
-    struct LocalBlock {std::vector<std::pair<JointObject,double>> choices;double mass=0;};
+    struct LocalChoice {JointObject item;double prior;bool matches;};
+    struct LocalBlock {std::vector<LocalChoice> choices;double mass=0,clue_mass=0;};
     // A call owns one frozen public history and factor catalogue. Given the
     // same shared history contexts, a small block has exactly the same
     // acceptance distribution. Answer-order seeds do not affect this physical
@@ -142,19 +151,31 @@ ConditionedProposal EpisodeProposal::generate(const JointWorld& base,const std::
                     if(f.field==PriorField::EXPLICIT_AT)item.at=v.value;
                     else if(v.value)item.inside.insert(f.parent);else item.inside.erase(f.parent);
                 }
-                if(explains(block.first,item,history,states,result.checks,cap,end,result)) {
-                    local.mass+=probability;local.choices.push_back({std::move(item),probability});
+                if(probability<=0)continue;
+                bool matches=false;
+                if(explains(block.first,item,history,states,result.checks,cap,end,result,matches)) {
+                    local.mass+=probability;if(matches)local.clue_mass+=probability;
+                    local.choices.push_back({std::move(item),probability,matches});
                 }
                 if(!result.complete){result.scenes.clear();return result;}
             }
             entry=cache.emplace(key,std::move(local)).first;
             }
-            const auto& local=entry->second.choices;const double mass=entry->second.mass;
+            const auto& local=entry->second.choices;const double mass=entry->second.mass,clue_mass=entry->second.clue_mass;
             if(mass<=0){viable=false;break;}
-            double choice=double(mix((offset+draw)*0xd6e8feb86659fd93ULL+block.first)>>11)/9007199254740992.0*mass;
-            const JointObject* selected=&local.back().first;
-            for(const auto& item:local){choice-=item.second;if(choice<0){selected=&item.first;break;}}
-            candidate.objects[block.first]=*selected;importance*=mass;
+            const auto q=[&](const LocalChoice& item) {
+                const double conditional=item.prior/mass;
+                return clue_mass>0?.5*conditional+(item.matches?.5*item.prior/clue_mass:0):conditional;
+            };
+            double choice=double(mix((offset+draw)*0xd6e8feb86659fd93ULL+block.first)>>11)/9007199254740992.0;
+            const LocalChoice* selected=&local.back();
+            for(const auto& item:local){choice-=q(item);if(choice<0){selected=&item;break;}}
+            candidate.objects[block.first]=selected->item;
+            // The target remains the original generative prior. No noisy
+            // answer is counted here as truth or counted twice as likelihood.
+            // q has a nonzero prior component for every positive hypothesis.
+            importance*=selected->prior/q(*selected);
+            if(clue_mass>0)++result.clue_mixture_draws;
         }
         if(viable && importance>0) {
             candidate.initial_reply_counts.clear();candidate.freezeSdkReplyDomain();

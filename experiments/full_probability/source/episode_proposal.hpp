@@ -6,6 +6,7 @@ struct ConditionedProposal {
     std::vector<WeightedEpisode> scenes;
     std::size_t checks=0;
     std::size_t block_cache_hits=0;
+    std::size_t clue_mixture_draws=0;
     bool complete=true,work_cut=false,wall_cut=false;
     std::string scope;
 };

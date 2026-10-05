@@ -26,7 +26,7 @@ private:
     bool coverage_policy=false;
     std::size_t decision=0;
     std::map<unsigned,unsigned> asked;
-    std::set<unsigned> required_objects,initial_missing_big;
+    std::set<unsigned> required_objects,initial_missing_big,initial_missing_acquisition;
     std::map<unsigned,LocationHypothesis> coverage_clues;
     std::chrono::steady_clock::duration cpu_used{};
     std::chrono::steady_clock::duration dispatch_overhead{};

@@ -92,7 +92,7 @@ void FullModelController::initialize() {
     const auto direct_objects=required_objects;
     for(unsigned id:direct_objects)for(const auto& edge:w.Provenance(StateField::INSIDE,id).inside_edges)
         if(edge.second.value==1)required_objects.insert(edge.first);
-    LOG("[FullModel] missing_location_policy=bounded_public_input_coverage max_queries_per_object=3 canonical_at_from_answer=false\n");
+    LOG("[FullModel] missing_location_policy=bounded_public_input_coverage acquisition_coverage=bounded_public_input_absence max_queries_per_object=3 canonical_at_from_answer=false\n");
     initial_template.robot=w.FactLocation(0);
     if(initial_template.robot<0)throw std::logic_error("robot position is not confirmed");
     initial_template.locations.insert(initial_template.robot);
@@ -106,12 +106,25 @@ void FullModelController::initialize() {
     // otherwise a singleton public site makes absence logically inexplicable.
     // Numeric gaps/neighbours are an explicitly finite coverage heuristic.
     bool missing_required=false;
+    std::set<unsigned> acquisitions;
+    for(const auto& goal:model.goals)if(goal.verb=="pickup" || goal.verb=="give" || goal.verb=="puton" || goal.verb=="putin")
+        for(const auto& binding:goal.bindings)acquisitions.insert(binding.first);
     for(const auto& object:w.objects)if(object && object->id>0 &&
         !std::dynamic_pointer_cast<SmallObject>(object) && required_objects.count(object->id)) {
         const auto& p=w.Provenance(StateField::LOCATION,object->id);
         if(w.stage!=1 && !strong(w,StateField::LOCATION,object->id) && (!p.received.present || p.received.value<0)) {
             initial_missing_big.insert(object->id);missing_required=true;
             LOG("[InitialMissingLocation] object=%u required=true received_at=false source=public_input_absence\n",object->id);
+        }
+    }
+    for(unsigned id:acquisitions) {
+        if(w.stage==1 || !std::dynamic_pointer_cast<SmallObject>(w.objects.at(id)))continue;
+        const auto& p=w.Provenance(StateField::LOCATION,id);
+        bool received_inside=false;
+        for(const auto& edge:w.Provenance(StateField::INSIDE,id).inside_edges)received_inside|=edge.second.value==1;
+        if(!strong(w,StateField::LOCATION,id) && (!p.received.present || p.received.value<0) && !received_inside) {
+            initial_missing_acquisition.insert(id);missing_required=true;
+            LOG("[InitialMissingAcquisitionLocation] object=%u required_acquisition=true received_at=false received_inside=false source=public_input_absence\n",id);
         }
     }
     if(missing_required) {
@@ -215,11 +228,22 @@ void FullModelController::initialize() {
 }
 bool FullModelController::selectMissingLocationObservation() {
     coverage_policy=false;
-    for(unsigned id:initial_missing_big) {
+    std::vector<unsigned> targets(initial_missing_big.begin(),initial_missing_big.end());
+    targets.insert(targets.end(),initial_missing_acquisition.begin(),initial_missing_acquisition.end());
+    for(unsigned id:targets) {
         if(strong(owner,StateField::LOCATION,id) || asked[id]>=3)continue;
+        const bool acquisition=initial_missing_acquisition.count(id)>0;
+        if(acquisition) {
+            if((strong(owner,StateField::HOLD,0) && owner.FactValue(StateField::HOLD)==int(id)) ||
+               (strong(owner,StateField::PLATE,0) && owner.FactValue(StateField::PLATE)==int(id)))continue;
+            bool verified_inside=false;
+            for(const auto& edge:owner.Provenance(StateField::INSIDE,id).inside_edges)
+                verified_inside|=edge.second.verified && edge.second.value==1;
+            if(verified_inside)continue;
+        }
         bool supported_clue=false;
         auto clue=coverage_clues.find(id);
-        if(clue!=coverage_clues.end() && clue->second.first=='a') {
+        if(clue!=coverage_clues.end() && (clue->second.first=='a' || (acquisition && clue->second.first=='i'))) {
             double mass=0;
             for(const auto& state:replay->belief().support())
                 if(state.episode.world.truthfulReplies(id).count(clue->second))mass+=state.weight;
@@ -240,15 +264,16 @@ bool FullModelController::selectMissingLocationObservation() {
             const auto value=branch.posterior.reward(model);
             paid.lower+=branch.probability*value.lower;paid.upper+=branch.probability*value.upper;
         }
-        LOG("[FullDecisionEvidence] decision=%zu stop_lower=%.9f stop_upper=%.9f selected_lower=%.9f selected_upper=%.9f support=%zu information_candidates=1 selected_stop=false scope=necessary_initial_missing_big_location target=%u attempts_before=%u initial_at_missing=true\n",
-            decision,stopping.lower,stopping.upper,paid.lower,paid.upper,replay->belief().support().size(),id,asked[id]);
+        LOG("[FullDecisionEvidence] decision=%zu stop_lower=%.9f stop_upper=%.9f selected_lower=%.9f selected_upper=%.9f support=%zu information_candidates=1 selected_stop=false scope=%s target=%u attempts_before=%u initial_at_missing=true\n",
+            decision,stopping.lower,stopping.upper,paid.lower,paid.upper,replay->belief().support().size(),
+            acquisition?"necessary_initial_missing_acquisition_location":"necessary_initial_missing_big_location",id,asked[id]);
         return true;
     }
     return false;
 }
 bool FullModelController::refineLocationDomain(const JointAction& action,const JointObservation& observation,std::size_t receipt) {
     if(action.kind!=JointActionKind::ASK)return false;
-    if(initial_missing_big.count(action.a))coverage_clues[action.a]=observation.reply;
+    if(initial_missing_big.count(action.a) || initial_missing_acquisition.count(action.a))coverage_clues[action.a]=observation.reply;
     if(observation.reply.first!='a' || observation.reply.second<0 || observation.reply.second>4095 ||
         initial_template.locations.count(observation.reply.second))return false;
     const int site=observation.reply.second;initial_template.locations.insert(site);
@@ -427,8 +452,8 @@ void FullModelController::run() {
             if(proposal_time.count()<=0){cpu_used+=std::chrono::steady_clock::now()-began;stop_reason="no_remaining_proposal_budget";break;}
             const auto extra=EpisodeProposal::generate(initial_template,conditioned.factors,replay->evidence(),
                 model.constraints.size(),32,4096+receipt.id*128,262144,proposal_time);
-            LOG("[FullModel] conditional_proposal complete=%s particles=%zu checks=%zu block_cache_hits=%zu work_cut=%s wall_cut=%s scope=%s\n",
-                extra.complete?"true":"false",extra.scenes.size(),extra.checks,extra.block_cache_hits,extra.work_cut?"true":"false",
+            LOG("[FullModel] conditional_proposal complete=%s particles=%zu checks=%zu block_cache_hits=%zu clue_mixture_draws=%zu work_cut=%s wall_cut=%s scope=%s\n",
+                extra.complete?"true":"false",extra.scenes.size(),extra.checks,extra.block_cache_hits,extra.clue_mixture_draws,extra.work_cut?"true":"false",
                 extra.wall_cut?"true":"false",extra.scope.c_str());
             if(!extra.complete || extra.scenes.empty()){cpu_used+=std::chrono::steady_clock::now()-began;stop_reason="conditional_proposal_unavailable";break;}
             const auto repair_time=std::min(std::chrono::milliseconds(20),
