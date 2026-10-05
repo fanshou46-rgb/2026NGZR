@@ -3,6 +3,7 @@
 #include "episode_conditioner.hpp"
 #include "episode_proposal.hpp"
 #include "public_prior_parameters.hpp"
+#include "received_clue_refutation.hpp"
 #include <algorithm>
 #include <cmath>
 #include <regex>
@@ -92,7 +93,7 @@ void FullModelController::initialize() {
     const auto direct_objects=required_objects;
     for(unsigned id:direct_objects)for(const auto& edge:w.Provenance(StateField::INSIDE,id).inside_edges)
         if(edge.second.value==1)required_objects.insert(edge.first);
-    LOG("[FullModel] missing_location_policy=bounded_public_input_coverage acquisition_coverage=bounded_public_input_absence max_queries_per_object=3 canonical_at_from_answer=false\n");
+    LOG("[FullModel] missing_location_policy=bounded_public_input_coverage acquisition_coverage=bounded_public_input_absence acquisition_schedule=after_ordinary_stop_or_actual_refutation max_queries_per_object=3 canonical_at_from_answer=false\n");
     initial_template.robot=w.FactLocation(0);
     if(initial_template.robot<0)throw std::logic_error("robot position is not confirmed");
     initial_template.locations.insert(initial_template.robot);
@@ -226,7 +227,7 @@ void FullModelController::initialize() {
     replay.reset(new EpisodeReplay(EpisodeBelief(std::move(scenes.scenes))));
     LOG("[FullModel] prior_scope=%s assignments=%zu samples=%zu variables=%zu calibration=initial_fields_development_02 feedback_calibrated=false holdout_validated=false\n",scenes.scope.c_str(),scenes.assignments,scenes.draws,factors.size());
 }
-bool FullModelController::selectMissingLocationObservation() {
+bool FullModelController::selectMissingLocationObservation(bool include_acquisitions) {
     coverage_policy=false;
     std::vector<unsigned> targets(initial_missing_big.begin(),initial_missing_big.end());
     targets.insert(targets.end(),initial_missing_acquisition.begin(),initial_missing_acquisition.end());
@@ -243,6 +244,12 @@ bool FullModelController::selectMissingLocationObservation() {
         }
         bool supported_clue=false;
         auto clue=coverage_clues.find(id);
+        ReceivedAtRefutation refutation;
+        if(acquisition && !include_acquisitions) {
+            if(clue==coverage_clues.end() || clue->second.first!='a')continue;
+            refutation=receivedAtRefutation(owner.ActionReceipts(),id,clue->second.second);
+            if(!refutation.sense)continue;
+        }
         if(clue!=coverage_clues.end() && (clue->second.first=='a' || (acquisition && clue->second.first=='i'))) {
             double mass=0;
             for(const auto& state:replay->belief().support())
@@ -267,6 +274,8 @@ bool FullModelController::selectMissingLocationObservation() {
         LOG("[FullDecisionEvidence] decision=%zu stop_lower=%.9f stop_upper=%.9f selected_lower=%.9f selected_upper=%.9f support=%zu information_candidates=1 selected_stop=false scope=%s target=%u attempts_before=%u initial_at_missing=true\n",
             decision,stopping.lower,stopping.upper,paid.lower,paid.upper,replay->belief().support().size(),
             acquisition?"necessary_initial_missing_acquisition_location":"necessary_initial_missing_big_location",id,asked[id]);
+        if(refutation.sense)LOG("[FullCoverageRefutation] decision=%zu before=%llu object=%u site=%d source_sense=%zu source_query=%zu trigger=actual_at_clue_refuted canonical_answer_authority=false\n",
+            decision,(unsigned long long)ExecutionEvidence::digest(owner.PlanStateSignature()),id,refutation.site,refutation.sense,refutation.query);
         return true;
     }
     return false;
@@ -378,7 +387,12 @@ void FullModelController::run() {
         if(!policy || policy->stop) {
             if(cpu_used>=std::chrono::milliseconds(250)){stop_reason="cumulative_model_budget";break;}
             began=std::chrono::steady_clock::now();
-            const bool coverage_observation=selectMissingLocationObservation();
+            // Missing large destinations can block every transport proposal.
+            // Small acquisitions may instead be discovered along a profitable
+            // ordinary route; their necessary coverage fallback is deferred
+            // until that whole-belief search would otherwise stop. Ordinary
+            // positive-value information actions retain their normal gate.
+            const bool coverage_observation=selectMissingLocationObservation(false);
             if(coverage_observation) {
                 cpu_used+=std::chrono::steady_clock::now()-began;
             } else {
@@ -416,7 +430,20 @@ void FullModelController::run() {
                 LOG("[FullDecisionEvidence] decision=%zu stop_lower=%.9f stop_upper=%.9f selected_lower=%.9f selected_upper=%.9f support=%zu information_candidates=%zu selected_stop=%s scope=finite_catalogue_complete_candidates\n",
                     decision,stopping.lower,stopping.upper,plan.value.lower,plan.value.upper,replay->belief().support().size(),observations.size(),policy->stop?"true":"false");
                 cpu_used+=std::chrono::steady_clock::now()-began;
-                if(policy->stop){stop_reason="no_profitable_complete_candidate";break;}
+                if(policy->stop) {
+                    bool deferred_coverage=false;
+                    if(cpu_used<std::chrono::milliseconds(250)) {
+                        began=std::chrono::steady_clock::now();
+                        deferred_coverage=selectMissingLocationObservation(true);
+                        cpu_used+=std::chrono::steady_clock::now()-began;
+                    }
+                    if(!deferred_coverage) {
+                        stop_reason=cpu_used>=std::chrono::milliseconds(250)?"cumulative_model_budget":"no_profitable_complete_candidate";
+                        break;
+                    }
+                    LOG("[FullCoverageSchedule] decision=%zu source_decision=%zu before=%llu trigger=ordinary_finite_candidate_stop acquisitions=deferred canonical_answer_authority=false\n",
+                        decision,decision-1,(unsigned long long)ExecutionEvidence::digest(w.PlanStateSignature()));
+                }
             }
         }
         began=std::chrono::steady_clock::now();
@@ -472,6 +499,18 @@ void FullModelController::run() {
         }
         auto child=policy->children.find(observation);
         policy=child==policy->children.end()?std::make_shared<EpisodePolicy>():child->second;
+        if(action.kind==JointActionKind::ASK && initial_missing_acquisition.count(action.a) &&
+           observation.reply.first=='a' && policy && !policy->stop) {
+            const auto proof=receivedAtRefutation(w.ActionReceipts(),action.a,observation.reply.second);
+            if(proof.sense) {
+                // A modeled noisy-answer continuation may still propose
+                // unrelated guesses. Replan the paid posterior before it is
+                // allowed to execute; no answer becomes a canonical AT.
+                policy=std::make_shared<EpisodePolicy>();
+                LOG("[FullPolicyInterruption] receipt=%zu decision=%zu before=%llu source_sense=%zu object=%u site=%d reason=actual_at_clue_refuted paid_history_retained=true\n",
+                    receipt.id,decision,(unsigned long long)ExecutionEvidence::digest(w.PlanStateSignature()),proof.sense,action.a,proof.site);
+            }
+        }
         const auto& support=replay->belief().support();
         if(!support.empty())modal=std::max_element(support.begin(),support.end(),
             [](const WeightedEpisode& a,const WeightedEpisode& b){return a.weight<b.weight;})->episode.world;

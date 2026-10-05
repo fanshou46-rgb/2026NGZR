@@ -30,7 +30,10 @@ int main(int argc,char** argv) {
         coverage_queries+=permit.selection_reason=="necessary_public_missing_location_coverage";
         if(test<=2) {
             assert(id==3 && w->ExplicitAt(3)==UNKNOWN);
-            if(queries==1)assert(permit.selection_reason=="necessary_public_missing_location_coverage");
+            // An ordinary profitable information query may now precede the
+            // deferred necessary-coverage fallback. Both remain weak clues.
+            assert(permit.selection_reason=="necessary_public_missing_location_coverage" ||
+                permit.selection_reason=="full_joint_public_feedback_policy");
         } else assert(permit.selection_reason!="necessary_public_missing_location_coverage");
         if(test==1) {
             unsigned seed=1;
@@ -65,9 +68,9 @@ int main(int argc,char** argv) {
     assert(sdk.EndEvaluation(5.0)==40-paid); // actual goal, all actual fees
     assert(w->GetScoreSnapshot().action_cost==paid && w->ActionReceipts().size()==calls);
     if(test==0 || test==1)assert(queries==(test==1?2:1) && w->FactValue(StateField::HOLD)==3);
-    // One required query is allowed to be followed by profitable, fully
-    // evaluated information queries. These are distinct decision scopes.
-    if(test==2)assert(coverage_queries==1 && queries>=1 && queries<=3 && w->FactValue(StateField::HOLD)==3 && w->InsideRelation(3,2)==0);
+    // Necessary fallback is used only after ordinary Stop; a positive-value
+    // ordinary query can cover the same missing location first.
+    if(test==2)assert(coverage_queries<=1 && queries>=1 && queries<=3 && w->FactValue(StateField::HOLD)==3 && w->InsideRelation(3,2)==0);
     if(test==3 || test==4)assert(queries==0 && calls==1 && paid==1);
     if(test==5)for(const auto& r:w->ActionReceipts())assert(r.permit.selection_reason!="necessary_public_missing_location_coverage");
     for(const auto& r:w->ActionReceipts())assert(r.sent && r.state_committed && r.permit.policy>0 && r.permit.kind!=PermitKind::LEGACY_UNQUALIFIED);

@@ -33,7 +33,7 @@ private:
     long long sdk_ns=0;
     void initialize();
     void logSelectedPolicy();
-    bool selectMissingLocationObservation();
+    bool selectMissingLocationObservation(bool include_acquisitions);
     bool refineLocationDomain(const JointAction&,const JointObservation&,std::size_t);
     bool dispatch(const JointAction&);
     JointObservation feedback(const JointAction&,const ActionReceipt&) const;
