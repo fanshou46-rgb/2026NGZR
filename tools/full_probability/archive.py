@@ -24,6 +24,7 @@ def main():
         else:files.update(p for p in folder.rglob('*') if p.is_file() and (
             p.suffix in ('.log','.json','.txt') and 'CMakeFiles' not in p.parts or p.name=='receipt.json'))
     files.update((LAB/'source-receipt.json',LAB/'EXECUTION_PLAN.md',LAB/'WORK_LOG.md'))
+    files.update(p for p in LAB.glob('prior-development-*.json') if p.is_file())
     if args.auxiliary:
         files.update(p for p in (LAB/'next').rglob('*') if p.is_file())
         for folder in (LAB/'checks').iterdir():

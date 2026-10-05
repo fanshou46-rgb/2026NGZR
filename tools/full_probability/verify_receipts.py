@@ -109,10 +109,25 @@ def main():
                 assert digest(body)==r['digest'],(row['key'],r['id'],'receipt digest mismatch')
                 totals[p['permit']]+=1;totals['outcome_'+r['outcome']]+=1
             assert len(prepared)==len(finalized),row['key']
+            timings=[r.get('sdk_ns') for r in finalized]
+            timing=None
+            if any(v is not None for v in timings):
+                assert all(isinstance(v,int) and v>=0 for v in timings),'invalid or incomplete SDK durations'
+                timing=sum(timings)
+                totals['sdk_duration_receipts_checked']+=len(timings)
+                totals['sdk_ns']+=timing
+                if row.get('policy')=='full':
+                    matches=re.findall(r'\[FullModel\] stopped receipts=(\d+) model_ms=(\d+) sdk_ms=([0-9.]+) dispatch_overhead_ms=(-?\d+)',text)
+                    assert len(matches)==1,'missing unique controller timing totals'
+                    count,model_ms,sdk_ms,overhead=matches[0]
+                    assert int(count)==len(finalized) and int(overhead)>=0
+                    assert abs(float(sdk_ms)*1e6-timing)<=1,'SDK wait total differs from receipts'
+                    totals['model_ms_reported']+=int(model_ms)
+                    totals['dispatch_overhead_ms_reported']+=int(overhead)
             cost=sum(r['cost'] for r in sent)
             assert cost==row['result']['action_cost'],(row['key'],cost,row['result']['action_cost'])
             totals['runs']+=1;totals['actions']+=len(sent)
-            rows.append(dict(key=row['key'],actions=len(sent),cost=cost,receipt_coverage=1,
+            rows.append(dict(key=row['key'],actions=len(sent),cost=cost,receipt_coverage=1,sdk_ns_checked=timing,
                 log_sha256=hashlib.sha256(rawlog).hexdigest()))
         except (AssertionError, ValueError, KeyError, OSError) as error:
             totals=before_totals

@@ -39,5 +39,19 @@ int main() {
         }
         assert(m.reward(state).goals_lower==5);
     }
-    std::cout<<"complete task routes, door/held-goal restoration, required sensing and 50 repeats passed\n";
+    // A small fixed budget must offer routes for both public position
+    // hypotheses before spending it on variants of only the first world.
+    SdkEpisode a;a.world.robot=0;a.world.locations={0,1,2};
+    a.world.objects[3]=JointObject(true,false,1);a.world.freezeSdkReplyDomain();
+    auto b=a;b.world.objects[3].at=2;b.world.freezeSdkReplyDomain();
+    SdkEpisodeModel locate;locate.goals={SdkPredicate{"pickup",{{3,0}}}};
+    for(unsigned repeat=0;repeat<50;++repeat) {
+        const auto batch=EpisodeRouter::propose(EpisodeBelief({{a,.5},{b,.5}}),locate,12,std::chrono::milliseconds(1000));
+        bool left=false,right=false;
+        for(const auto& route:batch.routes)if(!route.empty() && route.front().kind==JointActionKind::MOVE) {
+            left|=route.front().a==1;right|=route.front().a==2;
+        }
+        assert(left && right && batch.transitions==12 && batch.work_cut);
+    }
+    std::cout<<"complete task routes, hypothesis coverage, restoration, required sensing and 50 repeats passed\n";
 }

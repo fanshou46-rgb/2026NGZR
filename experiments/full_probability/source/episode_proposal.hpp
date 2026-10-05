@@ -5,6 +5,7 @@ namespace _home {
 struct ConditionedProposal {
     std::vector<WeightedEpisode> scenes;
     std::size_t checks=0;
+    std::size_t block_cache_hits=0;
     bool complete=true,work_cut=false,wall_cut=false;
     std::string scope;
 };

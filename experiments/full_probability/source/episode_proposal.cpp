@@ -103,10 +103,22 @@ ConditionedProposal EpisodeProposal::generate(const JointWorld& base,const std::
     ConditionedProposal result;result.scope="public feedback conditional block importance approximation; no certified finite-domain coverage";
     const auto end=std::chrono::steady_clock::now()+wall;
     const std::size_t repeats=std::max(std::size_t(1),particles/shared.scenes.size());
+    struct LocalBlock {std::vector<std::pair<JointObject,double>> choices;double mass=0;};
+    // A call owns one frozen public history and factor catalogue. Given the
+    // same shared history contexts, a small block has exactly the same
+    // acceptance distribution. Answer-order seeds do not affect this physical
+    // filtering and are still handled independently by full replay.
+    std::map<std::pair<unsigned,std::vector<int>>,LocalBlock> cache;
     std::size_t draw=0;
     for(const auto& g:shared.scenes)for(std::size_t repeat=0;repeat<repeats;++repeat,++draw) {
         if(std::chrono::steady_clock::now()>=end){result.complete=false;result.wall_cut=true;result.scenes.clear();return result;}
         std::vector<Context> states;if(!contexts(g.episode.world,history,states))continue;
+        std::vector<int> signature;
+        for(const auto& c:states) {
+            signature.push_back(c.robot);signature.push_back(int(c.hand));signature.push_back(int(c.plate));
+            signature.push_back(int(c.open_here.size()));
+            for(unsigned id:c.open_here)signature.push_back(int(id));
+        }
         JointWorld candidate=g.episode.world;double importance=g.weight/repeats;bool viable=true;
         for(const auto& block:blocks) {
             std::size_t combinations=1;
@@ -114,7 +126,11 @@ ConditionedProposal EpisodeProposal::generate(const JointWorld& base,const std::
                 if(combinations>4096/f.values.size()){result.complete=false;result.work_cut=true;result.scenes.clear();return result;}
                 combinations*=f.values.size();
             }
-            std::vector<std::pair<JointObject,double>> local;double mass=0;
+            const auto key=std::make_pair(block.first,signature);
+            auto entry=cache.find(key);
+            if(entry!=cache.end())++result.block_cache_hits;
+            else {
+            LocalBlock local;
             for(std::size_t n=0;n<combinations;++n) {
                 auto item=base.objects.at(block.first);double probability=1;std::size_t code=n;
                 for(const auto& f:block.second) {
@@ -123,10 +139,13 @@ ConditionedProposal EpisodeProposal::generate(const JointWorld& base,const std::
                     else if(v.value)item.inside.insert(f.parent);else item.inside.erase(f.parent);
                 }
                 if(explains(block.first,item,history,states,result.checks,cap,end,result)) {
-                    mass+=probability;local.push_back({std::move(item),probability});
+                    local.mass+=probability;local.choices.push_back({std::move(item),probability});
                 }
                 if(!result.complete){result.scenes.clear();return result;}
             }
+            entry=cache.emplace(key,std::move(local)).first;
+            }
+            const auto& local=entry->second.choices;const double mass=entry->second.mass;
             if(mass<=0){viable=false;break;}
             double choice=double(mix((offset+draw)*0xd6e8feb86659fd93ULL+block.first)>>11)/9007199254740992.0*mass;
             const JointObject* selected=&local.back().first;

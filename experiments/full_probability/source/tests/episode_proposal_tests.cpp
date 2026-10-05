@@ -26,6 +26,9 @@ int main() {
             mass+=s.weight;
         }
         assert(std::abs(mass-.15)<1e-9); // exact block prior/q correction
+        assert(proposal.block_cache_hits==31 && proposal.checks<=18);
+        auto bounded=EpisodeProposal::generate(w,{at,inside},history,0,32,7,18,std::chrono::milliseconds(1000));
+        assert(bounded.complete && bounded.scenes.size()==32 && bounded.checks==proposal.checks);
         SdkEpisode initial;initial.world=w;
         EpisodeReplay replay(EpisodeBelief({{initial,1}}));
         assert(replay.observe(model,history[0].action,first,ask,1)==EpisodeUpdate::APPLIED);
@@ -44,6 +47,15 @@ int main() {
     assert(storage.complete && !storage.scenes.empty());bool alternative=false;
     for(const auto& s:storage.scenes)alternative|=s.episode.world.objects.at(3).at!=1;
     assert(alternative);
+    PublicPriorFactor hand;hand.field=PriorField::HAND;hand.values={{0,.5},{3,.5}};
+    auto mixed=EpisodeProposal::generate(w,{at,inside,hand},{{1,{JointActionKind::SENSE},first}},0,32,7,1000,std::chrono::milliseconds(1000));
+    assert(mixed.complete && mixed.scenes.size()==32 && mixed.block_cache_hits==30);
+    double mixed_mass=0;bool empty=false,held=false;
+    for(const auto& s:mixed.scenes) {
+        mixed_mass+=s.weight;empty|=s.episode.world.hand==0;held|=s.episode.world.hand==3;
+        if(!s.episode.world.hand)assert(s.episode.world.objects.at(3).at==1 || s.episode.world.objects.at(3).inside.count(2));
+    }
+    assert(empty && held && std::abs(mixed_mass-.8)<1e-9); // .5*.6+.5*1
     bool rejected=false;
     try{EpisodeProposal::generate(w,{at},{{0,{JointActionKind::SENSE},first}},0,1,0,100,std::chrono::milliseconds(1000));}
     catch(const std::invalid_argument&){rejected=true;}assert(rejected);

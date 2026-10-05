@@ -48,10 +48,33 @@ struct RouteSearch {
     }
     Value bestRoute(const EpisodeBelief& b,std::chrono::milliseconds left) {
         auto best=stop(b);
-        for(const auto& actions:routes) {
+        std::vector<std::size_t> order(routes.size());
+        std::vector<double> priorities(routes.size(),0);
+        for(std::size_t i=0;i<routes.size();++i) {
+            order[i]=i;
+            if(b.support().empty())continue;
+            int arrival=b.support().front().episode.world.robot;int prefix=0;
+            for(const auto& action:routes[i]) {
+                prefix+=action.cost();if(action.kind==JointActionKind::MOVE)arrival=int(action.a);
+                if(action.kind!=JointActionKind::PICKUP && action.kind!=JointActionKind::TAKEOUT && action.kind!=JointActionKind::FROMPLATE)continue;
+                double available=0;
+                for(const auto& state:b.support()) {
+                    const auto& w=state.episode.world;bool present=false;
+                    if(action.kind==JointActionKind::PICKUP)present=w.atLocation(action.a,arrival);
+                    else if(action.kind==JointActionKind::FROMPLATE)present=w.plate==action.a;
+                    else present=w.atLocation(action.b,arrival) && w.objects.at(action.a).inside.count(action.b);
+                    if(present)available+=state.weight;
+                }
+                priorities[i]=available*40-prefix;break;
+            }
+        }
+        // This is a cheap PUBLIC-posterior ordering hint only. Eligibility and
+        // value still come from complete whole-belief route evaluation below.
+        std::stable_sort(order.begin(),order.end(),[&](std::size_t a,std::size_t c){return priorities[a]>priorities[c];});
+        for(auto id:order) {
             if(exhausted())break;
             candidate_truncated=false;
-            auto candidate=route(b,actions,0,left);
+            auto candidate=route(b,routes[id],0,left);
             if(!candidate_truncated && candidate.first.lower>best.first.upper+1e-9)best=std::move(candidate);
         }
         return best;

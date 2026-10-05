@@ -2,6 +2,7 @@
 #include "rdfw.hpp"
 #include "episode_conditioner.hpp"
 #include "episode_proposal.hpp"
+#include "public_prior_parameters.hpp"
 #include <algorithm>
 #include <cmath>
 #include <regex>
@@ -114,15 +115,20 @@ void FullModelController::initialize() {
             initial_template.objects[id].opened=opened;
             if(!strong(w,StateField::CONTAINER_STATE,id)) {
                 PublicPriorFactor f;f.field=PriorField::DOOR;f.object=id;
-                f.values={{opened?1:0,.8},{opened?0:1,.2}};factors.push_back(f);
+                const double confidence=p.received.present?DevelopmentPublicPrior::doorHint():.5;
+                f.values={{opened?1:0,confidence},{opened?0:1,1-confidence}};factors.push_back(f);
             }
         }
         if(w.stage!=1 && !strong(w,StateField::LOCATION,id)) {
             PublicPriorFactor f;f.field=PriorField::EXPLICIT_AT;f.object=id;
             if(!position.received.present || position.received.value<0) {
-                // Missing input is lack of evidence, not 0.8 probability that
-                // the object has no at fact. This prior remains uncalibrated.
-                const double absent=small?.05:0;
+                // Missing at and supplied inside are distinct PUBLIC patterns.
+                // Inside never logically excludes independent at: both retain
+                // positive prior probability and use the same SDK transitions.
+                bool received_inside=false;
+                for(const auto& edge:w.Provenance(StateField::INSIDE,id).inside_edges)
+                    received_inside|=edge.second.value==1;
+                const double absent=small?DevelopmentPublicPrior::absentAt(received_inside):0;
                 for(int loc:initial_template.locations)f.values.push_back({loc,(1-absent)/initial_template.locations.size()});
                 if(small)f.values.push_back({-1,absent});
                 factors.push_back(f);continue;
@@ -132,8 +138,9 @@ void FullModelController::initialize() {
             if(small && at!=-1)alternatives.push_back(-1);
             if(alternatives.empty())f.values={{at,1}};
             else {
-                f.values.push_back({at,.8});
-                for(int loc:alternatives)f.values.push_back({loc,.2/alternatives.size()});
+                const double confidence=DevelopmentPublicPrior::locationHint(small);
+                f.values.push_back({at,confidence});
+                for(int loc:alternatives)f.values.push_back({loc,(1-confidence)/alternatives.size()});
             }
             factors.push_back(f);
         }
@@ -148,7 +155,8 @@ void FullModelController::initialize() {
         if(present)initial_template.objects[id].inside.insert(parent.first);
         if(!known) {
             PublicPriorFactor f;f.field=PriorField::INSIDE_EDGE;f.object=id;f.parent=parent.first;
-            f.values={{present?1:0,.98},{present?0:1,.02}};factors.push_back(f);
+            const double confidence=DevelopmentPublicPrior::insideHint(present);
+            f.values={{present?1:0,confidence},{present?0:1,1-confidence}};factors.push_back(f);
         }
     }
     for(auto field:{StateField::HOLD,StateField::PLATE}) {
@@ -158,11 +166,12 @@ void FullModelController::initialize() {
         if(field==StateField::HOLD)initial_template.hand=hint;else initial_template.plate=hint;
         if(!known) {
             PublicPriorFactor f;f.field=field==StateField::HOLD?PriorField::HAND:PriorField::PLATE;
-            f.values={{int(hint),.8}};
+            const double confidence=p.received.present?DevelopmentPublicPrior::slotHint():.5;
+            f.values={{int(hint),confidence}};
             std::vector<unsigned> alternatives={0};alternatives.insert(alternatives.end(),small_ids.begin(),small_ids.end());
             alternatives.erase(std::remove(alternatives.begin(),alternatives.end(),hint),alternatives.end());
             if(alternatives.empty())f.values.front().probability=1;
-            else for(unsigned id:alternatives)f.values.push_back({int(id),.2/alternatives.size()});
+            else for(unsigned id:alternatives)f.values.push_back({int(id),(1-confidence)/alternatives.size()});
             factors.push_back(f);
         }
     }
@@ -174,7 +183,7 @@ void FullModelController::initialize() {
     ask=AskObservationModel(answers,.6,.3,.1,0).withPersistentAnswerOrderPrior();
     LOG("[FullModel] truthful_answer_order=uncalibrated_persistent_rank_prior blank_answer=distinct_from_not_known\n");
     replay.reset(new EpisodeReplay(EpisodeBelief(std::move(scenes.scenes))));
-    LOG("[FullModel] prior_scope=%s assignments=%zu samples=%zu variables=%zu calibrated=false\n",scenes.scope.c_str(),scenes.assignments,scenes.draws,factors.size());
+    LOG("[FullModel] prior_scope=%s assignments=%zu samples=%zu variables=%zu calibration=initial_fields_development_02 feedback_calibrated=false holdout_validated=false\n",scenes.scope.c_str(),scenes.assignments,scenes.draws,factors.size());
 }
 bool FullModelController::qualify(ActionPermit& p) const {
     if(!selecting || !policy || policy->stop || p.action!=actionName(policy->action.kind) ||
@@ -257,7 +266,7 @@ void FullModelController::run() {
                 if(differs)observations.push_back({JointActionKind::ASK,id});
             }
             const auto already=std::chrono::steady_clock::now()-began;
-            const auto allowance=std::min(std::chrono::milliseconds(30),
+            const auto allowance=std::min(std::chrono::milliseconds(50),
                 std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::milliseconds(250)-cpu_used-already));
             if(allowance.count()<=0)break;
             const auto plan=EpisodeRouteSearch::solve(replay->belief(),model,proposals.routes,observations,ask,
@@ -302,8 +311,8 @@ void FullModelController::run() {
             if(proposal_time.count()<=0){cpu_used+=std::chrono::steady_clock::now()-began;break;}
             const auto extra=EpisodeProposal::generate(initial_template,conditioned.factors,replay->evidence(),
                 model.constraints.size(),32,4096+receipt.id*128,262144,proposal_time);
-            LOG("[FullModel] conditional_proposal complete=%s particles=%zu checks=%zu work_cut=%s wall_cut=%s scope=%s\n",
-                extra.complete?"true":"false",extra.scenes.size(),extra.checks,extra.work_cut?"true":"false",
+            LOG("[FullModel] conditional_proposal complete=%s particles=%zu checks=%zu block_cache_hits=%zu work_cut=%s wall_cut=%s scope=%s\n",
+                extra.complete?"true":"false",extra.scenes.size(),extra.checks,extra.block_cache_hits,extra.work_cut?"true":"false",
                 extra.wall_cut?"true":"false",extra.scope.c_str());
             if(!extra.complete || extra.scenes.empty()){cpu_used+=std::chrono::steady_clock::now()-began;break;}
             const auto repair_time=std::min(std::chrono::milliseconds(20),

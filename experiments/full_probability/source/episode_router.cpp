@@ -98,7 +98,9 @@ EpisodeProposalBatch EpisodeRouter::propose(const EpisodeBelief& belief,const Sd
     }
     for(auto id:order)orders.push_back({id});
     std::set<std::string> seen;
-    for(const auto& state:belief.support())for(const auto& task_order:orders)for(bool tray:{false,true}) {
+    // Offer the same complete order across different public hypotheses before
+    // spending work on many variants of the first sampled world.
+    for(const auto& task_order:orders)for(const auto& state:belief.support())for(bool tray:{false,true}) {
         if(result.transitions>=cap || std::chrono::steady_clock::now()>=end) {
             result.work_cut=result.transitions>=cap;result.wall_cut=std::chrono::steady_clock::now()>=end;return result;
         }

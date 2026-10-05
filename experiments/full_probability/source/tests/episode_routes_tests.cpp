@@ -1,5 +1,6 @@
 #include "episode_routes.hpp"
 #include <cassert>
+#include <cmath>
 #include <iostream>
 using namespace _home;
 int main() {
@@ -42,5 +43,20 @@ int main() {
     assert(!mandatory.policy->stop);
     auto after_move=mandatory.policy->children.begin()->second;
     assert(!after_move->stop && after_move->action.kind==JointActionKind::SENSE);
-    std::cout<<"whole-belief routes, conditional paid failures, Ask routing and 50 repeats passed\n";
+    // Reversing input route order cannot hide the route supported by the
+    // public posterior when there is only work for one complete candidate.
+    for(unsigned repeat=0;repeat<50;++repeat) {
+        auto ranked=EpisodeRouteSearch::solve(EpisodeBelief({{left,.05},{right,.95}}),model,
+            {{{JointActionKind::MOVE,1},{JointActionKind::PICKUP,3}},
+             {{JointActionKind::MOVE,2},{JointActionKind::PICKUP,3}}},{},ask,
+            std::chrono::milliseconds(2000),4,std::chrono::milliseconds(1000));
+        assert(ranked.work_cut && !ranked.policy->stop);
+        assert(ranked.policy->action.kind==JointActionKind::MOVE && ranked.policy->action.a==2);
+        assert(std::abs(ranked.value.lower-32)<1e-9); // .95*(40-6)+.05*(-6)
+        // The .05 failed branch remains charged and stops; the hint is not
+        // promoted into confirmed availability or a guaranteed success.
+        auto pick=ranked.policy->children.begin()->second;
+        assert(pick->children.size()==2 && pick->children.at(failed)->stop);
+    }
+    std::cout<<"whole-belief routes, posterior ordering, paid failures, Ask routing and 50 repeats passed\n";
 }
