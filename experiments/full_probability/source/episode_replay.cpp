@@ -44,10 +44,7 @@ EpisodeRepairResult EpisodeReplay::repair(const SdkEpisodeModel& model,const Ask
             ++result.transitions;
             double probability=0;
             try {
-                const auto branches=replay.branches(model,event.action,ask);
-                for(const auto& branch:branches)if(same(branch.observation,event.observation)) {
-                    probability=branch.probability;replay=branch.posterior;break;
-                }
+                probability=replay.conditionPublicFeedback(model,event.action,event.observation,ask);
             } catch(const std::logic_error&) {result.reason="unmodeled_observation_order";return result;}
             if(probability<=0){consistent=false;break;}
             // Carry likelihood of the complete public history, not just the

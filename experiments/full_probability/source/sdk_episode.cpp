@@ -99,15 +99,42 @@ std::vector<EpisodeBranch> EpisodeBelief::branches(const SdkEpisodeModel& model,
     }
     return result;
 }
+double EpisodeBelief::conditionPublicFeedback(const SdkEpisodeModel& model,const JointAction& action,const JointObservation& observation,const AskObservationModel& ask) {
+    if(!valid)throw std::logic_error("repair required after support miss");
+    if(outside>0)throw std::logic_error("unmodeled residual action feedback");
+    const auto same=[](const JointObservation& a,const JointObservation& b){return !(a<b) && !(b<a);};
+    std::vector<WeightedEpisode> survivors;double mass=0;
+    for(const auto& state:states)if(state.weight>0) {
+        if(action.kind==JointActionKind::ASK) {
+            if(observation.kind!=JointObservation::Kind::ANSWER || observation.success || !observation.ids.empty())continue;
+            const auto replies=state.episode.world.truthfulReplies(action.a);double likelihood=0;
+            if(replies.empty())likelihood=observation.reply==LocationHypothesis{'!',-1}?1:0;
+            else {
+                if(replies.size()!=1 && !ask.assumesUniformAnswerOrder())throw std::logic_error("nonunique truthful SDK answer");
+                const auto truth=state.episode.world.selectedTruthfulReply(action.a);
+                auto channel=state.episode.world.initial_reply_counts.empty()?ask:ask.reweighted(state.episode.world.initial_reply_counts,0);
+                channel=channel.withReply(truth);
+                if(channel.observations().count(observation.reply))likelihood=channel.likelihood(observation.reply,truth);
+            }
+            if(likelihood<=0)continue;
+            const double weight=state.weight*likelihood;if(weight<=0)continue;mass+=weight;
+            survivors.push_back({model.next(state.episode,action,state.episode.world,observation.success),weight});
+        } else {
+            auto next=JointDynamics::step(state.episode.world,action);
+            if(!same(next.observation,observation))continue;
+            mass+=state.weight;
+            survivors.push_back({model.next(state.episode,action,next.world,next.observation.success),state.weight});
+        }
+    }
+    if(mass>0){for(auto& state:survivors)state.weight/=mass;states=std::move(survivors);}
+    return mass;
+}
 EpisodeUpdate EpisodeBelief::observe(const SdkEpisodeModel& model,const JointAction& action,const JointObservation& observation,const AskObservationModel& ask,std::size_t event) {
     if(!event)throw std::invalid_argument("actual feedback requires receipt ID");
     if(events.count(event))return EpisodeUpdate::DUPLICATE;
-    const auto next=branches(model,action,ask);
+    const double probability=conditionPublicFeedback(model,action,observation,ask);
     events.insert(event);
-    for(const auto& branch:next)if(!(branch.observation<observation)&&!(observation<branch.observation)) {
-        states=branch.posterior.states;outside=branch.posterior.outside;
-        return EpisodeUpdate::APPLIED;
-    }
+    if(probability>0)return EpisodeUpdate::APPLIED;
     // A support miss is a model failure, never a confirmation or permission
     // to send the paid action again. Preserve support and require repair.
     for(auto& state:states)state.episode.paid+=action.cost();

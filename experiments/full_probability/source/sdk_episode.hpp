@@ -33,6 +33,10 @@ public:
     bool modelValid() const {return valid;}
     SdkRewardBounds reward(const SdkEpisodeModel&) const;
     std::vector<EpisodeBranch> branches(const SdkEpisodeModel&,const JointAction&,const AskObservationModel&) const;
+    // Condition a modeled episode on ONE already received public feedback.
+    // Returns its likelihood; zero leaves this belief intact. No event IDs or
+    // canonical authority: observe owns actual receipt deduplication/fees.
+    double conditionPublicFeedback(const SdkEpisodeModel&,const JointAction&,const JointObservation&,const AskObservationModel&);
     EpisodeUpdate observe(const SdkEpisodeModel&,const JointAction&,const JointObservation&,const AskObservationModel&,std::size_t);
 private:
     std::vector<WeightedEpisode> states;
