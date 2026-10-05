@@ -429,6 +429,8 @@ void FullModelController::run() {
                     plan.wall_cut?"true":"false",plan.work_cut?"true":"false",(long long)std::chrono::duration_cast<std::chrono::milliseconds>(cpu_used+std::chrono::steady_clock::now()-began).count());
                 LOG("[FullDecisionEvidence] decision=%zu stop_lower=%.9f stop_upper=%.9f selected_lower=%.9f selected_upper=%.9f support=%zu information_candidates=%zu selected_stop=%s scope=finite_catalogue_complete_candidates\n",
                     decision,stopping.lower,stopping.upper,plan.value.lower,plan.value.upper,replay->belief().support().size(),observations.size(),policy->stop?"true":"false");
+                LOG("[FullPhysicalEvaluation] decision=%zu inputs=%zu retained=%zu replay_support=%zu scope=pure_physical_candidate_evaluation canonical_answer_authority=false\n",
+                    decision,plan.physical_view_inputs,plan.physical_view_worlds,replay->belief().support().size());
                 cpu_used+=std::chrono::steady_clock::now()-began;
                 if(policy->stop) {
                     bool deferred_coverage=false;

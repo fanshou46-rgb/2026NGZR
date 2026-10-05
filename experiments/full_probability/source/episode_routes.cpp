@@ -1,4 +1,5 @@
 #include "episode_routes.hpp"
+#include "physical_route_view.hpp"
 #include <algorithm>
 #include <stdexcept>
 #include <tuple>
@@ -14,6 +15,8 @@ struct PrefixNode {
     bool reward_ready=false;
     SdkRewardBounds reward;
     std::map<ActionKey,std::vector<PrefixBranch>> children;
+    bool physical_ready=false;
+    std::shared_ptr<PrefixNode> physical_view;
     explicit PrefixNode(EpisodeBelief b):belief(std::move(b)) {}
 };
 struct RouteSearch {
@@ -21,10 +24,28 @@ struct RouteSearch {
     const std::vector<EpisodeRoute>& routes;
     std::size_t limit,work=0,cache_hits=0;std::chrono::steady_clock::time_point end;
     bool work_cut=false,wall_cut=false,complete=true,candidate_truncated=false;
+    bool physical_reuse;
+    std::size_t view_inputs=0,view_worlds=0;
     using Value=std::pair<SdkRewardBounds,std::shared_ptr<EpisodePolicy>>;
     RouteSearch(const SdkEpisodeModel& m,const AskObservationModel& a,
-        const std::vector<EpisodeRoute>& r,std::size_t cap,std::chrono::steady_clock::time_point deadline)
-        :model(m),ask(a),routes(r),limit(cap),end(deadline) {}
+        const std::vector<EpisodeRoute>& r,std::size_t cap,std::chrono::steady_clock::time_point deadline,bool reuse)
+        :model(m),ask(a),routes(r),limit(cap),end(deadline),physical_reuse(reuse) {
+        // Public catalogues containing ASK are evaluated without aggregation.
+        // ASK selectors/frequencies must stay in the full persistent posterior.
+        for(const auto& route:r)for(const auto& action:route)
+            if(action.kind==JointActionKind::ASK)physical_reuse=false;
+    }
+    std::shared_ptr<PrefixNode> physicalNode(const std::shared_ptr<PrefixNode>& n) {
+        if(!physical_reuse)return n;
+        if(!n->physical_ready) {
+            const auto view=PhysicalRouteView::make(n->belief);
+            view_inputs+=view.original_worlds;view_worlds+=view.physical_worlds;
+            if(view.physical_worlds<view.original_worlds)
+                n->physical_view=std::make_shared<PrefixNode>(view.belief);
+            n->physical_ready=true;
+        }
+        return n->physical_view?n->physical_view:n;
+    }
     bool exhausted() {
         if(work>=limit)work_cut=true;
         if(std::chrono::steady_clock::now()>=end)wall_cut=true;
@@ -75,7 +96,8 @@ struct RouteSearch {
         return mandatory_sense || value.lower>incumbent.first.upper+1e-9?Value{value,policy}:incumbent;
     }
     Value bestRoute(const std::shared_ptr<PrefixNode>& n,std::chrono::milliseconds left) {
-        auto best=stop(n);const auto& b=n->belief;
+        const auto evaluation=physicalNode(n);
+        auto best=stop(n);const auto& b=evaluation->belief;
         std::vector<std::size_t> order(routes.size());
         std::vector<double> priorities(routes.size(),0);
         for(std::size_t i=0;i<routes.size();++i) {
@@ -102,7 +124,7 @@ struct RouteSearch {
         for(auto id:order) {
             if(exhausted())break;
             candidate_truncated=false;
-            auto candidate=route(n,routes[id],0,left);
+            auto candidate=route(evaluation,routes[id],0,left);
             if(!candidate_truncated && candidate.first.lower>best.first.upper+1e-9)best=std::move(candidate);
         }
         return best;
@@ -111,7 +133,7 @@ struct RouteSearch {
 }
 EpisodePlan EpisodeRouteSearch::solve(const EpisodeBelief& b,const SdkEpisodeModel& m,
     const std::vector<EpisodeRoute>& routes,const std::vector<JointAction>& observations,
-    const AskObservationModel& ask,std::chrono::milliseconds left,std::size_t cap,std::chrono::milliseconds wall) {
+    const AskObservationModel& ask,std::chrono::milliseconds left,std::size_t cap,std::chrono::milliseconds wall,bool physical_reuse) {
     if(!cap || wall.count()<=0 || left.count()<0)throw std::invalid_argument("invalid route budget");
     for(const auto& route:routes) {
         if(route.size()>64)throw std::invalid_argument("route exceeds bounded stack");
@@ -122,7 +144,7 @@ EpisodePlan EpisodeRouteSearch::solve(const EpisodeBelief& b,const SdkEpisodeMod
     const auto end=std::chrono::steady_clock::now()+wall;
     // A direct-route catalogue cannot consume the observation candidates'
     // reserved work. Each observation gets a deterministic fair work slice.
-    RouteSearch search(m,ask,routes,observations.empty()?cap:std::max(std::size_t(1),cap/2),observations.empty()?end:end-wall/2);
+    RouteSearch search(m,ask,routes,observations.empty()?cap:std::max(std::size_t(1),cap/2),observations.empty()?end:end-wall/2,physical_reuse);
     // A node owns the whole immutable posterior at one public action/feedback
     // prefix, including paid costs, permanent credits and latent answer order.
     // It is never indexed by a hidden world ID and never survives this solve.
@@ -130,11 +152,12 @@ EpisodePlan EpisodeRouteSearch::solve(const EpisodeBelief& b,const SdkEpisodeMod
     auto best=search.bestRoute(root,left);
     std::size_t work=search.work,remaining=observations.size();
     std::size_t cache_hits=search.cache_hits;
+    std::size_t view_inputs=search.view_inputs,view_worlds=search.view_worlds;
     bool work_cut=search.work_cut,wall_cut=search.wall_cut,complete=search.complete;
     for(const auto& action:observations) {
         if(work>=cap){work_cut=true;break;}
         const auto slice=std::max(std::size_t(1),(cap-work)/remaining--);
-        RouteSearch information(m,ask,routes,slice,end);
+        RouteSearch information(m,ask,routes,slice,end,physical_reuse);
         if(action.duration>left)continue;
         const auto branches=information.branches(root,action);
         if(!branches) {
@@ -153,9 +176,11 @@ EpisodePlan EpisodeRouteSearch::solve(const EpisodeBelief& b,const SdkEpisodeMod
         }
         if(value.lower>best.first.upper+1e-9)best={value,policy};
         work+=information.work;cache_hits+=information.cache_hits;work_cut|=information.work_cut;wall_cut|=information.wall_cut;complete&=information.complete;
+        view_inputs+=information.view_inputs;view_worlds+=information.view_worlds;
     }
     EpisodePlan result;result.policy=best.second;result.value=best.first;result.transitions=work;
     result.work_cut=work_cut;result.wall_cut=wall_cut;result.support_complete=complete;
     result.prefix_cache_hits=cache_hits;
+    result.physical_view_inputs=view_inputs;result.physical_view_worlds=view_worlds;
     return result;
 }
