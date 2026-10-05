@@ -240,6 +240,8 @@ def main():
                     assert int(fields['support'])>0 and int(fields['information_candidates'])>=0
                     assert fields['scope'] in ('finite_catalogue_complete_candidates','necessary_initial_missing_big_location','necessary_initial_missing_acquisition_location')
                     decisions[decision_id]=fields;totals['decision_values_checked']+=1
+                from latency_evidence import verify_latency_evidence
+                for key,value in verify_latency_evidence(text,decisions,catalogues).items():totals['modeled_'+key+'_checked']+=value
                 schedules=verify_coverage_schedule(text,decisions,finalized)
                 totals['actual_policy_interruptions_checked']+=len(verify_policy_interruptions(text,finalized))
                 totals['deferred_coverage_predecessors_checked']+=sum(f['trigger']=='ordinary_finite_candidate_stop' for f in schedules.values())
