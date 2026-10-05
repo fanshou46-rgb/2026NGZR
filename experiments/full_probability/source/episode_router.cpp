@@ -74,6 +74,24 @@ struct Builder {
             acquire(a);go(position(b));open(b);acquire(a);emit(JointActionKind::PUTIN,a,b);
         } else throw std::logic_error("unsupported task route");
     }
+    bool batchDelivery(const SdkEpisodeModel& m,const SdkPredicate& left,const SdkPredicate& right) {
+        const auto delivery=[](const SdkPredicate& g){return g.verb=="give" || g.verb=="puton";};
+        if(!tray || world.plate || !delivery(left) || !delivery(right) ||
+           left.bindings.empty() || right.bindings.empty())return false;
+        auto a=left.bindings.front(),b=right.bindings.front();
+        if(a.first==b.first || !a.second || !b.second ||
+           (world.hand && world.hand!=a.first && world.hand!=b.first))return false;
+        if(m.predicate(world,left.verb,a.first,a.second) || m.predicate(world,right.verb,b.first,b.second))return false;
+        if(position(a.first)!=position(b.first) || position(a.second)!=position(b.second))return false;
+        if(world.hand==b.first)std::swap(a,b);
+        // This only proposes a capacity-feasible hypothetical route. Both
+        // stored items and all permanent constraints are scored on the whole
+        // belief; a tray prohibition can reject it in favour of serial delivery.
+        acquire(a.first);emit(JointActionKind::TOPLATE,a.first);acquire(b.first);
+        go(position(a.second));emit(JointActionKind::PUTDOWN,b.first);
+        emit(JointActionKind::FROMPLATE,a.first);emit(JointActionKind::PUTDOWN,a.first);
+        return true;
+    }
 };
 std::string key(const EpisodeRoute& route) {
     std::ostringstream s;for(const auto& a:route)s<<int(a.kind)<<','<<a.a<<','<<a.b<<';';return s.str();
@@ -86,7 +104,12 @@ EpisodeProposalBatch EpisodeRouter::propose(const EpisodeBelief& belief,const Sd
     std::vector<std::size_t> order(model.goals.size());std::iota(order.begin(),order.end(),0);
     const auto rank=[&](std::size_t id){const auto& v=model.goals[id].verb;return v=="goto"?3:v=="pickup"?2:v=="close"?1:0;};
     std::stable_sort(order.begin(),order.end(),[&](std::size_t a,std::size_t b){return rank(a)<rank(b);});
-    std::vector<std::vector<std::size_t>> orders={order};
+    // Establish complete short-task candidates before longer restoration and
+    // subset routes. They give each feedback branch a priced incumbent under
+    // small work slices; full routes can still replace them when profitable.
+    std::vector<std::vector<std::size_t>> orders;
+    for(auto id:order)orders.push_back({id});
+    orders.push_back(order);
     // Separate terminal endpoints; each route is priced by all final goals.
     for(auto endpoint:order)if(model.goals[endpoint].verb=="goto") {
         std::vector<std::size_t> one;
@@ -96,7 +119,6 @@ EpisodeProposalBatch EpisodeRouter::propose(const EpisodeBelief& belief,const Sd
     if(order.size()<=16)for(std::size_t omit=0;omit<order.size();++omit) {
         auto subset=order;subset.erase(subset.begin()+omit);orders.push_back(std::move(subset));
     }
-    for(auto id:order)orders.push_back({id});
     std::set<std::string> seen;
     // Offer the same complete order across different public hypotheses before
     // spending work on many variants of the first sampled world.
@@ -105,7 +127,10 @@ EpisodeProposalBatch EpisodeRouter::propose(const EpisodeBelief& belief,const Sd
             result.work_cut=result.transitions>=cap;result.wall_cut=std::chrono::steady_clock::now()>=end;return result;
         }
         Builder builder(state.episode.world,tray,sense,result.transitions,cap,end);
-        try{for(auto id:task_order)builder.task(model,model.goals[id]);}
+        try{for(std::size_t i=0;i<task_order.size();++i) {
+            if(i+1<task_order.size() && builder.batchDelivery(model,model.goals[task_order[i]],model.goals[task_order[i+1]]))++i;
+            else builder.task(model,model.goals[task_order[i]]);
+        }}
         catch(const std::exception&){continue;}
         if(!builder.route.empty() && seen.insert(key(builder.route)).second)result.routes.push_back(std::move(builder.route));
     }

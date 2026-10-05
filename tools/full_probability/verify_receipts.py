@@ -82,6 +82,28 @@ def main():
                 else:assert raw==r['feedback'],(row['key'],r['id'],'raw SDK feedback mismatch')
             if row.get('policy')=='full':
                 assert len(policies)==len(prepared),row['key']
+                decisions={}
+                for line in text.splitlines():
+                    if '[FullDecisionEvidence] ' not in line:continue
+                    fields=dict(re.findall(r'(\w+)=([^\s]+)',line))
+                    id=int(fields['decision']);assert id not in decisions
+                    values=[float(fields[k]) for k in ('stop_lower','stop_upper','selected_lower','selected_upper')]
+                    assert all(math.isfinite(v) for v in values)
+                    sl,su,vl,vu=values;assert sl<=su+1e-7 and vl<=vu+1e-7
+                    if fields['selected_stop']=='true':assert abs(sl-vl)<1e-7 and abs(su-vu)<1e-7
+                    else:assert fields['selected_stop']=='false' and vl>su-1e-7
+                    assert int(fields['support'])>0 and int(fields['information_candidates'])>=0
+                    assert fields['scope']=='finite_catalogue_complete_candidates'
+                    decisions[id]=fields;totals['decision_values_checked']+=1
+                stops=[line for line in text.splitlines() if '[FullStopEvidence] ' in line]
+                if decisions:
+                    assert len(stops)==1,'missing unique termination evidence'
+                    for p in policies:
+                        if p['decision']>1:assert p['decision'] in decisions and decisions[p['decision']]['selected_stop']=='false'
+                    fields=dict(re.findall(r'(\w+)=([^\s]+)',stops[0]))
+                    assert fields['reason'] and int(fields['model_ns'])>=0
+                    assert fields['prior_coverage_certified']=='false'
+                    totals['termination_reasons_checked']+=1
                 previous=None
                 for p,receipt,final in zip(policies,prepared,finalized):
                     assert p['receipt']==receipt['id'] and p['decision']==receipt['policy']

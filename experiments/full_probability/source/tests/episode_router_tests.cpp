@@ -53,5 +53,31 @@ int main() {
         }
         assert(left && right && batch.transitions==12 && batch.work_cut);
     }
+    SdkEpisode delivery;delivery.world.robot=1;delivery.world.locations={1,2};
+    delivery.world.objects[2]=JointObject(false,false,2);
+    delivery.world.objects[3]=JointObject(true,false,1);delivery.world.objects[4]=JointObject(true,false,1);
+    delivery.world.freezeSdkReplyDomain();
+    SdkEpisodeModel two;two.goals={SdkPredicate{"puton",{{3,2}}},SdkPredicate{"puton",{{4,2}}}};
+    for(unsigned repeat=0;repeat<50;++repeat) {
+        const auto batch=EpisodeRouter::propose(EpisodeBelief({{delivery,1}}),two,4096,std::chrono::milliseconds(1000));
+        auto chosen=EpisodeRouteSearch::solve(EpisodeBelief({{delivery,1}}),two,batch.routes,{},ask,
+            std::chrono::milliseconds(5000),16384,std::chrono::milliseconds(1000));
+        assert(chosen.value.lower==63 && !chosen.policy->stop); // two goals, 17 fees
+        auto state=delivery;auto policy=chosen.policy;unsigned moves=0;
+        while(!policy->stop) {
+            moves+=policy->action.kind==JointActionKind::MOVE;
+            const auto step=JointDynamics::step(state.world,policy->action);
+            assert(step.observation.kind!=JointObservation::Kind::FEEDBACK || step.observation.success);
+            state=two.next(state,policy->action,step.world,step.observation.success);policy=policy->children.at(step.observation);
+        }
+        assert(moves==1 && !state.world.hand && !state.world.plate && two.reward(state).goals_lower==2);
+        // A permanent tray constraint must retain a serial delivery alternative.
+        auto protected_model=two;protected_model.constraints={{SdkPredicate{"plate",{{3,0}}},false},
+            {SdkPredicate{"plate",{{4,0}}},false}};
+        state=delivery;state.credits={true,true};
+        auto protected_plan=EpisodeRouteSearch::solve(EpisodeBelief({{state,1}}),protected_model,batch.routes,{},ask,
+            std::chrono::milliseconds(5000),16384,std::chrono::milliseconds(1000));
+        assert(protected_plan.value.lower==97); // 80 + 40 - 23; no tray violation
+    }
     std::cout<<"complete task routes, hypothesis coverage, restoration, required sensing and 50 repeats passed\n";
 }

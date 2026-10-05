@@ -231,6 +231,7 @@ JointObservation FullModelController::feedback(const JointAction& action,const A
 }
 void FullModelController::run() {
     auto& w=owner;
+    std::string stop_reason="step_or_deadline_limit";
     auto began=std::chrono::steady_clock::now();initialize();cpu_used+=std::chrono::steady_clock::now()-began;
     w.execution_evidence.reset(true);
     began=std::chrono::steady_clock::now();
@@ -243,9 +244,9 @@ void FullModelController::run() {
     }
     cpu_used+=std::chrono::steady_clock::now()-began;
     for(unsigned step=0;step<96 && !w.deadline_manager.deadlineReached();++step) {
-        if(w.deadline_manager.remaining()<=w.plan_safety_margin+std::chrono::milliseconds(150))break;
+        if(w.deadline_manager.remaining()<=w.plan_safety_margin+std::chrono::milliseconds(150)){stop_reason="remaining_time_guard";break;}
         if(!policy || policy->stop) {
-            if(cpu_used>=std::chrono::milliseconds(250))break;
+            if(cpu_used>=std::chrono::milliseconds(250)){stop_reason="cumulative_model_budget";break;}
             began=std::chrono::steady_clock::now();
             SdkEpisode modal_episode;modal_episode.world=modal;modal_episode.credits.assign(model.constraints.size(),true);
             auto proposals=EpisodeRouter::propose(EpisodeBelief({{modal_episode,1}}),model,1024,std::chrono::milliseconds(10));
@@ -268,14 +269,18 @@ void FullModelController::run() {
             const auto already=std::chrono::steady_clock::now()-began;
             const auto allowance=std::min(std::chrono::milliseconds(50),
                 std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::milliseconds(250)-cpu_used-already));
-            if(allowance.count()<=0)break;
+            if(allowance.count()<=0){stop_reason="no_remaining_search_budget";break;}
             const auto plan=EpisodeRouteSearch::solve(replay->belief(),model,proposals.routes,observations,ask,
                 w.deadline_manager.remaining()-w.plan_safety_margin,8192-proposals.transitions-adaptive.transitions,allowance);
-            policy=plan.policy;++decision;cpu_used+=std::chrono::steady_clock::now()-began;
+            policy=plan.policy;++decision;
+            const auto stopping=replay->belief().reward(model);
             LOG("[FullModel] decision=%zu lower=%.6f upper=%.6f routes=%zu transitions=%zu wall_cut=%s work_cut=%s model_ms=%lld\n",
                 decision,plan.value.lower,plan.value.upper,proposals.routes.size(),plan.transitions+proposals.transitions+adaptive.transitions,
-                plan.wall_cut?"true":"false",plan.work_cut?"true":"false",(long long)std::chrono::duration_cast<std::chrono::milliseconds>(cpu_used).count());
-            if(policy->stop)break;
+                plan.wall_cut?"true":"false",plan.work_cut?"true":"false",(long long)std::chrono::duration_cast<std::chrono::milliseconds>(cpu_used+std::chrono::steady_clock::now()-began).count());
+            LOG("[FullDecisionEvidence] decision=%zu stop_lower=%.9f stop_upper=%.9f selected_lower=%.9f selected_upper=%.9f support=%zu information_candidates=%zu selected_stop=%s scope=finite_catalogue_complete_candidates\n",
+                decision,stopping.lower,stopping.upper,plan.value.lower,plan.value.upper,replay->belief().support().size(),observations.size(),policy->stop?"true":"false");
+            cpu_used+=std::chrono::steady_clock::now()-began;
+            if(policy->stop){stop_reason="no_profitable_complete_candidate";break;}
         }
         began=std::chrono::steady_clock::now();
         const auto action=policy->action;expected_signature=w.PlanStateSignature();selecting=true;
@@ -287,6 +292,7 @@ void FullModelController::run() {
         try{dispatch(action);}catch(const std::exception& error) {
             selecting=false;
             LOG_ERROR("[FullModel] stopped_after_dispatch_exception action=%s reason=%s receipts=%zu",actionName(action.kind),error.what(),w.ActionReceipts().size());
+            stop_reason="dispatch_exception";
             break;
         }
         selecting=false;
@@ -294,7 +300,7 @@ void FullModelController::run() {
         const auto& receipt=w.ActionReceipts().back();
         sdk_ns+=std::max(0LL,receipt.sdk_ns);
         dispatch_overhead+=std::chrono::steady_clock::now()-dispatch_began-std::chrono::nanoseconds(std::max(0LL,receipt.sdk_ns));
-        if(receipt.outcome==ExecutionStatus::INDETERMINATE || !receipt.state_committed)break;
+        if(receipt.outcome==ExecutionStatus::INDETERMINATE || !receipt.state_committed){stop_reason="indeterminate_or_uncommitted_outcome";break;}
         began=std::chrono::steady_clock::now();
         const auto observation=feedback(action,receipt);
         const auto update=replay->observe(model,action,observation,ask,receipt.id);
@@ -305,23 +311,23 @@ void FullModelController::run() {
                 conditioned.consistent?"true":"false",conditioned.proofs.size(),conditioned.retained_prior_mass);
             for(const auto& proof:conditioned.proofs)LOG("[InitialFactorProof] field=%d object=%u parent=%u receipt=%zu predicate=%s\n",
                 int(proof.field),proof.object,proof.parent,proof.receipt,proof.predicate.c_str());
-            if(!conditioned.consistent){cpu_used+=std::chrono::steady_clock::now()-began;break;}
+            if(!conditioned.consistent){cpu_used+=std::chrono::steady_clock::now()-began;stop_reason="public_evidence_excludes_initial_domain";break;}
             const auto proposal_time=std::min(std::chrono::milliseconds(30),
                 std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::milliseconds(250)-cpu_used-(std::chrono::steady_clock::now()-began)));
-            if(proposal_time.count()<=0){cpu_used+=std::chrono::steady_clock::now()-began;break;}
+            if(proposal_time.count()<=0){cpu_used+=std::chrono::steady_clock::now()-began;stop_reason="no_remaining_proposal_budget";break;}
             const auto extra=EpisodeProposal::generate(initial_template,conditioned.factors,replay->evidence(),
                 model.constraints.size(),32,4096+receipt.id*128,262144,proposal_time);
             LOG("[FullModel] conditional_proposal complete=%s particles=%zu checks=%zu block_cache_hits=%zu work_cut=%s wall_cut=%s scope=%s\n",
                 extra.complete?"true":"false",extra.scenes.size(),extra.checks,extra.block_cache_hits,extra.work_cut?"true":"false",
                 extra.wall_cut?"true":"false",extra.scope.c_str());
-            if(!extra.complete || extra.scenes.empty()){cpu_used+=std::chrono::steady_clock::now()-began;break;}
+            if(!extra.complete || extra.scenes.empty()){cpu_used+=std::chrono::steady_clock::now()-began;stop_reason="conditional_proposal_unavailable";break;}
             const auto repair_time=std::min(std::chrono::milliseconds(20),
                 std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::milliseconds(250)-cpu_used-(std::chrono::steady_clock::now()-began)));
-            if(repair_time.count()<=0){cpu_used+=std::chrono::steady_clock::now()-began;break;}
+            if(repair_time.count()<=0){cpu_used+=std::chrono::steady_clock::now()-began;stop_reason="no_remaining_replay_budget";break;}
             const auto repaired=replay->repair(model,ask,extra.scenes,8192,repair_time);
             LOG("[FullModel] support_repair installed=%s transitions=%zu reason=%s\n",repaired.installed?"true":"false",repaired.transitions,repaired.reason.c_str());
             policy.reset();cpu_used+=std::chrono::steady_clock::now()-began;
-            if(!repaired.installed)break;
+            if(!repaired.installed){stop_reason=repaired.reason;break;}
             const auto& repaired_support=replay->belief().support();
             if(!repaired_support.empty())modal=std::max_element(repaired_support.begin(),repaired_support.end(),
                 [](const WeightedEpisode& a,const WeightedEpisode& b){return a.weight<b.weight;})->episode.world;
@@ -337,4 +343,6 @@ void FullModelController::run() {
     w.normal_stop_requested=true;LOG("[FullModel] stopped receipts=%zu model_ms=%lld sdk_ms=%.6f dispatch_overhead_ms=%lld\n",w.ActionReceipts().size(),
         (long long)std::chrono::duration_cast<std::chrono::milliseconds>(cpu_used).count(),sdk_ns/1000000.0,
         (long long)std::chrono::duration_cast<std::chrono::milliseconds>(dispatch_overhead).count());
+    LOG("[FullStopEvidence] reason=%s remaining_ms=%lld model_ns=%lld prior_coverage_certified=false\n",stop_reason.c_str(),
+        (long long)w.deadline_manager.remaining().count(),(long long)std::chrono::duration_cast<std::chrono::nanoseconds>(cpu_used).count());
 }

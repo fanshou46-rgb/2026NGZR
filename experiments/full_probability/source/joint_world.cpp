@@ -13,6 +13,9 @@ void JointWorld::freezeSdkReplyDomain() {
     initial_reply_counts[{'a',robot}]+=1;
     for(const auto& item:objects) {
         if(item.second.at>=0)initial_reply_counts[{'a',item.second.at}]+=1;
+        // SDK env_to_asp appends in_loc in its TYPE branch, not INSIDE.
+        // Thus even empty declared containers contribute a random reply;
+        // multiple inside edges into one container do not add multiplicity.
         if(item.second.container)initial_reply_counts[{'i',int(item.first)}]+=1;
     }
 }
