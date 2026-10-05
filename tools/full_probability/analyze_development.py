@@ -36,7 +36,14 @@ def main():
     for key,pair in repeated.items():
         if set(pair)!=set([0,1]):continue
         first,second=pair[0]['result'],pair[1]['result'];counts[key[2]+'_pairs']+=1
-        if first['action_sequence']!=second['action_sequence'] or any(first.get(m)!=second.get(m) for m in ['final_goals','credited_constraints','action_cost']):
+        gck=['final_goals','credited_constraints','action_cost']
+        missing=any(first.get(m) is None or second.get(m) is None for m in gck)
+        changed=any(first.get(m)!=second.get(m) for m in gck)
+        counts[key[2]+'_gck_missing']+=missing
+        counts[key[2]+'_gck_changed']+=changed and not missing
+        counts[key[2]+'_gck_identical']+=not missing and not changed
+        counts[key[2]+'_action_sequence_changed']+=first['action_sequence']!=second['action_sequence']
+        if first['action_sequence']!=second['action_sequence'] or missing or changed:
             counts[key[2]+'_changed']+=1
             changes.append(dict(case=key,first=pair[0]['key'],repeat=pair[1]['key'],metrics={m:[first.get(m),second.get(m)] for m in metrics}))
     result=dict(checkpoint=a.checkpoint,suite=a.suite,scope='development only; one seed plus repeat, no independent CI',groups=groups,repeat_counts=dict(counts),repeat_disagreements=changes,regressions=regressions)
