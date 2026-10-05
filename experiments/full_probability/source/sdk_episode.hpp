@@ -57,6 +57,7 @@ struct EpisodePlan {
     std::size_t transitions=0;
     std::size_t prefix_cache_hits=0;
     std::size_t physical_view_inputs=0,physical_view_worlds=0;
+    double predicted_sdk_ms=0,proxy_lower=0,proxy_upper=0;
     bool work_cut=false,wall_cut=false,support_complete=true;
 };
 class EpisodePolicySearch {

@@ -370,6 +370,8 @@ JointObservation FullModelController::feedback(const JointAction& action,const A
 }
 void FullModelController::run() {
     auto& w=owner;
+    const auto sdk_time=EpisodeLatencyModel::development();
+    LOG("[FullModel] latency_scope=f19_actual_repeat0_sdk_median_proxy latency_rate_per_ms=0.02 outcome_without_failure_labels=action_median latency_hard_bound=false physical_eval_scope=ledger_exact_view\n");
     std::string stop_reason="step_or_deadline_limit";
     auto began=std::chrono::steady_clock::now();initialize();cpu_used+=std::chrono::steady_clock::now()-began;
     w.execution_evidence.reset(true);
@@ -420,7 +422,7 @@ void FullModelController::run() {
                     std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::milliseconds(250)-cpu_used-already));
                 if(allowance.count()<=0){stop_reason="no_remaining_search_budget";break;}
                 const auto plan=EpisodeRouteSearch::solve(replay->belief(),model,proposals.routes,observations,ask,
-                    w.deadline_manager.remaining()-w.plan_safety_margin,8192-proposals.transitions-adaptive.transitions,allowance);
+                    w.deadline_manager.remaining()-w.plan_safety_margin,8192-proposals.transitions-adaptive.transitions,allowance,true,&sdk_time);
                 policy=plan.policy;++decision;
                 const auto stopping=replay->belief().reward(model);
                 LOG("[FullModel] decision=%zu lower=%.6f upper=%.6f routes=%zu transitions=%zu prefix_cache_hits=%zu wall_cut=%s work_cut=%s model_ms=%lld\n",
@@ -431,6 +433,8 @@ void FullModelController::run() {
                     decision,stopping.lower,stopping.upper,plan.value.lower,plan.value.upper,replay->belief().support().size(),observations.size(),policy->stop?"true":"false");
                 LOG("[FullPhysicalEvaluation] decision=%zu inputs=%zu retained=%zu replay_support=%zu scope=pure_physical_candidate_evaluation canonical_answer_authority=false\n",
                     decision,plan.physical_view_inputs,plan.physical_view_worlds,replay->belief().support().size());
+                LOG("[FullLatencyEvidence] decision=%zu predicted_sdk_ms=%.9f proxy_lower=%.9f proxy_upper=%.9f base_lower=%.9f base_upper=%.9f rate_per_ms=0.02 past_time_constant=true scope=descriptive_future_sdk_continuous_proxy hard_bound=false\n",
+                    decision,plan.predicted_sdk_ms,plan.proxy_lower,plan.proxy_upper,plan.value.lower,plan.value.upper);
                 cpu_used+=std::chrono::steady_clock::now()-began;
                 if(policy->stop) {
                     bool deferred_coverage=false;
