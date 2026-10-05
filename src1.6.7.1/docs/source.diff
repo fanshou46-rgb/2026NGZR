@@ -1,0 +1,79 @@
+--- HistoryVersion/src1.6.7/CMakeLists.txt
++++ src1.6.7.1/CMakeLists.txt
+@@ -1 +1 @@
+-PROJECT(rdfw VERSION 1.6.7)
++PROJECT(rdfw VERSION 1.6.7.1)
+--- HistoryVersion/src1.6.7/rdfw.cpp
++++ src1.6.7.1/rdfw.cpp
+@@ -35,0 +36,13 @@
++class PlannerShutdown : public std::exception {
++public:
++    const char* what() const noexcept override { return "SDK requested planner shutdown"; }
++};
++
++class PlannerActiveGuard {
++public:
++    explicit PlannerActiveGuard(bool& active) : active_(active) { active_ = true; }
++    ~PlannerActiveGuard() { active_ = false; }
++private:
++    bool& active_;
++};
++
+@@ -250,0 +264,2 @@
++    planner_shutdown_generation.fetch_add(1);
++    std::unique_lock<std::mutex> lifetime(planner_lifecycle_mutex);
+@@ -933,0 +949 @@
++    CheckPlannerShutdown();
+@@ -1298,0 +1315 @@
++    CheckPlannerShutdown();
+@@ -1725 +1742,19 @@
+-void RDFW::Plan() // 改
++void RDFW::CheckPlannerShutdown() const {
++    if (planner_active && planner_shutdown_generation.load() != active_planner_generation)
++        throw PlannerShutdown();
++}
++
++void RDFW::Plan() {
++    const std::uint64_t generation = planner_shutdown_generation.load();
++    std::unique_lock<std::mutex> lifetime(planner_lifecycle_mutex);
++    if (planner_shutdown_generation.load() != generation) return;
++    active_planner_generation = generation;
++    PlannerActiveGuard active(planner_active);
++    try {
++        PlanImpl();
++    } catch (const PlannerShutdown&) {
++        LOG("[Lifecycle] planner stopped after SDK shutdown request\n");
++    }
++}
++
++void RDFW::PlanImpl() // 原 1.6.7 规划顺序
+@@ -1727 +1762 @@
+-    LOG("[PlannerVersion] 1.6.6");
++    LOG("[PlannerVersion] 1.6.7.1 lifecycle-hardening baseline=1.6.7 margin=300ms");
+@@ -1841,0 +1877 @@
++    CheckPlannerShutdown();
+@@ -1855,0 +1892 @@
++    CheckPlannerShutdown();
+@@ -7051,0 +7089,4 @@
++    // SDK timed_join can expire before Plan finishes. Keep its state alive
++    // through the in-flight call, mutation commit/rollback and stack unwind.
++    planner_shutdown_generation.fetch_add(1);
++    std::unique_lock<std::mutex> lifetime(planner_lifecycle_mutex);
+--- HistoryVersion/src1.6.7/rdfw.hpp
++++ src1.6.7.1/rdfw.hpp
+@@ -16,0 +17,3 @@
++#include <atomic>
++#include <cstdint>
++#include <mutex>
+@@ -570 +573 @@
+-        bool isMultiGotoMode;         // 是否在多goto任务模式下，用于控制是否跳过Sense操作
++        bool isMultiGotoMode = false; // 预览也可能在 Plan 重置之前读取此标志
+@@ -761,0 +765,8 @@
++        void PlanImpl();
++        void CheckPlannerShutdown() const;
++        // Fini requests cancellation before waiting for the active Plan owner.
++        // A generation avoids losing that request when a new Plan starts.
++        std::mutex planner_lifecycle_mutex;
++        std::atomic<std::uint64_t> planner_shutdown_generation{0};
++        std::uint64_t active_planner_generation = 0;
++        bool planner_active = false;
