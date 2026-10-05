@@ -52,6 +52,15 @@ InitialConditioning EpisodeConditioner::initial(const JointWorld& base,const std
         }
         if(o.kind!=JointObservation::Kind::FEEDBACK)continue; // Ask remains weak
         if(!o.success) {
+            if(a.kind==JointActionKind::MOVE && int(a.a)!=robot) {
+                // In the SDK physical semantics a failed nonredundant Move
+                // excludes this STATIC initial loc fact. Condition generative
+                // factors only; do not publish object locations as hard facts.
+                if(int(a.a)==base.robot)result.consistent=false;
+                for(const auto& item:base.objects)
+                    restrict(PriorField::EXPLICIT_AT,item.first,0,int(a.a),false,event.receipt,
+                        "failed_noncurrent_move_excludes_initial_location");
+            }
             if((a.kind==JointActionKind::OPEN || a.kind==JointActionKind::CLOSE) && hand==0 &&
                big_at.count(a.a) && big_at[a.a]==robot && !door_changed.count(a.a)) {
                 restrict(PriorField::DOOR,a.a,0,a.kind==JointActionKind::OPEN?1:0,true,event.receipt,

@@ -38,7 +38,11 @@ bool contexts(JointWorld world,const std::vector<EpisodeEvidence>& history,std::
         if(e.action.kind==JointActionKind::SENSE) {
             for(const auto& item:world.objects)if(!item.second.small &&
                 (item.second.at==world.robot)!=bool(e.observation.ids.count(item.first)))return false;
-        } else if(e.action.kind==JointActionKind::MOVE || e.action.kind==JointActionKind::OPEN || e.action.kind==JointActionKind::CLOSE) {
+        } else if(e.action.kind==JointActionKind::MOVE) {
+            // Its loc precondition depends on initial small AT factors that
+            // have not been chosen yet. Check map legality only in full replay.
+            if(e.observation.success && world.robot==int(e.action.a))return false;
+        } else if(e.action.kind==JointActionKind::OPEN || e.action.kind==JointActionKind::CLOSE) {
             if(JointDynamics::step(world,e.action).observation.success!=e.observation.success)return false;
         }
         if(e.observation.kind==JointObservation::Kind::FEEDBACK && e.observation.success)forced(world,e.action);

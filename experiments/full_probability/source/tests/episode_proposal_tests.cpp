@@ -6,10 +6,11 @@ using namespace _home;
 int main() {
     JointWorld w;w.robot=1;w.locations={1,2};w.objects[2]=JointObject(false,true,1,0,true);
     w.objects[3]=JointObject(true,false,1);
+    w.objects[4]=JointObject(false,false,2); // SDK loc(2) has an initial AT witness
     PublicPriorFactor at;at.field=PriorField::EXPLICIT_AT;at.object=3;at.values={{1,.2},{2,.3},{-1,.5}};
     PublicPriorFactor inside;inside.field=PriorField::INSIDE_EDGE;inside.object=3;inside.parent=2;inside.values={{0,.5},{1,.5}};
     JointObservation first;first.kind=JointObservation::Kind::VISIBLE;first.ids={2,3};
-    JointObservation last=first;last.ids={3};
+    JointObservation last=first;last.ids={3,4};
     JointObservation ok;ok.success=true;
     std::vector<EpisodeEvidence> history={{1,{JointActionKind::SENSE},first},
         {2,{JointActionKind::MOVE,2},ok},{3,{JointActionKind::SENSE},last}};
@@ -22,7 +23,7 @@ int main() {
         for(const auto& s:proposal.scenes) {
             assert(s.episode.paid==0 && s.episode.world.robot==1);
             assert(s.episode.world.objects.at(3).at==2 && s.episode.world.objects.at(3).inside.count(2));
-            assert(s.episode.world.initial_reply_counts.at({'a',2})==1); // regenerated noise domain
+            assert(s.episode.world.initial_reply_counts.at({'a',2})==2); // regenerated actual AT-entry domain
             mass+=s.weight;
         }
         assert(std::abs(mass-.15)<1e-9); // exact block prior/q correction

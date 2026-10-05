@@ -43,7 +43,7 @@ int main() {
     // hypotheses before spending it on variants of only the first world.
     SdkEpisode a;a.world.robot=0;a.world.locations={0,1,2};
     a.world.objects[3]=JointObject(true,false,1);a.world.freezeSdkReplyDomain();
-    auto b=a;b.world.objects[3].at=2;b.world.freezeSdkReplyDomain();
+    auto b=a;b.world.objects[3].at=2;b.world.initial_reply_counts.clear();b.world.freezeSdkReplyDomain();
     SdkEpisodeModel locate;locate.goals={SdkPredicate{"pickup",{{3,0}}}};
     for(unsigned repeat=0;repeat<50;++repeat) {
         const auto batch=EpisodeRouter::propose(EpisodeBelief({{a,.5},{b,.5}}),locate,12,std::chrono::milliseconds(1000));

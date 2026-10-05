@@ -104,12 +104,7 @@ EpisodeProposalBatch EpisodeRouter::propose(const EpisodeBelief& belief,const Sd
     std::vector<std::size_t> order(model.goals.size());std::iota(order.begin(),order.end(),0);
     const auto rank=[&](std::size_t id){const auto& v=model.goals[id].verb;return v=="goto"?3:v=="pickup"?2:v=="close"?1:0;};
     std::stable_sort(order.begin(),order.end(),[&](std::size_t a,std::size_t b){return rank(a)<rank(b);});
-    // Establish complete short-task candidates before longer restoration and
-    // subset routes. They give each feedback branch a priced incumbent under
-    // small work slices; full routes can still replace them when profitable.
-    std::vector<std::vector<std::size_t>> orders;
-    for(auto id:order)orders.push_back({id});
-    orders.push_back(order);
+    std::vector<std::vector<std::size_t>> orders={order};
     // Separate terminal endpoints; each route is priced by all final goals.
     for(auto endpoint:order)if(model.goals[endpoint].verb=="goto") {
         std::vector<std::size_t> one;
@@ -119,6 +114,7 @@ EpisodeProposalBatch EpisodeRouter::propose(const EpisodeBelief& belief,const Sd
     if(order.size()<=16)for(std::size_t omit=0;omit<order.size();++omit) {
         auto subset=order;subset.erase(subset.begin()+omit);orders.push_back(std::move(subset));
     }
+    for(auto id:order)orders.push_back({id});
     std::set<std::string> seen;
     // Offer the same complete order across different public hypotheses before
     // spending work on many variants of the first sampled world.

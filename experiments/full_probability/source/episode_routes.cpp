@@ -70,10 +70,7 @@ struct RouteSearch {
         }
         // This is a cheap PUBLIC-posterior ordering hint only. Eligibility and
         // value still come from complete whole-belief route evaluation below.
-        std::stable_sort(order.begin(),order.end(),[&](std::size_t a,std::size_t c){
-            if(priorities[a]!=priorities[c])return priorities[a]>priorities[c];
-            return routes[a].size()<routes[c].size();
-        });
+        std::stable_sort(order.begin(),order.end(),[&](std::size_t a,std::size_t c){return priorities[a]>priorities[c];});
         for(auto id:order) {
             if(exhausted())break;
             candidate_truncated=false;

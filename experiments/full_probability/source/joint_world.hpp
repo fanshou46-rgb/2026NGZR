@@ -30,6 +30,7 @@ struct JointWorld {
     void freezeSdkReplyDomain();
     void validate() const;
     bool atLocation(unsigned id,int location) const;
+    bool legalLocation(int location) const;
     std::set<unsigned> visible() const;
     std::set<LocationHypothesis> truthfulReplies(unsigned id) const;
     LocationHypothesis selectedTruthfulReply(unsigned id) const;

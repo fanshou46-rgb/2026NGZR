@@ -39,6 +39,14 @@ bool JointWorld::atLocation(unsigned id,int loc) const {
     auto it=objects.find(id);if(it==objects.end()) return false;
     return it->second.at==loc || (it->second.small && (hand==id || plate==id) && robot==loc);
 }
+bool JointWorld::legalLocation(int loc) const {
+    // Public candidate IDs are not necessarily SDK loc facts: an erroneous
+    // location hint may name a point absent from the actual initial scene.
+    // SDK env_to_asp defines loc from initial AT entries; it remains static
+    // after movement. Initial reply counts freeze those same entries.
+    return initial_reply_counts.empty()?bool(locations.count(loc)):
+        bool(initial_reply_counts.count({'a',loc}));
+}
 std::set<unsigned> JointWorld::visible() const {
     std::set<unsigned> result;
     for(const auto& item:objects) {
@@ -105,7 +113,7 @@ JointStep JointDynamics::step(const JointWorld& original,const JointAction& acti
     const bool into=dest!=w.objects.end() && dest->second.container && dest->second.opened && w.atLocation(action.b,w.robot);
     switch(action.kind) {
     case JointActionKind::MOVE:
-        success=w.locations.count(int(action.a)) && w.robot!=int(action.a);
+        success=w.legalLocation(int(action.a)) && w.robot!=int(action.a);
         if(success) {
             w.robot=int(action.a);
             for(unsigned slot:{w.hand,w.plate}) if(slot) w.objects.at(slot).at=w.robot;
