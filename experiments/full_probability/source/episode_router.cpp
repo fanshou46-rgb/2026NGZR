@@ -6,10 +6,10 @@
 using namespace _home;
 namespace {
 struct Builder {
-    JointWorld world;EpisodeRoute route;bool tray,sense;
+    JointWorld world;EpisodeRoute route;bool tray,sense,preopen,preopen_opportunity=false;
     std::size_t& work;std::size_t cap;std::chrono::steady_clock::time_point end;
-    Builder(const JointWorld& w,bool use_tray,bool observation,std::size_t& used,std::size_t limit,std::chrono::steady_clock::time_point deadline)
-        :world(w),tray(use_tray),sense(observation),work(used),cap(limit),end(deadline) {}
+    Builder(const JointWorld& w,bool use_tray,bool observation,std::size_t& used,std::size_t limit,std::chrono::steady_clock::time_point deadline,bool early=false)
+        :world(w),tray(use_tray),sense(observation),preopen(early),work(used),cap(limit),end(deadline) {}
     void emit(JointActionKind kind,unsigned a=0,unsigned b=0) {
         if(work>=cap || std::chrono::steady_clock::now()>=end)throw std::runtime_error("proposal budget");
         if(route.size()>=64)throw std::runtime_error("proposal horizon");
@@ -71,6 +71,9 @@ struct Builder {
         else if(goal.verb=="close"){freeHand();go(position(a));emit(JointActionKind::CLOSE,a);}
         else if(goal.verb=="takeout"){freeHand();go(position(b));open(b);emit(JointActionKind::TAKEOUT,a,b);}
         else if(goal.verb=="putin") {
+            const bool local_empty=!world.hand && !world.objects.at(b).opened && position(a)==position(b);
+            preopen_opportunity|=local_empty;
+            if(preopen && local_empty){go(position(b));open(b);}
             acquire(a);go(position(b));open(b);acquire(a);emit(JointActionKind::PUTIN,a,b);
         } else throw std::logic_error("unsupported task route");
     }
@@ -129,6 +132,18 @@ EpisodeProposalBatch EpisodeRouter::propose(const EpisodeBelief& belief,const Sd
         }}
         catch(const std::exception&){continue;}
         if(!builder.route.empty() && seen.insert(key(builder.route)).second)result.routes.push_back(std::move(builder.route));
+        if(builder.preopen_opportunity) {
+            // Add a cheaper local opening order, retaining the original. The
+            // earlier successful Open can damage a permanent constraint that
+            // the original first TakeOut would restore, so it is not assumed
+            // dominant and receives no execution privilege.
+            Builder early(state.episode.world,tray,sense,result.transitions,cap,end,true);
+            try{for(std::size_t i=0;i<task_order.size();++i) {
+                if(i+1<task_order.size() && early.batchDelivery(model,model.goals[task_order[i]],model.goals[task_order[i+1]]))++i;
+                else early.task(model,model.goals[task_order[i]]);
+            }}catch(const std::exception&){continue;}
+            if(!early.route.empty() && seen.insert(key(early.route)).second)result.routes.push_back(std::move(early.route));
+        }
     }
     return result;
 }

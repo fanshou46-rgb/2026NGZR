@@ -100,3 +100,5 @@
 - 1498条SDK动作/反馈/收据/费用/计时、59265策略节点、239项决策值、76停止原因全部核对；16次必要覆盖询问原始缺失/目标依赖/次数/Stop减费用/许可理由均独立审计通过。943 confirmed、555 modeled_probe、54次未预见反馈、零物理false。SDK161595377442ns、模型14381ms、派发963ms；全矩阵期间无并行构建/归档或Git同步。
 - f14通过代码/362检查提交28dfe23356f86c2001d1aa86ef81e7a7899c3d5d已正常push并远端精确核对；检查归档SHA256=dcb4102ba95ec55e01c6557105e118ef1be29281185edb472ce79cac63a62044。
 - f15草稿增加同地点PutIn先开柜候选，减少原序列的PutDown/再次PickUp。原候选完整保留，因为较早Open可能在TakeOut移除初始inside之前损失永久约束。新增两道实际SDK顺序反事实：无该约束应先Open，带禁止源inside的历史约束应先TakeOut保留信用；只在完整联合历史评分后执行。待构建验证。
+- f15原生SDK编译/364项检查全部通过。新增真实SDK同地PutIn反事实：无附加约束时Open先行，Sense/Open/Sense/TakeOut/PutIn五条、费用8、SDK32；禁止源inside的永久约束时TakeOut先行，七条费用12、SDK48，保留20约束分。先开柜候选不是统一替换，原顺序仍保留并由完整联合历史模型比较。
+- f14完整结果579f86de50d1674cde733df43f165e59fb3e584a已同步云端并核对远端；全量证据归档SHA256=55fd50afde241eb980c732faff8dd64aa970bda59bb8846931f3fa80d0eab215。
