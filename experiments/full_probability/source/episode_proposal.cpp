@@ -51,8 +51,8 @@ bool contexts(JointWorld world,const std::vector<EpisodeEvidence>& history,std::
 }
 bool explains(unsigned id,JointObject item,const std::vector<EpisodeEvidence>& history,
     const std::vector<Context>& states,std::size_t& work,std::size_t cap,
-    std::chrono::steady_clock::time_point end,ConditionedProposal& result,bool& latest_matches) {
-    latest_matches=false;
+    std::chrono::steady_clock::time_point end,ConditionedProposal& result,bool& clue_matches) {
+    clue_matches=false;
     for(std::size_t i=0;i<history.size();++i) {
         if(work>=cap || std::chrono::steady_clock::now()>=end) {
             result.complete=false;result.work_cut=work>=cap;result.wall_cut=std::chrono::steady_clock::now()>=end;return false;
@@ -63,10 +63,16 @@ bool explains(unsigned id,JointObject item,const std::vector<EpisodeEvidence>& h
             bool visible=at;for(unsigned parent:item.inside)visible|=bool(c.open_here.count(parent));
             if(visible!=bool(e.observation.ids.count(id)))return false;
         } else if(a.kind==JointActionKind::ASK && a.a==id) {
+            const bool has_truth=item.at>=0 || c.hand==id || c.plate==id || !item.inside.empty();
+            const bool blank=o.reply==LocationHypothesis{'!',-1};
+            // SDK blank occurs BEFORE the noisy channel, exactly when no
+            // truthful atom exists. This filters impossible public histories;
+            // it confirms neither a specific AT nor a containment edge.
+            if(blank==has_truth)return false;
             // This is a proposal hint, never a likelihood or a hard truth.
             // The complete replay still checks noisy/random/blank answers,
             // the actual initial reply pool and the persistent answer order.
-            latest_matches=o.reply.first=='a'?item.at==o.reply.second ||
+            clue_matches|=o.reply.first=='a'?item.at==o.reply.second ||
                 ((c.hand==id || c.plate==id) && c.robot==o.reply.second):
                 o.reply.first=='i' && item.inside.count(unsigned(o.reply.second));
         } else if(e.observation.kind==JointObservation::Kind::FEEDBACK && a.a==id && a.kind!=JointActionKind::MOVE) {
@@ -173,7 +179,8 @@ ConditionedProposal EpisodeProposal::generate(const JointWorld& base,const std::
             candidate.objects[block.first]=selected->item;
             // The target remains the original generative prior. No noisy
             // answer is counted here as truth or counted twice as likelihood.
-            // q has a nonzero prior component for every positive hypothesis.
+            // q has a nonzero prior component for every positive hypothesis
+            // compatible with the necessary public feedback conditions.
             importance*=selected->prior/q(*selected);
             if(clue_mass>0)++result.clue_mixture_draws;
         }

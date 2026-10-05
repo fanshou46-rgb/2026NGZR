@@ -62,7 +62,7 @@ int main() {
     // Retain both rare and nonmatching proposals and independently check p/q.
     JointWorld rare;rare.robot=1;rare.locations={1,9,10};
     rare.objects[2]=JointObject(false,true,1,0,false);rare.objects[3]=JointObject(true,false,-1);
-    PublicPriorFactor rare_at;rare_at.field=PriorField::EXPLICIT_AT;rare_at.object=3;rare_at.values={{-1,.9999},{9,.0001}};
+    PublicPriorFactor rare_at;rare_at.field=PriorField::EXPLICIT_AT;rare_at.object=3;rare_at.values={{-1,.5},{9,.0001},{10,.4999}};
     JointObservation visible;visible.kind=JointObservation::Kind::VISIBLE;visible.ids={2};
     JointObservation noisy;noisy.kind=JointObservation::Kind::ANSWER;noisy.reply={'a',1};
     auto clue=noisy;clue.reply={'a',9};
@@ -76,7 +76,8 @@ int main() {
         for(const auto& scene:proposal.scenes) {
             const bool located=scene.episode.world.objects.at(3).at==9;
             matched|=located;unmatched|=!located;
-            const double prior=located?.0001:.9999,q=located?.50005:.49995;
+            assert(scene.episode.world.objects.at(3).at>=0); // nonblank cannot come from a ghost
+            const double prior=located?.0001:.4999,q=located?.5001:.4999;
             assert(std::abs(scene.weight-prior/q/32)<1e-12);
         }
         assert(matched && unmatched); // clue was not made into a hard truth
