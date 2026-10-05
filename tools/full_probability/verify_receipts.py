@@ -22,13 +22,16 @@ def public_missing_locations(case_id):
     root=ET.fromstring(raw);env=root.find('env')
     get=lambda name:env.findtext(name) or ''
     public=get('info')+' '+('' if env.get('mis')=='on' else get('mis'))+' '+(get('err/w') if env.get('err')=='on' else get('err/r'))
+    return parse_public_missing_locations(public,root.findtext('instr') or '',row['stage'])
+
+def parse_public_missing_locations(public,instruction,stage):
     atoms=[tuple(s.split()) for s in re.findall(r'\(([^()]*)\)',public)]
     attrs={}
     for atom in atoms:
         if len(atom)==3 and atom[0] in ('sort','size','color','type'):
             attrs.setdefault(int(atom[1]),set()).add((atom[0],atom[2]))
     supplied_at={int(t[1]) for t in atoms if len(t)==3 and t[0]=='at'}
-    tokens=iter(re.findall(r'\(|\)|[^\s()]+',root.findtext('instr') or ''))
+    tokens=iter(re.findall(r'\(|\)|[^\s()]+',instruction))
     def parse(first):
         if first!='(':return first
         result=[]
@@ -40,6 +43,7 @@ def public_missing_locations(case_id):
     for task in tree[1:]:
         if not isinstance(task,list) or task[0]!=':task':continue
         action,conditions=task[1],task[2][1:]
+        acquisition_variable=action[2] if action[0]=='give' and action[1]=='human' else action[1]
         for variable in action[1:]:
             if variable=='human':bound={id for id,a in attrs.items() if ('sort','human') in a}
             elif variable.isdigit():bound={int(variable)}
@@ -48,13 +52,14 @@ def public_missing_locations(case_id):
                 assert tests and all(t[0] in ('sort','size','color','type') for t in tests),'unsupported public goal grounding'
                 bound={id for id,a in attrs.items() if tests<=a}
             required.update(bound)
-            if action[0] in ('pickup','give','puton','putin') and variable==action[1]:acquisitions.update(bound)
+            if action[0] in ('pickup','give','puton','putin') and variable==acquisition_variable:acquisitions.update(bound)
     direct=set(required)
     required.update(int(t[2]) for t in atoms if len(t)==3 and t[0]=='inside' and int(t[1]) in direct)
     supplied_inside={int(t[1]) for t in atoms if len(t)==3 and t[0]=='inside'}
-    if row['stage']==1:return dict(big=set(),acquisition=set())
+    supplied_stored={int(t[1]) for t in atoms if len(t)==2 and t[0] in ('hold','plate') and int(t[1])>0}
+    if stage==1:return dict(big=set(),acquisition=set())
     return dict(big={id for id in required if ('size','big') in attrs.get(id,set()) and id not in supplied_at},
-        acquisition={id for id in acquisitions if ('size','small') in attrs.get(id,set()) and id not in supplied_at and id not in supplied_inside})
+        acquisition={id for id in acquisitions if ('size','small') in attrs.get(id,set()) and id not in supplied_at and id not in supplied_inside and id not in supplied_stored})
 
 def verify_policy(node, depth=0):
     assert depth<=64,'policy recursion limit'
