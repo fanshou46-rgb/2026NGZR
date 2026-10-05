@@ -1,0 +1,633 @@
+{
+  "checkpoint": "f13",
+  "suite": "smoke2-full",
+  "totals": {
+    "decision_values_checked": 209,
+    "termination_reasons_checked": 76,
+    "policy_nodes_checked": 45981,
+    "unexpected_feedback_stop": 44,
+    "policies_checked": 1266,
+    "confirmed": 786,
+    "outcome_observed": 478,
+    "modeled_probe": 480,
+    "outcome_succeeded": 788,
+    "sdk_duration_receipts_checked": 1266,
+    "sdk_ns": 136426147887,
+    "model_ms_reported": 13273,
+    "dispatch_overhead_ms_reported": 828,
+    "runs": 76,
+    "actions": 1266
+  },
+  "runs": [
+    {
+      "key": "f13-smoke2-full-A01-01-s2-it-repeat0-lab",
+      "actions": 3,
+      "cost": 6,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 357693486,
+      "log_sha256": "e5530ec5ece1bbb70670726737146ad0c41267337d23e9e4df8509fb79acf8dc"
+    },
+    {
+      "key": "f13-smoke2-full-A01-01-s2-nt-repeat0-lab",
+      "actions": 3,
+      "cost": 6,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 337284236,
+      "log_sha256": "38eaba8a5bb41857ba3b6c9eba471978f7563d1776276bd2e7d5246fb23e03a4"
+    },
+    {
+      "key": "f13-smoke2-full-A01-02-s2-it-repeat0-lab",
+      "actions": 1,
+      "cost": 1,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 102787598,
+      "log_sha256": "eadf45c49b87b758b2539829515c0dc189120f9a4bdedff027af6765b5a743d0"
+    },
+    {
+      "key": "f13-smoke2-full-A01-02-s2-nt-repeat0-lab",
+      "actions": 1,
+      "cost": 1,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 114300943,
+      "log_sha256": "2efa8909b2877f5de6a099f6b2f8697e01427d5a7a184d10fc269cfbf0d67bb1"
+    },
+    {
+      "key": "f13-smoke2-full-A02-01-s2-it-repeat0-lab",
+      "actions": 25,
+      "cost": 52,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 2732428529,
+      "log_sha256": "620eafaf841e4bb55fa905b7286d9c031da2cff9f5181741a53dec6a85a01b4b"
+    },
+    {
+      "key": "f13-smoke2-full-A02-01-s2-nt-repeat0-lab",
+      "actions": 25,
+      "cost": 52,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 2704511977,
+      "log_sha256": "5d91aea59aae23854906fa6bc673ef45973efe50117e8c037076a8a2bb2e5902"
+    },
+    {
+      "key": "f13-smoke2-full-A03-01-s2-it-repeat0-lab",
+      "actions": 32,
+      "cost": 69,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 3452972103,
+      "log_sha256": "3f6c5d07f38fdbd04abceab52aa910e96e53127c6175c7ca21def8aae20866a1"
+    },
+    {
+      "key": "f13-smoke2-full-A03-01-s2-nt-repeat0-lab",
+      "actions": 32,
+      "cost": 69,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 3477349717,
+      "log_sha256": "00105b3369c4defc83ac07a44ef45a5e4acafdbec655fc08f8d691667404933d"
+    },
+    {
+      "key": "f13-smoke2-full-A04-01-s2-it-repeat0-lab",
+      "actions": 31,
+      "cost": 66,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 3392058810,
+      "log_sha256": "8009116b2913ed0998d2bba303774d65712055332ae9af49feadff0f76cfec5c"
+    },
+    {
+      "key": "f13-smoke2-full-A04-01-s2-nt-repeat0-lab",
+      "actions": 31,
+      "cost": 66,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 3420601789,
+      "log_sha256": "5d64f9e87b06c0797b3678fa67ceb172a3ff5129061726047ee37ca9a0559dea"
+    },
+    {
+      "key": "f13-smoke2-full-A05-01-s2-it-repeat0-lab",
+      "actions": 25,
+      "cost": 53,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 2753917947,
+      "log_sha256": "a14f004f8ffe5c6dabd254442e5ca941762d0210e7c971965bfc4ed55c258064"
+    },
+    {
+      "key": "f13-smoke2-full-A05-01-s2-nt-repeat0-lab",
+      "actions": 25,
+      "cost": 53,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 2704049854,
+      "log_sha256": "aba1cdbb6f858c7e96c50ca7e1605136dec2ffc4be0fdb880c19733954b7197a"
+    },
+    {
+      "key": "f13-smoke2-full-B01-01-s2-it-repeat0-lab",
+      "actions": 17,
+      "cost": 35,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1871376097,
+      "log_sha256": "0d6d39de67605fd2870ccb67d3a36b067af3ae7225c197e68aab194416445bf9"
+    },
+    {
+      "key": "f13-smoke2-full-B01-01-s2-nt-repeat0-lab",
+      "actions": 17,
+      "cost": 35,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1829763149,
+      "log_sha256": "72609b7cd93c5886abd4a9e439efe7e50a65e4c990eaeb2ce7bc4705f54558bb"
+    },
+    {
+      "key": "f13-smoke2-full-B02-01-s2-it-repeat0-lab",
+      "actions": 11,
+      "cost": 24,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1187928747,
+      "log_sha256": "a521a406cf3746f1f440e66f9a7cfe7e0010ea8e38c795fe051d18bc931bc7f5"
+    },
+    {
+      "key": "f13-smoke2-full-B02-01-s2-nt-repeat0-lab",
+      "actions": 11,
+      "cost": 24,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1199490059,
+      "log_sha256": "41bc50a30f51a24c271e8649ddb88f91c236e4ce820f710919d5d5c901c4aff7"
+    },
+    {
+      "key": "f13-smoke2-full-B03-01-s2-it-repeat0-lab",
+      "actions": 5,
+      "cost": 11,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 451734784,
+      "log_sha256": "eb69a79e5b479ce56366fee0bb89d2be093a7b0afe0d7e76500f6c9d4d650abb"
+    },
+    {
+      "key": "f13-smoke2-full-B03-01-s2-nt-repeat0-lab",
+      "actions": 7,
+      "cost": 15,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 627041806,
+      "log_sha256": "b9627bb5102f40d04b3b15b5333d05f8cd935cd2bcc2cfb04d6e9f241f7d8c32"
+    },
+    {
+      "key": "f13-smoke2-full-B04-01-s2-it-repeat0-lab",
+      "actions": 11,
+      "cost": 24,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1184536530,
+      "log_sha256": "47a1aa1c80486c4c88c3d495323fe34a466746ba8b7635ca164af390560540cb"
+    },
+    {
+      "key": "f13-smoke2-full-B04-01-s2-nt-repeat0-lab",
+      "actions": 11,
+      "cost": 24,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1179826661,
+      "log_sha256": "26989ad9d6164213ea88c09a6edca933e087bb026da9d27dcb454206dbf96b15"
+    },
+    {
+      "key": "f13-smoke2-full-B05-01-s2-it-repeat0-lab",
+      "actions": 19,
+      "cost": 40,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 2078778105,
+      "log_sha256": "446cbb44f4e99470061a7ac51614b7a244baa3704114f5471e73c3546d9c4a88"
+    },
+    {
+      "key": "f13-smoke2-full-B05-01-s2-nt-repeat0-lab",
+      "actions": 19,
+      "cost": 40,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 2033832771,
+      "log_sha256": "bb86f20666ca1af16212c7aa6b05732787c5d110939f19ec46e07e6f775e2039"
+    },
+    {
+      "key": "f13-smoke2-full-C01-01-s2-it-repeat0-lab",
+      "actions": 17,
+      "cost": 35,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1890656800,
+      "log_sha256": "6850e09a6c6be1739000ed0931ddf8247b1d2f0648ff38f3ceb191534f7492ea"
+    },
+    {
+      "key": "f13-smoke2-full-C01-01-s2-nt-repeat0-lab",
+      "actions": 17,
+      "cost": 35,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1876811098,
+      "log_sha256": "a37ff68c22a710850bc51d580a73d07b8ab9bda16236979ccc97eec4595fbc45"
+    },
+    {
+      "key": "f13-smoke2-full-C02-01-s2-it-repeat0-lab",
+      "actions": 18,
+      "cost": 39,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1934452517,
+      "log_sha256": "682ca335ecdfa0ac9ee2c7f5843905b14d5b9b4df1848f75764ad5a7189576cf"
+    },
+    {
+      "key": "f13-smoke2-full-C02-01-s2-nt-repeat0-lab",
+      "actions": 18,
+      "cost": 39,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1942017447,
+      "log_sha256": "ae60ca60d3b2f2d70eff8c5a06026fb3d1a8dd8c93602a78f35ec3c59720aede"
+    },
+    {
+      "key": "f13-smoke2-full-C03-01-s2-it-repeat0-lab",
+      "actions": 12,
+      "cost": 27,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1229548906,
+      "log_sha256": "bac13a1f4e5a12e0b066e8b7e726d690563fb92929fc307b35b1dcb2a933b0e7"
+    },
+    {
+      "key": "f13-smoke2-full-C03-01-s2-nt-repeat0-lab",
+      "actions": 12,
+      "cost": 27,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1237829014,
+      "log_sha256": "e5b468bae4943209f51968e34b11164a5ad486af86af1df928a2176b74219493"
+    },
+    {
+      "key": "f13-smoke2-full-C04-01-s2-it-repeat0-lab",
+      "actions": 15,
+      "cost": 30,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1570268098,
+      "log_sha256": "e3539fe224ee14d190700a7c09fe0b759df1817faea3dc189efc9ecce1360410"
+    },
+    {
+      "key": "f13-smoke2-full-C04-01-s2-nt-repeat0-lab",
+      "actions": 15,
+      "cost": 30,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1626954862,
+      "log_sha256": "5dd54319c6334906b8fdb54403fabc8f0e8658e9b724559fa9768f32b547c063"
+    },
+    {
+      "key": "f13-smoke2-full-C05-01-s2-it-repeat0-lab",
+      "actions": 29,
+      "cost": 61,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 3071292583,
+      "log_sha256": "2031aa0bc973ba83613cdd99811f806a6258aa95b9d17b26e25b0288d715c628"
+    },
+    {
+      "key": "f13-smoke2-full-C05-01-s2-nt-repeat0-lab",
+      "actions": 29,
+      "cost": 61,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 3084499788,
+      "log_sha256": "b8371abe739998fdbe05b40944cb9e489d64cd15a947980258140660d8c99c24"
+    },
+    {
+      "key": "f13-smoke2-full-D01-01-s2-it-repeat0-lab",
+      "actions": 16,
+      "cost": 36,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1742484655,
+      "log_sha256": "b1ada50a7b3122925dacab31d2d657c735625c076610ff1b096836df30bc6f7d"
+    },
+    {
+      "key": "f13-smoke2-full-D01-01-s2-nt-repeat0-lab",
+      "actions": 16,
+      "cost": 36,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1745726873,
+      "log_sha256": "4bdbd968a75ed1ef564ce215d3d2ac750b356edbbe050949e4722101f9fea24c"
+    },
+    {
+      "key": "f13-smoke2-full-D02-01-s2-it-repeat0-lab",
+      "actions": 14,
+      "cost": 29,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1561605585,
+      "log_sha256": "c2c7e26acedc2121aa8f3d4e8f4ba6613812b56de2cbb093b0c107c5e65f22eb"
+    },
+    {
+      "key": "f13-smoke2-full-D02-01-s2-nt-repeat0-lab",
+      "actions": 14,
+      "cost": 29,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1500407828,
+      "log_sha256": "fdce49b369d0b486ab9e82da5c73061238ba662d9fc3f34eeec70ad9e363ec65"
+    },
+    {
+      "key": "f13-smoke2-full-D03-01-s2-it-repeat0-lab",
+      "actions": 14,
+      "cost": 31,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1504986299,
+      "log_sha256": "cca75293f38c229025d6256f608f4a69f930c829e9adf6b40427c22776fe84ef"
+    },
+    {
+      "key": "f13-smoke2-full-D03-01-s2-nt-repeat0-lab",
+      "actions": 14,
+      "cost": 31,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1499325337,
+      "log_sha256": "361426a626c93ba1af012156a0f3845d12fb79f00bb3a32901dd86f0ba39258e"
+    },
+    {
+      "key": "f13-smoke2-full-A01-01-s2-it-repeat1-lab",
+      "actions": 3,
+      "cost": 6,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 326501171,
+      "log_sha256": "7d288f8e23832da44986806a6bcd0f2b6d84b68ec36e6f3b801167128ad13812"
+    },
+    {
+      "key": "f13-smoke2-full-A01-01-s2-nt-repeat1-lab",
+      "actions": 3,
+      "cost": 6,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 338161517,
+      "log_sha256": "c53e9c720342b869c3a150e37948bce4d93ef97e0db96e788da8cc2cef1c4949"
+    },
+    {
+      "key": "f13-smoke2-full-A01-02-s2-it-repeat1-lab",
+      "actions": 3,
+      "cost": 6,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 284554147,
+      "log_sha256": "f980b1b2e786bcadc824bb807c7f7722740d2c12a8802d7176750f7003ee6d40"
+    },
+    {
+      "key": "f13-smoke2-full-A01-02-s2-nt-repeat1-lab",
+      "actions": 3,
+      "cost": 6,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 279062321,
+      "log_sha256": "7ed1a2e2b24830398a3fcf07a44997dd36a501a89ea2df15c3a7db3b0c122616"
+    },
+    {
+      "key": "f13-smoke2-full-A02-01-s2-it-repeat1-lab",
+      "actions": 25,
+      "cost": 52,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 2757902771,
+      "log_sha256": "992cbc6eb1ac146eaff859580c9e75677c91ac2745c8763991e0d3ae5e31d0fc"
+    },
+    {
+      "key": "f13-smoke2-full-A02-01-s2-nt-repeat1-lab",
+      "actions": 25,
+      "cost": 52,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 2719743528,
+      "log_sha256": "abe22ef7502b3af901818b5cc69b4dedc524b90c89c7d7671b676c740ee887e2"
+    },
+    {
+      "key": "f13-smoke2-full-A03-01-s2-it-repeat1-lab",
+      "actions": 32,
+      "cost": 69,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 3662762192,
+      "log_sha256": "15031b91379568ddfc2264b5b8c3c89703182f15172e587c2c4c73e0237f2008"
+    },
+    {
+      "key": "f13-smoke2-full-A03-01-s2-nt-repeat1-lab",
+      "actions": 32,
+      "cost": 69,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 3428787887,
+      "log_sha256": "03d9996024b3527c0a3d138644e356c61e5be70251b07dcf8cdb3b4c6162ed83"
+    },
+    {
+      "key": "f13-smoke2-full-A04-01-s2-it-repeat1-lab",
+      "actions": 31,
+      "cost": 66,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 3402378889,
+      "log_sha256": "3612aa1ecf96c89093bb212d1e354f0170a89e51390e36e99f977d2fd318b016"
+    },
+    {
+      "key": "f13-smoke2-full-A04-01-s2-nt-repeat1-lab",
+      "actions": 31,
+      "cost": 66,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 3412103363,
+      "log_sha256": "1e8b41447ac11a323fdfa139daf10b9b29cc3e3f16cfb7fa909442f0a1e90b93"
+    },
+    {
+      "key": "f13-smoke2-full-A05-01-s2-it-repeat1-lab",
+      "actions": 25,
+      "cost": 53,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 2718475116,
+      "log_sha256": "a9d82b4fc25c8d4050164c2a63f6999523a4245a3caaf3c76c43073649b101e5"
+    },
+    {
+      "key": "f13-smoke2-full-A05-01-s2-nt-repeat1-lab",
+      "actions": 25,
+      "cost": 53,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 2693003184,
+      "log_sha256": "bf5c5b47662fbb145167d7772b2692db6339b3058d30ee6c62823e3fbca86bdc"
+    },
+    {
+      "key": "f13-smoke2-full-B01-01-s2-it-repeat1-lab",
+      "actions": 17,
+      "cost": 35,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1871172602,
+      "log_sha256": "e30eb06cc5a40918a39bdce6cbf2f82eed963fab0990ebbf7cef2260df7f1c1d"
+    },
+    {
+      "key": "f13-smoke2-full-B01-01-s2-nt-repeat1-lab",
+      "actions": 17,
+      "cost": 35,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1862495794,
+      "log_sha256": "02f83ab125c64f47233f465434b5d9973b92a85f11c09ac606b4d32529dc2021"
+    },
+    {
+      "key": "f13-smoke2-full-B02-01-s2-it-repeat1-lab",
+      "actions": 11,
+      "cost": 24,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1166511615,
+      "log_sha256": "d1982cb7e6c76498f500aa47f9f1c761080739ae8e16d8f7c69fe3f495b42e82"
+    },
+    {
+      "key": "f13-smoke2-full-B02-01-s2-nt-repeat1-lab",
+      "actions": 11,
+      "cost": 24,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1180173067,
+      "log_sha256": "a721e587f432a878eb2848dbb40d1f44f7047997ce02b664ec1794b035760bf8"
+    },
+    {
+      "key": "f13-smoke2-full-B03-01-s2-it-repeat1-lab",
+      "actions": 7,
+      "cost": 15,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 591967073,
+      "log_sha256": "4f3d349010b2a705fab1a2d985a445e1da42cc1c90ceed46ef9cd251081fe916"
+    },
+    {
+      "key": "f13-smoke2-full-B03-01-s2-nt-repeat1-lab",
+      "actions": 5,
+      "cost": 11,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 483252798,
+      "log_sha256": "d8144c197d3a44d8c428925311c8b6190aee837b393d135dcc5a5f9869f495c7"
+    },
+    {
+      "key": "f13-smoke2-full-B04-01-s2-it-repeat1-lab",
+      "actions": 11,
+      "cost": 24,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1173688523,
+      "log_sha256": "8891b96c576a8e60ea8090775d5cdf3b87c9ad2092c3703ebbf2855271ecfbaf"
+    },
+    {
+      "key": "f13-smoke2-full-B04-01-s2-nt-repeat1-lab",
+      "actions": 11,
+      "cost": 24,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1184368965,
+      "log_sha256": "9c4ab1df0fe533f27972a31936607c01e717e89a361865d13e93ec923e585b4d"
+    },
+    {
+      "key": "f13-smoke2-full-B05-01-s2-it-repeat1-lab",
+      "actions": 19,
+      "cost": 40,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 2007862137,
+      "log_sha256": "8dc80274aace0cd04b3c4f75a3f7e60fed738877e488695b63d68883aa7d1bc4"
+    },
+    {
+      "key": "f13-smoke2-full-B05-01-s2-nt-repeat1-lab",
+      "actions": 19,
+      "cost": 40,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 2063917161,
+      "log_sha256": "c16a4c0225fdf5c425cea0a4114e5eba57f50b45abb34c1d124360f04e2932cd"
+    },
+    {
+      "key": "f13-smoke2-full-C01-01-s2-it-repeat1-lab",
+      "actions": 17,
+      "cost": 35,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1862372440,
+      "log_sha256": "fa18ca4e0d4f494fb73beec7ef517b106a9863b5f48486c4deae446cce38e436"
+    },
+    {
+      "key": "f13-smoke2-full-C01-01-s2-nt-repeat1-lab",
+      "actions": 17,
+      "cost": 35,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1876991999,
+      "log_sha256": "e4f9fb71c93e44b4a254e1ee236cdd979de7f245f78e287213a48d01602ff782"
+    },
+    {
+      "key": "f13-smoke2-full-C02-01-s2-it-repeat1-lab",
+      "actions": 18,
+      "cost": 39,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1934253566,
+      "log_sha256": "81e6a01723a2dd91340e04916bfaab49441e74d23634200315a54e2fd3e7a8b6"
+    },
+    {
+      "key": "f13-smoke2-full-C02-01-s2-nt-repeat1-lab",
+      "actions": 18,
+      "cost": 39,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1921024141,
+      "log_sha256": "e21963b77b950f3249eb290d91b2565d95f48b5d717fead4227e3e0da35bea10"
+    },
+    {
+      "key": "f13-smoke2-full-C03-01-s2-it-repeat1-lab",
+      "actions": 10,
+      "cost": 22,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 959237564,
+      "log_sha256": "56aa8d9613d7b12da467c16a4505373a3b8b4d1eba47a2bafdab22f7d7fbc555"
+    },
+    {
+      "key": "f13-smoke2-full-C03-01-s2-nt-repeat1-lab",
+      "actions": 12,
+      "cost": 27,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1096387739,
+      "log_sha256": "22fb022f842d10b97554ea2da834cce27472c476d8e42689289ed60df0a0a9a5"
+    },
+    {
+      "key": "f13-smoke2-full-C04-01-s2-it-repeat1-lab",
+      "actions": 15,
+      "cost": 30,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1608459799,
+      "log_sha256": "b3c97ee351d8974dc00989938eb2d51c9e08a708c37d3d4a1b93d90bde854664"
+    },
+    {
+      "key": "f13-smoke2-full-C04-01-s2-nt-repeat1-lab",
+      "actions": 15,
+      "cost": 30,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1634167338,
+      "log_sha256": "ff8d9ce6162c05522f2d98aaa12ca11dc6c9810d2e8aac5ab635ca8647966352"
+    },
+    {
+      "key": "f13-smoke2-full-C05-01-s2-it-repeat1-lab",
+      "actions": 29,
+      "cost": 61,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 3103834660,
+      "log_sha256": "4c5eb355d63708c5d0a258eef383b7c507121779015760698a401ca83b1e6b9e"
+    },
+    {
+      "key": "f13-smoke2-full-C05-01-s2-nt-repeat1-lab",
+      "actions": 29,
+      "cost": 61,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 3072933915,
+      "log_sha256": "8c111e178ded38e2af540e378999861efd4173f65996cfc1e7c9385238cab238"
+    },
+    {
+      "key": "f13-smoke2-full-D01-01-s2-it-repeat1-lab",
+      "actions": 16,
+      "cost": 36,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1748607158,
+      "log_sha256": "f6487c938e86bc43741dc2c5bbbb6bd8ed9955bc655329828a245746f0c5da34"
+    },
+    {
+      "key": "f13-smoke2-full-D01-01-s2-nt-repeat1-lab",
+      "actions": 16,
+      "cost": 36,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1735402997,
+      "log_sha256": "7e58b7166ea639e7fbceb055497c164ec26ef79ff713cf7414f5584925adac2b"
+    },
+    {
+      "key": "f13-smoke2-full-D02-01-s2-it-repeat1-lab",
+      "actions": 14,
+      "cost": 29,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1538308862,
+      "log_sha256": "0a5323ab774a7702a26c5d7f6fcdfdcfa1ac9bfc7cc420dce5c47b386f9cd8f7"
+    },
+    {
+      "key": "f13-smoke2-full-D02-01-s2-nt-repeat1-lab",
+      "actions": 14,
+      "cost": 29,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1501029990,
+      "log_sha256": "70d8df6ebb3287940bc394e667e948c6a9943acec791e92e174922efd1f47960"
+    },
+    {
+      "key": "f13-smoke2-full-D03-01-s2-it-repeat1-lab",
+      "actions": 14,
+      "cost": 31,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1510904371,
+      "log_sha256": "2a390571931c46b67d6e78e7af5607c71784b98eeb86c0b8a3ab6c7feca09c6c"
+    },
+    {
+      "key": "f13-smoke2-full-D03-01-s2-nt-repeat1-lab",
+      "actions": 14,
+      "cost": 31,
+      "receipt_coverage": 1,
+      "sdk_ns_checked": 1500252139,
+      "log_sha256": "28e8c66737dcdfaa4b8ca8dd5c7b66f46cd7a1f4aa0103ca40eea471638acd2b"
+    }
+  ],
+  "failed_runs": [],
+  "scope": "actual raw SDK commands and feedback, costs, receipt chronology; full policy roots, branch mass, costs, Stop fallback and executed suffix. Finite prior coverage and candidate value calibration are not certified; legacy_unqualified is not a validated policy permit"
+}
