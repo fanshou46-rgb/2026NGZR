@@ -119,6 +119,24 @@ struct Builder {
 std::string key(const EpisodeRoute& route) {
     std::ostringstream s;for(const auto& a:route)s<<int(a.kind)<<','<<a.a<<','<<a.b<<';';return s.str();
 }
+std::string physicalProposalKey(const JointWorld& world) {
+    // Builder emits only physical actions and Sense. Keep every field used
+    // by validation, position, visibility and dynamics, including the static
+    // SDK Move domain. Ask frequencies/selectors are deliberately NOT merged
+    // in EpisodeBelief; this key reuses route simulation only.
+    std::ostringstream s;s<<world.robot<<','<<world.hand<<','<<world.plate<<';';
+    for(int location:world.locations)s<<location<<',';
+    s<<';';
+    for(const auto& item:world.objects) {
+        const auto& o=item.second;
+        s<<item.first<<':'<<o.small<<','<<o.container<<','<<o.at<<','<<o.opened<<':';
+        for(unsigned parent:o.inside)s<<parent<<',';
+        s<<';';
+    }
+    s<<'|'<<world.initial_reply_counts.empty()<<':';
+    for(const auto& entry:world.initial_reply_counts)if(entry.first.first=='a')s<<entry.first.second<<',';
+    return s.str();
+}
 }
 EpisodeProposalBatch EpisodeRouter::propose(const EpisodeBelief& belief,const SdkEpisodeModel& model,
     std::size_t cap,std::chrono::milliseconds wall,bool sense) {
@@ -139,6 +157,13 @@ EpisodeProposalBatch EpisodeRouter::propose(const EpisodeBelief& belief,const Sd
     }
     for(auto id:order)orders.push_back({id});
     std::set<std::string> seen;
+    std::set<std::string> physical_seen;
+    std::vector<const WeightedEpisode*> representatives;
+    for(const auto& state:belief.support()) {
+        if(physical_seen.insert(physicalProposalKey(state.episode.world)).second)representatives.push_back(&state);
+        else ++result.reused_worlds;
+    }
+    result.physical_worlds=representatives.size();
     // A complete marginal-gain proposal on one PUBLIC hypothesis can skip
     // several damaging/unlocated tasks together and change transport order.
     // It has no execution privilege; whole-belief evaluation still decides.
@@ -176,11 +201,11 @@ EpisodeProposalBatch EpisodeRouter::propose(const EpisodeBelief& belief,const Sd
     }
     // Offer the same complete order across different public hypotheses before
     // spending work on many variants of the first sampled world.
-    for(const auto& task_order:orders)for(const auto& state:belief.support())for(bool tray:{false,true}) {
+    for(const auto& task_order:orders)for(const auto* state:representatives)for(bool tray:{false,true}) {
         if(result.transitions>=cap || std::chrono::steady_clock::now()>=end) {
             result.work_cut=result.transitions>=cap;result.wall_cut=std::chrono::steady_clock::now()>=end;return result;
         }
-        Builder builder(state.episode.world,tray,sense,result.transitions,cap,end);
+        Builder builder(state->episode.world,tray,sense,result.transitions,cap,end);
         try{for(std::size_t i=0;i<task_order.size();++i) {
             if(i+1<task_order.size() && builder.batchDelivery(model,model.goals[task_order[i]],model.goals[task_order[i+1]]))++i;
             else builder.task(model,model.goals[task_order[i]]);
@@ -192,7 +217,7 @@ EpisodeProposalBatch EpisodeRouter::propose(const EpisodeBelief& belief,const Sd
             // earlier successful Open can damage a permanent constraint that
             // the original first TakeOut would restore, so it is not assumed
             // dominant and receives no execution privilege.
-            Builder early(state.episode.world,tray,sense,result.transitions,cap,end,true);
+            Builder early(state->episode.world,tray,sense,result.transitions,cap,end,true);
             try{for(std::size_t i=0;i<task_order.size();++i) {
                 if(i+1<task_order.size() && early.batchDelivery(model,model.goals[task_order[i]],model.goals[task_order[i+1]]))++i;
                 else early.task(model,model.goals[task_order[i]]);

@@ -385,6 +385,8 @@ void FullModelController::run() {
                 SdkEpisode modal_episode;modal_episode.world=modal;modal_episode.credits.assign(model.constraints.size(),true);
                 auto proposals=EpisodeRouter::propose(EpisodeBelief({{modal_episode,1}}),model,1024,std::chrono::milliseconds(10));
                 auto adaptive=EpisodeRouter::propose(replay->belief(),model,2048,std::chrono::milliseconds(10));
+                LOG("[FullProposalReuse] modal_physical=%zu modal_reused=%zu adaptive_physical=%zu adaptive_reused=%zu support=%zu scope=physical_route_simulation_only\n",
+                    proposals.physical_worlds,proposals.reused_worlds,adaptive.physical_worlds,adaptive.reused_worlds,replay->belief().support().size());
                 proposals.routes.insert(proposals.routes.end(),adaptive.routes.begin(),adaptive.routes.end());
                 std::vector<JointAction> observations;
                 const auto& states=replay->belief().support();

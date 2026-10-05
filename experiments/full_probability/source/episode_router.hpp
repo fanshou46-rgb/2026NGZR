@@ -4,6 +4,7 @@ namespace _home {
 struct EpisodeProposalBatch {
     std::vector<EpisodeRoute> routes;
     std::size_t transitions=0;
+    std::size_t physical_worlds=0,reused_worlds=0;
     bool work_cut=false,wall_cut=false;
 };
 class EpisodeRouter {
