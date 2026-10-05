@@ -24,8 +24,32 @@ int main() {
     JointObservation failed;failed.success=false;
     assert(conditional.policy->children.at(failed)->stop);
     assert(conditional.value.lower==15); // .5*32 + .5*(-2), no success oracle
+    // Distinct complete candidates share only identical PUBLIC prefixes.
+    // Added paid observations cannot change the analytical delivery optimum.
+    // The second belief has a charged failed PickUp branch, which must never
+    // share the successful branch's held state, costs or terminal reward.
+    std::vector<EpisodeRoute> catalogue={delivery};
+    for(unsigned length=1;length<=32;++length) {
+        auto route=delivery;
+        for(unsigned i=0;i<length;++i)route.push_back({JointActionKind::SENSE});
+        catalogue.push_back(std::move(route));
+    }
+    for(unsigned repeat=0;repeat<50;++repeat) {
+        const auto reused=EpisodeRouteSearch::solve(EpisodeBelief({{e,1}}),model,catalogue,{},ask,
+            std::chrono::milliseconds(10000),128,std::chrono::milliseconds(1000));
+        assert(reused.value.lower==32 && reused.value.upper==32 && reused.transitions==35);
+        assert(reused.prefix_cache_hits>500 && !reused.work_cut && !reused.wall_cut);
+        const auto split=EpisodeRouteSearch::solve(EpisodeBelief({{e,.5},{other,.5}}),model,catalogue,{},ask,
+            std::chrono::milliseconds(10000),128,std::chrono::milliseconds(1000));
+        assert(split.value.lower==15 && split.transitions==36 && split.prefix_cache_hits>500);
+        assert(split.policy->children.at(failed)->stop);
+        const auto cutoff=EpisodeRouteSearch::solve(EpisodeBelief({{e,1}}),model,catalogue,{},ask,
+            std::chrono::milliseconds(10000),5,std::chrono::milliseconds(1000));
+        assert(cutoff.work_cut && !cutoff.policy->stop && cutoff.value.lower==32);
+    }
     SdkEpisode left=e;left.world.robot=0;left.world.objects[3].at=1;
     SdkEpisode right=left;right.world.objects[3].at=2;
+    left.world.initial_reply_counts.clear();right.world.initial_reply_counts.clear();
     left.world.freezeSdkReplyDomain();right.world.freezeSdkReplyDomain();
     model.goals={SdkPredicate{"pickup",{{3,0}}}};
     auto information=EpisodeRouteSearch::solve(EpisodeBelief({{left,.5},{right,.5}}),model,

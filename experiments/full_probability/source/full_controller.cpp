@@ -260,7 +260,9 @@ void FullModelController::run() {
                 if(differs)observations.push_back({JointActionKind::SENSE});
             }
             std::set<unsigned> targets;
-            for(const auto& goal:model.goals)for(const auto& binding:goal.bindings)targets.insert(binding.first);
+            for(const auto& goal:model.goals)for(const auto& binding:goal.bindings) {
+                targets.insert(binding.first);if(binding.second)targets.insert(binding.second);
+            }
             for(unsigned id:targets)if(asked[id]<3 && !states.empty()) {
                 const auto truth=states.front().episode.world.truthfulReplies(id);bool differs=false;
                 for(const auto& state:states)differs|=state.episode.world.truthfulReplies(id)!=truth;
@@ -274,8 +276,9 @@ void FullModelController::run() {
                 w.deadline_manager.remaining()-w.plan_safety_margin,8192-proposals.transitions-adaptive.transitions,allowance);
             policy=plan.policy;++decision;
             const auto stopping=replay->belief().reward(model);
-            LOG("[FullModel] decision=%zu lower=%.6f upper=%.6f routes=%zu transitions=%zu wall_cut=%s work_cut=%s model_ms=%lld\n",
+            LOG("[FullModel] decision=%zu lower=%.6f upper=%.6f routes=%zu transitions=%zu prefix_cache_hits=%zu wall_cut=%s work_cut=%s model_ms=%lld\n",
                 decision,plan.value.lower,plan.value.upper,proposals.routes.size(),plan.transitions+proposals.transitions+adaptive.transitions,
+                plan.prefix_cache_hits,
                 plan.wall_cut?"true":"false",plan.work_cut?"true":"false",(long long)std::chrono::duration_cast<std::chrono::milliseconds>(cpu_used+std::chrono::steady_clock::now()-began).count());
             LOG("[FullDecisionEvidence] decision=%zu stop_lower=%.9f stop_upper=%.9f selected_lower=%.9f selected_upper=%.9f support=%zu information_candidates=%zu selected_stop=%s scope=finite_catalogue_complete_candidates\n",
                 decision,stopping.lower,stopping.upper,plan.value.lower,plan.value.upper,replay->belief().support().size(),observations.size(),policy->stop?"true":"false");

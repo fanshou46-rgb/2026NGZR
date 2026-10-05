@@ -51,6 +51,7 @@ struct EpisodePlan {
     std::shared_ptr<EpisodePolicy> policy;
     SdkRewardBounds value;
     std::size_t transitions=0;
+    std::size_t prefix_cache_hits=0;
     bool work_cut=false,wall_cut=false,support_complete=true;
 };
 class EpisodePolicySearch {
