@@ -100,6 +100,22 @@ def sdk_feedback(path):
         m=re.fullmatch(r'\s*\[(.+?)\|([^\]]*)\]\s*',line)
         if m:result.append((m[1].strip(),m[2].strip()))
     return result
+
+def verify_coverage_schedule(text,decisions):
+    schedules={}
+    for line in text.splitlines():
+        if '[FullCoverageSchedule] ' not in line:continue
+        f=dict(re.findall(r'(\w+)=([^\s]+)',line));d=int(f['decision']);source=int(f['source_decision'])
+        assert d not in schedules and source==d-1,'ambiguous coverage predecessor'
+        assert f['trigger']=='ordinary_finite_candidate_stop' and f['acquisitions']=='deferred'
+        assert f['canonical_answer_authority']=='false' and int(f['before'])>=0
+        assert decisions[source]['scope']=='finite_catalogue_complete_candidates' and decisions[source]['selected_stop']=='true'
+        assert decisions[d]['scope'] in ('necessary_initial_missing_acquisition_location','necessary_initial_missing_big_location')
+        assert decisions[source]['support']==decisions[d]['support'],'coverage predecessor belief differs'
+        schedules[d]=f
+    if 'acquisition_schedule=after_ordinary_stop' in text:
+        assert {d for d,f in decisions.items() if f['scope']=='necessary_initial_missing_acquisition_location'}<=set(schedules),'acquisition coverage precedes ordinary Stop'
+    return schedules
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('checkpoint');parser.add_argument('--suite',default='smoke');a=parser.parse_args()
     records=[json.loads(s) for s in (LAB/(a.checkpoint+'-'+a.suite+'.jsonl')).read_text().splitlines() if s]
@@ -188,6 +204,8 @@ def main():
                     assert int(fields['support'])>0 and int(fields['information_candidates'])>=0
                     assert fields['scope'] in ('finite_catalogue_complete_candidates','necessary_initial_missing_big_location','necessary_initial_missing_acquisition_location')
                     decisions[decision_id]=fields;totals['decision_values_checked']+=1
+                schedules=verify_coverage_schedule(text,decisions)
+                totals['deferred_coverage_predecessors_checked']+=len(schedules)
                 stops=[line for line in text.splitlines() if '[FullStopEvidence] ' in line]
                 if decisions:
                     assert len(stops)==1,'missing unique termination evidence'
@@ -222,6 +240,7 @@ def main():
                         assert all(b['node']=={'stop':True} for b in p['root']['children'])
                         prior_queries=sum(r['action']=='AskLoc' and r['args']==receipt['args'] for r in finalized if r['id']<receipt['id'])
                         assert prior_queries==int(f['attempts_before']) and prior_queries<3
+                        if p['decision'] in schedules:assert int(schedules[p['decision']]['before'])==receipt['before'],'coverage changed canonical state after Stop'
                     totals['policy_nodes_checked']+=verify_policy(p['root'])
                     if previous and previous[0]['decision']==p['decision']:
                         expected=observed_branch(previous[0]['root'],previous[1])
