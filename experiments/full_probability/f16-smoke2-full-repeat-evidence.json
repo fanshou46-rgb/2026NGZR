@@ -1,0 +1,438 @@
+{
+  "checkpoint": "f16",
+  "suite": "smoke2-full",
+  "checked_pairs": 38,
+  "identical_public_and_GCKB": 34,
+  "disagreements": [
+    {
+      "case": [
+        "A02-01-s2",
+        "it"
+      ],
+      "first": "f16-smoke2-full-A02-01-s2-it-repeat0-lab",
+      "repeat": "f16-smoke2-full-A02-01-s2-it-repeat1-lab",
+      "metrics": {
+        "final_goals": [
+          5,
+          5
+        ],
+        "credited_constraints": [
+          30,
+          30
+        ],
+        "action_cost": [
+          52,
+          55
+        ],
+        "base": [
+          748,
+          745
+        ],
+        "official_score": [
+          788,
+          781
+        ]
+      },
+      "common_public_receipts": 1,
+      "public_history_sha256": "eb6c7a36246e401ba9e450569f7219378b74f0472d469192c32b4cba33c131e7",
+      "first_divergence": "same_public_history_different_decision",
+      "first_decision": {
+        "receipt": [
+          "Move",
+          [
+            5
+          ],
+          "true",
+          "succeeded",
+          "committed"
+        ],
+        "policy_decision": 2,
+        "canonical_before": 16608974817835372168,
+        "value": {
+          "decision": "2",
+          "stop_lower": "652.333333333",
+          "stop_upper": "652.333333333",
+          "selected_lower": "684.000000000",
+          "selected_upper": "684.000000000",
+          "support": "15",
+          "information_candidates": "4",
+          "selected_stop": "false",
+          "scope": "finite_catalogue_complete_candidates"
+        },
+        "budget": {
+          "decision": "2",
+          "lower": "684.000000",
+          "upper": "684.000000",
+          "routes": "54",
+          "transitions": "4937",
+          "prefix_cache_hits": "2860",
+          "wall_cut": "true",
+          "work_cut": "true",
+          "model_ms": "70"
+        }
+      },
+      "repeat_decision": {
+        "receipt": [
+          "Move",
+          [
+            8
+          ],
+          "true",
+          "succeeded",
+          "committed"
+        ],
+        "policy_decision": 2,
+        "canonical_before": 16608974817835372168,
+        "value": {
+          "decision": "2",
+          "stop_lower": "652.333333333",
+          "stop_upper": "652.333333333",
+          "selected_lower": "690.866666667",
+          "selected_upper": "690.866666667",
+          "support": "15",
+          "information_candidates": "4",
+          "selected_stop": "false",
+          "scope": "finite_catalogue_complete_candidates"
+        },
+        "budget": {
+          "decision": "2",
+          "lower": "690.866667",
+          "upper": "690.866667",
+          "routes": "54",
+          "transitions": "6566",
+          "prefix_cache_hits": "6560",
+          "wall_cut": "true",
+          "work_cut": "true",
+          "model_ms": "72"
+        }
+      },
+      "log_sha256": [
+        "6f9618e6242a9bd5eac9299b85bfd58957a927adb44febf343185a765e815712",
+        "eb91a4ef7ace416bd488446980b820a7fc3c735b6ab034f07b9325827c0ccef6"
+      ]
+    },
+    {
+      "case": [
+        "A02-01-s2",
+        "nt"
+      ],
+      "first": "f16-smoke2-full-A02-01-s2-nt-repeat0-lab",
+      "repeat": "f16-smoke2-full-A02-01-s2-nt-repeat1-lab",
+      "metrics": {
+        "final_goals": [
+          5,
+          4
+        ],
+        "credited_constraints": [
+          30,
+          30
+        ],
+        "action_cost": [
+          52,
+          23
+        ],
+        "base": [
+          748,
+          737
+        ],
+        "official_score": [
+          788,
+          809
+        ]
+      },
+      "common_public_receipts": 1,
+      "public_history_sha256": "eb6c7a36246e401ba9e450569f7219378b74f0472d469192c32b4cba33c131e7",
+      "first_divergence": "same_public_history_different_decision",
+      "first_decision": {
+        "receipt": [
+          "Move",
+          [
+            5
+          ],
+          "true",
+          "succeeded",
+          "committed"
+        ],
+        "policy_decision": 2,
+        "canonical_before": 16608974817835372168,
+        "value": {
+          "decision": "2",
+          "stop_lower": "652.333333333",
+          "stop_upper": "652.333333333",
+          "selected_lower": "684.000000000",
+          "selected_upper": "684.000000000",
+          "support": "15",
+          "information_candidates": "4",
+          "selected_stop": "false",
+          "scope": "finite_catalogue_complete_candidates"
+        },
+        "budget": {
+          "decision": "2",
+          "lower": "684.000000",
+          "upper": "684.000000",
+          "routes": "54",
+          "transitions": "6216",
+          "prefix_cache_hits": "4337",
+          "wall_cut": "true",
+          "work_cut": "true",
+          "model_ms": "66"
+        }
+      },
+      "repeat_decision": {
+        "receipt": [
+          "Open",
+          [
+            7
+          ],
+          "true",
+          "succeeded",
+          "committed"
+        ],
+        "policy_decision": 2,
+        "canonical_before": 16608974817835372168,
+        "value": {
+          "decision": "2",
+          "stop_lower": "652.333333333",
+          "stop_upper": "652.333333333",
+          "selected_lower": "675.866666667",
+          "selected_upper": "675.866666667",
+          "support": "15",
+          "information_candidates": "4",
+          "selected_stop": "false",
+          "scope": "finite_catalogue_complete_candidates"
+        },
+        "budget": {
+          "decision": "2",
+          "lower": "675.866667",
+          "upper": "675.866667",
+          "routes": "50",
+          "transitions": "4046",
+          "prefix_cache_hits": "2223",
+          "wall_cut": "true",
+          "work_cut": "false",
+          "model_ms": "71"
+        }
+      },
+      "log_sha256": [
+        "9ee64e62d061135f7888ef96a8bff6abb8bd8cec693e178c8dd84f8a1e740c2d",
+        "1b3391e9c2b500fc22c1e83763c0c0e5fc13408e1e84cdbf981a4f16a598905b"
+      ]
+    },
+    {
+      "case": [
+        "B03-01-s2",
+        "it"
+      ],
+      "first": "f16-smoke2-full-B03-01-s2-it-repeat0-lab",
+      "repeat": "f16-smoke2-full-B03-01-s2-it-repeat1-lab",
+      "metrics": {
+        "final_goals": [
+          2,
+          2
+        ],
+        "credited_constraints": [
+          30,
+          30
+        ],
+        "action_cost": [
+          40,
+          15
+        ],
+        "base": [
+          640,
+          665
+        ],
+        "official_score": [
+          696,
+          747
+        ]
+      },
+      "common_public_receipts": 1,
+      "public_history_sha256": "1161d0242759c0f91e361a503b13ff833e97b925339914aa0419b5bf766cf23c",
+      "first_divergence": "same_public_history_different_decision",
+      "first_decision": {
+        "receipt": [
+          "Move",
+          [
+            3
+          ],
+          "true",
+          "succeeded",
+          "committed"
+        ],
+        "policy_decision": 2,
+        "canonical_before": 4234128039837219626,
+        "value": {
+          "decision": "2",
+          "stop_lower": "680.111111111",
+          "stop_upper": "680.111111111",
+          "selected_lower": "696.916666667",
+          "selected_upper": "696.916666667",
+          "support": "36",
+          "information_candidates": "4",
+          "selected_stop": "false",
+          "scope": "finite_catalogue_complete_candidates"
+        },
+        "budget": {
+          "decision": "2",
+          "lower": "696.916667",
+          "upper": "696.916667",
+          "routes": "37",
+          "transitions": "4814",
+          "prefix_cache_hits": "350",
+          "wall_cut": "true",
+          "work_cut": "true",
+          "model_ms": "69"
+        }
+      },
+      "repeat_decision": {
+        "receipt": [
+          "AskLoc",
+          [
+            11
+          ],
+          "at(11,4)",
+          "observed",
+          "committed"
+        ],
+        "policy_decision": 2,
+        "canonical_before": 4234128039837219626,
+        "value": {
+          "decision": "2",
+          "stop_lower": "680.111111111",
+          "stop_upper": "680.111111111",
+          "selected_lower": "700.555555556",
+          "selected_upper": "700.555555556",
+          "support": "36",
+          "information_candidates": "4",
+          "selected_stop": "false",
+          "scope": "finite_catalogue_complete_candidates"
+        },
+        "budget": {
+          "decision": "2",
+          "lower": "700.555556",
+          "upper": "700.555556",
+          "routes": "37",
+          "transitions": "6162",
+          "prefix_cache_hits": "615",
+          "wall_cut": "true",
+          "work_cut": "true",
+          "model_ms": "68"
+        }
+      },
+      "log_sha256": [
+        "ff4dc1b5100cc749c3d0209398e52a5e0cb2112627c95cd63eb49f48a7358181",
+        "7e8322b573835547486c179549459bc28495280483ecb6d1b7f46df870cd2163"
+      ]
+    },
+    {
+      "case": [
+        "C02-01-s2",
+        "it"
+      ],
+      "first": "f16-smoke2-full-C02-01-s2-it-repeat0-lab",
+      "repeat": "f16-smoke2-full-C02-01-s2-it-repeat1-lab",
+      "metrics": {
+        "final_goals": [
+          5,
+          5
+        ],
+        "credited_constraints": [
+          29,
+          30
+        ],
+        "action_cost": [
+          41,
+          31
+        ],
+        "base": [
+          739,
+          769
+        ],
+        "official_score": [
+          793,
+          833
+        ]
+      },
+      "common_public_receipts": 1,
+      "public_history_sha256": "32d4b2a3ef6a2c6496441cd5acd0e1033194a98f2bca3188cfd7807e01a9092b",
+      "first_divergence": "same_public_history_different_decision",
+      "first_decision": {
+        "receipt": [
+          "Move",
+          [
+            3
+          ],
+          "true",
+          "succeeded",
+          "committed"
+        ],
+        "policy_decision": 2,
+        "canonical_before": 5532085110815381634,
+        "value": {
+          "decision": "2",
+          "stop_lower": "644.000000000",
+          "stop_upper": "644.000000000",
+          "selected_lower": "736.000000000",
+          "selected_upper": "736.000000000",
+          "support": "24",
+          "information_candidates": "4",
+          "selected_stop": "false",
+          "scope": "finite_catalogue_complete_candidates"
+        },
+        "budget": {
+          "decision": "2",
+          "lower": "736.000000",
+          "upper": "736.000000",
+          "routes": "29",
+          "transitions": "5180",
+          "prefix_cache_hits": "716",
+          "wall_cut": "true",
+          "work_cut": "true",
+          "model_ms": "71"
+        }
+      },
+      "repeat_decision": {
+        "receipt": [
+          "PickUp",
+          [
+            12
+          ],
+          "true",
+          "succeeded",
+          "committed"
+        ],
+        "policy_decision": 2,
+        "canonical_before": 5532085110815381634,
+        "value": {
+          "decision": "2",
+          "stop_lower": "644.000000000",
+          "stop_upper": "644.000000000",
+          "selected_lower": "709.958333333",
+          "selected_upper": "709.958333333",
+          "support": "24",
+          "information_candidates": "4",
+          "selected_stop": "false",
+          "scope": "finite_catalogue_complete_candidates"
+        },
+        "budget": {
+          "decision": "2",
+          "lower": "709.958333",
+          "upper": "709.958333",
+          "routes": "29",
+          "transitions": "4578",
+          "prefix_cache_hits": "534",
+          "wall_cut": "true",
+          "work_cut": "false",
+          "model_ms": "71"
+        }
+      },
+      "log_sha256": [
+        "e2aac4cd96c37cfe37ade3734576df1e21445f08a1de8b6b8c551800f46131d8",
+        "5f2157e3c243570601ccba58867525dc44fb3cf4b08fcc4231f6694be450e44c"
+      ]
+    }
+  ],
+  "failures": [],
+  "scope": "first public history/decision divergence of real repeats; wall-clock inputs can differ, no independent statistical sample or deterministic-policy certification"
+}

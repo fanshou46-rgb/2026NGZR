@@ -12,7 +12,7 @@ def digest(value):
 COSTS={'Move':4,'Sense':1,'AskLoc':2,'Open':2,'Close':2,'PickUp':2,'PutDown':2,
        'ToPlate':2,'FromPlate':2,'PutIn':2,'TakeOut':2}
 
-def missing_required_big(case_id):
+def public_missing_locations(case_id):
     """Independently reconstruct only SDK Plug input, never author truth labels."""
     bank=ROOT/'题目/independent_100_20261004'
     catalogue=json.loads((bank/'catalogue.json').read_text(encoding='utf8'))
@@ -36,19 +36,25 @@ def missing_required_big(case_id):
             if token==')':return result
             result.append(parse(token))
         raise ValueError('unclosed instruction')
-    tree=parse(next(tokens));required=set()
+    tree=parse(next(tokens));required=set();acquisitions=set()
     for task in tree[1:]:
         if not isinstance(task,list) or task[0]!=':task':continue
         action,conditions=task[1],task[2][1:]
         for variable in action[1:]:
-            if variable=='human':required.update(id for id,a in attrs.items() if ('sort','human') in a);continue
-            if variable.isdigit():required.add(int(variable));continue
-            tests={(c[0],c[2]) for c in conditions if len(c)==3 and c[1]==variable}
-            assert tests and all(t[0] in ('sort','size','color','type') for t in tests),'unsupported public goal grounding'
-            required.update(id for id,a in attrs.items() if tests<=a)
+            if variable=='human':bound={id for id,a in attrs.items() if ('sort','human') in a}
+            elif variable.isdigit():bound={int(variable)}
+            else:
+                tests={(c[0],c[2]) for c in conditions if len(c)==3 and c[1]==variable}
+                assert tests and all(t[0] in ('sort','size','color','type') for t in tests),'unsupported public goal grounding'
+                bound={id for id,a in attrs.items() if tests<=a}
+            required.update(bound)
+            if action[0] in ('pickup','give','puton','putin') and variable==action[1]:acquisitions.update(bound)
     direct=set(required)
     required.update(int(t[2]) for t in atoms if len(t)==3 and t[0]=='inside' and int(t[1]) in direct)
-    return {id for id in required if ('size','big') in attrs.get(id,set()) and id not in supplied_at}
+    supplied_inside={int(t[1]) for t in atoms if len(t)==3 and t[0]=='inside'}
+    if row['stage']==1:return dict(big=set(),acquisition=set())
+    return dict(big={id for id in required if ('size','big') in attrs.get(id,set()) and id not in supplied_at},
+        acquisition={id for id in acquisitions if ('size','small') in attrs.get(id,set()) and id not in supplied_at and id not in supplied_inside})
 
 def verify_policy(node, depth=0):
     assert depth<=64,'policy recursion limit'
@@ -143,32 +149,40 @@ def main():
             if row.get('policy')=='full':
                 assert len(policies)==len(prepared),row['key']
                 decisions={}
-                missing_logs=set()
+                missing_logs=set();acquisition_logs=set()
                 for line in text.splitlines():
                     if '[InitialMissingLocation] ' in line:
                         f=dict(re.findall(r'(\w+)=([^\s]+)',line))
                         assert f['required']=='true' and f['received_at']=='false' and f['source']=='public_input_absence'
                         missing_logs.add(int(f['object']))
+                    if '[InitialMissingAcquisitionLocation] ' in line:
+                        f=dict(re.findall(r'(\w+)=([^\s]+)',line))
+                        assert f['required_acquisition']=='true' and f['received_at']=='false' and f['received_inside']=='false' and f['source']=='public_input_absence'
+                        acquisition_logs.add(int(f['object']))
                 if missing_logs or 'missing_location_policy=bounded_public_input_coverage' in text:
-                    assert missing_logs==missing_required_big(row['id']),'initial absence/goal dependency differs from immutable public input'
+                    public_missing=public_missing_locations(row['id'])
+                    assert missing_logs==public_missing['big'],'initial absence/goal dependency differs from immutable public input'
+                    if acquisition_logs or 'acquisition_coverage=bounded_public_input_absence' in text:
+                        assert acquisition_logs==public_missing['acquisition'],'initial acquisition absence differs from immutable public input'
                 for line in text.splitlines():
                     if '[FullDecisionEvidence] ' not in line:continue
                     fields=dict(re.findall(r'(\w+)=([^\s]+)',line))
-                    id=int(fields['decision']);assert id not in decisions
+                    decision_id=int(fields['decision']);assert decision_id not in decisions
                     values=[float(fields[k]) for k in ('stop_lower','stop_upper','selected_lower','selected_upper')]
                     assert all(math.isfinite(v) for v in values)
                     sl,su,vl,vu=values;assert sl<=su+1e-7 and vl<=vu+1e-7
-                    coverage=fields['scope']=='necessary_initial_missing_big_location'
+                    coverage=fields['scope'] in ('necessary_initial_missing_big_location','necessary_initial_missing_acquisition_location')
                     if coverage:
-                        assert fields['selected_stop']=='false' and int(fields['target']) in missing_logs
+                        allowed=acquisition_logs if fields['scope']=='necessary_initial_missing_acquisition_location' else missing_logs
+                        assert fields['selected_stop']=='false' and int(fields['target']) in allowed
                         assert fields['initial_at_missing']=='true' and 0<=int(fields['attempts_before'])<3
                         assert abs(vl-(sl-COSTS['AskLoc']))<1e-7 and abs(vu-(su-COSTS['AskLoc']))<1e-7
                         totals['required_location_observations_checked']+=1
                     elif fields['selected_stop']=='true':assert abs(sl-vl)<1e-7 and abs(su-vu)<1e-7
                     else:assert fields['selected_stop']=='false' and vl>su-1e-7
                     assert int(fields['support'])>0 and int(fields['information_candidates'])>=0
-                    assert fields['scope'] in ('finite_catalogue_complete_candidates','necessary_initial_missing_big_location')
-                    decisions[id]=fields;totals['decision_values_checked']+=1
+                    assert fields['scope'] in ('finite_catalogue_complete_candidates','necessary_initial_missing_big_location','necessary_initial_missing_acquisition_location')
+                    decisions[decision_id]=fields;totals['decision_values_checked']+=1
                 stops=[line for line in text.splitlines() if '[FullStopEvidence] ' in line]
                 if decisions:
                     assert len(stops)==1,'missing unique termination evidence'
@@ -197,7 +211,7 @@ def main():
                     assert p['root']['args']==receipt['args'] and p['root']['cost']==receipt['cost']
                     assert receipt['permit']!='legacy_unqualified'
                     f=decisions.get(p['decision'],{})
-                    if f.get('scope')=='necessary_initial_missing_big_location':
+                    if f.get('scope') in ('necessary_initial_missing_big_location','necessary_initial_missing_acquisition_location'):
                         assert receipt['action']=='AskLoc' and receipt['args']==[int(f['target'])]
                         assert receipt['reason']=='necessary_public_missing_location_coverage'
                         assert all(b['node']=={'stop':True} for b in p['root']['children'])
