@@ -1,6 +1,6 @@
 """Cross-check actual SDK action stream against public execution receipts."""
 from pathlib import Path
-import argparse,json,re,collections,hashlib,math
+import argparse,json,re,collections,hashlib,math,xml.etree.ElementTree as ET
 ROOT=Path(__file__).resolve().parents[2];LAB=ROOT/'experiments/full_probability'
 ANSI=re.compile(r'\x1b\[[0-9;]*m')
 def digest(value):
@@ -11,6 +11,44 @@ def digest(value):
 
 COSTS={'Move':4,'Sense':1,'AskLoc':2,'Open':2,'Close':2,'PickUp':2,'PutDown':2,
        'ToPlate':2,'FromPlate':2,'PutIn':2,'TakeOut':2}
+
+def missing_required_big(case_id):
+    """Independently reconstruct only SDK Plug input, never author truth labels."""
+    bank=ROOT/'题目/independent_100_20261004'
+    catalogue=json.loads((bank/'catalogue.json').read_text(encoding='utf8'))
+    row=next(c for c in catalogue['cases'] if c['id']==case_id)
+    path=bank/row['path'];raw=path.read_bytes()
+    assert hashlib.sha256(raw).hexdigest()==row['sha256'],'question hash changed'
+    root=ET.fromstring(raw);env=root.find('env')
+    get=lambda name:env.findtext(name) or ''
+    public=get('info')+' '+('' if env.get('mis')=='on' else get('mis'))+' '+(get('err/w') if env.get('err')=='on' else get('err/r'))
+    atoms=[tuple(s.split()) for s in re.findall(r'\(([^()]*)\)',public)]
+    attrs={}
+    for atom in atoms:
+        if len(atom)==3 and atom[0] in ('sort','size','color','type'):
+            attrs.setdefault(int(atom[1]),set()).add((atom[0],atom[2]))
+    supplied_at={int(t[1]) for t in atoms if len(t)==3 and t[0]=='at'}
+    tokens=iter(re.findall(r'\(|\)|[^\s()]+',root.findtext('instr') or ''))
+    def parse(first):
+        if first!='(':return first
+        result=[]
+        for token in tokens:
+            if token==')':return result
+            result.append(parse(token))
+        raise ValueError('unclosed instruction')
+    tree=parse(next(tokens));required=set()
+    for task in tree[1:]:
+        if not isinstance(task,list) or task[0]!=':task':continue
+        action,conditions=task[1],task[2][1:]
+        for variable in action[1:]:
+            if variable=='human':required.update(id for id,a in attrs.items() if ('sort','human') in a);continue
+            if variable.isdigit():required.add(int(variable));continue
+            tests={(c[0],c[2]) for c in conditions if len(c)==3 and c[1]==variable}
+            assert tests and all(t[0] in ('sort','size','color','type') for t in tests),'unsupported public goal grounding'
+            required.update(id for id,a in attrs.items() if tests<=a)
+    direct=set(required)
+    required.update(int(t[2]) for t in atoms if len(t)==3 and t[0]=='inside' and int(t[1]) in direct)
+    return {id for id in required if ('size','big') in attrs.get(id,set()) and id not in supplied_at}
 
 def verify_policy(node, depth=0):
     assert depth<=64,'policy recursion limit'
@@ -83,6 +121,14 @@ def main():
             if row.get('policy')=='full':
                 assert len(policies)==len(prepared),row['key']
                 decisions={}
+                missing_logs=set()
+                for line in text.splitlines():
+                    if '[InitialMissingLocation] ' in line:
+                        f=dict(re.findall(r'(\w+)=([^\s]+)',line))
+                        assert f['required']=='true' and f['received_at']=='false' and f['source']=='public_input_absence'
+                        missing_logs.add(int(f['object']))
+                if missing_logs or 'missing_location_policy=bounded_public_input_coverage' in text:
+                    assert missing_logs==missing_required_big(row['id']),'initial absence/goal dependency differs from immutable public input'
                 for line in text.splitlines():
                     if '[FullDecisionEvidence] ' not in line:continue
                     fields=dict(re.findall(r'(\w+)=([^\s]+)',line))
@@ -90,10 +136,16 @@ def main():
                     values=[float(fields[k]) for k in ('stop_lower','stop_upper','selected_lower','selected_upper')]
                     assert all(math.isfinite(v) for v in values)
                     sl,su,vl,vu=values;assert sl<=su+1e-7 and vl<=vu+1e-7
-                    if fields['selected_stop']=='true':assert abs(sl-vl)<1e-7 and abs(su-vu)<1e-7
+                    coverage=fields['scope']=='necessary_initial_missing_big_location'
+                    if coverage:
+                        assert fields['selected_stop']=='false' and int(fields['target']) in missing_logs
+                        assert fields['initial_at_missing']=='true' and 0<=int(fields['attempts_before'])<3
+                        assert abs(vl-(sl-COSTS['AskLoc']))<1e-7 and abs(vu-(su-COSTS['AskLoc']))<1e-7
+                        totals['required_location_observations_checked']+=1
+                    elif fields['selected_stop']=='true':assert abs(sl-vl)<1e-7 and abs(su-vu)<1e-7
                     else:assert fields['selected_stop']=='false' and vl>su-1e-7
                     assert int(fields['support'])>0 and int(fields['information_candidates'])>=0
-                    assert fields['scope']=='finite_catalogue_complete_candidates'
+                    assert fields['scope'] in ('finite_catalogue_complete_candidates','necessary_initial_missing_big_location')
                     decisions[id]=fields;totals['decision_values_checked']+=1
                 stops=[line for line in text.splitlines() if '[FullStopEvidence] ' in line]
                 if decisions:
@@ -105,11 +157,30 @@ def main():
                     assert fields['prior_coverage_certified']=='false'
                     totals['termination_reasons_checked']+=1
                 previous=None
+                domain_receipts=set()
+                for line in text.splitlines():
+                    if '[FullDomainEvidence] ' not in line:continue
+                    f=dict(re.findall(r'(\w+)=([^\s]+)',line));rid=int(f['receipt'])
+                    assert rid not in domain_receipts and 1<=rid<=len(finalized)
+                    domain_receipts.add(rid);r=finalized[rid-1]
+                    assert r['action']=='AskLoc' and r['args']==[int(f['query'])]
+                    assert r['feedback']=='at({},{})'.format(f['query'],f['location'])
+                    assert 0<=int(f['location'])<=4095 and int(f['refined_variables'])>=0
+                    assert float(f['added_prior_mass'])==.05 and f['canonical_at_written']=='false'
+                    assert f['scope']=='approximate_prior_domain_extension'
+                    totals['actual_answer_domain_extensions_checked']+=1
                 for p,receipt,final in zip(policies,prepared,finalized):
                     assert p['receipt']==receipt['id'] and p['decision']==receipt['policy']
                     assert p['before']==receipt['before'] and p['root']['action']==receipt['action']
                     assert p['root']['args']==receipt['args'] and p['root']['cost']==receipt['cost']
                     assert receipt['permit']!='legacy_unqualified'
+                    f=decisions.get(p['decision'],{})
+                    if f.get('scope')=='necessary_initial_missing_big_location':
+                        assert receipt['action']=='AskLoc' and receipt['args']==[int(f['target'])]
+                        assert receipt['reason']=='necessary_public_missing_location_coverage'
+                        assert all(b['node']=={'stop':True} for b in p['root']['children'])
+                        prior_queries=sum(r['action']=='AskLoc' and r['args']==receipt['args'] for r in finalized if r['id']<receipt['id'])
+                        assert prior_queries==int(f['attempts_before']) and prior_queries<3
                     totals['policy_nodes_checked']+=verify_policy(p['root'])
                     if previous and previous[0]['decision']==p['decision']:
                         assert observed_branch(previous[0]['root'],previous[1])==p['root'],(row['key'],'executed suffix differs from selected policy')

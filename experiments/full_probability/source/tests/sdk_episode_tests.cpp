@@ -68,4 +68,19 @@ int main() {
     EpisodeBelief full({{e,1}});
     auto cut=EpisodePolicySearch::solve(full,m,{pick,sense},ask,3,std::chrono::milliseconds(1000),1,std::chrono::milliseconds(100));
     assert(cut.work_cut && cut.transitions==1 && !cut.policy->stop && cut.policy->children.size()==1);
+    // Independent finite-domain oracle for the two-witness proximity shortcut.
+    // Include absent/independent AT, both slots holding the same item, distinct
+    // stored items and shared/multiple inside parents. Inside alone is no AT.
+    for(int robot:{0,1,2})for(int xa:{-1,0,1,2})for(int ya:{-1,0,1,2})
+    for(unsigned hand:{0,2,3})for(unsigned plate:{0,2,3})for(bool inside:{false,true}) {
+        JointWorld world;world.robot=robot;world.locations={0,1,2};world.hand=hand;world.plate=plate;
+        world.objects[2]=JointObject(true,false,xa);world.objects[3]=JointObject(true,false,ya);
+        world.objects[4]=JointObject(false,true,0);world.objects[5]=JointObject(false,true,1);
+        if(inside){world.objects[2].inside={4,5};world.objects[3].inside={4};}
+        world.validate();bool reference=false;
+        for(int site:world.locations)reference|=world.atLocation(2,site) && world.atLocation(3,site);
+        for(const auto verb:{"near","on","nextto"})assert(m.predicate(world,verb,2,3)==reference);
+        const bool delivered=reference && hand!=2 && plate!=2;
+        assert(m.predicate(world,"give",2,3)==delivered && m.predicate(world,"puton",2,3)==delivered);
+    }
 }

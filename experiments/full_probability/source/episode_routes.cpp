@@ -14,7 +14,7 @@ struct PrefixNode {
     bool reward_ready=false;
     SdkRewardBounds reward;
     std::map<ActionKey,std::vector<PrefixBranch>> children;
-    explicit PrefixNode(const EpisodeBelief& b):belief(b) {}
+    explicit PrefixNode(EpisodeBelief b):belief(std::move(b)) {}
 };
 struct RouteSearch {
     const SdkEpisodeModel& model;const AskObservationModel& ask;
@@ -48,7 +48,7 @@ struct RouteSearch {
         std::vector<EpisodeBranch> fresh;
         try{fresh=n->belief.branches(model,a,ask);}catch(const std::logic_error&){complete=false;return nullptr;}
         std::vector<PrefixBranch> cached;
-        for(const auto& b:fresh)cached.push_back({b.observation,b.probability,std::make_shared<PrefixNode>(b.posterior)});
+        for(auto& b:fresh)cached.push_back({b.observation,b.probability,std::make_shared<PrefixNode>(std::move(b.posterior))});
         return &n->children.emplace(key,std::move(cached)).first->second;
     }
     Value route(const std::shared_ptr<PrefixNode>& n,const EpisodeRoute& actions,std::size_t step,std::chrono::milliseconds left) {

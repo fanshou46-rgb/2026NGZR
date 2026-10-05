@@ -20,12 +20,17 @@ private:
     std::shared_ptr<EpisodePolicy> policy;
     std::string expected_signature;
     bool selecting=false;
+    bool coverage_policy=false;
     std::size_t decision=0;
     std::map<unsigned,unsigned> asked;
+    std::set<unsigned> required_objects,initial_missing_big;
+    std::map<unsigned,LocationHypothesis> coverage_clues;
     std::chrono::steady_clock::duration cpu_used{};
     std::chrono::steady_clock::duration dispatch_overhead{};
     long long sdk_ns=0;
     void initialize();
+    bool selectMissingLocationObservation();
+    bool refineLocationDomain(const JointAction&,const JointObservation&,std::size_t);
     bool dispatch(const JointAction&);
     JointObservation feedback(const JointAction&,const ActionReceipt&) const;
 };

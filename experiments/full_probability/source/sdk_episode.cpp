@@ -9,8 +9,11 @@ bool SdkEpisodeModel::predicate(const JointWorld& w,const std::string& verb,unsi
     const bool stored=small&&(w.hand==a || w.plate==a);
     const auto same=[&]() {
         if(x==w.objects.end() || y==w.objects.end())return false;
-        for(int loc:w.locations)if(w.atLocation(a,loc)&&w.atLocation(b,loc))return true;
-        return false;
+        // SDK AT consists of an independent explicit location plus robot AT
+        // for an item in either slot. Enumerate those two witnesses rather
+        // than every candidate location; inside alone contributes no AT.
+        return (x->second.at>=0 && w.atLocation(b,x->second.at)) ||
+            (stored && w.atLocation(b,w.robot));
     };
     if(verb=="goto" || verb=="move")return x!=w.objects.end()&&w.atLocation(a,w.robot);
     if(verb=="open" || verb=="opened")return x!=w.objects.end()&&x->second.container&&x->second.opened;

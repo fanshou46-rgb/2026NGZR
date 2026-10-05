@@ -86,6 +86,13 @@ void FullModelController::initialize() {
         }
     };
     add(w.not_infoConstrains,false);add(w.notnot_infoConstrains,true);add(w.not_taskConstrains,false);
+    for(const auto& goal:model.goals)for(const auto& binding:goal.bindings) {
+        required_objects.insert(binding.first);if(binding.second)required_objects.insert(binding.second);
+    }
+    const auto direct_objects=required_objects;
+    for(unsigned id:direct_objects)for(const auto& edge:w.Provenance(StateField::INSIDE,id).inside_edges)
+        if(edge.second.value==1)required_objects.insert(edge.first);
+    LOG("[FullModel] missing_location_policy=bounded_public_input_coverage max_queries_per_object=3 canonical_at_from_answer=false\n");
     initial_template.robot=w.FactLocation(0);
     if(initial_template.robot<0)throw std::logic_error("robot position is not confirmed");
     initial_template.locations.insert(initial_template.robot);
@@ -94,8 +101,29 @@ void FullModelController::initialize() {
         if(p.received.present && p.received.value>=0)initial_template.locations.insert(p.received.value);
         if(w.FactLocation(object->id)>=0)initial_template.locations.insert(w.FactLocation(object->id));
     }
-    // Locations are the public finite map domain. Its coverage is recorded; an
-    // observed world outside it causes support repair/Stop, never a false fact.
+    // Candidate locations are not confirmed SDK loc facts. Missing big-object
+    // positions need positive off-site hypotheses before the first Sense;
+    // otherwise a singleton public site makes absence logically inexplicable.
+    // Numeric gaps/neighbours are an explicitly finite coverage heuristic.
+    bool missing_required=false;
+    for(const auto& object:w.objects)if(object && object->id>0 &&
+        !std::dynamic_pointer_cast<SmallObject>(object) && required_objects.count(object->id)) {
+        const auto& p=w.Provenance(StateField::LOCATION,object->id);
+        if(w.stage!=1 && !strong(w,StateField::LOCATION,object->id) && (!p.received.present || p.received.value<0)) {
+            initial_missing_big.insert(object->id);missing_required=true;
+            LOG("[InitialMissingLocation] object=%u required=true received_at=false source=public_input_absence\n",object->id);
+        }
+    }
+    if(missing_required) {
+        const auto public_sites=initial_template.locations;
+        const int maximum=*public_sites.rbegin();
+        if(maximum<=63)for(int site=0;site<=maximum+1;++site)initial_template.locations.insert(site);
+        else for(int site:public_sites) {
+            if(site>0)initial_template.locations.insert(site-1);
+            if(site<4095)initial_template.locations.insert(site+1);
+        }
+        LOG("[FullModel] candidate_domain_refinement=public_numeric_neighbours scope=uncalibrated_finite_coverage sites=%zu\n",initial_template.locations.size());
+    }
     std::vector<unsigned> small_ids;
     for(const auto& object:w.objects)if(object && object->id>0) {
         const unsigned id=object->id;const bool small=bool(std::dynamic_pointer_cast<SmallObject>(object));
@@ -185,10 +213,62 @@ void FullModelController::initialize() {
     replay.reset(new EpisodeReplay(EpisodeBelief(std::move(scenes.scenes))));
     LOG("[FullModel] prior_scope=%s assignments=%zu samples=%zu variables=%zu calibration=initial_fields_development_02 feedback_calibrated=false holdout_validated=false\n",scenes.scope.c_str(),scenes.assignments,scenes.draws,factors.size());
 }
+bool FullModelController::selectMissingLocationObservation() {
+    coverage_policy=false;
+    for(unsigned id:initial_missing_big) {
+        if(strong(owner,StateField::LOCATION,id) || asked[id]>=3)continue;
+        bool supported_clue=false;
+        auto clue=coverage_clues.find(id);
+        if(clue!=coverage_clues.end() && clue->second.first=='a') {
+            double mass=0;
+            for(const auto& state:replay->belief().support())
+                if(state.episode.world.truthfulReplies(id).count(clue->second))mass+=state.weight;
+            supported_clue=mass>1e-12;
+        }
+        if(asked[id]>0 && supported_clue)continue;
+        // Required public-domain coverage, analogous to initial perception.
+        // This does not claim a profitable finite-catalogue value or confirm
+        // the answer. Every modeled reply pays its fee and initially stops;
+        // an actual reply can refine the prior and trigger a new decision.
+        policy=std::make_shared<EpisodePolicy>();policy->stop=false;
+        coverage_policy=true;
+        policy->action={JointActionKind::ASK,id};++decision;
+        const auto stopping=replay->belief().reward(model);SdkRewardBounds paid;
+        for(const auto& branch:replay->belief().branches(model,policy->action,ask)) {
+            policy->children.emplace(branch.observation,std::make_shared<EpisodePolicy>());
+            policy->probabilities.emplace(branch.observation,branch.probability);
+            const auto value=branch.posterior.reward(model);
+            paid.lower+=branch.probability*value.lower;paid.upper+=branch.probability*value.upper;
+        }
+        LOG("[FullDecisionEvidence] decision=%zu stop_lower=%.9f stop_upper=%.9f selected_lower=%.9f selected_upper=%.9f support=%zu information_candidates=1 selected_stop=false scope=necessary_initial_missing_big_location target=%u attempts_before=%u initial_at_missing=true\n",
+            decision,stopping.lower,stopping.upper,paid.lower,paid.upper,replay->belief().support().size(),id,asked[id]);
+        return true;
+    }
+    return false;
+}
+bool FullModelController::refineLocationDomain(const JointAction& action,const JointObservation& observation,std::size_t receipt) {
+    if(action.kind!=JointActionKind::ASK)return false;
+    if(initial_missing_big.count(action.a))coverage_clues[action.a]=observation.reply;
+    if(observation.reply.first!='a' || observation.reply.second<0 || observation.reply.second>4095 ||
+        initial_template.locations.count(observation.reply.second))return false;
+    const int site=observation.reply.second;initial_template.locations.insert(site);
+    std::size_t variables=0;
+    for(auto& factor:factors)if(factor.field==PriorField::EXPLICIT_AT) {
+        // Approximate domain extension, never an object-specific hard at.
+        // All unresolved initial AT variables retain their old alternatives;
+        // full paid-history replay determines which world explains the reply.
+        for(auto& value:factor.values)value.probability*=.95;
+        factor.values.push_back({site,.05});++variables;
+    }
+    ask=ask.withReply(observation.reply);
+    LOG("[FullDomainEvidence] receipt=%zu query=%u location=%d refined_variables=%zu added_prior_mass=0.05 canonical_at_written=false scope=approximate_prior_domain_extension\n",
+        receipt,action.a,site,variables);
+    return true;
+}
 bool FullModelController::qualify(ActionPermit& p) const {
     if(!selecting || !policy || policy->stop || p.action!=actionName(policy->action.kind) ||
        p.arguments!=arguments(policy->action) || p.state_signature!=expected_signature)return false;
-    p.policy=decision;p.selection_reason="full_joint_public_feedback_policy";
+    p.policy=decision;p.selection_reason=coverage_policy?"necessary_public_missing_location_coverage":"full_joint_public_feedback_policy";
     // Nonrepresented feedback has an explicit STOP fallback and support-miss
     // accounting. This is execution completeness, not certified prior coverage.
     p.branches_complete=true;
@@ -248,42 +328,44 @@ void FullModelController::run() {
         if(!policy || policy->stop) {
             if(cpu_used>=std::chrono::milliseconds(250)){stop_reason="cumulative_model_budget";break;}
             began=std::chrono::steady_clock::now();
-            SdkEpisode modal_episode;modal_episode.world=modal;modal_episode.credits.assign(model.constraints.size(),true);
-            auto proposals=EpisodeRouter::propose(EpisodeBelief({{modal_episode,1}}),model,1024,std::chrono::milliseconds(10));
-            auto adaptive=EpisodeRouter::propose(replay->belief(),model,2048,std::chrono::milliseconds(10));
-            proposals.routes.insert(proposals.routes.end(),adaptive.routes.begin(),adaptive.routes.end());
-            std::vector<JointAction> observations;
-            const auto& states=replay->belief().support();
-            if(!states.empty()) {
-                const auto visible=states.front().episode.world.visible();bool differs=false;
-                for(const auto& state:states)differs|=state.episode.world.visible()!=visible;
-                if(differs)observations.push_back({JointActionKind::SENSE});
+            const bool coverage_observation=selectMissingLocationObservation();
+            if(coverage_observation) {
+                cpu_used+=std::chrono::steady_clock::now()-began;
+            } else {
+                SdkEpisode modal_episode;modal_episode.world=modal;modal_episode.credits.assign(model.constraints.size(),true);
+                auto proposals=EpisodeRouter::propose(EpisodeBelief({{modal_episode,1}}),model,1024,std::chrono::milliseconds(10));
+                auto adaptive=EpisodeRouter::propose(replay->belief(),model,2048,std::chrono::milliseconds(10));
+                proposals.routes.insert(proposals.routes.end(),adaptive.routes.begin(),adaptive.routes.end());
+                std::vector<JointAction> observations;
+                const auto& states=replay->belief().support();
+                if(!states.empty()) {
+                    const auto visible=states.front().episode.world.visible();bool differs=false;
+                    for(const auto& state:states)differs|=state.episode.world.visible()!=visible;
+                    if(differs)observations.push_back({JointActionKind::SENSE});
+                }
+                const auto& targets=required_objects;
+                for(unsigned id:targets)if(asked[id]<3 && !states.empty()) {
+                    const auto truth=states.front().episode.world.truthfulReplies(id);bool differs=false;
+                    for(const auto& state:states)differs|=state.episode.world.truthfulReplies(id)!=truth;
+                    if(differs)observations.push_back({JointActionKind::ASK,id});
+                }
+                const auto already=std::chrono::steady_clock::now()-began;
+                const auto allowance=std::min(std::chrono::milliseconds(50),
+                    std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::milliseconds(250)-cpu_used-already));
+                if(allowance.count()<=0){stop_reason="no_remaining_search_budget";break;}
+                const auto plan=EpisodeRouteSearch::solve(replay->belief(),model,proposals.routes,observations,ask,
+                    w.deadline_manager.remaining()-w.plan_safety_margin,8192-proposals.transitions-adaptive.transitions,allowance);
+                policy=plan.policy;++decision;
+                const auto stopping=replay->belief().reward(model);
+                LOG("[FullModel] decision=%zu lower=%.6f upper=%.6f routes=%zu transitions=%zu prefix_cache_hits=%zu wall_cut=%s work_cut=%s model_ms=%lld\n",
+                    decision,plan.value.lower,plan.value.upper,proposals.routes.size(),plan.transitions+proposals.transitions+adaptive.transitions,
+                    plan.prefix_cache_hits,
+                    plan.wall_cut?"true":"false",plan.work_cut?"true":"false",(long long)std::chrono::duration_cast<std::chrono::milliseconds>(cpu_used+std::chrono::steady_clock::now()-began).count());
+                LOG("[FullDecisionEvidence] decision=%zu stop_lower=%.9f stop_upper=%.9f selected_lower=%.9f selected_upper=%.9f support=%zu information_candidates=%zu selected_stop=%s scope=finite_catalogue_complete_candidates\n",
+                    decision,stopping.lower,stopping.upper,plan.value.lower,plan.value.upper,replay->belief().support().size(),observations.size(),policy->stop?"true":"false");
+                cpu_used+=std::chrono::steady_clock::now()-began;
+                if(policy->stop){stop_reason="no_profitable_complete_candidate";break;}
             }
-            std::set<unsigned> targets;
-            for(const auto& goal:model.goals)for(const auto& binding:goal.bindings) {
-                targets.insert(binding.first);if(binding.second)targets.insert(binding.second);
-            }
-            for(unsigned id:targets)if(asked[id]<3 && !states.empty()) {
-                const auto truth=states.front().episode.world.truthfulReplies(id);bool differs=false;
-                for(const auto& state:states)differs|=state.episode.world.truthfulReplies(id)!=truth;
-                if(differs)observations.push_back({JointActionKind::ASK,id});
-            }
-            const auto already=std::chrono::steady_clock::now()-began;
-            const auto allowance=std::min(std::chrono::milliseconds(50),
-                std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::milliseconds(250)-cpu_used-already));
-            if(allowance.count()<=0){stop_reason="no_remaining_search_budget";break;}
-            const auto plan=EpisodeRouteSearch::solve(replay->belief(),model,proposals.routes,observations,ask,
-                w.deadline_manager.remaining()-w.plan_safety_margin,8192-proposals.transitions-adaptive.transitions,allowance);
-            policy=plan.policy;++decision;
-            const auto stopping=replay->belief().reward(model);
-            LOG("[FullModel] decision=%zu lower=%.6f upper=%.6f routes=%zu transitions=%zu prefix_cache_hits=%zu wall_cut=%s work_cut=%s model_ms=%lld\n",
-                decision,plan.value.lower,plan.value.upper,proposals.routes.size(),plan.transitions+proposals.transitions+adaptive.transitions,
-                plan.prefix_cache_hits,
-                plan.wall_cut?"true":"false",plan.work_cut?"true":"false",(long long)std::chrono::duration_cast<std::chrono::milliseconds>(cpu_used+std::chrono::steady_clock::now()-began).count());
-            LOG("[FullDecisionEvidence] decision=%zu stop_lower=%.9f stop_upper=%.9f selected_lower=%.9f selected_upper=%.9f support=%zu information_candidates=%zu selected_stop=%s scope=finite_catalogue_complete_candidates\n",
-                decision,stopping.lower,stopping.upper,plan.value.lower,plan.value.upper,replay->belief().support().size(),observations.size(),policy->stop?"true":"false");
-            cpu_used+=std::chrono::steady_clock::now()-began;
-            if(policy->stop){stop_reason="no_profitable_complete_candidate";break;}
         }
         began=std::chrono::steady_clock::now();
         const auto action=policy->action;expected_signature=w.PlanStateSignature();selecting=true;
@@ -306,8 +388,9 @@ void FullModelController::run() {
         if(receipt.outcome==ExecutionStatus::INDETERMINATE || !receipt.state_committed){stop_reason="indeterminate_or_uncommitted_outcome";break;}
         began=std::chrono::steady_clock::now();
         const auto observation=feedback(action,receipt);
+        const bool refined_domain=refineLocationDomain(action,observation,receipt.id);
         const auto update=replay->observe(model,action,observation,ask,receipt.id);
-        if(update==EpisodeUpdate::SUPPORT_MISS) {
+        if(update==EpisodeUpdate::SUPPORT_MISS || refined_domain) {
             LOG("[FullModel] support_miss receipt=%zu action=%s paid_once=true fallback=stop\n",receipt.id,actionName(action.kind));
             const auto conditioned=EpisodeConditioner::initial(initial_template,factors,replay->evidence());
             LOG("[FullModel] initial_conditioning consistent=%s proof_count=%zu retained_mass=%.17g\n",
