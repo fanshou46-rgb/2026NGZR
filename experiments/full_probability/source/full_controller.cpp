@@ -281,6 +281,31 @@ bool FullModelController::qualify(ActionPermit& p) const {
     if(p.kind!=PermitKind::CONFIRMED)p.kind=PermitKind::MODELED_PROBE;
     return true;
 }
+void FullModelController::logSelectedPolicy() {
+    if(!policy || policy->stop)throw std::logic_error("cannot record a Stop as an actual SDK command");
+    if(logged_decision!=decision) {
+        logged_nodes.clear();
+        // Stable preorder follows public observation edges. These IDs are
+        // catalogue references only and never identify a hidden world.
+        std::function<void(const std::shared_ptr<EpisodePolicy>&)> index;
+        index=[&](const std::shared_ptr<EpisodePolicy>& node) {
+            if(!node || node->stop)return;
+            if(logged_nodes.count(node.get()))throw std::logic_error("policy catalogue must be an observation tree");
+            const auto id=logged_nodes.size()+1;logged_nodes.emplace(node.get(),id);
+            for(const auto& branch:node->children)index(branch.second);
+        };
+        index(policy);const auto json=policyJson(policy);
+        logged_policy_digest=ExecutionEvidence::digest(json);
+        LOG("[FullPolicyCatalogue] {\"schema\":\"full_policy_catalogue.v2\",\"decision\":%zu,\"digest\":%llu,\"root\":%s}\n",
+            decision,(unsigned long long)logged_policy_digest,json.c_str());
+        logged_decision=decision;
+    }
+    const auto node=logged_nodes.find(policy.get());
+    if(node==logged_nodes.end())throw std::logic_error("selected suffix is absent from committed policy catalogue");
+    LOG("[FullPolicy] {\"schema\":\"full_policy.v2\",\"decision\":%zu,\"receipt\":%zu,\"before\":%llu,\"prior_scope\":\"finite_public_domain_estimate\",\"catalogue\":%llu,\"node\":%zu}\n",
+        decision,owner.ActionReceipts().size()+1,(unsigned long long)ExecutionEvidence::digest(expected_signature),
+        (unsigned long long)logged_policy_digest,node->second);
+}
 bool FullModelController::dispatch(const JointAction& a) {
     auto& w=owner;w.isPass=false;
     switch(a.kind) {
@@ -369,8 +394,7 @@ void FullModelController::run() {
         }
         began=std::chrono::steady_clock::now();
         const auto action=policy->action;expected_signature=w.PlanStateSignature();selecting=true;
-        LOG("[FullPolicy] {\"schema\":\"full_policy.v1\",\"decision\":%zu,\"receipt\":%zu,\"before\":%llu,\"prior_scope\":\"finite_public_domain_estimate\",\"root\":%s}\n",
-            decision,w.ActionReceipts().size()+1,(unsigned long long)ExecutionEvidence::digest(expected_signature),policyJson(policy).c_str());
+        logSelectedPolicy();
         cpu_used+=std::chrono::steady_clock::now()-began;
         const auto before=w.ActionReceipts().size();
         const auto dispatch_began=std::chrono::steady_clock::now();

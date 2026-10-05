@@ -19,6 +19,9 @@ private:
     AskObservationModel ask;
     std::shared_ptr<EpisodePolicy> policy;
     std::string expected_signature;
+    std::size_t logged_decision=0;
+    std::uint64_t logged_policy_digest=0;
+    std::map<const EpisodePolicy*,std::size_t> logged_nodes;
     bool selecting=false;
     bool coverage_policy=false;
     std::size_t decision=0;
@@ -29,6 +32,7 @@ private:
     std::chrono::steady_clock::duration dispatch_overhead{};
     long long sdk_ns=0;
     void initialize();
+    void logSelectedPolicy();
     bool selectMissingLocationObservation();
     bool refineLocationDomain(const JointAction&,const JointObservation&,std::size_t);
     bool dispatch(const JointAction&);

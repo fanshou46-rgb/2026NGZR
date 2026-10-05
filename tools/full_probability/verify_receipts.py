@@ -100,12 +100,34 @@ def main():
         try:
             rawlog=(LAB/'runs'/row['key']/'client.log').read_bytes()
             text=rawlog.decode('utf8',errors='replace')
-            trace=[];policies=[]
+            trace=[];policies=[];catalogues={}
             for line in ANSI.sub('',text).splitlines():
                 if '[ExecutionEvidence] {' in line:
                     trace.append(json.loads(line.split('[ExecutionEvidence] ',1)[1]))
                 if '[FullPolicy] {' in line:
-                    policies.append(json.loads(line.split('[FullPolicy] ',1)[1]))
+                    p=json.loads(line.split('[FullPolicy] ',1)[1])
+                    if p['schema']=='full_policy.v2':
+                        c=catalogues[p['decision']]
+                        assert p['catalogue']==c['digest'] and p['node'] in c['nodes']
+                        if not c['used']:assert p['node']==1,'first action is not the catalogue root'
+                        c['used']=True;p['root']=c['nodes'][p['node']]
+                        totals['actual_policy_references_checked']+=1
+                    else:assert p['schema']=='full_policy.v1'
+                    policies.append(p)
+                if '[FullPolicyCatalogue] {' in line:
+                    payload=line.split('[FullPolicyCatalogue] ',1)[1].rstrip();c=json.loads(payload)
+                    assert c['schema']=='full_policy_catalogue.v2' and c['decision'] not in catalogues
+                    rawroot=payload.split('"root":',1)[1][:-1]
+                    assert json.loads(rawroot)==c['root'] and digest(rawroot)==c['digest']
+                    assert c['root'].get('stop') is not True
+                    nodes={}
+                    def index(node):
+                        if node.get('stop') is True:return
+                        nodes[len(nodes)+1]=node
+                        for b in node['children']:index(b['node'])
+                    totals['catalogue_nodes_checked']+=verify_policy(c['root'])
+                    index(c['root']);c.update(nodes=nodes,node_ids={id(node):number for number,node in nodes.items()},used=False);catalogues[c['decision']]=c
+            assert all(c['used'] for c in catalogues.values()),'unused selected catalogue'
             prepared=[r for r in trace if r['event']=='prepared']
             finalized=[r for r in trace if r['event']=='finalized']
             assert [r['id'] for r in prepared]==list(range(1,len(prepared)+1)),row['key']
@@ -183,7 +205,12 @@ def main():
                         assert prior_queries==int(f['attempts_before']) and prior_queries<3
                     totals['policy_nodes_checked']+=verify_policy(p['root'])
                     if previous and previous[0]['decision']==p['decision']:
-                        assert observed_branch(previous[0]['root'],previous[1])==p['root'],(row['key'],'executed suffix differs from selected policy')
+                        expected=observed_branch(previous[0]['root'],previous[1])
+                        assert expected==p['root'],(row['key'],'executed suffix differs from selected policy')
+                        if p['schema']=='full_policy.v2':
+                            c=catalogues[p['decision']]
+                            assert previous[0]['schema']=='full_policy.v2' and previous[0]['catalogue']==p['catalogue']
+                            assert p['node']==c['node_ids'].get(id(expected)),(row['key'],'node reference does not follow actual public feedback')
                     if observed_branch(p['root'],final) is None:
                         totals['unexpected_feedback_stop']+=1
                     previous=(p,final)
