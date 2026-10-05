@@ -101,7 +101,21 @@ def sdk_feedback(path):
         if m:result.append((m[1].strip(),m[2].strip()))
     return result
 
-def verify_coverage_schedule(text,decisions):
+def verify_actual_at_refutation(receipts,obj,site,sense_id,query_id,through):
+    prior=[r for r in receipts if r['id']<=through]
+    queries=[r for r in prior if r['action']=='AskLoc' and r['args']==[obj]]
+    senses=[r for r in prior if r['action']=='Sense'];assert queries and senses and site>=0
+    query,sense=queries[-1],senses[-1]
+    assert query['id']==query_id and sense['id']==sense_id
+    assert query['status']==sense['status']=='committed' and query['outcome']==sense['outcome']=='observed'
+    ids=json.loads(sense['feedback']);assert isinstance(ids,list) and all(isinstance(x,int) for x in ids)
+    assert query['feedback']=='at({},{})'.format(obj,site) and obj not in ids
+    robot=[e for e in sense['evidence'] if e['predicate']=='robot_at' and e['object']==0]
+    assert len(robot)==1 and robot[0]['confirmed'] is True and robot[0]['value']==site
+    assert all(r['action'] in ('Sense','AskLoc') for r in prior if r['id']>min(sense['id'],query['id'])),'physical action invalidates refutation'
+    return query,sense
+
+def verify_coverage_schedule(text,decisions,receipts=None):
     schedules={}
     for line in text.splitlines():
         if '[FullCoverageSchedule] ' not in line:continue
@@ -113,9 +127,31 @@ def verify_coverage_schedule(text,decisions):
         assert decisions[d]['scope'] in ('necessary_initial_missing_acquisition_location','necessary_initial_missing_big_location')
         assert decisions[source]['support']==decisions[d]['support'],'coverage predecessor belief differs'
         schedules[d]=f
+    for line in text.splitlines():
+        if '[FullCoverageRefutation] ' not in line:continue
+        assert receipts is not None,'refutation has no raw receipt evidence'
+        f=dict(re.findall(r'(\w+)=([^\s]+)',line));d=int(f['decision']);obj=int(f['object']);site=int(f['site'])
+        assert d not in schedules and f['trigger']=='actual_at_clue_refuted' and f['canonical_answer_authority']=='false'
+        assert decisions[d]['scope']=='necessary_initial_missing_acquisition_location' and int(decisions[d]['target'])==obj
+        current=[r for r in receipts if r['policy']==d];assert len(current)==1
+        current=current[0]
+        verify_actual_at_refutation(receipts,obj,site,int(f['source_sense']),int(f['source_query']),current['id']-1)
+        assert int(f['before'])==current['before'] and current['action']=='AskLoc' and current['args']==[obj]
+        schedules[d]=f
     if 'acquisition_schedule=after_ordinary_stop' in text:
         assert {d for d,f in decisions.items() if f['scope']=='necessary_initial_missing_acquisition_location'}<=set(schedules),'acquisition coverage precedes ordinary Stop'
     return schedules
+
+def verify_policy_interruptions(text,receipts):
+    interrupted=set()
+    for line in text.splitlines():
+        if '[FullPolicyInterruption] ' not in line:continue
+        f=dict(re.findall(r'(\w+)=([^\s]+)',line));rid=int(f['receipt'])
+        assert rid not in interrupted and f['reason']=='actual_at_clue_refuted' and f['paid_history_retained']=='true'
+        query,_=verify_actual_at_refutation(receipts,int(f['object']),int(f['site']),int(f['source_sense']),rid,rid)
+        assert query['policy']==int(f['decision']) and query['after']==int(f['before'])
+        interrupted.add(rid)
+    return interrupted
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('checkpoint');parser.add_argument('--suite',default='smoke');a=parser.parse_args()
     records=[json.loads(s) for s in (LAB/(a.checkpoint+'-'+a.suite+'.jsonl')).read_text().splitlines() if s]
@@ -204,8 +240,10 @@ def main():
                     assert int(fields['support'])>0 and int(fields['information_candidates'])>=0
                     assert fields['scope'] in ('finite_catalogue_complete_candidates','necessary_initial_missing_big_location','necessary_initial_missing_acquisition_location')
                     decisions[decision_id]=fields;totals['decision_values_checked']+=1
-                schedules=verify_coverage_schedule(text,decisions)
-                totals['deferred_coverage_predecessors_checked']+=len(schedules)
+                schedules=verify_coverage_schedule(text,decisions,finalized)
+                totals['actual_policy_interruptions_checked']+=len(verify_policy_interruptions(text,finalized))
+                totals['deferred_coverage_predecessors_checked']+=sum(f['trigger']=='ordinary_finite_candidate_stop' for f in schedules.values())
+                totals['actual_at_refutations_checked']+=sum(f['trigger']=='actual_at_clue_refuted' for f in schedules.values())
                 stops=[line for line in text.splitlines() if '[FullStopEvidence] ' in line]
                 if decisions:
                     assert len(stops)==1,'missing unique termination evidence'
