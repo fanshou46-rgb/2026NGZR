@@ -1,0 +1,667 @@
+UpdateCTestConfiguration  from :/tmp/rc1671-200-asan/DartConfiguration.tcl
+UpdateCTestConfiguration  from :/tmp/rc1671-200-asan/DartConfiguration.tcl
+Test project /tmp/rc1671-200-asan
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 1
+    Start  1: planner_lifecycle_0
+
+1: Test command: /tmp/rc1671-200-asan/planner_lifecycle_tests "/tmp/rc1671-200-asan/words.txt" "0"
+1: Test timeout computed to be: 10
+1: [LOG]:-path
+1: [LOG]:nlp 0, err 0
+1: #(RDFW): Initializing dynamic arrays with size 100
+1: #(RDFW): Dynamic arrays initialization completed
+1: [LOG]:[PlannerVersion] 1.6.7.1-200ms lifecycle-hardening baseline=1.6.7-200ms margin=200ms
+1: #(RDFW): Starting new test - verifying clean state
+1: #(RDFW): Pre-test state verification completed
+1: [32m
+1: [0m--------------------------------------------
+1: Ready to Parse Env Infos.
+1: [LOG]:[Lifecycle] planner stopped after SDK shutdown request
+1: 
+1: #(RDFW): Fini - Comprehensive state cleanup for next test
+1: #(RDFW): Optimizing memory usage...
+1: #(RDFW): Memory optimization completed
+1: #(RDFW): Comprehensive state cleanup completed - ready for next test
+1: LIFECYCLE_PASS 0
+1/9 Test  #1: planner_lifecycle_0 ..............   Passed    0.22 sec
+test 2
+    Start  2: planner_lifecycle_1
+
+2: Test command: /tmp/rc1671-200-asan/planner_lifecycle_tests "/tmp/rc1671-200-asan/words.txt" "1"
+2: Test timeout computed to be: 10
+2: [LOG]:-path
+2: [LOG]:nlp 0, err 0
+2: #(RDFW): Initializing dynamic arrays with size 100
+2: #(RDFW): Dynamic arrays initialization completed
+2: [LOG]:[PlannerVersion] 1.6.7.1-200ms lifecycle-hardening baseline=1.6.7-200ms margin=200ms
+2: #(RDFW): Starting new test - verifying clean state
+2: #(RDFW): Pre-test state verification completed
+2: [32m
+2: [0m--------------------------------------------
+2: Ready to Parse Env Infos.
+2: #(RDFW): Fini - Comprehensive state cleanup for next test
+2: #(RDFW): Optimizing memory usage...
+2: #(RDFW): Memory optimization completed
+2: #(RDFW): Comprehensive state cleanup completed - ready for next test
+2: LIFECYCLE_PASS 1
+2/9 Test  #2: planner_lifecycle_1 ..............   Passed    0.05 sec
+test 3
+    Start  3: planner_lifecycle_2
+
+3: Test command: /tmp/rc1671-200-asan/planner_lifecycle_tests "/tmp/rc1671-200-asan/words.txt" "2"
+3: Test timeout computed to be: 10
+3: [LOG]:-path
+3: [LOG]:nlp 0, err 0
+3: #(RDFW): Initializing dynamic arrays with size 100
+3: #(RDFW): Dynamic arrays initialization completed
+3: [LOG]:[PlannerVersion] 1.6.7.1-200ms lifecycle-hardening baseline=1.6.7-200ms margin=200ms
+3: #(RDFW): Starting new test - verifying clean state
+3: #(RDFW): Pre-test state verification completed
+3: [32m
+3: [0m--------------------------------------------
+3: Ready to Parse Env Infos.
+3: #(RDFW): Fini - Comprehensive state cleanup for next test
+3: #(RDFW): Optimizing memory usage...
+3: #(RDFW): Memory optimization completed
+3: #(RDFW): Comprehensive state cleanup completed - ready for next test
+3: LIFECYCLE_PASS 2
+3/9 Test  #3: planner_lifecycle_2 ..............   Passed    0.20 sec
+test 4
+    Start  4: planner_lifecycle_3
+
+4: Test command: /tmp/rc1671-200-asan/planner_lifecycle_tests "/tmp/rc1671-200-asan/words.txt" "3"
+4: Test timeout computed to be: 10
+4: [LOG]:-path
+4: [LOG]:nlp 0, err 0
+4: #(RDFW): Initializing dynamic arrays with size 100
+4: #(RDFW): Dynamic arrays initialization completed
+4: [LOG]:[PlannerVersion] 1.6.7.1-200ms lifecycle-hardening baseline=1.6.7-200ms margin=200ms
+4: #(RDFW): Starting new test - verifying clean state
+4: #(RDFW): Pre-test state verification completed
+4: [32m
+4: [0m--------------------------------------------
+4: Ready to Parse Env Infos.
+4: 
+4: ParseEnv finished
+4: --------------------------------------------
+4: Ready to Parse Tasks and Cons.
+4: [31m[ERROR]:/tmp/src1.6.7.1-200ms-check/rdfw.cpp:1895 Instruction description is empty; continuing with no tasks[0m
+4: [31m[ERROR]:/tmp/src1.6.7.1-200ms-check/rdfw.cpp:6099 Instruction input is empty or oversized[0m
+4: Instruction input contained no usable forms; continuing safely.
+4: [LOG]:[Preflight][WorldWarning] human count differs from conventional layout
+4: [LOG]:[Preflight] task raw=0 unique=0 duplicate=0 rejected=0; constraint raw=0 unique=0 duplicate=0 rejected=0; world_errors=0
+4: Pos  0:(T):
+4: Pos  1:(T):[32m(robot hold:0 plate:0)[0m[33m(1 table)[0m
+4: UnknownPos:
+4: 
+4: [LOG]:[32m[MustIn] correction done.
+4: [0m
+4: [LOG]:[32m[MustNear] correction done.
+4: [0m
+4: Pos  0:(T):
+4: Pos  1:(T):[32m(robot hold:0 plate:0)[0m[33m(1 table)[0m
+4: UnknownPos:
+4: 
+4: Task:
+4: 
+4: Info:
+4: 
+4: Not_Info:
+4: 
+4: Not_Task:
+4: 
+4: NotNot_Info:
+4: Parse Tasks, Cons and Infos finished.
+4: --------------------------------------------
+4: Ready to Cons  plan
+4: cons_plan finished
+4: --------------------------------------------
+4: taskoptimization finished
+4: --------------------------------------------
+4: 0
+4: [LOG]:[36m[3A][must-choose-one] goals=0/0 (unknown=0), constraints=0/0 (unknown=0), base_score=0, action_cost=0, elapsed=0ms, remaining=5000ms
+4: [0m
+4: [LOG]:[36m[3A][must-choose-one] completed_goals=[], satisfied_constraints=[]
+4: [0m
+4: [LOG]:[33m[3B][StopGate] no complete candidate plan fits before must-choose-one; candidate_count=0 fresh_positive=false include_goto=true
+4: [0m
+4: -----check check check-----
+4: Pos  0:(T):
+4: Pos  1:(T):[32m(robot hold:0 plate:0)[0m[33m(1 table)[0m
+4: UnknownPos:
+4: 
+4: [LOG]:[36m[3A][multi-goto] goals=0/0 (unknown=0), constraints=0/0 (unknown=0), base_score=0, action_cost=0, elapsed=0ms, remaining=5000ms
+4: [0m
+4: [LOG]:[36m[3A][multi-goto] completed_goals=[], satisfied_constraints=[]
+4: [0m
+4: [LOG]:[33m[3B][StopGate] no complete candidate plan fits before multi-goto; candidate_count=0 fresh_positive=false include_goto=true
+4: [0m
+4: [LOG]:[33m[Recovery] stop: no positive legal candidate after full rescan; goals=0/0 revision=0
+4: [0m
+4: 
+4: Sovled Task Num:0    Expect Num:0
+4: [LOG]:[36m[3A][final] goals=0/0 (unknown=0), constraints=0/0 (unknown=0), base_score=0, action_cost=0, elapsed=0ms, remaining=5000ms
+4: [0m
+4: [LOG]:[36m[3A][final] completed_goals=[], satisfied_constraints=[]
+4: [0m
+4: #(RDFW): Fini - Comprehensive state cleanup for next test
+4: #(RDFW): Optimizing memory usage...
+4: #(RDFW): Memory optimization completed
+4: #(RDFW): Comprehensive state cleanup completed - ready for next test
+4: [LOG]:[PlannerVersion] 1.6.7.1-200ms lifecycle-hardening baseline=1.6.7-200ms margin=200ms
+4: #(RDFW): Starting new test - verifying clean state
+4: #(RDFW): Pre-test state verification completed
+4: [32m
+4: [0m--------------------------------------------
+4: Ready to Parse Env Infos.
+4: 
+4: ParseEnv finished
+4: --------------------------------------------
+4: Ready to Parse Tasks and Cons.
+4: [31m[ERROR]:/tmp/src1.6.7.1-200ms-check/rdfw.cpp:1895 Instruction description is empty; continuing with no tasks[0m
+4: [31m[ERROR]:/tmp/src1.6.7.1-200ms-check/rdfw.cpp:6099 Instruction input is empty or oversized[0m
+4: Instruction input contained no usable forms; continuing safely.
+4: [LOG]:[Preflight][WorldWarning] human count differs from conventional layout
+4: [LOG]:[Preflight] task raw=0 unique=0 duplicate=0 rejected=0; constraint raw=0 unique=0 duplicate=0 rejected=0; world_errors=0
+4: Pos  0:(T):
+4: Pos  1:(T):[32m(robot hold:0 plate:0)[0m[33m(1 table)[0m
+4: UnknownPos:
+4: 
+4: [LOG]:[32m[MustIn] correction done.
+4: [0m
+4: [LOG]:[32m[MustNear] correction done.
+4: [0m
+4: Pos  0:(T):
+4: Pos  1:(T):[32m(robot hold:0 plate:0)[0m[33m(1 table)[0m
+4: UnknownPos:
+4: 
+4: Task:
+4: 
+4: Info:
+4: 
+4: Not_Info:
+4: 
+4: Not_Task:
+4: 
+4: NotNot_Info:
+4: Parse Tasks, Cons and Infos finished.
+4: --------------------------------------------
+4: Ready to Cons  plan
+4: cons_plan finished
+4: --------------------------------------------
+4: taskoptimization finished
+4: --------------------------------------------
+4: 0
+4: [LOG]:[36m[3A][must-choose-one] goals=0/0 (unknown=0), constraints=0/0 (unknown=0), base_score=0, action_cost=0, elapsed=0ms, remaining=5000ms
+4: [0m
+4: [LOG]:[36m[3A][must-choose-one] completed_goals=[], satisfied_constraints=[]
+4: [0m
+4: [LOG]:[33m[3B][StopGate] no complete candidate plan fits before must-choose-one; candidate_count=0 fresh_positive=false include_goto=true
+4: [0m
+4: -----check check check-----
+4: Pos  0:(T):
+4: Pos  1:(T):[32m(robot hold:0 plate:0)[0m[33m(1 table)[0m
+4: UnknownPos:
+4: 
+4: [LOG]:[36m[3A][multi-goto] goals=0/0 (unknown=0), constraints=0/0 (unknown=0), base_score=0, action_cost=0, elapsed=0ms, remaining=5000ms
+4: [0m
+4: [LOG]:[36m[3A][multi-goto] completed_goals=[], satisfied_constraints=[]
+4: [0m
+4: [LOG]:[33m[3B][StopGate] no complete candidate plan fits before multi-goto; candidate_count=0 fresh_positive=false include_goto=true
+4: [0m
+4: [LOG]:[33m[Recovery] stop: no positive legal candidate after full rescan; goals=0/0 revision=0
+4: [0m
+4: 
+4: Sovled Task Num:0    Expect Num:0
+4: [LOG]:[36m[3A][final] goals=0/0 (unknown=0), constraints=0/0 (unknown=0), base_score=0, action_cost=0, elapsed=0ms, remaining=5000ms
+4: [0m
+4: [LOG]:[36m[3A][final] completed_goals=[], satisfied_constraints=[]
+4: [0m
+4: #(RDFW): Fini - Comprehensive state cleanup for next test
+4: #(RDFW): Optimizing memory usage...
+4: #(RDFW): Memory optimization completed
+4: #(RDFW): Comprehensive state cleanup completed - ready for next test
+4: [LOG]:[PlannerVersion] 1.6.7.1-200ms lifecycle-hardening baseline=1.6.7-200ms margin=200ms
+4: #(RDFW): Starting new test - verifying clean state
+4: #(RDFW): Pre-test state verification completed
+4: [32m
+4: [0m--------------------------------------------
+4: Ready to Parse Env Infos.
+4: 
+4: ParseEnv finished
+4: --------------------------------------------
+4: Ready to Parse Tasks and Cons.
+4: [31m[ERROR]:/tmp/src1.6.7.1-200ms-check/rdfw.cpp:1895 Instruction description is empty; continuing with no tasks[0m
+4: [31m[ERROR]:/tmp/src1.6.7.1-200ms-check/rdfw.cpp:6099 Instruction input is empty or oversized[0m
+4: Instruction input contained no usable forms; continuing safely.
+4: [LOG]:[Preflight][WorldWarning] human count differs from conventional layout
+4: [LOG]:[Preflight] task raw=0 unique=0 duplicate=0 rejected=0; constraint raw=0 unique=0 duplicate=0 rejected=0; world_errors=0
+4: Pos  0:(T):
+4: Pos  1:(T):[32m(robot hold:0 plate:0)[0m[33m(1 table)[0m
+4: UnknownPos:
+4: 
+4: [LOG]:[32m[MustIn] correction done.
+4: [0m
+4: [LOG]:[32m[MustNear] correction done.
+4: [0m
+4: Pos  0:(T):
+4: Pos  1:(T):[32m(robot hold:0 plate:0)[0m[33m(1 table)[0m
+4: UnknownPos:
+4: 
+4: Task:
+4: 
+4: Info:
+4: 
+4: Not_Info:
+4: 
+4: Not_Task:
+4: 
+4: NotNot_Info:
+4: Parse Tasks, Cons and Infos finished.
+4: --------------------------------------------
+4: Ready to Cons  plan
+4: cons_plan finished
+4: --------------------------------------------
+4: taskoptimization finished
+4: --------------------------------------------
+4: 0
+4: [LOG]:[36m[3A][must-choose-one] goals=0/0 (unknown=0), constraints=0/0 (unknown=0), base_score=0, action_cost=0, elapsed=0ms, remaining=5000ms
+4: [0m
+4: [LOG]:[36m[3A][must-choose-one] completed_goals=[], satisfied_constraints=[]
+4: [0m
+4: [LOG]:[33m[3B][StopGate] no complete candidate plan fits before must-choose-one; candidate_count=0 fresh_positive=false include_goto=true
+4: [0m
+4: -----check check check-----
+4: Pos  0:(T):
+4: Pos  1:(T):[32m(robot hold:0 plate:0)[0m[33m(1 table)[0m
+4: UnknownPos:
+4: 
+4: [LOG]:[36m[3A][multi-goto] goals=0/0 (unknown=0), constraints=0/0 (unknown=0), base_score=0, action_cost=0, elapsed=0ms, remaining=5000ms
+4: [0m
+4: [LOG]:[36m[3A][multi-goto] completed_goals=[], satisfied_constraints=[]
+4: [0m
+4: [LOG]:[33m[3B][StopGate] no complete candidate plan fits before multi-goto; candidate_count=0 fresh_positive=false include_goto=true
+4: [0m
+4: [LOG]:[33m[Recovery] stop: no positive legal candidate after full rescan; goals=0/0 revision=0
+4: [0m
+4: 
+4: Sovled Task Num:0    Expect Num:0
+4: [LOG]:[36m[3A][final] goals=0/0 (unknown=0), constraints=0/0 (unknown=0), base_score=0, action_cost=0, elapsed=0ms, remaining=5000ms
+4: [0m
+4: [LOG]:[36m[3A][final] completed_goals=[], satisfied_constraints=[]
+4: [0m
+4: #(RDFW): Fini - Comprehensive state cleanup for next test
+4: #(RDFW): Optimizing memory usage...
+4: #(RDFW): Memory optimization completed
+4: #(RDFW): Comprehensive state cleanup completed - ready for next test
+4: LIFECYCLE_PASS 3
+4/9 Test  #4: planner_lifecycle_3 ..............   Passed    0.04 sec
+test 5
+    Start  5: planner_lifecycle_4
+
+5: Test command: /tmp/rc1671-200-asan/planner_lifecycle_tests "/tmp/rc1671-200-asan/words.txt" "4"
+5: Test timeout computed to be: 10
+5: [LOG]:-path
+5: [LOG]:nlp 0, err 0
+5: #(RDFW): Initializing dynamic arrays with size 100
+5: #(RDFW): Dynamic arrays initialization completed
+5: [LOG]:[PlannerVersion] 1.6.7.1-200ms lifecycle-hardening baseline=1.6.7-200ms margin=200ms
+5: #(RDFW): Starting new test - verifying clean state
+5: #(RDFW): Pre-test state verification completed
+5: [32m
+5: [0m--------------------------------------------
+5: Ready to Parse Env Infos.
+5: [LOG]:[Lifecycle] planner stopped after SDK shutdown request
+5: 
+5: #(RDFW): Fini - Comprehensive state cleanup for next test
+5: #(RDFW): Optimizing memory usage...
+5: #(RDFW): Memory optimization completed
+5: #(RDFW): Comprehensive state cleanup completed - ready for next test
+5: [LOG]:[PlannerVersion] 1.6.7.1-200ms lifecycle-hardening baseline=1.6.7-200ms margin=200ms
+5: #(RDFW): Starting new test - verifying clean state
+5: #(RDFW): Pre-test state verification completed
+5: [32m
+5: [0m--------------------------------------------
+5: Ready to Parse Env Infos.
+5: 
+5: ParseEnv finished
+5: --------------------------------------------
+5: Ready to Parse Tasks and Cons.
+5: [31m[ERROR]:/tmp/src1.6.7.1-200ms-check/rdfw.cpp:1895 Instruction description is empty; continuing with no tasks[0m
+5: [31m[ERROR]:/tmp/src1.6.7.1-200ms-check/rdfw.cpp:6099 Instruction input is empty or oversized[0m
+5: Instruction input contained no usable forms; continuing safely.
+5: [LOG]:[Preflight][WorldWarning] human count differs from conventional layout
+5: [LOG]:[Preflight] task raw=0 unique=0 duplicate=0 rejected=0; constraint raw=0 unique=0 duplicate=0 rejected=0; world_errors=0
+5: Pos  0:(T):
+5: Pos  1:(T):[32m(robot hold:0 plate:0)[0m[33m(1 table)[0m
+5: UnknownPos:
+5: 
+5: [LOG]:[32m[MustIn] correction done.
+5: [0m
+5: [LOG]:[32m[MustNear] correction done.
+5: [0m
+5: Pos  0:(T):
+5: Pos  1:(T):[32m(robot hold:0 plate:0)[0m[33m(1 table)[0m
+5: UnknownPos:
+5: 
+5: Task:
+5: 
+5: Info:
+5: 
+5: Not_Info:
+5: 
+5: Not_Task:
+5: 
+5: NotNot_Info:
+5: Parse Tasks, Cons and Infos finished.
+5: --------------------------------------------
+5: Ready to Cons  plan
+5: cons_plan finished
+5: --------------------------------------------
+5: taskoptimization finished
+5: --------------------------------------------
+5: 0
+5: [LOG]:[36m[3A][must-choose-one] goals=0/0 (unknown=0), constraints=0/0 (unknown=0), base_score=0, action_cost=0, elapsed=0ms, remaining=5000ms
+5: [0m
+5: [LOG]:[36m[3A][must-choose-one] completed_goals=[], satisfied_constraints=[]
+5: [0m
+5: [LOG]:[33m[3B][StopGate] no complete candidate plan fits before must-choose-one; candidate_count=0 fresh_positive=false include_goto=true
+5: [0m
+5: -----check check check-----
+5: Pos  0:(T):
+5: Pos  1:(T):[32m(robot hold:0 plate:0)[0m[33m(1 table)[0m
+5: UnknownPos:
+5: 
+5: [LOG]:[36m[3A][multi-goto] goals=0/0 (unknown=0), constraints=0/0 (unknown=0), base_score=0, action_cost=0, elapsed=0ms, remaining=5000ms
+5: [0m
+5: [LOG]:[36m[3A][multi-goto] completed_goals=[], satisfied_constraints=[]
+5: [0m
+5: [LOG]:[33m[3B][StopGate] no complete candidate plan fits before multi-goto; candidate_count=0 fresh_positive=false include_goto=true
+5: [0m
+5: [LOG]:[33m[Recovery] stop: no positive legal candidate after full rescan; goals=0/0 revision=0
+5: [0m
+5: 
+5: Sovled Task Num:0    Expect Num:0
+5: [LOG]:[36m[3A][final] goals=0/0 (unknown=0), constraints=0/0 (unknown=0), base_score=0, action_cost=0, elapsed=0ms, remaining=5000ms
+5: [0m
+5: [LOG]:[36m[3A][final] completed_goals=[], satisfied_constraints=[]
+5: [0m
+5: #(RDFW): Fini - Comprehensive state cleanup for next test
+5: #(RDFW): Optimizing memory usage...
+5: #(RDFW): Memory optimization completed
+5: #(RDFW): Comprehensive state cleanup completed - ready for next test
+5: LIFECYCLE_PASS 4
+5/9 Test  #5: planner_lifecycle_4 ..............   Passed    0.20 sec
+test 6
+    Start  6: planner_lifecycle_5
+
+6: Test command: /tmp/rc1671-200-asan/planner_lifecycle_tests "/tmp/rc1671-200-asan/words.txt" "5"
+6: Test timeout computed to be: 10
+6/9 Test  #6: planner_lifecycle_5 ..............***Timeout  10.00 sec
+test 7
+    Start  7: planner_lifecycle_6
+
+7: Test command: /tmp/rc1671-200-asan/planner_lifecycle_tests "/tmp/rc1671-200-asan/words.txt" "6"
+7: Test timeout computed to be: 10
+7: [LOG]:-path
+7: [LOG]:nlp 0, err 0
+7: #(RDFW): Initializing dynamic arrays with size 100
+7: #(RDFW): Dynamic arrays initialization completed
+7: [LOG]:[PlannerVersion] 1.6.7.1-200ms lifecycle-hardening baseline=1.6.7-200ms margin=200ms
+7: #(RDFW): Starting new test - verifying clean state
+7: #(RDFW): Pre-test state verification completed
+7: [32m
+7: [0m--------------------------------------------
+7: Ready to Parse Env Infos.
+7: 
+7: ParseEnv finished
+7: --------------------------------------------
+7: Ready to Parse Tasks and Cons.
+7: [LOG]:[Preflight][WorldWarning] human count differs from conventional layout
+7: [LOG]:[Preflight] task raw=1 unique=1 duplicate=0 rejected=0; constraint raw=0 unique=0 duplicate=0 rejected=0; world_errors=0
+7: Pos  0:(T):
+7: Pos  1:(T):[32m(robot hold:0 plate:0)[0m
+7: Pos  2:(T):[33m(1 table)[0m
+7: UnknownPos:
+7: 
+7: Task:
+7: Behave:[35mgoto[0m
+7: ConditionX:[35m(Sort:table,Color:)[0m
+7: ConditionY:[35m(Sort:,Color:)[0m
+7: 
+7: Info:
+7: 
+7: Not_Info:
+7: 
+7: Not_Task:
+7: 
+7: NotNot_Info:
+7: Parse Tasks, Cons and Infos finished.
+7: --------------------------------------------
+7: Ready to Cons  plan
+7: cons_plan finished
+7: --------------------------------------------
+7: taskoptimization finished
+7: --------------------------------------------
+7: 1
+7: [LOG]:[36m[3A][main-loop] goals=0/1 (unknown=0), constraints=0/0 (unknown=0), base_score=0, action_cost=0, elapsed=1ms, remaining=4999ms
+7: [0m
+7: [LOG]:[36m[3A][main-loop] completed_goals=[], satisfied_constraints=[]
+7: [0m
+7: [DBG] goto risk@loc=2 bool=0
+7: [LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":1,"phase":"stop-rescan","task_index":0,"task_label":"goto","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":1,"action_cost":4,"final_reward":36,"utility":36}}
+7: [LOG]:[36m[3B][Candidate] phase=stop-rescan rank=1 task_index=0 behave=goto legacy_choice=false eligible=true complete=true actions=1 duration_ms=120 action_cost=4 score_before=0 score_after=36 marginal_score=36 utility=36 gained_goals=[0] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+7: [0m
+7: [LOG]:[33m[3B][StopGate] no complete candidate plan fits before main-loop; candidate_count=0 fresh_positive=true include_goto=false
+7: [0m
+7: [DBG] goto risk@loc=2 bool=0
+7: [LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":2,"phase":"must-choose-one","task_index":0,"task_label":"goto","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":1,"action_cost":4,"final_reward":36,"utility":36}}
+7: [LOG]:[36m[3B][Candidate] phase=must-choose-one rank=1 task_index=0 behave=goto legacy_choice=false eligible=true complete=true actions=1 duration_ms=120 action_cost=4 score_before=0 score_after=36 marginal_score=36 utility=36 gained_goals=[0] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+7: [0m
+7: [LOG]:[36m[3A][must-choose-one] goals=0/1 (unknown=0), constraints=0/0 (unknown=0), base_score=0, action_cost=0, elapsed=4ms, remaining=4996ms
+7: [0m
+7: [LOG]:[36m[3A][must-choose-one] completed_goals=[], satisfied_constraints=[]
+7: [0m
+7: stage=1
+7: [LOG]:[36m[3B][Deadline] phase=must-choose-one task_index=0 behave=goto can_finish=true remaining_plan_ms=120 safety_ms=200 budget_remaining_ms=4995
+7: [0m
+7: Must Choose one:goto
+7: [LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_selected","candidate_id":3,"task_index":0,"tasks":[0],"task_label":"goto","generated_ms":5,"world_revision":0,"selection_reason":"legacy_must_choose_one_risk","prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":1,"action_cost":4,"final_reward":36,"utility":36},"expected_reward":36,"evidence":[{"object_id":0,"fact":"location","source":"action_success","verified":true},{"object_id":1,"fact":"location","source":"initial","verified":true},{"object_id":0,"fact":"hold","source":"initial","verified":true},{"object_id":0,"fact":"plate","source":"initial","verified":true}]}
+7: [LOG]:[36m[3B][Remaining] event=begin task_index=0 behave=goto executed=0 total=1 remaining_utility=36 remaining_duration_ms=120
+7: [0m
+7: goto table的风险系数是：0
+7: [LOG]:Move(2)
+7: [LOG]:[36m[3B][Remaining] event=action task_index=0 action=Move executed=1 total=1 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+7: [0m
+7: #(RDFW): Fini - Comprehensive state cleanup for next test
+7: #(RDFW): Optimizing memory usage...
+7: #(RDFW): Memory optimization completed
+7: #(RDFW): Comprehensive state cleanup completed - ready for next test
+7: LIFECYCLE_PASS 6
+7/9 Test  #7: planner_lifecycle_6 ..............   Passed    0.21 sec
+test 8
+    Start  8: planner_lifecycle_7
+
+8: Test command: /tmp/rc1671-200-asan/planner_lifecycle_tests "/tmp/rc1671-200-asan/words.txt" "7"
+8: Test timeout computed to be: 10
+8: [LOG]:-path
+8: [LOG]:nlp 0, err 0
+8: #(RDFW): Initializing dynamic arrays with size 100
+8: #(RDFW): Dynamic arrays initialization completed
+8: LIFECYCLE_PASS 7
+8/9 Test  #8: planner_lifecycle_7 ..............   Passed    0.05 sec
+test 47
+    Start 47: deadline_sensitivity
+
+47: Test command: /tmp/rc1671-200-asan/deadline_sensitivity_tests "/tmp/rc1671-200-asan/words.txt"
+47: Test timeout computed to be: 9.99988e+06
+47: [LOG]:-path
+47: [LOG]:nlp 0, err 0
+47: #(RDFW): Initializing dynamic arrays with size 100
+47: #(RDFW): Dynamic arrays initialization completed
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave=close can_finish=false remaining_plan_ms=100 safety_ms=200 budget_remaining_ms=0
+47: [0m
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave=close can_finish=false remaining_plan_ms=100 safety_ms=200 budget_remaining_ms=1
+47: [0m
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave=close can_finish=false remaining_plan_ms=100 safety_ms=200 budget_remaining_ms=50
+47: [0m
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave=close can_finish=false remaining_plan_ms=100 safety_ms=200 budget_remaining_ms=99
+47: [0m
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave=close can_finish=false remaining_plan_ms=100 safety_ms=200 budget_remaining_ms=100
+47: [0m
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave=close can_finish=false remaining_plan_ms=100 safety_ms=200 budget_remaining_ms=199
+47: [0m
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave=close can_finish=false remaining_plan_ms=100 safety_ms=200 budget_remaining_ms=299
+47: [0m
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave=close can_finish=true remaining_plan_ms=100 safety_ms=200 budget_remaining_ms=300
+47: [0m
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave=close can_finish=true remaining_plan_ms=100 safety_ms=200 budget_remaining_ms=301
+47: [0m
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave=close can_finish=true remaining_plan_ms=100 safety_ms=200 budget_remaining_ms=5000
+47: [0m
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=false remaining_plan_ms=0 safety_ms=200 budget_remaining_ms=198
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=false remaining_plan_ms=0 safety_ms=200 budget_remaining_ms=199
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=0 safety_ms=200 budget_remaining_ms=200
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=0 safety_ms=200 budget_remaining_ms=201
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=0 safety_ms=200 budget_remaining_ms=202
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=false remaining_plan_ms=1 safety_ms=200 budget_remaining_ms=199
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=false remaining_plan_ms=1 safety_ms=200 budget_remaining_ms=200
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=1 safety_ms=200 budget_remaining_ms=201
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=1 safety_ms=200 budget_remaining_ms=202
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=1 safety_ms=200 budget_remaining_ms=203
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=false remaining_plan_ms=100 safety_ms=200 budget_remaining_ms=298
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=false remaining_plan_ms=100 safety_ms=200 budget_remaining_ms=299
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=100 safety_ms=200 budget_remaining_ms=300
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=100 safety_ms=200 budget_remaining_ms=301
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=100 safety_ms=200 budget_remaining_ms=302
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=false remaining_plan_ms=420 safety_ms=200 budget_remaining_ms=618
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=false remaining_plan_ms=420 safety_ms=200 budget_remaining_ms=619
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=420 safety_ms=200 budget_remaining_ms=620
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=420 safety_ms=200 budget_remaining_ms=621
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=420 safety_ms=200 budget_remaining_ms=622
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=false remaining_plan_ms=999 safety_ms=200 budget_remaining_ms=1197
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=false remaining_plan_ms=999 safety_ms=200 budget_remaining_ms=1198
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=999 safety_ms=200 budget_remaining_ms=1199
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=999 safety_ms=200 budget_remaining_ms=1200
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=999 safety_ms=200 budget_remaining_ms=1201
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=false remaining_plan_ms=3000 safety_ms=200 budget_remaining_ms=3198
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=false remaining_plan_ms=3000 safety_ms=200 budget_remaining_ms=3199
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=3000 safety_ms=200 budget_remaining_ms=3200
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=3000 safety_ms=200 budget_remaining_ms=3201
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=3000 safety_ms=200 budget_remaining_ms=3202
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: DEADLINE checks=73 exact_boundary=unchanged complete_projection=required
+9/9 Test #47: deadline_sensitivity .............   Passed    0.04 sec
+
+The following tests passed:
+	planner_lifecycle_0
+	planner_lifecycle_1
+	planner_lifecycle_2
+	planner_lifecycle_3
+	planner_lifecycle_4
+	planner_lifecycle_6
+	planner_lifecycle_7
+	deadline_sensitivity
+
+89% tests passed, 1 tests failed out of 9
+
+Total Test time (real) =  11.03 sec
+
+The following tests FAILED:
+	  6 - planner_lifecycle_5 (Timeout)
+Errors while running CTest

@@ -1,0 +1,6399 @@
+{
+  "products": {
+    "baseline": {
+      "CMakeLists.txt": "259a922d371bec4163fffc4d93a9755a4e31dcad54eb680e05461df176d840ad",
+      "candidate_plan.cpp": "b173578555264c1e119bffc764d3d75a16cc3a150fb23cc35ab834c93521d85a",
+      "candidate_plan.hpp": "0c87726c34206f3640b7c24c896e9c35c8e118398c7ca22c8199435b60308244",
+      "canonical_state.cpp": "7c6023de089aecc3d6245043eea8fcfb4151d04e6611bba90ca3fed8ca26822f",
+      "deadline_manager.cpp": "df5bf7800b028e49ae0f4547ad3119d202ab84f0bc550d81669b5618d435e3b4",
+      "deadline_manager.hpp": "9849595ce3c15bbdade91cd69e3fc308f3f2784914583e2a2a8c2920042badb5",
+      "debuglog.hpp": "306ac1ce8892732e0d350c90442471a80a4952c053fcf0fa34547250c89b9474",
+      "legacy_priority.cpp": "ce179911de839684a8815fc88cbc21c739ca7d297e8b4aa21b0ba1c1b4e2fcf2",
+      "legacy_priority.hpp": "666660266a6a4f35a349395e75ced8e29a86e90365585bbec57e6b41c5f43477",
+      "main.cpp": "6a5c18d9bb9eb704b2e5eadf1d079b54a9148b0b656118b4ad7a120aa486293a",
+      "parser.cpp": "d173747c71b156cc493ed3a26b1dfd77197b107b7ef132dfec844b878b8a800d",
+      "parser.hpp": "917fdaed6c3cee59ffb3e72eb77d7f9f83aa2c3e25dabea0c754fad2237e177f",
+      "question_preflight.cpp": "34d0f0005e2fc284ff4740929b1b4c6a93a480f86643f3a3aa9944a17ed29d9d",
+      "question_preflight.hpp": "8b08aaa6a88d78abc4ddd5dd8c157ea335b4784bb3a8b9c377c7f1d8debca522",
+      "rdfw.cpp": "5f036bc23994e67f5fbac670ea91019e85fd5e1864561b89cfb782e3abe7dd6b",
+      "rdfw.hpp": "ccb5fba5b89f6386ced664ac99e7ef47d788916fbc4cd226cf77521cac028c23",
+      "score_evaluator.cpp": "61db5b44a79f3520f3b7fd399e2558854f14a3e70abbca6c169b78197bbc1fc7",
+      "score_evaluator.hpp": "a05e52004437552b29a69120844fa2afe03379fb1946a2f637bee04a30de2eab",
+      "stage_timing.hpp": "a7a8a30a60ab60649e0396701f1071fd6b2d0a4e232f4c5141d7eab350b7f978",
+      "state_mutation.cpp": "0b79d2ba854a6e89d4e8205618573a942add10042bc25fe02571cd4c1c9d8b2e",
+      "task_group_search.cpp": "e50722d24c58129b1c50c818bc57308478a335105320a7322b443c04e5ed29bf",
+      "task_group_search.hpp": "416abafd8a00e2e05e8ea02f9798291b1c6c0b3ce7c6783acab431f6e93dd409",
+      "terminal_checker.cpp": "210b7bd268c11cf747bc0c80094abc27ee5ccb225ad173007c5c5eb8bbbf50fe",
+      "terminal_checker.hpp": "0e76a4a1137cac4383b47b826d05d0409684956cdebd344b4843e404b93ef4e8",
+      "words.txt": "e0527237e8759c52b18ff8de8d57308b40bb669aca15807a19890fa8f10513db"
+    },
+    "current": {
+      "CMakeLists.txt": "8245f467342ee6ecc983e8e7d2a166cb0937f67a1b813fbeecda2e663cd64e2b",
+      "candidate_plan.cpp": "b173578555264c1e119bffc764d3d75a16cc3a150fb23cc35ab834c93521d85a",
+      "candidate_plan.hpp": "0c87726c34206f3640b7c24c896e9c35c8e118398c7ca22c8199435b60308244",
+      "canonical_state.cpp": "7c6023de089aecc3d6245043eea8fcfb4151d04e6611bba90ca3fed8ca26822f",
+      "deadline_manager.cpp": "df5bf7800b028e49ae0f4547ad3119d202ab84f0bc550d81669b5618d435e3b4",
+      "deadline_manager.hpp": "9849595ce3c15bbdade91cd69e3fc308f3f2784914583e2a2a8c2920042badb5",
+      "debuglog.hpp": "306ac1ce8892732e0d350c90442471a80a4952c053fcf0fa34547250c89b9474",
+      "legacy_priority.cpp": "ce179911de839684a8815fc88cbc21c739ca7d297e8b4aa21b0ba1c1b4e2fcf2",
+      "legacy_priority.hpp": "666660266a6a4f35a349395e75ced8e29a86e90365585bbec57e6b41c5f43477",
+      "main.cpp": "6a5c18d9bb9eb704b2e5eadf1d079b54a9148b0b656118b4ad7a120aa486293a",
+      "parser.cpp": "d173747c71b156cc493ed3a26b1dfd77197b107b7ef132dfec844b878b8a800d",
+      "parser.hpp": "917fdaed6c3cee59ffb3e72eb77d7f9f83aa2c3e25dabea0c754fad2237e177f",
+      "question_preflight.cpp": "34d0f0005e2fc284ff4740929b1b4c6a93a480f86643f3a3aa9944a17ed29d9d",
+      "question_preflight.hpp": "8b08aaa6a88d78abc4ddd5dd8c157ea335b4784bb3a8b9c377c7f1d8debca522",
+      "rdfw.cpp": "b22993ab351602d5638409d8f9f2e0f7c6492c9a573866836b6cc025f124ef2f",
+      "rdfw.hpp": "3371b918d69389228b327f9ab8346ac6cb0c40bee50523e921c549f5cfb422af",
+      "score_evaluator.cpp": "61db5b44a79f3520f3b7fd399e2558854f14a3e70abbca6c169b78197bbc1fc7",
+      "score_evaluator.hpp": "a05e52004437552b29a69120844fa2afe03379fb1946a2f637bee04a30de2eab",
+      "stage_timing.hpp": "a7a8a30a60ab60649e0396701f1071fd6b2d0a4e232f4c5141d7eab350b7f978",
+      "state_mutation.cpp": "0b79d2ba854a6e89d4e8205618573a942add10042bc25fe02571cd4c1c9d8b2e",
+      "task_group_search.cpp": "e50722d24c58129b1c50c818bc57308478a335105320a7322b443c04e5ed29bf",
+      "task_group_search.hpp": "416abafd8a00e2e05e8ea02f9798291b1c6c0b3ce7c6783acab431f6e93dd409",
+      "terminal_checker.cpp": "210b7bd268c11cf747bc0c80094abc27ee5ccb225ad173007c5c5eb8bbbf50fe",
+      "terminal_checker.hpp": "0e76a4a1137cac4383b47b826d05d0409684956cdebd344b4843e404b93ef4e8",
+      "words.txt": "e0527237e8759c52b18ff8de8d57308b40bb669aca15807a19890fa8f10513db"
+    }
+  },
+  "cases": [
+    {
+      "id": "A01-01-s1",
+      "pair_id": "A01-01",
+      "category": "A01",
+      "title": "位置缺失与依赖恢复",
+      "scene": 1,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E05"
+      ],
+      "goals": 7,
+      "constraints": 30,
+      "nominal_gross": 880,
+      "path": "cases/stage1/A01-01-s1.xml",
+      "reference": "references/A01-01.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "4bd60ef25aea5af2493d6df2d0cf7c863ef64530621ff156b8f5b862461cffe8"
+    },
+    {
+      "id": "A01-01-s2",
+      "pair_id": "A01-01",
+      "category": "A01",
+      "title": "位置缺失与依赖恢复",
+      "scene": 1,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E05"
+      ],
+      "goals": 7,
+      "constraints": 30,
+      "nominal_gross": 880,
+      "path": "cases/stage2/A01-01-s2.xml",
+      "reference": "references/A01-01.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "at",
+            "4",
+            "8"
+          ],
+          [
+            "at",
+            "13",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "12",
+            "6"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "12",
+            "5"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "6df4875711d53353d5e0941ee0e44a2f88d52cbeb82f97b89432efda93c26858"
+    },
+    {
+      "id": "A01-02-s1",
+      "pair_id": "A01-02",
+      "category": "A01",
+      "title": "位置缺失与依赖恢复",
+      "scene": 2,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E05"
+      ],
+      "goals": 7,
+      "constraints": 30,
+      "nominal_gross": 880,
+      "path": "cases/stage1/A01-02-s1.xml",
+      "reference": "references/A01-02.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "b9d2b9a1031cb14cab6093067e8c5739980afa80303223d7c26aa1f604f69df8"
+    },
+    {
+      "id": "A01-02-s2",
+      "pair_id": "A01-02",
+      "category": "A01",
+      "title": "位置缺失与依赖恢复",
+      "scene": 2,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E05"
+      ],
+      "goals": 7,
+      "constraints": 30,
+      "nominal_gross": 880,
+      "path": "cases/stage2/A01-02-s2.xml",
+      "reference": "references/A01-02.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "at",
+            "4",
+            "3"
+          ],
+          [
+            "at",
+            "13",
+            "6"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "12",
+            "7"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "12",
+            "2"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "9d2c56ce318633f1df11fc259f0b77fd0349a8a6e6e13ea442e7694dd2499ab4"
+    },
+    {
+      "id": "A01-03-s1",
+      "pair_id": "A01-03",
+      "category": "A01",
+      "title": "位置缺失与依赖恢复",
+      "scene": 3,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E05"
+      ],
+      "goals": 7,
+      "constraints": 30,
+      "nominal_gross": 880,
+      "path": "cases/stage1/A01-03-s1.xml",
+      "reference": "references/A01-03.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "ffa61b233befd7469fc375974d2b88de543641288fa9c44ae5e51fb48a7b4d4b"
+    },
+    {
+      "id": "A01-03-s2",
+      "pair_id": "A01-03",
+      "category": "A01",
+      "title": "位置缺失与依赖恢复",
+      "scene": 3,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E05"
+      ],
+      "goals": 7,
+      "constraints": 30,
+      "nominal_gross": 880,
+      "path": "cases/stage2/A01-03-s2.xml",
+      "reference": "references/A01-03.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "at",
+            "4",
+            "8"
+          ],
+          [
+            "at",
+            "13",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "12",
+            "5"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "12",
+            "7"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "c6bbea787f4d086adddbb266fe262894cc29f4afddf1d3ea89226e0b7945d62a"
+    },
+    {
+      "id": "A01-04-s1",
+      "pair_id": "A01-04",
+      "category": "A01",
+      "title": "位置缺失与依赖恢复",
+      "scene": 4,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E05"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/A01-04-s1.xml",
+      "reference": "references/A01-04.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "d25dd72124be8e70ffa8714ad3c880501c693b8ce65d1bc76793ba288108288f"
+    },
+    {
+      "id": "A01-04-s2",
+      "pair_id": "A01-04",
+      "category": "A01",
+      "title": "位置缺失与依赖恢复",
+      "scene": 4,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E05"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/A01-04-s2.xml",
+      "reference": "references/A01-04.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "at",
+            "4",
+            "5"
+          ],
+          [
+            "at",
+            "13",
+            "2"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "12",
+            "4"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "12",
+            "7"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "2667003da234d1a7f66503e236c7c4fd9fd90a8b6d15eff7fa19b23067554c78"
+    },
+    {
+      "id": "A01-05-s1",
+      "pair_id": "A01-05",
+      "category": "A01",
+      "title": "位置缺失与依赖恢复",
+      "scene": 5,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E05"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/A01-05-s1.xml",
+      "reference": "references/A01-05.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "03e90479905ba4a3d0690f172994d0901c75861b2d03cc41fdcbc4748f834ef4"
+    },
+    {
+      "id": "A01-05-s2",
+      "pair_id": "A01-05",
+      "category": "A01",
+      "title": "位置缺失与依赖恢复",
+      "scene": 5,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E05"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/A01-05-s2.xml",
+      "reference": "references/A01-05.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "at",
+            "4",
+            "5"
+          ],
+          [
+            "at",
+            "13",
+            "6"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "12",
+            "2"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "12",
+            "4"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "422561ce29db4adb00b6f51626b1e396abab7db401deeb7560eea813ea983142"
+    },
+    {
+      "id": "A02-01-s1",
+      "pair_id": "A02-01",
+      "category": "A02",
+      "title": "错误位置与关系纠正",
+      "scene": 1,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E04"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/A02-01-s1.xml",
+      "reference": "references/A02-01.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "4c80fd364e54b6c87218f3c35d223ab44f1d34a3b91d854ab902b71932d87347"
+    },
+    {
+      "id": "A02-01-s2",
+      "pair_id": "A02-01",
+      "category": "A02",
+      "title": "错误位置与关系纠正",
+      "scene": 1,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E04"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/A02-01-s2.xml",
+      "reference": "references/A02-01.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "at",
+            "13",
+            "2"
+          ]
+        ],
+        "true_facts": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "false_facts": [
+          [
+            "inside",
+            "11",
+            "5"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "a370fbdf39b0368011bc5176d95a77bbfc57ab890b1ed85fded6c45d442a3cac"
+    },
+    {
+      "id": "A02-02-s1",
+      "pair_id": "A02-02",
+      "category": "A02",
+      "title": "错误位置与关系纠正",
+      "scene": 2,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E04"
+      ],
+      "goals": 7,
+      "constraints": 30,
+      "nominal_gross": 880,
+      "path": "cases/stage1/A02-02-s1.xml",
+      "reference": "references/A02-02.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "3c3089ac08d6033eb82343a2a00a60f9e62c0c98c6f2d04f619c35a1e343389e"
+    },
+    {
+      "id": "A02-02-s2",
+      "pair_id": "A02-02",
+      "category": "A02",
+      "title": "错误位置与关系纠正",
+      "scene": 2,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E04"
+      ],
+      "goals": 7,
+      "constraints": 30,
+      "nominal_gross": 880,
+      "path": "cases/stage2/A02-02-s2.xml",
+      "reference": "references/A02-02.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "at",
+            "13",
+            "3"
+          ]
+        ],
+        "true_facts": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "false_facts": [
+          [
+            "inside",
+            "11",
+            "5"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "b94f8f1c860f61812d54d951123b9fcc57e0d79753382a7aadb3ab6b082d55a2"
+    },
+    {
+      "id": "A02-03-s1",
+      "pair_id": "A02-03",
+      "category": "A02",
+      "title": "错误位置与关系纠正",
+      "scene": 3,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E04"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/A02-03-s1.xml",
+      "reference": "references/A02-03.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "d316984d9b7b44b3c61af6f23b635345d62e2bbb72ccbbf2b6301d185343feef"
+    },
+    {
+      "id": "A02-03-s2",
+      "pair_id": "A02-03",
+      "category": "A02",
+      "title": "错误位置与关系纠正",
+      "scene": 3,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E04"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/A02-03-s2.xml",
+      "reference": "references/A02-03.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "at",
+            "13",
+            "5"
+          ]
+        ],
+        "true_facts": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "false_facts": [
+          [
+            "inside",
+            "11",
+            "5"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "3a1a691fd1fc8e4eea820753512c37a7eefccf7a7541e045d2de655a54bd0def"
+    },
+    {
+      "id": "A02-04-s1",
+      "pair_id": "A02-04",
+      "category": "A02",
+      "title": "错误位置与关系纠正",
+      "scene": 4,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E04"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/A02-04-s1.xml",
+      "reference": "references/A02-04.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "131485047a3ef67ebf12482bc59d0562a3c3ba84062eec1325cca7b895548b2c"
+    },
+    {
+      "id": "A02-04-s2",
+      "pair_id": "A02-04",
+      "category": "A02",
+      "title": "错误位置与关系纠正",
+      "scene": 4,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E04"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/A02-04-s2.xml",
+      "reference": "references/A02-04.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "at",
+            "13",
+            "6"
+          ]
+        ],
+        "true_facts": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "false_facts": [
+          [
+            "inside",
+            "11",
+            "5"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "e6734e09a1381908762bd30ac3ddf15bdb7c1ec4173ea96ceb43e21919693939"
+    },
+    {
+      "id": "A02-05-s1",
+      "pair_id": "A02-05",
+      "category": "A02",
+      "title": "错误位置与关系纠正",
+      "scene": 5,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E04"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/A02-05-s1.xml",
+      "reference": "references/A02-05.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "2118a2c040500bd3fb02fa52fc00e0efc512005c12a5f3481d660dafcefe43b0"
+    },
+    {
+      "id": "A02-05-s2",
+      "pair_id": "A02-05",
+      "category": "A02",
+      "title": "错误位置与关系纠正",
+      "scene": 5,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E04"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/A02-05-s2.xml",
+      "reference": "references/A02-05.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "at",
+            "13",
+            "8"
+          ]
+        ],
+        "true_facts": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "false_facts": [
+          [
+            "inside",
+            "11",
+            "5"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "828b0610b6724809204f4761daa013fbcc2860fecf8eccd1ae96cc177a68b639"
+    },
+    {
+      "id": "A03-01-s1",
+      "pair_id": "A03-01",
+      "category": "A03",
+      "title": "不可靠回答与任务重排",
+      "scene": 1,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E05"
+      ],
+      "goals": 7,
+      "constraints": 30,
+      "nominal_gross": 880,
+      "path": "cases/stage1/A03-01-s1.xml",
+      "reference": "references/A03-01.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "c4188c925e41687acdfac968a21b4bf3e2257915e29e1412a573d2c964d87c79"
+    },
+    {
+      "id": "A03-01-s2",
+      "pair_id": "A03-01",
+      "category": "A03",
+      "title": "不可靠回答与任务重排",
+      "scene": 1,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E05"
+      ],
+      "goals": 7,
+      "constraints": 30,
+      "nominal_gross": 880,
+      "path": "cases/stage2/A03-01-s2.xml",
+      "reference": "references/A03-01.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "at",
+            "4",
+            "4"
+          ],
+          [
+            "at",
+            "13",
+            "2"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "12",
+            "5"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "12",
+            "7"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "22ae79a56da0b15a916f917949de2bb3c240df36c2d7c03ff535f6ff567bc273"
+    },
+    {
+      "id": "A03-02-s1",
+      "pair_id": "A03-02",
+      "category": "A03",
+      "title": "不可靠回答与任务重排",
+      "scene": 2,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E05"
+      ],
+      "goals": 7,
+      "constraints": 30,
+      "nominal_gross": 880,
+      "path": "cases/stage1/A03-02-s1.xml",
+      "reference": "references/A03-02.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "2baae44db2c4b3d6d1d6399e06bd765b0f468c836c453ad1401eab13a9777fd3"
+    },
+    {
+      "id": "A03-02-s2",
+      "pair_id": "A03-02",
+      "category": "A03",
+      "title": "不可靠回答与任务重排",
+      "scene": 2,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E05"
+      ],
+      "goals": 7,
+      "constraints": 30,
+      "nominal_gross": 880,
+      "path": "cases/stage2/A03-02-s2.xml",
+      "reference": "references/A03-02.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "at",
+            "4",
+            "3"
+          ],
+          [
+            "at",
+            "13",
+            "8"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "12",
+            "5"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "12",
+            "4"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "b549f85b2823819b35a076117cdbd7de90a006594c09efa5644e6b158c02b518"
+    },
+    {
+      "id": "A03-03-s1",
+      "pair_id": "A03-03",
+      "category": "A03",
+      "title": "不可靠回答与任务重排",
+      "scene": 3,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E05"
+      ],
+      "goals": 7,
+      "constraints": 30,
+      "nominal_gross": 880,
+      "path": "cases/stage1/A03-03-s1.xml",
+      "reference": "references/A03-03.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "87d171bfccae7dca9ee95187dbe9691c7311cca2a66891ee8826e1ed7ad30759"
+    },
+    {
+      "id": "A03-03-s2",
+      "pair_id": "A03-03",
+      "category": "A03",
+      "title": "不可靠回答与任务重排",
+      "scene": 3,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E05"
+      ],
+      "goals": 7,
+      "constraints": 30,
+      "nominal_gross": 880,
+      "path": "cases/stage2/A03-03-s2.xml",
+      "reference": "references/A03-03.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "at",
+            "4",
+            "2"
+          ],
+          [
+            "at",
+            "13",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "12",
+            "5"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "12",
+            "7"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "cdec4dc2ac14ae0453e8c74485d829e7a7e2a304d033b704cefaca02b4635c78"
+    },
+    {
+      "id": "A03-04-s1",
+      "pair_id": "A03-04",
+      "category": "A03",
+      "title": "不可靠回答与任务重排",
+      "scene": 4,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E05"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/A03-04-s1.xml",
+      "reference": "references/A03-04.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "65fbb84b2c0643be6bfad3f8ab04278cc50de8c7891f813a867a914a898844f6"
+    },
+    {
+      "id": "A03-04-s2",
+      "pair_id": "A03-04",
+      "category": "A03",
+      "title": "不可靠回答与任务重排",
+      "scene": 4,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E05"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/A03-04-s2.xml",
+      "reference": "references/A03-04.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "at",
+            "4",
+            "4"
+          ],
+          [
+            "at",
+            "13",
+            "2"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "12",
+            "3"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "12",
+            "5"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "7265de909f6c20f6e9fc917c2a71cc340bfb2ef86fc5a8977af4bd65adfd78ba"
+    },
+    {
+      "id": "A03-05-s1",
+      "pair_id": "A03-05",
+      "category": "A03",
+      "title": "不可靠回答与任务重排",
+      "scene": 5,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E05"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/A03-05-s1.xml",
+      "reference": "references/A03-05.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "8b8a1686bb83045a4a137d9bd22c7003b544a2a60f19b9ff631e5c1db9bdd7f8"
+    },
+    {
+      "id": "A03-05-s2",
+      "pair_id": "A03-05",
+      "category": "A03",
+      "title": "不可靠回答与任务重排",
+      "scene": 5,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E05"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/A03-05-s2.xml",
+      "reference": "references/A03-05.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "at",
+            "4",
+            "6"
+          ],
+          [
+            "at",
+            "13",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "12",
+            "8"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "12",
+            "7"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "b280267f622fd17a8551a662df160e32cc42fc4086ea835cb1c6632e6c43cdaf"
+    },
+    {
+      "id": "A04-01-s1",
+      "pair_id": "A04-01",
+      "category": "A04",
+      "title": "相似对象与语义绑定",
+      "scene": 1,
+      "stage": 1,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/A04-01-s1.xml",
+      "reference": "references/A04-01.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "999303b7eb7591ee13fced8aec8c0a37adfd20f04984236ea34639e56b3aaa5c"
+    },
+    {
+      "id": "A04-01-s2",
+      "pair_id": "A04-01",
+      "category": "A04",
+      "title": "相似对象与语义绑定",
+      "scene": 1,
+      "stage": 2,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/A04-01-s2.xml",
+      "reference": "references/A04-01.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "3"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "4"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "b74acffde9cdc9b7d52509fcb76ea1e0ee5f2a474c3a7c8b2b7849e064ee69b2"
+    },
+    {
+      "id": "A04-02-s1",
+      "pair_id": "A04-02",
+      "category": "A04",
+      "title": "相似对象与语义绑定",
+      "scene": 2,
+      "stage": 1,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 30,
+      "nominal_gross": 880,
+      "path": "cases/stage1/A04-02-s1.xml",
+      "reference": "references/A04-02.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "bfd0b855008b465036ba7ef2419def77c8b9f9c0604d4ac13173c0b87bf94b87"
+    },
+    {
+      "id": "A04-02-s2",
+      "pair_id": "A04-02",
+      "category": "A04",
+      "title": "相似对象与语义绑定",
+      "scene": 2,
+      "stage": 2,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 30,
+      "nominal_gross": 880,
+      "path": "cases/stage2/A04-02-s2.xml",
+      "reference": "references/A04-02.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "4"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "6"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "2082a5d861de128a246ecd4f40c6c61ef28a9ed8cf78d9ed291a939a997e4771"
+    },
+    {
+      "id": "A04-03-s1",
+      "pair_id": "A04-03",
+      "category": "A04",
+      "title": "相似对象与语义绑定",
+      "scene": 3,
+      "stage": 1,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/A04-03-s1.xml",
+      "reference": "references/A04-03.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "2c23f719976964cad7e483f00f8f5e6820f20012ffccb5d8b3658ef512cc8058"
+    },
+    {
+      "id": "A04-03-s2",
+      "pair_id": "A04-03",
+      "category": "A04",
+      "title": "相似对象与语义绑定",
+      "scene": 3,
+      "stage": 2,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/A04-03-s2.xml",
+      "reference": "references/A04-03.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "5"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "8"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "e2c17e31e70ab1bdaa22dd2f43e4c215b12b8e5431e804097aca415044d7c578"
+    },
+    {
+      "id": "A04-04-s1",
+      "pair_id": "A04-04",
+      "category": "A04",
+      "title": "相似对象与语义绑定",
+      "scene": 4,
+      "stage": 1,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/A04-04-s1.xml",
+      "reference": "references/A04-04.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "8d1746a249052d22c5dd0f535485159ece727079eb1fd2aa2c5a199ac67bddca"
+    },
+    {
+      "id": "A04-04-s2",
+      "pair_id": "A04-04",
+      "category": "A04",
+      "title": "相似对象与语义绑定",
+      "scene": 4,
+      "stage": 2,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/A04-04-s2.xml",
+      "reference": "references/A04-04.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "6"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "3"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "123dda48e897d0fb20081bc87dd165c4c1c6f557360dbceaaaa660ef5b1ffd10"
+    },
+    {
+      "id": "A04-05-s1",
+      "pair_id": "A04-05",
+      "category": "A04",
+      "title": "相似对象与语义绑定",
+      "scene": 5,
+      "stage": 1,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/A04-05-s1.xml",
+      "reference": "references/A04-05.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "162a30efe70d0a919b9f6daa6ec12076980403a9b78ad3804107fad21db19f37"
+    },
+    {
+      "id": "A04-05-s2",
+      "pair_id": "A04-05",
+      "category": "A04",
+      "title": "相似对象与语义绑定",
+      "scene": 5,
+      "stage": 2,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/A04-05-s2.xml",
+      "reference": "references/A04-05.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "5"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "8"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "1aec77614114680d585aab2d9fa0d1fa341cc0959170b2d10c2a34af24cf2fcd"
+    },
+    {
+      "id": "A05-01-s1",
+      "pair_id": "A05-01",
+      "category": "A05",
+      "title": "已满足目标的破坏与恢复",
+      "scene": 1,
+      "stage": 1,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/A05-01-s1.xml",
+      "reference": "references/A05-01.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "6f8be0b8fa279a24f06b662e82717a734c85272a56d72e2b988634ae20841b9c"
+    },
+    {
+      "id": "A05-01-s2",
+      "pair_id": "A05-01",
+      "category": "A05",
+      "title": "已满足目标的破坏与恢复",
+      "scene": 1,
+      "stage": 2,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/A05-01-s2.xml",
+      "reference": "references/A05-01.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "2"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "4"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "8580e2d44b4e11a7708f0114ac25649aa74352f77d4366643340f1fd9e968ccd"
+    },
+    {
+      "id": "A05-02-s1",
+      "pair_id": "A05-02",
+      "category": "A05",
+      "title": "已满足目标的破坏与恢复",
+      "scene": 2,
+      "stage": 1,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 30,
+      "nominal_gross": 880,
+      "path": "cases/stage1/A05-02-s1.xml",
+      "reference": "references/A05-02.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "7a8f38ba5e5c35b681fa3fd6aa8fa5e3e1bb9e9fbe4521dea46374148afe65be"
+    },
+    {
+      "id": "A05-02-s2",
+      "pair_id": "A05-02",
+      "category": "A05",
+      "title": "已满足目标的破坏与恢复",
+      "scene": 2,
+      "stage": 2,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 30,
+      "nominal_gross": 880,
+      "path": "cases/stage2/A05-02-s2.xml",
+      "reference": "references/A05-02.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "6"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "3"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "d7bdceef557951cef7b6ef6a9d7470cb4b0e6ef4c0856e1b3547d5662e151498"
+    },
+    {
+      "id": "A05-03-s1",
+      "pair_id": "A05-03",
+      "category": "A05",
+      "title": "已满足目标的破坏与恢复",
+      "scene": 3,
+      "stage": 1,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/A05-03-s1.xml",
+      "reference": "references/A05-03.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "2e2a992ee5edbcabf984ef70aedbfda643250495842e102df81b5eb7d25ae58b"
+    },
+    {
+      "id": "A05-03-s2",
+      "pair_id": "A05-03",
+      "category": "A05",
+      "title": "已满足目标的破坏与恢复",
+      "scene": 3,
+      "stage": 2,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/A05-03-s2.xml",
+      "reference": "references/A05-03.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "7"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "5"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "7ab6e2faf0d22529e92a14be55b4b5a25dfadf6301f28fb85094b99a6c52afbc"
+    },
+    {
+      "id": "A05-04-s1",
+      "pair_id": "A05-04",
+      "category": "A05",
+      "title": "已满足目标的破坏与恢复",
+      "scene": 4,
+      "stage": 1,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/A05-04-s1.xml",
+      "reference": "references/A05-04.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "63694596ddc9b4a55b532988b4eb518bee4776a174c818c059f747e8b4bfef55"
+    },
+    {
+      "id": "A05-04-s2",
+      "pair_id": "A05-04",
+      "category": "A05",
+      "title": "已满足目标的破坏与恢复",
+      "scene": 4,
+      "stage": 2,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/A05-04-s2.xml",
+      "reference": "references/A05-04.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "2"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "7"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "b8b89aba29c07d64b93c3a9c72d5eae3a4f22d70362307db6e9b3d7dc6cd7ed4"
+    },
+    {
+      "id": "A05-05-s1",
+      "pair_id": "A05-05",
+      "category": "A05",
+      "title": "已满足目标的破坏与恢复",
+      "scene": 5,
+      "stage": 1,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/A05-05-s1.xml",
+      "reference": "references/A05-05.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "d0ec6af6f3dc2d34e3911d76135b2a3568f18ec777db820029253ccc4baccaf4"
+    },
+    {
+      "id": "A05-05-s2",
+      "pair_id": "A05-05",
+      "category": "A05",
+      "title": "已满足目标的破坏与恢复",
+      "scene": 5,
+      "stage": 2,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/A05-05-s2.xml",
+      "reference": "references/A05-05.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "2"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "7"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "50d26e3345ef5046400bcb8e59a12237730f7f8a59f0bbd6511269abe6c5f9f7"
+    },
+    {
+      "id": "B01-01-s1",
+      "pair_id": "B01-01",
+      "category": "B01",
+      "title": "双携带目标与槽位约束",
+      "scene": 1,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E10"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/B01-01-s1.xml",
+      "reference": "references/B01-01.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "a61a609694a32eed408698f300b5a393d60fb0985a48886006b128def38bc09b"
+    },
+    {
+      "id": "B01-01-s2",
+      "pair_id": "B01-01",
+      "category": "B01",
+      "title": "双携带目标与槽位约束",
+      "scene": 1,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E10"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/B01-01-s2.xml",
+      "reference": "references/B01-01.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "5"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "8"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "73ed918706309b42454b07ae6aae4fe21b4cfcb12e902ab0e02caab272846893"
+    },
+    {
+      "id": "B01-02-s1",
+      "pair_id": "B01-02",
+      "category": "B01",
+      "title": "双携带目标与槽位约束",
+      "scene": 2,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E10"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/B01-02-s1.xml",
+      "reference": "references/B01-02.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "69c4c6a5391d4bdca7cdceb0f2e55a3edc31d6c4f2270c0cbe2bd9c34554d439"
+    },
+    {
+      "id": "B01-02-s2",
+      "pair_id": "B01-02",
+      "category": "B01",
+      "title": "双携带目标与槽位约束",
+      "scene": 2,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E10"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/B01-02-s2.xml",
+      "reference": "references/B01-02.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "5"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "8"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "80ef71173e69c0906156d046e0651640e5edfc4f80c62aa319a7c390226c63f2"
+    },
+    {
+      "id": "B01-03-s1",
+      "pair_id": "B01-03",
+      "category": "B01",
+      "title": "双携带目标与槽位约束",
+      "scene": 3,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E10"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/B01-03-s1.xml",
+      "reference": "references/B01-03.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "09676345f95cd4d2c5841e54ca5ef11df359413bb342d5b7002519124bec33ca"
+    },
+    {
+      "id": "B01-03-s2",
+      "pair_id": "B01-03",
+      "category": "B01",
+      "title": "双携带目标与槽位约束",
+      "scene": 3,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E10"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/B01-03-s2.xml",
+      "reference": "references/B01-03.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "3"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "8"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "9cd4b41766e72c74dc97d079a67ca6ef44668fdbe201050a6c25da9cc3418707"
+    },
+    {
+      "id": "B01-04-s1",
+      "pair_id": "B01-04",
+      "category": "B01",
+      "title": "双携带目标与槽位约束",
+      "scene": 4,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E10"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/B01-04-s1.xml",
+      "reference": "references/B01-04.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "9391ea0af3705ffb4fd8178fa340da5b734426fc38f582b1378d26d58bcd32b8"
+    },
+    {
+      "id": "B01-04-s2",
+      "pair_id": "B01-04",
+      "category": "B01",
+      "title": "双携带目标与槽位约束",
+      "scene": 4,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E10"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/B01-04-s2.xml",
+      "reference": "references/B01-04.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "3"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "8"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "4ec847d27ef1d4fa2154c51ac603de8ebcd59e0637c3b814997816e414ec7b1f"
+    },
+    {
+      "id": "B01-05-s1",
+      "pair_id": "B01-05",
+      "category": "B01",
+      "title": "双携带目标与槽位约束",
+      "scene": 5,
+      "stage": 1,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/B01-05-s1.xml",
+      "reference": "references/B01-05.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "477c149a54a77a4ea96af71ff88280c273086ffeefce8f459a47a76180329ba7"
+    },
+    {
+      "id": "B01-05-s2",
+      "pair_id": "B01-05",
+      "category": "B01",
+      "title": "双携带目标与槽位约束",
+      "scene": 5,
+      "stage": 2,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/B01-05-s2.xml",
+      "reference": "references/B01-05.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "6"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "2"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "c7c09a3df92666cef2a9f96c958d55d6797ccb97216058454b47181601e4c3b6"
+    },
+    {
+      "id": "B02-01-s1",
+      "pair_id": "B02-01",
+      "category": "B02",
+      "title": "手与托盘占用后的解锁",
+      "scene": 1,
+      "stage": 1,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/B02-01-s1.xml",
+      "reference": "references/B02-01.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "f5c01f20f644bfb185e017e60fb1619b758d8c7917ea8301ee401c6f812ef496"
+    },
+    {
+      "id": "B02-01-s2",
+      "pair_id": "B02-01",
+      "category": "B02",
+      "title": "手与托盘占用后的解锁",
+      "scene": 1,
+      "stage": 2,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/B02-01-s2.xml",
+      "reference": "references/B02-01.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "8"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "6"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "c4cec28cbedd92012edfbe28e512cc19a856982e965e2be9dd359a5b9c2f8231"
+    },
+    {
+      "id": "B02-02-s1",
+      "pair_id": "B02-02",
+      "category": "B02",
+      "title": "手与托盘占用后的解锁",
+      "scene": 2,
+      "stage": 1,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/B02-02-s1.xml",
+      "reference": "references/B02-02.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "e2f42ca83c74e5a71c5f5eafc702dcc05b9077cdc40c27fe662c3ec2f9563a09"
+    },
+    {
+      "id": "B02-02-s2",
+      "pair_id": "B02-02",
+      "category": "B02",
+      "title": "手与托盘占用后的解锁",
+      "scene": 2,
+      "stage": 2,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/B02-02-s2.xml",
+      "reference": "references/B02-02.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "3"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "5"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "c7c3fe4c3796b3f04b208b99dcf3c099e88c72ab115b11ddf5205e7428147a24"
+    },
+    {
+      "id": "B02-03-s1",
+      "pair_id": "B02-03",
+      "category": "B02",
+      "title": "手与托盘占用后的解锁",
+      "scene": 3,
+      "stage": 1,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/B02-03-s1.xml",
+      "reference": "references/B02-03.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "912c1c4a34af3dfaa5fc3bdc67026e3f5c6aaf3018d44b553cc1c8b1dd44d3bc"
+    },
+    {
+      "id": "B02-03-s2",
+      "pair_id": "B02-03",
+      "category": "B02",
+      "title": "手与托盘占用后的解锁",
+      "scene": 3,
+      "stage": 2,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/B02-03-s2.xml",
+      "reference": "references/B02-03.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "8"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "2"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "f6ea88b760ff37fdd4b734cdce28fc70c0399f10ff76a428eaa0ba73d4f22f32"
+    },
+    {
+      "id": "B02-04-s1",
+      "pair_id": "B02-04",
+      "category": "B02",
+      "title": "手与托盘占用后的解锁",
+      "scene": 4,
+      "stage": 1,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/B02-04-s1.xml",
+      "reference": "references/B02-04.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "cd09fd5ca6407b5af2090f70701b05052954e67d23d0b06838b8e1b59884a656"
+    },
+    {
+      "id": "B02-04-s2",
+      "pair_id": "B02-04",
+      "category": "B02",
+      "title": "手与托盘占用后的解锁",
+      "scene": 4,
+      "stage": 2,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/B02-04-s2.xml",
+      "reference": "references/B02-04.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "2"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "3"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "a3f6dd1247dbecd152ca7fffe441ff03320288ba64d858cd639af9f2acc85bb2"
+    },
+    {
+      "id": "B02-05-s1",
+      "pair_id": "B02-05",
+      "category": "B02",
+      "title": "手与托盘占用后的解锁",
+      "scene": 5,
+      "stage": 1,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/B02-05-s1.xml",
+      "reference": "references/B02-05.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "5432153eb305b124312db61bea843483ffeacf7c248db23dd25fde5c5d7b253b"
+    },
+    {
+      "id": "B02-05-s2",
+      "pair_id": "B02-05",
+      "category": "B02",
+      "title": "手与托盘占用后的解锁",
+      "scene": 5,
+      "stage": 2,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/B02-05-s2.xml",
+      "reference": "references/B02-05.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "8"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "7"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "54faadbdceabde16982c210a17c30de1bc447d87b0421fbb69ec8a52921fbb96"
+    },
+    {
+      "id": "B03-01-s1",
+      "pair_id": "B03-01",
+      "category": "B03",
+      "title": "两柜互换与关门收尾",
+      "scene": 1,
+      "stage": 1,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/B03-01-s1.xml",
+      "reference": "references/B03-01.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "48869db9e04e42e5c34eb48aa0911e160c563f4b97d2f8a767fd862790b0ade4"
+    },
+    {
+      "id": "B03-01-s2",
+      "pair_id": "B03-01",
+      "category": "B03",
+      "title": "两柜互换与关门收尾",
+      "scene": 1,
+      "stage": 2,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/B03-01-s2.xml",
+      "reference": "references/B03-01.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "inside",
+            "14",
+            "4"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "7"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "184effba0344671cfc9425c871e2044aca8b3867ae8ea92fb8512f03444cc242"
+    },
+    {
+      "id": "B03-02-s1",
+      "pair_id": "B03-02",
+      "category": "B03",
+      "title": "两柜互换与关门收尾",
+      "scene": 2,
+      "stage": 1,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/B03-02-s1.xml",
+      "reference": "references/B03-02.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "19504daca0a023448de2bdde691b87e1303be90b114b77a054574ea2e5e99e22"
+    },
+    {
+      "id": "B03-02-s2",
+      "pair_id": "B03-02",
+      "category": "B03",
+      "title": "两柜互换与关门收尾",
+      "scene": 2,
+      "stage": 2,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/B03-02-s2.xml",
+      "reference": "references/B03-02.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "inside",
+            "14",
+            "4"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "3"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "f18a5c4715664129f83a4471cec709c28983c502c0fb176603b807c2aa8847ab"
+    },
+    {
+      "id": "B03-03-s1",
+      "pair_id": "B03-03",
+      "category": "B03",
+      "title": "两柜互换与关门收尾",
+      "scene": 3,
+      "stage": 1,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/B03-03-s1.xml",
+      "reference": "references/B03-03.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "9071cf64f33ffa973565e1d8e32458c108c44999c905c205e21599e19c6af9b4"
+    },
+    {
+      "id": "B03-03-s2",
+      "pair_id": "B03-03",
+      "category": "B03",
+      "title": "两柜互换与关门收尾",
+      "scene": 3,
+      "stage": 2,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/B03-03-s2.xml",
+      "reference": "references/B03-03.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "inside",
+            "14",
+            "4"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "6"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "7069089fb1956d52bb1ea9e30809ed3aeb7150924444a5c2c092d845676882d0"
+    },
+    {
+      "id": "B03-04-s1",
+      "pair_id": "B03-04",
+      "category": "B03",
+      "title": "两柜互换与关门收尾",
+      "scene": 4,
+      "stage": 1,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/B03-04-s1.xml",
+      "reference": "references/B03-04.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "91e143409030c50d124eb742fa3f95d1a623507aefdcb6330b980ef5c716748b"
+    },
+    {
+      "id": "B03-04-s2",
+      "pair_id": "B03-04",
+      "category": "B03",
+      "title": "两柜互换与关门收尾",
+      "scene": 4,
+      "stage": 2,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/B03-04-s2.xml",
+      "reference": "references/B03-04.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "inside",
+            "14",
+            "4"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "3"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "13019b1707d651660b036fb99e4fb66a1a2fbdc0205ca31ff8b88330a564301d"
+    },
+    {
+      "id": "B03-05-s1",
+      "pair_id": "B03-05",
+      "category": "B03",
+      "title": "两柜互换与关门收尾",
+      "scene": 5,
+      "stage": 1,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/B03-05-s1.xml",
+      "reference": "references/B03-05.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "8d3675043843214ac1a375760c03fcec8dc4fd8a43960009617abe1cbaab744d"
+    },
+    {
+      "id": "B03-05-s2",
+      "pair_id": "B03-05",
+      "category": "B03",
+      "title": "两柜互换与关门收尾",
+      "scene": 5,
+      "stage": 2,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/B03-05-s2.xml",
+      "reference": "references/B03-05.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "inside",
+            "14",
+            "4"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "6"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "2047a20cc4daa23a82d9756bcb8f323e9e3bae56d764b86388cf0f52c307b63b"
+    },
+    {
+      "id": "B04-01-s1",
+      "pair_id": "B04-01",
+      "category": "B04",
+      "title": "暂存位置交叉限制",
+      "scene": 1,
+      "stage": 1,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/B04-01-s1.xml",
+      "reference": "references/B04-01.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "64a0c3469765f9695ce6ec9ca7c8928a1c8cfdd420ce17e673c9748faf576999"
+    },
+    {
+      "id": "B04-01-s2",
+      "pair_id": "B04-01",
+      "category": "B04",
+      "title": "暂存位置交叉限制",
+      "scene": 1,
+      "stage": 2,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/B04-01-s2.xml",
+      "reference": "references/B04-01.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "8"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "6"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "31f28ba878dcdc69049b2e5eed8e932afcfd8b5e8a8c558c67052371a372dbc7"
+    },
+    {
+      "id": "B04-02-s1",
+      "pair_id": "B04-02",
+      "category": "B04",
+      "title": "暂存位置交叉限制",
+      "scene": 2,
+      "stage": 1,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/B04-02-s1.xml",
+      "reference": "references/B04-02.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "d4b35f5df326b620cb7f79b2be3ac0bc62f0e0d20c95cd7c3b74e5c3aa28bf35"
+    },
+    {
+      "id": "B04-02-s2",
+      "pair_id": "B04-02",
+      "category": "B04",
+      "title": "暂存位置交叉限制",
+      "scene": 2,
+      "stage": 2,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/B04-02-s2.xml",
+      "reference": "references/B04-02.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "7"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "6"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "73d6d4a512996b588e809fad6396f315a08dc7ca38a5a2d9ab88adc0d1a4010f"
+    },
+    {
+      "id": "B04-03-s1",
+      "pair_id": "B04-03",
+      "category": "B04",
+      "title": "暂存位置交叉限制",
+      "scene": 3,
+      "stage": 1,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/B04-03-s1.xml",
+      "reference": "references/B04-03.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "5d6001f28eb71e7f38031f71a4bc258a435d31e0773fb6a11cd0d1d51826303e"
+    },
+    {
+      "id": "B04-03-s2",
+      "pair_id": "B04-03",
+      "category": "B04",
+      "title": "暂存位置交叉限制",
+      "scene": 3,
+      "stage": 2,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/B04-03-s2.xml",
+      "reference": "references/B04-03.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "6"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "4"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "7995862bc5f451046f783ea17f5c2e1609d87e56def4cabeb496c856dae9ebc1"
+    },
+    {
+      "id": "B04-04-s1",
+      "pair_id": "B04-04",
+      "category": "B04",
+      "title": "暂存位置交叉限制",
+      "scene": 4,
+      "stage": 1,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/B04-04-s1.xml",
+      "reference": "references/B04-04.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "f4d643c18c46520f7a4815de91140c21d7ef2686c3758ae1c7806d9a30a69538"
+    },
+    {
+      "id": "B04-04-s2",
+      "pair_id": "B04-04",
+      "category": "B04",
+      "title": "暂存位置交叉限制",
+      "scene": 4,
+      "stage": 2,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/B04-04-s2.xml",
+      "reference": "references/B04-04.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "8"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "2"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "dcd4957cad32fbc73a03144d9ec5bf03d81a63da8ca5c90359fffc1e66eda89d"
+    },
+    {
+      "id": "B04-05-s1",
+      "pair_id": "B04-05",
+      "category": "B04",
+      "title": "暂存位置交叉限制",
+      "scene": 5,
+      "stage": 1,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/B04-05-s1.xml",
+      "reference": "references/B04-05.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "940ed914c1ab59a42fa7e08923dc103e0fcebbdfb5a1663dac50d369eb4ac116"
+    },
+    {
+      "id": "B04-05-s2",
+      "pair_id": "B04-05",
+      "category": "B04",
+      "title": "暂存位置交叉限制",
+      "scene": 5,
+      "stage": 2,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/B04-05-s2.xml",
+      "reference": "references/B04-05.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "4"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "5"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "54eb0b4a658b66d1a6344f23baf9c1e56641146fb505417d2d1fefbc05b62d69"
+    },
+    {
+      "id": "B05-01-s1",
+      "pair_id": "B05-01",
+      "category": "B05",
+      "title": "交付收尾与双槽资源分配",
+      "scene": 1,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E07"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/B05-01-s1.xml",
+      "reference": "references/B05-01.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "4872628037907c28c360bc9a750b1635221f148640f79bf23115ddb87522bf03"
+    },
+    {
+      "id": "B05-01-s2",
+      "pair_id": "B05-01",
+      "category": "B05",
+      "title": "交付收尾与双槽资源分配",
+      "scene": 1,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E07"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/B05-01-s2.xml",
+      "reference": "references/B05-01.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "5"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "2"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "8104a1a0e2d7ae604d6a2f121d557a7d59fb086d29b26aeec69b45bacbba0dc1"
+    },
+    {
+      "id": "B05-02-s1",
+      "pair_id": "B05-02",
+      "category": "B05",
+      "title": "交付收尾与双槽资源分配",
+      "scene": 2,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E07"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/B05-02-s1.xml",
+      "reference": "references/B05-02.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "24f46e4651b364472e977aec875a4a413289aa649308af60dcec5563f309945e"
+    },
+    {
+      "id": "B05-02-s2",
+      "pair_id": "B05-02",
+      "category": "B05",
+      "title": "交付收尾与双槽资源分配",
+      "scene": 2,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E07"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/B05-02-s2.xml",
+      "reference": "references/B05-02.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "4"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "6"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "a1254aa83cc4509fa6ef33d49f40e0d77f674396ca4dde3fb77e2ff6ab2b81de"
+    },
+    {
+      "id": "B05-03-s1",
+      "pair_id": "B05-03",
+      "category": "B05",
+      "title": "交付收尾与双槽资源分配",
+      "scene": 3,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E07"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/B05-03-s1.xml",
+      "reference": "references/B05-03.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "b7cd3d25620c143d83b3e6fc38a651af4213be50d08bf3d17f136a26784948ee"
+    },
+    {
+      "id": "B05-03-s2",
+      "pair_id": "B05-03",
+      "category": "B05",
+      "title": "交付收尾与双槽资源分配",
+      "scene": 3,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E07"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/B05-03-s2.xml",
+      "reference": "references/B05-03.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "3"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "5"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "67e24cfc529f0c1aeab454cfd37df83ea02c5c3bd49c544ee5e0cb70a12cafdf"
+    },
+    {
+      "id": "B05-04-s1",
+      "pair_id": "B05-04",
+      "category": "B05",
+      "title": "交付收尾与双槽资源分配",
+      "scene": 4,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E07"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/B05-04-s1.xml",
+      "reference": "references/B05-04.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "87f1d2f221efebc2290ab998ea25933ca7b004107d0a8a34a0edfc973f88f797"
+    },
+    {
+      "id": "B05-04-s2",
+      "pair_id": "B05-04",
+      "category": "B05",
+      "title": "交付收尾与双槽资源分配",
+      "scene": 4,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E07"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/B05-04-s2.xml",
+      "reference": "references/B05-04.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "4"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "7"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "930b0bab7666044f51353b2babb906fe01e28d6b1e5069c205bb476277e3a712"
+    },
+    {
+      "id": "B05-05-s1",
+      "pair_id": "B05-05",
+      "category": "B05",
+      "title": "交付收尾与双槽资源分配",
+      "scene": 5,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E07"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/B05-05-s1.xml",
+      "reference": "references/B05-05.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "1735d3218b86030750e74c146a321ddae8ceaac0428640c6c17e57e58997f1f9"
+    },
+    {
+      "id": "B05-05-s2",
+      "pair_id": "B05-05",
+      "category": "B05",
+      "title": "交付收尾与双槽资源分配",
+      "scene": 5,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E07"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/B05-05-s2.xml",
+      "reference": "references/B05-05.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "5"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "8"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "38ee60e15866517d9b1d0d3a94e1b414868abc5c93c7cd08d6274d5793978d64"
+    },
+    {
+      "id": "C01-01-s1",
+      "pair_id": "C01-01",
+      "category": "C01",
+      "title": "正负接近约束共同作用",
+      "scene": 1,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E10"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/C01-01-s1.xml",
+      "reference": "references/C01-01.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "e13385293a78cd74a4b178b18465a8764ec4d6fecf0eb778d51362b2266dfbb2"
+    },
+    {
+      "id": "C01-01-s2",
+      "pair_id": "C01-01",
+      "category": "C01",
+      "title": "正负接近约束共同作用",
+      "scene": 1,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E10"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/C01-01-s2.xml",
+      "reference": "references/C01-01.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "7"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "8"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "6cf586058e2ffd6d991f2ca5b3349e0e0ce74759e1df8a7b5696c26988601a44"
+    },
+    {
+      "id": "C01-02-s1",
+      "pair_id": "C01-02",
+      "category": "C01",
+      "title": "正负接近约束共同作用",
+      "scene": 2,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E10"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/C01-02-s1.xml",
+      "reference": "references/C01-02.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "58079220691945d3f3faeb801482e335bf61ed1a8e35ea8084ddb6d892f031e6"
+    },
+    {
+      "id": "C01-02-s2",
+      "pair_id": "C01-02",
+      "category": "C01",
+      "title": "正负接近约束共同作用",
+      "scene": 2,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E10"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/C01-02-s2.xml",
+      "reference": "references/C01-02.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "7"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "8"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "1a3d5f5d09c03d2175b924e39b91e2a7baf22cb2058843de6a1e958eab36c400"
+    },
+    {
+      "id": "C01-03-s1",
+      "pair_id": "C01-03",
+      "category": "C01",
+      "title": "正负接近约束共同作用",
+      "scene": 3,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E10"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/C01-03-s1.xml",
+      "reference": "references/C01-03.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "4b3be72e9c87351e3cae6eb4b70a8bad335f584be051f27f6eedc0aead261a04"
+    },
+    {
+      "id": "C01-03-s2",
+      "pair_id": "C01-03",
+      "category": "C01",
+      "title": "正负接近约束共同作用",
+      "scene": 3,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E10"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/C01-03-s2.xml",
+      "reference": "references/C01-03.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "3"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "6"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "4a890734905b21593d9c55222efbf099e0749da8f9c5c06582187c38c6bded4d"
+    },
+    {
+      "id": "C01-04-s1",
+      "pair_id": "C01-04",
+      "category": "C01",
+      "title": "正负接近约束共同作用",
+      "scene": 4,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E10"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/C01-04-s1.xml",
+      "reference": "references/C01-04.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "58164a89d41b4826e5265c997a9a3d3162bc19e341aef7fbbc204f2d67e22449"
+    },
+    {
+      "id": "C01-04-s2",
+      "pair_id": "C01-04",
+      "category": "C01",
+      "title": "正负接近约束共同作用",
+      "scene": 4,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E10"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/C01-04-s2.xml",
+      "reference": "references/C01-04.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "3"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "6"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "31490303b1b6a0be1c4c11b40ea5d7006d8d8602c6cd11ea2d541fd16fa7ad35"
+    },
+    {
+      "id": "C01-05-s1",
+      "pair_id": "C01-05",
+      "category": "C01",
+      "title": "正负接近约束共同作用",
+      "scene": 5,
+      "stage": 1,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/C01-05-s1.xml",
+      "reference": "references/C01-05.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "f81c601b4b0d8322eff005459891b1882b7d7a2cbb9dac865b841376e578394f"
+    },
+    {
+      "id": "C01-05-s2",
+      "pair_id": "C01-05",
+      "category": "C01",
+      "title": "正负接近约束共同作用",
+      "scene": 5,
+      "stage": 2,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/C01-05-s2.xml",
+      "reference": "references/C01-05.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "3"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "2"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "2cc4b700d91b501e1f17b7dfe898f5056261f00b94dff969cf34284e9c1c6e8e"
+    },
+    {
+      "id": "C02-01-s1",
+      "pair_id": "C02-01",
+      "category": "C02",
+      "title": "容器保护与受限搜索",
+      "scene": 1,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E04"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/C02-01-s1.xml",
+      "reference": "references/C02-01.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "ce48c92816c1146b7ac026a960c17814f81b4f38a8798430b65986c0759d6838"
+    },
+    {
+      "id": "C02-01-s2",
+      "pair_id": "C02-01",
+      "category": "C02",
+      "title": "容器保护与受限搜索",
+      "scene": 1,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E04"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/C02-01-s2.xml",
+      "reference": "references/C02-01.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "at",
+            "13",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "false_facts": [
+          [
+            "inside",
+            "11",
+            "6"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "c0000ae72ff7ef045c7ba473735c77ad65fcf5ec4fa89e03d4b88b01872a3faa"
+    },
+    {
+      "id": "C02-02-s1",
+      "pair_id": "C02-02",
+      "category": "C02",
+      "title": "容器保护与受限搜索",
+      "scene": 2,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E04"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/C02-02-s1.xml",
+      "reference": "references/C02-02.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "3e3c9e9a79726577a50fe501bd2bac2bd7cb3c1925b158fa98b73e460375f84d"
+    },
+    {
+      "id": "C02-02-s2",
+      "pair_id": "C02-02",
+      "category": "C02",
+      "title": "容器保护与受限搜索",
+      "scene": 2,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E04"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/C02-02-s2.xml",
+      "reference": "references/C02-02.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "at",
+            "13",
+            "7"
+          ]
+        ],
+        "true_facts": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "false_facts": [
+          [
+            "inside",
+            "11",
+            "6"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "4caeefd37f3d7509df347b1072f3d29f0b8a30150de582a41305b069d23208b9"
+    },
+    {
+      "id": "C02-03-s1",
+      "pair_id": "C02-03",
+      "category": "C02",
+      "title": "容器保护与受限搜索",
+      "scene": 3,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E04"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/C02-03-s1.xml",
+      "reference": "references/C02-03.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "51af6194e9dc46d93cd0738edc381f21f6974f357cf85b3c9864b0f6b5332f73"
+    },
+    {
+      "id": "C02-03-s2",
+      "pair_id": "C02-03",
+      "category": "C02",
+      "title": "容器保护与受限搜索",
+      "scene": 3,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E04"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/C02-03-s2.xml",
+      "reference": "references/C02-03.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "at",
+            "13",
+            "8"
+          ]
+        ],
+        "true_facts": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "false_facts": [
+          [
+            "inside",
+            "11",
+            "6"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "70c6f051e53e5ca78d4ca9624c467b640e6dda3e2bc4a692fe461672611ba5c3"
+    },
+    {
+      "id": "C02-04-s1",
+      "pair_id": "C02-04",
+      "category": "C02",
+      "title": "容器保护与受限搜索",
+      "scene": 4,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E04"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/C02-04-s1.xml",
+      "reference": "references/C02-04.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "519e9e1547eb99a68d788d409d400cb483a0310635306ed5c60d9563f2ca2989"
+    },
+    {
+      "id": "C02-04-s2",
+      "pair_id": "C02-04",
+      "category": "C02",
+      "title": "容器保护与受限搜索",
+      "scene": 4,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E04"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/C02-04-s2.xml",
+      "reference": "references/C02-04.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "at",
+            "13",
+            "6"
+          ]
+        ],
+        "true_facts": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "false_facts": [
+          [
+            "inside",
+            "11",
+            "6"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "abeaaa80e765d186a694d148f0c92f210fa9a65f594f208ca7c048365b5fcb6c"
+    },
+    {
+      "id": "C02-05-s1",
+      "pair_id": "C02-05",
+      "category": "C02",
+      "title": "容器保护与受限搜索",
+      "scene": 5,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E04"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/C02-05-s1.xml",
+      "reference": "references/C02-05.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "734d7f5fbbafc6232a01bb4df4cb2040c5746cc0d6f038cae3bf6a6fb9a75f39"
+    },
+    {
+      "id": "C02-05-s2",
+      "pair_id": "C02-05",
+      "category": "C02",
+      "title": "容器保护与受限搜索",
+      "scene": 5,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E04"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/C02-05-s2.xml",
+      "reference": "references/C02-05.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "at",
+            "13",
+            "2"
+          ]
+        ],
+        "true_facts": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "false_facts": [
+          [
+            "inside",
+            "11",
+            "6"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "4be43b55c488122945bc6564821a159238dce25d54d3ea98ed56209325015f20"
+    },
+    {
+      "id": "C03-01-s1",
+      "pair_id": "C03-01",
+      "category": "C03",
+      "title": "一次约束损失与整组收益",
+      "scene": 1,
+      "stage": 1,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/C03-01-s1.xml",
+      "reference": "references/C03-01.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "21567c538a9a303530e9eec0a1d42c9b2e9ce93f7793f4a454387eae46f820c3"
+    },
+    {
+      "id": "C03-01-s2",
+      "pair_id": "C03-01",
+      "category": "C03",
+      "title": "一次约束损失与整组收益",
+      "scene": 1,
+      "stage": 2,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/C03-01-s2.xml",
+      "reference": "references/C03-01.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "inside",
+            "14",
+            "4"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "5"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "ebcb170b65f45ef0f585b7677fae61e135f346da864cef3e7be4c8d3884f126f"
+    },
+    {
+      "id": "C03-02-s1",
+      "pair_id": "C03-02",
+      "category": "C03",
+      "title": "一次约束损失与整组收益",
+      "scene": 2,
+      "stage": 1,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/C03-02-s1.xml",
+      "reference": "references/C03-02.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "afc06dc9a0bcc77fad6034aa87de93db5f526fe20dd6533918309866d8338def"
+    },
+    {
+      "id": "C03-02-s2",
+      "pair_id": "C03-02",
+      "category": "C03",
+      "title": "一次约束损失与整组收益",
+      "scene": 2,
+      "stage": 2,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/C03-02-s2.xml",
+      "reference": "references/C03-02.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "inside",
+            "14",
+            "4"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "6"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "8b0d8d287cede38bd1e11afc8b28467aa3bd27e2e1dd72a89dfc64f66e5740ec"
+    },
+    {
+      "id": "C03-03-s1",
+      "pair_id": "C03-03",
+      "category": "C03",
+      "title": "一次约束损失与整组收益",
+      "scene": 3,
+      "stage": 1,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/C03-03-s1.xml",
+      "reference": "references/C03-03.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "3a1979e34fbe5340f7cc549b8b86f9ebce4d5a01722ed2991d4f527487176efb"
+    },
+    {
+      "id": "C03-03-s2",
+      "pair_id": "C03-03",
+      "category": "C03",
+      "title": "一次约束损失与整组收益",
+      "scene": 3,
+      "stage": 2,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/C03-03-s2.xml",
+      "reference": "references/C03-03.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "inside",
+            "14",
+            "4"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "5"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "c2e6672fa7420562d6d5bc3899f10d298d043eb271647dd3bf9a1e75fa5e2861"
+    },
+    {
+      "id": "C03-04-s1",
+      "pair_id": "C03-04",
+      "category": "C03",
+      "title": "一次约束损失与整组收益",
+      "scene": 4,
+      "stage": 1,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/C03-04-s1.xml",
+      "reference": "references/C03-04.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "19f25dd55554b84983787187bf885615f5c8d3f2a43ba9a711293f445a595715"
+    },
+    {
+      "id": "C03-04-s2",
+      "pair_id": "C03-04",
+      "category": "C03",
+      "title": "一次约束损失与整组收益",
+      "scene": 4,
+      "stage": 2,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/C03-04-s2.xml",
+      "reference": "references/C03-04.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "inside",
+            "14",
+            "4"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "7"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "0c51fca68c9226a1e3cfdf57215a905941119c069ca189f6c95f7fddacb74b47"
+    },
+    {
+      "id": "C03-05-s1",
+      "pair_id": "C03-05",
+      "category": "C03",
+      "title": "一次约束损失与整组收益",
+      "scene": 5,
+      "stage": 1,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/C03-05-s1.xml",
+      "reference": "references/C03-05.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "3120e876cfd002eabd5224af911dd10b8098cb13acc777d8ffb0b5d2bc9ee642"
+    },
+    {
+      "id": "C03-05-s2",
+      "pair_id": "C03-05",
+      "category": "C03",
+      "title": "一次约束损失与整组收益",
+      "scene": 5,
+      "stage": 2,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/C03-05-s2.xml",
+      "reference": "references/C03-05.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "inside",
+            "14",
+            "4"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "2"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "22aa08c633fbba3748c39938045e4261355b46c53020a3677aa51ecd9b438d41"
+    },
+    {
+      "id": "C04-01-s1",
+      "pair_id": "C04-01",
+      "category": "C04",
+      "title": "三个携带目标与双槽容量冲突",
+      "scene": 1,
+      "stage": 1,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/C04-01-s1.xml",
+      "reference": "references/C04-01.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "5c04f9130a55da09b6efb414f8540e21ab844326448f1ce43615cabcb8bc006e"
+    },
+    {
+      "id": "C04-01-s2",
+      "pair_id": "C04-01",
+      "category": "C04",
+      "title": "三个携带目标与双槽容量冲突",
+      "scene": 1,
+      "stage": 2,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/C04-01-s2.xml",
+      "reference": "references/C04-01.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "7"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "3"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "ff638173f3ea884ab6608988aeec2ee6bce2c0a13a27f844efb6b638c159bafd"
+    },
+    {
+      "id": "C04-02-s1",
+      "pair_id": "C04-02",
+      "category": "C04",
+      "title": "三个携带目标与双槽容量冲突",
+      "scene": 2,
+      "stage": 1,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/C04-02-s1.xml",
+      "reference": "references/C04-02.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "01e7c8a2fa3ad2de95e96d2d35fe577aae1bace3f894cb5841e4c832acd9c213"
+    },
+    {
+      "id": "C04-02-s2",
+      "pair_id": "C04-02",
+      "category": "C04",
+      "title": "三个携带目标与双槽容量冲突",
+      "scene": 2,
+      "stage": 2,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/C04-02-s2.xml",
+      "reference": "references/C04-02.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "8"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "3"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "15cb351bd2c7a4c7f0c670c4d23c95c8092f9e2e609d3dda12575a0ec2991c75"
+    },
+    {
+      "id": "C04-03-s1",
+      "pair_id": "C04-03",
+      "category": "C04",
+      "title": "三个携带目标与双槽容量冲突",
+      "scene": 3,
+      "stage": 1,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/C04-03-s1.xml",
+      "reference": "references/C04-03.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "836ecd0fa08b6b8f84abc65f0ff37fc2b4837b0abaee815d5f3917fe11c9911b"
+    },
+    {
+      "id": "C04-03-s2",
+      "pair_id": "C04-03",
+      "category": "C04",
+      "title": "三个携带目标与双槽容量冲突",
+      "scene": 3,
+      "stage": 2,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/C04-03-s2.xml",
+      "reference": "references/C04-03.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "8"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "7"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "dce7cdb906ea376cf6484e7d35faf57b951513a34e381bd311c4a7f630cf29f0"
+    },
+    {
+      "id": "C04-04-s1",
+      "pair_id": "C04-04",
+      "category": "C04",
+      "title": "三个携带目标与双槽容量冲突",
+      "scene": 4,
+      "stage": 1,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/C04-04-s1.xml",
+      "reference": "references/C04-04.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "55ab6ccd5078e3ee0cf403c99e38d62c20a0206caacf78fc704e3e902c7c2e56"
+    },
+    {
+      "id": "C04-04-s2",
+      "pair_id": "C04-04",
+      "category": "C04",
+      "title": "三个携带目标与双槽容量冲突",
+      "scene": 4,
+      "stage": 2,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/C04-04-s2.xml",
+      "reference": "references/C04-04.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "2"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "3"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "49e6afb9a81348bde76a7e6a844033e94c313a7ecbc4b18c83906657e3043f76"
+    },
+    {
+      "id": "C04-05-s1",
+      "pair_id": "C04-05",
+      "category": "C04",
+      "title": "三个携带目标与双槽容量冲突",
+      "scene": 5,
+      "stage": 1,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/C04-05-s1.xml",
+      "reference": "references/C04-05.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "272ae382e02c9aaac895fe5ca24770a29738448af31f507ae9ded9e298b70aba"
+    },
+    {
+      "id": "C04-05-s2",
+      "pair_id": "C04-05",
+      "category": "C04",
+      "title": "三个携带目标与双槽容量冲突",
+      "scene": 5,
+      "stage": 2,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/C04-05-s2.xml",
+      "reference": "references/C04-05.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "3"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "2"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "0af9f00902e05a721ec6c8d0fa3562076a643438fe04aa741b0952d212fb0b16"
+    },
+    {
+      "id": "C05-01-s1",
+      "pair_id": "C05-01",
+      "category": "C05",
+      "title": "保底目标与继续执行的收益",
+      "scene": 1,
+      "stage": 1,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 30,
+      "nominal_gross": 880,
+      "path": "cases/stage1/C05-01-s1.xml",
+      "reference": "references/C05-01.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "489b9076e1b19090cd87fb989c31ac6e33d8d66340a812018c23231a574aac9f"
+    },
+    {
+      "id": "C05-01-s2",
+      "pair_id": "C05-01",
+      "category": "C05",
+      "title": "保底目标与继续执行的收益",
+      "scene": 1,
+      "stage": 2,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 30,
+      "nominal_gross": 880,
+      "path": "cases/stage2/C05-01-s2.xml",
+      "reference": "references/C05-01.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "3"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "4"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "bcefec4b0ecfb6dc985cbc4e6a544e35078a0d326e230df264eaa990c0c6aa96"
+    },
+    {
+      "id": "C05-02-s1",
+      "pair_id": "C05-02",
+      "category": "C05",
+      "title": "保底目标与继续执行的收益",
+      "scene": 2,
+      "stage": 1,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 30,
+      "nominal_gross": 880,
+      "path": "cases/stage1/C05-02-s1.xml",
+      "reference": "references/C05-02.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "3e89c7e7f442566427c735d295c1b53c70bbc6c9a6a60ccc9fb3d4db393755d4"
+    },
+    {
+      "id": "C05-02-s2",
+      "pair_id": "C05-02",
+      "category": "C05",
+      "title": "保底目标与继续执行的收益",
+      "scene": 2,
+      "stage": 2,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 30,
+      "nominal_gross": 880,
+      "path": "cases/stage2/C05-02-s2.xml",
+      "reference": "references/C05-02.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "3"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "4"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "4a10d50526468c663db91d8e80377dd80b9a00c76988ab39e0d69ec2d64ebb7b"
+    },
+    {
+      "id": "C05-03-s1",
+      "pair_id": "C05-03",
+      "category": "C05",
+      "title": "保底目标与继续执行的收益",
+      "scene": 3,
+      "stage": 1,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 30,
+      "nominal_gross": 880,
+      "path": "cases/stage1/C05-03-s1.xml",
+      "reference": "references/C05-03.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "79e73de81336d40c0dded1f3a4859dd3e5e3e21b2d49b528334656243dc534a1"
+    },
+    {
+      "id": "C05-03-s2",
+      "pair_id": "C05-03",
+      "category": "C05",
+      "title": "保底目标与继续执行的收益",
+      "scene": 3,
+      "stage": 2,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 30,
+      "nominal_gross": 880,
+      "path": "cases/stage2/C05-03-s2.xml",
+      "reference": "references/C05-03.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "4"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "6"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "14d2cf3adf998bfa44d29c3b574d6dd296b4361bece586b1eba1b581e1962405"
+    },
+    {
+      "id": "C05-04-s1",
+      "pair_id": "C05-04",
+      "category": "C05",
+      "title": "保底目标与继续执行的收益",
+      "scene": 4,
+      "stage": 1,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 30,
+      "nominal_gross": 880,
+      "path": "cases/stage1/C05-04-s1.xml",
+      "reference": "references/C05-04.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "49df3a0f88b02440c58fed59f06c69fb7a72ebe7b0aaf23b367a7942689c4054"
+    },
+    {
+      "id": "C05-04-s2",
+      "pair_id": "C05-04",
+      "category": "C05",
+      "title": "保底目标与继续执行的收益",
+      "scene": 4,
+      "stage": 2,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 30,
+      "nominal_gross": 880,
+      "path": "cases/stage2/C05-04-s2.xml",
+      "reference": "references/C05-04.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "8"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "4"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "95186240b2feb32315c8cf754781f21f21b253892c30359d6f7f824cfd0b7bc1"
+    },
+    {
+      "id": "C05-05-s1",
+      "pair_id": "C05-05",
+      "category": "C05",
+      "title": "保底目标与继续执行的收益",
+      "scene": 5,
+      "stage": 1,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 30,
+      "nominal_gross": 880,
+      "path": "cases/stage1/C05-05-s1.xml",
+      "reference": "references/C05-05.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "f9f86d9152b7f9f899a83a0dd8f817cfe0463790251f2ceae2e4d553f5bb7adf"
+    },
+    {
+      "id": "C05-05-s2",
+      "pair_id": "C05-05",
+      "category": "C05",
+      "title": "保底目标与继续执行的收益",
+      "scene": 5,
+      "stage": 2,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 30,
+      "nominal_gross": 880,
+      "path": "cases/stage2/C05-05-s2.xml",
+      "reference": "references/C05-05.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "5"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "2"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "6b6923fd44da5af1e1e1f73961d77ced1e806b16afc836ca394a1510eb23d167"
+    },
+    {
+      "id": "D01-01-s1",
+      "pair_id": "D01-01",
+      "category": "D01",
+      "title": "可移动对象聚集式多 goto",
+      "scene": 1,
+      "stage": 1,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/D01-01-s1.xml",
+      "reference": "references/D01-01.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "7da932ed3f95c2e569caac3e0bb52d2eb785f08f44f2d22d751c0f75b067469f"
+    },
+    {
+      "id": "D01-01-s2",
+      "pair_id": "D01-01",
+      "category": "D01",
+      "title": "可移动对象聚集式多 goto",
+      "scene": 1,
+      "stage": 2,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/D01-01-s2.xml",
+      "reference": "references/D01-01.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "6"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "2"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "5b3dbaa0e809fb68a6313caf4bd2a69934f35abd111719d900324e38bd4c2cb1"
+    },
+    {
+      "id": "D01-02-s1",
+      "pair_id": "D01-02",
+      "category": "D01",
+      "title": "可移动对象聚集式多 goto",
+      "scene": 2,
+      "stage": 1,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/D01-02-s1.xml",
+      "reference": "references/D01-02.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "53b97ed9c2b8891c2915def92f93eaa346eb097255c110b30100e401d3aee1fe"
+    },
+    {
+      "id": "D01-02-s2",
+      "pair_id": "D01-02",
+      "category": "D01",
+      "title": "可移动对象聚集式多 goto",
+      "scene": 2,
+      "stage": 2,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/D01-02-s2.xml",
+      "reference": "references/D01-02.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "4"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "3"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "87617ffe364650b08e54e5108d93b6a652aec9a7a35d0cb0ff037794a62b772b"
+    },
+    {
+      "id": "D01-03-s1",
+      "pair_id": "D01-03",
+      "category": "D01",
+      "title": "可移动对象聚集式多 goto",
+      "scene": 3,
+      "stage": 1,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/D01-03-s1.xml",
+      "reference": "references/D01-03.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "e026de82ffa1c906ec1364b8af3fa8dd30afb5d734770519f2b91b1eee9fdf4f"
+    },
+    {
+      "id": "D01-03-s2",
+      "pair_id": "D01-03",
+      "category": "D01",
+      "title": "可移动对象聚集式多 goto",
+      "scene": 3,
+      "stage": 2,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/D01-03-s2.xml",
+      "reference": "references/D01-03.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "2"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "7"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "763c47eb4c1ae5da0a033269de24770581ef38c1b20f5bd48514fb653c9b02dd"
+    },
+    {
+      "id": "D01-04-s1",
+      "pair_id": "D01-04",
+      "category": "D01",
+      "title": "可移动对象聚集式多 goto",
+      "scene": 4,
+      "stage": 1,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/D01-04-s1.xml",
+      "reference": "references/D01-04.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "a08c81ee55ca2f74e0c2787edca7de75f1788dac3100a96c345ba088875e9b9a"
+    },
+    {
+      "id": "D01-04-s2",
+      "pair_id": "D01-04",
+      "category": "D01",
+      "title": "可移动对象聚集式多 goto",
+      "scene": 4,
+      "stage": 2,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/D01-04-s2.xml",
+      "reference": "references/D01-04.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "3"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "5"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "10816c683b63cfc85412658c1c1cd72f3316bf2b16916b266462f23c97998ae8"
+    },
+    {
+      "id": "D01-05-s1",
+      "pair_id": "D01-05",
+      "category": "D01",
+      "title": "可移动对象聚集式多 goto",
+      "scene": 5,
+      "stage": 1,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/D01-05-s1.xml",
+      "reference": "references/D01-05.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "7d2e0ef782f469512eadb8ae35bb07c447ab34c1f1a32b51a1b95c69a678d173"
+    },
+    {
+      "id": "D01-05-s2",
+      "pair_id": "D01-05",
+      "category": "D01",
+      "title": "可移动对象聚集式多 goto",
+      "scene": 5,
+      "stage": 2,
+      "kind": "full",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/D01-05-s2.xml",
+      "reference": "references/D01-05.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "4"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "6"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "464352bb5e9db7e6cfe0eb108262c19ebb749ddeeee349b0aaa0b5c6d3495810"
+    },
+    {
+      "id": "D02-01-s1",
+      "pair_id": "D02-01",
+      "category": "D02",
+      "title": "固定目标终点选择",
+      "scene": 1,
+      "stage": 1,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/D02-01-s1.xml",
+      "reference": "references/D02-01.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "134214691d16c1cc1e0bae1d0603c1fcfbe1fc1a3e481c41c1f1729cc5132929"
+    },
+    {
+      "id": "D02-01-s2",
+      "pair_id": "D02-01",
+      "category": "D02",
+      "title": "固定目标终点选择",
+      "scene": 1,
+      "stage": 2,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/D02-01-s2.xml",
+      "reference": "references/D02-01.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "6"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "8"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "14e9a307176f1df5b7ab2cc6d066fa178901efa9542e937cb4422136e0b4719b"
+    },
+    {
+      "id": "D02-02-s1",
+      "pair_id": "D02-02",
+      "category": "D02",
+      "title": "固定目标终点选择",
+      "scene": 2,
+      "stage": 1,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/D02-02-s1.xml",
+      "reference": "references/D02-02.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "5ff76cedb6c80cd5e65f5be6e31245dda789c54cf078c85b6625e1dc8ee08b75"
+    },
+    {
+      "id": "D02-02-s2",
+      "pair_id": "D02-02",
+      "category": "D02",
+      "title": "固定目标终点选择",
+      "scene": 2,
+      "stage": 2,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/D02-02-s2.xml",
+      "reference": "references/D02-02.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "3"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "8"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "8e43e2dfe7e16fa59cfe9fe01edf7aec6b4dda1d364030e76b978f38b7a325e6"
+    },
+    {
+      "id": "D02-03-s1",
+      "pair_id": "D02-03",
+      "category": "D02",
+      "title": "固定目标终点选择",
+      "scene": 3,
+      "stage": 1,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/D02-03-s1.xml",
+      "reference": "references/D02-03.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "db19026b0d6351953d7cd01c230fe472b31fd19acdb059b2216d34e0f72fe74e"
+    },
+    {
+      "id": "D02-03-s2",
+      "pair_id": "D02-03",
+      "category": "D02",
+      "title": "固定目标终点选择",
+      "scene": 3,
+      "stage": 2,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/D02-03-s2.xml",
+      "reference": "references/D02-03.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "4"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "2"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "fe23c7f8ddf32b148dc64293031523ba2db2c1193afc1e5390a313c6f3b03b7c"
+    },
+    {
+      "id": "D02-04-s1",
+      "pair_id": "D02-04",
+      "category": "D02",
+      "title": "固定目标终点选择",
+      "scene": 4,
+      "stage": 1,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/D02-04-s1.xml",
+      "reference": "references/D02-04.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "3ff0ba71131e84993dda8721091e74a481ccd7eb6710f47a9f9b000276ed0eda"
+    },
+    {
+      "id": "D02-04-s2",
+      "pair_id": "D02-04",
+      "category": "D02",
+      "title": "固定目标终点选择",
+      "scene": 4,
+      "stage": 2,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/D02-04-s2.xml",
+      "reference": "references/D02-04.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "7"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "3"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "9de7e2c1ed43b6d7caef8dcf28c7bb993b0d183caae21e0e506b00c04b2c58e4"
+    },
+    {
+      "id": "D02-05-s1",
+      "pair_id": "D02-05",
+      "category": "D02",
+      "title": "固定目标终点选择",
+      "scene": 5,
+      "stage": 1,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/D02-05-s1.xml",
+      "reference": "references/D02-05.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "4286394fcbe20ccff4724c057525271127d70f02f4ed5cdaa2efdecd77b822a4"
+    },
+    {
+      "id": "D02-05-s2",
+      "pair_id": "D02-05",
+      "category": "D02",
+      "title": "固定目标终点选择",
+      "scene": 5,
+      "stage": 2,
+      "kind": "tradeoff",
+      "tags": [],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/D02-05-s2.xml",
+      "reference": "references/D02-05.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "2"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "8"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "08b07f1f2b9d3ba522892e686678a5710a8404607d2c60d0dc2cdde26490aa85"
+    },
+    {
+      "id": "D03-01-s1",
+      "pair_id": "D03-01",
+      "category": "D03",
+      "title": "聚集交付与最终携带联合收尾",
+      "scene": 1,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E07"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/D03-01-s1.xml",
+      "reference": "references/D03-01.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "99a5c12065456be924e4689aa9005bdabe4e54589a4be184565ad3b16d638be8"
+    },
+    {
+      "id": "D03-01-s2",
+      "pair_id": "D03-01",
+      "category": "D03",
+      "title": "聚集交付与最终携带联合收尾",
+      "scene": 1,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E07"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/D03-01-s2.xml",
+      "reference": "references/D03-01.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "2"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "7"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "5ebcb8f2e851b7484b40c1c84d8a9ceb653f70ecbf14230daadb660c7c394387"
+    },
+    {
+      "id": "D03-02-s1",
+      "pair_id": "D03-02",
+      "category": "D03",
+      "title": "聚集交付与最终携带联合收尾",
+      "scene": 2,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E07"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/D03-02-s1.xml",
+      "reference": "references/D03-02.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "2b4bba41813c4b4e7af80697dd58b1d7bc2f59a0d3e3e6f42f3fb13b8183238d"
+    },
+    {
+      "id": "D03-02-s2",
+      "pair_id": "D03-02",
+      "category": "D03",
+      "title": "聚集交付与最终携带联合收尾",
+      "scene": 2,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E07"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/D03-02-s2.xml",
+      "reference": "references/D03-02.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "6"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "3"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "6fdd1b3b423a0a8c6fd0d406b5899e6ede6e919f6ec36c3ad8c417d2d6bcc8aa"
+    },
+    {
+      "id": "D03-03-s1",
+      "pair_id": "D03-03",
+      "category": "D03",
+      "title": "聚集交付与最终携带联合收尾",
+      "scene": 3,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E07"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/D03-03-s1.xml",
+      "reference": "references/D03-03.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "71cea23c755d965ad279472b1f85cb58d80781f67f2e25501671b67f85b02915"
+    },
+    {
+      "id": "D03-03-s2",
+      "pair_id": "D03-03",
+      "category": "D03",
+      "title": "聚集交付与最终携带联合收尾",
+      "scene": 3,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E07"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/D03-03-s2.xml",
+      "reference": "references/D03-03.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "8"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "5"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "d21e2d0ef99d86023f5e453bd4216b6fdfff4daad665f8d4658d5a02d6e2cb04"
+    },
+    {
+      "id": "D03-04-s1",
+      "pair_id": "D03-04",
+      "category": "D03",
+      "title": "聚集交付与最终携带联合收尾",
+      "scene": 4,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E07"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/D03-04-s1.xml",
+      "reference": "references/D03-04.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "0caef5b6f2a019b07dc23d227548bdbaf0e794e2bd6201f287bc34cdc902987b"
+    },
+    {
+      "id": "D03-04-s2",
+      "pair_id": "D03-04",
+      "category": "D03",
+      "title": "聚集交付与最终携带联合收尾",
+      "scene": 4,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E07"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/D03-04-s2.xml",
+      "reference": "references/D03-04.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "5"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "4"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "3fd8ad632b12bc0fcdc8e83223a14b1defb7c27c950a4f74c9a00f52b89b8f27"
+    },
+    {
+      "id": "D03-05-s1",
+      "pair_id": "D03-05",
+      "category": "D03",
+      "title": "聚集交付与最终携带联合收尾",
+      "scene": 5,
+      "stage": 1,
+      "kind": "full",
+      "tags": [
+        "E07"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage1/D03-05-s1.xml",
+      "reference": "references/D03-05.json",
+      "information_perturbation": {
+        "missing": [],
+        "true_facts": [],
+        "false_facts": [],
+        "stochastic_answers_enabled": false,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "8839fbfbe5aa3776cb67beef83432e2fbccf06ef7e491bc2c144a7a4c81d2859"
+    },
+    {
+      "id": "D03-05-s2",
+      "pair_id": "D03-05",
+      "category": "D03",
+      "title": "聚集交付与最终携带联合收尾",
+      "scene": 5,
+      "stage": 2,
+      "kind": "full",
+      "tags": [
+        "E07"
+      ],
+      "goals": 7,
+      "constraints": 31,
+      "nominal_gross": 900,
+      "path": "cases/stage2/D03-05-s2.xml",
+      "reference": "references/D03-05.json",
+      "information_perturbation": {
+        "missing": [
+          [
+            "inside",
+            "11",
+            "4"
+          ]
+        ],
+        "true_facts": [
+          [
+            "at",
+            "14",
+            "5"
+          ]
+        ],
+        "false_facts": [
+          [
+            "at",
+            "14",
+            "8"
+          ]
+        ],
+        "stochastic_answers_enabled": true,
+        "note": "答案随机性仅由ans开关启用，本次未运行平台、未强制任何实际回答序列。"
+      },
+      "sha256": "b834984894966c83138df66f00194a8515aa43e08317706f4379ad14a7a9023e"
+    },
+    {
+      "id": "X01-01",
+      "category": "X01",
+      "kind": "invalid",
+      "path": "invalid/X01-01.xml",
+      "source_path": "cases/stage1/A01-01-s1.xml",
+      "expected_layer": "xml",
+      "mutation": "missing_nl_end_tag",
+      "tags": [],
+      "sha256": "996963862326efac609a1ffdf8c9c2e831e7b66c353a779c954a05232fda0855",
+      "stage": 1
+    },
+    {
+      "id": "X01-02",
+      "category": "X01",
+      "kind": "invalid",
+      "path": "invalid/X01-02.xml",
+      "source_path": "cases/stage1/A01-02-s1.xml",
+      "expected_layer": "xml",
+      "mutation": "missing_nl_end_tag",
+      "tags": [],
+      "sha256": "d7761cc9cd36a27b10f3b81cbba4626124c89038753b6b8bb06a4d2269af3fd3",
+      "stage": 1
+    },
+    {
+      "id": "X01-03",
+      "category": "X01",
+      "kind": "invalid",
+      "path": "invalid/X01-03.xml",
+      "source_path": "cases/stage1/A01-03-s1.xml",
+      "expected_layer": "xml",
+      "mutation": "unescaped_ampersand",
+      "tags": [],
+      "sha256": "2f5a839a3faa95f21a0549aaf11557710e26ba8d4f389aeac76d11e8f0b0f8b3",
+      "stage": 1
+    },
+    {
+      "id": "X01-04",
+      "category": "X01",
+      "kind": "invalid",
+      "path": "invalid/X01-04.xml",
+      "source_path": "cases/stage1/A01-04-s1.xml",
+      "expected_layer": "xml",
+      "mutation": "unescaped_ampersand",
+      "tags": [],
+      "sha256": "5f808e1076337e613dba917ac94714043a5a714841ca3868ddc687aff703dbdb",
+      "stage": 1
+    },
+    {
+      "id": "X01-05",
+      "category": "X01",
+      "kind": "invalid",
+      "path": "invalid/X01-05.xml",
+      "source_path": "cases/stage1/A01-05-s1.xml",
+      "expected_layer": "syntax",
+      "mutation": "unbalanced_it_parenthesis",
+      "tags": [],
+      "sha256": "727bce00209e90fe1618b422f3c537e8319f319a48ffc53a6717620ee1acd45b",
+      "stage": 1
+    },
+    {
+      "id": "X01-06",
+      "category": "X01",
+      "kind": "invalid",
+      "path": "invalid/X01-06.xml",
+      "source_path": "cases/stage1/A02-01-s1.xml",
+      "expected_layer": "syntax",
+      "mutation": "unbalanced_it_parenthesis",
+      "tags": [],
+      "sha256": "24963fd265128f3921af0ac8e2e681c31c3a89af6012397b933fee829516f59b",
+      "stage": 1
+    },
+    {
+      "id": "X01-07",
+      "category": "X01",
+      "kind": "invalid",
+      "path": "invalid/X01-07.xml",
+      "source_path": "cases/stage1/A02-02-s1.xml",
+      "expected_layer": "domain",
+      "mutation": "wrong_task_arity",
+      "tags": [],
+      "sha256": "3f23322fa6071824ba6e783ddc8ac9193927f4b4a247a813ebcaf74742982a25",
+      "stage": 1
+    },
+    {
+      "id": "X01-08",
+      "category": "X01",
+      "kind": "invalid",
+      "path": "invalid/X01-08.xml",
+      "source_path": "cases/stage1/A02-03-s1.xml",
+      "expected_layer": "domain",
+      "mutation": "wrong_task_arity",
+      "tags": [],
+      "sha256": "204b6e3d0bbe89c763a0cc31837debbac3999624e664ba0ed4000bbca6123419",
+      "stage": 1
+    },
+    {
+      "id": "X01-09",
+      "category": "X01",
+      "kind": "invalid",
+      "path": "invalid/X01-09.xml",
+      "source_path": "cases/stage1/A02-04-s1.xml",
+      "expected_layer": "domain",
+      "mutation": "unknown_task_predicate",
+      "tags": [],
+      "sha256": "00415bca9a353cb65ce19795cf81f8adbced883dc7bf8c98338c14c518199ff7",
+      "stage": 1
+    },
+    {
+      "id": "X01-10",
+      "category": "X01",
+      "kind": "invalid",
+      "path": "invalid/X01-10.xml",
+      "source_path": "cases/stage1/A02-05-s1.xml",
+      "expected_layer": "domain",
+      "mutation": "unknown_task_predicate",
+      "tags": [],
+      "sha256": "2c4200436a60db86f0ca144c0d3627c62ebd1ec1094026822f3d87f97bfa7407",
+      "stage": 1
+    },
+    {
+      "id": "X02-01",
+      "category": "X02",
+      "kind": "invalid",
+      "path": "invalid/X02-01.xml",
+      "source_path": "cases/stage1/A03-01-s1.xml",
+      "expected_layer": "semantics",
+      "mutation": "target_object_replaced",
+      "changed_clause": 6,
+      "tags": [],
+      "sha256": "275af4fc2622788768d2eb9abaa72ed1ad1c565442610d4fb3daaaa75cbca54d",
+      "stage": 1
+    },
+    {
+      "id": "X02-02",
+      "category": "X02",
+      "kind": "invalid",
+      "path": "invalid/X02-02.xml",
+      "source_path": "cases/stage1/A03-02-s1.xml",
+      "expected_layer": "semantics",
+      "mutation": "target_object_replaced",
+      "changed_clause": 6,
+      "tags": [],
+      "sha256": "c415f32e61965c30c795a090779087071edc3e3e8f4934e996a3653f4f418f89",
+      "stage": 1
+    },
+    {
+      "id": "X02-03",
+      "category": "X02",
+      "kind": "invalid",
+      "path": "invalid/X02-03.xml",
+      "source_path": "cases/stage1/A03-03-s1.xml",
+      "expected_layer": "semantics",
+      "mutation": "negation_removed",
+      "changed_clause": 10,
+      "tags": [],
+      "sha256": "1fc394c4e4dd926271bfa549f6cf791622b7c0eb827135eeac5d8aaa83de7de0",
+      "stage": 1
+    },
+    {
+      "id": "X02-04",
+      "category": "X02",
+      "kind": "invalid",
+      "path": "invalid/X02-04.xml",
+      "source_path": "cases/stage1/A03-04-s1.xml",
+      "expected_layer": "semantics",
+      "mutation": "negation_removed",
+      "changed_clause": 10,
+      "tags": [],
+      "sha256": "30b3f5d3406192f2c109bccc9970a4b437ec0f7ee4c003eecb88efde178fb9f6",
+      "stage": 1
+    },
+    {
+      "id": "X02-05",
+      "category": "X02",
+      "kind": "invalid",
+      "path": "invalid/X02-05.xml",
+      "source_path": "cases/stage1/A03-05-s1.xml",
+      "expected_layer": "semantics",
+      "mutation": "inside_changed_to_near",
+      "changed_clause": 14,
+      "tags": [],
+      "sha256": "3c8308a28d2ba6dede44d91f20ea9b6984253c65488214f47e6b600cc5ec8664",
+      "stage": 1
+    },
+    {
+      "id": "X02-06",
+      "category": "X02",
+      "kind": "invalid",
+      "path": "invalid/X02-06.xml",
+      "source_path": "cases/stage1/A04-01-s1.xml",
+      "expected_layer": "semantics",
+      "mutation": "inside_changed_to_near",
+      "changed_clause": 13,
+      "tags": [],
+      "sha256": "28b7b3e61d117e1a047d943e23214f91f72c7f9772032d17c6980213836bd818",
+      "stage": 1
+    },
+    {
+      "id": "X02-07",
+      "category": "X02",
+      "kind": "invalid",
+      "path": "invalid/X02-07.xml",
+      "source_path": "cases/stage1/A04-02-s1.xml",
+      "expected_layer": "semantics",
+      "mutation": "one_sentence_omitted",
+      "changed_clause": 6,
+      "tags": [],
+      "sha256": "e685861cdef779788a099d0bc361c66646489d0294bfe4b16a7d230be7d73edb",
+      "stage": 1
+    },
+    {
+      "id": "X02-08",
+      "category": "X02",
+      "kind": "invalid",
+      "path": "invalid/X02-08.xml",
+      "source_path": "cases/stage1/A04-03-s1.xml",
+      "expected_layer": "semantics",
+      "mutation": "one_sentence_omitted",
+      "changed_clause": 6,
+      "tags": [],
+      "sha256": "1fd040dc213fccc784ad3e7be95b448440d85048353f4d9c64edeef3cda43972",
+      "stage": 1
+    },
+    {
+      "id": "X02-09",
+      "category": "X02",
+      "kind": "invalid",
+      "path": "invalid/X02-09.xml",
+      "source_path": "cases/stage1/A04-04-s1.xml",
+      "expected_layer": "semantics",
+      "mutation": "door_target_reversed",
+      "changed_clause": 3,
+      "tags": [],
+      "sha256": "f88a00013853ff87162a8becfad2dd7e586cf1a40ee8c305b79ac3869fad71b4",
+      "stage": 1
+    },
+    {
+      "id": "X02-10",
+      "category": "X02",
+      "kind": "invalid",
+      "path": "invalid/X02-10.xml",
+      "source_path": "cases/stage1/A04-05-s1.xml",
+      "expected_layer": "semantics",
+      "mutation": "door_target_reversed",
+      "changed_clause": 3,
+      "tags": [],
+      "sha256": "9ca70c2f415bfebf9f46d10544739847ca88d0b64ef34cf795ed7e4cef7ffdb6",
+      "stage": 1
+    }
+  ],
+  "seed": 20260928,
+  "rounds": 1,
+  "deadline_ms": 5000,
+  "sdk": {
+    "src/CMakeLists.txt": "7601875359042c31fd97bc0eba6a7eccd1bacbe16d4aa20533a8cdfd81448d3f",
+    "src/aspgrader.cpp": "64b1417eb93808774ed0e0974e23e4e45b697ef14560dfd352170924c967f694",
+    "src/aspgrader.hpp": "9d573db9b5369a0517e88a555c425251590c82e262dc71af53616ae7f7cc6b9e",
+    "src/evaluate.cpp": "11c3a68be6445ccbe4cd9701016ca7c51eca08106752734aa645b7bedc581491",
+    "src/evaluate.h": "757ea0323c2eeda826494554ceff543c84c03036fa5c361a5e8fe5007da705db",
+    "src/main.cpp": "704056d431745ea159944b1c57f2b1e6815ed9f01d9294a55db6a7e45076d319",
+    "src/message.cpp": "18dda2fd610e9f5309ecba1342dea82f4e856e1de5f47e057be1ca3ea88ee378",
+    "src/param.cpp": "66e796f9ee6a2efb3cf354d9875f10ca394fb621fe0d10290699fce68d2f0fee",
+    "src/platform.cpp": "b17a336534bdab7a5633041efc8a2e1ea815ecb4808260f2deda523a668ee82a",
+    "src/platform.hpp": "5dae9b4c2fd4901e3901c0f1f1f1a49ddcfb76e3247448c1ed5ea490e850fc28",
+    "src/plug.cpp": "e101622f2845f77876f0826483f01e64da5cfb11bd263be461f7dfc347a5e21b",
+    "src/serialization.cpp": "2495aa7c90bd766713928ac8e05feda3edce6e7367b90ab1003fa77f2f955306",
+    "src/sfsexp/cstring.c": "8a35029c49403454dd694a0eb13471e73fc0087808145cb856b24cec20e87d57",
+    "src/sfsexp/cstring.h": "3b1680f02b352fd28d6a3e3fb8922f449de1c29a44c97172795bc66cee9282c0",
+    "src/sfsexp/event_temp.c": "6232bbb4535ae1faa9ff4fe26144c94bf4dfbc01dfe07aca61e53bb1f360f0d0",
+    "src/sfsexp/faststack.c": "ba9c83cb3062181dfc5257537b31e827536fec0b78db914a30ed68fbc2a4fc50",
+    "src/sfsexp/faststack.h": "6476d75063988ab051746315566b52a2bb7d55e0e6017d3e7b16b9010b2972a5",
+    "src/sfsexp/io.c": "5dab62b1e3af7a28345a0876d6abbd3dba0e194221d7aff07271aebafed547f0",
+    "src/sfsexp/malloc_util.h": "556ae7109a68bce36817f037f82264265f989e678148f2c189980a8e84efc5ce",
+    "src/sfsexp/parser.c": "cb0f1d3ddb8eda410efeed542e65c2dd2f158df2af1fd4ff1cc99c563b27bc4c",
+    "src/sfsexp/sexp.c": "bae45675e1f6961f9a13ce77def35414bf1d132d6d787c351345b63d73b1c424",
+    "src/sfsexp/sexp.h": "2e11849debafa3d5405a1d95e2100e337ecedab75eff389646d1365e808e91fe",
+    "src/sfsexp/sexp_errors.h": "7d00cf1de037a9a428332afb6d96432f2938e0a76df1f2ec3ba5832a6346e12b",
+    "src/sfsexp/sexp_memory.c": "a208f2fb5040c750009d04346b532f7c204bb37dee26dbc6ff7b33981532a0ed",
+    "src/sfsexp/sexp_memory.h": "c3079cc68a211bb7d9fd09c2bbe6f5177dcf357e0f976fd44953803168407836",
+    "src/sfsexp/sexp_ops.c": "9ca3c509e165e30b2cbbe696b500e8d3464c10fa904c82bad87939c89791a6f4",
+    "src/sfsexp/sexp_ops.h": "d8b8fd0c73e6f0ea324f7077d07633ae3210d5768c414017d17e0daa834a677c",
+    "src/sfsexp/sexp_vis.c": "7237a41f91d7ab5da63683930beeb68c30d43e501ce2302c9eb560f99337cd02",
+    "src/sfsexp/sexp_vis.h": "cf6bd508a82732ffd05cd1a1c22d0ccb6eeee335accbdb2ca0a6ffda29a0b2fd",
+    "src/sharedlib.cpp": "e77229f06f652f0586f0653768c4f977c37a1d796781f1ee2a6e3965e3143c69",
+    "src/sharedlib.h": "cd75d352eaeca389e1ce710b3c997242ad32bfe7a488da60c2d73f2938cc56e7",
+    "src/tinyxml/tinystr.cpp": "717154a980d9ea730c879ff6a62e58ebedbb198ac6b5711df4f617b830496cd7",
+    "src/tinyxml/tinystr.h": "25cef0d734c2575898950b96c2cfe8987bf05f30951d9f1db15124ed9bd7381f",
+    "src/tinyxml/tinyxml.cpp": "aea6de89017d22ef8be7129667612b0844a1c96c4395323b75088c4a4a887d11",
+    "src/tinyxml/tinyxml.h": "8c5ed61d3964170dc5d0fbfffcf99e5eda2b283d62584837426720e6beb2f587",
+    "src/tinyxml/tinyxmlerror.cpp": "33677a9d5410e25c8294dd42e0caf21ca05315475c9819aa35e17f20f3f0a8b0",
+    "src/tinyxml/tinyxmlparser.cpp": "672312a50ccb11ad7d99845091d6621769519b77a6fd314d350428c5b787c5e9",
+    "src/xmllabel.cpp": "de81177269dec3e039571713ff2b9ea4c1b297076457098cdbcf76a0ad8a54b6",
+    "include/cserver/grader.hpp": "c191679daec6ff0552ce9ab71c283a5e20540bdb46a67060d7d777cdfc5cd766",
+    "include/cserver/message.hpp": "45372b74c84e9a68a7e9683cce77d31e5dc800b0b3bce643e865909fdd640603",
+    "include/cserver/param.hpp": "1346b3d4b32a21b1e9a79d48e5a826ccf317bc56de963816c058fe132c893c43",
+    "include/cserver/plug.hpp": "18f97e59bf9ff9bfb847304d946151520d85592b8855a1d172ce4863f9a6eecc",
+    "include/cserver/serialization.hpp": "05feaf885f58bc09b18283b70ae5d43960127d47a0f9fe9c2560c6055adf9bea",
+    "include/cserver/xmllabel.hpp": "02ebf43b75555fc9fbabf0371efd57b4f38539bef373fac8dc7ce0ca01dd07ac",
+    "res/evaluate.lp": "ee8ca34affe9c40ffc7629319d0f287fefc378160c4a19e9b4d3ec18e09c61e4",
+    "res/forcons.lp": "25a658d971584f002f65b032bfa60c98359754b4c327a5ba2057ce7ed4a8c2cb",
+    "res/fortask.lp": "59b3cee204930d7ce0e6a88a1a2efc55baacf421fefcc08956dea4d90cfca3a3",
+    "res/iclingo": "580100510b1e8b89121e11fb7dbfb8f85ff1b624918e4ac06b08246248a18100",
+    "res/iclingo.win": "7ada5aa0225b10e06789b605995af3961e634326d8799caca6c0c9cb5a9b7faa",
+    "res/show.lp": "d896dc7330e54f5b274424dbbbee57adfa2d53d11df3f484113a6e29ef988921",
+    "res/vrunact.bat": "01ec28adaa4d517a3f1b36b1faf9abbae48f5b2a2b8532feb63463f0c3db1538",
+    "res/vruntask.bat": "2cfe57295d8d6c80e2e7a84cbc0fba3d143da05f110f07966962836c90622a5f",
+    "bin/cserver": "d37b1f6f59c1aca445a1b4916846e6ce9058ab1dfe6dae4a97a3ac59a594e20e",
+    "bin/vrunact.sh": "cfc8ca441b387bef1c27a053545ff2ea483cbf5b036b714670df7d41137a5f48",
+    "bin/vruntask.sh": "3e53c4c2c38a0c984e82dc4d64891824ecc1000fa4f4b6d912b44c1612c22834",
+    "lib/libasp.so": "8306f00a0431f9c272c54ed8533d566b9ae17028b8b442af2c5ad60f02f57bb8",
+    "lib/libframe.a": "14ae3279ae94dc3079372b4ab1eeccb3869d216a8fe5cf88ec7226f626869ad5",
+    "lib/libutility.a": "922e4de35b5e37f1871655ec8def3f2d2723e9db0ab0d6ee48e6fd4eca706e8c"
+  },
+  "sdk_original": {
+    "src/CMakeLists.txt": "7601875359042c31fd97bc0eba6a7eccd1bacbe16d4aa20533a8cdfd81448d3f",
+    "src/aspgrader.cpp": "64b1417eb93808774ed0e0974e23e4e45b697ef14560dfd352170924c967f694",
+    "src/aspgrader.hpp": "9d573db9b5369a0517e88a555c425251590c82e262dc71af53616ae7f7cc6b9e",
+    "src/evaluate.cpp": "11c3a68be6445ccbe4cd9701016ca7c51eca08106752734aa645b7bedc581491",
+    "src/evaluate.h": "757ea0323c2eeda826494554ceff543c84c03036fa5c361a5e8fe5007da705db",
+    "src/main.cpp": "704056d431745ea159944b1c57f2b1e6815ed9f01d9294a55db6a7e45076d319",
+    "src/message.cpp": "18dda2fd610e9f5309ecba1342dea82f4e856e1de5f47e057be1ca3ea88ee378",
+    "src/param.cpp": "66e796f9ee6a2efb3cf354d9875f10ca394fb621fe0d10290699fce68d2f0fee",
+    "src/platform.cpp": "b17a336534bdab7a5633041efc8a2e1ea815ecb4808260f2deda523a668ee82a",
+    "src/platform.hpp": "5dae9b4c2fd4901e3901c0f1f1f1a49ddcfb76e3247448c1ed5ea490e850fc28",
+    "src/plug.cpp": "e101622f2845f77876f0826483f01e64da5cfb11bd263be461f7dfc347a5e21b",
+    "src/serialization.cpp": "2495aa7c90bd766713928ac8e05feda3edce6e7367b90ab1003fa77f2f955306",
+    "src/sfsexp/cstring.c": "8a35029c49403454dd694a0eb13471e73fc0087808145cb856b24cec20e87d57",
+    "src/sfsexp/cstring.h": "3b1680f02b352fd28d6a3e3fb8922f449de1c29a44c97172795bc66cee9282c0",
+    "src/sfsexp/event_temp.c": "6232bbb4535ae1faa9ff4fe26144c94bf4dfbc01dfe07aca61e53bb1f360f0d0",
+    "src/sfsexp/faststack.c": "ba9c83cb3062181dfc5257537b31e827536fec0b78db914a30ed68fbc2a4fc50",
+    "src/sfsexp/faststack.h": "6476d75063988ab051746315566b52a2bb7d55e0e6017d3e7b16b9010b2972a5",
+    "src/sfsexp/io.c": "5dab62b1e3af7a28345a0876d6abbd3dba0e194221d7aff07271aebafed547f0",
+    "src/sfsexp/malloc_util.h": "556ae7109a68bce36817f037f82264265f989e678148f2c189980a8e84efc5ce",
+    "src/sfsexp/parser.c": "cb0f1d3ddb8eda410efeed542e65c2dd2f158df2af1fd4ff1cc99c563b27bc4c",
+    "src/sfsexp/sexp.c": "bae45675e1f6961f9a13ce77def35414bf1d132d6d787c351345b63d73b1c424",
+    "src/sfsexp/sexp.h": "2e11849debafa3d5405a1d95e2100e337ecedab75eff389646d1365e808e91fe",
+    "src/sfsexp/sexp_errors.h": "7d00cf1de037a9a428332afb6d96432f2938e0a76df1f2ec3ba5832a6346e12b",
+    "src/sfsexp/sexp_memory.c": "a208f2fb5040c750009d04346b532f7c204bb37dee26dbc6ff7b33981532a0ed",
+    "src/sfsexp/sexp_memory.h": "c3079cc68a211bb7d9fd09c2bbe6f5177dcf357e0f976fd44953803168407836",
+    "src/sfsexp/sexp_ops.c": "9ca3c509e165e30b2cbbe696b500e8d3464c10fa904c82bad87939c89791a6f4",
+    "src/sfsexp/sexp_ops.h": "d8b8fd0c73e6f0ea324f7077d07633ae3210d5768c414017d17e0daa834a677c",
+    "src/sfsexp/sexp_vis.c": "7237a41f91d7ab5da63683930beeb68c30d43e501ce2302c9eb560f99337cd02",
+    "src/sfsexp/sexp_vis.h": "cf6bd508a82732ffd05cd1a1c22d0ccb6eeee335accbdb2ca0a6ffda29a0b2fd",
+    "src/sharedlib.cpp": "e77229f06f652f0586f0653768c4f977c37a1d796781f1ee2a6e3965e3143c69",
+    "src/sharedlib.h": "cd75d352eaeca389e1ce710b3c997242ad32bfe7a488da60c2d73f2938cc56e7",
+    "src/tinyxml/tinystr.cpp": "717154a980d9ea730c879ff6a62e58ebedbb198ac6b5711df4f617b830496cd7",
+    "src/tinyxml/tinystr.h": "25cef0d734c2575898950b96c2cfe8987bf05f30951d9f1db15124ed9bd7381f",
+    "src/tinyxml/tinyxml.cpp": "aea6de89017d22ef8be7129667612b0844a1c96c4395323b75088c4a4a887d11",
+    "src/tinyxml/tinyxml.h": "8c5ed61d3964170dc5d0fbfffcf99e5eda2b283d62584837426720e6beb2f587",
+    "src/tinyxml/tinyxmlerror.cpp": "33677a9d5410e25c8294dd42e0caf21ca05315475c9819aa35e17f20f3f0a8b0",
+    "src/tinyxml/tinyxmlparser.cpp": "672312a50ccb11ad7d99845091d6621769519b77a6fd314d350428c5b787c5e9",
+    "src/xmllabel.cpp": "de81177269dec3e039571713ff2b9ea4c1b297076457098cdbcf76a0ad8a54b6",
+    "include/cserver/grader.hpp": "c191679daec6ff0552ce9ab71c283a5e20540bdb46a67060d7d777cdfc5cd766",
+    "include/cserver/message.hpp": "45372b74c84e9a68a7e9683cce77d31e5dc800b0b3bce643e865909fdd640603",
+    "include/cserver/param.hpp": "1346b3d4b32a21b1e9a79d48e5a826ccf317bc56de963816c058fe132c893c43",
+    "include/cserver/plug.hpp": "18f97e59bf9ff9bfb847304d946151520d85592b8855a1d172ce4863f9a6eecc",
+    "include/cserver/serialization.hpp": "05feaf885f58bc09b18283b70ae5d43960127d47a0f9fe9c2560c6055adf9bea",
+    "include/cserver/xmllabel.hpp": "02ebf43b75555fc9fbabf0371efd57b4f38539bef373fac8dc7ce0ca01dd07ac",
+    "res/evaluate.lp": "ee8ca34affe9c40ffc7629319d0f287fefc378160c4a19e9b4d3ec18e09c61e4",
+    "res/forcons.lp": "25a658d971584f002f65b032bfa60c98359754b4c327a5ba2057ce7ed4a8c2cb",
+    "res/fortask.lp": "59b3cee204930d7ce0e6a88a1a2efc55baacf421fefcc08956dea4d90cfca3a3",
+    "res/iclingo": "580100510b1e8b89121e11fb7dbfb8f85ff1b624918e4ac06b08246248a18100",
+    "res/iclingo.win": "7ada5aa0225b10e06789b605995af3961e634326d8799caca6c0c9cb5a9b7faa",
+    "res/show.lp": "d896dc7330e54f5b274424dbbbee57adfa2d53d11df3f484113a6e29ef988921",
+    "res/vrunact.bat": "01ec28adaa4d517a3f1b36b1faf9abbae48f5b2a2b8532feb63463f0c3db1538",
+    "res/vruntask.bat": "2cfe57295d8d6c80e2e7a84cbc0fba3d143da05f110f07966962836c90622a5f",
+    "bin/cserver": "0cbc0dcfb7ed631d7e9cda14589282ab840bb0e28476c0abcfa8ebcc40595477",
+    "bin/vrunact.sh": "cfc8ca441b387bef1c27a053545ff2ea483cbf5b036b714670df7d41137a5f48",
+    "bin/vruntask.sh": "3e53c4c2c38a0c984e82dc4d64891824ecc1000fa4f4b6d912b44c1612c22834",
+    "lib/libasp.so": "178f4402ff168cbd7ad67612f79703174bcca2dab213de057e197cf191716995",
+    "lib/libframe.a": "a653ec2116e367f2beb37574534601162d36c0cd91d74757c22317c069a8cef0",
+    "lib/libutility.a": "b56e9bcf32a666be328ded81eed7134f1d61bf117aa6ead8338f4795b337cea9"
+  },
+  "runner_sha256": "16ec11932e0ab2ac4dbd3614595268f4799eb2939f868d3405188b6b6d146db9",
+  "harness_sha256": "a8556650b158663a307c9106782655e42b3962998d2f6f66b08c4dfba46d3292",
+  "compiler": "g++ (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0\nCopyright (C) 2017 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+  "policy": "default/default; serial AB/BA; IT/NT; shared seed; invalid separate; preserve all failures; LF runtime words only"
+}

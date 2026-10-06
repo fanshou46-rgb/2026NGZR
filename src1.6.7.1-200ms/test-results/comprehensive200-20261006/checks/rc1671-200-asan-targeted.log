@@ -1,0 +1,28 @@
+Test project /tmp/rc1671-200-asan
+    Start  1: planner_lifecycle_0
+1/9 Test  #1: planner_lifecycle_0 ..............   Passed    0.25 sec
+    Start  2: planner_lifecycle_1
+2/9 Test  #2: planner_lifecycle_1 ..............   Passed    0.08 sec
+    Start  3: planner_lifecycle_2
+3/9 Test  #3: planner_lifecycle_2 ..............   Passed    0.20 sec
+    Start  4: planner_lifecycle_3
+4/9 Test  #4: planner_lifecycle_3 ..............   Passed    0.06 sec
+    Start  5: planner_lifecycle_4
+5/9 Test  #5: planner_lifecycle_4 ..............***Timeout  10.00 sec
+
+    Start  6: planner_lifecycle_5
+6/9 Test  #6: planner_lifecycle_5 ..............   Passed    0.22 sec
+    Start  7: planner_lifecycle_6
+7/9 Test  #7: planner_lifecycle_6 ..............   Passed    0.21 sec
+    Start  8: planner_lifecycle_7
+8/9 Test  #8: planner_lifecycle_7 ..............   Passed    0.05 sec
+    Start 47: deadline_sensitivity
+9/9 Test #47: deadline_sensitivity .............   Passed    0.10 sec
+
+89% tests passed, 1 tests failed out of 9
+
+Total Test time (real) =  11.19 sec
+
+The following tests FAILED:
+	  5 - planner_lifecycle_4 (Timeout)
+Errors while running CTest

@@ -1,0 +1,90 @@
+[LOG]:-path
+[LOG]:nlp 0, err 0
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+[LOG]:[PlannerVersion] 1.6.7.1-200ms lifecycle-hardening baseline=1.6.7-200ms margin=200ms
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32m
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+[LOG]:[Lifecycle] planner stopped after SDK shutdown request
+
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test
+[LOG]:[PlannerVersion] 1.6.7.1-200ms lifecycle-hardening baseline=1.6.7-200ms margin=200ms
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32m
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+[31m[ERROR]:/tmp/src1.6.7.1-200ms-check/rdfw.cpp:1895 Instruction description is empty; continuing with no tasks[0m
+[31m[ERROR]:/tmp/src1.6.7.1-200ms-check/rdfw.cpp:6099 Instruction input is empty or oversized[0m
+Instruction input contained no usable forms; continuing safely.
+[LOG]:[Preflight][WorldWarning] human count differs from conventional layout
+[LOG]:[Preflight] task raw=0 unique=0 duplicate=0 rejected=0; constraint raw=0 unique=0 duplicate=0 rejected=0; world_errors=0
+Pos  0:(T):
+Pos  1:(T):[32m(robot hold:0 plate:0)[0m[33m(1 table)[0m
+UnknownPos:
+
+[LOG]:[32m[MustIn] correction done.
+[0m
+[LOG]:[32m[MustNear] correction done.
+[0m
+Pos  0:(T):
+Pos  1:(T):[32m(robot hold:0 plate:0)[0m[33m(1 table)[0m
+UnknownPos:
+
+Task:
+
+Info:
+
+Not_Info:
+
+Not_Task:
+
+NotNot_Info:
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+0
+[LOG]:[36m[3A][must-choose-one] goals=0/0 (unknown=0), constraints=0/0 (unknown=0), base_score=0, action_cost=0, elapsed=0ms, remaining=5000ms
+[0m
+[LOG]:[36m[3A][must-choose-one] completed_goals=[], satisfied_constraints=[]
+[0m
+[LOG]:[33m[3B][StopGate] no complete candidate plan fits before must-choose-one; candidate_count=0 fresh_positive=false include_goto=true
+[0m
+-----check check check-----
+Pos  0:(T):
+Pos  1:(T):[32m(robot hold:0 plate:0)[0m[33m(1 table)[0m
+UnknownPos:
+
+[LOG]:[36m[3A][multi-goto] goals=0/0 (unknown=0), constraints=0/0 (unknown=0), base_score=0, action_cost=0, elapsed=0ms, remaining=5000ms
+[0m
+[LOG]:[36m[3A][multi-goto] completed_goals=[], satisfied_constraints=[]
+[0m
+[LOG]:[33m[3B][StopGate] no complete candidate plan fits before multi-goto; candidate_count=0 fresh_positive=false include_goto=true
+[0m
+[LOG]:[33m[Recovery] stop: no positive legal candidate after full rescan; goals=0/0 revision=0
+[0m
+
+Sovled Task Num:0    Expect Num:0
+[LOG]:[36m[3A][final] goals=0/0 (unknown=0), constraints=0/0 (unknown=0), base_score=0, action_cost=0, elapsed=0ms, remaining=5000ms
+[0m
+[LOG]:[36m[3A][final] completed_goals=[], satisfied_constraints=[]
+[0m
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test
+LIFECYCLE_PASS 4

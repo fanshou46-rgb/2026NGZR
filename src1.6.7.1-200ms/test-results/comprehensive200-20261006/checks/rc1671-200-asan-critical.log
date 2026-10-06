@@ -1,0 +1,201 @@
+UpdateCTestConfiguration  from :/tmp/rc1671-200-asan/DartConfiguration.tcl
+UpdateCTestConfiguration  from :/tmp/rc1671-200-asan/DartConfiguration.tcl
+Test project /tmp/rc1671-200-asan
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 1
+    Start  1: planner_lifecycle_0
+
+1: Test command: /tmp/rc1671-200-asan/planner_lifecycle_tests "/tmp/rc1671-200-asan/words.txt" "0"
+1: Test timeout computed to be: 10
+1: [LOG]:-path
+1: [LOG]:nlp 0, err 0
+1: #(RDFW): Initializing dynamic arrays with size 100
+1: #(RDFW): Dynamic arrays initialization completed
+1: [LOG]:[PlannerVersion] 1.6.7.1-200ms lifecycle-hardening baseline=1.6.7-200ms margin=200ms
+1: #(RDFW): Starting new test - verifying clean state
+1: #(RDFW): Pre-test state verification completed
+1: [32m
+1: [0m--------------------------------------------
+1: Ready to Parse Env Infos.
+1: [LOG]:[Lifecycle] planner stopped after SDK shutdown request
+1: 
+1: #(RDFW): Fini - Comprehensive state cleanup for next test
+1: #(RDFW): Optimizing memory usage...
+1: #(RDFW): Memory optimization completed
+1: #(RDFW): Comprehensive state cleanup completed - ready for next test
+1: LIFECYCLE_PASS 0
+1/3 Test  #1: planner_lifecycle_0 ..............   Passed    0.24 sec
+test 8
+    Start  8: planner_lifecycle_7
+
+8: Test command: /tmp/rc1671-200-asan/planner_lifecycle_tests "/tmp/rc1671-200-asan/words.txt" "7"
+8: Test timeout computed to be: 10
+2/3 Test  #8: planner_lifecycle_7 ..............***Timeout  10.00 sec
+test 47
+    Start 47: deadline_sensitivity
+
+47: Test command: /tmp/rc1671-200-asan/deadline_sensitivity_tests "/tmp/rc1671-200-asan/words.txt"
+47: Test timeout computed to be: 9.99988e+06
+47: [LOG]:-path
+47: [LOG]:nlp 0, err 0
+47: #(RDFW): Initializing dynamic arrays with size 100
+47: #(RDFW): Dynamic arrays initialization completed
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave=close can_finish=false remaining_plan_ms=100 safety_ms=200 budget_remaining_ms=0
+47: [0m
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave=close can_finish=false remaining_plan_ms=100 safety_ms=200 budget_remaining_ms=1
+47: [0m
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave=close can_finish=false remaining_plan_ms=100 safety_ms=200 budget_remaining_ms=50
+47: [0m
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave=close can_finish=false remaining_plan_ms=100 safety_ms=200 budget_remaining_ms=99
+47: [0m
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave=close can_finish=false remaining_plan_ms=100 safety_ms=200 budget_remaining_ms=100
+47: [0m
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave=close can_finish=false remaining_plan_ms=100 safety_ms=200 budget_remaining_ms=199
+47: [0m
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave=close can_finish=false remaining_plan_ms=100 safety_ms=200 budget_remaining_ms=299
+47: [0m
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave=close can_finish=true remaining_plan_ms=100 safety_ms=200 budget_remaining_ms=300
+47: [0m
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave=close can_finish=true remaining_plan_ms=100 safety_ms=200 budget_remaining_ms=301
+47: [0m
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave=close can_finish=true remaining_plan_ms=100 safety_ms=200 budget_remaining_ms=5000
+47: [0m
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=false remaining_plan_ms=0 safety_ms=200 budget_remaining_ms=198
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=false remaining_plan_ms=0 safety_ms=200 budget_remaining_ms=199
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=0 safety_ms=200 budget_remaining_ms=200
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=0 safety_ms=200 budget_remaining_ms=201
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=0 safety_ms=200 budget_remaining_ms=202
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=false remaining_plan_ms=1 safety_ms=200 budget_remaining_ms=199
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=false remaining_plan_ms=1 safety_ms=200 budget_remaining_ms=200
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=1 safety_ms=200 budget_remaining_ms=201
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=1 safety_ms=200 budget_remaining_ms=202
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=1 safety_ms=200 budget_remaining_ms=203
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=false remaining_plan_ms=100 safety_ms=200 budget_remaining_ms=298
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=false remaining_plan_ms=100 safety_ms=200 budget_remaining_ms=299
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=100 safety_ms=200 budget_remaining_ms=300
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=100 safety_ms=200 budget_remaining_ms=301
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=100 safety_ms=200 budget_remaining_ms=302
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=false remaining_plan_ms=420 safety_ms=200 budget_remaining_ms=618
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=false remaining_plan_ms=420 safety_ms=200 budget_remaining_ms=619
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=420 safety_ms=200 budget_remaining_ms=620
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=420 safety_ms=200 budget_remaining_ms=621
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=420 safety_ms=200 budget_remaining_ms=622
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=false remaining_plan_ms=999 safety_ms=200 budget_remaining_ms=1197
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=false remaining_plan_ms=999 safety_ms=200 budget_remaining_ms=1198
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=999 safety_ms=200 budget_remaining_ms=1199
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=999 safety_ms=200 budget_remaining_ms=1200
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=999 safety_ms=200 budget_remaining_ms=1201
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=false remaining_plan_ms=3000 safety_ms=200 budget_remaining_ms=3198
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[33m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=false remaining_plan_ms=3000 safety_ms=200 budget_remaining_ms=3199
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=3000 safety_ms=200 budget_remaining_ms=3200
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=3000 safety_ms=200 budget_remaining_ms=3201
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: [LOG]:[36m[3B][Deadline] phase=sensitivity-test task_index=0 behave= can_finish=true remaining_plan_ms=3000 safety_ms=200 budget_remaining_ms=3202
+47: [0m
+47: [LOG]:[3B][Deadline] phase=sensitivity-test task_index=0 can_finish=false reason=incomplete_projection actions=1
+47: 
+47: DEADLINE checks=73 exact_boundary=unchanged complete_projection=required
+3/3 Test #47: deadline_sensitivity .............   Passed    0.09 sec
+
+The following tests passed:
+	planner_lifecycle_0
+	deadline_sensitivity
+
+67% tests passed, 1 tests failed out of 3
+
+Total Test time (real) =  10.33 sec
+
+The following tests FAILED:
+	  8 - planner_lifecycle_7 (Timeout)
+Errors while running CTest

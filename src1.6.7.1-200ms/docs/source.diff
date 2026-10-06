@@ -1,0 +1,148 @@
+--- src1.6.7-200ms/CMakeLists.txt
++++ src1.6.7.1-200ms/CMakeLists.txt
+@@ -1,4 +1,4 @@
+-PROJECT(rdfw VERSION 1.6.7)
++PROJECT(rdfw VERSION 1.6.7.1)
+ # 设置指定的C++编译器版本是必须的，如果不设置，或者为OFF，则指定版本不可用时，会使用上一版本。
+ set(CMAKE_CXX_STANDARD_REQUIRED ON)
+ 
+--- src1.6.7-200ms/rdfw.cpp
++++ src1.6.7.1-200ms/rdfw.cpp
+@@ -33,6 +33,19 @@
+ 
+ namespace {
+ 
++class PlannerShutdown : public std::exception {
++public:
++    const char* what() const noexcept override { return "SDK requested planner shutdown"; }
++};
++
++class PlannerActiveGuard {
++public:
++    explicit PlannerActiveGuard(bool& active) : active_(active) { active_ = true; }
++    ~PlannerActiveGuard() { active_ = false; }
++private:
++    bool& active_;
++};
++
+ class ScopeExit {
+ public:
+     explicit ScopeExit(const std::function<void()>& restore) : restore_(restore) {}
+@@ -248,6 +261,8 @@
+ }
+ 
+ RDFW::~RDFW() {
++    planner_shutdown_generation.fetch_add(1);
++    std::unique_lock<std::mutex> lifetime(planner_lifecycle_mutex);
+     delete nlp_parser;
+     nlp_parser = nullptr;
+ }
+@@ -931,6 +946,7 @@
+ bool RDFW::StopGate(const char* phase, bool include_goto,
+                     const std::vector<CandidatePlan>& candidates)
+ {
++    CheckPlannerShutdown();
+     LogProgressSnapshot(phase);
+     const TerminalSummary terminal = terminal_checker.evaluateAll(*this);
+     if (terminal.allGoalsSatisfied()) {
+@@ -1296,6 +1312,7 @@
+ 
+ void RDFW::RecordAction(ActionCategory category, const char* name,
+                         const std::vector<unsigned int>& arguments) {
++    CheckPlannerShutdown();
+     if (shadow_dry_run && shadow_search_budget_enabled &&
+         std::chrono::steady_clock::now() >= shadow_search_deadline) {
+         shadow_cpu_budget_exhausted = true;
+@@ -1722,9 +1739,27 @@
+ }
+ 
+ 
+-void RDFW::Plan() // 改
++void RDFW::CheckPlannerShutdown() const {
++    if (planner_active && planner_shutdown_generation.load() != active_planner_generation)
++        throw PlannerShutdown();
++}
++
++void RDFW::Plan() {
++    const std::uint64_t generation = planner_shutdown_generation.load();
++    std::unique_lock<std::mutex> lifetime(planner_lifecycle_mutex);
++    if (planner_shutdown_generation.load() != generation) return;
++    active_planner_generation = generation;
++    PlannerActiveGuard active(planner_active);
++    try {
++        PlanImpl();
++    } catch (const PlannerShutdown&) {
++        LOG("[Lifecycle] planner stopped after SDK shutdown request\n");
++    }
++}
++
++void RDFW::PlanImpl() // 原 1.6.7 规划顺序
+ {
+-    LOG("[PlannerVersion] 1.6.6");
++    LOG("[PlannerVersion] 1.6.7.1-200ms lifecycle-hardening baseline=1.6.7-200ms margin=200ms");
+     deadline_manager.reset(deadline_manager.timeLimit());
+     StageTiming::get().reset();
+     ScopeExit timing_report([this]() { StageTiming::get().report(deadline_manager.elapsed().count(), deadline_manager.remaining().count()); });
+@@ -1839,6 +1874,7 @@
+     cout << "Ready to Parse Env Infos." << endl;
+ 
+     string env_str = GetEnvDes();
++    CheckPlannerShutdown();
+ 
+     // Try to Parse Env, write to Object, SmallObject
+     if (ParseEnv(env_str) == false) {
+@@ -1853,6 +1889,7 @@
+     cout << "Ready to Parse Tasks and Cons." << endl;
+ 
+     const string task_str = TrimCopy(GetTaskDes());
++    CheckPlannerShutdown();
+ 
+     if(task_str.empty()) {
+         LOG_ERROR("Instruction description is empty; continuing with no tasks");
+@@ -7049,6 +7086,10 @@
+ 
+ void RDFW::Fini()
+ {
++    // SDK timed_join can expire before Plan finishes. Keep its state alive
++    // through the in-flight call, mutation commit/rollback and stack unwind.
++    planner_shutdown_generation.fetch_add(1);
++    std::unique_lock<std::mutex> lifetime(planner_lifecycle_mutex);
+     preflight_report = QuestionPreflightReport();
+     holdProvenance=StateProvenance(); plateProvenance=StateProvenance();
+     cout << "#(RDFW): Fini - Comprehensive state cleanup for next test" << endl;
+--- src1.6.7-200ms/rdfw.hpp
++++ src1.6.7.1-200ms/rdfw.hpp
+@@ -14,6 +14,9 @@
+ #include "memory"
+ #include "stdexcept"
+ #include "typeinfo"
++#include <atomic>
++#include <cstdint>
++#include <mutex>
+ #include "debuglog.hpp"
+ #include "deadline_manager.hpp"
+ #include "terminal_checker.hpp"
+@@ -567,7 +570,7 @@
+         bool ReceiveWeakClaim(StateField field, unsigned int id, int value,
+                               EvidenceSource source);
+         void MarkUnresolved(StateField field, unsigned int id);
+-        bool isMultiGotoMode;         // 是否在多goto任务模式下，用于控制是否跳过Sense操作
++        bool isMultiGotoMode = false; // 预览也可能在 Plan 重置之前读取此标志
+ 
+         // 位置感知物体记录
+         struct LocationSensedInfo {
+@@ -759,6 +762,14 @@
+ 
+ 
+     private:
++        void PlanImpl();
++        void CheckPlannerShutdown() const;
++        // Fini requests cancellation before waiting for the active Plan owner.
++        // A generation avoids losing that request when a new Plan starts.
++        std::mutex planner_lifecycle_mutex;
++        std::atomic<std::uint64_t> planner_shutdown_generation{0};
++        std::uint64_t active_planner_generation = 0;
++        bool planner_active = false;
+         void ClearContainerMembership(const shared_ptr<SmallObject>& small);
+         void ReconcileLocationRelation(const shared_ptr<SmallObject>& small);
+         void ConfirmContainerLocation(const shared_ptr<Container>& container);
