@@ -63,3 +63,7 @@ python tools/workspace_archive.py restore --prefix validation/review177-100-2026
 详细记录：[占用排名](../logs/workspace_cleanup_20261007/disk_ranking.md)、[清理清单](../logs/workspace_cleanup_20261007/cleanup_targets.csv)、[实际执行](../logs/workspace_cleanup_20261007/applied.json)、[清理后核对](../logs/workspace_cleanup_20261007/after.json)、[恢复测试](../logs/workspace_cleanup_20261007/restoration-audit.json)。
 
 未处理项：四个未提交实验草稿、现有发布ZIP、其他工作区、共享Git/LFS继续保留。D盘 `D:/RoboCupEvidenceReview/workspace-verification-20261007` 为恢复测试副本；自动审批审查拒绝其递归删除，返回原因为 `blocked by policy`，因此保留。连续sanitizer检查状态仍为未完成。详见 [skipped-items.json](../logs/workspace_cleanup_20261007/skipped-items.json)。
+
+## 云端同步
+
+全部29个归档ZIP已分9批上传。整包传输曾被连接重置，最终将传输提交历史作为整理提交的第二父提交接入，复用已上传对象；合并前后文件树完全一致。`codex-cloud-20261003` 已同步，比赛附注tag的远端目标核对为 `4336a368ffe531a33902b93256d6b26e528ed2e2`。本次新建的临时传输分支已删除，其提交继续由正式分支保存。全过程未强推。见 [上传核对](../logs/workspace_cleanup_20261007/cloud-upload-batches.json)。
