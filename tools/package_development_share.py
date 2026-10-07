@@ -12,7 +12,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PREFIX = 'robocup-development-evidence/'
-TEXT = {'.md', '.json', '.jsonl', '.csv', '.txt', '.log', '.xml', '.lp', '.yaml', '.yml'}
+TEXT = {'.md', '.json', '.jsonl', '.csv', '.txt', '.log', '.xml', '.lp', '.yaml', '.yml', '.diff', '.patch', '.pdf'}
 SOURCE = {'.cpp', '.hpp', '.h', '.c', '.py', '.ps1', '.sh', '.cmake'}
 VERSIONS = ['HistoryVersion/src1.6.7', 'src1.6.7-200ms', 'src1.6.7.1', 'src1.6.7.1-200ms'] + ['src1.7'] + ['src1.7.' + str(i) for i in range(1, 8)]
 PRIMARY = ['docs/development_1.7plus.md', 'docs/failure_cases.md']
@@ -27,8 +27,12 @@ def digest(data):
 
 
 def selected(rel):
+    # This is the sender's local delivery receipt, written after packaging.
+    # Readers use the package README and manifest rather than stale D: links.
+    if rel == 'docs/development_share.md':
+        return False
     parts = rel.split('/')
-    if any(p in ('__pycache__', '.git', '.venv', 'build', 'builds', 'runs', 'runtime') or p.startswith('build-') for p in parts):
+    if any(p in ('__pycache__', '.git', '.venv', 'build', 'builds', 'runs', 'runtime') or p.startswith('build-') for p in parts[:-1]):
         return False
     suffix = Path(rel).suffix.lower()
     if rel.startswith('tools/'):
@@ -122,7 +126,7 @@ def main(output):
 - [比赛版配置、依赖和验证边界](docs/competition_version.md)
 
 阅读包包含版本源码/测试/原发布说明、直接对照报告、逐题统计、题库、原始典型日志、评分、SDK终态、审计与复算脚本。
-完整包包含阅读包全部内容，另加78个原开发证据ZIP、两份比赛完整证据、29个补充分块ZIP和现有发布ZIP。
+完整包包含阅读包全部内容，另加78个原开发证据ZIP、报告引用的旧版证据ZIP、两份比赛完整证据、29个补充分块ZIP和现有发布ZIP。
 `SOURCE_MANIFEST.json`逐项记录实际来源、字节数、SHA256。原始日志与评分不改写；其中本机绝对路径用于历史溯源，
 阅读使用本包相对路径。四组未提交概率草稿以原目录保存，是未完成的研发材料，不能当作验证通过的功能。
 
@@ -195,16 +199,49 @@ print('PASS:',len(m['files']),'files; all SHA256 match')
         if p.suffix == '.zip' or p.name == 'receipt.json':
             extra[p.relative_to(ROOT).as_posix()] = ('disk', p)
 
+    # Follow the linked reports themselves, so their attachments also travel.
+    # Keep original source/log bytes; repair the historical rename only in its
+    # portable report copy and state exactly what was changed.
+    renamed_report = 'src1.7.3/test-results/validation-20261004/REPORT.md'
+    report_text = read_entry(renamed_report).decode('utf8')
+    if 'ROBOT_FLOW_1.9.md' in report_text:
+        generated[renamed_report] = (report_text.replace('ROBOT_FLOW_1.9.md', 'ROBOT_FLOW_1.7.3.md') +
+            '\n转发版链接修正：原ROBOT_FLOW_1.9.md已在仓库重命名为ROBOT_FLOW_1.7.3.md；仅修正链接，原评分和记录不变。\n').encode('utf8')
+        entries.pop(renamed_report)
+    report_queue = PRIMARY + ['docs/competition_version.md', 'docs/workspace_cleanup.md', 'docs/AUDIT_1.7.2_1.7.4.md']
+    linked_reports = set()
+    while report_queue:
+        rel = report_queue.pop()
+        if rel in linked_reports:
+            continue
+        linked_reports.add(rel)
+        data = generated.get(rel) or read_entry(rel)
+        for value in re.findall(r'\]\(([^)]+)\)', data.decode('utf8')):
+            if re.match(r'\w+://', value) or value.startswith('#'):
+                continue
+            target = posixpath.normpath(posixpath.join(posixpath.dirname(rel), value.split('#', 1)[0].replace('%20', ' ')))
+            assert not target.startswith('../') and not target.startswith('/'), ('Outside package', target)
+            available = set(entries) | set(generated) | set(extra)
+            if target not in available and not any(p.startswith(target + '/') for p in available):
+                if (ROOT / target).is_file():
+                    entries[target] = ('disk', ROOT / target)
+                elif target in index['files']:
+                    (extra if target.endswith('.zip') else entries)[target] = ('archive', target)
+                else:
+                    raise AssertionError(('Historical report attachment missing', rel, target))
+            if target.endswith('.md'):
+                report_queue.append(target)
+
     def links(available):
         rows = []
-        for rel in PRIMARY + ['docs/competition_version.md', 'docs/workspace_cleanup.md', 'docs/AUDIT_1.7.2_1.7.4.md']:
+        for rel in sorted(linked_reports):
             data = generated.get(rel) or read_entry(rel)
             for value in re.findall(r'\]\(([^)]+)\)', data.decode('utf8')):
                 if re.match(r'\w+://', value) or value.startswith('#'):
                     continue
                 value = value.split('#', 1)[0].replace('%20', ' ')
                 target = posixpath.normpath(posixpath.join(posixpath.dirname(rel), value))
-                status = 'included' if target in available else 'restore_from_chunk_archive' if target in index['files'] else 'complete_package_only' if target in extra else 'unresolved'
+                status = 'included' if target in available else 'included_directory' if any(p.startswith(target + '/') for p in available) else 'complete_package_only' if target in extra else 'restore_from_chunk_archive' if target in index['files'] else 'unresolved'
                 rows.append({'document': rel, 'target': target, 'status': status})
         assert not [r for r in rows if r['status'] == 'unresolved'], rows
         return rows
