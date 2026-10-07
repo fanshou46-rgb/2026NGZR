@@ -1,0 +1,31 @@
+{
+  "id": "sanitizer-incomplete-competition",
+  "category": "sanitizer卡顿",
+  "phenomenon": "连续 CTest 不同生命周期用例 10 秒超时，input_safety 后续未完成。",
+  "conclusion": "普通检查和正式 SDK 对照已通过；连续 sanitizer 检查保留未完成状态。无题目/模式/随机种子。",
+  "seed": null,
+  "references": [
+    "src1.6.7.1-200ms/docs/RELEASE_1.6.7.1-200ms.md"
+  ],
+  "runs": {},
+  "files": [
+    {
+      "source": "src1.6.7.1-200ms/test-results/comprehensive200-20261006/checks/rc1671-200-asan-ctest.log",
+      "saved": "logs/representative_failures/sanitizer-incomplete-competition/ctest.log",
+      "sha256": "65bb2e77238b403b0d4cd3565a8d9ed2f2c6bae1df78610d839f952686f9cd91",
+      "bytes": 986
+    },
+    {
+      "source": "src1.6.7.1-200ms/test-results/comprehensive200-20261006/checks/rc1671-200-asan-ctest-except-input.log",
+      "saved": "logs/representative_failures/sanitizer-incomplete-competition/except_input.log",
+      "sha256": "c11a7c90e3bb8a3699b2d0b9416a1eb7f915cc1d5a581ad3509884f191e87706",
+      "bytes": 1221
+    },
+    {
+      "source": "src1.6.7.1-200ms/test-results/comprehensive200-20261006/checks/rc1671-200-asan-critical.log",
+      "saved": "logs/representative_failures/sanitizer-incomplete-competition/initial_critical.log",
+      "sha256": "dac4c9e7d7dd8914df58381dceac09a87969f61a8d9189eea62b21f7bc210fc6",
+      "bytes": 12422
+    }
+  ]
+}

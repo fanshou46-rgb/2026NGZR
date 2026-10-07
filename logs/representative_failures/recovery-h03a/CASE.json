@@ -1,0 +1,240 @@
+{
+  "id": "recovery-h03a",
+  "category": "恢复失败与内部高报",
+  "phenomenon": "1.7.5 内部高报 G6，SDK G5；1.7.6 修正关系后，额外探索移动丢掉 goto，SDK G4。",
+  "conclusion": "完整收益遗漏已完成 goto 的损失；未知柜门与返回投影缺陷阻断恢复。原因由日志及独立 SDK 反例支持。",
+  "seed": 2026100401,
+  "references": [
+    "validation/review176-20261004/REPORT.md"
+  ],
+  "runs": {
+    "candidate_176": {
+      "raw_score": 117,
+      "official_score": 117,
+      "platform_seconds": 4.518,
+      "platform_timed_out": false,
+      "actions": {
+        "fromplate": 1,
+        "move": 8,
+        "sense": 3,
+        "putdown": 4,
+        "pickup": 3
+      },
+      "action_count": 19,
+      "client_metrics": null,
+      "final_goals": 4,
+      "credited_constraints": 0,
+      "platform_error": false,
+      "case": "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/棰樼洰/generalization_175_20261004_v4/h03a.xml",
+      "case_sha256": "9e057579dc8100976b8e98730d42654b0065015268fba268deb23ee04bcc4ae0",
+      "stage": 2,
+      "mode": "it",
+      "wall_seconds": 5.274411504999989,
+      "external_timeout": false,
+      "client_exit": 0,
+      "server_exit": -15,
+      "commands": [
+        [
+          "/tmp/env-release-2026-search/bin/cserver",
+          "-td",
+          "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.6/runtime/tests",
+          "-eval",
+          "/tmp/env-release-2026-search/lib/libasp",
+          "-log",
+          "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.6/runtime/log",
+          "-mode",
+          "it",
+          "-test",
+          "1",
+          "-to",
+          "5000"
+        ],
+        [
+          "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/validation/review176-20261004/raw/frozen-v2/build-current/example",
+          "-stage",
+          "2",
+          "-nlp",
+          "0",
+          "-err",
+          "1",
+          "-ask_2",
+          "1",
+          "-path",
+          "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/validation/review176-20261004/raw/frozen-v2/assets/words.txt"
+        ]
+      ],
+      "limit_ms": 5000,
+      "budget_ms": null,
+      "status": "ok"
+    },
+    "baseline_175": {
+      "raw_score": 176,
+      "official_score": 176,
+      "platform_seconds": 3.845,
+      "platform_timed_out": false,
+      "actions": {
+        "sense": 2,
+        "fromplate": 1,
+        "move": 7,
+        "putdown": 4,
+        "pickup": 3
+      },
+      "action_count": 17,
+      "client_metrics": null,
+      "final_goals": 5,
+      "credited_constraints": 0,
+      "platform_error": false,
+      "case": "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/棰樼洰/generalization_175_20261004_v4/h03a.xml",
+      "case_sha256": "9e057579dc8100976b8e98730d42654b0065015268fba268deb23ee04bcc4ae0",
+      "stage": 2,
+      "mode": "it",
+      "wall_seconds": 4.668913699999848,
+      "external_timeout": false,
+      "client_exit": 0,
+      "server_exit": -15,
+      "commands": [
+        [
+          "/tmp/env-release-2026-search/bin/cserver",
+          "-td",
+          "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.5/runtime/tests",
+          "-eval",
+          "/tmp/env-release-2026-search/lib/libasp",
+          "-log",
+          "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.5/runtime/log",
+          "-mode",
+          "it",
+          "-test",
+          "1",
+          "-to",
+          "5000"
+        ],
+        [
+          "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/validation/review175-20261004/frozen-v2/build-current/example",
+          "-stage",
+          "2",
+          "-nlp",
+          "0",
+          "-err",
+          "1",
+          "-ask_2",
+          "1",
+          "-path",
+          "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/validation/review176-20261004/raw/frozen-v2/assets/words.txt"
+        ]
+      ],
+      "limit_ms": 5000,
+      "budget_ms": null,
+      "status": "ok"
+    }
+  },
+  "files": [
+    {
+      "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.6/server.log",
+      "saved": "logs/representative_failures/recovery-h03a/candidate_176/server.log",
+      "sha256": "cefba1da93f76938abcd37ac8a30b418f7c4843929c40890ac2a62a686c65f8f",
+      "bytes": 829
+    },
+    {
+      "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.6/client.log",
+      "saved": "logs/representative_failures/recovery-h03a/candidate_176/client.log",
+      "sha256": "d831417f76c4bde5225ee5b25b61e319e421d052987c99c42f7016448c03193f",
+      "bytes": 62966
+    },
+    {
+      "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.6/summary.json",
+      "saved": "logs/representative_failures/recovery-h03a/candidate_176/summary.json",
+      "sha256": "3b23ef96838e21f47296f6d0ddb25686b8edda865017a7857a4bfeb897652573",
+      "bytes": 1731
+    },
+    {
+      "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.6/runtime/vanswer.txt",
+      "saved": "logs/representative_failures/recovery-h03a/candidate_176/official_runtime/vanswer.txt",
+      "sha256": "de29cd26003074f43a489d32b49fa9852590394505e69b65ca65097218ac1264",
+      "bytes": 184
+    },
+    {
+      "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.6/runtime/vstate.lp",
+      "saved": "logs/representative_failures/recovery-h03a/candidate_176/official_runtime/vstate.lp",
+      "sha256": "f7073f75f4f9629712d318d4c6725180c917adaafffe7a81e66f58f9a06dde0d",
+      "bytes": 267
+    },
+    {
+      "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.6/runtime/vcons.lp",
+      "saved": "logs/representative_failures/recovery-h03a/candidate_176/official_runtime/vcons.lp",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.6/runtime/vtask.lp",
+      "saved": "logs/representative_failures/recovery-h03a/candidate_176/official_runtime/vtask.lp",
+      "sha256": "f55a8aa429e6e5bbb1ddf835cb84e5c08ada4cb8ad09bae00f30094ec2129df2",
+      "bytes": 335
+    },
+    {
+      "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.6/runtime/vaction.lp",
+      "saved": "logs/representative_failures/recovery-h03a/candidate_176/official_runtime/vaction.lp",
+      "sha256": "07d3c16000b3bbca43f525e78ca104cc6f3eacced90e5800679c943142c6c0d7",
+      "bytes": 17
+    },
+    {
+      "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.6/runtime/tests/case.xml",
+      "saved": "logs/representative_failures/recovery-h03a/candidate_176/official_runtime/tests/case.xml",
+      "sha256": "9e057579dc8100976b8e98730d42654b0065015268fba268deb23ee04bcc4ae0",
+      "bytes": 1437
+    },
+    {
+      "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.5/server.log",
+      "saved": "logs/representative_failures/recovery-h03a/baseline_175/server.log",
+      "sha256": "97bbbec2f8a38696a26bb9241d1b7efa7ab6f076a185964edb8ae4a22e48f87d",
+      "bytes": 793
+    },
+    {
+      "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.5/client.log",
+      "saved": "logs/representative_failures/recovery-h03a/baseline_175/client.log",
+      "sha256": "2f48aa50f363c5082f189c79df9b78d014a5909631438d28814e0fdbcbbe3757",
+      "bytes": 37159
+    },
+    {
+      "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.5/summary.json",
+      "saved": "logs/representative_failures/recovery-h03a/baseline_175/summary.json",
+      "sha256": "146edf1a73ac5ca52e8a8dc1b7973f54e040943b0b07506b03070ff1d2cf40f0",
+      "bytes": 1727
+    },
+    {
+      "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.5/runtime/vanswer.txt",
+      "saved": "logs/representative_failures/recovery-h03a/baseline_175/official_runtime/vanswer.txt",
+      "sha256": "db630d7b882f69db997121dd0e9706a97f570baca63a55b7a50cc940cc1a5557",
+      "bytes": 196
+    },
+    {
+      "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.5/runtime/vstate.lp",
+      "saved": "logs/representative_failures/recovery-h03a/baseline_175/official_runtime/vstate.lp",
+      "sha256": "60028af8e70f25f359a0774acc5bc64c3e46110e2f3b35721d2f8b83e70874e1",
+      "bytes": 267
+    },
+    {
+      "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.5/runtime/vcons.lp",
+      "saved": "logs/representative_failures/recovery-h03a/baseline_175/official_runtime/vcons.lp",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.5/runtime/vtask.lp",
+      "saved": "logs/representative_failures/recovery-h03a/baseline_175/official_runtime/vtask.lp",
+      "sha256": "f55a8aa429e6e5bbb1ddf835cb84e5c08ada4cb8ad09bae00f30094ec2129df2",
+      "bytes": 335
+    },
+    {
+      "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.5/runtime/vaction.lp",
+      "saved": "logs/representative_failures/recovery-h03a/baseline_175/official_runtime/vaction.lp",
+      "sha256": "68ac3229884cb15ed1411e2842288658b6ee9c6859537247edc873be6e5d1e11",
+      "bytes": 22
+    },
+    {
+      "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.5/runtime/tests/case.xml",
+      "saved": "logs/representative_failures/recovery-h03a/baseline_175/official_runtime/tests/case.xml",
+      "sha256": "9e057579dc8100976b8e98730d42654b0065015268fba268deb23ee04bcc4ae0",
+      "bytes": 1437
+    }
+  ]
+}

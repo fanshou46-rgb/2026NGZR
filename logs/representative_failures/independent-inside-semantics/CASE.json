@@ -1,0 +1,37 @@
+{
+  "id": "independent-inside-semantics",
+  "category": "事实终态误判",
+  "phenomenon": "PickUp/PutDown 不自动删 inside；联合模型漏掉旧 inside 边。",
+  "conclusion": "以官方 SDK 状态复现独立 at/inside、多父关系；按指定边更新关系。直接语义检查不使用题目随机种子。",
+  "seed": null,
+  "references": [
+    "docs/AUDIT_1.7.2_1.7.4.md"
+  ],
+  "runs": {},
+  "files": [
+    {
+      "source": "validation/review-20261004/semantics/results.json",
+      "saved": "logs/representative_failures/independent-inside-semantics/results.json",
+      "sha256": "8002f6958002a0ecb4307a8923eb4a0ce22de66a16fc9a0bef0d9f5f1e380bef",
+      "bytes": 615
+    },
+    {
+      "source": "validation/review-20261004/semantics/results-multi.json",
+      "saved": "logs/representative_failures/independent-inside-semantics/multi_inside.json",
+      "sha256": "f16e833991bce63cce2cf5df6c486eb7ae540c5818c38e1b4e0ecee8187f5537",
+      "bytes": 122
+    },
+    {
+      "source": "validation/review-20261004/semantics/v2-0/reproduction.log",
+      "saved": "logs/representative_failures/independent-inside-semantics/sdk_log.log",
+      "sha256": "37f76e23d3b9aa916ff4d12bea60b8a2702ea49493b30ba8e56a23feb5ac5822",
+      "bytes": 443
+    },
+    {
+      "source": "tools/review_172_174/semantic_counterexamples.cpp",
+      "saved": "logs/representative_failures/independent-inside-semantics/counterexample.cpp",
+      "sha256": "f1c88c51d5a2dfe1499850e695802b78167ac29ea2b05d54159791862e753484",
+      "bytes": 3136
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "raw_score": 198,
+  "official_score": 198,
+  "platform_seconds": 0.559,
+  "platform_timed_out": false,
+  "actions": {
+    "sense": 2,
+    "pickup": 1,
+    "move": 1,
+    "putdown": 1
+  },
+  "action_count": 5,
+  "client_metrics": null,
+  "final_goals": 3,
+  "credited_constraints": 0,
+  "platform_error": false,
+  "case": "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/题目/generalization_176_20261004/j04b.xml",
+  "case_sha256": "dc9d91a5eba24f0de6e37ab6798e9d276373916f150aca3038a1684f0fe3fa9f",
+  "stage": 2,
+  "mode": "it",
+  "wall_seconds": 0.9910546240007534,
+  "external_timeout": false,
+  "client_exit": 0,
+  "server_exit": -15,
+  "commands": [
+    [
+      "/tmp/env-release-2026-search/bin/cserver",
+      "-td",
+      "/tmp/robocup-review177-100-20261004/runs/seen-j04b-it-r1-167_200/runtime/tests",
+      "-eval",
+      "/tmp/env-release-2026-search/lib/libasp",
+      "-log",
+      "/tmp/robocup-review177-100-20261004/runs/seen-j04b-it-r1-167_200/runtime/log",
+      "-mode",
+      "it",
+      "-test",
+      "1",
+      "-to",
+      "5000"
+    ],
+    [
+      "/tmp/robocup-review177-100-20261004/binaries/167_200/example",
+      "-stage",
+      "2",
+      "-nlp",
+      "0",
+      "-err",
+      "1",
+      "-ask_2",
+      "1",
+      "-path",
+      "/tmp/robocup-review177-100-20261004/assets/167_200/words.txt"
+    ]
+  ],
+  "limit_ms": 5000,
+  "budget_ms": null,
+  "status": "ok"
+}

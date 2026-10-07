@@ -1,0 +1,142 @@
+{
+  "id": "model-budget-f29",
+  "category": "模型预算超限",
+  "phenomenon": "f29 的累计模型工作超过 250ms 目标，最高 269.904959ms。",
+  "conclusion": "完整时间账本显示检查通过仍有预算超限；该值是模型累计时间，区别于 200ms 规划余量。",
+  "seed": 2026100403,
+  "references": [
+    "experiments/full_probability/LATEST_RESULT.md"
+  ],
+  "runs": {
+    "candidate": {
+      "raw_score": 838,
+      "official_score": 838,
+      "platform_seconds": 3.735,
+      "platform_timed_out": false,
+      "actions": {
+        "sense": 10,
+        "pickup": 5,
+        "move": 7,
+        "putdown": 4,
+        "open": 2,
+        "putin": 1,
+        "takeout": 1,
+        "close": 1
+      },
+      "action_count": 31,
+      "client_metrics": null,
+      "final_goals": 7,
+      "credited_constraints": 30,
+      "platform_error": false,
+      "case": "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/棰樼洰/independent_100_20261004/cases/stage2/A04-01-s2.xml",
+      "case_sha256": "94ae5c7f44e3252339ff79fe4fb4c5d22853b5b8a675a9b3400c9f50a4935958",
+      "stage": 2,
+      "mode": "it",
+      "wall_seconds": 4.1706142449999675,
+      "external_timeout": false,
+      "client_exit": 0,
+      "server_exit": -15,
+      "commands": [
+        [
+          "/tmp/env-release-2026-search/bin/cserver",
+          "-td",
+          "/tmp/robocup-full_probability/runs/f29-smoke2-full-A04-01-s2-it-repeat1-lab/runtime/tests",
+          "-eval",
+          "/tmp/env-release-2026-search/lib/libasp",
+          "-log",
+          "/tmp/robocup-full_probability/runs/f29-smoke2-full-A04-01-s2-it-repeat1-lab/runtime/log",
+          "-mode",
+          "it",
+          "-test",
+          "1",
+          "-to",
+          "5000"
+        ],
+        [
+          "/tmp/robocup-full_probability/binaries/f29/example",
+          "-stage",
+          "2",
+          "-nlp",
+          "0",
+          "-err",
+          "1",
+          "-ask_2",
+          "1",
+          "-path",
+          "/tmp/robocup-full_probability/assets/lab/words.txt"
+        ]
+      ],
+      "limit_ms": 5000,
+      "budget_ms": null,
+      "status": "ok"
+    }
+  },
+  "files": [
+    {
+      "source": "experiments/full_probability/runs/f29-smoke2-full-A04-01-s2-it-repeat1-lab/server.log",
+      "saved": "logs/representative_failures/model-budget-f29/candidate/server.log",
+      "sha256": "091f5b7680e8a2da03e911adcc3c4ba51abd2801a408887baccc19774afd2c3b",
+      "bytes": 964
+    },
+    {
+      "source": "experiments/full_probability/runs/f29-smoke2-full-A04-01-s2-it-repeat1-lab/client.log",
+      "saved": "logs/representative_failures/model-budget-f29/candidate/client.log",
+      "sha256": "1b2fa079d38a7b8b6c68877ff5dc26dec215afda9eea1ba565f34005470435c4",
+      "bytes": 121137
+    },
+    {
+      "source": "experiments/full_probability/runs/f29-smoke2-full-A04-01-s2-it-repeat1-lab/summary.json",
+      "saved": "logs/representative_failures/model-budget-f29/candidate/summary.json",
+      "sha256": "ccae2c4093eea21d07ddc4cc31eeeee37dacef21e3f6b0f9fd0a7b7672677c42",
+      "bytes": 1500
+    },
+    {
+      "source": "experiments/full_probability/runs/f29-smoke2-full-A04-01-s2-it-repeat1-lab/runtime.zip",
+      "member": "tests/case.xml",
+      "saved": "logs/representative_failures/model-budget-f29/candidate/official_runtime/tests/case.xml",
+      "sha256": "94ae5c7f44e3252339ff79fe4fb4c5d22853b5b8a675a9b3400c9f50a4935958",
+      "bytes": 5539
+    },
+    {
+      "source": "experiments/full_probability/runs/f29-smoke2-full-A04-01-s2-it-repeat1-lab/runtime.zip",
+      "member": "vaction.lp",
+      "saved": "logs/representative_failures/model-budget-f29/candidate/official_runtime/vaction.lp",
+      "sha256": "92a434895d1f007197985c31c4a03c18ba6d45f522e99d66bbd947159a9615c3",
+      "bytes": 22
+    },
+    {
+      "source": "experiments/full_probability/runs/f29-smoke2-full-A04-01-s2-it-repeat1-lab/runtime.zip",
+      "member": "vanswer.txt",
+      "saved": "logs/representative_failures/model-budget-f29/candidate/official_runtime/vanswer.txt",
+      "sha256": "48881dd284bbb1af87a194fd23f02f95a976c5a0cfbb5a5604a840b4ade99080",
+      "bytes": 608
+    },
+    {
+      "source": "experiments/full_probability/runs/f29-smoke2-full-A04-01-s2-it-repeat1-lab/runtime.zip",
+      "member": "vcons.lp",
+      "saved": "logs/representative_failures/model-budget-f29/candidate/official_runtime/vcons.lp",
+      "sha256": "a14a6d7059571aa07629b3a0b385cb5da014cac6acf11fb907ae38de010e367a",
+      "bytes": 1795
+    },
+    {
+      "source": "experiments/full_probability/runs/f29-smoke2-full-A04-01-s2-it-repeat1-lab/runtime.zip",
+      "member": "vstate.lp",
+      "saved": "logs/representative_failures/model-budget-f29/candidate/official_runtime/vstate.lp",
+      "sha256": "0778e58fff841834cb6397e08cb98dc9e748379fe6cb2017b779692ce6b35e7c",
+      "bytes": 313
+    },
+    {
+      "source": "experiments/full_probability/runs/f29-smoke2-full-A04-01-s2-it-repeat1-lab/runtime.zip",
+      "member": "vtask.lp",
+      "saved": "logs/representative_failures/model-budget-f29/candidate/official_runtime/vtask.lp",
+      "sha256": "172a93a34291402c9fce6c583591fec8e4864384ac6d0c35ba23abb0428ea575",
+      "bytes": 403
+    },
+    {
+      "source": "experiments/full_probability/f29-smoke2-full-budget-evidence.json",
+      "saved": "logs/representative_failures/model-budget-f29/budget_audit.json",
+      "sha256": "56442877bb1f6761816d538d8453cd4a130bb32460ddbd214f2d2693dd0cc8a6",
+      "bytes": 23102
+    }
+  ]
+}

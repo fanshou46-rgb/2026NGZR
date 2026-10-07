@@ -1,0 +1,266 @@
+{
+  "id": "repeat-divergence-f29",
+  "category": "重复运行分叉",
+  "phenomenon": "A01-01-s2 NT 同种子首轮与重复轮 G6→G7，费用 K74→K86。",
+  "conclusion": "固定随机种子仍有公开历史后不同决策；工作配额与墙钟截断需要另行修复。重复轮用于稳定性检查。",
+  "seed": 2026100403,
+  "references": [
+    "experiments/full_probability/LATEST_RESULT.md"
+  ],
+  "runs": {
+    "first": {
+      "raw_score": 780,
+      "official_score": 780,
+      "platform_seconds": 4.244,
+      "platform_timed_out": false,
+      "actions": {
+        "sense": 12,
+        "askloc": 3,
+        "move": 8,
+        "open": 3,
+        "takeout": 2,
+        "putdown": 3,
+        "pickup": 2,
+        "putin": 1,
+        "close": 1
+      },
+      "action_count": 35,
+      "client_metrics": null,
+      "final_goals": 6,
+      "credited_constraints": 30,
+      "platform_error": false,
+      "case": "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/棰樼洰/independent_100_20261004/cases/stage2/A01-01-s2.xml",
+      "case_sha256": "e15e5fcb8f2635c9b5d2c92bda8027b11c5b0748eb8b024a8ce92c9ce8d65f1c",
+      "stage": 2,
+      "mode": "nt",
+      "wall_seconds": 4.670989160000001,
+      "external_timeout": false,
+      "client_exit": 0,
+      "server_exit": -15,
+      "commands": [
+        [
+          "/tmp/env-release-2026-search/bin/cserver",
+          "-td",
+          "/tmp/robocup-full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat0-lab/runtime/tests",
+          "-eval",
+          "/tmp/env-release-2026-search/lib/libasp",
+          "-log",
+          "/tmp/robocup-full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat0-lab/runtime/log",
+          "-mode",
+          "nt",
+          "-test",
+          "1",
+          "-to",
+          "5000"
+        ],
+        [
+          "/tmp/robocup-full_probability/binaries/f29/example",
+          "-stage",
+          "2",
+          "-nlp",
+          "1",
+          "-err",
+          "1",
+          "-ask_2",
+          "1",
+          "-path",
+          "/tmp/robocup-full_probability/assets/lab/words.txt"
+        ]
+      ],
+      "limit_ms": 5000,
+      "budget_ms": null,
+      "status": "ok"
+    },
+    "repeat": {
+      "raw_score": 798,
+      "official_score": 798,
+      "platform_seconds": 4.748,
+      "platform_timed_out": false,
+      "actions": {
+        "sense": 14,
+        "askloc": 3,
+        "move": 10,
+        "open": 3,
+        "takeout": 2,
+        "putdown": 3,
+        "pickup": 3,
+        "putin": 1,
+        "close": 1
+      },
+      "action_count": 40,
+      "client_metrics": null,
+      "final_goals": 7,
+      "credited_constraints": 30,
+      "platform_error": false,
+      "case": "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/棰樼洰/independent_100_20261004/cases/stage2/A01-01-s2.xml",
+      "case_sha256": "e15e5fcb8f2635c9b5d2c92bda8027b11c5b0748eb8b024a8ce92c9ce8d65f1c",
+      "stage": 2,
+      "mode": "nt",
+      "wall_seconds": 5.165632557000009,
+      "external_timeout": false,
+      "client_exit": 0,
+      "server_exit": -15,
+      "commands": [
+        [
+          "/tmp/env-release-2026-search/bin/cserver",
+          "-td",
+          "/tmp/robocup-full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat1-lab/runtime/tests",
+          "-eval",
+          "/tmp/env-release-2026-search/lib/libasp",
+          "-log",
+          "/tmp/robocup-full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat1-lab/runtime/log",
+          "-mode",
+          "nt",
+          "-test",
+          "1",
+          "-to",
+          "5000"
+        ],
+        [
+          "/tmp/robocup-full_probability/binaries/f29/example",
+          "-stage",
+          "2",
+          "-nlp",
+          "1",
+          "-err",
+          "1",
+          "-ask_2",
+          "1",
+          "-path",
+          "/tmp/robocup-full_probability/assets/lab/words.txt"
+        ]
+      ],
+      "limit_ms": 5000,
+      "budget_ms": null,
+      "status": "ok"
+    }
+  },
+  "files": [
+    {
+      "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat0-lab/server.log",
+      "saved": "logs/representative_failures/repeat-divergence-f29/first/server.log",
+      "sha256": "b653bc642ce019a37877aceb1019d1e78e61947c2e3f885858b8756b07113497",
+      "bytes": 1035
+    },
+    {
+      "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat0-lab/client.log",
+      "saved": "logs/representative_failures/repeat-divergence-f29/first/client.log",
+      "sha256": "0006f953f8c957b07f1f318f66b5b7b48c82c77e5eefd46627127636e1d5556d",
+      "bytes": 151625
+    },
+    {
+      "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat0-lab/summary.json",
+      "saved": "logs/representative_failures/repeat-divergence-f29/first/summary.json",
+      "sha256": "3a4693e572b5eb0e242fdfed1f5c2cd0be920b2a037a09e854e94b90ee12ddf3",
+      "bytes": 1516
+    },
+    {
+      "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat0-lab/runtime.zip",
+      "member": "tests/case.xml",
+      "saved": "logs/representative_failures/repeat-divergence-f29/first/official_runtime/tests/case.xml",
+      "sha256": "e15e5fcb8f2635c9b5d2c92bda8027b11c5b0748eb8b024a8ce92c9ce8d65f1c",
+      "bytes": 5582
+    },
+    {
+      "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat0-lab/runtime.zip",
+      "member": "vaction.lp",
+      "saved": "logs/representative_failures/repeat-divergence-f29/first/official_runtime/vaction.lp",
+      "sha256": "1372246ee9a814b14d7f7245faaf2393098244a61a5fcfc4379c188911f575fc",
+      "bytes": 22
+    },
+    {
+      "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat0-lab/runtime.zip",
+      "member": "vanswer.txt",
+      "saved": "logs/representative_failures/repeat-divergence-f29/first/official_runtime/vanswer.txt",
+      "sha256": "4aa979443c5ac7e8a33000c149e2de765d30d1597291238a21174900d82e1913",
+      "bytes": 596
+    },
+    {
+      "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat0-lab/runtime.zip",
+      "member": "vcons.lp",
+      "saved": "logs/representative_failures/repeat-divergence-f29/first/official_runtime/vcons.lp",
+      "sha256": "c9043d6f01bf7c0527ecd3bbb83dc4a173f855cf01b137972abe4b65fa96a951",
+      "bytes": 1801
+    },
+    {
+      "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat0-lab/runtime.zip",
+      "member": "vstate.lp",
+      "saved": "logs/representative_failures/repeat-divergence-f29/first/official_runtime/vstate.lp",
+      "sha256": "07074494bed0dc1a6f6fa132d8a751a28b12cdae9b07e0a8a06d047da30194ee",
+      "bytes": 312
+    },
+    {
+      "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat0-lab/runtime.zip",
+      "member": "vtask.lp",
+      "saved": "logs/representative_failures/repeat-divergence-f29/first/official_runtime/vtask.lp",
+      "sha256": "0955c3f1400ef7dea8521448c6197899354f39a86f564a4731ca6b13fbc5a491",
+      "bytes": 409
+    },
+    {
+      "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat1-lab/server.log",
+      "saved": "logs/representative_failures/repeat-divergence-f29/repeat/server.log",
+      "sha256": "065a185544c03224c2aa9459a9326c66d3f47d766ff40a2badc9133f21cdf409",
+      "bytes": 1118
+    },
+    {
+      "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat1-lab/client.log",
+      "saved": "logs/representative_failures/repeat-divergence-f29/repeat/client.log",
+      "sha256": "ecac2405ac28785c7c5ee8ccd5662bcf0df5c603ed560ecc7d529a66a6202a72",
+      "bytes": 163329
+    },
+    {
+      "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat1-lab/summary.json",
+      "saved": "logs/representative_failures/repeat-divergence-f29/repeat/summary.json",
+      "sha256": "3ebd16092d28a415ae0a044c184e853543231bc9f207793358b931d0275049a2",
+      "bytes": 1517
+    },
+    {
+      "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat1-lab/runtime.zip",
+      "member": "tests/case.xml",
+      "saved": "logs/representative_failures/repeat-divergence-f29/repeat/official_runtime/tests/case.xml",
+      "sha256": "e15e5fcb8f2635c9b5d2c92bda8027b11c5b0748eb8b024a8ce92c9ce8d65f1c",
+      "bytes": 5582
+    },
+    {
+      "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat1-lab/runtime.zip",
+      "member": "vaction.lp",
+      "saved": "logs/representative_failures/repeat-divergence-f29/repeat/official_runtime/vaction.lp",
+      "sha256": "07d3c16000b3bbca43f525e78ca104cc6f3eacced90e5800679c943142c6c0d7",
+      "bytes": 17
+    },
+    {
+      "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat1-lab/runtime.zip",
+      "member": "vanswer.txt",
+      "saved": "logs/representative_failures/repeat-divergence-f29/repeat/official_runtime/vanswer.txt",
+      "sha256": "73909e6d21240b2c7e0fc93a40df26223658a353dca920ae4d643e1da9e3c362",
+      "bytes": 608
+    },
+    {
+      "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat1-lab/runtime.zip",
+      "member": "vcons.lp",
+      "saved": "logs/representative_failures/repeat-divergence-f29/repeat/official_runtime/vcons.lp",
+      "sha256": "c9043d6f01bf7c0527ecd3bbb83dc4a173f855cf01b137972abe4b65fa96a951",
+      "bytes": 1801
+    },
+    {
+      "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat1-lab/runtime.zip",
+      "member": "vstate.lp",
+      "saved": "logs/representative_failures/repeat-divergence-f29/repeat/official_runtime/vstate.lp",
+      "sha256": "ea86369650ab51a37faedbe6fefb7dc73dc11da8e210fc61c9fc31afeb26c1e6",
+      "bytes": 313
+    },
+    {
+      "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat1-lab/runtime.zip",
+      "member": "vtask.lp",
+      "saved": "logs/representative_failures/repeat-divergence-f29/repeat/official_runtime/vtask.lp",
+      "sha256": "0955c3f1400ef7dea8521448c6197899354f39a86f564a4731ca6b13fbc5a491",
+      "bytes": 409
+    },
+    {
+      "source": "experiments/full_probability/f29-smoke2-full-repeat-evidence.json",
+      "saved": "logs/representative_failures/repeat-divergence-f29/repeat_audit.json",
+      "sha256": "bf09f643d70989f09221412fa3fdf1ab1517ba75f7242d7f80b70b32c61852ef",
+      "bytes": 34699
+    }
+  ]
+}

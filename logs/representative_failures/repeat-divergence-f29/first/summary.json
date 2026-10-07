@@ -1,0 +1,63 @@
+{
+  "raw_score": 780,
+  "official_score": 780,
+  "platform_seconds": 4.244,
+  "platform_timed_out": false,
+  "actions": {
+    "sense": 12,
+    "askloc": 3,
+    "move": 8,
+    "open": 3,
+    "takeout": 2,
+    "putdown": 3,
+    "pickup": 2,
+    "putin": 1,
+    "close": 1
+  },
+  "action_count": 35,
+  "client_metrics": null,
+  "final_goals": 6,
+  "credited_constraints": 30,
+  "platform_error": false,
+  "case": "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/题目/independent_100_20261004/cases/stage2/A01-01-s2.xml",
+  "case_sha256": "e15e5fcb8f2635c9b5d2c92bda8027b11c5b0748eb8b024a8ce92c9ce8d65f1c",
+  "stage": 2,
+  "mode": "nt",
+  "wall_seconds": 4.670989160000001,
+  "external_timeout": false,
+  "client_exit": 0,
+  "server_exit": -15,
+  "commands": [
+    [
+      "/tmp/env-release-2026-search/bin/cserver",
+      "-td",
+      "/tmp/robocup-full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat0-lab/runtime/tests",
+      "-eval",
+      "/tmp/env-release-2026-search/lib/libasp",
+      "-log",
+      "/tmp/robocup-full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat0-lab/runtime/log",
+      "-mode",
+      "nt",
+      "-test",
+      "1",
+      "-to",
+      "5000"
+    ],
+    [
+      "/tmp/robocup-full_probability/binaries/f29/example",
+      "-stage",
+      "2",
+      "-nlp",
+      "1",
+      "-err",
+      "1",
+      "-ask_2",
+      "1",
+      "-path",
+      "/tmp/robocup-full_probability/assets/lab/words.txt"
+    ]
+  ],
+  "limit_ms": 5000,
+  "budget_ms": null,
+  "status": "ok"
+}

@@ -1,0 +1,252 @@
+{
+  "id": "sdk-deadline-j04b",
+  "category": "SDK截止",
+  "phenomenon": "1.7.7 的 seen-j04b IT 第一轮触发 5000ms SDK 截止，评分仍有效。",
+  "conclusion": "保留截止标志和完整动作；这是 1.7.7 超时样本，不是原 200ms 基线超时。",
+  "seed": 2026100403,
+  "references": [
+    "validation/review177-100-20261004/REPORT.md"
+  ],
+  "runs": {
+    "candidate": {
+      "raw_score": 145,
+      "official_score": 145,
+      "platform_seconds": 5.0,
+      "platform_timed_out": true,
+      "actions": {
+        "sense": 3,
+        "open": 1,
+        "takeout": 1,
+        "move": 1,
+        "putdown": 1,
+        "fromplate": 1
+      },
+      "action_count": 8,
+      "client_metrics": null,
+      "final_goals": 4,
+      "credited_constraints": 0,
+      "platform_error": false,
+      "case": "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/棰樼洰/generalization_176_20261004/j04b.xml",
+      "case_sha256": "dc9d91a5eba24f0de6e37ab6798e9d276373916f150aca3038a1684f0fe3fa9f",
+      "stage": 2,
+      "mode": "it",
+      "wall_seconds": 3.606434359000559,
+      "external_timeout": false,
+      "client_exit": 0,
+      "server_exit": -15,
+      "commands": [
+        [
+          "/tmp/env-release-2026-search/bin/cserver",
+          "-td",
+          "/tmp/robocup-review177-100-20261004/runs/seen-j04b-it-r1-177/runtime/tests",
+          "-eval",
+          "/tmp/env-release-2026-search/lib/libasp",
+          "-log",
+          "/tmp/robocup-review177-100-20261004/runs/seen-j04b-it-r1-177/runtime/log",
+          "-mode",
+          "it",
+          "-test",
+          "1",
+          "-to",
+          "5000"
+        ],
+        [
+          "/tmp/robocup-review177-100-20261004/binaries/177/example",
+          "-stage",
+          "2",
+          "-nlp",
+          "0",
+          "-err",
+          "1",
+          "-ask_2",
+          "1",
+          "-path",
+          "/tmp/robocup-review177-100-20261004/assets/177/words.txt"
+        ]
+      ],
+      "limit_ms": 5000,
+      "budget_ms": null,
+      "status": "failed"
+    },
+    "baseline_200ms": {
+      "raw_score": 198,
+      "official_score": 198,
+      "platform_seconds": 0.559,
+      "platform_timed_out": false,
+      "actions": {
+        "sense": 2,
+        "pickup": 1,
+        "move": 1,
+        "putdown": 1
+      },
+      "action_count": 5,
+      "client_metrics": null,
+      "final_goals": 3,
+      "credited_constraints": 0,
+      "platform_error": false,
+      "case": "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/棰樼洰/generalization_176_20261004/j04b.xml",
+      "case_sha256": "dc9d91a5eba24f0de6e37ab6798e9d276373916f150aca3038a1684f0fe3fa9f",
+      "stage": 2,
+      "mode": "it",
+      "wall_seconds": 0.9910546240007534,
+      "external_timeout": false,
+      "client_exit": 0,
+      "server_exit": -15,
+      "commands": [
+        [
+          "/tmp/env-release-2026-search/bin/cserver",
+          "-td",
+          "/tmp/robocup-review177-100-20261004/runs/seen-j04b-it-r1-167_200/runtime/tests",
+          "-eval",
+          "/tmp/env-release-2026-search/lib/libasp",
+          "-log",
+          "/tmp/robocup-review177-100-20261004/runs/seen-j04b-it-r1-167_200/runtime/log",
+          "-mode",
+          "it",
+          "-test",
+          "1",
+          "-to",
+          "5000"
+        ],
+        [
+          "/tmp/robocup-review177-100-20261004/binaries/167_200/example",
+          "-stage",
+          "2",
+          "-nlp",
+          "0",
+          "-err",
+          "1",
+          "-ask_2",
+          "1",
+          "-path",
+          "/tmp/robocup-review177-100-20261004/assets/167_200/words.txt"
+        ]
+      ],
+      "limit_ms": 5000,
+      "budget_ms": null,
+      "status": "ok"
+    }
+  },
+  "files": [
+    {
+      "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-177/server.log",
+      "saved": "logs/representative_failures/sdk-deadline-j04b/candidate/server.log",
+      "sha256": "0de9e97ab3e1185d50d2ec9a8662f33d1032408c31aed57c3416d6acdb5855a7",
+      "bytes": 563
+    },
+    {
+      "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-177/client.log",
+      "saved": "logs/representative_failures/sdk-deadline-j04b/candidate/client.log",
+      "sha256": "51dd7a3f99d7a4dec699c232c26a587b462b80b8002540bf37e62c3e83ad09ba",
+      "bytes": 43595
+    },
+    {
+      "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-177/summary.json",
+      "saved": "logs/representative_failures/sdk-deadline-j04b/candidate/summary.json",
+      "sha256": "2b78018685ffef1c96e988f3bb5ce60d508ea87f18dd114e5e300d2a18369795",
+      "bytes": 1435
+    },
+    {
+      "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-177/runtime.zip",
+      "member": "tests/case.xml",
+      "saved": "logs/representative_failures/sdk-deadline-j04b/candidate/official_runtime/tests/case.xml",
+      "sha256": "dc9d91a5eba24f0de6e37ab6798e9d276373916f150aca3038a1684f0fe3fa9f",
+      "bytes": 1162
+    },
+    {
+      "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-177/runtime.zip",
+      "member": "vaction.lp",
+      "saved": "logs/representative_failures/sdk-deadline-j04b/candidate/official_runtime/vaction.lp",
+      "sha256": "07d3c16000b3bbca43f525e78ca104cc6f3eacced90e5800679c943142c6c0d7",
+      "bytes": 17
+    },
+    {
+      "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-177/runtime.zip",
+      "member": "vanswer.txt",
+      "saved": "logs/representative_failures/sdk-deadline-j04b/candidate/official_runtime/vanswer.txt",
+      "sha256": "031f916bef7b5924c34c0784952f6ade2f7cfa3270dbdbeb97003aefa687df4c",
+      "bytes": 184
+    },
+    {
+      "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-177/runtime.zip",
+      "member": "vcons.lp",
+      "saved": "logs/representative_failures/sdk-deadline-j04b/candidate/official_runtime/vcons.lp",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-177/runtime.zip",
+      "member": "vstate.lp",
+      "saved": "logs/representative_failures/sdk-deadline-j04b/candidate/official_runtime/vstate.lp",
+      "sha256": "e4ad9731a58bcc97401815495ef072ef7842514d37925eba92df100810cbac97",
+      "bytes": 219
+    },
+    {
+      "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-177/runtime.zip",
+      "member": "vtask.lp",
+      "saved": "logs/representative_failures/sdk-deadline-j04b/candidate/official_runtime/vtask.lp",
+      "sha256": "df2886d7477a3a996cc89da9c15150677627d8928912acc5c0281b8f416f37b6",
+      "bytes": 278
+    },
+    {
+      "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-167_200/server.log",
+      "saved": "logs/representative_failures/sdk-deadline-j04b/baseline_200ms/server.log",
+      "sha256": "4bda0f909dea250bf1bdb693d3eee85af331ae1e14f6b358886cf32571b25d35",
+      "bytes": 515
+    },
+    {
+      "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-167_200/client.log",
+      "saved": "logs/representative_failures/sdk-deadline-j04b/baseline_200ms/client.log",
+      "sha256": "a50d27c17198bd3e9c964e86d7bf3f8921477ae8adee2dd8f61a21849344ebd3",
+      "bytes": 32370
+    },
+    {
+      "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-167_200/summary.json",
+      "saved": "logs/representative_failures/sdk-deadline-j04b/baseline_200ms/summary.json",
+      "sha256": "aa05fa4f1a3e2284317ad2460ffb20256b8c84e6eeaf49b8aec00faa5ecd87c9",
+      "bytes": 1415
+    },
+    {
+      "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-167_200/runtime.zip",
+      "member": "tests/case.xml",
+      "saved": "logs/representative_failures/sdk-deadline-j04b/baseline_200ms/official_runtime/tests/case.xml",
+      "sha256": "dc9d91a5eba24f0de6e37ab6798e9d276373916f150aca3038a1684f0fe3fa9f",
+      "bytes": 1162
+    },
+    {
+      "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-167_200/runtime.zip",
+      "member": "vaction.lp",
+      "saved": "logs/representative_failures/sdk-deadline-j04b/baseline_200ms/official_runtime/vaction.lp",
+      "sha256": "68ac3229884cb15ed1411e2842288658b6ee9c6859537247edc873be6e5d1e11",
+      "bytes": 22
+    },
+    {
+      "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-167_200/runtime.zip",
+      "member": "vanswer.txt",
+      "saved": "logs/representative_failures/sdk-deadline-j04b/baseline_200ms/official_runtime/vanswer.txt",
+      "sha256": "eb5a241064a90fd4ab99fc12275fa95a540d7a215ccf685d70150f831e075ba8",
+      "bytes": 172
+    },
+    {
+      "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-167_200/runtime.zip",
+      "member": "vcons.lp",
+      "saved": "logs/representative_failures/sdk-deadline-j04b/baseline_200ms/official_runtime/vcons.lp",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-167_200/runtime.zip",
+      "member": "vstate.lp",
+      "saved": "logs/representative_failures/sdk-deadline-j04b/baseline_200ms/official_runtime/vstate.lp",
+      "sha256": "9ca7f4d528a16484ddf5e8148bb3fef237b66f96edde2023c72a9826c2f4eb01",
+      "bytes": 237
+    },
+    {
+      "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-167_200/runtime.zip",
+      "member": "vtask.lp",
+      "saved": "logs/representative_failures/sdk-deadline-j04b/baseline_200ms/official_runtime/vtask.lp",
+      "sha256": "df2886d7477a3a996cc89da9c15150677627d8928912acc5c0281b8f416f37b6",
+      "bytes": 278
+    }
+  ]
+}

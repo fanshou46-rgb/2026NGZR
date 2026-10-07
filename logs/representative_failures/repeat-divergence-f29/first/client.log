@@ -1,0 +1,1593 @@
+[LOG]:-stage
+[LOG]:-nlp
+[LOG]:-err
+[LOG]:-ask_2
+[LOG]:-path
+[LOG]:nlp 1, err 1
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+#(Plug): Timeout=5000
+[LOG]:[PlannerVersion] 1.7.7 default=greedy+guarded+answer-branch-probe
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32mcase.xml
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+[LOG]:[32mGive the red book to the human.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:give>
+    <NP:>
+      <ART:the>
+      <ADJ:red>
+      <N:book>
+    <PREP:to>
+    <NP:>
+      <ART:the>
+      <N:human>
+
+[LOG]:[32mPut the white bottle in the closet.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:put>
+    <NP:>
+      <ART:the>
+      <ADJ:white>
+      <N:bottle>
+    <PREP:in>
+    <NP:>
+      <ART:the>
+      <N:closet>
+
+[LOG]:[32mPut the yellow bottle on the desk.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:put>
+    <NP:>
+      <ART:the>
+      <ADJ:yellow>
+      <N:bottle>
+    <PREP:on>
+    <NP:>
+      <ART:the>
+      <N:desk>
+
+[LOG]:[32mClose the closet.[0m
+[LOG]:<S:>
+  <VP:>
+    <V:close>
+    <NP:>
+      <ART:the>
+      <N:closet>
+
+[LOG]:[32mTake out the yellow bottle from the refrigerator.[0m
+[LOG]:<S:>
+  <VP:>
+    <VP:>
+      <V:take>
+      <PREP:out>
+    <NP:>
+      <ART:the>
+      <ADJ:yellow>
+      <N:bottle>
+    <PREP:from>
+    <NP:>
+      <ART:the>
+      <N:refrigerator>
+
+[LOG]:[32mPick up the green can.[0m
+[LOG]:<S:>
+  <VP:>
+    <VP:>
+      <V:pick>
+      <PREP:up>
+    <NP:>
+      <ART:the>
+      <ADJ:green>
+      <N:can>
+
+[LOG]:[32mGo to the desk.[0m
+[LOG]:<S:>
+  <VP:>
+    <VP:>
+      <V:go>
+      <PREP:to>
+    <NP:>
+      <ART:the>
+      <N:desk>
+
+[LOG]:[32mThe microwave must be closed.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <N:microwave>
+  <VP:>
+    <MUST:must>
+    <VP:>
+      <BE:be>
+      <ADJ:closed>
+
+[LOG]:[32mThe blue can must be near the table.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:blue>
+    <N:can>
+  <VP:>
+    <MUST:must>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <N:table>
+
+[LOG]:[32mThe green can must not be on the plate.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:green>
+    <N:can>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:on>
+      <NP:>
+        <ART:the>
+        <N:plate>
+
+[LOG]:[32mThe red book must not be on the plate.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:red>
+    <N:book>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:on>
+      <NP:>
+        <ART:the>
+        <N:plate>
+
+[LOG]:[32mThe white bottle must not be on the plate.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:white>
+    <N:bottle>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:on>
+      <NP:>
+        <ART:the>
+        <N:plate>
+
+[LOG]:[32mThe yellow bottle must not be on the plate.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:yellow>
+    <N:bottle>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:on>
+      <NP:>
+        <ART:the>
+        <N:plate>
+
+[LOG]:[32mThe white bottle must not be in the cupboard.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:white>
+    <N:bottle>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:in>
+      <NP:>
+        <ART:the>
+        <N:cupboard>
+
+[LOG]:[32mThe green can must not be in the cupboard.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:green>
+    <N:can>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:in>
+      <NP:>
+        <ART:the>
+        <N:cupboard>
+
+[LOG]:[32mThe yellow bottle must not be in the cupboard.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:yellow>
+    <N:bottle>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:in>
+      <NP:>
+        <ART:the>
+        <N:cupboard>
+
+[LOG]:[32mThe red book must not be in the closet.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:red>
+    <N:book>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:in>
+      <NP:>
+        <ART:the>
+        <N:closet>
+
+[LOG]:[32mThe green can must not be in the closet.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:green>
+    <N:can>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:in>
+      <NP:>
+        <ART:the>
+        <N:closet>
+
+[LOG]:[32mThe yellow bottle must not be in the closet.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:yellow>
+    <N:bottle>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:in>
+      <NP:>
+        <ART:the>
+        <N:closet>
+
+[LOG]:[32mThe red book must not be in the microwave.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:red>
+    <N:book>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:in>
+      <NP:>
+        <ART:the>
+        <N:microwave>
+
+[LOG]:[32mThe white bottle must not be in the microwave.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:white>
+    <N:bottle>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:in>
+      <NP:>
+        <ART:the>
+        <N:microwave>
+
+[LOG]:[32mThe green can must not be in the microwave.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:green>
+    <N:can>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:in>
+      <NP:>
+        <ART:the>
+        <N:microwave>
+
+[LOG]:[32mThe yellow bottle must not be in the microwave.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:yellow>
+    <N:bottle>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:in>
+      <NP:>
+        <ART:the>
+        <N:microwave>
+
+[LOG]:[32mThe red book must not be in the refrigerator.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:red>
+    <N:book>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:in>
+      <NP:>
+        <ART:the>
+        <N:refrigerator>
+
+[LOG]:[32mThe white bottle must not be in the refrigerator.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:white>
+    <N:bottle>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:in>
+      <NP:>
+        <ART:the>
+        <N:refrigerator>
+
+[LOG]:[32mThe green can must not be in the refrigerator.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:green>
+    <N:can>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:in>
+      <NP:>
+        <ART:the>
+        <N:refrigerator>
+
+[LOG]:[32mThe white bottle must not be near the human.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:white>
+    <N:bottle>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <N:human>
+
+[LOG]:[32mThe green can must not be near the human.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:green>
+    <N:can>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <N:human>
+
+[LOG]:[32mThe yellow bottle must not be near the human.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:yellow>
+    <N:bottle>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <N:human>
+
+[LOG]:[32mThe red book must not be near the table.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:red>
+    <N:book>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <N:table>
+
+[LOG]:[32mThe green can must not be near the table.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:green>
+    <N:can>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <N:table>
+
+[LOG]:[32mThe yellow bottle must not be near the table.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:yellow>
+    <N:bottle>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <N:table>
+
+[LOG]:[32mThe red book must not be near the desk.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:red>
+    <N:book>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <N:desk>
+
+[LOG]:[32mThe white bottle must not be near the desk.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:white>
+    <N:bottle>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <N:desk>
+
+[LOG]:[32mThe white bottle must not be near the cupboard.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:white>
+    <N:bottle>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <N:cupboard>
+
+[LOG]:[32mThe green can must not be near the cupboard.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:green>
+    <N:can>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <N:cupboard>
+
+[LOG]:[32mThe yellow bottle must not be near the cupboard.[0m
+[LOG]:<S:>
+  <NP:>
+    <ART:the>
+    <ADJ:yellow>
+    <N:bottle>
+  <VP:>
+    <MUST:must>
+    <NOT:not>
+    <VP:>
+      <BE:be>
+      <PREP:near>
+      <NP:>
+        <ART:the>
+        <N:cupboard>
+
+[LOG]:[Preflight] task raw=7 unique=7 duplicate=0 rejected=0; constraint raw=30 unique=30 duplicate=0 rejected=0; world_errors=0
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m
+Pos  2:(T):[33m(7 refrigerator inside:[14] Closed)[0m(12 bottle)(14 bottle)
+Pos  3:(T):[32m(robot hold:0 plate:0)[0m[33m(2 table)[0m(9 can)(10 cup)
+Pos  4:(T):[33m(3 desk)[0m
+Pos  5:(T):[33m(6 microwave inside:[] Closed)[0m
+Pos  6:(T):[33m(5 closet inside:[] Closed)[0m
+Pos  7:(T):
+Pos  8:(T):[33m(8 sofa)[0m
+UnknownPos:
+[34m(4 cupboard)[0m [34m(11 book)[0m [34m(13 can)[0m 
+[LOG]:[32m[MustIn] correction done.
+[0m
+[LOG]:[32m[MustNear] relation obj 9 <-> obj 2
+[0m
+[LOG]:[32m[MustNear] correction done.
+[0m
+Pos  0:(F):
+Pos  1:(T):[33m(1 human)[0m
+Pos  2:(T):[33m(7 refrigerator inside:[14] Closed)[0m(12 bottle)(14 bottle)
+Pos  3:(T):[32m(robot hold:0 plate:0)[0m[33m(2 table)[0m(9 can)(10 cup)
+Pos  4:(T):[33m(3 desk)[0m
+Pos  5:(T):[33m(6 microwave inside:[] Closed)[0m
+Pos  6:(T):[33m(5 closet inside:[] Closed)[0m
+Pos  7:(T):
+Pos  8:(T):[33m(8 sofa)[0m
+UnknownPos:
+[34m(4 cupboard)[0m [34m(11 book)[0m [34m(13 can)[0m 
+Task:
+Behave:[35mgive[0m
+ConditionX:[35m(Sort:book,Color:red)[0m
+ConditionY:[35m(Sort:human,Color:)[0m
+Behave:[35mputin[0m
+ConditionX:[35m(Sort:bottle,Color:white)[0m
+ConditionY:[35m(Sort:closet,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:bottle,Color:yellow)[0m
+ConditionY:[35m(Sort:desk,Color:)[0m
+Behave:[35mclose[0m
+ConditionX:[35m(Sort:closet,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mtakeout[0m
+ConditionX:[35m(Sort:bottle,Color:yellow)[0m
+ConditionY:[35m(Sort:refrigerator,Color:)[0m
+Behave:[35mpickup[0m
+ConditionX:[35m(Sort:can,Color:green)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:desk,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+
+Info:
+
+Not_Info:
+Behave:[35mplate[0m
+ConditionX:[35m(Sort:can,Color:green)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mplate[0m
+ConditionX:[35m(Sort:book,Color:red)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mplate[0m
+ConditionX:[35m(Sort:bottle,Color:white)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mplate[0m
+ConditionX:[35m(Sort:bottle,Color:yellow)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35min[0m
+ConditionX:[35m(Sort:bottle,Color:white)[0m
+ConditionY:[35m(Sort:cupboard,Color:)[0m
+Behave:[35min[0m
+ConditionX:[35m(Sort:can,Color:green)[0m
+ConditionY:[35m(Sort:cupboard,Color:)[0m
+Behave:[35min[0m
+ConditionX:[35m(Sort:bottle,Color:yellow)[0m
+ConditionY:[35m(Sort:cupboard,Color:)[0m
+Behave:[35min[0m
+ConditionX:[35m(Sort:book,Color:red)[0m
+ConditionY:[35m(Sort:closet,Color:)[0m
+Behave:[35min[0m
+ConditionX:[35m(Sort:can,Color:green)[0m
+ConditionY:[35m(Sort:closet,Color:)[0m
+Behave:[35min[0m
+ConditionX:[35m(Sort:bottle,Color:yellow)[0m
+ConditionY:[35m(Sort:closet,Color:)[0m
+Behave:[35min[0m
+ConditionX:[35m(Sort:book,Color:red)[0m
+ConditionY:[35m(Sort:microwave,Color:)[0m
+Behave:[35min[0m
+ConditionX:[35m(Sort:bottle,Color:white)[0m
+ConditionY:[35m(Sort:microwave,Color:)[0m
+Behave:[35min[0m
+ConditionX:[35m(Sort:can,Color:green)[0m
+ConditionY:[35m(Sort:microwave,Color:)[0m
+Behave:[35min[0m
+ConditionX:[35m(Sort:bottle,Color:yellow)[0m
+ConditionY:[35m(Sort:microwave,Color:)[0m
+Behave:[35min[0m
+ConditionX:[35m(Sort:book,Color:red)[0m
+ConditionY:[35m(Sort:refrigerator,Color:)[0m
+Behave:[35min[0m
+ConditionX:[35m(Sort:bottle,Color:white)[0m
+ConditionY:[35m(Sort:refrigerator,Color:)[0m
+Behave:[35min[0m
+ConditionX:[35m(Sort:can,Color:green)[0m
+ConditionY:[35m(Sort:refrigerator,Color:)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:white)[0m
+ConditionY:[35m(Sort:human,Color:)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:green)[0m
+ConditionY:[35m(Sort:human,Color:)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:yellow)[0m
+ConditionY:[35m(Sort:human,Color:)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:book,Color:red)[0m
+ConditionY:[35m(Sort:table,Color:)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:green)[0m
+ConditionY:[35m(Sort:table,Color:)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:yellow)[0m
+ConditionY:[35m(Sort:table,Color:)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:book,Color:red)[0m
+ConditionY:[35m(Sort:desk,Color:)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:white)[0m
+ConditionY:[35m(Sort:desk,Color:)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:white)[0m
+ConditionY:[35m(Sort:cupboard,Color:)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:green)[0m
+ConditionY:[35m(Sort:cupboard,Color:)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:bottle,Color:yellow)[0m
+ConditionY:[35m(Sort:cupboard,Color:)[0m
+
+Not_Task:
+
+NotNot_Info:
+Behave:[35mclosed[0m
+ConditionX:[35m(Sort:microwave,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+Behave:[35mnear[0m
+ConditionX:[35m(Sort:can,Color:blue)[0m
+ConditionY:[35m(Sort:table,Color:)[0m
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+[LOG]:[FullModel] latency_scope=f19_actual_repeat0_sdk_median_proxy latency_rate_per_ms=0.02 outcome_without_failure_labels=action_median latency_hard_bound=false physical_eval_scope=ledger_exact_view
+
+[LOG]:[FullModel] missing_location_policy=bounded_public_input_coverage acquisition_coverage=bounded_public_input_absence acquisition_schedule=after_ordinary_stop_or_actual_refutation max_queries_per_object=3 canonical_at_from_answer=false
+
+[LOG]:[InitialMissingLocation] object=4 required=true received_at=false source=public_input_absence
+
+[LOG]:[InitialMissingAcquisitionLocation] object=13 required_acquisition=true received_at=false received_inside=false source=public_input_absence
+
+[LOG]:[FullModel] candidate_domain_refinement=public_numeric_neighbours scope=uncalibrated_finite_coverage sites=10
+
+[LOG]:[FullModel] truthful_answer_order=uncalibrated_persistent_rank_prior blank_answer=distinct_from_not_known
+
+[LOG]:[FullModel] prior_scope=deterministic Monte Carlo approximation; finite domain only; no certified coverage mass; sampled persistent answer-order ranking prior, uncalibrated assignments=18446744073709551615 samples=64 variables=44 calibration=initial_fields_development_02 feedback_calibrated=false holdout_validated=false
+
+[LOG]:[FullPolicyCatalogue] {"schema":"full_policy_catalogue.v2","decision":1,"digest":16289528457320612295,"root":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[2],"reply":["?",-1],"probability":0.03125,"node":{"stop":true}},{"kind":1,"success":false,"ids":[2,4,9],"reply":["?",-1],"probability":0.046875,"node":{"stop":true}},{"kind":1,"success":false,"ids":[2,4,10],"reply":["?",-1],"probability":0.015625,"node":{"stop":true}},{"kind":1,"success":false,"ids":[2,9],"reply":["?",-1],"probability":0.15625,"node":{"stop":true}},{"kind":1,"success":false,"ids":[2,9,10],"reply":["?",-1],"probability":0.515625,"node":{"stop":true}},{"kind":1,"success":false,"ids":[2,9,10,11],"reply":["?",-1],"probability":0.015625,"node":{"stop":true}},{"kind":1,"success":false,"ids":[2,9,10,13],"reply":["?",-1],"probability":0.015625,"node":{"stop":true}},{"kind":1,"success":false,"ids":[2,9,10,14],"reply":["?",-1],"probability":0.03125,"node":{"stop":true}},{"kind":1,"success":false,"ids":[2,9,13],"reply":["?",-1],"probability":0.015625,"node":{"stop":true}},{"kind":1,"success":false,"ids":[2,9,14],"reply":["?",-1],"probability":0.015625,"node":{"stop":true}},{"kind":1,"success":false,"ids":[2,10],"reply":["?",-1],"probability":0.109375,"node":{"stop":true}},{"kind":1,"success":false,"ids":[2,10,12],"reply":["?",-1],"probability":0.015625,"node":{"stop":true}},{"kind":1,"success":false,"ids":[2,12],"reply":["?",-1],"probability":0.015625,"node":{"stop":true}}]}}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":1,"receipt":1,"before":10280571699678225540,"prior_scope":"finite_public_domain_estimate","catalogue":16289528457320612295,"node":1}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":1,"action":"Sense","args":[],"permit":"confirmed","status":"prepared","outcome":"prepared","policy":1,"revision":0,"before":10280571699678225540,"after":14695981039346656037,"cost":1,"remaining_ms":4995,"reserved_ms":300,"sdk_ns":-1,"reason":"full_joint_public_feedback_policy","feedback":"","parent_digest":0,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":3,"source":"1","revision":1,"event":0,"confirmed":true}]}
+
+[LOG]:[32m[SenseCurrentLocationOnly] Location 3 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Object 2 detected at location 3
+[LOG]:[SenseCurrentLocationOnly] Object 9 detected at location 3
+[LOG]:[SenseCurrentLocationOnly] Object 10 detected at location 3
+[LOG]:[SenseCurrentLocationOnly] Object 12 detected at location 3
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":1,"action":"Sense","args":[],"permit":"confirmed","status":"committed","outcome":"observed","policy":1,"revision":0,"before":10280571699678225540,"after":8932609828680621180,"cost":1,"remaining_ms":4995,"reserved_ms":300,"sdk_ns":118864706,"reason":"full_joint_public_feedback_policy","feedback":"[2,9,10,12]","parent_digest":0,"digest":14953145512901991242,"evidence":[{"predicate":"robot_at","object":0,"value":3,"source":"1","revision":1,"event":0,"confirmed":true}]}
+
+[LOG]:[FullModel] support_miss receipt=1 action=Sense paid_once=true fallback=stop
+
+[LOG]:[FullModel] initial_conditioning consistent=true proof_count=8 retained_mass=0.89579256193469003
+
+[LOG]:[InitialFactorProof] field=2 object=1 parent=0 receipt=1 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=2 parent=0 receipt=1 predicate=static_big_id_visible_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=3 parent=0 receipt=1 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=4 parent=0 receipt=1 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=5 parent=0 receipt=1 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=6 parent=0 receipt=1 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=7 parent=0 receipt=1 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=8 parent=0 receipt=1 predicate=static_big_id_absent_at_robot
+
+[LOG]:[FullModel] conditional_proposal complete=true particles=31 checks=2112 block_cache_hits=180 clue_mixture_draws=0 work_cut=false wall_cut=false scope=public feedback conditional block importance approximation; no certified finite-domain coverage
+
+[LOG]:[FullModel] support_repair installed=true transitions=31 reason=replayed_all_paid_evidence
+
+[LOG]:[FullDecisionEvidence] decision=2 stop_lower=649.322580645 stop_upper=649.322580645 selected_lower=647.322580645 selected_upper=647.322580645 support=31 information_candidates=1 selected_stop=false scope=necessary_initial_missing_big_location target=4 attempts_before=0 initial_at_missing=true
+
+[LOG]:[FullPolicyCatalogue] {"schema":"full_policy_catalogue.v2","decision":2,"digest":17154107767351822733,"root":{"action":"AskLoc","args":[4],"cost":2,"unexpected":{"stop":true},"children":[{"kind":2,"success":false,"ids":[],"reply":["?",-1],"probability":0.09999999999999995,"node":{"stop":true}},{"kind":2,"success":false,"ids":[],"reply":["a",0],"probability":0.14155597722960153,"node":{"stop":true}},{"kind":2,"success":false,"ids":[],"reply":["a",1],"probability":0.11790006325110687,"node":{"stop":true}},{"kind":2,"success":false,"ids":[],"reply":["a",2],"probability":0.13020240354206197,"node":{"stop":true}},{"kind":2,"success":false,"ids":[],"reply":["a",3],"probability":0.08633776091081595,"node":{"stop":true}},{"kind":2,"success":false,"ids":[],"reply":["a",4],"probability":0.018342820999367491,"node":{"stop":true}},{"kind":2,"success":false,"ids":[],"reply":["a",5],"probability":0.078589500316255542,"node":{"stop":true}},{"kind":2,"success":false,"ids":[],"reply":["a",6],"probability":0.098576850094876614,"node":{"stop":true}},{"kind":2,"success":false,"ids":[],"reply":["a",7],"probability":0.02099936748893106,"node":{"stop":true}},{"kind":2,"success":false,"ids":[],"reply":["a",8],"probability":0.097501581277672347,"node":{"stop":true}},{"kind":2,"success":false,"ids":[],"reply":["a",9],"probability":0.040923466160657812,"node":{"stop":true}},{"kind":2,"success":false,"ids":[],"reply":["i",4],"probability":0.017267552182163196,"node":{"stop":true}},{"kind":2,"success":false,"ids":[],"reply":["i",5],"probability":0.017267552182163196,"node":{"stop":true}},{"kind":2,"success":false,"ids":[],"reply":["i",6],"probability":0.017267552182163196,"node":{"stop":true}},{"kind":2,"success":false,"ids":[],"reply":["i",7],"probability":0.017267552182163196,"node":{"stop":true}}]}}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":2,"receipt":2,"before":8932609828680621180,"prior_scope":"finite_public_domain_estimate","catalogue":17154107767351822733,"node":1}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":2,"action":"AskLoc","args":[4],"permit":"confirmed","status":"prepared","outcome":"prepared","policy":2,"revision":1,"before":8932609828680621180,"after":14695981039346656037,"cost":2,"remaining_ms":4861,"reserved_ms":300,"sdk_ns":-1,"reason":"necessary_public_missing_location_coverage","feedback":"","parent_digest":14953145512901991242,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":3,"source":"1","revision":1,"event":0,"confirmed":true},{"predicate":"public_object","object":4,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true}]}
+
+[LOG]:AskLoc(4)
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":2,"action":"AskLoc","args":[4],"permit":"confirmed","status":"committed","outcome":"observed","policy":2,"revision":1,"before":8932609828680621180,"after":8932609828680621180,"cost":2,"remaining_ms":4861,"reserved_ms":300,"sdk_ns":104583626,"reason":"necessary_public_missing_location_coverage","feedback":"at(4,3)","parent_digest":14953145512901991242,"digest":1725009363540359963,"evidence":[{"predicate":"robot_at","object":0,"value":3,"source":"1","revision":1,"event":0,"confirmed":true},{"predicate":"public_object","object":4,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true}]}
+
+[LOG]:[FullDecisionEvidence] decision=3 stop_lower=647.329670330 stop_upper=647.329670330 selected_lower=645.329670330 selected_upper=645.329670330 support=31 information_candidates=1 selected_stop=false scope=necessary_initial_missing_big_location target=4 attempts_before=1 initial_at_missing=true
+
+[LOG]:[FullPolicyCatalogue] {"schema":"full_policy_catalogue.v2","decision":3,"digest":2787292937951299881,"root":{"action":"AskLoc","args":[4],"cost":2,"unexpected":{"stop":true},"children":[{"kind":2,"success":false,"ids":[],"reply":["?",-1],"probability":0.10000000000000006,"node":{"stop":true}},{"kind":2,"success":false,"ids":[],"reply":["a",0],"probability":0.1411872441284206,"node":{"stop":true}},{"kind":2,"success":false,"ids":[],"reply":["a",1],"probability":0.11780507074624721,"node":{"stop":true}},{"kind":2,"success":false,"ids":[],"reply":["a",2],"probability":0.13016411692882279,"node":{"stop":true}},{"kind":2,"success":false,"ids":[],"reply":["a",3],"probability":0.086403792286145281,"node":{"stop":true}},{"kind":2,"success":false,"ids":[],"reply":["a",4],"probability":0.018318609495080084,"node":{"stop":true}},{"kind":2,"success":false,"ids":[],"reply":["a",5],"probability":0.077600014364720221,"node":{"stop":true}},{"kind":2,"success":false,"ids":[],"reply":["a",6],"probability":0.098087696617108353,"node":{"stop":true}},{"kind":2,"success":false,"ids":[],"reply":["a",7],"probability":0.021399841988077282,"node":{"stop":true}},{"kind":2,"success":false,"ids":[],"reply":["a",8],"probability":0.098148746678158455,"node":{"stop":true}},{"kind":2,"success":false,"ids":[],"reply":["a",9],"probability":0.041761832938303531,"node":{"stop":true}},{"kind":2,"success":false,"ids":[],"reply":["i",4],"probability":0.017280758457229043,"node":{"stop":true}},{"kind":2,"success":false,"ids":[],"reply":["i",5],"probability":0.017280758457229043,"node":{"stop":true}},{"kind":2,"success":false,"ids":[],"reply":["i",6],"probability":0.017280758457229043,"node":{"stop":true}},{"kind":2,"success":false,"ids":[],"reply":["i",7],"probability":0.017280758457229043,"node":{"stop":true}}]}}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":3,"receipt":3,"before":8932609828680621180,"prior_scope":"finite_public_domain_estimate","catalogue":2787292937951299881,"node":1}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":3,"action":"AskLoc","args":[4],"permit":"confirmed","status":"prepared","outcome":"prepared","policy":3,"revision":1,"before":8932609828680621180,"after":14695981039346656037,"cost":2,"remaining_ms":4753,"reserved_ms":300,"sdk_ns":-1,"reason":"necessary_public_missing_location_coverage","feedback":"","parent_digest":1725009363540359963,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":3,"source":"1","revision":1,"event":0,"confirmed":true},{"predicate":"public_object","object":4,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true}]}
+
+[LOG]:AskLoc(4)
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":3,"action":"AskLoc","args":[4],"permit":"confirmed","status":"committed","outcome":"observed","policy":3,"revision":1,"before":8932609828680621180,"after":8932609828680621180,"cost":2,"remaining_ms":4753,"reserved_ms":300,"sdk_ns":112831974,"reason":"necessary_public_missing_location_coverage","feedback":"at(4,7)","parent_digest":1725009363540359963,"digest":14818819299661264780,"evidence":[{"predicate":"robot_at","object":0,"value":3,"source":"1","revision":1,"event":0,"confirmed":true},{"predicate":"public_object","object":4,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true}]}
+
+[LOG]:[FullProposalReuse] modal_physical=1 modal_reused=0 adaptive_physical=3 adaptive_reused=0 support=3 scope=physical_route_simulation_only
+
+[LOG]:[FullModel] decision=4 lower=681.381104 upper=681.381104 routes=79 transitions=4353 prefix_cache_hits=4702 wall_cut=true work_cut=false model_ms=89
+
+[LOG]:[FullDecisionEvidence] decision=4 stop_lower=635.969961403 stop_upper=635.969961403 selected_lower=681.381104212 selected_upper=681.381104212 support=3 information_candidates=4 selected_stop=false scope=finite_catalogue_complete_candidates
+
+[LOG]:[FullPhysicalEvaluation] decision=4 inputs=43 retained=43 replay_support=3 scope=pure_physical_candidate_evaluation canonical_answer_authority=false
+
+[LOG]:[FullLatencyEvidence] decision=4 predicted_sdk_ms=1503.160174783 proxy_lower=651.317900716 proxy_upper=651.317900716 base_lower=681.381104212 base_upper=681.381104212 rate_per_ms=0.02 past_time_constant=true scope=descriptive_future_sdk_continuous_proxy hard_bound=false
+
+[LOG]:[FullPolicyCatalogue] {"schema":"full_policy_catalogue.v2","decision":4,"digest":10869905748332537123,"root":{"action":"Move","args":[7],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1.0000000000000002,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[4],"reply":["?",-1],"probability":0.95150192985400228,"node":{"action":"Open","args":[4],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[4,11,13],"reply":["?",-1],"probability":1,"node":{"action":"TakeOut","args":[11,4],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[1],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[1,11],"reply":["?",-1],"probability":1,"node":{"action":"PutDown","args":[11],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[6],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[5,14],"reply":["?",-1],"probability":1,"node":{"action":"PickUp","args":[14],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[4],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[3,14],"reply":["?",-1],"probability":1,"node":{"action":"PutDown","args":[14],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"stop":true}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}},{"kind":1,"success":false,"ids":[13],"reply":["?",-1],"probability":0.048498070145997628,"node":{"stop":true}}]}}]}}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":4,"receipt":4,"before":8932609828680621180,"prior_scope":"finite_public_domain_estimate","catalogue":10869905748332537123,"node":1}
+
+[LOG]:Move(7)
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":4,"action":"Move","args":[7],"permit":"modeled_probe","status":"prepared","outcome":"prepared","policy":4,"revision":1,"before":8932609828680621180,"after":14695981039346656037,"cost":4,"remaining_ms":4565,"reserved_ms":320,"sdk_ns":-1,"reason":"full_joint_public_feedback_policy","feedback":"","parent_digest":14818819299661264780,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":3,"source":"1","revision":1,"event":0,"confirmed":true},{"predicate":"legal_location_and_different_destination","object":7,"value":7,"source":"public_location_domain","revision":0,"event":0,"confirmed":false}]}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":4,"action":"Move","args":[7],"permit":"modeled_probe","status":"committed","outcome":"succeeded","policy":4,"revision":1,"before":8932609828680621180,"after":8398479465104302606,"cost":4,"remaining_ms":4565,"reserved_ms":320,"sdk_ns":72079187,"reason":"full_joint_public_feedback_policy","feedback":"true","parent_digest":14818819299661264780,"digest":6399685497781267330,"evidence":[{"predicate":"robot_at","object":0,"value":3,"source":"1","revision":1,"event":0,"confirmed":true},{"predicate":"legal_location_and_different_destination","object":7,"value":7,"source":"public_location_domain","revision":0,"event":0,"confirmed":false}]}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":4,"receipt":5,"before":8398479465104302606,"prior_scope":"finite_public_domain_estimate","catalogue":10869905748332537123,"node":2}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":5,"action":"Sense","args":[],"permit":"confirmed","status":"prepared","outcome":"prepared","policy":4,"revision":2,"before":8398479465104302606,"after":14695981039346656037,"cost":1,"remaining_ms":4492,"reserved_ms":300,"sdk_ns":-1,"reason":"full_joint_public_feedback_policy","feedback":"","parent_digest":6399685497781267330,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":7,"source":"7","revision":2,"event":4,"confirmed":true}]}
+
+[LOG]:[32m[SenseCurrentLocationOnly] Location 7 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Container 4 detected at location 7
+[LOG]:[32m[MustNear] inferred obj 9 at location 3
+[0m
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":5,"action":"Sense","args":[],"permit":"confirmed","status":"committed","outcome":"observed","policy":4,"revision":2,"before":8398479465104302606,"after":10223402221651936415,"cost":1,"remaining_ms":4492,"reserved_ms":300,"sdk_ns":127480214,"reason":"full_joint_public_feedback_policy","feedback":"[4]","parent_digest":6399685497781267330,"digest":8384646081364271905,"evidence":[{"predicate":"robot_at","object":0,"value":7,"source":"7","revision":2,"event":4,"confirmed":true}]}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":4,"receipt":6,"before":10223402221651936415,"prior_scope":"finite_public_domain_estimate","catalogue":10869905748332537123,"node":3}
+
+[LOG]:Open(4,cupboard)
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":6,"action":"Open","args":[4],"permit":"modeled_probe","status":"prepared","outcome":"prepared","policy":4,"revision":3,"before":10223402221651936415,"after":14695981039346656037,"cost":2,"remaining_ms":4363,"reserved_ms":300,"sdk_ns":-1,"reason":"full_joint_public_feedback_policy","feedback":"","parent_digest":8384646081364271905,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":7,"source":"7","revision":2,"event":4,"confirmed":true},{"predicate":"type_container","object":4,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true},{"predicate":"empty_hand","object":0,"value":-1,"source":"1","revision":1,"event":0,"confirmed":false},{"predicate":"independent_at","object":4,"value":7,"source":"6","revision":1,"event":5,"confirmed":true},{"predicate":"door_state","object":4,"value":-1,"source":"1","revision":1,"event":0,"confirmed":false}]}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":6,"action":"Open","args":[4],"permit":"modeled_probe","status":"committed","outcome":"succeeded","policy":4,"revision":3,"before":10223402221651936415,"after":17043326144360275869,"cost":2,"remaining_ms":4363,"reserved_ms":300,"sdk_ns":122894260,"reason":"full_joint_public_feedback_policy","feedback":"true","parent_digest":8384646081364271905,"digest":4520728277818800106,"evidence":[{"predicate":"robot_at","object":0,"value":7,"source":"7","revision":2,"event":4,"confirmed":true},{"predicate":"type_container","object":4,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true},{"predicate":"empty_hand","object":0,"value":-1,"source":"1","revision":1,"event":0,"confirmed":false},{"predicate":"independent_at","object":4,"value":7,"source":"6","revision":1,"event":5,"confirmed":true},{"predicate":"door_state","object":4,"value":-1,"source":"1","revision":1,"event":0,"confirmed":false}]}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":4,"receipt":7,"before":17043326144360275869,"prior_scope":"finite_public_domain_estimate","catalogue":10869905748332537123,"node":4}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":7,"action":"Sense","args":[],"permit":"confirmed","status":"prepared","outcome":"prepared","policy":4,"revision":4,"before":17043326144360275869,"after":14695981039346656037,"cost":1,"remaining_ms":4240,"reserved_ms":300,"sdk_ns":-1,"reason":"full_joint_public_feedback_policy","feedback":"","parent_digest":4520728277818800106,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":7,"source":"7","revision":2,"event":4,"confirmed":true}]}
+
+[LOG]:[32m[SenseCurrentLocationOnly] Location 7 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Container 4 detected at location 7
+[LOG]:[SenseCurrentLocationOnly] Object 11 detected at location 7
+[LOG]:[32m[MustNear] inferred obj 9 at location 3
+[0m
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":7,"action":"Sense","args":[],"permit":"confirmed","status":"committed","outcome":"observed","policy":4,"revision":4,"before":17043326144360275869,"after":16218560053956498095,"cost":1,"remaining_ms":4240,"reserved_ms":300,"sdk_ns":119006885,"reason":"full_joint_public_feedback_policy","feedback":"[4,11]","parent_digest":4520728277818800106,"digest":13669789628465534348,"evidence":[{"predicate":"robot_at","object":0,"value":7,"source":"7","revision":2,"event":4,"confirmed":true}]}
+
+[LOG]:[FullModel] support_miss receipt=7 action=Sense paid_once=true fallback=stop
+
+[LOG]:[FullModel] initial_conditioning consistent=true proof_count=27 retained_mass=0.096698210421643754
+
+[LOG]:[InitialFactorProof] field=2 object=1 parent=0 receipt=1 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=2 parent=0 receipt=1 predicate=static_big_id_visible_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=3 parent=0 receipt=1 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=4 parent=0 receipt=1 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=5 parent=0 receipt=1 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=6 parent=0 receipt=1 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=7 parent=0 receipt=1 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=8 parent=0 receipt=1 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=1 parent=0 receipt=5 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=2 parent=0 receipt=5 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=3 parent=0 receipt=5 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=4 parent=0 receipt=5 predicate=static_big_id_visible_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=5 parent=0 receipt=5 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=6 parent=0 receipt=5 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=7 parent=0 receipt=5 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=8 parent=0 receipt=5 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=4 parent=0 receipt=6 predicate=successful_container_command_static_colocation
+
+[LOG]:[InitialFactorProof] field=0 object=0 parent=0 receipt=6 predicate=successful_command_initial_empty_hand
+
+[LOG]:[InitialFactorProof] field=4 object=4 parent=0 receipt=6 predicate=first_successful_door_command_initial_state
+
+[LOG]:[InitialFactorProof] field=2 object=1 parent=0 receipt=7 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=2 parent=0 receipt=7 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=3 parent=0 receipt=7 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=4 parent=0 receipt=7 predicate=static_big_id_visible_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=5 parent=0 receipt=7 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=6 parent=0 receipt=7 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=7 parent=0 receipt=7 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=8 parent=0 receipt=7 predicate=static_big_id_absent_at_robot
+
+[LOG]:[FullModel] conditional_proposal complete=true particles=32 checks=4128 block_cache_hits=186 clue_mixture_draws=0 work_cut=false wall_cut=false scope=public feedback conditional block importance approximation; no certified finite-domain coverage
+
+[LOG]:[FullModel] support_repair installed=true transitions=224 reason=replayed_all_paid_evidence
+
+[LOG]:[FullProposalReuse] modal_physical=1 modal_reused=0 adaptive_physical=25 adaptive_reused=7 support=32 scope=physical_route_simulation_only
+
+[LOG]:[FullModel] decision=5 lower=744.425755 upper=744.425755 routes=24 transitions=5006 prefix_cache_hits=26 wall_cut=true work_cut=false model_ms=173
+
+[LOG]:[FullDecisionEvidence] decision=5 stop_lower=622.503018491 stop_upper=622.503018491 selected_lower=744.425754659 selected_upper=744.425754659 support=32 information_candidates=4 selected_stop=false scope=finite_catalogue_complete_candidates
+
+[LOG]:[FullPhysicalEvaluation] decision=5 inputs=449 retained=449 replay_support=32 scope=pure_physical_candidate_evaluation canonical_answer_authority=false
+
+[LOG]:[FullLatencyEvidence] decision=5 predicted_sdk_ms=2921.685905177 proxy_lower=685.992036556 proxy_upper=685.992036556 base_lower=744.425754659 base_upper=744.425754659 rate_per_ms=0.02 past_time_constant=true scope=descriptive_future_sdk_continuous_proxy hard_bound=false
+
+[LOG]:[FullPolicyCatalogue] {"schema":"full_policy_catalogue.v2","decision":5,"digest":3385853434551326768,"root":{"action":"TakeOut","args":[11,4],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":0.99999999999999956,"node":{"action":"Move","args":[1],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":0.99999999999999967,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[1,11],"reply":["?",-1],"probability":1.0000000000000002,"node":{"action":"PutDown","args":[11],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":0.99999999999999978,"node":{"action":"Move","args":[3],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1.0000000000000002,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[2,9,10,12],"reply":["?",-1],"probability":0.99999999999999978,"node":{"action":"PickUp","args":[12],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1.0000000000000002,"node":{"action":"Move","args":[6],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":0.99999999999999978,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[5,12],"reply":["?",-1],"probability":1.0000000000000002,"node":{"action":"PutDown","args":[12],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":0.99999999999999978,"node":{"action":"Open","args":[5],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1.0000000000000002,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[5,9,12],"reply":["?",-1],"probability":0.062709226787094396,"node":{"action":"PickUp","args":[12],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"PutIn","args":[12,5],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[2],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[7,14],"reply":["?",-1],"probability":1,"node":{"action":"Open","args":[7],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[7,10,14],"reply":["?",-1],"probability":0.5,"node":{"action":"TakeOut","args":[14,7],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[4],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[3,14],"reply":["?",-1],"probability":1,"node":{"action":"PutDown","args":[14],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[6],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[5,9,12],"reply":["?",-1],"probability":1,"node":{"action":"Close","args":[5],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[4],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[3,14],"reply":["?",-1],"probability":1,"node":{"stop":true}}]}}]}}]}}]}}]}}]}}]}}]}}]}},{"kind":1,"success":false,"ids":[7,14],"reply":["?",-1],"probability":0.5,"node":{"action":"TakeOut","args":[14,7],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[4],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[3,14],"reply":["?",-1],"probability":1,"node":{"action":"PutDown","args":[14],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[6],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[5,9,12],"reply":["?",-1],"probability":1,"node":{"action":"Close","args":[5],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[4],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[3,14],"reply":["?",-1],"probability":1,"node":{"stop":true}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}},{"kind":1,"success":false,"ids":[5,10,12],"reply":["?",-1],"probability":0.031354613393547198,"node":{"action":"PickUp","args":[12],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"PutIn","args":[12,5],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[2],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[7,14],"reply":["?",-1],"probability":1,"node":{"action":"Open","args":[7],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[7,11,14],"reply":["?",-1],"probability":1,"node":{"action":"TakeOut","args":[14,7],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[4],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[3,14],"reply":["?",-1],"probability":1,"node":{"action":"PutDown","args":[14],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[6],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[5,10,12],"reply":["?",-1],"probability":1,"node":{"action":"Close","args":[5],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[4],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[3,14],"reply":["?",-1],"probability":1,"node":{"stop":true}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}},{"kind":1,"success":false,"ids":[5,11,12],"reply":["?",-1],"probability":0.062709226787094396,"node":{"action":"PickUp","args":[12],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"PutIn","args":[12,5],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[2],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[7,14],"reply":["?",-1],"probability":1,"node":{"action":"Open","args":[7],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[7,14],"reply":["?",-1],"probability":1,"node":{"action":"TakeOut","args":[14,7],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[4],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[3,14],"reply":["?",-1],"probability":1,"node":{"action":"PutDown","args":[14],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[6],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[5,11,12],"reply":["?",-1],"probability":1,"node":{"action":"Close","args":[5],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[4],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[3,14],"reply":["?",-1],"probability":1,"node":{"stop":true}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}},{"kind":1,"success":false,"ids":[5,12],"reply":["?",-1],"probability":0.56282433972716706,"node":{"action":"PickUp","args":[12],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1.0000000000000002,"node":{"action":"PutIn","args":[12,5],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1.0000000000000002,"node":{"action":"Move","args":[2],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[7],"reply":["?",-1],"probability":0.11500636226117147,"node":{"action":"Open","args":[7],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[7,9,14],"reply":["?",-1],"probability":0.48440287614207705,"node":{"action":"TakeOut","args":[14,7],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[4],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[3,14],"reply":["?",-1],"probability":1,"node":{"action":"PutDown","args":[14],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[6],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[5,12],"reply":["?",-1],"probability":1,"node":{"action":"Close","args":[5],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[4],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[3,14],"reply":["?",-1],"probability":1,"node":{"stop":true}}]}}]}}]}}]}}]}}]}}]}}]}}]}},{"kind":1,"success":false,"ids":[7,14],"reply":["?",-1],"probability":0.51559712385792289,"node":{"action":"TakeOut","args":[14,7],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[4],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[3,14],"reply":["?",-1],"probability":1,"node":{"action":"PutDown","args":[14],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[6],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[5,12],"reply":["?",-1],"probability":1,"node":{"action":"Close","args":[5],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[4],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[3,14],"reply":["?",-1],"probability":1,"node":{"stop":true}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}},{"kind":1,"success":false,"ids":[7,14],"reply":["?",-1],"probability":0.88499363773882855,"node":{"action":"Open","args":[7],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":0.99999999999999989,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[7,9,14],"reply":["?",-1],"probability":0.12589788282837253,"node":{"action":"TakeOut","args":[14,7],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[4],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[3,14],"reply":["?",-1],"probability":1,"node":{"action":"PutDown","args":[14],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[6],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[5,12],"reply":["?",-1],"probability":1,"node":{"action":"Close","args":[5],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[4],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[3,14],"reply":["?",-1],"probability":1,"node":{"stop":true}}]}}]}}]}}]}}]}}]}}]}}]}}]}},{"kind":1,"success":false,"ids":[7,11,14],"reply":["?",-1],"probability":0.12589788282837253,"node":{"action":"TakeOut","args":[14,7],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":false,"ids":[],"reply":["?",-1],"probability":0.5,"node":{"stop":true}},{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":0.5,"node":{"action":"Move","args":[4],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[3,14],"reply":["?",-1],"probability":1,"node":{"action":"PutDown","args":[14],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[6],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[5,12],"reply":["?",-1],"probability":1,"node":{"action":"Close","args":[5],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[4],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[3,14],"reply":["?",-1],"probability":1,"node":{"stop":true}}]}}]}}]}}]}}]}}]}}]}}]}}]}},{"kind":1,"success":false,"ids":[7,12,14],"reply":["?",-1],"probability":0.12589788282837253,"node":{"action":"TakeOut","args":[14,7],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[4],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[3,14],"reply":["?",-1],"probability":1,"node":{"action":"PutDown","args":[14],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[6],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[5,12],"reply":["?",-1],"probability":1,"node":{"action":"Close","args":[5],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[4],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[3,14],"reply":["?",-1],"probability":1,"node":{"stop":true}}]}}]}}]}}]}}]}}]}}]}}]}}]}},{"kind":1,"success":false,"ids":[7,13,14],"reply":["?",-1],"probability":0.062948941414186263,"node":{"action":"TakeOut","args":[14,7],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[4],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[3,14],"reply":["?",-1],"probability":1,"node":{"action":"PutDown","args":[14],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[6],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[5,12],"reply":["?",-1],"probability":1,"node":{"action":"Close","args":[5],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[4],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[3,14],"reply":["?",-1],"probability":1,"node":{"stop":true}}]}}]}}]}}]}}]}}]}}]}}]}}]}},{"kind":1,"success":false,"ids":[7,14],"reply":["?",-1],"probability":0.55935741010069595,"node":{"action":"TakeOut","args":[14,7],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":false,"ids":[],"reply":["?",-1],"probability":0.11253795923228074,"node":{"stop":true}},{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":0.88746204076771928,"node":{"action":"Move","args":[4],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[3,14],"reply":["?",-1],"probability":1,"node":{"action":"PutDown","args":[14],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[6],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[5,12],"reply":["?",-1],"probability":1,"node":{"action":"Close","args":[5],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[4],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[3,14],"reply":["?",-1],"probability":1,"node":{"stop":true}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}},{"kind":1,"success":false,"ids":[5,12,13],"reply":["?",-1],"probability":0.15498413973090838,"node":{"action":"PickUp","args":[12],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"PutIn","args":[12,5],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[2],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[7,14],"reply":["?",-1],"probability":1,"node":{"action":"Open","args":[7],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[7,14],"reply":["?",-1],"probability":1,"node":{"action":"TakeOut","args":[14,7],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[4],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[3,14],"reply":["?",-1],"probability":1,"node":{"action":"PutDown","args":[14],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[6],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[5,12,13],"reply":["?",-1],"probability":1,"node":{"action":"Close","args":[5],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[4],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[3,14],"reply":["?",-1],"probability":1,"node":{"stop":true}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}},{"kind":1,"success":false,"ids":[5,12,13,14],"reply":["?",-1],"probability":0.031354613393547205,"node":{"action":"PickUp","args":[12],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"PutIn","args":[12,5],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"stop":true}}]}}]}},{"kind":1,"success":false,"ids":[5,12,14],"reply":["?",-1],"probability":0.094063840180641595,"node":{"action":"PickUp","args":[12],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"PutIn","args":[12,5],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[2],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[7,14],"reply":["?",-1],"probability":1,"node":{"action":"Open","args":[7],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[7,14],"reply":["?",-1],"probability":1,"node":{"action":"TakeOut","args":[14,7],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[4],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[3,14],"reply":["?",-1],"probability":1,"node":{"action":"PutDown","args":[14],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[6],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[5,12,14],"reply":["?",-1],"probability":1,"node":{"action":"Close","args":[5],"cost":2,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Move","args":[4],"cost":4,"unexpected":{"stop":true},"children":[{"kind":0,"success":true,"ids":[],"reply":["?",-1],"probability":1,"node":{"action":"Sense","args":[],"cost":1,"unexpected":{"stop":true},"children":[{"kind":1,"success":false,"ids":[3,14],"reply":["?",-1],"probability":1,"node":{"stop":true}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":5,"receipt":8,"before":16218560053956498095,"prior_scope":"finite_public_domain_estimate","catalogue":3385853434551326768,"node":1}
+
+[LOG]:TakeOut(11,book)(4,cupboard)
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":8,"action":"TakeOut","args":[11,4],"permit":"modeled_probe","status":"prepared","outcome":"prepared","policy":5,"revision":5,"before":16218560053956498095,"after":14695981039346656037,"cost":2,"remaining_ms":4041,"reserved_ms":300,"sdk_ns":-1,"reason":"full_joint_public_feedback_policy","feedback":"","parent_digest":13669789628465534348,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":7,"source":"7","revision":2,"event":4,"confirmed":true},{"predicate":"type_small","object":11,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true},{"predicate":"empty_hand","object":0,"value":0,"source":"7","revision":2,"event":6,"confirmed":true},{"predicate":"type_container","object":4,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true},{"predicate":"independent_at","object":4,"value":7,"source":"6","revision":4,"event":7,"confirmed":true},{"predicate":"open_container","object":4,"value":1,"source":"7","revision":2,"event":6,"confirmed":true},{"predicate":"inside_4","object":11,"value":-1,"source":"1","revision":2,"event":0,"confirmed":false}]}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":8,"action":"TakeOut","args":[11,4],"permit":"modeled_probe","status":"committed","outcome":"succeeded","policy":5,"revision":5,"before":16218560053956498095,"after":8537683944574705914,"cost":2,"remaining_ms":4041,"reserved_ms":300,"sdk_ns":72128148,"reason":"full_joint_public_feedback_policy","feedback":"true","parent_digest":13669789628465534348,"digest":11201464186184580439,"evidence":[{"predicate":"robot_at","object":0,"value":7,"source":"7","revision":2,"event":4,"confirmed":true},{"predicate":"type_small","object":11,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true},{"predicate":"empty_hand","object":0,"value":0,"source":"7","revision":2,"event":6,"confirmed":true},{"predicate":"type_container","object":4,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true},{"predicate":"independent_at","object":4,"value":7,"source":"6","revision":4,"event":7,"confirmed":true},{"predicate":"open_container","object":4,"value":1,"source":"7","revision":2,"event":6,"confirmed":true},{"predicate":"inside_4","object":11,"value":-1,"source":"1","revision":2,"event":0,"confirmed":false}]}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":5,"receipt":9,"before":8537683944574705914,"prior_scope":"finite_public_domain_estimate","catalogue":3385853434551326768,"node":2}
+
+[LOG]:Move(1)
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":9,"action":"Move","args":[1],"permit":"modeled_probe","status":"prepared","outcome":"prepared","policy":5,"revision":6,"before":8537683944574705914,"after":14695981039346656037,"cost":4,"remaining_ms":3968,"reserved_ms":320,"sdk_ns":-1,"reason":"full_joint_public_feedback_policy","feedback":"","parent_digest":11201464186184580439,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":7,"source":"7","revision":2,"event":4,"confirmed":true},{"predicate":"legal_location_and_different_destination","object":1,"value":1,"source":"public_location_domain","revision":0,"event":0,"confirmed":false}]}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":9,"action":"Move","args":[1],"permit":"modeled_probe","status":"committed","outcome":"succeeded","policy":5,"revision":6,"before":8537683944574705914,"after":1178526087504749426,"cost":4,"remaining_ms":3968,"reserved_ms":320,"sdk_ns":107399771,"reason":"full_joint_public_feedback_policy","feedback":"true","parent_digest":11201464186184580439,"digest":14130922335871861978,"evidence":[{"predicate":"robot_at","object":0,"value":7,"source":"7","revision":2,"event":4,"confirmed":true},{"predicate":"legal_location_and_different_destination","object":1,"value":1,"source":"public_location_domain","revision":0,"event":0,"confirmed":false}]}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":5,"receipt":10,"before":1178526087504749426,"prior_scope":"finite_public_domain_estimate","catalogue":3385853434551326768,"node":3}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":10,"action":"Sense","args":[],"permit":"confirmed","status":"prepared","outcome":"prepared","policy":5,"revision":7,"before":1178526087504749426,"after":14695981039346656037,"cost":1,"remaining_ms":3859,"reserved_ms":300,"sdk_ns":-1,"reason":"full_joint_public_feedback_policy","feedback":"","parent_digest":14130922335871861978,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":1,"source":"7","revision":3,"event":9,"confirmed":true}]}
+
+[LOG]:[32m[SenseCurrentLocationOnly] Location 1 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Object 1 detected at location 1
+[LOG]:[SenseCurrentLocationOnly] Object 11 detected at location 1
+[LOG]:[32m[MustNear] inferred obj 9 at location 3
+[0m
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":10,"action":"Sense","args":[],"permit":"confirmed","status":"committed","outcome":"observed","policy":5,"revision":7,"before":1178526087504749426,"after":67798423788242976,"cost":1,"remaining_ms":3859,"reserved_ms":300,"sdk_ns":118317295,"reason":"full_joint_public_feedback_policy","feedback":"[1,11]","parent_digest":14130922335871861978,"digest":7708517169577439303,"evidence":[{"predicate":"robot_at","object":0,"value":1,"source":"7","revision":3,"event":9,"confirmed":true}]}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":5,"receipt":11,"before":67798423788242976,"prior_scope":"finite_public_domain_estimate","catalogue":3385853434551326768,"node":4}
+
+[LOG]:PutDown(11,book)
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":11,"action":"PutDown","args":[11],"permit":"confirmed","status":"prepared","outcome":"prepared","policy":5,"revision":8,"before":67798423788242976,"after":14695981039346656037,"cost":2,"remaining_ms":3739,"reserved_ms":300,"sdk_ns":-1,"reason":"full_joint_public_feedback_policy","feedback":"","parent_digest":7708517169577439303,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":1,"source":"7","revision":3,"event":9,"confirmed":true},{"predicate":"type_small","object":11,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true},{"predicate":"hand_item","object":0,"value":11,"source":"7","revision":3,"event":8,"confirmed":true}]}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":11,"action":"PutDown","args":[11],"permit":"confirmed","status":"committed","outcome":"succeeded","policy":5,"revision":8,"before":67798423788242976,"after":17138051081145332465,"cost":2,"remaining_ms":3739,"reserved_ms":300,"sdk_ns":118784005,"reason":"full_joint_public_feedback_policy","feedback":"true","parent_digest":7708517169577439303,"digest":7559426529932066381,"evidence":[{"predicate":"robot_at","object":0,"value":1,"source":"7","revision":3,"event":9,"confirmed":true},{"predicate":"type_small","object":11,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true},{"predicate":"hand_item","object":0,"value":11,"source":"7","revision":3,"event":8,"confirmed":true}]}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":5,"receipt":12,"before":17138051081145332465,"prior_scope":"finite_public_domain_estimate","catalogue":3385853434551326768,"node":5}
+
+[LOG]:Move(3)
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":12,"action":"Move","args":[3],"permit":"confirmed","status":"prepared","outcome":"prepared","policy":5,"revision":9,"before":17138051081145332465,"after":14695981039346656037,"cost":4,"remaining_ms":3619,"reserved_ms":320,"sdk_ns":-1,"reason":"full_joint_public_feedback_policy","feedback":"","parent_digest":7559426529932066381,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":1,"source":"7","revision":3,"event":9,"confirmed":true},{"predicate":"legal_location_and_different_destination","object":3,"value":3,"source":"public_location_domain","revision":0,"event":0,"confirmed":true}]}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":12,"action":"Move","args":[3],"permit":"confirmed","status":"committed","outcome":"succeeded","policy":5,"revision":9,"before":17138051081145332465,"after":9553302106700477698,"cost":4,"remaining_ms":3619,"reserved_ms":320,"sdk_ns":114067680,"reason":"full_joint_public_feedback_policy","feedback":"true","parent_digest":7559426529932066381,"digest":9884536835248525177,"evidence":[{"predicate":"robot_at","object":0,"value":1,"source":"7","revision":3,"event":9,"confirmed":true},{"predicate":"legal_location_and_different_destination","object":3,"value":3,"source":"public_location_domain","revision":0,"event":0,"confirmed":true}]}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":5,"receipt":13,"before":9553302106700477698,"prior_scope":"finite_public_domain_estimate","catalogue":3385853434551326768,"node":6}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":13,"action":"Sense","args":[],"permit":"confirmed","status":"prepared","outcome":"prepared","policy":5,"revision":10,"before":9553302106700477698,"after":14695981039346656037,"cost":1,"remaining_ms":3503,"reserved_ms":300,"sdk_ns":-1,"reason":"full_joint_public_feedback_policy","feedback":"","parent_digest":9884536835248525177,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":3,"source":"7","revision":4,"event":12,"confirmed":true}]}
+
+[LOG]:[32m[SenseCurrentLocationOnly] Location 3 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Object 2 detected at location 3
+[LOG]:[SenseCurrentLocationOnly] Object 9 detected at location 3
+[LOG]:[SenseCurrentLocationOnly] Object 10 detected at location 3
+[LOG]:[SenseCurrentLocationOnly] Object 12 detected at location 3
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":13,"action":"Sense","args":[],"permit":"confirmed","status":"committed","outcome":"observed","policy":5,"revision":10,"before":9553302106700477698,"after":3290458089637220165,"cost":1,"remaining_ms":3503,"reserved_ms":300,"sdk_ns":106506506,"reason":"full_joint_public_feedback_policy","feedback":"[2,9,10,12]","parent_digest":9884536835248525177,"digest":9748326904564562260,"evidence":[{"predicate":"robot_at","object":0,"value":3,"source":"7","revision":4,"event":12,"confirmed":true}]}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":5,"receipt":14,"before":3290458089637220165,"prior_scope":"finite_public_domain_estimate","catalogue":3385853434551326768,"node":7}
+
+[LOG]:PickUp(12,bottle)
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":14,"action":"PickUp","args":[12],"permit":"modeled_probe","status":"prepared","outcome":"prepared","policy":5,"revision":11,"before":3290458089637220165,"after":14695981039346656037,"cost":2,"remaining_ms":3395,"reserved_ms":300,"sdk_ns":-1,"reason":"full_joint_public_feedback_policy","feedback":"","parent_digest":9748326904564562260,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":3,"source":"7","revision":4,"event":12,"confirmed":true},{"predicate":"type_small","object":12,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true},{"predicate":"empty_hand","object":0,"value":0,"source":"7","revision":4,"event":11,"confirmed":true},{"predicate":"independent_at","object":12,"value":-1,"source":"6","revision":4,"event":13,"confirmed":false},{"predicate":"item_absent_from_tray","object":12,"value":12,"source":"storage_absence_receipt","revision":1,"event":0,"confirmed":false}]}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":14,"action":"PickUp","args":[12],"permit":"modeled_probe","status":"committed","outcome":"succeeded","policy":5,"revision":11,"before":3290458089637220165,"after":3366533115402782980,"cost":2,"remaining_ms":3395,"reserved_ms":300,"sdk_ns":110727892,"reason":"full_joint_public_feedback_policy","feedback":"true","parent_digest":9748326904564562260,"digest":3238445737406376556,"evidence":[{"predicate":"robot_at","object":0,"value":3,"source":"7","revision":4,"event":12,"confirmed":true},{"predicate":"type_small","object":12,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true},{"predicate":"empty_hand","object":0,"value":0,"source":"7","revision":4,"event":11,"confirmed":true},{"predicate":"independent_at","object":12,"value":-1,"source":"6","revision":4,"event":13,"confirmed":false},{"predicate":"item_absent_from_tray","object":12,"value":12,"source":"storage_absence_receipt","revision":1,"event":0,"confirmed":false}]}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":5,"receipt":15,"before":3366533115402782980,"prior_scope":"finite_public_domain_estimate","catalogue":3385853434551326768,"node":8}
+
+[LOG]:Move(6)
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":15,"action":"Move","args":[6],"permit":"modeled_probe","status":"prepared","outcome":"prepared","policy":5,"revision":12,"before":3366533115402782980,"after":14695981039346656037,"cost":4,"remaining_ms":3282,"reserved_ms":320,"sdk_ns":-1,"reason":"full_joint_public_feedback_policy","feedback":"","parent_digest":3238445737406376556,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":3,"source":"7","revision":4,"event":12,"confirmed":true},{"predicate":"legal_location_and_different_destination","object":6,"value":6,"source":"public_location_domain","revision":0,"event":0,"confirmed":false}]}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":15,"action":"Move","args":[6],"permit":"modeled_probe","status":"committed","outcome":"succeeded","policy":5,"revision":12,"before":3366533115402782980,"after":2548585261623283598,"cost":4,"remaining_ms":3282,"reserved_ms":320,"sdk_ns":113820350,"reason":"full_joint_public_feedback_policy","feedback":"true","parent_digest":3238445737406376556,"digest":352607822497084705,"evidence":[{"predicate":"robot_at","object":0,"value":3,"source":"7","revision":4,"event":12,"confirmed":true},{"predicate":"legal_location_and_different_destination","object":6,"value":6,"source":"public_location_domain","revision":0,"event":0,"confirmed":false}]}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":5,"receipt":16,"before":2548585261623283598,"prior_scope":"finite_public_domain_estimate","catalogue":3385853434551326768,"node":9}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":16,"action":"Sense","args":[],"permit":"confirmed","status":"prepared","outcome":"prepared","policy":5,"revision":13,"before":2548585261623283598,"after":14695981039346656037,"cost":1,"remaining_ms":3167,"reserved_ms":300,"sdk_ns":-1,"reason":"full_joint_public_feedback_policy","feedback":"","parent_digest":352607822497084705,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":6,"source":"7","revision":5,"event":15,"confirmed":true}]}
+
+[LOG]:[32m[SenseCurrentLocationOnly] Location 6 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Container 5 detected at location 6
+[LOG]:[SenseCurrentLocationOnly] Object 12 detected at location 6
+[LOG]:[32m[MustNear] inferred obj 9 at location 3
+[0m
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":16,"action":"Sense","args":[],"permit":"confirmed","status":"committed","outcome":"observed","policy":5,"revision":13,"before":2548585261623283598,"after":12335293121737415390,"cost":1,"remaining_ms":3167,"reserved_ms":300,"sdk_ns":114201872,"reason":"full_joint_public_feedback_policy","feedback":"[5,12]","parent_digest":352607822497084705,"digest":2607883925305082790,"evidence":[{"predicate":"robot_at","object":0,"value":6,"source":"7","revision":5,"event":15,"confirmed":true}]}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":5,"receipt":17,"before":12335293121737415390,"prior_scope":"finite_public_domain_estimate","catalogue":3385853434551326768,"node":10}
+
+[LOG]:PutDown(12,bottle)
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":17,"action":"PutDown","args":[12],"permit":"confirmed","status":"prepared","outcome":"prepared","policy":5,"revision":14,"before":12335293121737415390,"after":14695981039346656037,"cost":2,"remaining_ms":3051,"reserved_ms":300,"sdk_ns":-1,"reason":"full_joint_public_feedback_policy","feedback":"","parent_digest":2607883925305082790,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":6,"source":"7","revision":5,"event":15,"confirmed":true},{"predicate":"type_small","object":12,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true},{"predicate":"hand_item","object":0,"value":12,"source":"7","revision":5,"event":14,"confirmed":true}]}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":17,"action":"PutDown","args":[12],"permit":"confirmed","status":"committed","outcome":"succeeded","policy":5,"revision":14,"before":12335293121737415390,"after":16382158212858539091,"cost":2,"remaining_ms":3051,"reserved_ms":300,"sdk_ns":118342852,"reason":"full_joint_public_feedback_policy","feedback":"true","parent_digest":2607883925305082790,"digest":8591965963001491408,"evidence":[{"predicate":"robot_at","object":0,"value":6,"source":"7","revision":5,"event":15,"confirmed":true},{"predicate":"type_small","object":12,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true},{"predicate":"hand_item","object":0,"value":12,"source":"7","revision":5,"event":14,"confirmed":true}]}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":5,"receipt":18,"before":16382158212858539091,"prior_scope":"finite_public_domain_estimate","catalogue":3385853434551326768,"node":11}
+
+[LOG]:Open(5,closet)
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":18,"action":"Open","args":[5],"permit":"modeled_probe","status":"prepared","outcome":"prepared","policy":5,"revision":15,"before":16382158212858539091,"after":14695981039346656037,"cost":2,"remaining_ms":2931,"reserved_ms":300,"sdk_ns":-1,"reason":"full_joint_public_feedback_policy","feedback":"","parent_digest":8591965963001491408,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":6,"source":"7","revision":5,"event":15,"confirmed":true},{"predicate":"type_container","object":5,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true},{"predicate":"empty_hand","object":0,"value":0,"source":"7","revision":6,"event":17,"confirmed":true},{"predicate":"independent_at","object":5,"value":6,"source":"6","revision":2,"event":16,"confirmed":true},{"predicate":"door_state","object":5,"value":-1,"source":"1","revision":1,"event":0,"confirmed":false}]}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":18,"action":"Open","args":[5],"permit":"modeled_probe","status":"committed","outcome":"succeeded","policy":5,"revision":15,"before":16382158212858539091,"after":3531587906487973902,"cost":2,"remaining_ms":2931,"reserved_ms":300,"sdk_ns":110161520,"reason":"full_joint_public_feedback_policy","feedback":"true","parent_digest":8591965963001491408,"digest":5364081115765896538,"evidence":[{"predicate":"robot_at","object":0,"value":6,"source":"7","revision":5,"event":15,"confirmed":true},{"predicate":"type_container","object":5,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true},{"predicate":"empty_hand","object":0,"value":0,"source":"7","revision":6,"event":17,"confirmed":true},{"predicate":"independent_at","object":5,"value":6,"source":"6","revision":2,"event":16,"confirmed":true},{"predicate":"door_state","object":5,"value":-1,"source":"1","revision":1,"event":0,"confirmed":false}]}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":5,"receipt":19,"before":3531587906487973902,"prior_scope":"finite_public_domain_estimate","catalogue":3385853434551326768,"node":12}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":19,"action":"Sense","args":[],"permit":"confirmed","status":"prepared","outcome":"prepared","policy":5,"revision":16,"before":3531587906487973902,"after":14695981039346656037,"cost":1,"remaining_ms":2818,"reserved_ms":300,"sdk_ns":-1,"reason":"full_joint_public_feedback_policy","feedback":"","parent_digest":5364081115765896538,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":6,"source":"7","revision":5,"event":15,"confirmed":true}]}
+
+[LOG]:[32m[SenseCurrentLocationOnly] Location 6 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Container 5 detected at location 6
+[LOG]:[SenseCurrentLocationOnly] Object 12 detected at location 6
+[LOG]:[32m[MustNear] inferred obj 9 at location 3
+[0m
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":19,"action":"Sense","args":[],"permit":"confirmed","status":"committed","outcome":"observed","policy":5,"revision":16,"before":3531587906487973902,"after":2340981005227073681,"cost":1,"remaining_ms":2818,"reserved_ms":300,"sdk_ns":114084845,"reason":"full_joint_public_feedback_policy","feedback":"[5,12]","parent_digest":5364081115765896538,"digest":4748494714810552864,"evidence":[{"predicate":"robot_at","object":0,"value":6,"source":"7","revision":5,"event":15,"confirmed":true}]}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":5,"receipt":20,"before":2340981005227073681,"prior_scope":"finite_public_domain_estimate","catalogue":3385853434551326768,"node":67}
+
+[LOG]:PickUp(12,bottle)
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":20,"action":"PickUp","args":[12],"permit":"confirmed","status":"prepared","outcome":"prepared","policy":5,"revision":17,"before":2340981005227073681,"after":14695981039346656037,"cost":2,"remaining_ms":2702,"reserved_ms":300,"sdk_ns":-1,"reason":"full_joint_public_feedback_policy","feedback":"","parent_digest":4748494714810552864,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":6,"source":"7","revision":5,"event":15,"confirmed":true},{"predicate":"type_small","object":12,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true},{"predicate":"empty_hand","object":0,"value":0,"source":"7","revision":6,"event":18,"confirmed":true},{"predicate":"independent_at","object":12,"value":6,"source":"6","revision":11,"event":19,"confirmed":true},{"predicate":"item_absent_from_tray","object":12,"value":12,"source":"storage_absence_receipt","revision":1,"event":14,"confirmed":true}]}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":20,"action":"PickUp","args":[12],"permit":"confirmed","status":"committed","outcome":"succeeded","policy":5,"revision":17,"before":2340981005227073681,"after":14000505834306033039,"cost":2,"remaining_ms":2702,"reserved_ms":300,"sdk_ns":122036634,"reason":"full_joint_public_feedback_policy","feedback":"true","parent_digest":4748494714810552864,"digest":12439354397050677348,"evidence":[{"predicate":"robot_at","object":0,"value":6,"source":"7","revision":5,"event":15,"confirmed":true},{"predicate":"type_small","object":12,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true},{"predicate":"empty_hand","object":0,"value":0,"source":"7","revision":6,"event":18,"confirmed":true},{"predicate":"independent_at","object":12,"value":6,"source":"6","revision":11,"event":19,"confirmed":true},{"predicate":"item_absent_from_tray","object":12,"value":12,"source":"storage_absence_receipt","revision":1,"event":14,"confirmed":true}]}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":5,"receipt":21,"before":14000505834306033039,"prior_scope":"finite_public_domain_estimate","catalogue":3385853434551326768,"node":68}
+
+[LOG]:PutIn(12,bottle)(5,closet)
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":21,"action":"PutIn","args":[12,5],"permit":"confirmed","status":"prepared","outcome":"prepared","policy":5,"revision":18,"before":14000505834306033039,"after":14695981039346656037,"cost":2,"remaining_ms":2578,"reserved_ms":300,"sdk_ns":-1,"reason":"full_joint_public_feedback_policy","feedback":"","parent_digest":12439354397050677348,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":6,"source":"7","revision":5,"event":15,"confirmed":true},{"predicate":"type_small","object":12,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true},{"predicate":"hand_item","object":0,"value":12,"source":"7","revision":7,"event":20,"confirmed":true},{"predicate":"type_container","object":5,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true},{"predicate":"independent_at","object":5,"value":6,"source":"6","revision":5,"event":19,"confirmed":true},{"predicate":"open_container","object":5,"value":1,"source":"7","revision":2,"event":18,"confirmed":true}]}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":21,"action":"PutIn","args":[12,5],"permit":"confirmed","status":"committed","outcome":"succeeded","policy":5,"revision":18,"before":14000505834306033039,"after":6482655161876772610,"cost":2,"remaining_ms":2578,"reserved_ms":300,"sdk_ns":117830993,"reason":"full_joint_public_feedback_policy","feedback":"true","parent_digest":12439354397050677348,"digest":17666639308986716315,"evidence":[{"predicate":"robot_at","object":0,"value":6,"source":"7","revision":5,"event":15,"confirmed":true},{"predicate":"type_small","object":12,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true},{"predicate":"hand_item","object":0,"value":12,"source":"7","revision":7,"event":20,"confirmed":true},{"predicate":"type_container","object":5,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true},{"predicate":"independent_at","object":5,"value":6,"source":"6","revision":5,"event":19,"confirmed":true},{"predicate":"open_container","object":5,"value":1,"source":"7","revision":2,"event":18,"confirmed":true}]}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":5,"receipt":22,"before":6482655161876772610,"prior_scope":"finite_public_domain_estimate","catalogue":3385853434551326768,"node":69}
+
+[LOG]:Move(2)
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":22,"action":"Move","args":[2],"permit":"modeled_probe","status":"prepared","outcome":"prepared","policy":5,"revision":19,"before":6482655161876772610,"after":14695981039346656037,"cost":4,"remaining_ms":2459,"reserved_ms":320,"sdk_ns":-1,"reason":"full_joint_public_feedback_policy","feedback":"","parent_digest":17666639308986716315,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":6,"source":"7","revision":5,"event":15,"confirmed":true},{"predicate":"legal_location_and_different_destination","object":2,"value":2,"source":"public_location_domain","revision":0,"event":0,"confirmed":false}]}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":22,"action":"Move","args":[2],"permit":"modeled_probe","status":"committed","outcome":"succeeded","policy":5,"revision":19,"before":6482655161876772610,"after":2596671564106681597,"cost":4,"remaining_ms":2459,"reserved_ms":320,"sdk_ns":110508863,"reason":"full_joint_public_feedback_policy","feedback":"true","parent_digest":17666639308986716315,"digest":16422631960531846845,"evidence":[{"predicate":"robot_at","object":0,"value":6,"source":"7","revision":5,"event":15,"confirmed":true},{"predicate":"legal_location_and_different_destination","object":2,"value":2,"source":"public_location_domain","revision":0,"event":0,"confirmed":false}]}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":5,"receipt":23,"before":2596671564106681597,"prior_scope":"finite_public_domain_estimate","catalogue":3385853434551326768,"node":70}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":23,"action":"Sense","args":[],"permit":"confirmed","status":"prepared","outcome":"prepared","policy":5,"revision":20,"before":2596671564106681597,"after":14695981039346656037,"cost":1,"remaining_ms":2346,"reserved_ms":300,"sdk_ns":-1,"reason":"full_joint_public_feedback_policy","feedback":"","parent_digest":16422631960531846845,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":2,"source":"7","revision":6,"event":22,"confirmed":true}]}
+
+[LOG]:[32m[SenseCurrentLocationOnly] Location 2 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Container 7 detected at location 2
+[LOG]:[32m[MustNear] inferred obj 9 at location 3
+[0m
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":23,"action":"Sense","args":[],"permit":"confirmed","status":"committed","outcome":"observed","policy":5,"revision":20,"before":2596671564106681597,"after":14477866899947951215,"cost":1,"remaining_ms":2346,"reserved_ms":300,"sdk_ns":113986403,"reason":"full_joint_public_feedback_policy","feedback":"[7]","parent_digest":16422631960531846845,"digest":17066646704632748858,"evidence":[{"predicate":"robot_at","object":0,"value":2,"source":"7","revision":6,"event":22,"confirmed":true}]}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":5,"receipt":24,"before":14477866899947951215,"prior_scope":"finite_public_domain_estimate","catalogue":3385853434551326768,"node":71}
+
+[LOG]:Open(7,refrigerator)
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":24,"action":"Open","args":[7],"permit":"modeled_probe","status":"prepared","outcome":"prepared","policy":5,"revision":21,"before":14477866899947951215,"after":14695981039346656037,"cost":2,"remaining_ms":2231,"reserved_ms":300,"sdk_ns":-1,"reason":"full_joint_public_feedback_policy","feedback":"","parent_digest":17066646704632748858,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":2,"source":"7","revision":6,"event":22,"confirmed":true},{"predicate":"type_container","object":7,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true},{"predicate":"empty_hand","object":0,"value":0,"source":"7","revision":8,"event":21,"confirmed":true},{"predicate":"independent_at","object":7,"value":2,"source":"6","revision":2,"event":23,"confirmed":true},{"predicate":"door_state","object":7,"value":-1,"source":"1","revision":1,"event":0,"confirmed":false}]}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":24,"action":"Open","args":[7],"permit":"modeled_probe","status":"committed","outcome":"succeeded","policy":5,"revision":21,"before":14477866899947951215,"after":9511644061865852365,"cost":2,"remaining_ms":2231,"reserved_ms":300,"sdk_ns":114926855,"reason":"full_joint_public_feedback_policy","feedback":"true","parent_digest":17066646704632748858,"digest":1719625736543948563,"evidence":[{"predicate":"robot_at","object":0,"value":2,"source":"7","revision":6,"event":22,"confirmed":true},{"predicate":"type_container","object":7,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true},{"predicate":"empty_hand","object":0,"value":0,"source":"7","revision":8,"event":21,"confirmed":true},{"predicate":"independent_at","object":7,"value":2,"source":"6","revision":2,"event":23,"confirmed":true},{"predicate":"door_state","object":7,"value":-1,"source":"1","revision":1,"event":0,"confirmed":false}]}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":5,"receipt":25,"before":9511644061865852365,"prior_scope":"finite_public_domain_estimate","catalogue":3385853434551326768,"node":72}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":25,"action":"Sense","args":[],"permit":"confirmed","status":"prepared","outcome":"prepared","policy":5,"revision":22,"before":9511644061865852365,"after":14695981039346656037,"cost":1,"remaining_ms":2115,"reserved_ms":300,"sdk_ns":-1,"reason":"full_joint_public_feedback_policy","feedback":"","parent_digest":1719625736543948563,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":2,"source":"7","revision":6,"event":22,"confirmed":true}]}
+
+[LOG]:[32m[SenseCurrentLocationOnly] Location 2 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Container 7 detected at location 2
+[LOG]:[SenseCurrentLocationOnly] Object 14 detected at location 2
+[LOG]:[32m[MustNear] inferred obj 9 at location 3
+[0m
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":25,"action":"Sense","args":[],"permit":"confirmed","status":"committed","outcome":"observed","policy":5,"revision":22,"before":9511644061865852365,"after":9825280588538037938,"cost":1,"remaining_ms":2115,"reserved_ms":300,"sdk_ns":122510168,"reason":"full_joint_public_feedback_policy","feedback":"[7,14]","parent_digest":1719625736543948563,"digest":17940624973382420818,"evidence":[{"predicate":"robot_at","object":0,"value":2,"source":"7","revision":6,"event":22,"confirmed":true}]}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":5,"receipt":26,"before":9825280588538037938,"prior_scope":"finite_public_domain_estimate","catalogue":3385853434551326768,"node":82}
+
+[LOG]:TakeOut(14,bottle)(7,refrigerator)
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":26,"action":"TakeOut","args":[14,7],"permit":"modeled_probe","status":"prepared","outcome":"prepared","policy":5,"revision":23,"before":9825280588538037938,"after":14695981039346656037,"cost":2,"remaining_ms":1992,"reserved_ms":300,"sdk_ns":-1,"reason":"full_joint_public_feedback_policy","feedback":"","parent_digest":17940624973382420818,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":2,"source":"7","revision":6,"event":22,"confirmed":true},{"predicate":"type_small","object":14,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true},{"predicate":"empty_hand","object":0,"value":0,"source":"7","revision":8,"event":24,"confirmed":true},{"predicate":"type_container","object":7,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true},{"predicate":"independent_at","object":7,"value":2,"source":"6","revision":5,"event":25,"confirmed":true},{"predicate":"open_container","object":7,"value":1,"source":"7","revision":2,"event":24,"confirmed":true},{"predicate":"inside_7","object":14,"value":-1,"source":"1","revision":2,"event":0,"confirmed":false}]}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":26,"action":"TakeOut","args":[14,7],"permit":"modeled_probe","status":"committed","outcome":"succeeded","policy":5,"revision":23,"before":9825280588538037938,"after":12210980016527308749,"cost":2,"remaining_ms":1992,"reserved_ms":300,"sdk_ns":115228940,"reason":"full_joint_public_feedback_policy","feedback":"true","parent_digest":17940624973382420818,"digest":17605197200495854318,"evidence":[{"predicate":"robot_at","object":0,"value":2,"source":"7","revision":6,"event":22,"confirmed":true},{"predicate":"type_small","object":14,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true},{"predicate":"empty_hand","object":0,"value":0,"source":"7","revision":8,"event":24,"confirmed":true},{"predicate":"type_container","object":7,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true},{"predicate":"independent_at","object":7,"value":2,"source":"6","revision":5,"event":25,"confirmed":true},{"predicate":"open_container","object":7,"value":1,"source":"7","revision":2,"event":24,"confirmed":true},{"predicate":"inside_7","object":14,"value":-1,"source":"1","revision":2,"event":0,"confirmed":false}]}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":5,"receipt":27,"before":12210980016527308749,"prior_scope":"finite_public_domain_estimate","catalogue":3385853434551326768,"node":83}
+
+[LOG]:Move(4)
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":27,"action":"Move","args":[4],"permit":"modeled_probe","status":"prepared","outcome":"prepared","policy":5,"revision":24,"before":12210980016527308749,"after":14695981039346656037,"cost":4,"remaining_ms":1875,"reserved_ms":320,"sdk_ns":-1,"reason":"full_joint_public_feedback_policy","feedback":"","parent_digest":17605197200495854318,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":2,"source":"7","revision":6,"event":22,"confirmed":true},{"predicate":"legal_location_and_different_destination","object":4,"value":4,"source":"public_location_domain","revision":0,"event":0,"confirmed":false}]}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":27,"action":"Move","args":[4],"permit":"modeled_probe","status":"committed","outcome":"succeeded","policy":5,"revision":24,"before":12210980016527308749,"after":17545070053720921579,"cost":4,"remaining_ms":1875,"reserved_ms":320,"sdk_ns":110668811,"reason":"full_joint_public_feedback_policy","feedback":"true","parent_digest":17605197200495854318,"digest":17896942506625758986,"evidence":[{"predicate":"robot_at","object":0,"value":2,"source":"7","revision":6,"event":22,"confirmed":true},{"predicate":"legal_location_and_different_destination","object":4,"value":4,"source":"public_location_domain","revision":0,"event":0,"confirmed":false}]}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":5,"receipt":28,"before":17545070053720921579,"prior_scope":"finite_public_domain_estimate","catalogue":3385853434551326768,"node":84}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":28,"action":"Sense","args":[],"permit":"confirmed","status":"prepared","outcome":"prepared","policy":5,"revision":25,"before":17545070053720921579,"after":14695981039346656037,"cost":1,"remaining_ms":1764,"reserved_ms":300,"sdk_ns":-1,"reason":"full_joint_public_feedback_policy","feedback":"","parent_digest":17896942506625758986,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":4,"source":"7","revision":7,"event":27,"confirmed":true}]}
+
+[LOG]:[32m[SenseCurrentLocationOnly] Location 4 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Object 3 detected at location 4
+[LOG]:[SenseCurrentLocationOnly] Object 14 detected at location 4
+[LOG]:[32m[MustNear] inferred obj 9 at location 3
+[0m
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":28,"action":"Sense","args":[],"permit":"confirmed","status":"committed","outcome":"observed","policy":5,"revision":25,"before":17545070053720921579,"after":5597990723186634939,"cost":1,"remaining_ms":1764,"reserved_ms":300,"sdk_ns":115363226,"reason":"full_joint_public_feedback_policy","feedback":"[3,14]","parent_digest":17896942506625758986,"digest":11923070355878271606,"evidence":[{"predicate":"robot_at","object":0,"value":4,"source":"7","revision":7,"event":27,"confirmed":true}]}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":5,"receipt":29,"before":5597990723186634939,"prior_scope":"finite_public_domain_estimate","catalogue":3385853434551326768,"node":85}
+
+[LOG]:PutDown(14,bottle)
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":29,"action":"PutDown","args":[14],"permit":"confirmed","status":"prepared","outcome":"prepared","policy":5,"revision":26,"before":5597990723186634939,"after":14695981039346656037,"cost":2,"remaining_ms":1647,"reserved_ms":300,"sdk_ns":-1,"reason":"full_joint_public_feedback_policy","feedback":"","parent_digest":11923070355878271606,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":4,"source":"7","revision":7,"event":27,"confirmed":true},{"predicate":"type_small","object":14,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true},{"predicate":"hand_item","object":0,"value":14,"source":"7","revision":9,"event":26,"confirmed":true}]}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":29,"action":"PutDown","args":[14],"permit":"confirmed","status":"committed","outcome":"succeeded","policy":5,"revision":26,"before":5597990723186634939,"after":4316476293915563161,"cost":2,"remaining_ms":1647,"reserved_ms":300,"sdk_ns":118157822,"reason":"full_joint_public_feedback_policy","feedback":"true","parent_digest":11923070355878271606,"digest":13351122391033489277,"evidence":[{"predicate":"robot_at","object":0,"value":4,"source":"7","revision":7,"event":27,"confirmed":true},{"predicate":"type_small","object":14,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true},{"predicate":"hand_item","object":0,"value":14,"source":"7","revision":9,"event":26,"confirmed":true}]}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":5,"receipt":30,"before":4316476293915563161,"prior_scope":"finite_public_domain_estimate","catalogue":3385853434551326768,"node":86}
+
+[LOG]:Move(6)
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":30,"action":"Move","args":[6],"permit":"confirmed","status":"prepared","outcome":"prepared","policy":5,"revision":27,"before":4316476293915563161,"after":14695981039346656037,"cost":4,"remaining_ms":1527,"reserved_ms":320,"sdk_ns":-1,"reason":"full_joint_public_feedback_policy","feedback":"","parent_digest":13351122391033489277,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":4,"source":"7","revision":7,"event":27,"confirmed":true},{"predicate":"legal_location_and_different_destination","object":6,"value":6,"source":"public_location_domain","revision":0,"event":0,"confirmed":true}]}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":30,"action":"Move","args":[6],"permit":"confirmed","status":"committed","outcome":"succeeded","policy":5,"revision":27,"before":4316476293915563161,"after":4246674867595307634,"cost":4,"remaining_ms":1527,"reserved_ms":320,"sdk_ns":115061292,"reason":"full_joint_public_feedback_policy","feedback":"true","parent_digest":13351122391033489277,"digest":3050447526042040677,"evidence":[{"predicate":"robot_at","object":0,"value":4,"source":"7","revision":7,"event":27,"confirmed":true},{"predicate":"legal_location_and_different_destination","object":6,"value":6,"source":"public_location_domain","revision":0,"event":0,"confirmed":true}]}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":5,"receipt":31,"before":4246674867595307634,"prior_scope":"finite_public_domain_estimate","catalogue":3385853434551326768,"node":87}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":31,"action":"Sense","args":[],"permit":"confirmed","status":"prepared","outcome":"prepared","policy":5,"revision":28,"before":4246674867595307634,"after":14695981039346656037,"cost":1,"remaining_ms":1411,"reserved_ms":300,"sdk_ns":-1,"reason":"full_joint_public_feedback_policy","feedback":"","parent_digest":3050447526042040677,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":6,"source":"7","revision":8,"event":30,"confirmed":true}]}
+
+[LOG]:[32m[SenseCurrentLocationOnly] Location 6 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Container 5 detected at location 6
+[LOG]:[SenseCurrentLocationOnly] Object 12 detected at location 6
+[LOG]:[32m[MustNear] inferred obj 9 at location 3
+[0m
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":31,"action":"Sense","args":[],"permit":"confirmed","status":"committed","outcome":"observed","policy":5,"revision":28,"before":4246674867595307634,"after":764415698186647758,"cost":1,"remaining_ms":1411,"reserved_ms":300,"sdk_ns":118487773,"reason":"full_joint_public_feedback_policy","feedback":"[5,12]","parent_digest":3050447526042040677,"digest":7588041757128633858,"evidence":[{"predicate":"robot_at","object":0,"value":6,"source":"7","revision":8,"event":30,"confirmed":true}]}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":5,"receipt":32,"before":764415698186647758,"prior_scope":"finite_public_domain_estimate","catalogue":3385853434551326768,"node":88}
+
+[LOG]:(5,closet) has closed
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":32,"action":"Close","args":[5],"permit":"confirmed","status":"prepared","outcome":"prepared","policy":5,"revision":29,"before":764415698186647758,"after":14695981039346656037,"cost":2,"remaining_ms":1292,"reserved_ms":300,"sdk_ns":-1,"reason":"full_joint_public_feedback_policy","feedback":"","parent_digest":7588041757128633858,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":6,"source":"7","revision":8,"event":30,"confirmed":true},{"predicate":"type_container","object":5,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true},{"predicate":"empty_hand","object":0,"value":0,"source":"7","revision":10,"event":29,"confirmed":true},{"predicate":"independent_at","object":5,"value":6,"source":"6","revision":7,"event":31,"confirmed":true},{"predicate":"door_state","object":5,"value":1,"source":"7","revision":2,"event":21,"confirmed":true}]}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":32,"action":"Close","args":[5],"permit":"confirmed","status":"committed","outcome":"succeeded","policy":5,"revision":29,"before":764415698186647758,"after":14252048980797314986,"cost":2,"remaining_ms":1292,"reserved_ms":300,"sdk_ns":115000719,"reason":"full_joint_public_feedback_policy","feedback":"true","parent_digest":7588041757128633858,"digest":5628053150100890513,"evidence":[{"predicate":"robot_at","object":0,"value":6,"source":"7","revision":8,"event":30,"confirmed":true},{"predicate":"type_container","object":5,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true},{"predicate":"empty_hand","object":0,"value":0,"source":"7","revision":10,"event":29,"confirmed":true},{"predicate":"independent_at","object":5,"value":6,"source":"6","revision":7,"event":31,"confirmed":true},{"predicate":"door_state","object":5,"value":1,"source":"7","revision":2,"event":21,"confirmed":true}]}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":5,"receipt":33,"before":14252048980797314986,"prior_scope":"finite_public_domain_estimate","catalogue":3385853434551326768,"node":89}
+
+[LOG]:Move(4)
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":33,"action":"Move","args":[4],"permit":"confirmed","status":"prepared","outcome":"prepared","policy":5,"revision":30,"before":14252048980797314986,"after":14695981039346656037,"cost":4,"remaining_ms":1176,"reserved_ms":320,"sdk_ns":-1,"reason":"full_joint_public_feedback_policy","feedback":"","parent_digest":5628053150100890513,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":6,"source":"7","revision":8,"event":30,"confirmed":true},{"predicate":"legal_location_and_different_destination","object":4,"value":4,"source":"public_location_domain","revision":0,"event":0,"confirmed":true}]}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":33,"action":"Move","args":[4],"permit":"confirmed","status":"committed","outcome":"succeeded","policy":5,"revision":30,"before":14252048980797314986,"after":4283940599541362055,"cost":4,"remaining_ms":1176,"reserved_ms":320,"sdk_ns":115247018,"reason":"full_joint_public_feedback_policy","feedback":"true","parent_digest":5628053150100890513,"digest":10082773972444610546,"evidence":[{"predicate":"robot_at","object":0,"value":6,"source":"7","revision":8,"event":30,"confirmed":true},{"predicate":"legal_location_and_different_destination","object":4,"value":4,"source":"public_location_domain","revision":0,"event":0,"confirmed":true}]}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":5,"receipt":34,"before":4283940599541362055,"prior_scope":"finite_public_domain_estimate","catalogue":3385853434551326768,"node":90}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":34,"action":"Sense","args":[],"permit":"confirmed","status":"prepared","outcome":"prepared","policy":5,"revision":31,"before":4283940599541362055,"after":14695981039346656037,"cost":1,"remaining_ms":1060,"reserved_ms":300,"sdk_ns":-1,"reason":"full_joint_public_feedback_policy","feedback":"","parent_digest":10082773972444610546,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":4,"source":"7","revision":9,"event":33,"confirmed":true}]}
+
+[LOG]:[32m[SenseCurrentLocationOnly] Location 4 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Object 3 detected at location 4
+[LOG]:[SenseCurrentLocationOnly] Object 14 detected at location 4
+[LOG]:[32m[MustNear] inferred obj 9 at location 3
+[0m
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":34,"action":"Sense","args":[],"permit":"confirmed","status":"committed","outcome":"observed","policy":5,"revision":31,"before":4283940599541362055,"after":10608369209909417654,"cost":1,"remaining_ms":1060,"reserved_ms":300,"sdk_ns":123432648,"reason":"full_joint_public_feedback_policy","feedback":"[3,14]","parent_digest":10082773972444610546,"digest":12774809236574373153,"evidence":[{"predicate":"robot_at","object":0,"value":4,"source":"7","revision":9,"event":33,"confirmed":true}]}
+
+[LOG]:[FullProposalReuse] modal_physical=1 modal_reused=0 adaptive_physical=1 adaptive_reused=0 support=1 scope=physical_route_simulation_only
+
+[LOG]:[FullModel] decision=6 lower=768.000000 upper=768.000000 routes=0 transitions=0 prefix_cache_hits=0 wall_cut=false work_cut=false model_ms=193
+
+[LOG]:[FullDecisionEvidence] decision=6 stop_lower=768.000000000 stop_upper=768.000000000 selected_lower=768.000000000 selected_upper=768.000000000 support=1 information_candidates=0 selected_stop=true scope=finite_catalogue_complete_candidates
+
+[LOG]:[FullPhysicalEvaluation] decision=6 inputs=1 retained=1 replay_support=1 scope=pure_physical_candidate_evaluation canonical_answer_authority=false
+
+[LOG]:[FullLatencyEvidence] decision=6 predicted_sdk_ms=0.000000000 proxy_lower=768.000000000 proxy_upper=768.000000000 base_lower=768.000000000 base_upper=768.000000000 rate_per_ms=0.02 past_time_constant=true scope=descriptive_future_sdk_continuous_proxy hard_bound=false
+
+[LOG]:[FullDecisionEvidence] decision=7 stop_lower=768.000000000 stop_upper=768.000000000 selected_lower=766.000000000 selected_upper=766.000000000 support=1 information_candidates=1 selected_stop=false scope=necessary_initial_missing_acquisition_location target=13 attempts_before=0 initial_at_missing=true
+
+[LOG]:[FullCoverageSchedule] decision=7 source_decision=6 before=10608369209909417654 trigger=ordinary_finite_candidate_stop acquisitions=deferred canonical_answer_authority=false
+
+[LOG]:[FullPolicyCatalogue] {"schema":"full_policy_catalogue.v2","decision":7,"digest":2113866303266323647,"root":{"action":"AskLoc","args":[13],"cost":2,"unexpected":{"stop":true},"children":[{"kind":2,"success":false,"ids":[],"reply":["!",-1],"probability":1,"node":{"stop":true}}]}}
+
+[LOG]:[FullPolicy] {"schema":"full_policy.v2","decision":7,"receipt":35,"before":10608369209909417654,"prior_scope":"finite_public_domain_estimate","catalogue":2113866303266323647,"node":1}
+
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"prepared","id":35,"action":"AskLoc","args":[13],"permit":"confirmed","status":"prepared","outcome":"prepared","policy":7,"revision":32,"before":10608369209909417654,"after":14695981039346656037,"cost":2,"remaining_ms":934,"reserved_ms":300,"sdk_ns":-1,"reason":"necessary_public_missing_location_coverage","feedback":"","parent_digest":12774809236574373153,"digest":0,"evidence":[{"predicate":"robot_at","object":0,"value":4,"source":"7","revision":9,"event":33,"confirmed":true},{"predicate":"public_object","object":13,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true}]}
+
+[LOG]:AskLoc(13)
+[LOG]:[ExecutionEvidence] {"schema":"execution_evidence.v1","event":"finalized","id":35,"action":"AskLoc","args":[13],"permit":"confirmed","status":"committed","outcome":"observed","policy":7,"revision":32,"before":10608369209909417654,"after":10608369209909417654,"cost":2,"remaining_ms":934,"reserved_ms":300,"sdk_ns":113514044,"reason":"necessary_public_missing_location_coverage","feedback":"at(13,8)","parent_digest":12774809236574373153,"digest":11839287790070198775,"evidence":[{"predicate":"robot_at","object":0,"value":4,"source":"7","revision":9,"event":33,"confirmed":true},{"predicate":"public_object","object":13,"value":1,"source":"public_domain","revision":0,"event":0,"confirmed":true}]}
+
+[LOG]:[FullModel] support_miss receipt=35 action=AskLoc paid_once=true fallback=stop
+
+[LOG]:[FullModel] initial_conditioning consistent=true proof_count=112 retained_mass=0.06663471131636986
+
+[LOG]:[InitialFactorProof] field=2 object=1 parent=0 receipt=1 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=2 parent=0 receipt=1 predicate=static_big_id_visible_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=3 parent=0 receipt=1 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=4 parent=0 receipt=1 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=5 parent=0 receipt=1 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=6 parent=0 receipt=1 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=7 parent=0 receipt=1 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=8 parent=0 receipt=1 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=1 parent=0 receipt=5 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=2 parent=0 receipt=5 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=3 parent=0 receipt=5 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=4 parent=0 receipt=5 predicate=static_big_id_visible_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=5 parent=0 receipt=5 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=6 parent=0 receipt=5 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=7 parent=0 receipt=5 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=8 parent=0 receipt=5 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=4 parent=0 receipt=6 predicate=successful_container_command_static_colocation
+
+[LOG]:[InitialFactorProof] field=0 object=0 parent=0 receipt=6 predicate=successful_command_initial_empty_hand
+
+[LOG]:[InitialFactorProof] field=4 object=4 parent=0 receipt=6 predicate=first_successful_door_command_initial_state
+
+[LOG]:[InitialFactorProof] field=2 object=1 parent=0 receipt=7 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=2 parent=0 receipt=7 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=3 parent=0 receipt=7 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=4 parent=0 receipt=7 predicate=static_big_id_visible_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=5 parent=0 receipt=7 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=6 parent=0 receipt=7 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=7 parent=0 receipt=7 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=8 parent=0 receipt=7 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=4 parent=0 receipt=8 predicate=successful_container_command_static_colocation
+
+[LOG]:[InitialFactorProof] field=0 object=0 parent=0 receipt=8 predicate=successful_command_initial_empty_hand
+
+[LOG]:[InitialFactorProof] field=3 object=11 parent=4 receipt=8 predicate=first_takeout_initial_inside_edge
+
+[LOG]:[InitialFactorProof] field=2 object=1 parent=0 receipt=10 predicate=static_big_id_visible_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=2 parent=0 receipt=10 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=3 parent=0 receipt=10 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=4 parent=0 receipt=10 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=5 parent=0 receipt=10 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=6 parent=0 receipt=10 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=7 parent=0 receipt=10 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=8 parent=0 receipt=10 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=1 parent=0 receipt=13 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=2 parent=0 receipt=13 predicate=static_big_id_visible_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=3 parent=0 receipt=13 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=4 parent=0 receipt=13 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=5 parent=0 receipt=13 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=6 parent=0 receipt=13 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=7 parent=0 receipt=13 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=8 parent=0 receipt=13 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=1 object=0 parent=0 receipt=14 predicate=successful_pickup_initial_tray_not_item
+
+[LOG]:[InitialFactorProof] field=2 object=1 parent=0 receipt=16 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=2 parent=0 receipt=16 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=3 parent=0 receipt=16 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=4 parent=0 receipt=16 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=5 parent=0 receipt=16 predicate=static_big_id_visible_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=6 parent=0 receipt=16 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=7 parent=0 receipt=16 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=8 parent=0 receipt=16 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=5 parent=0 receipt=18 predicate=successful_container_command_static_colocation
+
+[LOG]:[InitialFactorProof] field=4 object=5 parent=0 receipt=18 predicate=first_successful_door_command_initial_state
+
+[LOG]:[InitialFactorProof] field=2 object=1 parent=0 receipt=19 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=2 parent=0 receipt=19 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=3 parent=0 receipt=19 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=4 parent=0 receipt=19 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=5 parent=0 receipt=19 predicate=static_big_id_visible_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=6 parent=0 receipt=19 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=7 parent=0 receipt=19 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=8 parent=0 receipt=19 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=1 object=0 parent=0 receipt=20 predicate=successful_pickup_initial_tray_not_item
+
+[LOG]:[InitialFactorProof] field=2 object=5 parent=0 receipt=21 predicate=successful_container_command_static_colocation
+
+[LOG]:[InitialFactorProof] field=2 object=1 parent=0 receipt=23 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=2 parent=0 receipt=23 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=3 parent=0 receipt=23 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=4 parent=0 receipt=23 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=5 parent=0 receipt=23 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=6 parent=0 receipt=23 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=7 parent=0 receipt=23 predicate=static_big_id_visible_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=8 parent=0 receipt=23 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=7 parent=0 receipt=24 predicate=successful_container_command_static_colocation
+
+[LOG]:[InitialFactorProof] field=4 object=7 parent=0 receipt=24 predicate=first_successful_door_command_initial_state
+
+[LOG]:[InitialFactorProof] field=2 object=1 parent=0 receipt=25 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=2 parent=0 receipt=25 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=3 parent=0 receipt=25 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=4 parent=0 receipt=25 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=5 parent=0 receipt=25 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=6 parent=0 receipt=25 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=7 parent=0 receipt=25 predicate=static_big_id_visible_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=8 parent=0 receipt=25 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=7 parent=0 receipt=26 predicate=successful_container_command_static_colocation
+
+[LOG]:[InitialFactorProof] field=3 object=14 parent=7 receipt=26 predicate=first_takeout_initial_inside_edge
+
+[LOG]:[InitialFactorProof] field=2 object=1 parent=0 receipt=28 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=2 parent=0 receipt=28 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=3 parent=0 receipt=28 predicate=static_big_id_visible_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=4 parent=0 receipt=28 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=5 parent=0 receipt=28 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=6 parent=0 receipt=28 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=7 parent=0 receipt=28 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=8 parent=0 receipt=28 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=1 parent=0 receipt=31 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=2 parent=0 receipt=31 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=3 parent=0 receipt=31 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=4 parent=0 receipt=31 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=5 parent=0 receipt=31 predicate=static_big_id_visible_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=6 parent=0 receipt=31 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=7 parent=0 receipt=31 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=8 parent=0 receipt=31 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=5 parent=0 receipt=32 predicate=successful_container_command_static_colocation
+
+[LOG]:[InitialFactorProof] field=2 object=1 parent=0 receipt=34 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=2 parent=0 receipt=34 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=3 parent=0 receipt=34 predicate=static_big_id_visible_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=4 parent=0 receipt=34 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=5 parent=0 receipt=34 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=6 parent=0 receipt=34 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=7 parent=0 receipt=34 predicate=static_big_id_absent_at_robot
+
+[LOG]:[InitialFactorProof] field=2 object=8 parent=0 receipt=34 predicate=static_big_id_absent_at_robot
+
+[LOG]:[FullModel] conditional_proposal complete=true particles=30 checks=12596 block_cache_hits=174 clue_mixture_draws=31 work_cut=false wall_cut=false scope=public feedback conditional block importance approximation; no certified finite-domain coverage
+
+[LOG]:[FullModel] support_repair installed=true transitions=1050 reason=replayed_all_paid_evidence
+
+[LOG]:[FullProposalReuse] modal_physical=1 modal_reused=0 adaptive_physical=16 adaptive_reused=14 support=30 scope=physical_route_simulation_only
+
+[LOG]:[FullModel] decision=8 lower=762.063969 upper=762.063969 routes=12 transitions=3777 prefix_cache_hits=213 wall_cut=true work_cut=false model_ms=256
+
+[LOG]:[FullDecisionEvidence] decision=8 stop_lower=762.063969260 stop_upper=762.063969260 selected_lower=762.063969260 selected_upper=762.063969260 support=30 information_candidates=3 selected_stop=true scope=finite_catalogue_complete_candidates
+
+[LOG]:[FullPhysicalEvaluation] decision=8 inputs=434 retained=434 replay_support=30 scope=pure_physical_candidate_evaluation canonical_answer_authority=false
+
+[LOG]:[FullLatencyEvidence] decision=8 predicted_sdk_ms=0.000000000 proxy_lower=762.063969260 proxy_upper=762.063969260 base_lower=762.063969260 base_upper=762.063969260 rate_per_ms=0.02 past_time_constant=true scope=descriptive_future_sdk_continuous_proxy hard_bound=false
+
+[LOG]:[FullModelTimeSpan] id=1 phase=initialize receipt_mark=0 begin_ns=16121831458 end_ns=16123281839 duration_ns=1450381 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=2 phase=initial_forecast receipt_mark=0 begin_ns=16123283093 end_ns=16124548135 duration_ns=1265042 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=3 phase=policy_catalogue receipt_mark=0 begin_ns=16124550401 end_ns=16124946813 duration_ns=396412 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=4 phase=feedback_replay receipt_mark=1 begin_ns=16244571603 end_ns=16247463261 duration_ns=2891658 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=5 phase=candidate_selection receipt_mark=1 begin_ns=16247497148 end_ns=16258800787 duration_ns=11303639 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=6 phase=policy_catalogue receipt_mark=1 begin_ns=16258802359 end_ns=16259108318 duration_ns=305959 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=7 phase=feedback_replay receipt_mark=2 begin_ns=16364563789 end_ns=16364822128 duration_ns=258339 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=8 phase=candidate_selection receipt_mark=2 begin_ns=16364823029 end_ns=16367302074 duration_ns=2479045 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=9 phase=policy_catalogue receipt_mark=2 begin_ns=16367302519 end_ns=16367405068 duration_ns=102549 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=10 phase=feedback_replay receipt_mark=3 begin_ns=16480755712 end_ns=16481320643 duration_ns=564931 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=11 phase=candidate_selection receipt_mark=3 begin_ns=16481322315 end_ns=16549998824 duration_ns=68676509 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=12 phase=policy_catalogue receipt_mark=3 begin_ns=16550019234 end_ns=16555485743 duration_ns=5466509 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=13 phase=feedback_replay receipt_mark=4 begin_ns=16628407421 end_ns=16628547275 duration_ns=139854 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=14 phase=policy_catalogue receipt_mark=4 begin_ns=16628548658 end_ns=16628715982 duration_ns=167324 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=15 phase=feedback_replay receipt_mark=5 begin_ns=16756822988 end_ns=16756989201 duration_ns=166213 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=16 phase=policy_catalogue receipt_mark=5 begin_ns=16756990711 end_ns=16757140133 duration_ns=149422 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=17 phase=feedback_replay receipt_mark=6 begin_ns=16880767575 end_ns=16880835140 duration_ns=67565 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=18 phase=policy_catalogue receipt_mark=6 begin_ns=16880847121 end_ns=16880992162 duration_ns=145041 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=19 phase=feedback_replay receipt_mark=7 begin_ns=17000590809 end_ns=17006360244 duration_ns=5769435 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=20 phase=candidate_selection receipt_mark=7 begin_ns=17006455847 end_ns=17078247558 duration_ns=71791711 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=21 phase=policy_catalogue receipt_mark=7 begin_ns=17078258618 end_ns=17079968438 duration_ns=1709820 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=22 phase=feedback_replay receipt_mark=8 begin_ns=17152475103 end_ns=17152832647 duration_ns=357544 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=23 phase=policy_catalogue receipt_mark=8 begin_ns=17152833361 end_ns=17152926745 duration_ns=93384 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=24 phase=feedback_replay receipt_mark=9 begin_ns=17260806483 end_ns=17261559916 duration_ns=753433 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=25 phase=policy_catalogue receipt_mark=9 begin_ns=17261561534 end_ns=17261708707 duration_ns=147173 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=26 phase=feedback_replay receipt_mark=10 begin_ns=17380777939 end_ns=17381251322 duration_ns=473383 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=27 phase=policy_catalogue receipt_mark=10 begin_ns=17381253017 end_ns=17381438127 duration_ns=185110 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=28 phase=feedback_replay receipt_mark=11 begin_ns=17500899111 end_ns=17501728437 duration_ns=829326 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=29 phase=policy_catalogue receipt_mark=11 begin_ns=17501730007 end_ns=17501931553 duration_ns=201546 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=30 phase=feedback_replay receipt_mark=12 begin_ns=17616704714 end_ns=17617421439 duration_ns=716725 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=31 phase=policy_catalogue receipt_mark=12 begin_ns=17617422841 end_ns=17617650876 duration_ns=228035 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=32 phase=feedback_replay receipt_mark=13 begin_ns=17724729513 end_ns=17725281422 duration_ns=551909 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=33 phase=policy_catalogue receipt_mark=13 begin_ns=17725283179 end_ns=17725487663 duration_ns=204484 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=34 phase=feedback_replay receipt_mark=14 begin_ns=17837111903 end_ns=17838154501 duration_ns=1042598 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=35 phase=policy_catalogue receipt_mark=14 begin_ns=17838156703 end_ns=17838407200 duration_ns=250497 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=36 phase=feedback_replay receipt_mark=15 begin_ns=17953027378 end_ns=17953777204 duration_ns=749826 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=37 phase=policy_catalogue receipt_mark=15 begin_ns=17953778557 end_ns=17953964925 duration_ns=186368 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=38 phase=feedback_replay receipt_mark=16 begin_ns=18068856876 end_ns=18069452714 duration_ns=595838 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=39 phase=policy_catalogue receipt_mark=16 begin_ns=18069454488 end_ns=18069658137 duration_ns=203649 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=40 phase=feedback_replay receipt_mark=17 begin_ns=18188834106 end_ns=18189727433 duration_ns=893327 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=41 phase=policy_catalogue receipt_mark=17 begin_ns=18189728839 end_ns=18189900329 duration_ns=171490 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=42 phase=feedback_replay receipt_mark=18 begin_ns=18300959497 end_ns=18301867511 duration_ns=908014 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=43 phase=policy_catalogue receipt_mark=18 begin_ns=18301869368 end_ns=18302151975 duration_ns=282607 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=44 phase=feedback_replay receipt_mark=19 begin_ns=18417072740 end_ns=18417868657 duration_ns=795917 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=45 phase=policy_catalogue receipt_mark=19 begin_ns=18417871798 end_ns=18418105550 duration_ns=233752 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=46 phase=feedback_replay receipt_mark=20 begin_ns=18541100436 end_ns=18541781732 duration_ns=681296 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=47 phase=policy_catalogue receipt_mark=20 begin_ns=18541783967 end_ns=18542113556 duration_ns=329589 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=48 phase=feedback_replay receipt_mark=21 begin_ns=18660849807 end_ns=18661346509 duration_ns=496702 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=49 phase=policy_catalogue receipt_mark=21 begin_ns=18661347891 end_ns=18661563258 duration_ns=215367 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=50 phase=feedback_replay receipt_mark=22 begin_ns=18773031446 end_ns=18773702034 duration_ns=670588 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=51 phase=policy_catalogue receipt_mark=22 begin_ns=18773704473 end_ns=18773959919 duration_ns=255446 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=52 phase=feedback_replay receipt_mark=23 begin_ns=18888751260 end_ns=18889151370 duration_ns=400110 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=53 phase=policy_catalogue receipt_mark=23 begin_ns=18889152964 end_ns=18889357819 duration_ns=204855 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=54 phase=feedback_replay receipt_mark=24 begin_ns=19005075941 end_ns=19005196894 duration_ns=120953 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=55 phase=policy_catalogue receipt_mark=24 begin_ns=19005199112 end_ns=19005474656 duration_ns=275544 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=56 phase=feedback_replay receipt_mark=25 begin_ns=19128675132 end_ns=19128820099 duration_ns=144967 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=57 phase=policy_catalogue receipt_mark=25 begin_ns=19128821541 end_ns=19128965280 duration_ns=143739 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=58 phase=feedback_replay receipt_mark=26 begin_ns=19245038385 end_ns=19245123084 duration_ns=84699 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=59 phase=policy_catalogue receipt_mark=26 begin_ns=19245124749 end_ns=19245308189 duration_ns=183440 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=60 phase=feedback_replay receipt_mark=27 begin_ns=19356759512 end_ns=19356831096 duration_ns=71584 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=61 phase=policy_catalogue receipt_mark=27 begin_ns=19356832658 end_ns=19356971314 duration_ns=138656 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=62 phase=feedback_replay receipt_mark=28 begin_ns=19473316513 end_ns=19473533498 duration_ns=216985 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=63 phase=policy_catalogue receipt_mark=28 begin_ns=19473536022 end_ns=19473767040 duration_ns=231018 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=64 phase=feedback_replay receipt_mark=29 begin_ns=19592875021 end_ns=19592944976 duration_ns=69955 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=65 phase=policy_catalogue receipt_mark=29 begin_ns=19592946629 end_ns=19593094711 duration_ns=148082 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=66 phase=feedback_replay receipt_mark=30 begin_ns=19709038023 end_ns=19709278934 duration_ns=240911 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=67 phase=policy_catalogue receipt_mark=30 begin_ns=19709281115 end_ns=19709514562 duration_ns=233447 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=68 phase=feedback_replay receipt_mark=31 begin_ns=19828758655 end_ns=19828884767 duration_ns=126112 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=69 phase=policy_catalogue receipt_mark=31 begin_ns=19828885993 end_ns=19829017246 duration_ns=131253 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=70 phase=feedback_replay receipt_mark=32 begin_ns=19944663197 end_ns=19944719198 duration_ns=56001 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=71 phase=policy_catalogue receipt_mark=32 begin_ns=19944720677 end_ns=19944842465 duration_ns=121788 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=72 phase=feedback_replay receipt_mark=33 begin_ns=20060671954 end_ns=20060735373 duration_ns=63419 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=73 phase=policy_catalogue receipt_mark=33 begin_ns=20060736861 end_ns=20060866085 duration_ns=129224 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=74 phase=feedback_replay receipt_mark=34 begin_ns=20184944221 end_ns=20185099890 duration_ns=155669 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=75 phase=candidate_selection receipt_mark=34 begin_ns=20185102308 end_ns=20186349367 duration_ns=1247059 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=76 phase=deferred_coverage receipt_mark=34 begin_ns=20186349905 end_ns=20186390563 duration_ns=40658 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=77 phase=policy_catalogue receipt_mark=34 begin_ns=20186550953 end_ns=20186720013 duration_ns=169060 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=78 phase=feedback_replay receipt_mark=35 begin_ns=20300937215 end_ns=20320985660 duration_ns=20048445 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModelTimeSpan] id=79 phase=candidate_selection receipt_mark=35 begin_ns=20321054203 end_ns=20363328456 duration_ns=42274253 scope=model_only_receipt_watermark_unchanged
+
+[LOG]:[FullModel] stopped receipts=35 model_ms=256 sdk_ms=3958.245797 dispatch_overhead_ms=26
+
+[LOG]:[FullStopEvidence] reason=cumulative_model_budget remaining_ms=757 model_ns=256444167 prior_coverage_certified=false
+
+[LOG]:[36m[3A][final] goals=4/7 (unknown=3), constraints=1/30 (unknown=21), base_score=106, action_cost=74, elapsed=4243ms, remaining=757ms
+[0m
+[LOG]:[36m[3A][final] completed_goals=[1:putin,3:close,4:takeout,6:goto], satisfied_constraints=[28]
+[0m
+#(Plug): Elapsed time=4.244s
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

@@ -1,0 +1,490 @@
+[LOG]:-stage
+[LOG]:-nlp
+[LOG]:-err
+[LOG]:-ask_2
+[LOG]:-path
+[LOG]:nlp 0, err 1
+#(RDFW): Initializing dynamic arrays with size 100
+#(RDFW): Dynamic arrays initialization completed
+#(Plug): Timeout=5000
+[LOG]:[PlannerVersion] 1.7.6 default=greedy+guarded+answer-branch-probe
+#(RDFW): Starting new test - verifying clean state
+#(RDFW): Pre-test state verification completed
+[32mcase.xml
+[0m--------------------------------------------
+Ready to Parse Env Infos.
+
+ParseEnv finished
+--------------------------------------------
+Ready to Parse Tasks and Cons.
+[LOG]:[Preflight][WorldWarning] human differs from conventional object 1 layout
+[LOG]:[Preflight] task raw=6 unique=6 duplicate=0 rejected=0; constraint raw=0 unique=0 duplicate=0 rejected=0; world_errors=0
+Pos  0:(F):
+Pos  1:(T):[33m(11 cupboard inside:[3] Closed)[0m
+Pos  2:(T):[33m(5 closet inside:[] Closed)[0m
+Pos  3:(T):[33m(6 human)[0m(10 bottle)
+Pos  4:(T):(2 can)(7 book)[33m(8 couch)[0m
+Pos  5:(T):[32m(robot hold:0 plate:3)[0m[33m(1 desk)[0m(3 cup)
+Pos  6:(T):[33m(4 table)[0m
+Pos  7:(T):[33m(9 refrigerator inside:[] Closed)[0m
+UnknownPos:
+
+[LOG]:[32m[MustIn] correction done.
+[0m
+[LOG]:[32m[MustNear] correction done.
+[0m
+Pos  0:(F):
+Pos  1:(T):[33m(11 cupboard inside:[3] Closed)[0m
+Pos  2:(T):[33m(5 closet inside:[] Closed)[0m
+Pos  3:(T):[33m(6 human)[0m(10 bottle)
+Pos  4:(T):(2 can)(7 book)[33m(8 couch)[0m
+Pos  5:(T):[32m(robot hold:0 plate:3)[0m[33m(1 desk)[0m(3 cup)
+Pos  6:(T):[33m(4 table)[0m
+Pos  7:(T):[33m(9 refrigerator inside:[] Closed)[0m
+UnknownPos:
+
+Task:
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:can,Color:white)[0m
+ConditionY:[35m(Sort:table,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:cup,Color:blue)[0m
+ConditionY:[35m(Sort:table,Color:)[0m
+Behave:[35mtakeout[0m
+ConditionX:[35m(Sort:cup,Color:blue)[0m
+ConditionY:[35m(Sort:cupboard,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:bottle,Color:green)[0m
+ConditionY:[35m(Sort:table,Color:)[0m
+Behave:[35mputon[0m
+ConditionX:[35m(Sort:book,Color:red)[0m
+ConditionY:[35m(Sort:table,Color:)[0m
+Behave:[35mgoto[0m
+ConditionX:[35m(Sort:table,Color:)[0m
+ConditionY:[35m(Sort:,Color:)[0m
+
+Info:
+
+Not_Info:
+
+Not_Task:
+
+NotNot_Info:
+Parse Tasks, Cons and Infos finished.
+--------------------------------------------
+Ready to Cons  plan
+cons_plan finished
+--------------------------------------------
+taskoptimization finished
+--------------------------------------------
+[LOG]:[32m[MultiPuton] Big object 4 (sort: table) appears in 4 puton tasks[0m
+[LOG]:[33m[MultiPuton] Marked task 0 as multi-puton for object 4[0m
+[LOG]:[33m[MultiPuton] Marked task 1 as multi-puton for object 4[0m
+[LOG]:[33m[MultiPuton] Marked task 2 as multi-puton for object 4[0m
+[LOG]:[33m[MultiPuton] Marked task 3 as multi-puton for object 4[0m
+[DBG] goto risk@loc=6 bool=0
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":2,"phase":"greedy-round","task_index":1,"task_label":"puton","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":2,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":2,"maintained_constraints":0,"action_count":4,"action_cost":9,"final_reward":71,"utility":71}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=1 task_index=1 behave=puton legacy_choice=false eligible=true complete=true actions=4 duration_ms=420 action_cost=9 score_before=0 score_after=71 marginal_score=71 utility=71 gained_goals=[1,5] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":1,"phase":"greedy-round","task_index":0,"task_label":"puton","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":2,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":2,"maintained_constraints":0,"action_count":5,"action_cost":13,"final_reward":67,"utility":67}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=2 task_index=0 behave=puton legacy_choice=false eligible=true complete=true actions=5 duration_ms=540 action_cost=13 score_before=0 score_after=67 marginal_score=67 utility=67 gained_goals=[0,5] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":3,"phase":"greedy-round","task_index":2,"task_label":"puton","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":2,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":2,"maintained_constraints":0,"action_count":5,"action_cost":13,"final_reward":67,"utility":67}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=3 task_index=2 behave=puton legacy_choice=false eligible=true complete=true actions=5 duration_ms=540 action_cost=13 score_before=0 score_after=67 marginal_score=67 utility=67 gained_goals=[2,5] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":4,"phase":"greedy-round","task_index":3,"task_label":"puton","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":2,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":2,"maintained_constraints":0,"action_count":5,"action_cost":13,"final_reward":67,"utility":67}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=4 task_index=3 behave=puton legacy_choice=false eligible=true complete=true actions=5 duration_ms=540 action_cost=13 score_before=0 score_after=67 marginal_score=67 utility=67 gained_goals=[3,5] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":6,"phase":"greedy-round","task_index":5,"task_label":"goto","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":2,"action_cost":5,"final_reward":35,"utility":35}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=5 task_index=5 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=0 score_after=35 marginal_score=35 utility=35 gained_goals=[5] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":5,"phase":"greedy-round","task_index":4,"task_label":"takeout","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":3,"action_cost":8,"final_reward":32,"utility":32}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=6 task_index=4 behave=takeout legacy_choice=false eligible=true complete=true actions=3 duration_ms=320 action_cost=8 score_before=0 score_after=32 marginal_score=32 utility=32 gained_goals=[4] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=1 behave=puton can_finish=true remaining_plan_ms=420 safety_ms=200 budget_remaining_ms=4909
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=0 behave=puton can_finish=true remaining_plan_ms=540 safety_ms=200 budget_remaining_ms=4909
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=2 behave=puton can_finish=true remaining_plan_ms=540 safety_ms=200 budget_remaining_ms=4909
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=3 behave=puton can_finish=true remaining_plan_ms=540 safety_ms=200 budget_remaining_ms=4909
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=5 behave=goto can_finish=true remaining_plan_ms=220 safety_ms=200 budget_remaining_ms=4909
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=4 behave=takeout can_finish=true remaining_plan_ms=320 safety_ms=200 budget_remaining_ms=4909
+[0m
+[LOG]:[TradeoffDecision] phase=greedy-filter task=1 decision=execute reason=legacy_priority lower=71 upper=231
+
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=0 behave=puton can_finish=true remaining_plan_ms=540 safety_ms=200 budget_remaining_ms=4909
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=1 behave=puton can_finish=true remaining_plan_ms=420 safety_ms=200 budget_remaining_ms=4909
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=2 behave=puton can_finish=true remaining_plan_ms=540 safety_ms=200 budget_remaining_ms=4909
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=3 behave=puton can_finish=true remaining_plan_ms=540 safety_ms=200 budget_remaining_ms=4909
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=5 behave=goto can_finish=true remaining_plan_ms=220 safety_ms=200 budget_remaining_ms=4909
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=4 behave=takeout can_finish=true remaining_plan_ms=320 safety_ms=200 budget_remaining_ms=4909
+[0m
+[LOG]:[TradeoffDecision] phase=greedy-filter task=0 decision=execute reason=legacy_priority lower=67 upper=227
+
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=2 behave=puton can_finish=true remaining_plan_ms=540 safety_ms=200 budget_remaining_ms=4909
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=1 behave=puton can_finish=true remaining_plan_ms=420 safety_ms=200 budget_remaining_ms=4909
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=0 behave=puton can_finish=true remaining_plan_ms=540 safety_ms=200 budget_remaining_ms=4909
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=3 behave=puton can_finish=true remaining_plan_ms=540 safety_ms=200 budget_remaining_ms=4909
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=5 behave=goto can_finish=true remaining_plan_ms=220 safety_ms=200 budget_remaining_ms=4909
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=4 behave=takeout can_finish=true remaining_plan_ms=320 safety_ms=200 budget_remaining_ms=4909
+[0m
+[LOG]:[TradeoffDecision] phase=greedy-filter task=2 decision=execute reason=legacy_priority lower=67 upper=227
+
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=3 behave=puton can_finish=true remaining_plan_ms=540 safety_ms=200 budget_remaining_ms=4909
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=1 behave=puton can_finish=true remaining_plan_ms=420 safety_ms=200 budget_remaining_ms=4909
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=0 behave=puton can_finish=true remaining_plan_ms=540 safety_ms=200 budget_remaining_ms=4909
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=2 behave=puton can_finish=true remaining_plan_ms=540 safety_ms=200 budget_remaining_ms=4909
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=5 behave=goto can_finish=true remaining_plan_ms=220 safety_ms=200 budget_remaining_ms=4909
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=4 behave=takeout can_finish=true remaining_plan_ms=320 safety_ms=200 budget_remaining_ms=4908
+[0m
+[LOG]:[TradeoffDecision] phase=greedy-filter task=3 decision=execute reason=legacy_priority lower=67 upper=227
+
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=5 behave=goto can_finish=true remaining_plan_ms=220 safety_ms=200 budget_remaining_ms=4908
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=1 behave=puton can_finish=true remaining_plan_ms=420 safety_ms=200 budget_remaining_ms=4908
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=0 behave=puton can_finish=true remaining_plan_ms=540 safety_ms=200 budget_remaining_ms=4908
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=2 behave=puton can_finish=true remaining_plan_ms=540 safety_ms=200 budget_remaining_ms=4908
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=3 behave=puton can_finish=true remaining_plan_ms=540 safety_ms=200 budget_remaining_ms=4908
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=4 behave=takeout can_finish=true remaining_plan_ms=320 safety_ms=200 budget_remaining_ms=4908
+[0m
+[LOG]:[TradeoffDecision] phase=greedy-filter task=5 decision=execute reason=legacy_priority lower=35 upper=115
+
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=4 behave=takeout can_finish=true remaining_plan_ms=320 safety_ms=200 budget_remaining_ms=4908
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=1 behave=puton can_finish=true remaining_plan_ms=420 safety_ms=200 budget_remaining_ms=4908
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=0 behave=puton can_finish=true remaining_plan_ms=540 safety_ms=200 budget_remaining_ms=4908
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=2 behave=puton can_finish=true remaining_plan_ms=540 safety_ms=200 budget_remaining_ms=4908
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=3 behave=puton can_finish=true remaining_plan_ms=540 safety_ms=200 budget_remaining_ms=4908
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=5 behave=goto can_finish=true remaining_plan_ms=220 safety_ms=200 budget_remaining_ms=4908
+[0m
+[LOG]:[TradeoffDecision] phase=greedy-filter task=4 decision=execute reason=legacy_priority lower=32 upper=232
+
+[LOG]:[Scheduler] greedy task=1 marginal=71 remaining_ms=4907 group_attempt=true
+
+[LOG]:[GuardedDecision] outcome=greedy reason=unverified_storage cumulative_ms=0
+
+[LOG]:[36m[3B][Deadline] phase=greedy-execution task_index=1 behave=puton can_finish=true remaining_plan_ms=420 safety_ms=200 budget_remaining_ms=4907
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_selected","candidate_id":2,"task_index":1,"tasks":[1],"task_label":"puton","generated_ms":87,"world_revision":0,"selection_reason":"greedy_highest_qualified_marginal_score","prediction":{"goal_gain":2,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":2,"maintained_constraints":0,"action_count":4,"action_cost":9,"final_reward":71,"utility":71},"expected_reward":71,"evidence":[{"object_id":0,"fact":"location","source":"action_success","verified":true},{"object_id":1,"fact":"location","source":"initial","verified":false},{"object_id":2,"fact":"location","source":"initial","verified":false},{"object_id":2,"fact":"inside","source":"initial","verified":false},{"object_id":3,"fact":"location","source":"action_success","verified":true},{"object_id":3,"fact":"inside","source":"initial","verified":false},{"object_id":4,"fact":"location","source":"sense","verified":true},{"object_id":5,"fact":"location","source":"initial","verified":false},{"object_id":5,"fact":"container_state","source":"initial","verified":false},{"object_id":6,"fact":"location","source":"initial","verified":false},{"object_id":7,"fact":"location","source":"initial","verified":false},{"object_id":7,"fact":"inside","source":"initial","verified":false},{"object_id":8,"fact":"location","source":"initial","verified":false},{"object_id":9,"fact":"location","source":"initial","verified":false},{"object_id":9,"fact":"container_state","source":"initial","verified":false},{"object_id":10,"fact":"location","source":"initial","verified":false},{"object_id":10,"fact":"inside","source":"initial","verified":false},{"object_id":11,"fact":"location","source":"initial","verified":false},{"object_id":11,"fact":"container_state","source":"initial","verified":false},{"object_id":0,"fact":"hold","source":"action_success","verified":true},{"object_id":0,"fact":"plate","source":"action_success","verified":true}]}
+[LOG]:[36m[3B][Remaining] event=begin task_index=1 behave=puton executed=0 total=4 remaining_utility=71 remaining_duration_ms=420
+[0m
+puton cup的风险系数是：0
+[LOG]:FromPlate(3,cup)
+[LOG]:[36m[3B][Remaining] event=action task_index=1 action=FromPlate executed=1 total=4 remaining_utility=73 remaining_duration_ms=320 can_finish=true
+[0m
+[LOG]:Move(6)
+[LOG]:[36m[3B][Remaining] event=action task_index=1 action=Move executed=2 total=4 remaining_utility=77 remaining_duration_ms=200 can_finish=true
+[0m
+[LOG]:[36m[3B][Remaining] event=action task_index=1 action=Sense executed=3 total=4 remaining_utility=78 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:[32m[SenseCurrentLocationOnly] Location 6 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Object 4 detected at location 6
+[LOG]:[SenseCurrentLocationOnly] Object 3 detected at location 6
+[LOG]:PutDown(3,cup)
+[LOG]:[36m[3B][Remaining] event=action task_index=1 action=PutDown executed=4 total=4 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_result","candidate_id":2,"prediction":{"goal_gain":2,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":2,"maintained_constraints":0,"action_count":4,"action_cost":9,"final_reward":71,"utility":71},"actual":{"goal_gain":2,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":2,"maintained_constraints":0,"action_count":4,"action_cost":9,"final_reward":71,"utility":71},"succeeded":true,"failed_action":false,"failure_reasons":[],"error":{"goal_gain":0,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"action_cost":0,"utility":0}}
+[LOG]:[36m[3B][Remaining] event=end task_index=1 behave=puton succeeded=true executed=4 total=4 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[Scheduler] result task=1 stable_id=1 success=true revision=4 attempts=0
+
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":7,"phase":"greedy-round","task_index":0,"task_label":"puton","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":3,"maintained_constraints":0,"action_count":4,"action_cost":12,"final_reward":99,"utility":28}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=1 task_index=0 behave=puton legacy_choice=false eligible=true complete=true actions=4 duration_ms=440 action_cost=12 score_before=71 score_after=99 marginal_score=28 utility=28 gained_goals=[0] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":8,"phase":"greedy-round","task_index":2,"task_label":"puton","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":3,"maintained_constraints":0,"action_count":4,"action_cost":12,"final_reward":99,"utility":28}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=2 task_index=2 behave=puton legacy_choice=false eligible=true complete=true actions=4 duration_ms=440 action_cost=12 score_before=71 score_after=99 marginal_score=28 utility=28 gained_goals=[2] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":9,"phase":"greedy-round","task_index":3,"task_label":"puton","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":3,"maintained_constraints":0,"action_count":4,"action_cost":12,"final_reward":99,"utility":28}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=3 task_index=3 behave=puton legacy_choice=false eligible=true complete=true actions=4 duration_ms=440 action_cost=12 score_before=71 score_after=99 marginal_score=28 utility=28 gained_goals=[3] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":10,"phase":"greedy-round","task_index":4,"task_label":"takeout","legacy_choice":false,"eligible":false,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":2,"constraint_gain":0,"constraint_loss":0,"completed_goals":1,"maintained_constraints":0,"action_count":3,"action_cost":8,"final_reward":23,"utility":-48}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=4 task_index=4 behave=takeout legacy_choice=false eligible=false complete=true actions=3 duration_ms=320 action_cost=8 score_before=71 score_after=23 marginal_score=-48 utility=-48 gained_goals=[4] lost_goals=[1,5] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=0 behave=puton can_finish=true remaining_plan_ms=440 safety_ms=200 budget_remaining_ms=3948
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=2 behave=puton can_finish=true remaining_plan_ms=440 safety_ms=200 budget_remaining_ms=3948
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=3 behave=puton can_finish=true remaining_plan_ms=440 safety_ms=200 budget_remaining_ms=3948
+[0m
+[LOG]:[TradeoffDecision] phase=greedy-filter task=0 decision=execute reason=legacy_priority lower=99 upper=219
+
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=2 behave=puton can_finish=true remaining_plan_ms=440 safety_ms=200 budget_remaining_ms=3948
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=0 behave=puton can_finish=true remaining_plan_ms=440 safety_ms=200 budget_remaining_ms=3948
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=3 behave=puton can_finish=true remaining_plan_ms=440 safety_ms=200 budget_remaining_ms=3948
+[0m
+[LOG]:[TradeoffDecision] phase=greedy-filter task=2 decision=execute reason=legacy_priority lower=99 upper=219
+
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=3 behave=puton can_finish=true remaining_plan_ms=440 safety_ms=200 budget_remaining_ms=3946
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=0 behave=puton can_finish=true remaining_plan_ms=440 safety_ms=200 budget_remaining_ms=3946
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=2 behave=puton can_finish=true remaining_plan_ms=440 safety_ms=200 budget_remaining_ms=3946
+[0m
+[LOG]:[TradeoffDecision] phase=greedy-filter task=3 decision=execute reason=legacy_priority lower=99 upper=219
+
+[LOG]:[Scheduler] filtered task=4 stable_id=2 marginal=-48 reason=ineligible
+
+[LOG]:[Scheduler] greedy task=0 marginal=28 remaining_ms=3946 group_attempt=true
+
+[LOG]:[GuardedDecision] outcome=greedy reason=unverified_group_location cumulative_ms=0
+
+[LOG]:[36m[3B][Deadline] phase=greedy-execution task_index=0 behave=puton can_finish=true remaining_plan_ms=440 safety_ms=200 budget_remaining_ms=3946
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_selected","candidate_id":7,"task_index":0,"tasks":[0],"task_label":"puton","generated_ms":1052,"world_revision":4,"selection_reason":"greedy_highest_qualified_marginal_score","prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":3,"maintained_constraints":0,"action_count":4,"action_cost":12,"final_reward":99,"utility":28},"expected_reward":99,"evidence":[{"object_id":0,"fact":"location","source":"action_success","verified":true},{"object_id":1,"fact":"location","source":"initial","verified":false},{"object_id":2,"fact":"location","source":"action_success","verified":true},{"object_id":2,"fact":"inside","source":"initial","verified":false},{"object_id":3,"fact":"location","source":"action_success","verified":true},{"object_id":3,"fact":"inside","source":"initial","verified":false},{"object_id":4,"fact":"location","source":"sense","verified":true},{"object_id":5,"fact":"location","source":"initial","verified":false},{"object_id":5,"fact":"container_state","source":"initial","verified":false},{"object_id":6,"fact":"location","source":"initial","verified":false},{"object_id":7,"fact":"location","source":"initial","verified":false},{"object_id":7,"fact":"inside","source":"initial","verified":false},{"object_id":8,"fact":"location","source":"initial","verified":false},{"object_id":9,"fact":"location","source":"initial","verified":false},{"object_id":9,"fact":"container_state","source":"initial","verified":false},{"object_id":10,"fact":"location","source":"initial","verified":false},{"object_id":10,"fact":"inside","source":"initial","verified":false},{"object_id":11,"fact":"location","source":"initial","verified":false},{"object_id":11,"fact":"container_state","source":"initial","verified":false},{"object_id":0,"fact":"hold","source":"action_success","verified":true},{"object_id":0,"fact":"plate","source":"action_success","verified":true}]}
+[LOG]:[36m[3B][Remaining] event=begin task_index=0 behave=puton executed=0 total=4 remaining_utility=28 remaining_duration_ms=440
+[0m
+puton can的风险系数是：0
+[LOG]:Move(4)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=Move executed=1 total=4 remaining_utility=32 remaining_duration_ms=320 can_finish=true
+[0m
+[LOG]:PickUp(2,can)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=PickUp executed=2 total=4 remaining_utility=74 remaining_duration_ms=220 can_finish=true
+[0m
+[LOG]:Move(6)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=Move executed=3 total=4 remaining_utility=78 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:PutDown(2,can)
+[LOG]:[36m[3B][Remaining] event=action task_index=0 action=PutDown executed=4 total=4 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_result","candidate_id":7,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":3,"maintained_constraints":0,"action_count":4,"action_cost":12,"final_reward":99,"utility":28},"actual":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":3,"maintained_constraints":0,"action_count":4,"action_cost":12,"final_reward":99,"utility":28},"succeeded":true,"failed_action":false,"failure_reasons":[],"error":{"goal_gain":0,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"action_cost":0,"utility":0}}
+[LOG]:[36m[3B][Remaining] event=end task_index=0 behave=puton succeeded=true executed=4 total=4 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[Scheduler] result task=0 stable_id=0 success=true revision=8 attempts=0
+
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":11,"phase":"greedy-round","task_index":2,"task_label":"puton","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":4,"maintained_constraints":0,"action_count":4,"action_cost":12,"final_reward":127,"utility":28}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=1 task_index=2 behave=puton legacy_choice=false eligible=true complete=true actions=4 duration_ms=440 action_cost=12 score_before=99 score_after=127 marginal_score=28 utility=28 gained_goals=[2] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":12,"phase":"greedy-round","task_index":3,"task_label":"puton","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":4,"maintained_constraints":0,"action_count":4,"action_cost":12,"final_reward":127,"utility":28}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=2 task_index=3 behave=puton legacy_choice=false eligible=true complete=true actions=4 duration_ms=440 action_cost=12 score_before=99 score_after=127 marginal_score=28 utility=28 gained_goals=[3] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":13,"phase":"greedy-round","task_index":4,"task_label":"takeout","legacy_choice":false,"eligible":false,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":2,"constraint_gain":0,"constraint_loss":0,"completed_goals":2,"maintained_constraints":0,"action_count":3,"action_cost":8,"final_reward":51,"utility":-48}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=3 task_index=4 behave=takeout legacy_choice=false eligible=false complete=true actions=3 duration_ms=320 action_cost=8 score_before=99 score_after=51 marginal_score=-48 utility=-48 gained_goals=[4] lost_goals=[1,5] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=2 behave=puton can_finish=true remaining_plan_ms=440 safety_ms=200 budget_remaining_ms=2983
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=3 behave=puton can_finish=true remaining_plan_ms=440 safety_ms=200 budget_remaining_ms=2983
+[0m
+[LOG]:[TradeoffDecision] phase=greedy-filter task=2 decision=execute reason=legacy_priority lower=127 upper=207
+
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=3 behave=puton can_finish=true remaining_plan_ms=440 safety_ms=200 budget_remaining_ms=2983
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=2 behave=puton can_finish=true remaining_plan_ms=440 safety_ms=200 budget_remaining_ms=2983
+[0m
+[LOG]:[TradeoffDecision] phase=greedy-filter task=3 decision=execute reason=legacy_priority lower=127 upper=207
+
+[LOG]:[Scheduler] filtered task=4 stable_id=2 marginal=-48 reason=ineligible
+
+[LOG]:[Scheduler] greedy task=2 marginal=28 remaining_ms=2983 group_attempt=true
+
+[LOG]:[GuardedDecision] outcome=greedy reason=unverified_group_location cumulative_ms=0
+
+[LOG]:[36m[3B][Deadline] phase=greedy-execution task_index=2 behave=puton can_finish=true remaining_plan_ms=440 safety_ms=200 budget_remaining_ms=2983
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_selected","candidate_id":11,"task_index":2,"tasks":[2],"task_label":"puton","generated_ms":2017,"world_revision":8,"selection_reason":"greedy_highest_qualified_marginal_score","prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":4,"maintained_constraints":0,"action_count":4,"action_cost":12,"final_reward":127,"utility":28},"expected_reward":127,"evidence":[{"object_id":0,"fact":"location","source":"action_success","verified":true},{"object_id":1,"fact":"location","source":"initial","verified":false},{"object_id":2,"fact":"location","source":"action_success","verified":true},{"object_id":2,"fact":"inside","source":"initial","verified":false},{"object_id":3,"fact":"location","source":"action_success","verified":true},{"object_id":3,"fact":"inside","source":"initial","verified":false},{"object_id":4,"fact":"location","source":"sense","verified":true},{"object_id":5,"fact":"location","source":"initial","verified":false},{"object_id":5,"fact":"container_state","source":"initial","verified":false},{"object_id":6,"fact":"location","source":"initial","verified":false},{"object_id":7,"fact":"location","source":"initial","verified":false},{"object_id":7,"fact":"inside","source":"initial","verified":false},{"object_id":8,"fact":"location","source":"initial","verified":false},{"object_id":9,"fact":"location","source":"initial","verified":false},{"object_id":9,"fact":"container_state","source":"initial","verified":false},{"object_id":10,"fact":"location","source":"action_success","verified":true},{"object_id":10,"fact":"inside","source":"initial","verified":false},{"object_id":11,"fact":"location","source":"initial","verified":false},{"object_id":11,"fact":"container_state","source":"initial","verified":false},{"object_id":0,"fact":"hold","source":"action_success","verified":true},{"object_id":0,"fact":"plate","source":"action_success","verified":true}]}
+[LOG]:[36m[3B][Remaining] event=begin task_index=2 behave=puton executed=0 total=4 remaining_utility=28 remaining_duration_ms=440
+[0m
+puton bottle的风险系数是：0
+[LOG]:Move(3)
+[LOG]:[36m[3B][Remaining] event=action task_index=2 action=Move executed=1 total=4 remaining_utility=32 remaining_duration_ms=320 can_finish=true
+[0m
+[LOG]:PickUp(10,bottle)
+[LOG]:[36m[3B][Remaining] event=action task_index=2 action=PickUp executed=2 total=4 remaining_utility=74 remaining_duration_ms=220 can_finish=true
+[0m
+[LOG]:Move(6)
+[LOG]:[36m[3B][Remaining] event=action task_index=2 action=Move executed=3 total=4 remaining_utility=78 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:PutDown(10,bottle)
+[LOG]:[36m[3B][Remaining] event=action task_index=2 action=PutDown executed=4 total=4 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_result","candidate_id":11,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":4,"maintained_constraints":0,"action_count":4,"action_cost":12,"final_reward":127,"utility":28},"actual":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":4,"maintained_constraints":0,"action_count":4,"action_cost":12,"final_reward":127,"utility":28},"succeeded":true,"failed_action":false,"failure_reasons":[],"error":{"goal_gain":0,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"action_cost":0,"utility":0}}
+[LOG]:[36m[3B][Remaining] event=end task_index=2 behave=puton succeeded=true executed=4 total=4 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[Scheduler] result task=2 stable_id=3 success=true revision=12 attempts=0
+
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":14,"phase":"greedy-round","task_index":3,"task_label":"puton","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":5,"maintained_constraints":0,"action_count":4,"action_cost":12,"final_reward":155,"utility":28}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=1 task_index=3 behave=puton legacy_choice=false eligible=true complete=true actions=4 duration_ms=440 action_cost=12 score_before=127 score_after=155 marginal_score=28 utility=28 gained_goals=[3] lost_goals=[] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":15,"phase":"greedy-round","task_index":4,"task_label":"takeout","legacy_choice":false,"eligible":false,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":2,"constraint_gain":0,"constraint_loss":0,"completed_goals":3,"maintained_constraints":0,"action_count":3,"action_cost":8,"final_reward":79,"utility":-48}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=2 task_index=4 behave=takeout legacy_choice=false eligible=false complete=true actions=3 duration_ms=320 action_cost=8 score_before=127 score_after=79 marginal_score=-48 utility=-48 gained_goals=[4] lost_goals=[1,5] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[36m[3B][Deadline] phase=greedy-filter task_index=3 behave=puton can_finish=true remaining_plan_ms=440 safety_ms=200 budget_remaining_ms=2099
+[0m
+[LOG]:[TradeoffDecision] phase=greedy-filter task=3 decision=execute reason=legacy_priority lower=155 upper=195
+
+[LOG]:[Scheduler] filtered task=4 stable_id=2 marginal=-48 reason=ineligible
+
+[LOG]:[Scheduler] greedy task=3 marginal=28 remaining_ms=2099 group_attempt=true
+
+[LOG]:[GuardedDecision] outcome=greedy reason=unverified_group_location cumulative_ms=0
+
+[LOG]:[36m[3B][Deadline] phase=greedy-execution task_index=3 behave=puton can_finish=true remaining_plan_ms=440 safety_ms=200 budget_remaining_ms=2099
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_selected","candidate_id":14,"task_index":3,"tasks":[3],"task_label":"puton","generated_ms":2900,"world_revision":12,"selection_reason":"greedy_highest_qualified_marginal_score","prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":5,"maintained_constraints":0,"action_count":4,"action_cost":12,"final_reward":155,"utility":28},"expected_reward":155,"evidence":[{"object_id":0,"fact":"location","source":"action_success","verified":true},{"object_id":1,"fact":"location","source":"initial","verified":false},{"object_id":2,"fact":"location","source":"action_success","verified":true},{"object_id":2,"fact":"inside","source":"initial","verified":false},{"object_id":3,"fact":"location","source":"action_success","verified":true},{"object_id":3,"fact":"inside","source":"initial","verified":false},{"object_id":4,"fact":"location","source":"sense","verified":true},{"object_id":5,"fact":"location","source":"initial","verified":false},{"object_id":5,"fact":"container_state","source":"initial","verified":false},{"object_id":6,"fact":"location","source":"initial","verified":false},{"object_id":7,"fact":"location","source":"action_success","verified":true},{"object_id":7,"fact":"inside","source":"initial","verified":false},{"object_id":8,"fact":"location","source":"initial","verified":false},{"object_id":9,"fact":"location","source":"initial","verified":false},{"object_id":9,"fact":"container_state","source":"initial","verified":false},{"object_id":10,"fact":"location","source":"action_success","verified":true},{"object_id":10,"fact":"inside","source":"initial","verified":false},{"object_id":11,"fact":"location","source":"initial","verified":false},{"object_id":11,"fact":"container_state","source":"initial","verified":false},{"object_id":0,"fact":"hold","source":"action_success","verified":true},{"object_id":0,"fact":"plate","source":"action_success","verified":true}]}
+[LOG]:[36m[3B][Remaining] event=begin task_index=3 behave=puton executed=0 total=4 remaining_utility=28 remaining_duration_ms=440
+[0m
+puton book的风险系数是：0
+[LOG]:Move(4)
+[LOG]:[36m[3B][Remaining] event=action task_index=3 action=Move executed=1 total=4 remaining_utility=32 remaining_duration_ms=320 can_finish=true
+[0m
+[LOG]:PickUp(7,book)
+[LOG]:[36m[3B][Remaining] event=action task_index=3 action=PickUp executed=2 total=4 remaining_utility=74 remaining_duration_ms=220 can_finish=true
+[0m
+[LOG]:Move(6)
+[LOG]:[36m[3B][Remaining] event=action task_index=3 action=Move executed=3 total=4 remaining_utility=78 remaining_duration_ms=100 can_finish=true
+[0m
+[LOG]:PutDown(7,book)
+[LOG]:[36m[3B][Remaining] event=action task_index=3 action=PutDown executed=4 total=4 remaining_utility=40 remaining_duration_ms=0 can_finish=true
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_result","candidate_id":14,"prediction":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":5,"maintained_constraints":0,"action_count":4,"action_cost":12,"final_reward":155,"utility":28},"actual":{"goal_gain":1,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"completed_goals":5,"maintained_constraints":0,"action_count":4,"action_cost":12,"final_reward":155,"utility":28},"succeeded":true,"failed_action":false,"failure_reasons":[],"error":{"goal_gain":0,"goal_loss":0,"constraint_gain":0,"constraint_loss":0,"action_cost":0,"utility":0}}
+[LOG]:[36m[3B][Remaining] event=end task_index=3 behave=puton succeeded=true executed=4 total=4 remaining_utility=0 remaining_duration_ms=0
+[0m
+[LOG]:[Scheduler] result task=3 stable_id=4 success=true revision=16 attempts=0
+
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":16,"phase":"greedy-round","task_index":4,"task_label":"takeout","legacy_choice":false,"eligible":false,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":2,"constraint_gain":0,"constraint_loss":0,"completed_goals":4,"maintained_constraints":0,"action_count":3,"action_cost":8,"final_reward":107,"utility":-48}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=1 task_index=4 behave=takeout legacy_choice=false eligible=false complete=true actions=3 duration_ms=320 action_cost=8 score_before=155 score_after=107 marginal_score=-48 utility=-48 gained_goals=[4] lost_goals=[1,5] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[Scheduler] filtered task=4 stable_id=2 marginal=-48 reason=ineligible
+
+[LOG]:[Scheduler] greedy task=18446744073709551615 marginal=0 remaining_ms=1136 group_attempt=true
+
+[LOG]:[GuardedDecision] outcome=greedy reason=unverified_group_location cumulative_ms=0
+
+[LOG]:[Probe] {"schema":"probe.v2","event":"legacy_proposal","world_revision":16,"total_probes":0,"probe_cost_spent":0,"max_same_ask":3,"authorized_constraint_risk_count":0,"consecutive_no_progress":0,"policy":[8,2,32],"reason":"4","closed_reason":""}
+
+[LOG]:[Probe] {"schema":"probe.v2","event":"blocked_task","world_revision":16,"total_probes":0,"probe_cost_spent":0,"max_same_ask":3,"authorized_constraint_risk_count":0,"consecutive_no_progress":0,"policy":[8,2,32],"reason":"task=4,stable_id=2,filter=risk_eligibility","closed_reason":""}
+
+[LOG]:[Probe] {"schema":"probe.v2","event":"blocking_fact","world_revision":16,"total_probes":0,"probe_cost_spent":0,"max_same_ask":3,"authorized_constraint_risk_count":0,"consecutive_no_progress":0,"policy":[8,2,32],"reason":"task=4,stable_id=2,filter=risk_eligibility,fact=INSIDE:3,reason=unverified","closed_reason":""}
+
+[LOG]:[Probe] {"schema":"probe.v2","event":"blocking_fact","world_revision":16,"total_probes":0,"probe_cost_spent":0,"max_same_ask":3,"authorized_constraint_risk_count":0,"consecutive_no_progress":0,"policy":[8,2,32],"reason":"task=4,stable_id=2,filter=risk_eligibility,fact=LOCATION:11,reason=unverified","closed_reason":""}
+
+[LOG]:[Probe] {"schema":"probe.v2","event":"blocking_fact","world_revision":16,"total_probes":0,"probe_cost_spent":0,"max_same_ask":3,"authorized_constraint_risk_count":0,"consecutive_no_progress":0,"policy":[8,2,32],"reason":"task=4,stable_id=2,filter=risk_eligibility,fact=CONTAINER_STATE:11,reason=unverified","closed_reason":""}
+
+[LOG]:[Probe] {"schema":"probe.v2","event":"unsupported_fact","world_revision":16,"total_probes":0,"probe_cost_spent":0,"max_same_ask":3,"authorized_constraint_risk_count":0,"consecutive_no_progress":0,"policy":[8,2,32],"reason":"inside_container_ambiguity:3","closed_reason":""}
+
+[LOG]:[Probe] {"schema":"probe.v2","event":"unsupported_fact","world_revision":16,"total_probes":0,"probe_cost_spent":0,"max_same_ask":3,"authorized_constraint_risk_count":0,"consecutive_no_progress":0,"policy":[8,2,32],"reason":"CONTAINER_STATE:11","closed_reason":""}
+
+[LOG]:[Probe] {"schema":"probe.v2","event":"candidate","world_revision":16,"total_probes":0,"probe_cost_spent":0,"max_same_ask":3,"authorized_constraint_risk_count":0,"consecutive_no_progress":0,"policy":[8,2,32],"reason":"","closed_reason":"","signature":"sense_at:6","kind":"SenseCurrentLocationOnly","target_location":6,"eligible":true,"information_estimate":1,"expected_gain":31,"answer_branches_evaluated":false,"answer_cache_hit":false,"answer_direct_value":0,"answer_after_value":0,"answer_net_value":0,"answer_branch_count":0,"continuation_cost":8,"constraint_risk_count":0,"cost":1,"duration_ms":100,"fact_count":1,"potential_goal_value":40,"stable_id":2,"constraint_result":"constraint_safe","facts":[{"field":"INSIDE","id":3,"task":4,"stable_task_id":2,"reason":"unverified","location_hints":[{"location":1,"source":"inside_container:claim_source=1"},{"location":6,"source":"object_location:canonical"}]}],"answer_branches":[],"verification_routes":[]}
+
+[LOG]:[Probe] {"schema":"probe.v2","event":"candidate","world_revision":16,"total_probes":0,"probe_cost_spent":0,"max_same_ask":3,"authorized_constraint_risk_count":0,"consecutive_no_progress":0,"policy":[8,2,32],"reason":"","closed_reason":"","signature":"sense_at:1","kind":"MoveSense","target_location":1,"eligible":true,"information_estimate":0.6,"expected_gain":11.8,"answer_branches_evaluated":false,"answer_cache_hit":false,"answer_direct_value":0,"answer_after_value":0,"answer_net_value":0,"answer_branch_count":0,"continuation_cost":12,"constraint_risk_count":0,"cost":5,"duration_ms":220,"fact_count":1,"potential_goal_value":40,"stable_id":2,"constraint_result":"constraint_safe","facts":[{"field":"LOCATION","id":11,"task":4,"stable_task_id":2,"reason":"unverified","location_hints":[{"location":1,"source":"object_location:claim_source=1"}]}],"answer_branches":[],"verification_routes":[]}
+
+[LOG]:[Probe] {"schema":"probe.v2","event":"execute","world_revision":16,"total_probes":1,"probe_cost_spent":0,"max_same_ask":3,"authorized_constraint_risk_count":0,"consecutive_no_progress":0,"policy":[8,2,32],"reason":"","closed_reason":"","signature":"sense_at:6","kind":"SenseCurrentLocationOnly","target_location":6,"eligible":true,"information_estimate":1,"expected_gain":31,"answer_branches_evaluated":false,"answer_cache_hit":false,"answer_direct_value":0,"answer_after_value":0,"answer_net_value":0,"answer_branch_count":0,"continuation_cost":8,"constraint_risk_count":0,"cost":1,"duration_ms":100,"fact_count":1,"potential_goal_value":40,"stable_id":2,"constraint_result":"constraint_safe","facts":[{"field":"INSIDE","id":3,"task":4,"stable_task_id":2,"reason":"unverified","location_hints":[{"location":1,"source":"inside_container:claim_source=1"},{"location":6,"source":"object_location:canonical"}]}],"answer_branches":[],"verification_routes":[],"revision_before":16,"revision_after":0,"ask_reply":"","related_context_before":"1:3:-1:11:1:0:1,11,1:0,-1,0:1;edges:0:3:11,1,0,1;","related_context_after":"","issued_actions":0,"received_feedback":false,"sense_attempted":false,"move_failed":false,"related_new_evidence":false,"effective":false,"sense_evidence_changes":0,"action_success_evidence_changes":0,"action_failure_evidence_changes":0,"failure":"","restored_tasks":[],"completed_tasks":[]}
+
+[LOG]:[32m[SenseCurrentLocationOnly] Location 6 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Object 7 detected at location 6
+[LOG]:[SenseCurrentLocationOnly] Object 10 detected at location 6
+[LOG]:[SenseCurrentLocationOnly] Object 2 detected at location 6
+[LOG]:[SenseCurrentLocationOnly] Object 3 detected at location 6
+[LOG]:[SenseCurrentLocationOnly] Object 4 detected at location 6
+[LOG]:[Probe] {"schema":"probe.v2","event":"feedback","world_revision":17,"total_probes":1,"probe_cost_spent":1,"max_same_ask":3,"authorized_constraint_risk_count":0,"consecutive_no_progress":0,"policy":[8,2,32],"reason":"","closed_reason":"","signature":"sense_at:6","kind":"SenseCurrentLocationOnly","target_location":6,"eligible":true,"information_estimate":1,"expected_gain":31,"answer_branches_evaluated":false,"answer_cache_hit":false,"answer_direct_value":0,"answer_after_value":0,"answer_net_value":0,"answer_branch_count":0,"continuation_cost":8,"constraint_risk_count":0,"cost":1,"duration_ms":100,"fact_count":1,"potential_goal_value":40,"stable_id":2,"constraint_result":"constraint_safe","facts":[{"field":"INSIDE","id":3,"task":4,"stable_task_id":2,"reason":"unverified","location_hints":[{"location":1,"source":"inside_container:claim_source=1"},{"location":6,"source":"object_location:canonical"}]}],"answer_branches":[],"verification_routes":[],"revision_before":16,"revision_after":17,"ask_reply":"","related_context_before":"1:3:-1:11:1:0:1,11,1:0,-1,0:1;edges:0:3:11,1,0,1;","related_context_after":"1:3:-1:11:1:0:1,11,1:0,-1,0:1;edges:0:3:11,1,0,1;","issued_actions":1,"received_feedback":true,"sense_attempted":true,"move_failed":false,"related_new_evidence":false,"effective":false,"sense_evidence_changes":1,"action_success_evidence_changes":1,"action_failure_evidence_changes":0,"failure":"","restored_tasks":[],"completed_tasks":[]}
+
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":19,"phase":"greedy-round","task_index":4,"task_label":"takeout","legacy_choice":false,"eligible":false,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":2,"constraint_gain":0,"constraint_loss":0,"completed_goals":4,"maintained_constraints":0,"action_count":3,"action_cost":8,"final_reward":106,"utility":-48}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=1 task_index=4 behave=takeout legacy_choice=false eligible=false complete=true actions=3 duration_ms=320 action_cost=8 score_before=154 score_after=106 marginal_score=-48 utility=-48 gained_goals=[4] lost_goals=[1,5] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[Scheduler] filtered task=4 stable_id=2 marginal=-48 reason=ineligible
+
+[LOG]:[Probe] {"schema":"probe.v2","event":"replan","world_revision":17,"total_probes":1,"probe_cost_spent":1,"max_same_ask":3,"authorized_constraint_risk_count":0,"consecutive_no_progress":1,"policy":[8,2,32],"reason":"","closed_reason":"","signature":"sense_at:6","kind":"SenseCurrentLocationOnly","target_location":6,"eligible":true,"information_estimate":1,"expected_gain":31,"answer_branches_evaluated":false,"answer_cache_hit":false,"answer_direct_value":0,"answer_after_value":0,"answer_net_value":0,"answer_branch_count":0,"continuation_cost":8,"constraint_risk_count":0,"cost":1,"duration_ms":100,"fact_count":1,"potential_goal_value":40,"stable_id":2,"constraint_result":"constraint_safe","facts":[{"field":"INSIDE","id":3,"task":4,"stable_task_id":2,"reason":"unverified","location_hints":[{"location":1,"source":"inside_container:claim_source=1"},{"location":6,"source":"object_location:canonical"}]}],"answer_branches":[],"verification_routes":[],"revision_before":16,"revision_after":17,"ask_reply":"","related_context_before":"1:3:-1:11:1:0:1,11,1:0,-1,0:1;edges:0:3:11,1,0,1;","related_context_after":"1:3:-1:11:1:0:1,11,1:0,-1,0:1;edges:0:3:11,1,0,1;","issued_actions":1,"received_feedback":true,"sense_attempted":true,"move_failed":false,"related_new_evidence":false,"effective":false,"sense_evidence_changes":1,"action_success_evidence_changes":1,"action_failure_evidence_changes":0,"failure":"","restored_tasks":[],"completed_tasks":[]}
+
+[LOG]:[Scheduler] greedy task=18446744073709551615 marginal=0 remaining_ms=933 group_attempt=true
+
+[LOG]:[GuardedDecision] outcome=greedy reason=unverified_group_location cumulative_ms=0
+
+[LOG]:[Probe] {"schema":"probe.v2","event":"legacy_proposal","world_revision":17,"total_probes":1,"probe_cost_spent":1,"max_same_ask":3,"authorized_constraint_risk_count":0,"consecutive_no_progress":1,"policy":[8,2,32],"reason":"4","closed_reason":""}
+
+[LOG]:[Probe] {"schema":"probe.v2","event":"blocked_task","world_revision":17,"total_probes":1,"probe_cost_spent":1,"max_same_ask":3,"authorized_constraint_risk_count":0,"consecutive_no_progress":1,"policy":[8,2,32],"reason":"task=4,stable_id=2,filter=risk_eligibility","closed_reason":""}
+
+[LOG]:[Probe] {"schema":"probe.v2","event":"blocking_fact","world_revision":17,"total_probes":1,"probe_cost_spent":1,"max_same_ask":3,"authorized_constraint_risk_count":0,"consecutive_no_progress":1,"policy":[8,2,32],"reason":"task=4,stable_id=2,filter=risk_eligibility,fact=INSIDE:3,reason=unverified","closed_reason":""}
+
+[LOG]:[Probe] {"schema":"probe.v2","event":"blocking_fact","world_revision":17,"total_probes":1,"probe_cost_spent":1,"max_same_ask":3,"authorized_constraint_risk_count":0,"consecutive_no_progress":1,"policy":[8,2,32],"reason":"task=4,stable_id=2,filter=risk_eligibility,fact=LOCATION:11,reason=unverified","closed_reason":""}
+
+[LOG]:[Probe] {"schema":"probe.v2","event":"blocking_fact","world_revision":17,"total_probes":1,"probe_cost_spent":1,"max_same_ask":3,"authorized_constraint_risk_count":0,"consecutive_no_progress":1,"policy":[8,2,32],"reason":"task=4,stable_id=2,filter=risk_eligibility,fact=CONTAINER_STATE:11,reason=unverified","closed_reason":""}
+
+[LOG]:[Probe] {"schema":"probe.v2","event":"unsupported_fact","world_revision":17,"total_probes":1,"probe_cost_spent":1,"max_same_ask":3,"authorized_constraint_risk_count":0,"consecutive_no_progress":1,"policy":[8,2,32],"reason":"inside_container_ambiguity:3","closed_reason":""}
+
+[LOG]:[Probe] {"schema":"probe.v2","event":"unsupported_fact","world_revision":17,"total_probes":1,"probe_cost_spent":1,"max_same_ask":3,"authorized_constraint_risk_count":0,"consecutive_no_progress":1,"policy":[8,2,32],"reason":"CONTAINER_STATE:11","closed_reason":""}
+
+[LOG]:[Probe] {"schema":"probe.v2","event":"candidate","world_revision":17,"total_probes":1,"probe_cost_spent":1,"max_same_ask":3,"authorized_constraint_risk_count":0,"consecutive_no_progress":1,"policy":[8,2,32],"reason":"","closed_reason":"","signature":"sense_at:1","kind":"MoveSense","target_location":1,"eligible":true,"information_estimate":0.6,"expected_gain":11.8,"answer_branches_evaluated":false,"answer_cache_hit":false,"answer_direct_value":0,"answer_after_value":0,"answer_net_value":0,"answer_branch_count":0,"continuation_cost":12,"constraint_risk_count":0,"cost":5,"duration_ms":220,"fact_count":1,"potential_goal_value":40,"stable_id":2,"constraint_result":"constraint_safe","facts":[{"field":"LOCATION","id":11,"task":4,"stable_task_id":2,"reason":"unverified","location_hints":[{"location":1,"source":"object_location:claim_source=1"}]}],"answer_branches":[],"verification_routes":[]}
+
+[LOG]:[Probe] {"schema":"probe.v2","event":"execute","world_revision":17,"total_probes":2,"probe_cost_spent":1,"max_same_ask":3,"authorized_constraint_risk_count":0,"consecutive_no_progress":1,"policy":[8,2,32],"reason":"","closed_reason":"","signature":"sense_at:1","kind":"MoveSense","target_location":1,"eligible":true,"information_estimate":0.6,"expected_gain":11.8,"answer_branches_evaluated":false,"answer_cache_hit":false,"answer_direct_value":0,"answer_after_value":0,"answer_net_value":0,"answer_branch_count":0,"continuation_cost":12,"constraint_risk_count":0,"cost":5,"duration_ms":220,"fact_count":1,"potential_goal_value":40,"stable_id":2,"constraint_result":"constraint_safe","facts":[{"field":"LOCATION","id":11,"task":4,"stable_task_id":2,"reason":"unverified","location_hints":[{"location":1,"source":"object_location:claim_source=1"}]}],"answer_branches":[],"verification_routes":[],"revision_before":17,"revision_after":0,"ask_reply":"","related_context_before":"0:11:-1:1:1:0:1,1,1:0,-1,0:1;","related_context_after":"","issued_actions":0,"received_feedback":false,"sense_attempted":false,"move_failed":false,"related_new_evidence":false,"effective":false,"sense_evidence_changes":0,"action_success_evidence_changes":0,"action_failure_evidence_changes":0,"failure":"","restored_tasks":[],"completed_tasks":[]}
+
+[LOG]:Move(1)
+[LOG]:[32m[SenseCurrentLocationOnly] Location 1 marked as sensed
+[0m
+[LOG]:[SenseCurrentLocationOnly] Container 11 detected at location 1
+[LOG]:[Probe] {"schema":"probe.v2","event":"feedback","world_revision":19,"total_probes":2,"probe_cost_spent":6,"max_same_ask":3,"authorized_constraint_risk_count":0,"consecutive_no_progress":1,"policy":[8,2,32],"reason":"","closed_reason":"","signature":"sense_at:1","kind":"MoveSense","target_location":1,"eligible":true,"information_estimate":0.6,"expected_gain":11.8,"answer_branches_evaluated":false,"answer_cache_hit":false,"answer_direct_value":0,"answer_after_value":0,"answer_net_value":0,"answer_branch_count":0,"continuation_cost":12,"constraint_risk_count":0,"cost":5,"duration_ms":220,"fact_count":1,"potential_goal_value":40,"stable_id":2,"constraint_result":"constraint_safe","facts":[{"field":"LOCATION","id":11,"task":4,"stable_task_id":2,"reason":"unverified","location_hints":[{"location":1,"source":"object_location:claim_source=1"}]}],"answer_branches":[],"verification_routes":[],"revision_before":17,"revision_after":19,"ask_reply":"","related_context_before":"0:11:-1:1:1:0:1,1,1:0,-1,0:1;","related_context_after":"0:11:1:1:6:1:1,1,6:0,-1,0:1;","issued_actions":2,"received_feedback":true,"sense_attempted":true,"move_failed":false,"related_new_evidence":true,"effective":true,"sense_evidence_changes":1,"action_success_evidence_changes":1,"action_failure_evidence_changes":0,"failure":"","restored_tasks":[],"completed_tasks":[]}
+
+[DBG] goto risk@loc=6 bool=0
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":23,"phase":"greedy-round","task_index":4,"task_label":"takeout","legacy_choice":false,"eligible":false,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":1,"constraint_gain":0,"constraint_loss":0,"completed_goals":4,"maintained_constraints":0,"action_count":2,"action_cost":4,"final_reward":105,"utility":-4}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=1 task_index=4 behave=takeout legacy_choice=false eligible=false complete=true actions=2 duration_ms=200 action_cost=4 score_before=109 score_after=105 marginal_score=-4 utility=-4 gained_goals=[4] lost_goals=[1] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[DecisionFeedback] {"schema":"decision_feedback.v1","event":"candidate_considered","candidate_id":24,"phase":"greedy-round","task_index":5,"task_label":"goto","legacy_choice":false,"eligible":true,"dry_run_succeeded":true,"prediction":{"goal_gain":1,"goal_loss":1,"constraint_gain":0,"constraint_loss":0,"completed_goals":4,"maintained_constraints":0,"action_count":2,"action_cost":5,"final_reward":104,"utility":-5}}
+[LOG]:[36m[3B][Candidate] phase=greedy-round rank=2 task_index=5 behave=goto legacy_choice=false eligible=true complete=true actions=2 duration_ms=220 action_cost=5 score_before=109 score_after=104 marginal_score=-5 utility=-5 gained_goals=[5] lost_goals=[1] broken_constraints=[] preserved_constraints=[]
+[0m
+[LOG]:[Scheduler] filtered task=4 stable_id=2 marginal=-4 reason=ineligible
+
+[LOG]:[Scheduler] filtered task=5 stable_id=5 marginal=-5 reason=nonpositive_single
+
+[LOG]:[Probe] {"schema":"probe.v2","event":"replan","world_revision":19,"total_probes":2,"probe_cost_spent":6,"max_same_ask":3,"authorized_constraint_risk_count":0,"consecutive_no_progress":0,"policy":[8,2,32],"reason":"","closed_reason":"","signature":"sense_at:1","kind":"MoveSense","target_location":1,"eligible":true,"information_estimate":0.6,"expected_gain":11.8,"answer_branches_evaluated":false,"answer_cache_hit":false,"answer_direct_value":0,"answer_after_value":0,"answer_net_value":0,"answer_branch_count":0,"continuation_cost":12,"constraint_risk_count":0,"cost":5,"duration_ms":220,"fact_count":1,"potential_goal_value":40,"stable_id":2,"constraint_result":"constraint_safe","facts":[{"field":"LOCATION","id":11,"task":4,"stable_task_id":2,"reason":"unverified","location_hints":[{"location":1,"source":"object_location:claim_source=1"}]}],"answer_branches":[],"verification_routes":[],"revision_before":17,"revision_after":19,"ask_reply":"","related_context_before":"0:11:-1:1:1:0:1,1,1:0,-1,0:1;","related_context_after":"0:11:1:1:6:1:1,1,6:0,-1,0:1;","issued_actions":2,"received_feedback":true,"sense_attempted":true,"move_failed":false,"related_new_evidence":true,"effective":true,"sense_evidence_changes":1,"action_success_evidence_changes":1,"action_failure_evidence_changes":0,"failure":"","restored_tasks":[],"completed_tasks":[]}
+
+[LOG]:[Scheduler] greedy task=18446744073709551615 marginal=0 remaining_ms=491 group_attempt=true
+
+[LOG]:[GuardedDecision] outcome=greedy reason=unverified_group_container cumulative_ms=0
+
+[LOG]:[Probe] {"schema":"probe.v2","event":"legacy_proposal","world_revision":19,"total_probes":2,"probe_cost_spent":6,"max_same_ask":3,"authorized_constraint_risk_count":0,"consecutive_no_progress":0,"policy":[8,2,32],"reason":"5","closed_reason":""}
+
+[LOG]:[Probe] {"schema":"probe.v2","event":"blocked_task","world_revision":19,"total_probes":2,"probe_cost_spent":6,"max_same_ask":3,"authorized_constraint_risk_count":0,"consecutive_no_progress":0,"policy":[8,2,32],"reason":"task=5,stable_id=5,filter=nonpositive_single","closed_reason":""}
+
+[LOG]:[Probe] {"schema":"probe.v2","event":"blocked_task","world_revision":19,"total_probes":2,"probe_cost_spent":6,"max_same_ask":3,"authorized_constraint_risk_count":0,"consecutive_no_progress":0,"policy":[8,2,32],"reason":"task=4,stable_id=2,filter=risk_eligibility","closed_reason":""}
+
+[LOG]:[Probe] {"schema":"probe.v2","event":"blocking_fact","world_revision":19,"total_probes":2,"probe_cost_spent":6,"max_same_ask":3,"authorized_constraint_risk_count":0,"consecutive_no_progress":0,"policy":[8,2,32],"reason":"task=4,stable_id=2,filter=risk_eligibility,fact=INSIDE:3,reason=unverified","closed_reason":""}
+
+[LOG]:[Probe] {"schema":"probe.v2","event":"blocking_fact","world_revision":19,"total_probes":2,"probe_cost_spent":6,"max_same_ask":3,"authorized_constraint_risk_count":0,"consecutive_no_progress":0,"policy":[8,2,32],"reason":"task=4,stable_id=2,filter=risk_eligibility,fact=CONTAINER_STATE:11,reason=unverified","closed_reason":""}
+
+[LOG]:[Probe] {"schema":"probe.v2","event":"unsupported_fact","world_revision":19,"total_probes":2,"probe_cost_spent":6,"max_same_ask":3,"authorized_constraint_risk_count":0,"consecutive_no_progress":0,"policy":[8,2,32],"reason":"CONTAINER_STATE:11","closed_reason":""}
+
+[LOG]:[Probe] {"schema":"probe.v2","event":"candidate","world_revision":19,"total_probes":2,"probe_cost_spent":6,"max_same_ask":3,"authorized_constraint_risk_count":0,"consecutive_no_progress":0,"policy":[8,2,32],"reason":"duplicate_related_revision","closed_reason":"","signature":"sense_at:6","kind":"MoveSense","target_location":6,"eligible":false,"information_estimate":1,"expected_gain":31,"answer_branches_evaluated":false,"answer_cache_hit":false,"answer_direct_value":0,"answer_after_value":0,"answer_net_value":0,"answer_branch_count":0,"continuation_cost":4,"constraint_risk_count":0,"cost":5,"duration_ms":220,"fact_count":1,"potential_goal_value":40,"stable_id":2,"constraint_result":"constraint_safe","facts":[{"field":"INSIDE","id":3,"task":4,"stable_task_id":2,"reason":"unverified","location_hints":[{"location":1,"source":"inside_container:canonical"},{"location":6,"source":"object_location:canonical"}]}],"answer_branches":[],"verification_routes":[]}
+
+[LOG]:[Probe] {"schema":"probe.v2","event":"stop","world_revision":19,"total_probes":2,"probe_cost_spent":6,"max_same_ask":3,"authorized_constraint_risk_count":0,"consecutive_no_progress":0,"policy":[8,2,32],"reason":"duplicate_or_no_information","closed_reason":""}
+
+[LOG]:[Scheduler] stop reason=no_qualified_positive_single
+
+
+Sovled Task Num:4    Expect Num:6
+[LOG]:[36m[3A][final] goals=4/6 (unknown=1), constraints=0/0 (unknown=0), base_score=109, action_cost=51, elapsed=4516ms, remaining=484ms
+[0m
+[LOG]:[36m[3A][final] completed_goals=[0:puton,1:puton,2:puton,3:puton], satisfied_constraints=[]
+[0m
+#(Plug): Elapsed time=4.518s
+#(RDFW): Fini - Comprehensive state cleanup for next test
+#(RDFW): Optimizing memory usage...
+#(RDFW): Memory optimization completed
+#(RDFW): Comprehensive state cleanup completed - ready for next test

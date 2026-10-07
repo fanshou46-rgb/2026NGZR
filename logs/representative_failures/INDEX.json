@@ -1,0 +1,1226 @@
+{
+  "samples": [
+    {
+      "id": "early-stop-A01-02",
+      "category": "提前停止",
+      "phenomenon": "1.7.7 在剩余约 4366ms 时停止，基线继续运输和关闭。",
+      "conclusion": "日志确认组合因 search_incomplete_or_timeout 回退并停止；局部筛选与预算设计是后续修复入口。",
+      "seed": 2026100403,
+      "references": [
+        "validation/review177-100-20261004/REPORT.md"
+      ],
+      "runs": {
+        "candidate": {
+          "raw_score": 792,
+          "official_score": 792,
+          "platform_seconds": 0.635,
+          "platform_timed_out": false,
+          "actions": {
+            "move": 2,
+            "open": 1,
+            "takeout": 1,
+            "putdown": 1
+          },
+          "action_count": 5,
+          "client_metrics": null,
+          "final_goals": 3,
+          "credited_constraints": 30,
+          "platform_error": false,
+          "case": "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/棰樼洰/independent_100_20261004/cases/stage1/A01-02-s1.xml",
+          "case_sha256": "dc174df67ae0c9fea265ea6afb00fe74ffe19b74a4f9fa0b585e58fbb46af3e0",
+          "stage": 1,
+          "mode": "it",
+          "wall_seconds": 1.0400354390000004,
+          "external_timeout": false,
+          "client_exit": 0,
+          "server_exit": -15,
+          "commands": [
+            [
+              "/tmp/env-release-2026-search/bin/cserver",
+              "-td",
+              "/tmp/robocup-review177-100-20261004/runs/new-A01-02-s1-it-r1-177/runtime/tests",
+              "-eval",
+              "/tmp/env-release-2026-search/lib/libasp",
+              "-log",
+              "/tmp/robocup-review177-100-20261004/runs/new-A01-02-s1-it-r1-177/runtime/log",
+              "-mode",
+              "it",
+              "-test",
+              "1",
+              "-to",
+              "5000"
+            ],
+            [
+              "/tmp/robocup-review177-100-20261004/binaries/177/example",
+              "-stage",
+              "1",
+              "-nlp",
+              "0",
+              "-err",
+              "0",
+              "-ask_2",
+              "0",
+              "-path",
+              "/tmp/robocup-review177-100-20261004/assets/177/words.txt"
+            ]
+          ],
+          "limit_ms": 5000,
+          "budget_ms": null,
+          "status": "ok"
+        },
+        "baseline_200ms": {
+          "raw_score": 876,
+          "official_score": 876,
+          "platform_seconds": 2.308,
+          "platform_timed_out": false,
+          "actions": {
+            "move": 8,
+            "open": 2,
+            "takeout": 2,
+            "putdown": 3,
+            "pickup": 3,
+            "putin": 1,
+            "close": 1
+          },
+          "action_count": 20,
+          "client_metrics": null,
+          "final_goals": 7,
+          "credited_constraints": 30,
+          "platform_error": false,
+          "case": "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/棰樼洰/independent_100_20261004/cases/stage1/A01-02-s1.xml",
+          "case_sha256": "dc174df67ae0c9fea265ea6afb00fe74ffe19b74a4f9fa0b585e58fbb46af3e0",
+          "stage": 1,
+          "mode": "it",
+          "wall_seconds": 2.7509547360000113,
+          "external_timeout": false,
+          "client_exit": 0,
+          "server_exit": -15,
+          "commands": [
+            [
+              "/tmp/env-release-2026-search/bin/cserver",
+              "-td",
+              "/tmp/robocup-review177-100-20261004/runs/new-A01-02-s1-it-r1-167_200/runtime/tests",
+              "-eval",
+              "/tmp/env-release-2026-search/lib/libasp",
+              "-log",
+              "/tmp/robocup-review177-100-20261004/runs/new-A01-02-s1-it-r1-167_200/runtime/log",
+              "-mode",
+              "it",
+              "-test",
+              "1",
+              "-to",
+              "5000"
+            ],
+            [
+              "/tmp/robocup-review177-100-20261004/binaries/167_200/example",
+              "-stage",
+              "1",
+              "-nlp",
+              "0",
+              "-err",
+              "0",
+              "-ask_2",
+              "0",
+              "-path",
+              "/tmp/robocup-review177-100-20261004/assets/167_200/words.txt"
+            ]
+          ],
+          "limit_ms": 5000,
+          "budget_ms": null,
+          "status": "ok"
+        }
+      },
+      "files": [
+        {
+          "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-177/server.log",
+          "saved": "logs/representative_failures/early-stop-A01-02/candidate/server.log",
+          "sha256": "d68e8a7712489a0500b4624b363ef42029698a310f10d32513b942f4deb45bfc",
+          "bytes": 516
+        },
+        {
+          "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-177/client.log",
+          "saved": "logs/representative_failures/early-stop-A01-02/candidate/client.log",
+          "sha256": "4218611d5dc51b15f059b4b49cd65f6a2779856b7cb9bd0d5dc2c4787dd0c399",
+          "bytes": 20216
+        },
+        {
+          "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-177/summary.json",
+          "saved": "logs/representative_failures/early-stop-A01-02/candidate/summary.json",
+          "sha256": "0f233f488dc5903e4de933e365f31900c441f1a3c7446287726f5ee7ef02a41b",
+          "bytes": 1423
+        },
+        {
+          "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-177/runtime.zip",
+          "member": "tests/case.xml",
+          "saved": "logs/representative_failures/early-stop-A01-02/candidate/official_runtime/tests/case.xml",
+          "sha256": "dc174df67ae0c9fea265ea6afb00fe74ffe19b74a4f9fa0b585e58fbb46af3e0",
+          "bytes": 5569
+        },
+        {
+          "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-177/runtime.zip",
+          "member": "vaction.lp",
+          "saved": "logs/representative_failures/early-stop-A01-02/candidate/official_runtime/vaction.lp",
+          "sha256": "39ce59af1c9a4495963db4890434b023e1791699b20195f215270fe8f28dc95c",
+          "bytes": 23
+        },
+        {
+          "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-177/runtime.zip",
+          "member": "vanswer.txt",
+          "saved": "logs/representative_failures/early-stop-A01-02/candidate/official_runtime/vanswer.txt",
+          "sha256": "816a7c1f07546a3fffb74a63de8e7e61405bd9036562f96e8985da59d71ba2a3",
+          "bytes": 560
+        },
+        {
+          "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-177/runtime.zip",
+          "member": "vcons.lp",
+          "saved": "logs/representative_failures/early-stop-A01-02/candidate/official_runtime/vcons.lp",
+          "sha256": "8e0b6b2bb8feefe6d177552dc10cbad312eff29b4d6303e64887d9f8f412246d",
+          "bytes": 1802
+        },
+        {
+          "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-177/runtime.zip",
+          "member": "vstate.lp",
+          "saved": "logs/representative_failures/early-stop-A01-02/candidate/official_runtime/vstate.lp",
+          "sha256": "55197325f9450d9144d3412f8544a152888da10c678b6c2bc5ac6c0d859aa0b6",
+          "bytes": 312
+        },
+        {
+          "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-177/runtime.zip",
+          "member": "vtask.lp",
+          "saved": "logs/representative_failures/early-stop-A01-02/candidate/official_runtime/vtask.lp",
+          "sha256": "6a4f6dd0229f9ba28fcea999b559e1dc72c3e8322d85b57ab14ddd90e8954f00",
+          "bytes": 403
+        },
+        {
+          "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-167_200/server.log",
+          "saved": "logs/representative_failures/early-stop-A01-02/baseline_200ms/server.log",
+          "sha256": "8e3854fc77d1ae7137ec2278473b373d542397b47fbf095fcc9c74bdce132706",
+          "bytes": 773
+        },
+        {
+          "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-167_200/client.log",
+          "saved": "logs/representative_failures/early-stop-A01-02/baseline_200ms/client.log",
+          "sha256": "522e95acf3789fd1df8fbb73cb46c3e6c1a35ddae12435606636e03e2bbc4740",
+          "bytes": 53437
+        },
+        {
+          "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-167_200/summary.json",
+          "saved": "logs/representative_failures/early-stop-A01-02/baseline_200ms/summary.json",
+          "sha256": "eb463fa1400c7b89a437ac51ddeb1a20ae2daaed02c3737112273ae7de206c29",
+          "bytes": 1489
+        },
+        {
+          "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-167_200/runtime.zip",
+          "member": "tests/case.xml",
+          "saved": "logs/representative_failures/early-stop-A01-02/baseline_200ms/official_runtime/tests/case.xml",
+          "sha256": "dc174df67ae0c9fea265ea6afb00fe74ffe19b74a4f9fa0b585e58fbb46af3e0",
+          "bytes": 5569
+        },
+        {
+          "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-167_200/runtime.zip",
+          "member": "vaction.lp",
+          "saved": "logs/representative_failures/early-stop-A01-02/baseline_200ms/official_runtime/vaction.lp",
+          "sha256": "4b2f32fbf5f54886c6f9db89f73e3a75fa0397ae6d607629797b5d286befae54",
+          "bytes": 19
+        },
+        {
+          "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-167_200/runtime.zip",
+          "member": "vanswer.txt",
+          "saved": "logs/representative_failures/early-stop-A01-02/baseline_200ms/official_runtime/vanswer.txt",
+          "sha256": "73909e6d21240b2c7e0fc93a40df26223658a353dca920ae4d643e1da9e3c362",
+          "bytes": 608
+        },
+        {
+          "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-167_200/runtime.zip",
+          "member": "vcons.lp",
+          "saved": "logs/representative_failures/early-stop-A01-02/baseline_200ms/official_runtime/vcons.lp",
+          "sha256": "8e0b6b2bb8feefe6d177552dc10cbad312eff29b4d6303e64887d9f8f412246d",
+          "bytes": 1802
+        },
+        {
+          "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-167_200/runtime.zip",
+          "member": "vstate.lp",
+          "saved": "logs/representative_failures/early-stop-A01-02/baseline_200ms/official_runtime/vstate.lp",
+          "sha256": "21b3e6c2fb94f01eb1e9a029f9e550d8681f2c76246acdfb9ac76f15d88e8d27",
+          "bytes": 313
+        },
+        {
+          "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-167_200/runtime.zip",
+          "member": "vtask.lp",
+          "saved": "logs/representative_failures/early-stop-A01-02/baseline_200ms/official_runtime/vtask.lp",
+          "sha256": "6a4f6dd0229f9ba28fcea999b559e1dc72c3e8322d85b57ab14ddd90e8954f00",
+          "bytes": 403
+        }
+      ]
+    },
+    {
+      "id": "sdk-deadline-j04b",
+      "category": "SDK截止",
+      "phenomenon": "1.7.7 的 seen-j04b IT 第一轮触发 5000ms SDK 截止，评分仍有效。",
+      "conclusion": "保留截止标志和完整动作；这是 1.7.7 超时样本，不是原 200ms 基线超时。",
+      "seed": 2026100403,
+      "references": [
+        "validation/review177-100-20261004/REPORT.md"
+      ],
+      "runs": {
+        "candidate": {
+          "raw_score": 145,
+          "official_score": 145,
+          "platform_seconds": 5.0,
+          "platform_timed_out": true,
+          "actions": {
+            "sense": 3,
+            "open": 1,
+            "takeout": 1,
+            "move": 1,
+            "putdown": 1,
+            "fromplate": 1
+          },
+          "action_count": 8,
+          "client_metrics": null,
+          "final_goals": 4,
+          "credited_constraints": 0,
+          "platform_error": false,
+          "case": "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/棰樼洰/generalization_176_20261004/j04b.xml",
+          "case_sha256": "dc9d91a5eba24f0de6e37ab6798e9d276373916f150aca3038a1684f0fe3fa9f",
+          "stage": 2,
+          "mode": "it",
+          "wall_seconds": 3.606434359000559,
+          "external_timeout": false,
+          "client_exit": 0,
+          "server_exit": -15,
+          "commands": [
+            [
+              "/tmp/env-release-2026-search/bin/cserver",
+              "-td",
+              "/tmp/robocup-review177-100-20261004/runs/seen-j04b-it-r1-177/runtime/tests",
+              "-eval",
+              "/tmp/env-release-2026-search/lib/libasp",
+              "-log",
+              "/tmp/robocup-review177-100-20261004/runs/seen-j04b-it-r1-177/runtime/log",
+              "-mode",
+              "it",
+              "-test",
+              "1",
+              "-to",
+              "5000"
+            ],
+            [
+              "/tmp/robocup-review177-100-20261004/binaries/177/example",
+              "-stage",
+              "2",
+              "-nlp",
+              "0",
+              "-err",
+              "1",
+              "-ask_2",
+              "1",
+              "-path",
+              "/tmp/robocup-review177-100-20261004/assets/177/words.txt"
+            ]
+          ],
+          "limit_ms": 5000,
+          "budget_ms": null,
+          "status": "failed"
+        },
+        "baseline_200ms": {
+          "raw_score": 198,
+          "official_score": 198,
+          "platform_seconds": 0.559,
+          "platform_timed_out": false,
+          "actions": {
+            "sense": 2,
+            "pickup": 1,
+            "move": 1,
+            "putdown": 1
+          },
+          "action_count": 5,
+          "client_metrics": null,
+          "final_goals": 3,
+          "credited_constraints": 0,
+          "platform_error": false,
+          "case": "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/棰樼洰/generalization_176_20261004/j04b.xml",
+          "case_sha256": "dc9d91a5eba24f0de6e37ab6798e9d276373916f150aca3038a1684f0fe3fa9f",
+          "stage": 2,
+          "mode": "it",
+          "wall_seconds": 0.9910546240007534,
+          "external_timeout": false,
+          "client_exit": 0,
+          "server_exit": -15,
+          "commands": [
+            [
+              "/tmp/env-release-2026-search/bin/cserver",
+              "-td",
+              "/tmp/robocup-review177-100-20261004/runs/seen-j04b-it-r1-167_200/runtime/tests",
+              "-eval",
+              "/tmp/env-release-2026-search/lib/libasp",
+              "-log",
+              "/tmp/robocup-review177-100-20261004/runs/seen-j04b-it-r1-167_200/runtime/log",
+              "-mode",
+              "it",
+              "-test",
+              "1",
+              "-to",
+              "5000"
+            ],
+            [
+              "/tmp/robocup-review177-100-20261004/binaries/167_200/example",
+              "-stage",
+              "2",
+              "-nlp",
+              "0",
+              "-err",
+              "1",
+              "-ask_2",
+              "1",
+              "-path",
+              "/tmp/robocup-review177-100-20261004/assets/167_200/words.txt"
+            ]
+          ],
+          "limit_ms": 5000,
+          "budget_ms": null,
+          "status": "ok"
+        }
+      },
+      "files": [
+        {
+          "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-177/server.log",
+          "saved": "logs/representative_failures/sdk-deadline-j04b/candidate/server.log",
+          "sha256": "0de9e97ab3e1185d50d2ec9a8662f33d1032408c31aed57c3416d6acdb5855a7",
+          "bytes": 563
+        },
+        {
+          "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-177/client.log",
+          "saved": "logs/representative_failures/sdk-deadline-j04b/candidate/client.log",
+          "sha256": "51dd7a3f99d7a4dec699c232c26a587b462b80b8002540bf37e62c3e83ad09ba",
+          "bytes": 43595
+        },
+        {
+          "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-177/summary.json",
+          "saved": "logs/representative_failures/sdk-deadline-j04b/candidate/summary.json",
+          "sha256": "2b78018685ffef1c96e988f3bb5ce60d508ea87f18dd114e5e300d2a18369795",
+          "bytes": 1435
+        },
+        {
+          "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-177/runtime.zip",
+          "member": "tests/case.xml",
+          "saved": "logs/representative_failures/sdk-deadline-j04b/candidate/official_runtime/tests/case.xml",
+          "sha256": "dc9d91a5eba24f0de6e37ab6798e9d276373916f150aca3038a1684f0fe3fa9f",
+          "bytes": 1162
+        },
+        {
+          "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-177/runtime.zip",
+          "member": "vaction.lp",
+          "saved": "logs/representative_failures/sdk-deadline-j04b/candidate/official_runtime/vaction.lp",
+          "sha256": "07d3c16000b3bbca43f525e78ca104cc6f3eacced90e5800679c943142c6c0d7",
+          "bytes": 17
+        },
+        {
+          "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-177/runtime.zip",
+          "member": "vanswer.txt",
+          "saved": "logs/representative_failures/sdk-deadline-j04b/candidate/official_runtime/vanswer.txt",
+          "sha256": "031f916bef7b5924c34c0784952f6ade2f7cfa3270dbdbeb97003aefa687df4c",
+          "bytes": 184
+        },
+        {
+          "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-177/runtime.zip",
+          "member": "vcons.lp",
+          "saved": "logs/representative_failures/sdk-deadline-j04b/candidate/official_runtime/vcons.lp",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-177/runtime.zip",
+          "member": "vstate.lp",
+          "saved": "logs/representative_failures/sdk-deadline-j04b/candidate/official_runtime/vstate.lp",
+          "sha256": "e4ad9731a58bcc97401815495ef072ef7842514d37925eba92df100810cbac97",
+          "bytes": 219
+        },
+        {
+          "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-177/runtime.zip",
+          "member": "vtask.lp",
+          "saved": "logs/representative_failures/sdk-deadline-j04b/candidate/official_runtime/vtask.lp",
+          "sha256": "df2886d7477a3a996cc89da9c15150677627d8928912acc5c0281b8f416f37b6",
+          "bytes": 278
+        },
+        {
+          "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-167_200/server.log",
+          "saved": "logs/representative_failures/sdk-deadline-j04b/baseline_200ms/server.log",
+          "sha256": "4bda0f909dea250bf1bdb693d3eee85af331ae1e14f6b358886cf32571b25d35",
+          "bytes": 515
+        },
+        {
+          "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-167_200/client.log",
+          "saved": "logs/representative_failures/sdk-deadline-j04b/baseline_200ms/client.log",
+          "sha256": "a50d27c17198bd3e9c964e86d7bf3f8921477ae8adee2dd8f61a21849344ebd3",
+          "bytes": 32370
+        },
+        {
+          "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-167_200/summary.json",
+          "saved": "logs/representative_failures/sdk-deadline-j04b/baseline_200ms/summary.json",
+          "sha256": "aa05fa4f1a3e2284317ad2460ffb20256b8c84e6eeaf49b8aec00faa5ecd87c9",
+          "bytes": 1415
+        },
+        {
+          "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-167_200/runtime.zip",
+          "member": "tests/case.xml",
+          "saved": "logs/representative_failures/sdk-deadline-j04b/baseline_200ms/official_runtime/tests/case.xml",
+          "sha256": "dc9d91a5eba24f0de6e37ab6798e9d276373916f150aca3038a1684f0fe3fa9f",
+          "bytes": 1162
+        },
+        {
+          "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-167_200/runtime.zip",
+          "member": "vaction.lp",
+          "saved": "logs/representative_failures/sdk-deadline-j04b/baseline_200ms/official_runtime/vaction.lp",
+          "sha256": "68ac3229884cb15ed1411e2842288658b6ee9c6859537247edc873be6e5d1e11",
+          "bytes": 22
+        },
+        {
+          "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-167_200/runtime.zip",
+          "member": "vanswer.txt",
+          "saved": "logs/representative_failures/sdk-deadline-j04b/baseline_200ms/official_runtime/vanswer.txt",
+          "sha256": "eb5a241064a90fd4ab99fc12275fa95a540d7a215ccf685d70150f831e075ba8",
+          "bytes": 172
+        },
+        {
+          "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-167_200/runtime.zip",
+          "member": "vcons.lp",
+          "saved": "logs/representative_failures/sdk-deadline-j04b/baseline_200ms/official_runtime/vcons.lp",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-167_200/runtime.zip",
+          "member": "vstate.lp",
+          "saved": "logs/representative_failures/sdk-deadline-j04b/baseline_200ms/official_runtime/vstate.lp",
+          "sha256": "9ca7f4d528a16484ddf5e8148bb3fef237b66f96edde2023c72a9826c2f4eb01",
+          "bytes": 237
+        },
+        {
+          "source": "validation/review177-100-20261004/runs/seen-j04b-it-r1-167_200/runtime.zip",
+          "member": "vtask.lp",
+          "saved": "logs/representative_failures/sdk-deadline-j04b/baseline_200ms/official_runtime/vtask.lp",
+          "sha256": "df2886d7477a3a996cc89da9c15150677627d8928912acc5c0281b8f416f37b6",
+          "bytes": 278
+        }
+      ]
+    },
+    {
+      "id": "recovery-h03a",
+      "category": "恢复失败与内部高报",
+      "phenomenon": "1.7.5 内部高报 G6，SDK G5；1.7.6 修正关系后，额外探索移动丢掉 goto，SDK G4。",
+      "conclusion": "完整收益遗漏已完成 goto 的损失；未知柜门与返回投影缺陷阻断恢复。原因由日志及独立 SDK 反例支持。",
+      "seed": 2026100401,
+      "references": [
+        "validation/review176-20261004/REPORT.md"
+      ],
+      "runs": {
+        "candidate_176": {
+          "raw_score": 117,
+          "official_score": 117,
+          "platform_seconds": 4.518,
+          "platform_timed_out": false,
+          "actions": {
+            "fromplate": 1,
+            "move": 8,
+            "sense": 3,
+            "putdown": 4,
+            "pickup": 3
+          },
+          "action_count": 19,
+          "client_metrics": null,
+          "final_goals": 4,
+          "credited_constraints": 0,
+          "platform_error": false,
+          "case": "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/棰樼洰/generalization_175_20261004_v4/h03a.xml",
+          "case_sha256": "9e057579dc8100976b8e98730d42654b0065015268fba268deb23ee04bcc4ae0",
+          "stage": 2,
+          "mode": "it",
+          "wall_seconds": 5.274411504999989,
+          "external_timeout": false,
+          "client_exit": 0,
+          "server_exit": -15,
+          "commands": [
+            [
+              "/tmp/env-release-2026-search/bin/cserver",
+              "-td",
+              "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.6/runtime/tests",
+              "-eval",
+              "/tmp/env-release-2026-search/lib/libasp",
+              "-log",
+              "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.6/runtime/log",
+              "-mode",
+              "it",
+              "-test",
+              "1",
+              "-to",
+              "5000"
+            ],
+            [
+              "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/validation/review176-20261004/raw/frozen-v2/build-current/example",
+              "-stage",
+              "2",
+              "-nlp",
+              "0",
+              "-err",
+              "1",
+              "-ask_2",
+              "1",
+              "-path",
+              "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/validation/review176-20261004/raw/frozen-v2/assets/words.txt"
+            ]
+          ],
+          "limit_ms": 5000,
+          "budget_ms": null,
+          "status": "ok"
+        },
+        "baseline_175": {
+          "raw_score": 176,
+          "official_score": 176,
+          "platform_seconds": 3.845,
+          "platform_timed_out": false,
+          "actions": {
+            "sense": 2,
+            "fromplate": 1,
+            "move": 7,
+            "putdown": 4,
+            "pickup": 3
+          },
+          "action_count": 17,
+          "client_metrics": null,
+          "final_goals": 5,
+          "credited_constraints": 0,
+          "platform_error": false,
+          "case": "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/棰樼洰/generalization_175_20261004_v4/h03a.xml",
+          "case_sha256": "9e057579dc8100976b8e98730d42654b0065015268fba268deb23ee04bcc4ae0",
+          "stage": 2,
+          "mode": "it",
+          "wall_seconds": 4.668913699999848,
+          "external_timeout": false,
+          "client_exit": 0,
+          "server_exit": -15,
+          "commands": [
+            [
+              "/tmp/env-release-2026-search/bin/cserver",
+              "-td",
+              "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.5/runtime/tests",
+              "-eval",
+              "/tmp/env-release-2026-search/lib/libasp",
+              "-log",
+              "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.5/runtime/log",
+              "-mode",
+              "it",
+              "-test",
+              "1",
+              "-to",
+              "5000"
+            ],
+            [
+              "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/validation/review175-20261004/frozen-v2/build-current/example",
+              "-stage",
+              "2",
+              "-nlp",
+              "0",
+              "-err",
+              "1",
+              "-ask_2",
+              "1",
+              "-path",
+              "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/validation/review176-20261004/raw/frozen-v2/assets/words.txt"
+            ]
+          ],
+          "limit_ms": 5000,
+          "budget_ms": null,
+          "status": "ok"
+        }
+      },
+      "files": [
+        {
+          "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.6/server.log",
+          "saved": "logs/representative_failures/recovery-h03a/candidate_176/server.log",
+          "sha256": "cefba1da93f76938abcd37ac8a30b418f7c4843929c40890ac2a62a686c65f8f",
+          "bytes": 829
+        },
+        {
+          "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.6/client.log",
+          "saved": "logs/representative_failures/recovery-h03a/candidate_176/client.log",
+          "sha256": "d831417f76c4bde5225ee5b25b61e319e421d052987c99c42f7016448c03193f",
+          "bytes": 62966
+        },
+        {
+          "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.6/summary.json",
+          "saved": "logs/representative_failures/recovery-h03a/candidate_176/summary.json",
+          "sha256": "3b23ef96838e21f47296f6d0ddb25686b8edda865017a7857a4bfeb897652573",
+          "bytes": 1731
+        },
+        {
+          "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.6/runtime/vanswer.txt",
+          "saved": "logs/representative_failures/recovery-h03a/candidate_176/official_runtime/vanswer.txt",
+          "sha256": "de29cd26003074f43a489d32b49fa9852590394505e69b65ca65097218ac1264",
+          "bytes": 184
+        },
+        {
+          "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.6/runtime/vstate.lp",
+          "saved": "logs/representative_failures/recovery-h03a/candidate_176/official_runtime/vstate.lp",
+          "sha256": "f7073f75f4f9629712d318d4c6725180c917adaafffe7a81e66f58f9a06dde0d",
+          "bytes": 267
+        },
+        {
+          "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.6/runtime/vcons.lp",
+          "saved": "logs/representative_failures/recovery-h03a/candidate_176/official_runtime/vcons.lp",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.6/runtime/vtask.lp",
+          "saved": "logs/representative_failures/recovery-h03a/candidate_176/official_runtime/vtask.lp",
+          "sha256": "f55a8aa429e6e5bbb1ddf835cb84e5c08ada4cb8ad09bae00f30094ec2129df2",
+          "bytes": 335
+        },
+        {
+          "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.6/runtime/vaction.lp",
+          "saved": "logs/representative_failures/recovery-h03a/candidate_176/official_runtime/vaction.lp",
+          "sha256": "07d3c16000b3bbca43f525e78ca104cc6f3eacced90e5800679c943142c6c0d7",
+          "bytes": 17
+        },
+        {
+          "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.6/runtime/tests/case.xml",
+          "saved": "logs/representative_failures/recovery-h03a/candidate_176/official_runtime/tests/case.xml",
+          "sha256": "9e057579dc8100976b8e98730d42654b0065015268fba268deb23ee04bcc4ae0",
+          "bytes": 1437
+        },
+        {
+          "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.5/server.log",
+          "saved": "logs/representative_failures/recovery-h03a/baseline_175/server.log",
+          "sha256": "97bbbec2f8a38696a26bb9241d1b7efa7ab6f076a185964edb8ae4a22e48f87d",
+          "bytes": 793
+        },
+        {
+          "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.5/client.log",
+          "saved": "logs/representative_failures/recovery-h03a/baseline_175/client.log",
+          "sha256": "2f48aa50f363c5082f189c79df9b78d014a5909631438d28814e0fdbcbbe3757",
+          "bytes": 37159
+        },
+        {
+          "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.5/summary.json",
+          "saved": "logs/representative_failures/recovery-h03a/baseline_175/summary.json",
+          "sha256": "146edf1a73ac5ca52e8a8dc1b7973f54e040943b0b07506b03070ff1d2cf40f0",
+          "bytes": 1727
+        },
+        {
+          "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.5/runtime/vanswer.txt",
+          "saved": "logs/representative_failures/recovery-h03a/baseline_175/official_runtime/vanswer.txt",
+          "sha256": "db630d7b882f69db997121dd0e9706a97f570baca63a55b7a50cc940cc1a5557",
+          "bytes": 196
+        },
+        {
+          "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.5/runtime/vstate.lp",
+          "saved": "logs/representative_failures/recovery-h03a/baseline_175/official_runtime/vstate.lp",
+          "sha256": "60028af8e70f25f359a0774acc5bc64c3e46110e2f3b35721d2f8b83e70874e1",
+          "bytes": 267
+        },
+        {
+          "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.5/runtime/vcons.lp",
+          "saved": "logs/representative_failures/recovery-h03a/baseline_175/official_runtime/vcons.lp",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.5/runtime/vtask.lp",
+          "saved": "logs/representative_failures/recovery-h03a/baseline_175/official_runtime/vtask.lp",
+          "sha256": "f55a8aa429e6e5bbb1ddf835cb84e5c08ada4cb8ad09bae00f30094ec2129df2",
+          "bytes": 335
+        },
+        {
+          "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.5/runtime/vaction.lp",
+          "saved": "logs/representative_failures/recovery-h03a/baseline_175/official_runtime/vaction.lp",
+          "sha256": "68ac3229884cb15ed1411e2842288658b6ee9c6859537247edc873be6e5d1e11",
+          "bytes": 22
+        },
+        {
+          "source": "validation/review176-20261004/raw/frozen-v2/runs/seen175-2026100401-h03a-it-src1.7.5/runtime/tests/case.xml",
+          "saved": "logs/representative_failures/recovery-h03a/baseline_175/official_runtime/tests/case.xml",
+          "sha256": "9e057579dc8100976b8e98730d42654b0065015268fba268deb23ee04bcc4ae0",
+          "bytes": 1437
+        }
+      ]
+    },
+    {
+      "id": "independent-inside-semantics",
+      "category": "事实终态误判",
+      "phenomenon": "PickUp/PutDown 不自动删 inside；联合模型漏掉旧 inside 边。",
+      "conclusion": "以官方 SDK 状态复现独立 at/inside、多父关系；按指定边更新关系。直接语义检查不使用题目随机种子。",
+      "seed": null,
+      "references": [
+        "docs/AUDIT_1.7.2_1.7.4.md"
+      ],
+      "runs": {},
+      "files": [
+        {
+          "source": "validation/review-20261004/semantics/results.json",
+          "saved": "logs/representative_failures/independent-inside-semantics/results.json",
+          "sha256": "8002f6958002a0ecb4307a8923eb4a0ce22de66a16fc9a0bef0d9f5f1e380bef",
+          "bytes": 615
+        },
+        {
+          "source": "validation/review-20261004/semantics/results-multi.json",
+          "saved": "logs/representative_failures/independent-inside-semantics/multi_inside.json",
+          "sha256": "f16e833991bce63cce2cf5df6c486eb7ae540c5818c38e1b4e0ecee8187f5537",
+          "bytes": 122
+        },
+        {
+          "source": "validation/review-20261004/semantics/v2-0/reproduction.log",
+          "saved": "logs/representative_failures/independent-inside-semantics/sdk_log.log",
+          "sha256": "37f76e23d3b9aa916ff4d12bea60b8a2702ea49493b30ba8e56a23feb5ac5822",
+          "bytes": 443
+        },
+        {
+          "source": "tools/review_172_174/semantic_counterexamples.cpp",
+          "saved": "logs/representative_failures/independent-inside-semantics/counterexample.cpp",
+          "sha256": "f1c88c51d5a2dfe1499850e695802b78167ac29ea2b05d54159791862e753484",
+          "bytes": 3136
+        }
+      ]
+    },
+    {
+      "id": "model-budget-f29",
+      "category": "模型预算超限",
+      "phenomenon": "f29 的累计模型工作超过 250ms 目标，最高 269.904959ms。",
+      "conclusion": "完整时间账本显示检查通过仍有预算超限；该值是模型累计时间，区别于 200ms 规划余量。",
+      "seed": 2026100403,
+      "references": [
+        "experiments/full_probability/LATEST_RESULT.md"
+      ],
+      "runs": {
+        "candidate": {
+          "raw_score": 838,
+          "official_score": 838,
+          "platform_seconds": 3.735,
+          "platform_timed_out": false,
+          "actions": {
+            "sense": 10,
+            "pickup": 5,
+            "move": 7,
+            "putdown": 4,
+            "open": 2,
+            "putin": 1,
+            "takeout": 1,
+            "close": 1
+          },
+          "action_count": 31,
+          "client_metrics": null,
+          "final_goals": 7,
+          "credited_constraints": 30,
+          "platform_error": false,
+          "case": "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/棰樼洰/independent_100_20261004/cases/stage2/A04-01-s2.xml",
+          "case_sha256": "94ae5c7f44e3252339ff79fe4fb4c5d22853b5b8a675a9b3400c9f50a4935958",
+          "stage": 2,
+          "mode": "it",
+          "wall_seconds": 4.1706142449999675,
+          "external_timeout": false,
+          "client_exit": 0,
+          "server_exit": -15,
+          "commands": [
+            [
+              "/tmp/env-release-2026-search/bin/cserver",
+              "-td",
+              "/tmp/robocup-full_probability/runs/f29-smoke2-full-A04-01-s2-it-repeat1-lab/runtime/tests",
+              "-eval",
+              "/tmp/env-release-2026-search/lib/libasp",
+              "-log",
+              "/tmp/robocup-full_probability/runs/f29-smoke2-full-A04-01-s2-it-repeat1-lab/runtime/log",
+              "-mode",
+              "it",
+              "-test",
+              "1",
+              "-to",
+              "5000"
+            ],
+            [
+              "/tmp/robocup-full_probability/binaries/f29/example",
+              "-stage",
+              "2",
+              "-nlp",
+              "0",
+              "-err",
+              "1",
+              "-ask_2",
+              "1",
+              "-path",
+              "/tmp/robocup-full_probability/assets/lab/words.txt"
+            ]
+          ],
+          "limit_ms": 5000,
+          "budget_ms": null,
+          "status": "ok"
+        }
+      },
+      "files": [
+        {
+          "source": "experiments/full_probability/runs/f29-smoke2-full-A04-01-s2-it-repeat1-lab/server.log",
+          "saved": "logs/representative_failures/model-budget-f29/candidate/server.log",
+          "sha256": "091f5b7680e8a2da03e911adcc3c4ba51abd2801a408887baccc19774afd2c3b",
+          "bytes": 964
+        },
+        {
+          "source": "experiments/full_probability/runs/f29-smoke2-full-A04-01-s2-it-repeat1-lab/client.log",
+          "saved": "logs/representative_failures/model-budget-f29/candidate/client.log",
+          "sha256": "1b2fa079d38a7b8b6c68877ff5dc26dec215afda9eea1ba565f34005470435c4",
+          "bytes": 121137
+        },
+        {
+          "source": "experiments/full_probability/runs/f29-smoke2-full-A04-01-s2-it-repeat1-lab/summary.json",
+          "saved": "logs/representative_failures/model-budget-f29/candidate/summary.json",
+          "sha256": "ccae2c4093eea21d07ddc4cc31eeeee37dacef21e3f6b0f9fd0a7b7672677c42",
+          "bytes": 1500
+        },
+        {
+          "source": "experiments/full_probability/runs/f29-smoke2-full-A04-01-s2-it-repeat1-lab/runtime.zip",
+          "member": "tests/case.xml",
+          "saved": "logs/representative_failures/model-budget-f29/candidate/official_runtime/tests/case.xml",
+          "sha256": "94ae5c7f44e3252339ff79fe4fb4c5d22853b5b8a675a9b3400c9f50a4935958",
+          "bytes": 5539
+        },
+        {
+          "source": "experiments/full_probability/runs/f29-smoke2-full-A04-01-s2-it-repeat1-lab/runtime.zip",
+          "member": "vaction.lp",
+          "saved": "logs/representative_failures/model-budget-f29/candidate/official_runtime/vaction.lp",
+          "sha256": "92a434895d1f007197985c31c4a03c18ba6d45f522e99d66bbd947159a9615c3",
+          "bytes": 22
+        },
+        {
+          "source": "experiments/full_probability/runs/f29-smoke2-full-A04-01-s2-it-repeat1-lab/runtime.zip",
+          "member": "vanswer.txt",
+          "saved": "logs/representative_failures/model-budget-f29/candidate/official_runtime/vanswer.txt",
+          "sha256": "48881dd284bbb1af87a194fd23f02f95a976c5a0cfbb5a5604a840b4ade99080",
+          "bytes": 608
+        },
+        {
+          "source": "experiments/full_probability/runs/f29-smoke2-full-A04-01-s2-it-repeat1-lab/runtime.zip",
+          "member": "vcons.lp",
+          "saved": "logs/representative_failures/model-budget-f29/candidate/official_runtime/vcons.lp",
+          "sha256": "a14a6d7059571aa07629b3a0b385cb5da014cac6acf11fb907ae38de010e367a",
+          "bytes": 1795
+        },
+        {
+          "source": "experiments/full_probability/runs/f29-smoke2-full-A04-01-s2-it-repeat1-lab/runtime.zip",
+          "member": "vstate.lp",
+          "saved": "logs/representative_failures/model-budget-f29/candidate/official_runtime/vstate.lp",
+          "sha256": "0778e58fff841834cb6397e08cb98dc9e748379fe6cb2017b779692ce6b35e7c",
+          "bytes": 313
+        },
+        {
+          "source": "experiments/full_probability/runs/f29-smoke2-full-A04-01-s2-it-repeat1-lab/runtime.zip",
+          "member": "vtask.lp",
+          "saved": "logs/representative_failures/model-budget-f29/candidate/official_runtime/vtask.lp",
+          "sha256": "172a93a34291402c9fce6c583591fec8e4864384ac6d0c35ba23abb0428ea575",
+          "bytes": 403
+        },
+        {
+          "source": "experiments/full_probability/f29-smoke2-full-budget-evidence.json",
+          "saved": "logs/representative_failures/model-budget-f29/budget_audit.json",
+          "sha256": "56442877bb1f6761816d538d8453cd4a130bb32460ddbd214f2d2693dd0cc8a6",
+          "bytes": 23102
+        }
+      ]
+    },
+    {
+      "id": "repeat-divergence-f29",
+      "category": "重复运行分叉",
+      "phenomenon": "A01-01-s2 NT 同种子首轮与重复轮 G6→G7，费用 K74→K86。",
+      "conclusion": "固定随机种子仍有公开历史后不同决策；工作配额与墙钟截断需要另行修复。重复轮用于稳定性检查。",
+      "seed": 2026100403,
+      "references": [
+        "experiments/full_probability/LATEST_RESULT.md"
+      ],
+      "runs": {
+        "first": {
+          "raw_score": 780,
+          "official_score": 780,
+          "platform_seconds": 4.244,
+          "platform_timed_out": false,
+          "actions": {
+            "sense": 12,
+            "askloc": 3,
+            "move": 8,
+            "open": 3,
+            "takeout": 2,
+            "putdown": 3,
+            "pickup": 2,
+            "putin": 1,
+            "close": 1
+          },
+          "action_count": 35,
+          "client_metrics": null,
+          "final_goals": 6,
+          "credited_constraints": 30,
+          "platform_error": false,
+          "case": "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/棰樼洰/independent_100_20261004/cases/stage2/A01-01-s2.xml",
+          "case_sha256": "e15e5fcb8f2635c9b5d2c92bda8027b11c5b0748eb8b024a8ce92c9ce8d65f1c",
+          "stage": 2,
+          "mode": "nt",
+          "wall_seconds": 4.670989160000001,
+          "external_timeout": false,
+          "client_exit": 0,
+          "server_exit": -15,
+          "commands": [
+            [
+              "/tmp/env-release-2026-search/bin/cserver",
+              "-td",
+              "/tmp/robocup-full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat0-lab/runtime/tests",
+              "-eval",
+              "/tmp/env-release-2026-search/lib/libasp",
+              "-log",
+              "/tmp/robocup-full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat0-lab/runtime/log",
+              "-mode",
+              "nt",
+              "-test",
+              "1",
+              "-to",
+              "5000"
+            ],
+            [
+              "/tmp/robocup-full_probability/binaries/f29/example",
+              "-stage",
+              "2",
+              "-nlp",
+              "1",
+              "-err",
+              "1",
+              "-ask_2",
+              "1",
+              "-path",
+              "/tmp/robocup-full_probability/assets/lab/words.txt"
+            ]
+          ],
+          "limit_ms": 5000,
+          "budget_ms": null,
+          "status": "ok"
+        },
+        "repeat": {
+          "raw_score": 798,
+          "official_score": 798,
+          "platform_seconds": 4.748,
+          "platform_timed_out": false,
+          "actions": {
+            "sense": 14,
+            "askloc": 3,
+            "move": 10,
+            "open": 3,
+            "takeout": 2,
+            "putdown": 3,
+            "pickup": 3,
+            "putin": 1,
+            "close": 1
+          },
+          "action_count": 40,
+          "client_metrics": null,
+          "final_goals": 7,
+          "credited_constraints": 30,
+          "platform_error": false,
+          "case": "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/棰樼洰/independent_100_20261004/cases/stage2/A01-01-s2.xml",
+          "case_sha256": "e15e5fcb8f2635c9b5d2c92bda8027b11c5b0748eb8b024a8ce92c9ce8d65f1c",
+          "stage": 2,
+          "mode": "nt",
+          "wall_seconds": 5.165632557000009,
+          "external_timeout": false,
+          "client_exit": 0,
+          "server_exit": -15,
+          "commands": [
+            [
+              "/tmp/env-release-2026-search/bin/cserver",
+              "-td",
+              "/tmp/robocup-full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat1-lab/runtime/tests",
+              "-eval",
+              "/tmp/env-release-2026-search/lib/libasp",
+              "-log",
+              "/tmp/robocup-full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat1-lab/runtime/log",
+              "-mode",
+              "nt",
+              "-test",
+              "1",
+              "-to",
+              "5000"
+            ],
+            [
+              "/tmp/robocup-full_probability/binaries/f29/example",
+              "-stage",
+              "2",
+              "-nlp",
+              "1",
+              "-err",
+              "1",
+              "-ask_2",
+              "1",
+              "-path",
+              "/tmp/robocup-full_probability/assets/lab/words.txt"
+            ]
+          ],
+          "limit_ms": 5000,
+          "budget_ms": null,
+          "status": "ok"
+        }
+      },
+      "files": [
+        {
+          "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat0-lab/server.log",
+          "saved": "logs/representative_failures/repeat-divergence-f29/first/server.log",
+          "sha256": "b653bc642ce019a37877aceb1019d1e78e61947c2e3f885858b8756b07113497",
+          "bytes": 1035
+        },
+        {
+          "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat0-lab/client.log",
+          "saved": "logs/representative_failures/repeat-divergence-f29/first/client.log",
+          "sha256": "0006f953f8c957b07f1f318f66b5b7b48c82c77e5eefd46627127636e1d5556d",
+          "bytes": 151625
+        },
+        {
+          "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat0-lab/summary.json",
+          "saved": "logs/representative_failures/repeat-divergence-f29/first/summary.json",
+          "sha256": "3a4693e572b5eb0e242fdfed1f5c2cd0be920b2a037a09e854e94b90ee12ddf3",
+          "bytes": 1516
+        },
+        {
+          "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat0-lab/runtime.zip",
+          "member": "tests/case.xml",
+          "saved": "logs/representative_failures/repeat-divergence-f29/first/official_runtime/tests/case.xml",
+          "sha256": "e15e5fcb8f2635c9b5d2c92bda8027b11c5b0748eb8b024a8ce92c9ce8d65f1c",
+          "bytes": 5582
+        },
+        {
+          "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat0-lab/runtime.zip",
+          "member": "vaction.lp",
+          "saved": "logs/representative_failures/repeat-divergence-f29/first/official_runtime/vaction.lp",
+          "sha256": "1372246ee9a814b14d7f7245faaf2393098244a61a5fcfc4379c188911f575fc",
+          "bytes": 22
+        },
+        {
+          "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat0-lab/runtime.zip",
+          "member": "vanswer.txt",
+          "saved": "logs/representative_failures/repeat-divergence-f29/first/official_runtime/vanswer.txt",
+          "sha256": "4aa979443c5ac7e8a33000c149e2de765d30d1597291238a21174900d82e1913",
+          "bytes": 596
+        },
+        {
+          "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat0-lab/runtime.zip",
+          "member": "vcons.lp",
+          "saved": "logs/representative_failures/repeat-divergence-f29/first/official_runtime/vcons.lp",
+          "sha256": "c9043d6f01bf7c0527ecd3bbb83dc4a173f855cf01b137972abe4b65fa96a951",
+          "bytes": 1801
+        },
+        {
+          "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat0-lab/runtime.zip",
+          "member": "vstate.lp",
+          "saved": "logs/representative_failures/repeat-divergence-f29/first/official_runtime/vstate.lp",
+          "sha256": "07074494bed0dc1a6f6fa132d8a751a28b12cdae9b07e0a8a06d047da30194ee",
+          "bytes": 312
+        },
+        {
+          "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat0-lab/runtime.zip",
+          "member": "vtask.lp",
+          "saved": "logs/representative_failures/repeat-divergence-f29/first/official_runtime/vtask.lp",
+          "sha256": "0955c3f1400ef7dea8521448c6197899354f39a86f564a4731ca6b13fbc5a491",
+          "bytes": 409
+        },
+        {
+          "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat1-lab/server.log",
+          "saved": "logs/representative_failures/repeat-divergence-f29/repeat/server.log",
+          "sha256": "065a185544c03224c2aa9459a9326c66d3f47d766ff40a2badc9133f21cdf409",
+          "bytes": 1118
+        },
+        {
+          "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat1-lab/client.log",
+          "saved": "logs/representative_failures/repeat-divergence-f29/repeat/client.log",
+          "sha256": "ecac2405ac28785c7c5ee8ccd5662bcf0df5c603ed560ecc7d529a66a6202a72",
+          "bytes": 163329
+        },
+        {
+          "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat1-lab/summary.json",
+          "saved": "logs/representative_failures/repeat-divergence-f29/repeat/summary.json",
+          "sha256": "3ebd16092d28a415ae0a044c184e853543231bc9f207793358b931d0275049a2",
+          "bytes": 1517
+        },
+        {
+          "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat1-lab/runtime.zip",
+          "member": "tests/case.xml",
+          "saved": "logs/representative_failures/repeat-divergence-f29/repeat/official_runtime/tests/case.xml",
+          "sha256": "e15e5fcb8f2635c9b5d2c92bda8027b11c5b0748eb8b024a8ce92c9ce8d65f1c",
+          "bytes": 5582
+        },
+        {
+          "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat1-lab/runtime.zip",
+          "member": "vaction.lp",
+          "saved": "logs/representative_failures/repeat-divergence-f29/repeat/official_runtime/vaction.lp",
+          "sha256": "07d3c16000b3bbca43f525e78ca104cc6f3eacced90e5800679c943142c6c0d7",
+          "bytes": 17
+        },
+        {
+          "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat1-lab/runtime.zip",
+          "member": "vanswer.txt",
+          "saved": "logs/representative_failures/repeat-divergence-f29/repeat/official_runtime/vanswer.txt",
+          "sha256": "73909e6d21240b2c7e0fc93a40df26223658a353dca920ae4d643e1da9e3c362",
+          "bytes": 608
+        },
+        {
+          "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat1-lab/runtime.zip",
+          "member": "vcons.lp",
+          "saved": "logs/representative_failures/repeat-divergence-f29/repeat/official_runtime/vcons.lp",
+          "sha256": "c9043d6f01bf7c0527ecd3bbb83dc4a173f855cf01b137972abe4b65fa96a951",
+          "bytes": 1801
+        },
+        {
+          "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat1-lab/runtime.zip",
+          "member": "vstate.lp",
+          "saved": "logs/representative_failures/repeat-divergence-f29/repeat/official_runtime/vstate.lp",
+          "sha256": "ea86369650ab51a37faedbe6fefb7dc73dc11da8e210fc61c9fc31afeb26c1e6",
+          "bytes": 313
+        },
+        {
+          "source": "experiments/full_probability/runs/f29-smoke2-full-A01-01-s2-nt-repeat1-lab/runtime.zip",
+          "member": "vtask.lp",
+          "saved": "logs/representative_failures/repeat-divergence-f29/repeat/official_runtime/vtask.lp",
+          "sha256": "0955c3f1400ef7dea8521448c6197899354f39a86f564a4731ca6b13fbc5a491",
+          "bytes": 409
+        },
+        {
+          "source": "experiments/full_probability/f29-smoke2-full-repeat-evidence.json",
+          "saved": "logs/representative_failures/repeat-divergence-f29/repeat_audit.json",
+          "sha256": "bf09f643d70989f09221412fa3fdf1ab1517ba75f7242d7f80b70b32c61852ef",
+          "bytes": 34699
+        }
+      ]
+    },
+    {
+      "id": "sanitizer-incomplete-competition",
+      "category": "sanitizer卡顿",
+      "phenomenon": "连续 CTest 不同生命周期用例 10 秒超时，input_safety 后续未完成。",
+      "conclusion": "普通检查和正式 SDK 对照已通过；连续 sanitizer 检查保留未完成状态。无题目/模式/随机种子。",
+      "seed": null,
+      "references": [
+        "src1.6.7.1-200ms/docs/RELEASE_1.6.7.1-200ms.md"
+      ],
+      "runs": {},
+      "files": [
+        {
+          "source": "src1.6.7.1-200ms/test-results/comprehensive200-20261006/checks/rc1671-200-asan-ctest.log",
+          "saved": "logs/representative_failures/sanitizer-incomplete-competition/ctest.log",
+          "sha256": "65bb2e77238b403b0d4cd3565a8d9ed2f2c6bae1df78610d839f952686f9cd91",
+          "bytes": 986
+        },
+        {
+          "source": "src1.6.7.1-200ms/test-results/comprehensive200-20261006/checks/rc1671-200-asan-ctest-except-input.log",
+          "saved": "logs/representative_failures/sanitizer-incomplete-competition/except_input.log",
+          "sha256": "c11a7c90e3bb8a3699b2d0b9416a1eb7f915cc1d5a581ad3509884f191e87706",
+          "bytes": 1221
+        },
+        {
+          "source": "src1.6.7.1-200ms/test-results/comprehensive200-20261006/checks/rc1671-200-asan-critical.log",
+          "saved": "logs/representative_failures/sanitizer-incomplete-competition/initial_critical.log",
+          "sha256": "dac4c9e7d7dd8914df58381dceac09a87969f61a8d9189eea62b21f7bc210fc6",
+          "bytes": 12422
+        }
+      ]
+    }
+  ],
+  "all_saved_sha256_verified": true
+}

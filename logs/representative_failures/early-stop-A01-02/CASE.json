@@ -1,0 +1,253 @@
+{
+  "id": "early-stop-A01-02",
+  "category": "提前停止",
+  "phenomenon": "1.7.7 在剩余约 4366ms 时停止，基线继续运输和关闭。",
+  "conclusion": "日志确认组合因 search_incomplete_or_timeout 回退并停止；局部筛选与预算设计是后续修复入口。",
+  "seed": 2026100403,
+  "references": [
+    "validation/review177-100-20261004/REPORT.md"
+  ],
+  "runs": {
+    "candidate": {
+      "raw_score": 792,
+      "official_score": 792,
+      "platform_seconds": 0.635,
+      "platform_timed_out": false,
+      "actions": {
+        "move": 2,
+        "open": 1,
+        "takeout": 1,
+        "putdown": 1
+      },
+      "action_count": 5,
+      "client_metrics": null,
+      "final_goals": 3,
+      "credited_constraints": 30,
+      "platform_error": false,
+      "case": "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/棰樼洰/independent_100_20261004/cases/stage1/A01-02-s1.xml",
+      "case_sha256": "dc174df67ae0c9fea265ea6afb00fe74ffe19b74a4f9fa0b585e58fbb46af3e0",
+      "stage": 1,
+      "mode": "it",
+      "wall_seconds": 1.0400354390000004,
+      "external_timeout": false,
+      "client_exit": 0,
+      "server_exit": -15,
+      "commands": [
+        [
+          "/tmp/env-release-2026-search/bin/cserver",
+          "-td",
+          "/tmp/robocup-review177-100-20261004/runs/new-A01-02-s1-it-r1-177/runtime/tests",
+          "-eval",
+          "/tmp/env-release-2026-search/lib/libasp",
+          "-log",
+          "/tmp/robocup-review177-100-20261004/runs/new-A01-02-s1-it-r1-177/runtime/log",
+          "-mode",
+          "it",
+          "-test",
+          "1",
+          "-to",
+          "5000"
+        ],
+        [
+          "/tmp/robocup-review177-100-20261004/binaries/177/example",
+          "-stage",
+          "1",
+          "-nlp",
+          "0",
+          "-err",
+          "0",
+          "-ask_2",
+          "0",
+          "-path",
+          "/tmp/robocup-review177-100-20261004/assets/177/words.txt"
+        ]
+      ],
+      "limit_ms": 5000,
+      "budget_ms": null,
+      "status": "ok"
+    },
+    "baseline_200ms": {
+      "raw_score": 876,
+      "official_score": 876,
+      "platform_seconds": 2.308,
+      "platform_timed_out": false,
+      "actions": {
+        "move": 8,
+        "open": 2,
+        "takeout": 2,
+        "putdown": 3,
+        "pickup": 3,
+        "putin": 1,
+        "close": 1
+      },
+      "action_count": 20,
+      "client_metrics": null,
+      "final_goals": 7,
+      "credited_constraints": 30,
+      "platform_error": false,
+      "case": "/mnt/c/Users/20723/Desktop/2026robocup/upstream-main-20260928/棰樼洰/independent_100_20261004/cases/stage1/A01-02-s1.xml",
+      "case_sha256": "dc174df67ae0c9fea265ea6afb00fe74ffe19b74a4f9fa0b585e58fbb46af3e0",
+      "stage": 1,
+      "mode": "it",
+      "wall_seconds": 2.7509547360000113,
+      "external_timeout": false,
+      "client_exit": 0,
+      "server_exit": -15,
+      "commands": [
+        [
+          "/tmp/env-release-2026-search/bin/cserver",
+          "-td",
+          "/tmp/robocup-review177-100-20261004/runs/new-A01-02-s1-it-r1-167_200/runtime/tests",
+          "-eval",
+          "/tmp/env-release-2026-search/lib/libasp",
+          "-log",
+          "/tmp/robocup-review177-100-20261004/runs/new-A01-02-s1-it-r1-167_200/runtime/log",
+          "-mode",
+          "it",
+          "-test",
+          "1",
+          "-to",
+          "5000"
+        ],
+        [
+          "/tmp/robocup-review177-100-20261004/binaries/167_200/example",
+          "-stage",
+          "1",
+          "-nlp",
+          "0",
+          "-err",
+          "0",
+          "-ask_2",
+          "0",
+          "-path",
+          "/tmp/robocup-review177-100-20261004/assets/167_200/words.txt"
+        ]
+      ],
+      "limit_ms": 5000,
+      "budget_ms": null,
+      "status": "ok"
+    }
+  },
+  "files": [
+    {
+      "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-177/server.log",
+      "saved": "logs/representative_failures/early-stop-A01-02/candidate/server.log",
+      "sha256": "d68e8a7712489a0500b4624b363ef42029698a310f10d32513b942f4deb45bfc",
+      "bytes": 516
+    },
+    {
+      "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-177/client.log",
+      "saved": "logs/representative_failures/early-stop-A01-02/candidate/client.log",
+      "sha256": "4218611d5dc51b15f059b4b49cd65f6a2779856b7cb9bd0d5dc2c4787dd0c399",
+      "bytes": 20216
+    },
+    {
+      "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-177/summary.json",
+      "saved": "logs/representative_failures/early-stop-A01-02/candidate/summary.json",
+      "sha256": "0f233f488dc5903e4de933e365f31900c441f1a3c7446287726f5ee7ef02a41b",
+      "bytes": 1423
+    },
+    {
+      "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-177/runtime.zip",
+      "member": "tests/case.xml",
+      "saved": "logs/representative_failures/early-stop-A01-02/candidate/official_runtime/tests/case.xml",
+      "sha256": "dc174df67ae0c9fea265ea6afb00fe74ffe19b74a4f9fa0b585e58fbb46af3e0",
+      "bytes": 5569
+    },
+    {
+      "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-177/runtime.zip",
+      "member": "vaction.lp",
+      "saved": "logs/representative_failures/early-stop-A01-02/candidate/official_runtime/vaction.lp",
+      "sha256": "39ce59af1c9a4495963db4890434b023e1791699b20195f215270fe8f28dc95c",
+      "bytes": 23
+    },
+    {
+      "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-177/runtime.zip",
+      "member": "vanswer.txt",
+      "saved": "logs/representative_failures/early-stop-A01-02/candidate/official_runtime/vanswer.txt",
+      "sha256": "816a7c1f07546a3fffb74a63de8e7e61405bd9036562f96e8985da59d71ba2a3",
+      "bytes": 560
+    },
+    {
+      "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-177/runtime.zip",
+      "member": "vcons.lp",
+      "saved": "logs/representative_failures/early-stop-A01-02/candidate/official_runtime/vcons.lp",
+      "sha256": "8e0b6b2bb8feefe6d177552dc10cbad312eff29b4d6303e64887d9f8f412246d",
+      "bytes": 1802
+    },
+    {
+      "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-177/runtime.zip",
+      "member": "vstate.lp",
+      "saved": "logs/representative_failures/early-stop-A01-02/candidate/official_runtime/vstate.lp",
+      "sha256": "55197325f9450d9144d3412f8544a152888da10c678b6c2bc5ac6c0d859aa0b6",
+      "bytes": 312
+    },
+    {
+      "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-177/runtime.zip",
+      "member": "vtask.lp",
+      "saved": "logs/representative_failures/early-stop-A01-02/candidate/official_runtime/vtask.lp",
+      "sha256": "6a4f6dd0229f9ba28fcea999b559e1dc72c3e8322d85b57ab14ddd90e8954f00",
+      "bytes": 403
+    },
+    {
+      "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-167_200/server.log",
+      "saved": "logs/representative_failures/early-stop-A01-02/baseline_200ms/server.log",
+      "sha256": "8e3854fc77d1ae7137ec2278473b373d542397b47fbf095fcc9c74bdce132706",
+      "bytes": 773
+    },
+    {
+      "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-167_200/client.log",
+      "saved": "logs/representative_failures/early-stop-A01-02/baseline_200ms/client.log",
+      "sha256": "522e95acf3789fd1df8fbb73cb46c3e6c1a35ddae12435606636e03e2bbc4740",
+      "bytes": 53437
+    },
+    {
+      "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-167_200/summary.json",
+      "saved": "logs/representative_failures/early-stop-A01-02/baseline_200ms/summary.json",
+      "sha256": "eb463fa1400c7b89a437ac51ddeb1a20ae2daaed02c3737112273ae7de206c29",
+      "bytes": 1489
+    },
+    {
+      "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-167_200/runtime.zip",
+      "member": "tests/case.xml",
+      "saved": "logs/representative_failures/early-stop-A01-02/baseline_200ms/official_runtime/tests/case.xml",
+      "sha256": "dc174df67ae0c9fea265ea6afb00fe74ffe19b74a4f9fa0b585e58fbb46af3e0",
+      "bytes": 5569
+    },
+    {
+      "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-167_200/runtime.zip",
+      "member": "vaction.lp",
+      "saved": "logs/representative_failures/early-stop-A01-02/baseline_200ms/official_runtime/vaction.lp",
+      "sha256": "4b2f32fbf5f54886c6f9db89f73e3a75fa0397ae6d607629797b5d286befae54",
+      "bytes": 19
+    },
+    {
+      "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-167_200/runtime.zip",
+      "member": "vanswer.txt",
+      "saved": "logs/representative_failures/early-stop-A01-02/baseline_200ms/official_runtime/vanswer.txt",
+      "sha256": "73909e6d21240b2c7e0fc93a40df26223658a353dca920ae4d643e1da9e3c362",
+      "bytes": 608
+    },
+    {
+      "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-167_200/runtime.zip",
+      "member": "vcons.lp",
+      "saved": "logs/representative_failures/early-stop-A01-02/baseline_200ms/official_runtime/vcons.lp",
+      "sha256": "8e0b6b2bb8feefe6d177552dc10cbad312eff29b4d6303e64887d9f8f412246d",
+      "bytes": 1802
+    },
+    {
+      "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-167_200/runtime.zip",
+      "member": "vstate.lp",
+      "saved": "logs/representative_failures/early-stop-A01-02/baseline_200ms/official_runtime/vstate.lp",
+      "sha256": "21b3e6c2fb94f01eb1e9a029f9e550d8681f2c76246acdfb9ac76f15d88e8d27",
+      "bytes": 313
+    },
+    {
+      "source": "validation/review177-100-20261004/runs/new-A01-02-s1-it-r1-167_200/runtime.zip",
+      "member": "vtask.lp",
+      "saved": "logs/representative_failures/early-stop-A01-02/baseline_200ms/official_runtime/vtask.lp",
+      "sha256": "6a4f6dd0229f9ba28fcea999b559e1dc72c3e8322d85b57ab14ddd90e8954f00",
+      "bytes": 403
+    }
+  ]
+}
